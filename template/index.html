@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xml:lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="shortcut icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="//s01.mifile.cn/favicon.ico" type="image/x-icon"/>
+  <title>POS</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  
+  <div id="browser-warning">
+    为了更好的使用页面各功能和美观，强烈建议使用Chrome浏览器访问本站
+    <i id="browser-warning__close" onclick="closeBrowserWarning()">x</i>
+  </div>
+  <style type="text/css">
+    #browser-warning {
+      display: none;
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      width: 600px;
+      height: 38px;
+      line-height: 38px;
+      padding: 0px;
+      margin-left: -300px;
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      background: #a09e9e;
+      border-radius: 5px;
+      z-index: 10000;
+    }
+    #browser-warning__close {
+      position: absolute;
+      right: 10px;
+      height: 38px;
+      line-height: 38px;
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript">
+    function closeBrowserWarning() {
+      clearTimeout(browserWarningTimer)
+      browserWarningDom.style.display = 'none'
+    }
+
+    function isIgnoreUrl() {
+      for (var i = ignoreUrls.length - 1; i >= 0; i--) {
+        if (ignoreUrls[i].test(location.pathname)) {
+          return true
+        }
+      }
+      return false
+    }
+
+    function getBrowserInfo(){
+      var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+      if(/trident/i.test(M[1])){
+          tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
+          return {name:'IE ',version:(tem[1]||'')};
+          }   
+      if(M[1]==='Chrome'){
+          tem=ua.match(/\bOPR\/(\d+)/)
+          if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+          }   
+      M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+      if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+      return {
+        name: M[0].toLocaleUpperCase(),
+        version: M[1]
+      };
+    }
+
+    function checkBrowser() {
+      var browserInfo = getBrowserInfo()
+      return (browserInfo.name==='CHROME' && browserInfo.version>=49)
+              ||
+             (browserInfo.name==='FIREFOX' && browserInfo.version>=59)
+    }
+
+    var _sessionStorage = sessionStorage || {
+      setItem: function(){
+        return false
+      },
+      getItem: function() {
+        return false
+      }
+    }
+    var ignoreUrls = [/print/]
+    var browserWarningTimer
+    var browserWarningDom = document.getElementById('browser-warning')
+    var sessionKey = 'tested-chrome'
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    var testedBrowser = _sessionStorage.getItem(sessionKey)
+    if (!checkBrowser() && !isIgnoreUrl()) {
+      _sessionStorage.setItem(sessionKey, true)
+      browserWarningDom.style.display = 'block'
+      browserWarningTimer = setTimeout(function(){
+        closeBrowserWarning()
+      }, 3000)
+    }
+  </script>
+
+</body>
+</html>

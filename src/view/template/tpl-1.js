@@ -7,13 +7,13 @@ import Seclet from '@hi-ui/hiui/es/select'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
+import config from '~config'
 import './style/tpl-1.scss'
 
 class Template extends Component {
   constructor(props) {
     super(props)
 
-    this.columns = this.getTableColumns()
     this.businessOptions = [
       {name:'全部', id:'全部'},
       {name:'小米商城', id:'小米商城'},
@@ -33,12 +33,29 @@ class Template extends Component {
       {title: '调拨管理'},
       {title: '超期监控'}
     ]
+    this.columnMixins = {
+      column1: {
+        sorter(pre, next) {
+          return pre.column1 - next.column1
+        }
+      },
+      action: {
+        render: () => (
+          <React.Fragment>
+            <Icon name="edit" />
+            <Icon name="close" />
+            <Icon name="more" />
+          </React.Fragment>
+        )
+      }
+    }
 
     this.state = {
       pageSize: 0,
       total: 0,
       page: 1,
       tableDatas: [],
+      columns: [],
       activeMenu: 0,
       forms: this.initForms()
     }
@@ -54,7 +71,7 @@ class Template extends Component {
       forms
     } = this.state
 
-    axios.get('http://localhost:7002/table/get-datas', {
+    axios.get(`${config('host')}/table/get-datas`, {
       params: {
         page,
         ...forms
@@ -64,6 +81,7 @@ class Template extends Component {
 
       if (ret && ret.status === 200) {
         const data = ret.data.data
+        const columns = data.columns
         const pageInfo = data.pageInfo
 
         data.data.map(data => {
@@ -73,7 +91,8 @@ class Template extends Component {
           tableDatas: datas,
           page: pageInfo.page,
           total: pageInfo.total,
-          pageSize: pageInfo.pageSize
+          pageSize: pageInfo.pageSize,
+          columns: this.setTableColumns(columns)
         })
       }
     })
@@ -82,42 +101,24 @@ class Template extends Component {
   initForms() {
     return Object.assign({}, {
       column1: '',
-      column2: '0',
-      column3: '0'
+      column2: '全部',
+      column3: '全部'
     })
   }
 
-  getTableColumns() {
-    return [
-      {
-        title: 'id',
-        dataIndex: 'id', 
-        key: '1'
-      },
-      {
-        title: '业务来源',
-        dataIndex: 'column1', 
-        key: '2',
-        sorter(pre, next) {
-          return pre.column1 - next.column1
-        }
-      },
-      { title: '运输方式', dataIndex: 'column2', key: '3'},
-      { title: 'column 3', dataIndex: 'column3', key: '4'},
-      { title: 'column 4', dataIndex: 'column4', key: '5'},
-      { title: 'column 5', dataIndex: 'column5', key: '6'},
-      {
-        title: '操作',
-        width: 100,
-        render: () => (
-          <React.Fragment>
-            <Icon name="edit" />
-            <Icon name="close" />
-            <Icon name="more" />
-          </React.Fragment>
-        )
-      }
-    ]
+  setTableColumns(columns) {
+    const _columns = []
+
+    columns.map(column => {
+      const key = column.key
+
+      _columns.push({
+        ...column,
+        ...this.columnMixins[key]
+      })
+    })
+
+    return _columns
   }
 
   updateForm(data, callback=undefined) {
@@ -155,6 +156,7 @@ class Template extends Component {
     const {
       activeMenu,
       tableDatas,
+      columns,
       pageSize,
       total,
       page,
@@ -181,7 +183,7 @@ class Template extends Component {
                 placeholder="请选择业务来源"
                 style={{width: '220px'}}
                 value={forms.column2}
-                onChange={value => this.updateForm({column2: value[0]&&value[0].id||'0'})}
+                onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
               />
             </Form.Item>
             <Form.Item label="运输方式" labelWidth="80">
@@ -190,7 +192,7 @@ class Template extends Component {
                 placeholder="请选择运输方式"
                 style={{width: '220px'}}
                 value={forms.column3}
-                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'0'})}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
               />
             </Form.Item>
             <Form.Item labelWidth="50">
@@ -205,7 +207,7 @@ class Template extends Component {
             </Form.Item>
           </Form>
           <Table 
-            columns={this.columns} 
+            columns={columns} 
             data={tableDatas} 
             name="sorter"
             pagination={{

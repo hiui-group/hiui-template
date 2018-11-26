@@ -247,4 +247,3 @@ class Template extends Component {
 }
 
 module.exports = Template
-

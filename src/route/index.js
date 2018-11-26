@@ -5,7 +5,7 @@ export default [
     indexRoute: {
       getComponent(nextState, cb) {
         require.ensure([], require => {
-          cb(null, require('../view/template/tpl-1'))
+          cb(null, require('../view/template/basic'))
         }, 'index')
       }
     }

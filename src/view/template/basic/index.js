@@ -8,7 +8,7 @@ import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '~config'
-import './style/tpl-1.scss'
+import './index.scss'
 
 class Template extends Component {
   constructor(props) {

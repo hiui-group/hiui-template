@@ -47,7 +47,7 @@ module.exports = require('./webpack.base.config')({
     disableHostCheck: true,
     historyApiFallback: true,
     // contentBase: ['template/dev', 'dist', 'public'],
-    port: process.env.npm_config_port || 8081,
+    port: process.env.npm_config_port || 4200,
     stats: {
       chunks: false,
       children: false

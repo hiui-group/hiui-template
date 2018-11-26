@@ -79,7 +79,7 @@ class Template extends Component {
     }).then(ret => {
       const datas = []
 
-      if (ret && ret.status === 200) {
+      if (ret && ret.data.code === 200) {
         const data = ret.data.data
         const columns = data.columns
         const pageInfo = data.pageInfo

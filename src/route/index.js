@@ -9,5 +9,13 @@ export default [
         }, 'index')
       }
     }
+  },
+  {
+    path: 'group-horizontal',
+    component: require('../view/template/group-horizontal'),
+  },
+  {
+    path: 'group-vertical',
+    component: require('../view/template/group-vertical'),
   }
 ]

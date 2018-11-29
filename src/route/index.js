@@ -17,5 +17,13 @@ export default [
   {
     path: 'group-vertical',
     component: require('../view/template/group-vertical'),
+  },
+  {
+    path: 'tile-single',
+    component: require('../view/template/tile-single'),
+  },
+  {
+    path: 'tile-multiple',
+    component: require('../view/template/tile-multiple'),
   }
 ]

@@ -11,6 +11,10 @@ export default [
     }
   },
   {
+    path: 'query-2',
+    component: require('../view/template/query-2')
+  },
+  {
     path: 'group-horizontal',
     component: require('../view/template/group-horizontal')
   },

@@ -1,0 +1,46 @@
+.hi-tpl {
+  display: flex;
+  flex-direction: column;
+  &__title {
+    font-size: 16px;
+    color: #4A4A4A;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    .hi-tpl__title {
+      flex: auto;
+    }
+    &--container {
+      flex: none;
+      display: flex;
+    }
+  }
+  &__tools {
+    height: 52px;
+    line-height: 52px;
+    font-size: 14px;
+    color: #383E47;
+    border-top: 1px solid #F6F6F6;;
+  }
+
+  &__form {
+    display: flex;
+    padding: 12px 18px 17px;
+    background: #F8FAFE;
+    &--left {
+      flex: auto;
+    }
+    &--right {
+      flex: none;
+      width: 100px;
+    }
+    &--fields {
+      display: flex;
+    }
+    &--actions {
+      margin-top: 14px;
+    }
+  }
+}

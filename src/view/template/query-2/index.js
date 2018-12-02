@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import Table from '@hi-ui/hiui/es/table'
-import Form from '@hi-ui/hiui/es/form'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
-import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import {FormFilter, Field} from '~component/form-filter'
-import axios from 'axios'
-import config from '~config'
 import './index.scss'
 
 class Template extends Component {
@@ -51,50 +47,22 @@ class Template extends Component {
     }
 
     this.state = {
-      pageSize: 0,
+      pageSize: 10,
       total: 0,
       page: 1,
       tableDatas: [],
       columns: [],
-      activeMenu: 0,
       forms: this.initForms()
     }
   }
 
-  componentWillMount() {
-    this.fetchDatas()
-  }
+  updateForm(data, callback=undefined) {
+    const forms = Object.assign({}, this.state.forms, data)
 
-  fetchDatas() {
-    const {
-      page,
+    this.setState({
       forms
-    } = this.state
-
-    axios.get(`${config('host')}/table/get-datas`, {
-      params: {
-        page,
-        ...forms
-      }
-    }).then(ret => {
-      const datas = []
-
-      if (ret && ret.data.code === 200) {
-        const data = ret.data.data
-        const columns = data.columns
-        const pageInfo = data.pageInfo
-
-        data.data.map(data => {
-          datas.push(data)
-        })
-        this.setState({
-          tableDatas: datas,
-          page: pageInfo.page,
-          total: pageInfo.total,
-          pageSize: pageInfo.pageSize,
-          columns: this.setTableColumns(columns)
-        })
-      }
+    }, () => {
+      callback && callback()
     })
   }
 
@@ -121,109 +89,8 @@ class Template extends Component {
     return _columns
   }
 
-  updateForm(data, callback=undefined) {
-    const forms = Object.assign({}, this.state.forms, data)
-
-    this.setState({
-      forms
-    }, () => {
-      callback && callback()
-    })
-  }
-
-  checkSubmit() {
-    const {forms} = this.state
-
-    return !!forms.column1
-  }
-
-  submit(can) {
-    if (!can) {
-      return
-    }
-    this.setState({
-      page: 1
-    }, () => {
-      this.fetchDatas()
-    })
-  }
-
-  reset() {
-    this.updateForm(this.initForms(), () => this.fetchDatas())
-  }
-
-  renderMenuContent() {
-    const {
-      activeMenu,
-      tableDatas,
-      columns,
-      pageSize,
-      total,
-      page,
-      forms
-    } = this.state
-    const canSubmit = this.checkSubmit()
-
-    if (activeMenu === 0) {
-      return (
-        <React.Fragment>
-          <Form inline={true}>
-            <Form.Item label="运单号" labelWidth="80">
-              <Input
-                placeholder="请输入"
-                value={forms.column1}
-                onChange={(e, value) => {
-                  this.updateForm({column1: value})
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="业务来源" labelWidth="80">
-              <Seclet
-                list={this.businessOptions}
-                placeholder="请选择业务来源"
-                style={{width: '220px'}}
-                value={forms.column2}
-                onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
-              />
-            </Form.Item>
-            <Form.Item label="运输方式" labelWidth="80">
-              <Seclet
-                list={this.transportOptions}
-                placeholder="请选择运输方式"
-                style={{width: '220px'}}
-                value={forms.column3}
-                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-              />
-            </Form.Item>
-            <Form.Item labelWidth="50">
-              <Button 
-                type={canSubmit ? 'primary' : 'default'}
-                disabled={!canSubmit}
-                onClick={e => this.submit(canSubmit)}
-              >
-                确定
-              </Button>
-              <Button onClick={this.reset.bind(this)} type="default" appearance="line">重置</Button>
-            </Form.Item>
-          </Form>
-          <Table 
-            columns={columns} 
-            data={tableDatas} 
-            name="sorter"
-            pagination={{
-              pageSize: pageSize,
-              total:total,
-              page: page,
-              onChange:(page, pre, size) => {
-                this.setState({page: page}, () => this.fetchDatas())
-              }
-            }}
-          />
-        </React.Fragment>
-      )
-    } else {
-      return activeMenu
-    }
+  beforeSubmit() {
+    return true
   }
 
   render() {
@@ -235,11 +102,30 @@ class Template extends Component {
       total,
       page
     } = this.state
+    const params = {
+      ...forms,
+      page,
+      pageSize
+    }
 
     return (
       <div className="hi-tpl__query-2">
         <FormFilter 
           title="二级菜单"
+          params={params}
+          beforeSubmit={this.beforeSubmit.bind(this)}
+          bindData={data => {
+            const columns = data.columns
+            const pageInfo = data.pageInfo
+
+            this.setState({
+              tableDatas: data.data,
+              page: pageInfo.page,
+              total: pageInfo.total,
+              pageSize: pageInfo.pageSize,
+              columns: this.setTableColumns(columns)
+            })
+          }}
         >
           <Field label="运单号" width="220">
             <Input
@@ -250,38 +136,18 @@ class Template extends Component {
               }}
             />
           </Field>
-          <Field label="运单号">
-            <Input
-              placeholder="请输入"
-              value={forms.column1}
-              onChange={(e, value) => {
-                this.updateForm({column1: value})
-              }}
-            />
-          </Field>
-          <Field label="业务来源" width="80">
+          <Field label="业务来源" width="200">
             <Seclet
               list={this.businessOptions}
               placeholder="请选择业务来源"
-              style={{width: '220px'}}
               value={forms.column2}
               onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
             />
           </Field>
-          <Field label="运单号" width="80" advanced>
-            <Input
-              placeholder="请输入"
-              value={forms.column1}
-              onChange={(e, value) => {
-                this.updateForm({column1: value})
-              }}
-            />
-          </Field>
-          <Field label="运输方式" width="80" advanced>
+          <Field label="运输方式" width="200">
             <Seclet
               list={this.transportOptions}
               placeholder="请选择运输方式"
-              style={{width: '220px'}}
               value={forms.column3}
               onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
             />
@@ -296,7 +162,7 @@ class Template extends Component {
             pageSize: pageSize,
             total:total,
             page: page,
-            onChange:(page, pre, size) => {
+            onChange:page => {
               this.setState({page: page}, () => this.fetchDatas())
             }
           }}

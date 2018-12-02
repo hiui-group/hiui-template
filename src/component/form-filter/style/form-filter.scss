@@ -1,6 +1,7 @@
 .hi-tpl {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1px;
   &__title {
     font-size: 16px;
     color: #4A4A4A;
@@ -18,8 +19,7 @@
     }
   }
   &__tools {
-    height: 52px;
-    line-height: 52px;
+    padding-top: 7px;
     font-size: 14px;
     color: #383E47;
     border-top: 1px solid #F6F6F6;;

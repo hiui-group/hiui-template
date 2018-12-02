@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from '@hi-ui/hiui/es/button'
+import classNames from 'classnames'
 import Icon from '@hi-ui/hiui/es/icon'
 import './style/tool.scss'
 
@@ -44,7 +44,7 @@ export default class Tool extends Component {
     const tool = this.tools[type]
 
     return (
-      <div className="hi-tpl__tool">
+      <div className={classNames('hi-tpl__tool', this.props.className)}>
         <div type="line">
           <Icon name={tool.icon} />
           {tool.title && tool.title}

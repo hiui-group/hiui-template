@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import Action from './action'
 import Tool from './tool'
 import axios from 'axios'
+import config from '~config'
 import './style/form-filter.scss'
 
 export default class FormFilter extends Component {
@@ -24,6 +26,45 @@ export default class FormFilter extends Component {
 
   constructor(props) {
     super(props)
+
+    this.state = {
+      activeTool: 'form'
+    }
+  }
+
+  componentDidMount() {
+    this.fetchDatas()
+  }
+
+  submit(can) {
+    const {
+      beforeSubmit
+    } = this.props
+
+    if (!can || !beforeSubmit()) {
+      return
+    }
+    
+    this.fetchDatas()
+  }
+
+  reset() {
+    this.updateForm(this.initForms(), () => this.fetchDatas())
+  }
+
+  fetchDatas() {
+    const {
+      params,
+      bindData
+    } = this.props
+
+    axios.get(`${config('host')}/table/get-datas`, {
+      params
+    }).then(ret => {
+      if (ret && ret.data.code === 200) {
+        bindData(ret.data.data)
+      }
+    })
   }
 
   renderActions() {
@@ -52,12 +93,15 @@ export default class FormFilter extends Component {
     const {
       tools
     } = this.props
+    const {
+      activeTool
+    } = this.state
 
     return (
       <div className="hi-tpl__tools">
         {
           tools.map((tool, index) => (
-            <Tool type={tool} key={index} />
+            <Tool className={classNames({'hi-tpl__tool--active': tool===activeTool})} type={tool} key={index} />
           ))
         }
       </div>
@@ -66,7 +110,8 @@ export default class FormFilter extends Component {
 
   render() {
     const {
-      children
+      children,
+      canSubmit
     } = this.props
 
     return (
@@ -79,7 +124,11 @@ export default class FormFilter extends Component {
               {children}
             </div>
             <div className="hi-tpl__form--actions">
-              <Button>
+              <Button
+                type={canSubmit ? 'primary' : 'default'}
+                disabled={!canSubmit}
+                onClick={() => this.submit(canSubmit)}
+              >
                 确定
               </Button>
               <Button>

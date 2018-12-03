@@ -30,11 +30,11 @@ export default class Field extends Component {
     }
 
     return (
-      <div className="hi-tpl__form--field" style={{width: `${width}px`}}>
-        <div className="hi-tpl__form--field__label">
+      <div className="hi-form-filter__field" style={{width: `${width}px`}}>
+        <div className="hi-form-filter__field--label">
           {label}
         </div>
-        <div className="hi-tpl__form--field__content">
+        <div className="hi-form-filter__field--content">
           {children}
         </div>
       </div>

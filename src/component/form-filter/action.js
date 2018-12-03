@@ -37,7 +37,7 @@ export default class Action extends Component {
 
   renderAction(type) {
     return (
-      <div className="hi-tpl__action">
+      <div className="hi-form-filter__action">
         <Button type="line">
           <Icon name={this.actions[type].icon} />
         </Button>

@@ -74,11 +74,11 @@ export default class FormFilter extends Component {
     } = this.props
 
     return (
-      <div className="hi-tpl__actions">
-        <div className="hi-tpl__title">
+      <div className="hi-form-filter__actions">
+        <div className="hi-form-filter__title">
           {title}
         </div>
-        <div className="hi-tpl__actions--container">
+        <div className="hi-form-filter__actions--container">
           {
             actions.map((action, index) => (
               <Action type={action} key={index} />
@@ -98,10 +98,10 @@ export default class FormFilter extends Component {
     } = this.state
 
     return (
-      <div className="hi-tpl__tools">
+      <div className="hi-form-filter__tools">
         {
           tools.map((tool, index) => (
-            <Tool className={classNames({'hi-tpl__tool--active': tool===activeTool})} type={tool} key={index} />
+            <Tool className={classNames({'hi-form-filter__tool--active': tool===activeTool})} type={tool} key={index} />
           ))
         }
       </div>
@@ -115,15 +115,15 @@ export default class FormFilter extends Component {
     } = this.props
 
     return (
-      <div className="hi-tpl">
+      <div className="hi-form-filter">
         {this.renderActions()}
         {this.renderTools()}
-        <div className="hi-tpl__form">
-          <div className="hi-tpl__form--left">
-            <div className="hi-tpl__form--fields">
+        <div className="hi-form-filter__form">
+          <div className="hi-form-filter__form--left">
+            <div className="hi-form-filter__form--fields">
               {children}
             </div>
-            <div className="hi-tpl__form--actions">
+            <div className="hi-form-filter__form--actions">
               <Button
                 type={canSubmit ? 'primary' : 'default'}
                 disabled={!canSubmit}
@@ -137,7 +137,7 @@ export default class FormFilter extends Component {
             </div>
           </div>
           
-          <div className="hi-tpl__form--right">
+          <div className="hi-form-filter__form--right">
             <Icon name="set" />
               管理
           </div>

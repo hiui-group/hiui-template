@@ -44,7 +44,7 @@ export default class Tool extends Component {
     const tool = this.tools[type]
 
     return (
-      <div className={classNames('hi-tpl__tool', this.props.className)}>
+      <div className={classNames('hi-form-filter__tool', this.props.className)}>
         <div type="line">
           <Icon name={tool.icon} />
           {tool.title && tool.title}

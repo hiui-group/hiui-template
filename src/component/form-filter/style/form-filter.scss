@@ -1,4 +1,4 @@
-.hi-tpl {
+.hi-form-filter {
   display: flex;
   flex-direction: column;
   margin-bottom: 1px;
@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    .hi-tpl__title {
+    .hi-form-filter__title {
       flex: auto;
     }
     &--container {

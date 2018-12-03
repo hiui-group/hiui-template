@@ -1,0 +1,20 @@
+.hi-form-filter {
+  &__form {
+    display: flex;
+    padding: 12px 18px 17px;
+    background: #F8FAFE;
+    &--left {
+      flex: auto;
+    }
+    &--right {
+      flex: none;
+      width: 100px;
+    }
+    &--fields {
+      display: flex;
+    }
+    &--actions {
+      margin-top: 14px;
+    }
+  }
+}

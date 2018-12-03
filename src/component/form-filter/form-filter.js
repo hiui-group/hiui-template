@@ -3,17 +3,44 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
+import QueryTool from './tools/query'
+import FilterTool from './tools/filter'
+import FilterRowHeight from './tools/row-height'
 import Action from './action'
-import Tool from './tool'
-import axios from 'axios'
-import config from '~config'
 import './style/form-filter.scss'
 
 export default class FormFilter extends Component {
+  toolsMap = {
+    'query': {
+      icon: 'approve',
+      title: '查询'
+    }, 
+    'filter': {
+      popper: true,
+      icon: 'label',
+      title: '筛选'
+    }, 
+    'row-height': {
+      popper: true,
+      icon: 'phone',
+      title: '行高'
+    }, 
+    'column': {
+      popper: true,
+      icon: 'phone',
+      title: '列显示'
+    }, 
+    'statistics': {
+      popper: true,
+      icon: 'linechart',
+      title: '统计'
+    }
+  }
+
   static propTypes = {
     canSubmit: PropTypes.bool,
     beforeSubmit: PropTypes.func,
-    tools: PropTypes.array,
+    Map: PropTypes.array,
     actions: PropTypes.array
   }
 
@@ -21,49 +48,32 @@ export default class FormFilter extends Component {
     beforeSubmit: () => true,
     canSubmit: true,
     actions: [ 'search', 'add', 'download', 'share', 'more' ],
-    tools: [ 'form', 'filter', 'line-height', 'column', 'statistics' ]
+    tools: [ 'query', 'filter', 'row-height', 'column', 'statistics' ]
   }
 
   constructor(props) {
     super(props)
 
     this.state = {
-      activeTool: 'form'
-    }
-  }
-
-  componentDidMount() {
-    this.fetchDatas()
-  }
-
-  submit(can) {
-    const {
-      beforeSubmit
-    } = this.props
-
-    if (!can || !beforeSubmit()) {
-      return
-    }
-    
-    this.fetchDatas()
-  }
-
-  reset() {
-    this.updateForm(this.initForms(), () => this.fetchDatas())
-  }
-
-  fetchDatas() {
-    const {
-      params,
-      bindData
-    } = this.props
-
-    axios.get(`${config('host')}/table/get-datas`, {
-      params
-    }).then(ret => {
-      if (ret && ret.data.code === 200) {
-        bindData(ret.data.data)
+      activeTool: 'query',
+      value: {
+        data: {},
+        'row-height': 'middle'
       }
+    }
+  }
+
+  getChildContext () {
+    return {
+      component: this
+    }
+  }
+
+  onChange(options) {
+    const value = Object.assign({}, this.state.value, options)
+
+    this.setState({value}, () => {
+      this.props.onChange(value)
     })
   }
 
@@ -89,6 +99,14 @@ export default class FormFilter extends Component {
     )
   }
 
+  setActiveTool(activeTool) {
+    const _activeTool = this.state.activeTool===activeTool ? '' : activeTool
+
+    this.setState({
+      activeTool: _activeTool
+    })
+  }
+
   renderTools() {
     const {
       tools
@@ -100,50 +118,95 @@ export default class FormFilter extends Component {
     return (
       <div className="hi-form-filter__tools">
         {
-          tools.map((tool, index) => (
-            <Tool className={classNames({'hi-form-filter__tool--active': tool===activeTool})} type={tool} key={index} />
-          ))
+          tools.map((type, index) => {
+            const tool = this.toolsMap[type]
+            const active = type===activeTool
+
+            return (
+              <div 
+                className={classNames('hi-form-filter__tool', {'hi-form-filter__tool--active': active})}
+                key={index}
+              >
+                <div 
+                  className="hi-form-filter__tool--title"
+                  onClick={() => this.setActiveTool(type)}
+                >
+                  <Icon name={tool.icon} />
+                  {tool.title && tool.title}
+                </div>
+                {
+                  active && tool.popper &&
+                  <div className="hi-form-filter__tool--content">
+                    {this.renderToolContent(type)}
+                  </div>
+                }
+              </div>
+            )
+          })
         }
+      </div>
+    )
+  }
+
+  renderToolContent(type) {
+    if (type === 'query') {
+      return <QueryTool/>
+    } else if (type === 'filter') {
+      return <FilterTool/>
+    } else if (type === 'row-height') {
+      return <FilterRowHeight/>
+    }
+  }
+
+  renderForm() {
+    const {
+      children,
+      canSubmit
+    } = this.props
+    
+    return (
+      <div className="hi-form-filter__form">
+        <div className="hi-form-filter__form--left">
+          <div className="hi-form-filter__form--fields">
+            {children}
+          </div>
+          <div className="hi-form-filter__form--actions">
+            <Button
+              type={canSubmit ? 'primary' : 'default'}
+              disabled={!canSubmit}
+              onClick={() => this.submit(canSubmit)}
+            >
+            确定
+            </Button>
+            <Button>
+            取消
+            </Button>
+          </div>
+        </div>
+      
+        <div className="hi-form-filter__form--right">
+          <Icon name="set" />
+          管理
+        </div>
       </div>
     )
   }
 
   render() {
     const {
-      children,
-      canSubmit
-    } = this.props
+      activeTool
+    } = this.state
 
     return (
       <div className="hi-form-filter">
         {this.renderActions()}
         {this.renderTools()}
-        <div className="hi-form-filter__form">
-          <div className="hi-form-filter__form--left">
-            <div className="hi-form-filter__form--fields">
-              {children}
-            </div>
-            <div className="hi-form-filter__form--actions">
-              <Button
-                type={canSubmit ? 'primary' : 'default'}
-                disabled={!canSubmit}
-                onClick={() => this.submit(canSubmit)}
-              >
-                确定
-              </Button>
-              <Button>
-                取消
-              </Button>
-            </div>
-          </div>
-          
-          <div className="hi-form-filter__form--right">
-            <Icon name="set" />
-              管理
-          </div>
-        </div>
-
+        { activeTool==='query' && this.renderToolContent(activeTool) }
       </div>
     )
   }
+}
+
+FormFilter.childContextTypes = {
+  component: PropTypes.any
 }

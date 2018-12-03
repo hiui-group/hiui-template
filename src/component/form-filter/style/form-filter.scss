@@ -1,7 +1,7 @@
 .hi-form-filter {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1px;
+  margin-bottom: 15px;
   &__title {
     font-size: 16px;
     color: #4A4A4A;
@@ -22,25 +22,31 @@
     padding-top: 7px;
     font-size: 14px;
     color: #383E47;
-    border-top: 1px solid #F6F6F6;;
+    border-top: 1px solid #F6F6F6;
+    &--content {
+      position: relative;
+    }
   }
-
-  &__form {
-    display: flex;
-    padding: 12px 18px 17px;
-    background: #F8FAFE;
-    &--left {
-      flex: auto;
+  &__tool {
+    position: relative;
+    display: inline-block;
+    padding: 13px 15px;
+    &--active {
+      background-color: #F8FAFE;
     }
-    &--right {
-      flex: none;
-      width: 100px;
+    &--title {
+      cursor: pointer;
     }
-    &--fields {
-      display: flex;
+    &--content {
+      position: absolute;
+      top: 46px;
+      left: 0px;
+      background-color: #F8FAFE;
+      box-shadow: -1px 1px 1px 0px #ccc, inset -1px 0px 1px 0px #ccc;
+      z-index: 1000;
     }
-    &--actions {
-      margin-top: 14px;
+    .hi-icon {
+      margin-right: 8px;
     }
   }
 }

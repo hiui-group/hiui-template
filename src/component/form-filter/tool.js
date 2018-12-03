@@ -18,7 +18,7 @@ export default class Tool extends Component {
   }
 
   tools = {
-    'form': {
+    'query': {
       icon: 'approve',
       title: '查询'
     }, 
@@ -40,11 +40,18 @@ export default class Tool extends Component {
     }
   }
 
+  handleClick(type) {
+    this.props.setActiveTool(type)
+  }
+
   renderTool(type) {
     const tool = this.tools[type]
 
     return (
-      <div className={classNames('hi-form-filter__tool', this.props.className)}>
+      <div 
+        className={classNames('hi-form-filter__tool', this.props.className, {'hi-form-filter__tool--active': this.props.active})}
+        onClick={() => this.handleClick(type)}
+      >
         <div type="line">
           <Icon name={tool.icon} />
           {tool.title && tool.title}

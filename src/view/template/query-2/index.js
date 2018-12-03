@@ -114,12 +114,13 @@ class Template extends Component {
           title="二级菜单"
           params={params}
           beforeSubmit={this.beforeSubmit.bind(this)}
-          bindData={data => {
-            const columns = data.columns
-            const pageInfo = data.pageInfo
+          onChange={value => {
+            console.log('----------onchange', value)
+            const columns = value.data.columns
+            const pageInfo = value.data.pageInfo
 
             this.setState({
-              tableDatas: data.data,
+              tableDatas: value.data.data,
               page: pageInfo.page,
               total: pageInfo.total,
               pageSize: pageInfo.pageSize,

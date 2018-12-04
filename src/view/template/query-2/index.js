@@ -4,9 +4,11 @@ import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
 import {FormFilter, Field} from '~component/form-filter'
+import config from '~config'
 import './index.scss'
 
 class Template extends Component {
+
   constructor(props) {
     super(props)
 
@@ -34,6 +36,9 @@ class Template extends Component {
         sorter(pre, next) {
           return pre.column1 - next.column1
         }
+      },
+      column2: {
+        options: this.transportOptions
       },
       action: {
         render: () => (
@@ -74,21 +79,6 @@ class Template extends Component {
     })
   }
 
-  setTableColumns(columns) {
-    const _columns = []
-
-    columns.map(column => {
-      const key = column.key
-
-      _columns.push({
-        ...column,
-        ...this.columnMixins[key]
-      })
-    })
-
-    return _columns
-  }
-
   beforeSubmit() {
     return true
   }
@@ -112,11 +102,13 @@ class Template extends Component {
       <div className="hi-tpl__query-2">
         <FormFilter 
           title="二级菜单"
+          url={`${config('host')}/table/get-datas`}
           params={params}
+          columnMixins={this.columnMixins}
           beforeSubmit={this.beforeSubmit.bind(this)}
           onChange={value => {
             console.log('----------onchange', value)
-            const columns = value.data.columns
+            const columns = value.columns
             const pageInfo = value.data.pageInfo
 
             this.setState({
@@ -124,7 +116,7 @@ class Template extends Component {
               page: pageInfo.page,
               total: pageInfo.total,
               pageSize: pageInfo.pageSize,
-              columns: this.setTableColumns(columns)
+              columns
             })
           }}
         >
@@ -146,6 +138,46 @@ class Template extends Component {
             />
           </Field>
           <Field label="运输方式" width="200">
+            <Seclet
+              list={this.transportOptions}
+              placeholder="请选择运输方式"
+              value={forms.column3}
+              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+            />
+          </Field>
+          <Field label="运输方式" width="200" advanced>
+            <Seclet
+              list={this.transportOptions}
+              placeholder="请选择运输方式"
+              value={forms.column3}
+              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+            />
+          </Field>
+          <Field label="运输方式" width="200" advanced>
+            <Seclet
+              list={this.transportOptions}
+              placeholder="请选择运输方式"
+              value={forms.column3}
+              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+            />
+          </Field>
+          <Field label="运输方式" width="200" advanced>
+            <Seclet
+              list={this.transportOptions}
+              placeholder="请选择运输方式"
+              value={forms.column3}
+              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+            />
+          </Field>
+          <Field label="运输方式" width="200" advanced>
+            <Seclet
+              list={this.transportOptions}
+              placeholder="请选择运输方式"
+              value={forms.column3}
+              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+            />
+          </Field>
+          <Field label="运输方式" width="200" advanced>
             <Seclet
               list={this.transportOptions}
               placeholder="请选择运输方式"

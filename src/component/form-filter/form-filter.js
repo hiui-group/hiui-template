@@ -6,6 +6,8 @@ import Icon from '@hi-ui/hiui/es/icon'
 import QueryTool from './tools/query'
 import FilterTool from './tools/filter'
 import FilterRowHeight from './tools/row-height'
+import FilterStatistics from './tools/statistics'
+import FilterColumn from './tools/column'
 import Action from './action'
 import './style/form-filter.scss'
 
@@ -48,18 +50,31 @@ export default class FormFilter extends Component {
     beforeSubmit: () => true,
     canSubmit: true,
     actions: [ 'search', 'add', 'download', 'share', 'more' ],
-    tools: [ 'query', 'filter', 'row-height', 'column', 'statistics' ]
+    tools: [ 'query', 'filter', 'row-height', 'column', 'statistics' ],
+    columnMixins: [],
+    columns: []
   }
 
   constructor(props) {
     super(props)
 
     this.state = {
+      columns: this.mixinColumns(props.columns),
       activeTool: 'query',
       value: {
         data: {},
-        'row-height': 'middle'
+        'row-height': 'middle',
+        statistics: '',
+        columns: []
       }
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.columns.length > 0) {
+      const columns = this.filterColumns(this.props.columns)
+
+      this.onChange({columns})
     }
   }
 
@@ -67,6 +82,37 @@ export default class FormFilter extends Component {
     return {
       component: this
     }
+  }
+
+  mixinColumns(columns, updateState=false) {
+    const _columns = []
+
+    columns.map(column => {
+      const key = column.key
+
+      _columns.push({
+        ...column,
+        ...this.props.columnMixins[key]
+      })
+    })
+
+    updateState && this.setState({columns: _columns})
+
+    return _columns
+  }
+
+  filterColumns() {
+    const _columns = []
+
+    this.state.columns.map(column => {
+      if (column.display) {
+        _columns.push({
+          ...column
+        })
+      }
+    })
+
+    return _columns
   }
 
   onChange(options) {
@@ -155,6 +201,10 @@ export default class FormFilter extends Component {
       return <FilterTool/>
     } else if (type === 'row-height') {
       return <FilterRowHeight/>
+    } else if (type === 'statistics') {
+      return <FilterStatistics/>
+    } else if (type === 'column') {
+      return <FilterColumn/>
     }
   }
 

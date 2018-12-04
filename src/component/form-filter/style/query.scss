@@ -9,9 +9,18 @@
     &--right {
       flex: none;
       width: 100px;
+      font-size: 14px;
+      color: #383E47;
+      cursor: pointer;
+      .hi-icon {
+        margin-right: 8px;
+        font-size: 20px;
+        vertical-align: middle;
+      }
     }
     &--fields {
       display: flex;
+      flex-wrap: wrap;
     }
     &--actions {
       margin-top: 14px;

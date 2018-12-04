@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
+import Modal from '@hi-ui/hiui/es/modal'
 import axios from 'axios'
-import config from '~config'
 import '../style/query.scss'
 
 export default class QueryTool extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      showModal: false
+    }
   }
 
   componentDidMount() {
@@ -38,14 +41,22 @@ export default class QueryTool extends Component {
   fetchDatas() {
     const parent = this.parent()
     const {
-      params
+      params,
+      url
     } = parent.props
 
-    axios.get(`${config('host')}/table/get-datas`, {
+    axios.get(url, {
       params
     }).then(ret => {
       if (ret && ret.data.code === 200) {
-        parent.onChange({data: ret.data.data})
+        if (ret.data.data.columns) {
+          parent.mixinColumns(ret.data.data.columns, true)
+          const columns = parent.filterColumns()
+
+          parent.onChange({columns, data: ret.data.data})
+        } else {
+          parent.onChange({data: ret.data.data})
+        }
       }
     })
   }
@@ -56,6 +67,9 @@ export default class QueryTool extends Component {
       children,
       canSubmit
     } = parent.props
+    const {
+      showModal
+    } = this.state
 
     return (
       <div className="hi-form-filter__form">
@@ -77,10 +91,24 @@ export default class QueryTool extends Component {
           </div>
         </div>
       
-        <div className="hi-form-filter__form--right">
+        <div 
+          className="hi-form-filter__form--right"
+        >
           <Icon name="set" />
           管理
         </div>
+
+        <Modal 
+          title="提示消息"
+          show={showModal}
+          backDrop={true}
+          onConfirm={() => { 
+            console.log('自定义确定事件') 
+          }}
+        >
+          <span>一些消息</span>
+          <span>一些消息</span>
+        </Modal>
       </div>
     )
   }

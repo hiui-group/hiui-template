@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import Modal from '@hi-ui/hiui/es/modal'
-import axios from 'axios'
 import '../style/query.scss'
 
 export default class QueryTool extends Component {
@@ -12,10 +11,6 @@ export default class QueryTool extends Component {
     this.state = {
       showModal: false
     }
-  }
-
-  componentDidMount() {
-    this.fetchDatas()
   }
 
   parent () {
@@ -31,34 +26,11 @@ export default class QueryTool extends Component {
       return
     }
     
-    this.fetchDatas()
+    this.parent().fetchDatas()
   }
 
   reset() {
-    this.updateForm(this.initForms(), () => this.fetchDatas())
-  }
-
-  fetchDatas() {
-    const parent = this.parent()
-    const {
-      params,
-      url
-    } = parent.props
-
-    axios.get(url, {
-      params
-    }).then(ret => {
-      if (ret && ret.data.code === 200) {
-        if (ret.data.data.columns) {
-          parent.mixinColumns(ret.data.data.columns, true)
-          const columns = parent.filterColumns()
-
-          parent.onChange({columns, data: ret.data.data})
-        } else {
-          parent.onChange({data: ret.data.data})
-        }
-      }
-    })
+    this.updateForm(this.initForms(), () => this.parent().fetchDatas())
   }
 
   render() {

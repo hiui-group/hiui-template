@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import QueryTool from './tools/query'
@@ -60,6 +61,7 @@ export default class FormFilter extends Component {
 
     this.state = {
       columns: this.mixinColumns(props.columns),
+      filters: [],
       activeTool: 'query',
       value: {
         data: {},
@@ -76,12 +78,35 @@ export default class FormFilter extends Component {
 
       this.onChange({columns})
     }
+    this.fetchDatas()
   }
 
   getChildContext () {
     return {
       component: this
     }
+  }
+
+  fetchDatas() {
+    const {
+      params,
+      url
+    } = this.props
+
+    axios.get(url, {
+      params
+    }).then(ret => {
+      if (ret && ret.data.code === 200) {
+        if (ret.data.data.columns) {
+          this.mixinColumns(ret.data.data.columns, true)
+          const columns = this.filterColumns()
+
+          this.onChange({columns, data: ret.data.data})
+        } else {
+          this.onChange({data: ret.data.data})
+        }
+      }
+    })
   }
 
   mixinColumns(columns, updateState=false) {

@@ -34,17 +34,14 @@ export default class QueryTool extends Component {
     parent.fetchDatas(parent.props, forms)
   }
 
-  reset() {
-    this.updateForm(this.initForms(), () => this.parent().fetchDatas())
-  }
-
   render() {
     const parent = this.parent()
     const {
       children
     } = parent.props
     const {
-      canSubmit
+      canSubmit,
+      onCancel
     } = this.props
     const {
       showModal
@@ -64,9 +61,12 @@ export default class QueryTool extends Component {
             >
             确定
             </Button>
-            <Button>
-            取消
-            </Button>
+            {
+              onCancel &&
+              <Button onClick={() => onCancel()}>
+                取消
+              </Button>
+            }
           </div>
         </div>
       

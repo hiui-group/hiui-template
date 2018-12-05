@@ -111,7 +111,10 @@ class Template extends Component {
               type: 'query',
               title: '查询',
               forms,
-              beforeSubmit: this.beforeSubmit.bind(this)
+              beforeSubmit: this.beforeSubmit.bind(this),
+              onCancel: () => {
+                this.updateForm(this.initForms())
+              }
             },
             'filter',
             {

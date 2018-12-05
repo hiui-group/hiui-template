@@ -108,8 +108,9 @@ export default class FormFilter extends Component {
       setPageState
     } = props
 
-    if (Object.keys(forms).length === 0) {
+    if (Object.keys(forms).length !== 0) {
       this.forms = forms
+      params.page = 1
     }
 
     axios.get(url, {

@@ -25,8 +25,12 @@ export default class FilterColumn extends Component {
               onClick={() => {
                 column.display = !column.display
                 const columns = parent.filterColumns()
-
-                parent.onChange({columns})
+                
+                if (this.props.onChange) {
+                  this.props.onChange(columns)
+                } else {
+                  parent.props.setPageState({columns})
+                }
               }}
             >
               <Checkbox

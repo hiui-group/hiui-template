@@ -12,6 +12,9 @@ export default class QueryTool extends Component {
       showModal: false
     }
   }
+  static defaultProps = {
+    canSubmit: true
+  }
 
   parent () {
     return this.context.component
@@ -19,14 +22,15 @@ export default class QueryTool extends Component {
 
   submit(can) {
     const {
-      beforeSubmit
-    } = this.parent().props
+      beforeSubmit,
+      forms
+    } = this.props
 
     if (!can || !beforeSubmit()) {
       return
     }
     
-    this.parent().fetchDatas()
+    this.parent().fetchDatas(forms)
   }
 
   reset() {
@@ -36,9 +40,11 @@ export default class QueryTool extends Component {
   render() {
     const parent = this.parent()
     const {
-      children,
-      canSubmit
+      children
     } = parent.props
+    const {
+      canSubmit
+    } = this.props
     const {
       showModal
     } = this.state

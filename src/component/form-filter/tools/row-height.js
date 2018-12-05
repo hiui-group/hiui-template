@@ -18,7 +18,9 @@ export default class FilterRowHeight extends Component {
   }
 
   render() {
-    const parent = this.parent()
+    const {
+      onChange
+    } = this.props
 
     return (
       <div className="hi-form-filter__row-height">
@@ -28,7 +30,7 @@ export default class FilterRowHeight extends Component {
               className="hi-form-filter__row-height--item"
               key={value}
               onClick={() => {
-                parent.onChange({'row-height': value})
+                onChange(value)
               }}
             >
               {label}

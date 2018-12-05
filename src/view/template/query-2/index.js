@@ -6,6 +6,7 @@ import Icon from '@hi-ui/hiui/es/icon'
 import {FormFilter, Field} from '~component/form-filter'
 import config from '~config'
 import './index.scss'
+import Button from '@hi-ui/hiui/es/button/Button'
 
 class Template extends Component {
 
@@ -93,7 +94,6 @@ class Template extends Component {
       page
     } = this.state
     const params = {
-      ...forms,
       page,
       pageSize
     }
@@ -105,20 +105,24 @@ class Template extends Component {
           url={`${config('host')}/table/get-datas`}
           params={params}
           columnMixins={this.columnMixins}
-          beforeSubmit={this.beforeSubmit.bind(this)}
-          onChange={value => {
-            console.log('----------onchange', value)
-            const columns = value.columns
-            const pageInfo = value.data.pageInfo
-
-            this.setState({
-              tableDatas: value.data.data,
-              page: pageInfo.page,
-              total: pageInfo.total,
-              pageSize: pageInfo.pageSize,
-              columns
-            })
-          }}
+          setPageState={this.setState.bind(this)}
+          tools={[
+            {
+              type: 'query',
+              title: '查询',
+              forms,
+              beforeSubmit: this.beforeSubmit.bind(this)
+            },
+            'filter',
+            {
+              type: 'row-height',
+              title: 'row height',
+              onChange: val => console.log('--------row-height change', val)
+            },
+            'column',
+            'statistics',
+            <Button onClick={() => console.log('---------click test')}>test</Button>
+          ]}
         >
           <Field label="运单号" width="220">
             <Input

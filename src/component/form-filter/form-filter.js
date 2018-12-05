@@ -15,25 +15,30 @@ import './style/form-filter.scss'
 export default class FormFilter extends Component {
   toolsMap = {
     'query': {
+      type: 'query',
       icon: 'approve',
       title: '查询'
     }, 
     'filter': {
+      type: 'filter',
       popper: true,
       icon: 'label',
       title: '筛选'
     }, 
     'row-height': {
+      type: 'row-height',
       popper: true,
       icon: 'phone',
       title: '行高'
     }, 
     'column': {
+      type: 'column',
       popper: true,
       icon: 'phone',
       title: '列显示'
     }, 
     'statistics': {
+      type: 'statistics',
       popper: true,
       icon: 'linechart',
       title: '统计'
@@ -76,7 +81,7 @@ export default class FormFilter extends Component {
     if (this.props.columns.length > 0) {
       const columns = this.filterColumns(this.props.columns)
 
-      this.onChange({columns})
+      this.props.setPageState({columns})
     }
     this.fetchDatas()
   }
@@ -87,23 +92,35 @@ export default class FormFilter extends Component {
     }
   }
 
-  fetchDatas() {
+  fetchDatas(forms={}) {
     const {
       params,
-      url
+      url,
+      setPageState
     } = this.props
 
     axios.get(url, {
-      params
+      params: {
+        ...params,
+        ...forms
+      }
     }).then(ret => {
       if (ret && ret.data.code === 200) {
-        if (ret.data.data.columns) {
-          this.mixinColumns(ret.data.data.columns, true)
+        const data = ret.data.data
+        const state = {
+          tableDatas: data.data,
+          page: data.pageInfo.page,
+          total: data.pageInfo.total,
+          pageSize: data.pageInfo.pageSize
+        }
+
+        if (data.columns) {
+          this.mixinColumns(data.columns, true)
           const columns = this.filterColumns()
 
-          this.onChange({columns, data: ret.data.data})
+          setPageState({columns, ...state})
         } else {
-          this.onChange({data: ret.data.data})
+          setPageState(state)
         }
       }
     })
@@ -138,14 +155,6 @@ export default class FormFilter extends Component {
     })
 
     return _columns
-  }
-
-  onChange(options) {
-    const value = Object.assign({}, this.state.value, options)
-
-    this.setState({value}, () => {
-      this.props.onChange(value)
-    })
   }
 
   renderActions() {
@@ -189,9 +198,23 @@ export default class FormFilter extends Component {
     return (
       <div className="hi-form-filter__tools">
         {
-          tools.map((type, index) => {
-            const tool = this.toolsMap[type]
-            const active = type===activeTool
+          tools.map((item, index) => {
+            let tool
+
+            if (typeof item === 'string') {
+              tool = this.toolsMap[item]
+            } else if (typeof item === 'object') {
+              tool = Object.assign({}, this.toolsMap[item.type], item)
+            } 
+            if (!tool.title) {
+              return (
+                <div className="hi-form-filter__tool hi-form-filter__tool--custom" key={index}>
+                  {item}
+                </div>
+              )
+            }
+            
+            const active = tool.type===activeTool
 
             return (
               <div 
@@ -200,7 +223,7 @@ export default class FormFilter extends Component {
               >
                 <div 
                   className="hi-form-filter__tool--title"
-                  onClick={() => this.setActiveTool(type)}
+                  onClick={() => this.setActiveTool(tool.type)}
                 >
                   <Icon name={tool.icon} />
                   {tool.title && tool.title}
@@ -208,7 +231,7 @@ export default class FormFilter extends Component {
                 {
                   active && tool.popper &&
                   <div className="hi-form-filter__tool--content">
-                    {this.renderToolContent(type)}
+                    {this.renderToolContent(tool)}
                   </div>
                 }
               </div>
@@ -219,17 +242,32 @@ export default class FormFilter extends Component {
     )
   }
 
-  renderToolContent(type) {
+  mixinTool(type) {
+    for (let tool of this.props.tools) {
+      if (tool.type === type) {
+        return Object.assign({}, this.toolsMap[type], tool)
+      }
+    }
+    
+    return this.toolsMap[type]
+  }
+
+  renderToolContent(tool) {
+    const {
+      type,
+      ...props
+    } = tool
+
     if (type === 'query') {
-      return <QueryTool/>
+      return <QueryTool {...props}/>
     } else if (type === 'filter') {
-      return <FilterTool/>
+      return <FilterTool {...props}/>
     } else if (type === 'row-height') {
-      return <FilterRowHeight/>
+      return <FilterRowHeight {...props}/>
     } else if (type === 'statistics') {
-      return <FilterStatistics/>
+      return <FilterStatistics {...props}/>
     } else if (type === 'column') {
-      return <FilterColumn/>
+      return <FilterColumn {...props}/>
     }
   }
 
@@ -276,7 +314,7 @@ export default class FormFilter extends Component {
       <div className="hi-form-filter">
         {this.renderActions()}
         {this.renderTools()}
-        { activeTool==='query' && this.renderToolContent(activeTool) }
+        { activeTool==='query' && this.renderToolContent(this.mixinTool(activeTool)) }
       </div>
     )
   }

@@ -17,5 +17,13 @@ export default [
   {
     path: 'group-vertical',
     component: require('../view/template/group-vertical')
+  },
+  {
+    path: 'tree-single',
+    component: require('../view/template/tree-single')
+  },
+  {
+    path: 'tree-multiple',
+    component: require('../view/template/tree-multiple')
   }
 ]

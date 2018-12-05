@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+import isEqual from 'lodash/isEqual'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import QueryTool from './tools/query'
@@ -13,6 +14,7 @@ import Action from './action'
 import './style/form-filter.scss'
 
 export default class FormFilter extends Component {
+  forms = {}
   toolsMap = {
     'query': {
       type: 'query',
@@ -83,7 +85,14 @@ export default class FormFilter extends Component {
 
       this.props.setPageState({columns})
     }
-    this.fetchDatas()
+    this.fetchDatas(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('------------componentWillReceiveProps', nextProps.params, this.props.params, isEqual(nextProps.params, this.props.params))
+    if (!isEqual(nextProps.params, this.props.params)) {
+      this.fetchDatas(nextProps)
+    }
   }
 
   getChildContext () {
@@ -92,26 +101,30 @@ export default class FormFilter extends Component {
     }
   }
 
-  fetchDatas(forms={}) {
+  fetchDatas(props, forms={}) {
     const {
       params,
       url,
       setPageState
-    } = this.props
+    } = props
+
+    if (Object.keys(forms).length === 0) {
+      this.forms = forms
+    }
 
     axios.get(url, {
       params: {
         ...params,
-        ...forms
+        ...this.forms
       }
     }).then(ret => {
       if (ret && ret.data.code === 200) {
         const data = ret.data.data
         const state = {
           tableDatas: data.data,
-          page: data.pageInfo.page,
-          total: data.pageInfo.total,
-          pageSize: data.pageInfo.pageSize
+          page: parseInt(data.pageInfo.page),
+          total: parseInt(data.pageInfo.total),
+          pageSize: parseInt(data.pageInfo.pageSize)
         }
 
         if (data.columns) {

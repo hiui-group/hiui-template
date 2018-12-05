@@ -29,8 +29,9 @@ export default class QueryTool extends Component {
     if (!can || !beforeSubmit()) {
       return
     }
-    
-    this.parent().fetchDatas(forms)
+    const parent = this.parent()
+
+    parent.fetchDatas(parent.props, forms)
   }
 
   reset() {

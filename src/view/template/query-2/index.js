@@ -200,7 +200,7 @@ class Template extends Component {
             total:total,
             page: page,
             onChange:page => {
-              this.setState({page: page}, () => this.fetchDatas())
+              this.setState({page: page})
             }
           }}
         />

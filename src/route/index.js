@@ -25,5 +25,13 @@ export default [
   {
     path: 'tree-multiple',
     component: require('../view/template/tree-multiple')
+  },
+  {
+    path: 'tile-single',
+    component: require('../view/template/tile-single'),
+  },
+  {
+    path: 'tile-multiple',
+    component: require('../view/template/tile-multiple')
   }
 ]

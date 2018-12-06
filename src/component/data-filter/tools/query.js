@@ -54,9 +54,9 @@ export default class QueryTool extends Component {
           </Button>
           {
             onCancel &&
-              <Button onClick={() => onCancel()}>
-                取消
-              </Button>
+            <Button onClick={() => onCancel()}>
+              重置
+            </Button>
           }
         </div>
 

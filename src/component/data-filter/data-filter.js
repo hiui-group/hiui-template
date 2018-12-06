@@ -7,9 +7,9 @@ import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import QueryTool from './tools/query'
 import FilterTool from './tools/filter'
-import FilterRowHeight from './tools/row-height'
-import FilterStatistics from './tools/statistics'
-import FilterColumn from './tools/column'
+import RowHeightTool from './tools/row-height'
+import StatisticsTool from './tools/statistics'
+import ColumnTool from './tools/column'
 import Action from './action'
 import './style/data-filter.scss'
 
@@ -19,31 +19,36 @@ export default class DataFilter extends Component {
     'query': {
       type: 'query',
       icon: 'approve',
-      title: '查询'
+      title: '查询',
+      trigger: 'toggle'
     }, 
     'filter': {
       type: 'filter',
       popper: true,
       icon: 'label',
-      title: '筛选'
+      title: '筛选',
+      trigger: 'outside'
     }, 
     'row-height': {
       type: 'row-height',
       popper: true,
       icon: 'phone',
-      title: '行高'
+      title: '行高',
+      trigger: 'outside'
     }, 
     'column': {
       type: 'column',
       popper: true,
       icon: 'phone',
-      title: '列显示'
+      title: '列显示',
+      trigger: 'outside'
     }, 
     'statistics': {
       type: 'statistics',
       popper: true,
       icon: 'linechart',
-      title: '统计'
+      title: '统计',
+      trigger: 'outside'
     }
   }
 
@@ -69,7 +74,7 @@ export default class DataFilter extends Component {
     this.state = {
       columns: this.mixinColumns(props.columns),
       filters: [],
-      activeTool: 'query',
+      activeTools: [ 'query' ],
       value: {
         data: {},
         'row-height': 'middle',
@@ -193,11 +198,20 @@ export default class DataFilter extends Component {
     )
   }
 
-  setActiveTool(activeTool) {
-    const _activeTool = this.state.activeTool===activeTool ? '' : activeTool
+  setActiveTool(tool) {
+    const {
+      activeTools
+    } = this.state
+    const index = activeTools.indexOf(tool.type)
+
+    if (index>-1) {
+      activeTools.splice(index, 1)
+    } else {
+      activeTools.push(tool.type)
+    }
 
     this.setState({
-      activeTool: _activeTool
+      activeTools
     })
   }
 
@@ -206,7 +220,7 @@ export default class DataFilter extends Component {
       tools
     } = this.props
     const {
-      activeTool
+      activeTools
     } = this.state
 
     return (
@@ -228,7 +242,7 @@ export default class DataFilter extends Component {
               )
             }
             
-            const active = tool.type===activeTool
+            const active = activeTools.indexOf(tool.type) > -1
 
             return (
               <div 
@@ -237,7 +251,7 @@ export default class DataFilter extends Component {
               >
                 <div 
                   className="hi-form-filter__tool--title"
-                  onClick={() => this.setActiveTool(tool.type)}
+                  onClick={() => this.setActiveTool(tool)}
                 >
                   <Icon name={tool.icon} />
                   {tool.title && tool.title}
@@ -277,11 +291,11 @@ export default class DataFilter extends Component {
     } else if (type === 'filter') {
       return <FilterTool {...props}/>
     } else if (type === 'row-height') {
-      return <FilterRowHeight {...props}/>
+      return <RowHeightTool {...props}/>
     } else if (type === 'statistics') {
-      return <FilterStatistics {...props}/>
+      return <StatisticsTool {...props}/>
     } else if (type === 'column') {
-      return <FilterColumn {...props}/>
+      return <ColumnTool {...props}/>
     }
   }
 
@@ -321,14 +335,14 @@ export default class DataFilter extends Component {
 
   render() {
     const {
-      activeTool
+      activeTools
     } = this.state
 
     return (
       <div className="hi-form-filter">
         {this.renderActions()}
         {this.renderTools()}
-        { activeTool==='query' && this.renderToolContent(this.mixinTool(activeTool)) }
+        { activeTools.indexOf('query')>-1 && this.renderToolContent(this.mixinTool('query')) }
       </div>
     )
   }

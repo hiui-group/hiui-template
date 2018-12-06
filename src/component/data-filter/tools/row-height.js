@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import '../style/row-height.scss'
 
-export default class FilterRowHeight extends Component {
+export default class RowHeightTool extends Component {
   constructor(props) {
     super(props)
   }
@@ -42,6 +42,6 @@ export default class FilterRowHeight extends Component {
   }
 }
 
-FilterRowHeight.contextTypes = {
+RowHeightTool.contextTypes = {
   component: PropTypes.any
 }

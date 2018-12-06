@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Checkbox from '@hi-ui/hiui/es/checkbox'
 import '../style/column.scss'
 
-export default class FilterColumn extends Component {
+export default class ColumnTool extends Component {
   constructor(props) {
     super(props)
   }
@@ -46,6 +46,6 @@ export default class FilterColumn extends Component {
   }
 }
 
-FilterColumn.contextTypes = {
+ColumnTool.contextTypes = {
   component: PropTypes.any
 }

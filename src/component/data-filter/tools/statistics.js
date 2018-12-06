@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import '../style/statistics.scss'
 
-export default class FilterStatistics extends Component {
+export default class StatisticsTool extends Component {
   constructor(props) {
     super(props)
   }
@@ -38,6 +38,6 @@ export default class FilterStatistics extends Component {
   }
 }
 
-FilterStatistics.contextTypes = {
+StatisticsTool.contextTypes = {
   component: PropTypes.any
 }

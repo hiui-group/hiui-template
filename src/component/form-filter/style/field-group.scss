@@ -1,0 +1,20 @@
+.hi-field-group {
+  display: flex;
+  &__fields {
+    flex: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__manage {
+    flex: none;
+    width: 100px;
+    font-size: 14px;
+    color: #383E47;
+    cursor: pointer;
+    .hi-icon {
+      margin-right: 8px;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+  }
+}

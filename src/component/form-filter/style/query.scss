@@ -1,28 +1,8 @@
 .hi-form-filter {
   &__form {
-    display: flex;
     padding: 12px 18px 17px;
     background: #F8FAFE;
-    &--left {
-      flex: auto;
-    }
-    &--right {
-      flex: none;
-      width: 100px;
-      font-size: 14px;
-      color: #383E47;
-      cursor: pointer;
-      .hi-icon {
-        margin-right: 8px;
-        font-size: 20px;
-        vertical-align: middle;
-      }
-    }
-    &--fields {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    &--actions {
+    &-actions {
       margin-top: 14px;
     }
   }

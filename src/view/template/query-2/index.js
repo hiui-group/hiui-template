@@ -3,7 +3,7 @@ import Table from '@hi-ui/hiui/es/table'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
-import {FormFilter, Field} from '~component/form-filter'
+import {FormFilter, FieldGroup, Field} from '~component/form-filter'
 import config from '~config'
 import './index.scss'
 import Button from '@hi-ui/hiui/es/button/Button'
@@ -127,71 +127,73 @@ class Template extends Component {
             <Button onClick={() => console.log('---------click test')}>test</Button>
           ]}
         >
-          <Field label="运单号" width="220">
-            <Input
-              placeholder="请输入"
-              value={forms.column1}
-              onChange={(e, value) => {
-                this.updateForm({column1: value})
-              }}
-            />
-          </Field>
-          <Field label="业务来源" width="200">
-            <Seclet
-              list={this.businessOptions}
-              placeholder="请选择业务来源"
-              value={forms.column2}
-              onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
-            />
-          </Field>
-          <Field label="运输方式" width="200">
-            <Seclet
-              list={this.transportOptions}
-              placeholder="请选择运输方式"
-              value={forms.column3}
-              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-            />
-          </Field>
-          <Field label="运输方式" width="200" advanced>
-            <Seclet
-              list={this.transportOptions}
-              placeholder="请选择运输方式"
-              value={forms.column3}
-              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-            />
-          </Field>
-          <Field label="运输方式" width="200" advanced>
-            <Seclet
-              list={this.transportOptions}
-              placeholder="请选择运输方式"
-              value={forms.column3}
-              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-            />
-          </Field>
-          <Field label="运输方式" width="200" advanced>
-            <Seclet
-              list={this.transportOptions}
-              placeholder="请选择运输方式"
-              value={forms.column3}
-              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-            />
-          </Field>
-          <Field label="运输方式" width="200" advanced>
-            <Seclet
-              list={this.transportOptions}
-              placeholder="请选择运输方式"
-              value={forms.column3}
-              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-            />
-          </Field>
-          <Field label="运输方式" width="200" advanced>
-            <Seclet
-              list={this.transportOptions}
-              placeholder="请选择运输方式"
-              value={forms.column3}
-              onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-            />
-          </Field>
+          <FieldGroup main>
+            <Field label="运单号" width="220">
+              <Input
+                placeholder="请输入"
+                value={forms.column1}
+                onChange={(e, value) => {
+                  this.updateForm({column1: value})
+                }}
+              />
+            </Field>
+            <Field label="业务来源" width="200">
+              <Seclet
+                list={this.businessOptions}
+                placeholder="请选择业务来源"
+                value={forms.column2}
+                onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
+              />
+            </Field>
+            <Field label="运输方式" width="200">
+              <Seclet
+                list={this.transportOptions}
+                placeholder="请选择运输方式"
+                value={forms.column3}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+              />
+            </Field>
+            <Field label="运输方式" width="200" advanced>
+              <Seclet
+                list={this.transportOptions}
+                placeholder="请选择运输方式"
+                value={forms.column3}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+              />
+            </Field>
+            <Field label="运输方式" width="200" advanced>
+              <Seclet
+                list={this.transportOptions}
+                placeholder="请选择运输方式"
+                value={forms.column3}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+              />
+            </Field>
+            <Field label="运输方式" width="200" advanced>
+              <Seclet
+                list={this.transportOptions}
+                placeholder="请选择运输方式"
+                value={forms.column3}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+              />
+            </Field>
+            <Field label="运输方式" width="200" advanced>
+              <Seclet
+                list={this.transportOptions}
+                placeholder="请选择运输方式"
+                value={forms.column3}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+              />
+            </Field>
+            <Field label="运输方式" width="200" advanced>
+              <Seclet
+                list={this.transportOptions}
+                placeholder="请选择运输方式"
+                value={forms.column3}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+              />
+            </Field>
+          </FieldGroup>
         </FormFilter>
 
         <Table 

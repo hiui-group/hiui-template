@@ -17,15 +17,30 @@ export default class Field extends Component {
     super(props)
   }
 
+  componentWillMount() {
+    const {
+      label,
+      advanced
+    } = this.props
+
+    this.parent().addField(label, advanced)
+  }
+
+  parent () {
+    return this.context.component
+  }
+
   render() {
     const {
       children,
       label,
-      width,
-      advanced
+      width
     } = this.props
+    const {
+      advancedFields
+    } = this.parent().state
 
-    if (advanced) {
+    if (advancedFields.indexOf(label)>-1) {
       return null
     }
 
@@ -40,4 +55,8 @@ export default class Field extends Component {
       </div>
     )
   }
+}
+
+Field.contextTypes = {
+  component: PropTypes.any
 }

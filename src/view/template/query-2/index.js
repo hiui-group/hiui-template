@@ -127,7 +127,7 @@ class Template extends Component {
             <Button onClick={() => console.log('---------click test')}>test</Button>
           ]}
         >
-          <FieldGroup main>
+          <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>
             <Field label="运单号" width="220">
               <Input
                 placeholder="请输入"
@@ -153,7 +153,7 @@ class Template extends Component {
                 onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
               />
             </Field>
-            <Field label="运输方式" width="200" advanced>
+            <Field label="运输方式1" width="200" advanced>
               <Seclet
                 list={this.transportOptions}
                 placeholder="请选择运输方式"
@@ -161,7 +161,7 @@ class Template extends Component {
                 onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
               />
             </Field>
-            <Field label="运输方式" width="200" advanced>
+            <Field label="运输方式2" width="200" advanced>
               <Seclet
                 list={this.transportOptions}
                 placeholder="请选择运输方式"
@@ -169,7 +169,7 @@ class Template extends Component {
                 onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
               />
             </Field>
-            <Field label="运输方式" width="200" advanced>
+            <Field label="运输方式3" width="200" advanced>
               <Seclet
                 list={this.transportOptions}
                 placeholder="请选择运输方式"
@@ -177,7 +177,7 @@ class Template extends Component {
                 onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
               />
             </Field>
-            <Field label="运输方式" width="200" advanced>
+            <Field label="运输方式4" width="200" advanced>
               <Seclet
                 list={this.transportOptions}
                 placeholder="请选择运输方式"
@@ -185,7 +185,7 @@ class Template extends Component {
                 onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
               />
             </Field>
-            <Field label="运输方式" width="200" advanced>
+            <Field label="运输方式5" width="200" advanced>
               <Seclet
                 list={this.transportOptions}
                 placeholder="请选择运输方式"

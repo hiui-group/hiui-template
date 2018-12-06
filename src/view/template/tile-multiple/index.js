@@ -4,6 +4,7 @@ import Checkbox from '@hi-ui/hiui/es/checkbox'
 import Radio from '@hi-ui/hiui/es/radio'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
+import Button from '@hi-ui/hiui/es/button'
 import './index.scss'
 import config from '~config'
 import axios from 'axios'
@@ -40,7 +41,8 @@ class Template extends Component {
           },
           {
             text: 'item12',
-            value: 'item12'
+            value: 'item12',
+            checked: true
           },
           {
             text: 'item13',
@@ -218,6 +220,33 @@ class Template extends Component {
     this.updateForm(data, () => this.fetchDatas())
   }
 
+  handleSubmitClick() {
+    const forms = {
+      column1: this.state.field1.list.filter(item => item.checked).map(item => item.value),
+      column2: this.state.field2.list.filter(item => item.checked).map(item => item.value),
+      column3: this.state.field3.list.filter(item => item.checked).map(item => item.value)
+    }
+    this.setForm(forms)
+  }
+
+  handleResetClick() {
+    const {field1, field2, field3} = this.state
+
+    field1.list.forEach(item => item.checked = false)
+    field2.list.forEach(item => item.checked = false)
+    field3.list.forEach(item => item.checked = false)
+
+    this.setState({
+      field1,
+      field2,
+      field3
+    }, () => {
+      this.reset()
+    })
+  }
+
+
+
 
   renderMenuContent() {
     const {
@@ -273,10 +302,15 @@ class Template extends Component {
             </Col>
             <Col>
               <Checkbox all='one' onChange={(list) => {
-                console.log(list)
-                console.log(this.state.field1.list[0])
+                const fieldList = this.state.field1.list
+                fieldList.forEach(item => {
+                  if(list.indexOf(item.value) > -1) {
+                    item.checked = true
+                  } else {
+                    item.checked = false
+                  }
+                })
 
-                // this.setForm({'column1': list})
               }}>全选</Checkbox>
               <Checkbox list={this.state.field1.list} name='one'/>
             </Col>
@@ -287,9 +321,18 @@ class Template extends Component {
             </Col>
             <Col>
               <Checkbox all='two' onChange={(list) => {
-                // this.setForm({'column2': list})
+
+                const fieldList = this.state.field2.list
+                fieldList.forEach(item => {
+                  if(list.indexOf(item.value) > -1) {
+                    item.checked = true
+                  } else {
+                    item.checked = false
+                  }
+                })
+
               }}>全选</Checkbox>
-              <Checkbox list={this.state.field1.list} name='two'/>
+              <Checkbox list={this.state.field2.list} name='two'/>
             </Col>
           </Row>
           <Row>
@@ -298,9 +341,24 @@ class Template extends Component {
             </Col>
             <Col>
               <Checkbox all='three' onChange={(list) => {
-                // this.setForm({'column3': list})
+
+                const fieldList = this.state.field3.list
+                fieldList.forEach(item => {
+                  if(list.indexOf(item.value) > -1) {
+                    item.checked = true
+                  } else {
+                    item.checked = false
+                  }
+                })
+
               }}>全选</Checkbox>
-              <Checkbox list={this.state.field1.list} name='three'/>
+              <Checkbox list={this.state.field3.list} name='three'/>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button type="primary" appearance="line" onClick={this.handleSubmitClick.bind(this)}>确定</Button>
+              <Button type="default" appearance="line" onClick={this.handleResetClick.bind(this)}>重置</Button>
             </Col>
           </Row>
         </div>

@@ -1,9 +1,9 @@
-import FormFilter from './form-filter'
+import DataFilter from './data-filter'
 import FieldGroup from './field-group'
 import Field from './field'
 
 export {
-  FormFilter,
+  DataFilter,
   Field,
   FieldGroup
 }

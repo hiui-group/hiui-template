@@ -3,7 +3,7 @@ import Table from '@hi-ui/hiui/es/table'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
-import {FormFilter, FieldGroup, Field} from '~component/form-filter'
+import {DataFilter, FieldGroup, Field} from '~component/data-filter'
 import config from '~config'
 import './index.scss'
 import Button from '@hi-ui/hiui/es/button/Button'
@@ -100,7 +100,7 @@ class Template extends Component {
 
     return (
       <div className="hi-tpl__query-2">
-        <FormFilter 
+        <DataFilter 
           title="二级菜单"
           url={`${config('host')}/table/get-datas`}
           params={params}
@@ -194,7 +194,7 @@ class Template extends Component {
               />
             </Field>
           </FieldGroup>
-        </FormFilter>
+        </DataFilter>
 
         <Table 
           columns={columns} 

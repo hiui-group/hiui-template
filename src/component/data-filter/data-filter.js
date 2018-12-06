@@ -11,9 +11,9 @@ import FilterRowHeight from './tools/row-height'
 import FilterStatistics from './tools/statistics'
 import FilterColumn from './tools/column'
 import Action from './action'
-import './style/form-filter.scss'
+import './style/data-filter.scss'
 
-export default class FormFilter extends Component {
+export default class DataFilter extends Component {
   forms = {}
   toolsMap = {
     'query': {
@@ -334,6 +334,6 @@ export default class FormFilter extends Component {
   }
 }
 
-FormFilter.childContextTypes = {
+DataFilter.childContextTypes = {
   component: PropTypes.any
 }

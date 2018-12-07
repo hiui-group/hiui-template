@@ -91,12 +91,29 @@ export default class DataFilter extends Component {
       this.props.setState({filteredColumns})
     }
     this.fetchDatas(this.props)
+    window.addEventListener('click', this.hidePopper.bind(this))
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('click', this.hidePopper.bind(this))
   }
 
   getChildContext () {
     return {
       component: this
     }
+  }
+
+  hidePopper(e, type) {
+    const activeTools = this.state.activeTools.splice(0)
+
+    activeTools.map((tool, index) => {
+      if (this.toolsMap[tool].trigger === 'outside' && type!==tool) {
+        activeTools.splice(index, 1)
+      }
+    })
+    
+    this.setState({activeTools})
   }
 
   fetchDatas(props, forms={}) {
@@ -204,7 +221,7 @@ export default class DataFilter extends Component {
     } else {
       activeTools.push(tool.type)
     }
-
+    
     this.setState({
       activeTools
     })
@@ -246,7 +263,12 @@ export default class DataFilter extends Component {
               >
                 <div 
                   className="hi-form-filter__tool--title"
-                  onClick={() => this.setActiveTool(tool)}
+                  data-type={tool.type}
+                  onClick={e => {
+                    e.stopPropagation()
+                    this.setActiveTool(tool)
+                    this.hidePopper(e, tool.type)
+                  }}
                 >
                   <Icon name={tool.icon} />
                   {tool.title && tool.title}

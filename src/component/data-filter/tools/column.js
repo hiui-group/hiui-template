@@ -22,7 +22,8 @@ export default class ColumnTool extends Component {
             <div 
               className="hi-form-filter__column--item"
               key={index}
-              onClick={() => {
+              onClick={e => {
+                e.stopPropagation()
                 column.display = !column.display
                 const filteredColumns = parent.filterColumns()
                 

@@ -163,7 +163,7 @@ export default class FilterTool extends Component {
     } = parent.state
 
     return (
-      <div className="hi-form-filter__filters">
+      <div className="hi-form-filter__filters" onClick={e => e.stopPropagation()}>
         {
           filters.length === 0 &&
           <div className="hi-form-filter__filters-empty">

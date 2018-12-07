@@ -49,4 +49,21 @@
       margin-right: 8px;
     }
   }
+  &__data {
+    &--small {
+      .hi-table table tr {
+        height: 40px;
+      }
+    }
+    &--middle {
+      .hi-table table tr {
+        height: 50px;
+      }
+    }
+    &--big {
+      .hi-table table tr {
+        height: 60px;
+      }
+    }
+  }
 }

@@ -322,7 +322,8 @@ export default class DataFilter extends Component {
       filteredColumns,
       datas,
       page,
-      total
+      total,
+      rowHeight
     } = this.state
     const {
       table,
@@ -351,7 +352,7 @@ export default class DataFilter extends Component {
           {this.renderTools()}
           { activeTools.indexOf('query')>-1 && this.renderToolContent(this.mixinTool('query')) }
         </div>
-        <div className="hi-data">
+        <div className={classNames('hi-form-filter__data', `hi-form-filter__data--${rowHeight}`)}>
           <Table {...tableProps} />
         </div>
       </React.Fragment>

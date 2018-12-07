@@ -1,37 +1,42 @@
 export default [
   {
     path: '/', 
-    component: require('../view/layout/index'),
+    exact: true,
+    component: require('../template/basic').default,
     indexRoute: {
       getComponent(nextState, cb) {
         require.ensure([], require => {
-          cb(null, require('../view/template/basic'))
+          cb(null, require('../template/basic').default)
         }, 'index')
       }
     }
   },
   {
-    path: 'group-horizontal',
-    component: require('../view/template/group-horizontal')
+    path: '/basic',
+    component: require('../template/basic').default
   },
   {
-    path: 'group-vertical',
-    component: require('../view/template/group-vertical')
+    path: '/group-horizontal',
+    component: require('../template/group-horizontal').default
   },
   {
-    path: 'tree-single',
-    component: require('../view/template/tree-single')
+    path: '/group-vertical',
+    component: require('../template/group-vertical').default
   },
   {
-    path: 'tree-multiple',
-    component: require('../view/template/tree-multiple')
+    path: '/tree-single',
+    component: require('../template/tree-single').default
   },
   {
-    path: 'tile-single',
-    component: require('../view/template/tile-single'),
+    path: '/tree-multiple',
+    component: require('../template/tree-multiple').default
   },
   {
-    path: 'tile-multiple',
-    component: require('../view/template/tile-multiple')
+    path: '/tile-single',
+    component: require('../template/tile-single').default,
+  },
+  {
+    path: '/tile-multiple',
+    component: require('../template/tile-multiple').default
   }
 ]

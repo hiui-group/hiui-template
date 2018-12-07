@@ -1,38 +1,18 @@
-import React, { Component } from 'react'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Table from '@hi-ui/hiui/es/table'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Seclet from '@hi-ui/hiui/es/select'
+import React, {Component} from 'react'
+import { Layout } from '@hi-ui/hiui/es'
 import Button from '@hi-ui/hiui/es/button'
+import Radio from '@hi-ui/hiui/es/radio'
+import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
-import axios from 'axios'
-import config from '~config'
 import './index.scss'
+import config from '~config'
+import axios from 'axios'
 
-class Template extends Component {
+export default class Template extends Component {
+
   constructor(props) {
     super(props)
 
-    this.businessOptions = [
-      {name:'全部', id:'全部'},
-      {name:'小米商城', id:'小米商城'},
-      {name:'小米之家', id:'小米之家'},
-      {name:'天猫旗舰店', id:'天猫旗舰店'},
-      {name:'京东旗舰店', id:'京东旗舰店'}
-    ]
-    this.transportOptions = [
-      {name:'全部', id:'全部'},
-      {name:'顺丰', id:'顺丰'},
-      {name:'EMS', id:'EMS'},
-      {name:'自取', id:'自取'}
-    ]
-    this.menus = [
-      {title: '全部'},
-      {title: '异常'},
-      {title: '调拨管理'},
-      {title: '超期监控'}
-    ]
     this.columnMixins = {
       column1: {
         sorter(pre, next) {
@@ -51,6 +31,18 @@ class Template extends Component {
     }
 
     this.state = {
+      field1: {
+        list: ['全部', 'item11', 'item12', 'item13', 'item14', 'item15', 'item16'],
+        checkIndex: 0
+      },
+      field2: {
+        list: ['全部', '小米商城', '小米之家', '天猫旗舰店', '京东旗舰店', 'item25', 'item26'],
+        checkIndex: 0
+      },
+      field3: {
+        list: ['全部', '顺丰', 'EMS', '自取', 'item34', 'item35', 'item36'],
+        checkIndex: 0
+      },
       pageSize: 0,
       total: 0,
       page: 1,
@@ -100,7 +92,7 @@ class Template extends Component {
 
   initForms() {
     return Object.assign({}, {
-      column1: '',
+      column1: '全部',
       column2: '全部',
       column3: '全部'
     })
@@ -121,7 +113,7 @@ class Template extends Component {
     return _columns
   }
 
-  updateForm(data, callback=undefined) {
+  updateForm(data, callback) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState({
@@ -152,6 +144,11 @@ class Template extends Component {
     this.updateForm(this.initForms(), () => this.fetchDatas())
   }
 
+  setForm(data) {
+    this.updateForm(data, () => this.fetchDatas())
+  }
+
+
   renderMenuContent() {
     const {
       activeMenu,
@@ -167,48 +164,9 @@ class Template extends Component {
     if (activeMenu === 0) {
       return (
         <React.Fragment>
-          <Form inline={true}>
-            <Form.Item label="运单号" labelWidth="80">
-              <Input
-                placeholder="请输入"
-                value={forms.column1}
-                onChange={(e, value) => {
-                  this.updateForm({column1: value})
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="业务来源" labelWidth="80">
-              <Seclet
-                list={this.businessOptions}
-                placeholder="请选择业务来源"
-                style={{width: '220px'}}
-                value={forms.column2}
-                onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
-              />
-            </Form.Item>
-            <Form.Item label="运输方式" labelWidth="80">
-              <Seclet
-                list={this.transportOptions}
-                placeholder="请选择运输方式"
-                style={{width: '220px'}}
-                value={forms.column3}
-                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
-              />
-            </Form.Item>
-            <Form.Item labelWidth="50">
-              <Button 
-                type={canSubmit ? 'primary' : 'default'}
-                disabled={!canSubmit}
-                onClick={e => this.submit(canSubmit)}
-              >
-                确定
-              </Button>
-              <Button onClick={this.reset.bind(this)} type="default" appearance="line">重置</Button>
-            </Form.Item>
-          </Form>
-          <Table 
-            columns={columns} 
-            data={tableDatas} 
+          <Table
+            columns={columns}
+            data={tableDatas}
             name="sorter"
             pagination={{
               pageSize: pageSize,
@@ -227,23 +185,80 @@ class Template extends Component {
   }
 
   render() {
+    const Row = Layout.Row
+    const Col = Layout.Col
+
     const {
-      activeMenu
+      field1,
+      field2,
+      field3
     } = this.state
 
     return (
-      <div className="hi-tpl__container">
-        <NavMenu
-          selectedKey={activeMenu}
-          data={this.menus}
-          onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
-        />
-        <div className="menu-content">
+      <div>
+        <div>
+          <Row>
+            <Col>
+              <span className="field-name">FieldName1</span>
+            </Col>
+            <Col>
+              <Radio
+                list={field1.list}
+                checked={field1.checkIndex}
+                onChange={(data) => {
+                  field1.checkIndex = field1.list.indexOf(data)
+                  this.setState({
+                    field1
+                  }, () => {
+                    this.setForm({'column1': data})
+                  })
+                }}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <span className="field-name">FieldName2</span>
+            </Col>
+            <Col>
+              <Radio
+                list={field2.list}
+                checked={field2.checkIndex}
+                onChange={(data) => {
+                  field2.checkIndex = field2.list.indexOf(data)
+                  this.setState({
+                    field2
+                  }, () => {
+                    this.setForm({'column2': data})
+                  })
+                }}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <span className="field-name">FieldName3</span>
+            </Col>
+            <Col>
+              <Radio
+                list={field3.list}
+                checked={field3.checkIndex}
+                onChange={(data) => {
+                  field3.checkIndex = field3.list.indexOf(data)
+                  this.setState({
+                    field3
+                  }, () => {
+                    this.setForm({'column3': data})
+                  })
+                }}
+              />
+            </Col>
+          </Row>
+        </div>
+        <div style={{marginTop: '20px'}}>
           {this.renderMenuContent()}
         </div>
       </div>
     )
   }
 }
-
-module.exports = Template

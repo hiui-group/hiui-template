@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Table from '@hi-ui/hiui/es/table'
-import Button from '@hi-ui/hiui/es/Button'
 import Tree from '@hi-ui/hiui/es/Tree'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
@@ -8,7 +7,7 @@ import axios from 'axios'
 import config from '~config'
 import './index.scss'
 
-class Template extends Component {
+export default class Template extends Component {
   constructor(props) {
     super(props)
     this.columnMixins = {
@@ -35,25 +34,53 @@ class Template extends Component {
       tableDatas: [],
       columns: [],
       activeMenu: 0,
-      currentChose: [],
-      reset: true,
+      currentTree: '',
+
       treeData: [
         { id: 1, title: '小米',
           children: [
             { id: 2, title: '技术',
               children: [
-                { id: 3, title: '后端'}, 
-                { id: 4, title: '运维'},
-                { id: 5, title: '前端'}
+                { id: 3, title: '后端', onClick: () => {this.onTreeClick(3)}  }, 
+                { id: 4, title: '运维', onClick: () => {this.onTreeClick(4)}},
+                { id: 5, title: '前端', onClick: () => {this.onTreeClick(5)} }
               ]
             },
-            { id: 6, title: '产品'}
+            { id: 6, title: '产品', onClick: () => {this.onTreeClick(6)} }
           ]
         }]
     }
   }
 
   componentWillMount() {
+    this.fetchDatas()
+  }
+
+  onTreeClick(id) {
+    const treeData = [...this.state.treeData]
+    let hasGet = false
+  
+    const mapToGet = (data,id) =>{
+      data.map(item => {
+        if (item.id === id) {
+          hasGet = true
+          item.style = {color:'#4284f5'}
+        } else if (item.style) {
+          item.style = null
+        }
+        if (item.children && !hasGet) {
+          mapToGet(item.children, id)
+        }
+      })
+    }
+  
+    mapToGet(treeData,id)
+  
+    this.setState({
+      treeData
+    })
+    
+    this.setState({currentTree: id})
     this.fetchDatas()
   }
 
@@ -103,65 +130,6 @@ class Template extends Component {
     return _columns
   }
 
-  markSure() {
-    console.log(this.state.currentChose)
-    this.fetchDatas()
-  }
-
-  reset() {
-    this.setState({
-      reset: false,
-      currentChose: []
-    }, () => {
-      this.setState({
-        reset: true
-      })
-    })
-  }
-
-  onChange(value) {
-    const {currentChose} = this.state
-
-    let tempArr = currentChose
-    const mapToPush = data => {
-      if (tempArr.indexOf(data.id) >= 0) {
-        tempArr = tempArr.splice(tempArr.indexOf(data.id), 1)
-      } else {
-        tempArr.push(data.id)
-      }
-      if (data.children) {
-        data.children.map( item =>{
-          mapToPush(item)
-        })
-      }
-    }
-
-    const treeData = [ ...this.state.treeData ]
-  
-    const mapToGet = (data, currentChose) => {
-      data.map(item => {
-        if (item.children) {
-          let allIn = true
-
-          item.children.map(child => {
-            if (currentChose.indexOf(child.id) < 0) {
-              allIn = false
-            }
-          })
-
-          if (allIn && currentChose.indexOf(item.id) < 0) {
-            currentChose.push(item.id)
-          }
-          mapToGet(item.children, currentChose)
-        }
-      })
-    }
-
-    mapToPush(value)
-    mapToGet(treeData, currentChose)
-    this.setState({currentChose: tempArr})
-  }
-
   renderMenuContent() {
     const {
       activeMenu,
@@ -198,18 +166,15 @@ class Template extends Component {
   renderTree() {
     return(
       <div className="hi-tree__container">
-        {this.state.reset && <Tree
+        <Tree
           defaultExpandAll
-          checkable
           data={this.state.treeData}
-          onChange={this.onChange.bind(this)}
+          defaultCheckedKeys={[2]}
+          onNodeToggle={(data, isExpanded) => {console.log('toggle: data isExpanded', data, isExpanded)}}
+          onChange={data => {console.log('Tree data:', data)}}
           openIcon='down'
           closeIcon='up'
-        />}
-        <div className="hi-tree__confirm">
-          <Button type="primary" onClick={this.markSure.bind(this)}>确认</Button>
-          <Button type="default" appearance="line" onClick={this.reset.bind(this)}>重置</Button>
-        </div>
+        />
       </div>
     )
   }
@@ -227,4 +192,3 @@ class Template extends Component {
   }
 }
 
-module.exports = Template

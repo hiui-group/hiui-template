@@ -9,7 +9,7 @@ import './index.scss'
 import config from '~config'
 import axios from 'axios'
 
-class Template extends Component {
+export default class Template extends Component {
 
   constructor(props) {
     super(props)
@@ -369,5 +369,3 @@ class Template extends Component {
     )
   }
 }
-
-module.exports = Template

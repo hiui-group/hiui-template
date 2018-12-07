@@ -57,7 +57,7 @@ module.exports = require('./webpack.base.config')({
     new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'template/index.html',
+      template: 'src/index.html',
       inject: true
     })
   ]

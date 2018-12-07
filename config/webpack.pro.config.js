@@ -86,7 +86,7 @@ module.exports = require('./webpack.base.config')({
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'template/index.html',
+      template: 'src/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

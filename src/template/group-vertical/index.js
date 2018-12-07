@@ -1,18 +1,25 @@
-import React, {Component} from 'react'
-import { Layout } from '@hi-ui/hiui/es'
-import Button from '@hi-ui/hiui/es/button'
-import Radio from '@hi-ui/hiui/es/radio'
+import React, { Component } from 'react'
+import NavMenu from '@hi-ui/hiui/es/nav-menu'
 import Table from '@hi-ui/hiui/es/table'
+import Form from '@hi-ui/hiui/es/form'
+import Input from '@hi-ui/hiui/es/input'
+import Seclet from '@hi-ui/hiui/es/select'
+import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
-import './index.scss'
-import config from '~config'
 import axios from 'axios'
+import config from '~config'
+import './index.scss'
 
-class Template extends Component {
-
+export default class Template extends Component {
   constructor(props) {
     super(props)
 
+    this.menus = [
+      {title: '全部'},
+      {title: '异常'},
+      {title: '调拨管理'},
+      {title: '超期监控'}
+    ]
     this.columnMixins = {
       column1: {
         sorter(pre, next) {
@@ -31,18 +38,6 @@ class Template extends Component {
     }
 
     this.state = {
-      field1: {
-        list: ['全部', 'item11', 'item12', 'item13', 'item14', 'item15', 'item16'],
-        checkIndex: 0
-      },
-      field2: {
-        list: ['全部', '小米商城', '小米之家', '天猫旗舰店', '京东旗舰店', 'item25', 'item26'],
-        checkIndex: 0
-      },
-      field3: {
-        list: ['全部', '顺丰', 'EMS', '自取', 'item34', 'item35', 'item36'],
-        checkIndex: 0
-      },
       pageSize: 0,
       total: 0,
       page: 1,
@@ -92,7 +87,7 @@ class Template extends Component {
 
   initForms() {
     return Object.assign({}, {
-      column1: '全部',
+      column1: '',
       column2: '全部',
       column3: '全部'
     })
@@ -113,7 +108,7 @@ class Template extends Component {
     return _columns
   }
 
-  updateForm(data, callback) {
+  updateForm(data, callback=undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState({
@@ -144,11 +139,6 @@ class Template extends Component {
     this.updateForm(this.initForms(), () => this.fetchDatas())
   }
 
-  setForm(data) {
-    this.updateForm(data, () => this.fetchDatas())
-  }
-
-
   renderMenuContent() {
     const {
       activeMenu,
@@ -164,9 +154,9 @@ class Template extends Component {
     if (activeMenu === 0) {
       return (
         <React.Fragment>
-          <Table
-            columns={columns}
-            data={tableDatas}
+          <Table 
+            columns={columns} 
+            data={tableDatas} 
             name="sorter"
             pagination={{
               pageSize: pageSize,
@@ -185,82 +175,22 @@ class Template extends Component {
   }
 
   render() {
-    const Row = Layout.Row
-    const Col = Layout.Col
-
     const {
-      field1,
-      field2,
-      field3
+      activeMenu
     } = this.state
 
     return (
-      <div>
-        <div>
-          <Row>
-            <Col>
-              <span className="field-name">FieldName1</span>
-            </Col>
-            <Col>
-              <Radio
-                list={field1.list}
-                checked={field1.checkIndex}
-                onChange={(data) => {
-                  field1.checkIndex = field1.list.indexOf(data)
-                  this.setState({
-                    field1
-                  }, () => {
-                    this.setForm({'column1': data})
-                  })
-                }}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span className="field-name">FieldName2</span>
-            </Col>
-            <Col>
-              <Radio
-                list={field2.list}
-                checked={field2.checkIndex}
-                onChange={(data) => {
-                  field2.checkIndex = field2.list.indexOf(data)
-                  this.setState({
-                    field2
-                  }, () => {
-                    this.setForm({'column2': data})
-                  })
-                }}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span className="field-name">FieldName3</span>
-            </Col>
-            <Col>
-              <Radio
-                list={field3.list}
-                checked={field3.checkIndex}
-                onChange={(data) => {
-                  field3.checkIndex = field3.list.indexOf(data)
-                  this.setState({
-                    field3
-                  }, () => {
-                    this.setForm({'column3': data})
-                  })
-                }}
-              />
-            </Col>
-          </Row>
-        </div>
-        <div style={{marginTop: '20px'}}>
+      <div className="hi-tpl__container">
+        <NavMenu
+          selectedKey={activeMenu}
+          data={this.menus}
+          onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
+          vertical
+        />
+        <div className="menu-content">
           {this.renderMenuContent()}
         </div>
       </div>
     )
   }
 }
-
-module.exports = Template

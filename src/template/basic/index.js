@@ -10,10 +10,23 @@ import axios from 'axios'
 import config from '~config'
 import './index.scss'
 
-class Template extends Component {
+export default class Template extends Component {
   constructor(props) {
     super(props)
 
+    this.businessOptions = [
+      {name:'全部', id:'全部'},
+      {name:'小米商城', id:'小米商城'},
+      {name:'小米之家', id:'小米之家'},
+      {name:'天猫旗舰店', id:'天猫旗舰店'},
+      {name:'京东旗舰店', id:'京东旗舰店'}
+    ]
+    this.transportOptions = [
+      {name:'全部', id:'全部'},
+      {name:'顺丰', id:'顺丰'},
+      {name:'EMS', id:'EMS'},
+      {name:'自取', id:'自取'}
+    ]
     this.menus = [
       {title: '全部'},
       {title: '异常'},
@@ -154,6 +167,45 @@ class Template extends Component {
     if (activeMenu === 0) {
       return (
         <React.Fragment>
+          <Form inline={true}>
+            <Form.Item label="运单号" labelWidth="80">
+              <Input
+                placeholder="请输入"
+                value={forms.column1}
+                onChange={(e, value) => {
+                  this.updateForm({column1: value})
+                }}
+              />
+            </Form.Item>
+            <Form.Item label="业务来源" labelWidth="80">
+              <Seclet
+                list={this.businessOptions}
+                placeholder="请选择业务来源"
+                style={{width: '220px'}}
+                value={forms.column2}
+                onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
+              />
+            </Form.Item>
+            <Form.Item label="运输方式" labelWidth="80">
+              <Seclet
+                list={this.transportOptions}
+                placeholder="请选择运输方式"
+                style={{width: '220px'}}
+                value={forms.column3}
+                onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
+              />
+            </Form.Item>
+            <Form.Item labelWidth="50">
+              <Button 
+                type={canSubmit ? 'primary' : 'default'}
+                disabled={!canSubmit}
+                onClick={e => this.submit(canSubmit)}
+              >
+                确定
+              </Button>
+              <Button onClick={this.reset.bind(this)} type="default" appearance="line">重置</Button>
+            </Form.Item>
+          </Form>
           <Table 
             columns={columns} 
             data={tableDatas} 
@@ -193,5 +245,3 @@ class Template extends Component {
     )
   }
 }
-
-module.exports = Template

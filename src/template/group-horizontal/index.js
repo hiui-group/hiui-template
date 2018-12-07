@@ -10,7 +10,7 @@ import axios from 'axios'
 import config from '~config'
 import './index.scss'
 
-class Template extends Component {
+export default class Template extends Component {
   constructor(props) {
     super(props)
 
@@ -185,7 +185,6 @@ class Template extends Component {
           selectedKey={activeMenu}
           data={this.menus}
           onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
-          vertical
         />
         <div className="menu-content">
           {this.renderMenuContent()}
@@ -194,5 +193,3 @@ class Template extends Component {
     )
   }
 }
-
-module.exports = Template

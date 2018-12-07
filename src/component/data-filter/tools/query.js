@@ -25,8 +25,10 @@ export default class QueryTool extends Component {
       return
     }
     const parent = this.parent()
-
-    parent.fetchDatas(parent.props, forms)
+    
+    parent.setState({page: 1}, () => {
+      parent.fetchDatas(parent.props, forms)
+    })
   }
 
   render() {

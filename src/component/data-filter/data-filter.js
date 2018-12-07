@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import isEqual from 'lodash/isEqual'
-import Button from '@hi-ui/hiui/es/button'
+import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import QueryTool from './tools/query'
 import FilterTool from './tools/filter'
@@ -72,32 +72,25 @@ export default class DataFilter extends Component {
     super(props)
 
     this.state = {
-      columns: this.mixinColumns(props.columns),
-      filters: [],
+      columns: this.mixinColumns(props.columns), // all columns
+      filteredColumns: [], // filtered columns
+      filters: [], // 筛选
+      rowHeight: 'middle', // 行高
       activeTools: [ 'query' ],
-      value: {
-        data: {},
-        'row-height': 'middle',
-        statistics: '',
-        columns: []
-      }
+      datas: [],
+      page: 1,
+      total: 0,
+      pageSize: 0
     }
   }
 
   componentDidMount() {
     if (this.props.columns.length > 0) {
-      const columns = this.filterColumns(this.props.columns)
+      const filteredColumns = this.filterColumns(this.props.columns)
 
-      this.props.setPageState({columns})
+      this.props.setState({filteredColumns})
     }
     this.fetchDatas(this.props)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('------------componentWillReceiveProps', nextProps.params, this.props.params, isEqual(nextProps.params, this.props.params))
-    if (!isEqual(nextProps.params, this.props.params)) {
-      this.fetchDatas(nextProps)
-    }
   }
 
   getChildContext () {
@@ -109,17 +102,19 @@ export default class DataFilter extends Component {
   fetchDatas(props, forms={}) {
     const {
       params,
-      url,
-      setPageState
+      url
     } = props
+    const {
+      page
+    } = this.state
 
     if (Object.keys(forms).length !== 0) {
       this.forms = forms
-      params.page = 1
     }
 
     axios.get(url, {
       params: {
+        page,
         ...params,
         ...this.forms
       }
@@ -127,7 +122,7 @@ export default class DataFilter extends Component {
       if (ret && ret.data.code === 200) {
         const data = ret.data.data
         const state = {
-          tableDatas: data.data,
+          datas: data.data,
           page: parseInt(data.pageInfo.page),
           total: parseInt(data.pageInfo.total),
           pageSize: parseInt(data.pageInfo.pageSize)
@@ -135,11 +130,11 @@ export default class DataFilter extends Component {
 
         if (data.columns) {
           this.mixinColumns(data.columns, true)
-          const columns = this.filterColumns()
+          const filteredColumns = this.filterColumns()
 
-          setPageState({columns, ...state})
+          this.setState({filteredColumns, ...state})
         } else {
-          setPageState(state)
+          this.setState(state)
         }
       }
     })
@@ -299,51 +294,45 @@ export default class DataFilter extends Component {
     }
   }
 
-  renderForm() {
-    const {
-      children,
-      canSubmit
-    } = this.props
-    
-    return (
-      <div className="hi-form-filter__form">
-        <div className="hi-form-filter__form--left">
-          <div className="hi-form-filter__form--fields">
-            {children}
-          </div>
-          <div className="hi-form-filter__form--actions">
-            <Button
-              type={canSubmit ? 'primary' : 'default'}
-              disabled={!canSubmit}
-              onClick={() => this.submit(canSubmit)}
-            >
-            确定
-            </Button>
-            <Button>
-            取消
-            </Button>
-          </div>
-        </div>
-      
-        <div className="hi-form-filter__form--right">
-          <Icon name="set" />
-          管理
-        </div>
-      </div>
-    )
-  }
-
   render() {
     const {
-      activeTools
+      activeTools,
+      filteredColumns,
+      datas,
+      page,
+      total
     } = this.state
+    const {
+      table,
+      params
+    } = this.props
+    const tableProps = Object.assign({}, table, {
+      columns: filteredColumns,
+      data: datas,
+      name: 'sorter',
+      pagination: {
+        pageSize: params.pageSize,
+        total: total,
+        page: page,
+        onChange: page => {
+          this.setState({page: page}, () => {
+            this.fetchDatas(this.props)
+          })
+        }
+      }
+    })
 
     return (
-      <div className="hi-form-filter">
-        {this.renderActions()}
-        {this.renderTools()}
-        { activeTools.indexOf('query')>-1 && this.renderToolContent(this.mixinTool('query')) }
-      </div>
+      <React.Fragment>
+        <div className="hi-form-filter">
+          {this.renderActions()}
+          {this.renderTools()}
+          { activeTools.indexOf('query')>-1 && this.renderToolContent(this.mixinTool('query')) }
+        </div>
+        <div className="hi-data">
+          <Table {...tableProps} />
+        </div>
+      </React.Fragment>
     )
   }
 }

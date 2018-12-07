@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import Checkbox from '@hi-ui/hiui/es/checkbox'
 import '../style/row-height.scss'
 
 export default class RowHeightTool extends Component {
@@ -18,22 +20,32 @@ export default class RowHeightTool extends Component {
   }
 
   render() {
+    const parent = this.parent()
     const {
       onChange
     } = this.props
+    const {
+      rowHeight
+    } = parent.state
 
     return (
       <div className="hi-form-filter__row-height">
         {
           Object.entries(this.heights).map(([ value, label ]) => (
             <div 
-              className="hi-form-filter__row-height--item"
+              className={classNames('hi-form-filter__row-height-item', {'hi-form-filter__row-height-item--active': value===rowHeight})}
               key={value}
               onClick={() => {
-                onChange(value)
+                if (onChange) {
+                  onChange(value)
+                } else {
+                  parent.setState({rowHeight: value})
+                }
               }}
             >
-              {label}
+              <Checkbox checked={value===rowHeight}>
+                {label}
+              </Checkbox>
             </div>
           ))
         }

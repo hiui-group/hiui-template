@@ -24,12 +24,12 @@ export default class ColumnTool extends Component {
               key={index}
               onClick={() => {
                 column.display = !column.display
-                const columns = parent.filterColumns()
+                const filteredColumns = parent.filterColumns()
                 
                 if (this.props.onChange) {
-                  this.props.onChange(columns)
+                  this.props.onChange(filteredColumns)
                 } else {
-                  parent.props.setPageState({columns})
+                  parent.setState({filteredColumns})
                 }
               }}
             >

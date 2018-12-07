@@ -87,14 +87,9 @@ class Template extends Component {
   render() {
     const {
       forms,
-      tableDatas,
-      columns,
-      pageSize,
-      total,
-      page
+      pageSize
     } = this.state
     const params = {
-      page,
       pageSize
     }
 
@@ -105,7 +100,9 @@ class Template extends Component {
           url={`${config('host')}/table/get-datas`}
           params={params}
           columnMixins={this.columnMixins}
-          setPageState={this.setState.bind(this)}
+          table={{
+            name: 'sorter'
+          }}
           tools={[
             {
               type: 'query',
@@ -117,11 +114,7 @@ class Template extends Component {
               }
             },
             'filter',
-            {
-              type: 'row-height',
-              title: 'row height',
-              onChange: val => console.log('--------row-height change', val)
-            },
+            'row-height',
             'column',
             'statistics',
             <Button onClick={() => console.log('---------click test')}>test</Button>
@@ -195,20 +188,6 @@ class Template extends Component {
             </Field>
           </FieldGroup>
         </DataFilter>
-
-        <Table 
-          columns={columns} 
-          data={tableDatas} 
-          name="sorter"
-          pagination={{
-            pageSize: pageSize,
-            total:total,
-            page: page,
-            onChange:page => {
-              this.setState({page: page})
-            }
-          }}
-        />
       </div>
     )
   }

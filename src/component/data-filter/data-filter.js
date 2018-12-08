@@ -105,6 +105,9 @@ export default class DataFilter extends Component {
   }
 
   hidePopper(e, type) {
+    if (this.refs.popper&&this.refs.popper.contains(e.target)) {
+      return
+    }
     const activeTools = this.state.activeTools.splice(0)
 
     activeTools.map((tool, index) => {
@@ -275,7 +278,7 @@ export default class DataFilter extends Component {
                 </div>
                 {
                   active && tool.popper &&
-                  <div className="hi-form-filter__tool--content">
+                  <div className="hi-form-filter__tool--content" ref="popper">
                     {this.renderToolContent(tool)}
                   </div>
                 }

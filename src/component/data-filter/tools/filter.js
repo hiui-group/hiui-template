@@ -137,8 +137,40 @@ export default class FilterTool extends Component {
           name: '小于',
           id: 'lt'
         }, {
+          name: '小于等于',
+          id: 'lte'
+        }, {
           name: '大于',
           id: 'gt'
+        }, {
+          name: '大于等于',
+          id: 'gte'
+        }, {
+          name: '等于',
+          id: 'eq'
+        }
+      ]
+    } else if (type === 'string') {
+      return [
+        {
+          name: '包含',
+          id: 'include'
+        }, {
+          name: '不包含',
+          id: 'exclude'
+        }, {
+          name: '为空',
+          id: 'empty'
+        }, {
+          name: '不为空',
+          id: 'no-empty'
+        }
+      ]
+    } else if (type === 'enum') {
+      return [
+        {
+          name: '等于',
+          id: 'eq'
         }
       ]
     }
@@ -163,7 +195,7 @@ export default class FilterTool extends Component {
     } = parent.state
 
     return (
-      <div className="hi-form-filter__filters" onClick={e => e.stopPropagation()}>
+      <div className="hi-form-filter__filters">
         {
           filters.length === 0 &&
           <div className="hi-form-filter__filters-empty">

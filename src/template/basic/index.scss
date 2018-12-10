@@ -1,4 +1,9 @@
-
+.hi-tpl__container {
+  padding: 8px;
+  &--basic {
+    
+  }
+}
 .hi-form__actions {
   display: block;
 }

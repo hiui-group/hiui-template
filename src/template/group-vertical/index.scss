@@ -1,5 +1,8 @@
 .hi-tpl__container {
-  //display: flex;
+  padding: 8px;
+  &--group-vertical {
+    display: flex;
+  }
 }
 .menu-content {
   flex: 1;

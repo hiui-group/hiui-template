@@ -180,7 +180,7 @@ export default class Template extends Component {
     } = this.state
 
     return (
-      <div className="hi-tpl__container">
+      <div className="hi-tpl__container hi-tpl__container--group-vertical">
         <NavMenu
           selectedKey={activeMenu}
           data={this.menus}

@@ -195,7 +195,7 @@ export default class Template extends Component {
     } = this.state
 
     return (
-      <div>
+      <div className="hi-tpl__container hi-tpl__container--tile-single">
         <div>
           <Row>
             <Col>

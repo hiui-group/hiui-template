@@ -294,7 +294,7 @@ export default class Template extends Component {
     } = this.state
 
     return (
-      <div>
+      <div className="hi-tpl__container">
         <div>
           <Row>
             <Col>

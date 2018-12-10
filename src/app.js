@@ -3,13 +3,37 @@ import { Router, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import rootRoute from './route'
 import Icon from '@hi-ui/hiui/es/icon'
-import Page, {NavGroup, Logo} from '@hi-ui/classic-theme'
+import {NavGroup, Logo, Genuine as Page} from '@hi-ui/classic-theme'
+import './app.scss'
 const header = (
   <React.Fragment>
     <NavGroup pos='right'>
-      <NavGroup.Item>
-        <a to='/'>主页</a>
+      {/* <NavGroup.Item>
+        <Icon name="search" className="header__operation-btns"/>
       </NavGroup.Item>
+      <NavGroup.Item>
+        <Icon name="plus" className="header__operation-btns"/>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <Icon name="share" className="header__operation-btns"/>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <Icon name="more" className="header__operation-btns"/>
+      </NavGroup.Item> */}
+      <div className="header__btns">
+        <Icon name="search" className="header__operation-btns"/>
+      
+      
+        <Icon name="plus" className="header__operation-btns"/>
+      
+      
+        <Icon name="share" className="header__operation-btns"/>
+      
+      
+        <Icon name="more" className="header__operation-btns"/>
+      </div>
+        
+      
     </NavGroup>
   </React.Fragment>
 )

@@ -5,7 +5,7 @@ import Radio from '@hi-ui/hiui/es/radio'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import './index.scss'
-import config from '~config'
+import config from '../../config'
 import axios from 'axios'
 
 export default class Template extends Component {

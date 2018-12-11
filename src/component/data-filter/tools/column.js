@@ -22,20 +22,19 @@ export default class ColumnTool extends Component {
             <div 
               className="hi-form-filter__column--item"
               key={index}
-              onClick={e => {
-                e.stopPropagation()
-                column.hide = !column.hide
-                const filteredColumns = parent.filterColumns()
-                
-                if (this.props.onChange) {
-                  this.props.onChange(filteredColumns)
-                } else {
-                  parent.setState({filteredColumns})
-                }
-              }}
             >
               <Checkbox
                 checked={!column.hide}
+                onChange={() => {
+                  column.hide = !column.hide
+                  const filteredColumns = parent.filterColumns()
+                  
+                  if (this.props.onChange) {
+                    this.props.onChange(filteredColumns)
+                  } else {
+                    parent.setState({filteredColumns})
+                  }
+                }}
               >
                 {column.title}
               </Checkbox>

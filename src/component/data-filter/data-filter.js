@@ -244,7 +244,6 @@ export default class DataFilter extends Component {
                   className="hi-form-filter__tool--title"
                   data-type={tool.type}
                   onClick={e => {
-                    e.stopPropagation()
                     this.setActiveTool(tool)
                     this.hidePopper(e, tool.type)
                   }}

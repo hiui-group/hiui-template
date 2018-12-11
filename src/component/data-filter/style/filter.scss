@@ -1,0 +1,29 @@
+.hi-form-filter__filters {
+  min-width: 460px;
+  max-height: 300px;
+  padding: 10px 15px;
+  overflow: auto;
+  &-items {
+  }
+  &-item {
+    display: flex;
+    margin-bottom: 15px;
+  }
+  &-column,
+  &-operator,
+  &-value {
+    margin-right: 10px;
+  }
+  &-delete {
+    display: flex;
+    align-items: center;
+    flex: none;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  &-empty {
+    padding: 10px;
+    text-align: center;
+    color: #ccc;
+  }
+}

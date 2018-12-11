@@ -1,0 +1,69 @@
+.hi-form-filter {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  &__title {
+    font-size: 16px;
+    color: #4A4A4A;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    .hi-form-filter__title {
+      flex: auto;
+    }
+    &--container {
+      flex: none;
+      display: flex;
+    }
+  }
+  &__tools {
+    padding-top: 7px;
+    font-size: 14px;
+    color: #383E47;
+    border-top: 1px solid #F6F6F6;
+    &--content {
+      position: relative;
+    }
+  }
+  &__tool {
+    position: relative;
+    display: inline-block;
+    padding: 13px 15px;
+    &--active {
+      background-color: #F8FAFE;
+    }
+    &--title {
+      cursor: pointer;
+    }
+    &--content {
+      position: absolute;
+      top: 46px;
+      left: 0px;
+      background-color: #F8FAFE;
+      box-shadow: -1px 1px 1px 0px #ccc, inset -1px 0px 1px 0px #ccc;
+      z-index: 99;
+    }
+    .hi-icon {
+      margin-right: 8px;
+    }
+  }
+  &__data {
+    &--small {
+      .hi-table table tr {
+        height: 40px;
+      }
+    }
+    &--middle {
+      .hi-table table tr {
+        height: 50px;
+      }
+    }
+    &--big {
+      .hi-table table tr {
+        height: 60px;
+      }
+    }
+  }
+}

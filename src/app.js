@@ -7,7 +7,7 @@ import {NavGroup, Logo, Genuine as Page} from '@hi-ui/classic-theme'
 import './app.scss'
 const header = (
   <React.Fragment>
-    <NavGroup pos='right'>
+    <NavGroup pos="right">
       {/* <NavGroup.Item>
         <Icon name="search" className="header__operation-btns"/>
       </NavGroup.Item>
@@ -23,32 +23,28 @@ const header = (
       <div className="header__btns">
         <Icon name="search" className="header__operation-btns"/>
       
-      
         <Icon name="plus" className="header__operation-btns"/>
-      
       
         <Icon name="share" className="header__operation-btns"/>
       
-      
         <Icon name="more" className="header__operation-btns"/>
       </div>
-        
       
     </NavGroup>
   </React.Fragment>
 )
 const logo = <Logo
-  url='https://xiaomi.github.io/hiui/#/'
-  logoUrl='https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
-  text='HIUI Demo'
-  title='HIUI Classic Theme Demo'
-  alt='Project Logo'
+  url="https://xiaomi.github.io/hiui/#/"
+  logoUrl="https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05"
+  text="HIUI Demo"
+  title="HIUI Classic Theme Demo"
+  alt="Project Logo"
 />
 const sider = {
   items: [
     {
       title: '表格模板',
-      icon: <Icon name='usergroup' />,
+      icon: <Icon name="usergroup" />,
       children: [
         {
           title: '基础表格',
@@ -77,11 +73,16 @@ const sider = {
         {
           title: '树形-单选',
           to: '/tree-single'
+        },
+        {
+          title: '查询',
+          to: '/query'
         }
       ]
     }
   ]
 }
+
 render((
   <Page
     header={header}
@@ -90,7 +91,7 @@ render((
     routes={rootRoute}
     sider={sider}
     config={{
-      color: 'black',
+      color: 'black'
       // type: 'card'
     }}
   ></Page>

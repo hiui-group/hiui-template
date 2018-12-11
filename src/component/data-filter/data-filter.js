@@ -78,6 +78,7 @@ export default class DataFilter extends Component {
       rowHeight: 'middle', // 行高
       activeTools: [ 'query' ],
       datas: [],
+      filteredDatas: [],
       page: 1,
       total: 0,
       pageSize: 0
@@ -143,9 +144,11 @@ export default class DataFilter extends Component {
         const data = ret.data.data
         const state = {
           datas: data.data,
+          filteredDatas: data.data,
           page: parseInt(data.pageInfo.page),
           total: parseInt(data.pageInfo.total),
-          pageSize: parseInt(data.pageInfo.pageSize)
+          pageSize: parseInt(data.pageInfo.pageSize),
+          filters: []
         }
 
         if (data.columns) {
@@ -323,7 +326,7 @@ export default class DataFilter extends Component {
     const {
       activeTools,
       filteredColumns,
-      datas,
+      filteredDatas,
       page,
       total,
       rowHeight
@@ -334,7 +337,7 @@ export default class DataFilter extends Component {
     } = this.props
     const tableProps = Object.assign({}, table, {
       columns: filteredColumns,
-      data: datas,
+      data: filteredDatas,
       name: 'sorter',
       pagination: {
         pageSize: params.pageSize,

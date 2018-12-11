@@ -10,6 +10,13 @@ export default class FilterTool extends Component {
     super(props)
   }
 
+  matchFuncs = {
+    'gt': (value, compareValue) => value>compareValue,
+    'gte': (value, compareValue) => value>=compareValue,
+    'lt': (value, compareValue) => value<compareValue,
+    'lte': (value, compareValue) => value<=compareValue
+  }
+
   parent () {
     return this.context.component
   }
@@ -45,8 +52,50 @@ export default class FilterTool extends Component {
     const filters = [ ...parent.state.filters ]
     
     filters[index] = Object.assign({}, filters[index], options)
-    console.log('------------updateFilter', filters)
-    parent.setState({filters})
+    const filteredDatas = this.filterDatas(parent.state.datas, filters)
+    
+    console.log('------------updateFilter', filters, filteredDatas)
+    parent.setState({filters, filteredDatas})
+  }
+
+  filterDatas(datas, filters) {
+    const filteredDatas = []
+
+    datas.map(data => {
+      let match = true
+
+      filters.every(filter => {
+        match = this.matchFilter(data, filter)
+
+        return match
+      })
+      match && filteredDatas.push(data)
+    })
+
+    return filteredDatas
+  }
+
+  matchFilter(data, filter) {
+    if (filter.column && filter.operator && this.needValue(filter.operator, filter.value)) {
+      const value = data[filter.column]
+      const compareValue = filter.value
+      const operator = filter.operator
+
+      console.log('----------matchFilter', value, operator, compareValue)
+      
+      return this.matchFuncs[operator](value, compareValue)
+      
+    }
+
+    return true
+  }
+
+  needValue(operator, value) {
+    if ([ 'empty', 'no-empty' ].indexOf(operator) > -1) {
+      return true
+    } else {
+      return !!value
+    }
   }
 
   changeColumn(value, index) {
@@ -96,6 +145,7 @@ export default class FilterTool extends Component {
         </div>
         <div className="hi-form-filter__filters-column">
           <Select
+            clearable={false}
             style={{width: '150px'}}
             list={options}
             value={filter.column}
@@ -121,6 +171,7 @@ export default class FilterTool extends Component {
     return (
       <div className="hi-form-filter__filters-operator">
         <Select
+          clearable={false}
           style={{width: '100px'}}
           list={options}
           value={operator}
@@ -177,6 +228,10 @@ export default class FilterTool extends Component {
   }
 
   renderValue(type, operator, value, index) {
+    if (operator==='empty' || operator==='no-empty') {
+      return null
+    }
+
     return (
       <div className="hi-form-filter__filters-value">
         <Input 

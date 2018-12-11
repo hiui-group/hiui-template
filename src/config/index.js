@@ -1,6 +1,6 @@
 const config = {
   development: {
-    host: 'http://10.236.90.214:7002'
+    host: 'http://10.236.91.196:7002'
     // host: 'http://127.0.0.1:7002'
   },
   test: {

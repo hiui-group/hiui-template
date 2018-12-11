@@ -9,8 +9,6 @@ import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
 import Select from '@hi-ui/hiui/es/select'
 import Radio from '@hi-ui/hiui/es/radio'
 import Upload from '@hi-ui/hiui/es/upload'
-import axios from 'axios'
-import config from '~config'
 import './index.scss'
 
 const FormItem = Form.Item
@@ -18,6 +16,7 @@ const FormItem = Form.Item
 export default class Template extends Component {
   constructor(props) {
     super(props)
+    this.form = React.createRef()
     this.state = {
       forms: this.initForms()
     }
@@ -28,113 +27,160 @@ export default class Template extends Component {
       { name:'生活周边', label: 'wurenji', id:'5' },
       { name:'生态链', label: 'huojian', id:'6' }
     ]
-    
+    this.radioList = [ '北京', '上海', '重庆' ]
+    this.rules = {
+      text: [
+        {
+          required: true,
+          message: '请输入',
+          trigger: 'blur,change'
+        }
+      ],
+      Date: [
+        {
+          validator: (rule, value, cb) => {
+            if (value) {
+              cb()
+            } else {
+              cb('请输入')
+            }
+          },
+          trigger: 'change'
+        }
+      ]
+    }
   }
 
   initForms() {
     return Object.assign({}, {
       text: '',
-      Date: {start: new Date(), end: new Date()},
+      Date: false,
       num: 0,
       time: new Date(),
-      select:'4',
+      select:{ name:'较长的一段描述文本', label: '这是一段较长的描述文本', id:'2' },
       radio:'北京',
       longText:''
     })
   }
 
-  handleChange() {
+  handleChange(value) {
+    const forms = Object.assign({}, this.state.forms, value)
 
+    this.setState({
+      forms
+    })
   }
 
   handleSubmit() {
-
+    this.form.current.validate(valid => {
+      if (valid) {
+        // 提交表单
+        console.log(this.state.forms)
+        alert('提交成功')
+      }
+    })
   }
 
   reset() {
-
+    this.handleChange(this.initForms())
   }
 
   render() {
     const {forms} = this.state
 
     return (
-      <div className="hi-tpl-form__container">
+      <div className="hi-tpl-form__container hi-tpl-form__group__container">
         <p className="hi-tpl-form__title">表单</p>
 
-        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth="80">
-          <FormItem label="label" prop="text">
-            <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{width: '250px'}}/>
-          </FormItem>
-          <FormItem label="Date" prop="Date">
-            <DatePicker 
-              type="daterange"
-              value={forms.Date}
-              onChange={d => {
-                console.log(d)
-              }}
-            />
-          </FormItem>
-          <FormItem label="Numer" prop="num">
-            <Counter
-              value={forms.num}
-              step="1"
-              min="0"
-              max="8"
-              onChange={val => console.log('变化后的值：', val)}
-            />
-          </FormItem>
-          <FormItem label="Time" prop="time">
-            <TimePicker 
-              type="time"
-              value={forms.time}
-              onChange={d => {
-                console.log(d)
-              }}
-            />
-          </FormItem>
-          <FormItem label="label" prop="select">
-            <Select
-              list={this.singleList}
-              placeholder="请选择种类"
-              style={{width: '200px'}}
-              value={forms.select}
-              onChange={item => {
-                console.log('单选结果', item)
-              }}
-            />
-          </FormItem>
-          <FormItem label="Raido" prop="radio">
-            <Radio
-              list={[ '北京', '上海', '重庆' ]}
-              checked={forms.radio}
-              onChange={this.handleChange.bind(this, 'region', '')}
-            />
-          </FormItem>
+        <Form ref={this.form} model={forms} rules={this.rules} labelWidth="80">
+          <div className="hi-tpl-form__group__content">
+            <div className="hi-tpl-form__group__name">Group Name</div>
+            <FormItem label="label" prop="text">
+              <Input value={forms.text} placeholder={'请输入'} onChange={(e, value) => {
+                this.handleChange({text: value})
+              }} style={{width: '250px'}}/>
+            </FormItem>
+            <FormItem label="Date" prop="Date" required>
+              <DatePicker 
+                type="daterange"
+                value={forms.Date}
+                onChange={value => {
+                  this.handleChange({Date: value})
+                }}
+              />
+            </FormItem>
+            <FormItem label="Numer" prop="num">
+              <Counter
+                value={forms.num}
+                step="1"
+                min="0"
+                max="8"
+                onChange={(e, value) => {
+                  this.handleChange({num: value})
+                }}
+              />
+            </FormItem>
+          </div>
 
-          <FormItem label="Picture" prop="radio">
-            <Upload
-              uploadType="photo"
-              uploadAction= "http://10.236.94.247:3005/jvid"
-              headers={{'Content-type':'application/x-www-form-urlencoded', name: 'mi'}}
-              onUploadSuccess = {res => { 
-console.log(res, 'success callback')
- }}
-              onDeleteSuccess = {res => {
- console.log(res, 'normal delete callback') 
-}}
-              param={{id:'uid', channel:'youpin'}}
-              name={'files[]'}
-            />
-          </FormItem>
+          <div className="hi-tpl-form__group__content">
+            <div className="hi-tpl-form__group__name">Group Name</div>
+            <FormItem label="Time" prop="time">
+              <TimePicker 
+                type="time"
+                value={forms.time}
+                onChange={value => {
+                  this.handleChange({time: value})
+                }}
+              />
+            </FormItem>
+            <FormItem label="label" prop="select">
+              <Select
+                list={this.singleList}
+                placeholder="请选择种类"
+                style={{width: '200px'}}
+                value={forms.select && forms.select.id}
+                onChange={item => {
+                  console.log(item[0])
+                  this.handleChange({select: item[0] || false})
+                }}
+              />
+            </FormItem>
+            <FormItem label="Raido" prop="radio">
+              <Radio
+                list={this.radioList}
+                checked={this.radioList.indexOf(forms.radio)}
+                onChange={data => {
+                  this.handleChange({radio: data})
+                }}
+              />
+            </FormItem>
 
-          <FormItem label="long text" prop="longText">
-            <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{width: '250px'}}  type="textarea"/>
-          </FormItem>
+            <FormItem label="Picture" prop="radio">
+              <Upload
+                uploadType="photo"
+                uploadAction= ""
+                headers={{'Content-type':'application/x-www-form-urlencoded', name: 'mi'}}
+                onUploadSuccess = {res => { 
+                  console.log(res, 'success callback')
+                }}
+                onDeleteSuccess = {res => {
+                  console.log(res, 'normal delete callback') 
+                }}
+                param={{id:'uid', channel:'youpin'}}
+                name={'files[]'}
+              />
+            </FormItem>
+
+            <FormItem label="long text" prop="longText">
+              <Input value={forms.longText} placeholder={'多行文本'} style={{width: '250px'}}  type="textarea" onChange={(e, value) => {
+                this.handleChange({longText: value})
+              }}/>
+            </FormItem>
+          </div>
 
           <FormItem>
             <Button type={'primary'} onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type="default" appearance="line" onClick={this.reset.bind(this)}>重置</Button>
+            <Button type="default" onClick={this.reset.bind(this)}>重置</Button>
           </FormItem>
         </Form>
       </div>

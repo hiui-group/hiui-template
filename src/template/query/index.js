@@ -113,7 +113,10 @@ export default class Template extends Component {
               }
             },
             'filter',
-            'row-height',
+            {
+              type: 'row-height',
+              rowHeight: 'small'
+            },
             'column',
             'statistics',
             <Button onClick={() => console.log('---------click test')}>test</Button>

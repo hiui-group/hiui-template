@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import Checkbox from '@hi-ui/hiui/es/checkbox'
+import Radio from '@hi-ui/hiui/es/radio'
 import '../style/row-height.scss'
 
 export default class RowHeightTool extends Component {
   constructor(props) {
     super(props)
+    const rowHeight = this.props.rowHeight
+    
+    this.state = {
+      rowHeight
+    }
   }
 
-  heights = {
-    'small': '紧凑型',
-    'middle': '舒适型',
-    'big': '宽敞型'
+  componentDidMount() {
+    this.parent().setState({rowHeight: this.state.rowHeight})
   }
 
   parent () {
@@ -20,35 +22,43 @@ export default class RowHeightTool extends Component {
   }
 
   render() {
-    const parent = this.parent()
     const {
       onChange
     } = this.props
     const {
       rowHeight
-    } = parent.state
+    }= this.state
+    const parent = this.parent()
+    const list = [
+      {
+        id: 'small',
+        name: '紧凑型',
+        checked: rowHeight==='small'
+      }, {
+        id: 'middle',
+        name: '舒适型',
+        checked: rowHeight==='middle'
+      }, {
+        id: 'big',
+        name: '宽敞型',
+        checked: rowHeight==='big'
+      }
+    ]
 
     return (
       <div className="hi-form-filter__row-height">
-        {
-          Object.entries(this.heights).map(([ value, label ]) => (
-            <div 
-              className={classNames('hi-form-filter__row-height-item', {'hi-form-filter__row-height-item--active': value===rowHeight})}
-              key={value}
-              onClick={() => {
-                if (onChange) {
-                  onChange(value)
-                } else {
-                  parent.setState({rowHeight: value})
-                }
-              }}
-            >
-              <Checkbox checked={value===rowHeight}>
-                {label}
-              </Checkbox>
-            </div>
-          ))
-        }
+        <Radio 
+          list={list} 
+          layout="vertical"
+          onChange={val => {
+            if (onChange) {
+              onChange(val)
+            } else {
+              this.setState({rowHeight: val})
+              parent.setState({rowHeight: val})
+            }
+          }}
+        />
       </div>
     )
   }

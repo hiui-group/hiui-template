@@ -38,12 +38,16 @@
       cursor: pointer;
     }
     &--content {
+      display: none;
       position: absolute;
       top: 46px;
       left: 0px;
       background-color: #F8FAFE;
       box-shadow: -1px 1px 1px 0px #ccc, inset -1px 0px 1px 0px #ccc;
       z-index: 99;
+    }
+    &--active {
+      display: inline-block;
     }
     .hi-icon {
       margin-right: 8px;

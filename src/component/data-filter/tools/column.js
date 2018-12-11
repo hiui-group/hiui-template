@@ -24,7 +24,7 @@ export default class ColumnTool extends Component {
               key={index}
               onClick={e => {
                 e.stopPropagation()
-                column.display = !column.display
+                column.hide = !column.hide
                 const filteredColumns = parent.filterColumns()
                 
                 if (this.props.onChange) {
@@ -35,7 +35,7 @@ export default class ColumnTool extends Component {
               }}
             >
               <Checkbox
-                checked={column.display}
+                checked={!column.hide}
               >
                 {column.title}
               </Checkbox>

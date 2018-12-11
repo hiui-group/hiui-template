@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import isEqual from 'lodash/isEqual'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import QueryTool from './tools/query'
@@ -10,7 +9,6 @@ import FilterTool from './tools/filter'
 import RowHeightTool from './tools/row-height'
 import StatisticsTool from './tools/statistics'
 import ColumnTool from './tools/column'
-import Action from './action'
 import './style/data-filter.scss'
 
 export default class DataFilter extends Component {
@@ -55,14 +53,12 @@ export default class DataFilter extends Component {
   static propTypes = {
     canSubmit: PropTypes.bool,
     beforeSubmit: PropTypes.func,
-    Map: PropTypes.array,
-    actions: PropTypes.array
+    Map: PropTypes.array
   }
 
   static defaultProps = {
     beforeSubmit: () => true,
     canSubmit: true,
-    actions: [ 'search', 'add', 'download', 'share', 'more' ],
     tools: [ 'query', 'filter', 'row-height', 'column', 'statistics' ],
     columnMixins: [],
     columns: []
@@ -74,7 +70,6 @@ export default class DataFilter extends Component {
     this.state = {
       columns: this.mixinColumns(props.columns), // all columns
       filteredColumns: [], // filtered columns
-      filters: [], // 筛选
       rowHeight: 'middle', // 行高
       activeTools: [ 'query' ],
       datas: [],
@@ -106,7 +101,7 @@ export default class DataFilter extends Component {
   }
 
   hidePopper(e, type) {
-    if (this.refs.popper&&this.refs.popper.contains(e.target)) {
+    if (e.target.closest('.hi-form-filter__tool--active')) {
       return
     }
     const activeTools = this.state.activeTools.splice(0)
@@ -184,7 +179,7 @@ export default class DataFilter extends Component {
     const _columns = []
 
     this.state.columns.map(column => {
-      if (column.display) {
+      if (!column.hide) {
         _columns.push({
           ...column
         })
@@ -192,28 +187,6 @@ export default class DataFilter extends Component {
     })
 
     return _columns
-  }
-
-  renderActions() {
-    const {
-      actions,
-      title
-    } = this.props
-
-    return (
-      <div className="hi-form-filter__actions">
-        <div className="hi-form-filter__title">
-          {title}
-        </div>
-        <div className="hi-form-filter__actions--container">
-          {
-            actions.map((action, index) => (
-              <Action type={action} key={index} />
-            ))
-          }
-        </div>
-      </div>
-    )
   }
 
   setActiveTool(tool) {
@@ -280,8 +253,9 @@ export default class DataFilter extends Component {
                   {tool.title && tool.title}
                 </div>
                 {
-                  active && tool.popper &&
-                  <div className="hi-form-filter__tool--content" ref="popper">
+                  tool.popper &&
+                  <div 
+                    className={classNames('hi-form-filter__tool--content', {'hi-form-filter__tool--active': active})}>
                     {this.renderToolContent(tool)}
                   </div>
                 }
@@ -354,7 +328,6 @@ export default class DataFilter extends Component {
     return (
       <React.Fragment>
         <div className="hi-form-filter">
-          {this.renderActions()}
           {this.renderTools()}
           { activeTools.indexOf('query')>-1 && this.renderToolContent(this.mixinTool('query')) }
         </div>

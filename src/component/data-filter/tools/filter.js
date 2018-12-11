@@ -8,6 +8,9 @@ import '../style/filter.scss'
 export default class FilterTool extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      filters: [] // 筛选
+    }
   }
 
   matchFuncs = {
@@ -22,8 +25,7 @@ export default class FilterTool extends Component {
   }
 
   addFilter() {
-    const parent = this.parent()
-    const filters = parent.state.filters
+    const filters = this.state.filters
 
     filters.push({
       column: '',
@@ -32,30 +34,29 @@ export default class FilterTool extends Component {
       type: ''
     })
 
-    parent.setState({
+    this.setState({
       filters
     })
   }
 
   deleteFilter(index) {
-    const parent = this.parent()
+    this.state.filters.splice(index, 1)
 
-    parent.state.filters.splice(index, 1)
-
-    parent.setState({
-      filters: parent.state.filters
+    this.setState({
+      filters: this.state.filters
     })
   }
 
   updateFilter(index, options) {
     const parent = this.parent()
-    const filters = [ ...parent.state.filters ]
+    const filters = [ ...this.state.filters ]
     
     filters[index] = Object.assign({}, filters[index], options)
     const filteredDatas = this.filterDatas(parent.state.datas, filters)
     
     console.log('------------updateFilter', filters, filteredDatas)
-    parent.setState({filters, filteredDatas})
+    parent.setState({filteredDatas})
+    this.setState({filters})
   }
 
   filterDatas(datas, filters) {
@@ -133,9 +134,11 @@ export default class FilterTool extends Component {
   renderFilters() {
     const parent = this.parent()
     const {
-      filters,
       columns
     } = parent.state
+    const {
+      filters
+    } = this.state
     const options = this.getColumnOptions(columns)
 
     return filters.map((filter, index) => (
@@ -244,10 +247,9 @@ export default class FilterTool extends Component {
   }
 
   render() {
-    const parent = this.parent()
     const {
       filters
-    } = parent.state
+    } = this.state
 
     return (
       <div className="hi-form-filter__filters">

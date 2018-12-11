@@ -115,7 +115,6 @@ export default class Template extends Component {
               </FormItem>
               <FormItem label="label" prop="select">
                 <Select
-                  mode="label"
                   list={this.singleList}
                   placeholder="请选择种类"
                   style={{width: '200px'}}

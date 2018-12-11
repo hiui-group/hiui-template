@@ -7,14 +7,9 @@
     padding-right: 14px;
   }
 }
-.hi-tpl-form__btnContainer{
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.hi-tpl-form__vertical{
-  .hi-tpl-form__title{
-    padding: 0 26px;
-    position: relative;
+.hi-tpl-form-modal__big{
+  .hi-form-item{
+    width: 50%;
+    display: inline-block
   }
 }

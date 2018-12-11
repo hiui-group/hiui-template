@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Table from '@hi-ui/hiui/es/table'
-import Tree from '@hi-ui/hiui/es/Tree'
+import Tree from '@hi-ui/hiui/es/tree'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
-import config from '~config'
+import config from '../../config'
 import './index.scss'
 
 export default class Template extends Component {

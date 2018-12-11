@@ -11,7 +11,7 @@ import Radio from '@hi-ui/hiui/es/radio'
 import Upload from '@hi-ui/hiui/es/upload'
 import Modal from '@hi-ui/hiui/es/modal'
 import axios from 'axios'
-import config from '~config'
+import config from '../../config'
 import './index.scss'
 
 const FormItem = Form.Item

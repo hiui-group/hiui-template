@@ -79,6 +79,40 @@ const sider = {
           to: '/query'
         }
       ]
+    },
+    {
+      title: '表单模板',
+      icon: <Icon name="usergroup" />,
+      children: [
+        {
+          title: '分组1',
+          to: '/form-vertical-group'
+        },
+        {
+          title: '分组2',
+          to: '/form-group'
+        },
+        {
+          title: '分组3',
+          to: '/form-unfold-group'
+        },
+        {
+          title: '分步骤',
+          to: '/form-with-stepper'
+        },
+        {
+          title: '双列',
+          to: '/form-double-column'
+        },
+        {
+          title: '单列',
+          to: '/form-basic'
+        },
+        {
+          title:'弹窗表格',
+          to:'/form-modal'
+        }
+      ]
     }
   ]
 }

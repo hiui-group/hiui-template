@@ -1,11 +1,26 @@
-node_modules/
+# MIFE dotfiles
+
+# Output files
 dist/
-.DS_Store
-npm-debug.log
-yarn-error.log
+es/
+
+# Editor generate files
 .idea/
+.settings/
 .vscode/
-*.swp
-.tern-project
-.gitlab-ci.yml
+.tmp/
+
+# Dev dependencies and cache files
+node_modules/
+yarn.lock
 package-lock.json
+
+# Misc files
+*~
+~*
+._*
+.DS_Store
+Desktop.ini
+Thumbs.db
+.Spotlight-V100
+.Trashes

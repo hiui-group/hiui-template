@@ -44,25 +44,25 @@ export default class FilterTool extends Component {
 
     this.setState({
       filters: this.state.filters
+    }, () => {
+      this.filterDatas(this.state.filters)
     })
   }
 
   updateFilter(index, options) {
-    const parent = this.parent()
     const filters = [ ...this.state.filters ]
     
     filters[index] = Object.assign({}, filters[index], options)
-    const filteredDatas = this.filterDatas(parent.state.datas, filters)
-    
-    console.log('------------updateFilter', filters, filteredDatas)
-    parent.setState({filteredDatas})
-    this.setState({filters})
+    this.setState({filters}, () => {
+      this.filterDatas(filters)
+    })
   }
 
-  filterDatas(datas, filters) {
+  filterDatas(filters) {
     const filteredDatas = []
+    const parent = this.parent()
 
-    datas.map(data => {
+    parent.state.datas.map(data => {
       let match = true
 
       filters.every(filter => {
@@ -73,7 +73,7 @@ export default class FilterTool extends Component {
       match && filteredDatas.push(data)
     })
 
-    return filteredDatas
+    parent.setState({filteredDatas})
   }
 
   matchFilter(data, filter) {
@@ -143,7 +143,10 @@ export default class FilterTool extends Component {
 
     return filters.map((filter, index) => (
       <div className="hi-form-filter__filters-item" key={index}>
-        <div className="hi-form-filter__filters-delete" onClick={() => this.deleteFilter(index)}>
+        <div className="hi-form-filter__filters-delete" onClick={e => {
+          e.stopPropagation()
+          this.deleteFilter(index)
+        }}>
           <Icon name="delete" />
         </div>
         <div className="hi-form-filter__filters-column">

@@ -17,7 +17,12 @@ export default class FilterTool extends Component {
     'gt': (value, compareValue) => value>compareValue,
     'gte': (value, compareValue) => value>=compareValue,
     'lt': (value, compareValue) => value<compareValue,
-    'lte': (value, compareValue) => value<=compareValue
+    'lte': (value, compareValue) => value<=compareValue,
+    'eq': (value, compareValue) => value==compareValue,
+    'include': (value, compareValue) => value.indexOf(compareValue)>-1,
+    'exclude': (value, compareValue) => value.indexOf(compareValue)==-1,
+    'empty': value => !value,
+    'no-empty': value => !!value
   }
 
   parent () {

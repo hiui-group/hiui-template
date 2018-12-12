@@ -21,7 +21,7 @@ export default class SearchAction extends Component {
   }
 
   hideInput(e) {
-    if (!this.searchRef.contains(e.target)) {
+    if (this.searchRef && !this.searchRef.contains(e.target)) {
       this.setState({
         showInput: false,
         value: ''

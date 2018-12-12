@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 import { Layout } from '@hi-ui/hiui/es'
 import Checkbox from '@hi-ui/hiui/es/checkbox'
-import Radio from '@hi-ui/hiui/es/radio'
+import {DataFilter} from '../../component/data-filter'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import Button from '@hi-ui/hiui/es/button'
@@ -35,26 +36,24 @@ export default class Template extends Component {
       field1: {
         list: [
           {
-            text: 'item11',
-            value: 'item11',
-            checked: false
+            text: '订单A',
+            value: '订单A'
           },
           {
-            text: 'item12',
-            value: 'item12',
-            checked: true
+            text: '订单B',
+            value: '订单B'
           },
           {
-            text: 'item13',
-            value: 'item13'
+            text: '订单C',
+            value: '订单C'
           },
           {
-            text: 'item14',
-            value: 'item14'
+            text: '订单D',
+            value: '订单D'
           },
           {
-            text: 'item15',
-            value: 'item15'
+            text: '订单E',
+            value: '订单E'
           }
         ]
 
@@ -76,14 +75,6 @@ export default class Template extends Component {
           {
             text: '京东旗舰店',
             value: '京东旗舰店'
-          },
-          {
-            text: 'item25',
-            value: 'item25'
-          },
-          {
-            text: 'item26',
-            value: 'item26'
           }
         ]
       },
@@ -102,64 +93,22 @@ export default class Template extends Component {
             value: '自取'
           },
           {
-            text: 'item34',
-            value: 'item34'
+            text: '圆通',
+            value: '圆通'
           },
           {
-            text: 'item35',
-            value: 'item35'
+            text: '申通',
+            value: '申通'
           },
           {
-            text: 'item36',
-            value: 'item36'
+            text: '中通',
+            value: '中通'
           }
         ]
       },
-      pageSize: 0,
-      total: 0,
-      page: 1,
-      tableDatas: [],
-      columns: [],
-      activeMenu: 0,
+      pageSize: 10,
       forms: this.initForms()
     }
-  }
-
-  componentWillMount() {
-    this.fetchDatas()
-  }
-
-  fetchDatas() {
-    const {
-      page,
-      forms
-    } = this.state
-
-    axios.get(`${config('host')}/table/get-datas`, {
-      params: {
-        page,
-        ...forms
-      }
-    }).then(ret => {
-      const datas = []
-
-      if (ret && ret.data.code === 200) {
-        const data = ret.data.data
-        const columns = data.columns
-        const pageInfo = data.pageInfo
-
-        data.data.map(data => {
-          datas.push(data)
-        })
-        this.setState({
-          tableDatas: datas,
-          page: pageInfo.page,
-          total: pageInfo.total,
-          pageSize: pageInfo.pageSize,
-          columns: this.setTableColumns(columns)
-        })
-      }
-    })
   }
 
   initForms() {
@@ -170,66 +119,30 @@ export default class Template extends Component {
     })
   }
 
-  setTableColumns(columns) {
-    const _columns = []
-
-    columns.map(column => {
-      const key = column.key
-
-      _columns.push({
-        ...column,
-        ...this.columnMixins[key]
-      })
-    })
-
-    return _columns
-  }
-
-  updateForm(data, callback) {
+  updateForm(data) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState({
       forms
-    }, () => {
-      callback && callback()
-    })
-  }
-
-  checkSubmit() {
-    const {forms} = this.state
-
-    return !!forms.column1
-  }
-
-  submit(can) {
-    if (!can) {
-      return
-    }
-    this.setState({
-      page: 1
-    }, () => {
-      this.fetchDatas()
     })
   }
 
   reset() {
-    this.updateForm(this.initForms(), () => this.fetchDatas())
+    this.updateForm(this.initForms())
   }
 
-  setForm(data) {
-    this.updateForm(data, () => this.fetchDatas())
-  }
-
-  handleSubmitClick() {
+  setForm() {
     const forms = {
-      column1: this.state.field1.list.filter(item => item.checked).map(item => item.value),
-      column2: this.state.field2.list.filter(item => item.checked).map(item => item.value),
-      column3: this.state.field3.list.filter(item => item.checked).map(item => item.value)
+      column1: this.state.field1.list.filter(item => item.checked).map(item => item.value).join(' '),
+      column2: this.state.field2.list.filter(item => item.checked).map(item => item.value).join(' '),
+      column3: this.state.field3.list.filter(item => item.checked).map(item => item.value).join(' ')
     }
-    this.setForm(forms)
+
+    this.updateForm(forms)
   }
 
   handleResetClick() {
+    console.log('-------handleResetClick')
     const {field1, field2, field3} = this.state
 
     field1.list.forEach(item => item.checked = false)
@@ -245,126 +158,122 @@ export default class Template extends Component {
     })
   }
 
-
-
-
-  renderMenuContent() {
-    const {
-      activeMenu,
-      tableDatas,
-      columns,
-      pageSize,
-      total,
-      page,
-      forms
-    } = this.state
-    const canSubmit = this.checkSubmit()
-
-    if (activeMenu === 0) {
-      return (
-        <React.Fragment>
-          <Table
-            columns={columns}
-            data={tableDatas}
-            name="sorter"
-            pagination={{
-              pageSize: pageSize,
-              total:total,
-              page: page,
-              onChange:(page, pre, size) => {
-                this.setState({page: page}, () => this.fetchDatas())
-              }
-            }}
-          />
-        </React.Fragment>
-      )
-    } else {
-      return activeMenu
-    }
-  }
-
   render() {
     const Row = Layout.Row
     const Col = Layout.Col
-
     const {
-      field1,
-      field2,
-      field3
+      forms,
+      pageSize
     } = this.state
+    const params = {
+      pageSize
+    }
 
     return (
       <div className="hi-tpl__container">
-        <div>
+        <DataFilter
+          ref={node => this.dataFilter=node}
+          url={`${config('host')}/table/get-datas`}
+          params={params}
+          columnMixins={this.columnMixins}
+          table={{
+            name: 'sorter'
+          }}
+          actions={[ 
+            'search',
+            <Link to="/form-unfold-group" className="hi-tpl__add">
+              <Icon name="plus"/>
+            </Link>,
+            <div className="hi-tpl__download" onClick={() => {
+              console.log('------------click download')
+            }}>
+              <Icon name="download"/>
+            </div>,
+            <div className="hi-tpl__share" onClick={() => {
+              console.log('------------click share')
+            }}>
+              <Icon name="mark"/>
+            </div>,
+            <div className="hi-tpl__more" onClick={() => {
+              console.log('------------click more')
+            }}>
+              <Icon name="more"/>
+            </div>
+          ]}
+          tools={[
+            {
+              type: 'query',
+              title: '查询',
+              forms,
+              onCancel: () => {
+                this.handleResetClick()
+              }
+            }
+          ]}
+        >
           <Row>
             <Col>
-              <span className="field-name">FieldName1</span>
+              <span className="field-name">订单类型</span>
             </Col>
             <Col>
-              <Checkbox all='one' onChange={(list) => {
+              <Checkbox all="one" onChange={list => {
                 const fieldList = this.state.field1.list
+
                 fieldList.forEach(item => {
-                  if(list.indexOf(item.value) > -1) {
+                  if (list.indexOf(item.value) > -1) {
                     item.checked = true
                   } else {
                     item.checked = false
                   }
                 })
-
+                this.setForm()
               }}>全选</Checkbox>
-              <Checkbox list={this.state.field1.list} name='one'/>
+              <Checkbox list={this.state.field1.list} name="one"/>
             </Col>
           </Row>
           <Row>
             <Col>
-              <span className="field-name">FieldName2</span>
+              <span className="field-name">业务来源</span>
             </Col>
             <Col>
-              <Checkbox all='two' onChange={(list) => {
+              <Checkbox all="two" onChange={list => {
 
                 const fieldList = this.state.field2.list
+
                 fieldList.forEach(item => {
-                  if(list.indexOf(item.value) > -1) {
+                  if (list.indexOf(item.value) > -1) {
                     item.checked = true
                   } else {
                     item.checked = false
                   }
                 })
-
+                this.setForm()
               }}>全选</Checkbox>
-              <Checkbox list={this.state.field2.list} name='two'/>
+              <Checkbox list={this.state.field2.list} name="two"/>
             </Col>
           </Row>
           <Row>
             <Col>
-              <span className="field-name">FieldName3</span>
+              <span className="field-name">运输方式</span>
             </Col>
             <Col>
-              <Checkbox all='three' onChange={(list) => {
+              <Checkbox all="three" onChange={list => {
 
                 const fieldList = this.state.field3.list
+
                 fieldList.forEach(item => {
-                  if(list.indexOf(item.value) > -1) {
+                  if (list.indexOf(item.value) > -1) {
                     item.checked = true
                   } else {
                     item.checked = false
                   }
                 })
-
+                this.setForm()
               }}>全选</Checkbox>
-              <Checkbox list={this.state.field3.list} name='three'/>
+              <Checkbox list={this.state.field3.list} name="three"/>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <Button type="primary" appearance="line" onClick={this.handleSubmitClick.bind(this)}>确定</Button>
-              <Button type="default" appearance="line" onClick={this.handleResetClick.bind(this)}>重置</Button>
-            </Col>
-          </Row>
-        </div>
-        <div style={{marginTop: '20px'}}>
-          {this.renderMenuContent()}
-        </div>
+        </DataFilter>
       </div>
     )
   }

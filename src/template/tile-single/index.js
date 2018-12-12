@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { Layout, Button } from '@hi-ui/hiui/es'
+import { Link } from 'react-router-dom'
+import { Layout } from '@hi-ui/hiui/es'
 import {DataFilter} from '../../component/data-filter'
 import Radio from '@hi-ui/hiui/es/radio'
 import Icon from '@hi-ui/hiui/es/icon'
@@ -91,11 +92,9 @@ export default class Template extends Component {
           }}
           actions={[ 
             'search',
-            <div className="hi-tpl__add" onClick={() => {
-              console.log('------------click add')
-            }}>
+            <Link to="/form-unfold-group" className="hi-tpl__add">
               <Icon name="plus"/>
-            </div>,
+            </Link>,
             <div className="hi-tpl__download" onClick={() => {
               console.log('------------click download')
             }}>

@@ -8,6 +8,7 @@ export default class QueryTool extends Component {
     super(props)
   }
   static defaultProps = {
+    beforeSubmit: () => true,
     canSubmit: true,
     submit: true
   }

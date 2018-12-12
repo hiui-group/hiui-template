@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
@@ -101,6 +102,27 @@ export default class Template extends Component {
           table={{
             name: 'sorter'
           }}
+          actions={[ 
+            'search',
+            <Link to="/form-unfold-group" className="hi-tpl__add">
+              <Icon name="plus"/>
+            </Link>,
+            <div className="hi-tpl__download" onClick={() => {
+              console.log('------------click download')
+            }}>
+              <Icon name="download"/>
+            </div>,
+            <div className="hi-tpl__share" onClick={() => {
+              console.log('------------click share')
+            }}>
+              <Icon name="mark"/>
+            </div>,
+            <div className="hi-tpl__more" onClick={() => {
+              console.log('------------click more')
+            }}>
+              <Icon name="more"/>
+            </div>
+          ]}
           tools={[
             {
               type: 'query',
@@ -117,8 +139,7 @@ export default class Template extends Component {
               rowHeight: 'small'
             },
             'column',
-            'statistics',
-            <Button onClick={() => console.log('---------click test')}>test</Button>
+            'statistics'
           ]}
         >
           <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>

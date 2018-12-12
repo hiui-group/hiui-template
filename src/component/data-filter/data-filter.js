@@ -53,12 +53,10 @@ export default class DataFilter extends Component {
 
   static propTypes = {
     canSubmit: PropTypes.bool,
-    beforeSubmit: PropTypes.func,
     actions: PropTypes.array
   }
 
   static defaultProps = {
-    beforeSubmit: () => true,
     canSubmit: true,
     tools: [ 'query', 'filter', 'row-height', 'column', 'statistics' ],
     actions: [],

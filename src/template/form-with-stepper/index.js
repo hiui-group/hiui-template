@@ -12,7 +12,7 @@ import Upload from '@hi-ui/hiui/es/upload'
 import Stepper from '@hi-ui/hiui/es/stepper'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
-import config from '~config'
+import config from '../../config'
 import './index.scss'
 
 const FormItem = Form.Item

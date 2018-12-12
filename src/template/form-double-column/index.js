@@ -12,7 +12,7 @@ import Icon from '@hi-ui/hiui/es/icon'
 
 import Menu from '@hi-ui/hiui/es/menu'
 import axios from 'axios'
-import config from '~config'
+import config from '../../config'
 import './index.scss'
 
 const FormItem = Form.Item

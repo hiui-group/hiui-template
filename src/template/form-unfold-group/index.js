@@ -12,7 +12,7 @@ import NavMenu from '@hi-ui/hiui/es/nav-menu'
 import Collapse from '@hi-ui/hiui/es/collapse'
 
 import axios from 'axios'
-import config from '~config'
+import config from '../../config'
 import './index.scss'
 
 const FormItem = Form.Item

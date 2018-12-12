@@ -1,16 +1,17 @@
+import Basic from '../template/basic'
 export default [
-  {
-    path: '/', 
-    exact: true,
-    component: require('../template/basic').default,
-    indexRoute: {
-      getComponent(nextState, cb) {
-        require.ensure([], require => {
-          cb(null, require('../template/basic').default)
-        }, 'index')
-      }
-    }
-  },
+  // {
+  //   path: '/', 
+  //   exact: true,
+  //   component: require('../template/basic').default,
+  //   indexRoute: {
+  //     getComponent(nextState, cb) {
+  //       require.ensure([], require => {
+  //         cb(null, require('../template/basic').default)
+  //       }, 'index')
+  //     }
+  //   }
+  // },
   {
     path: '/basic',
     component: require('../template/basic').default
@@ -38,6 +39,10 @@ export default [
   {
     path: '/tile-multiple',
     component: require('../template/tile-multiple').default
+  },
+  {
+    path: '/query',
+    component: require('../template/query').default
   },
   {
     path: '/form-group',

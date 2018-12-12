@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import { Layout } from '@hi-ui/hiui/es'
+import Grid from '@hi-ui/hiui/es/grid'
 import Button from '@hi-ui/hiui/es/button'
 import Radio from '@hi-ui/hiui/es/radio'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import './index.scss'
-import config from '~config'
+import config from '../../config'
 import axios from 'axios'
 
 export default class Template extends Component {
@@ -185,8 +185,8 @@ export default class Template extends Component {
   }
 
   render() {
-    const Row = Layout.Row
-    const Col = Layout.Col
+    const Row = Grid.Row
+    const Col = Grid.Col
 
     const {
       field1,

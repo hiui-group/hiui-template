@@ -95,7 +95,6 @@ export default class Template extends Component {
     return (
       <div className="hi-tpl__query-2">
         <DataFilter 
-          title="二级菜单"
           url={`${config('host')}/table/get-datas`}
           params={params}
           columnMixins={this.columnMixins}
@@ -123,7 +122,7 @@ export default class Template extends Component {
           ]}
         >
           <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>
-            <Field label="运单号" width="220">
+            <Field label="订单号" width="220">
               <Input
                 placeholder="请输入"
                 value={forms.column1}

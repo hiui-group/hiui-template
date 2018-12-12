@@ -8,7 +8,8 @@ export default class QueryTool extends Component {
     super(props)
   }
   static defaultProps = {
-    canSubmit: true
+    canSubmit: true,
+    submit: true
   }
 
   parent () {
@@ -38,7 +39,8 @@ export default class QueryTool extends Component {
     } = parent.props
     const {
       canSubmit,
-      onCancel
+      onCancel,
+      submit
     } = this.props
 
     return (
@@ -46,21 +48,24 @@ export default class QueryTool extends Component {
         <div className="hi-form-filter__form-groups">
           {children}
         </div>
-        <div className="hi-form-filter__form-actions">
-          <Button
-            type={canSubmit ? 'primary' : 'default'}
-            disabled={!canSubmit}
-            onClick={() => this.submit(canSubmit)}
-          >
-              确定
-          </Button>
-          {
-            onCancel &&
-            <Button onClick={() => onCancel()}>
-              重置
+        {
+          submit &&
+          <div className="hi-form-filter__form-actions">
+            <Button
+              type={canSubmit ? 'primary' : 'default'}
+              disabled={!canSubmit}
+              onClick={() => this.submit(canSubmit)}
+            >
+                确定
             </Button>
-          }
-        </div>
+            {
+              onCancel &&
+              <Button onClick={() => onCancel()}>
+                重置
+              </Button>
+            }
+          </div>
+        }
 
       </div>
     )

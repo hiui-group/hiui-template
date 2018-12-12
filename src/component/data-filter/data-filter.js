@@ -115,6 +115,10 @@ export default class DataFilter extends Component {
     this.setState({activeTools})
   }
 
+  submit(forms) {
+    this.fetchDatas(this.props, forms)
+  }
+
   fetchDatas(props, forms={}) {
     const {
       params,

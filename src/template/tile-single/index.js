@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Layout } from '@hi-ui/hiui/es'
+import { Layout, Button } from '@hi-ui/hiui/es'
 import {DataFilter} from '../../component/data-filter'
 import Radio from '@hi-ui/hiui/es/radio'
 import Icon from '@hi-ui/hiui/es/icon'
@@ -89,6 +89,29 @@ export default class Template extends Component {
           table={{
             name: 'sorter'
           }}
+          actions={[ 
+            'search',
+            <div className="hi-tpl__add" onClick={() => {
+              console.log('------------click add')
+            }}>
+              <Icon name="plus"/>
+            </div>,
+            <div className="hi-tpl__download" onClick={() => {
+              console.log('------------click download')
+            }}>
+              <Icon name="download"/>
+            </div>,
+            <div className="hi-tpl__share" onClick={() => {
+              console.log('------------click share')
+            }}>
+              <Icon name="mark"/>
+            </div>,
+            <div className="hi-tpl__more" onClick={() => {
+              console.log('------------click more')
+            }}>
+              <Icon name="more"/>
+            </div>
+          ]}
           tools={[
             {
               type: 'query',

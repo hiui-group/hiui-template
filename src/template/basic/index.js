@@ -5,10 +5,12 @@ import Form from '@hi-ui/hiui/es/form'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Button from '@hi-ui/hiui/es/button'
+import Grid from '@hi-ui/hiui/es/grid'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '../../config'
 import './index.scss'
+import '../content.scss'
 
 export default class Template extends Component {
   constructor(props) {
@@ -168,7 +170,7 @@ export default class Template extends Component {
       return (
         <React.Fragment>
           <Form inline={true}>
-            <Form.Item label="运单号" labelWidth="80">
+            <Form.Item label="运单号">
               <Input
                 placeholder="请输入"
                 value={forms.column1}
@@ -177,7 +179,7 @@ export default class Template extends Component {
                 }}
               />
             </Form.Item>
-            <Form.Item label="业务来源" labelWidth="80">
+            <Form.Item label="业务来源">
               <Seclet
                 list={this.businessOptions}
                 placeholder="请选择业务来源"
@@ -186,7 +188,7 @@ export default class Template extends Component {
                 onChange={value => this.updateForm({column2: value[0]&&value[0].id||'全部'})}
               />
             </Form.Item>
-            <Form.Item label="运输方式" labelWidth="80">
+            <Form.Item label="运输方式">
               <Seclet
                 list={this.transportOptions}
                 placeholder="请选择运输方式"
@@ -195,7 +197,8 @@ export default class Template extends Component {
                 onChange={value => this.updateForm({column3: value[0]&&value[0].id||'全部'})}
               />
             </Form.Item>
-            <Form.Item labelWidth="50">
+            <hr />
+            <Form.Item>
               <Button 
                 type={canSubmit ? 'primary' : 'default'}
                 disabled={!canSubmit}
@@ -230,16 +233,28 @@ export default class Template extends Component {
     const {
       activeMenu
     } = this.state
+    const Row = Grid.Row
+    const Col = Grid.Col
 
     return (
-      <div className="hi-tpl__container hi-tpl__container--basic">
-        <NavMenu
-          selectedKey={activeMenu}
-          data={this.menus}
-          onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
-        />
+      <div className="page hi-tpl__container1 hi-tpl__container--basic">
+        <Row>
+          <Col span={24}>
+            <NavMenu
+              selectedKey={activeMenu}
+              data={this.menus}
+              onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            {this.renderMenuContent()}
+          </Col>
+        </Row>
+
         <div className="menu-content">
-          {this.renderMenuContent()}
+
         </div>
       </div>
     )

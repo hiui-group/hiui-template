@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import NavMenu from '@hi-ui/hiui/es/nav-menu'
+import Grid from '@hi-ui/hiui/es/grid'
 import Table from '@hi-ui/hiui/es/table'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Seclet from '@hi-ui/hiui/es/select'
-import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '../../config'
-import './index.scss'
+import '../content.scss'
 
 export default class Template extends Component {
   constructor(props) {
@@ -118,23 +115,6 @@ export default class Template extends Component {
     })
   }
 
-  checkSubmit() {
-    const {forms} = this.state
-
-    return !!forms.column1
-  }
-
-  submit(can) {
-    if (!can) {
-      return
-    }
-    this.setState({
-      page: 1
-    }, () => {
-      this.fetchDatas()
-    })
-  }
-
   reset() {
     this.updateForm(this.initForms(), () => this.fetchDatas())
   }
@@ -146,10 +126,8 @@ export default class Template extends Component {
       columns,
       pageSize,
       total,
-      page,
-      forms
+      page
     } = this.state
-    const canSubmit = this.checkSubmit()
 
     if (activeMenu === 0) {
       return (
@@ -162,7 +140,7 @@ export default class Template extends Component {
               pageSize: pageSize,
               total:total,
               page: page,
-              onChange:(page, pre, size) => {
+              onChange: page => {
                 this.setState({page: page}, () => this.fetchDatas())
               }
             }}
@@ -175,21 +153,31 @@ export default class Template extends Component {
   }
 
   render() {
+    const Row = Grid.Row
+    const Col = Grid.Col
     const {
       activeMenu
     } = this.state
 
     return (
-      <div className="hi-tpl__container hi-tpl__container--group-vertical">
-        <NavMenu
-          selectedKey={activeMenu}
-          data={this.menus}
-          onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
-          vertical
-        />
-        <div className="menu-content">
-          {this.renderMenuContent()}
-        </div>
+      <div className="page">
+        <Row>
+          <Col span={3}>
+
+            <NavMenu
+              selectedKey={activeMenu}
+              data={this.menus}
+              onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
+              vertical
+            />
+
+          </Col>
+          <Col span={21}>
+
+            {this.renderMenuContent()}
+
+          </Col>
+        </Row>
       </div>
     )
   }

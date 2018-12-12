@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import NavMenu from '@hi-ui/hiui/es/nav-menu'
+import Grid from '@hi-ui/hiui/es/grid'
 import Table from '@hi-ui/hiui/es/table'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Seclet from '@hi-ui/hiui/es/select'
-import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '../../config'
-import './index.scss'
+import '../content.scss'
 
 export default class Template extends Component {
   constructor(props) {
@@ -20,6 +17,7 @@ export default class Template extends Component {
       {title: '调拨管理'},
       {title: '超期监控'}
     ]
+
     this.columnMixins = {
       column1: {
         sorter(pre, next) {
@@ -118,23 +116,6 @@ export default class Template extends Component {
     })
   }
 
-  checkSubmit() {
-    const {forms} = this.state
-
-    return !!forms.column1
-  }
-
-  submit(can) {
-    if (!can) {
-      return
-    }
-    this.setState({
-      page: 1
-    }, () => {
-      this.fetchDatas()
-    })
-  }
-
   reset() {
     this.updateForm(this.initForms(), () => this.fetchDatas())
   }
@@ -146,48 +127,86 @@ export default class Template extends Component {
       columns,
       pageSize,
       total,
-      page,
-      forms
+      page
     } = this.state
-    const canSubmit = this.checkSubmit()
+    let content
 
-    if (activeMenu === 0) {
-      return (
-        <React.Fragment>
-          <Table 
-            columns={columns} 
-            data={tableDatas} 
-            name="sorter"
-            pagination={{
-              pageSize: pageSize,
-              total:total,
-              page: page,
-              onChange:(page, pre, size) => {
-                this.setState({page: page}, () => this.fetchDatas())
-              }
-            }}
-          />
-        </React.Fragment>
-      )
-    } else {
-      return activeMenu
+    switch (activeMenu) {
+      case 0:
+        content = (
+          <React.Fragment>
+            <Table
+              columns={columns}
+              data={tableDatas}
+              name="sorter"
+              pagination={{
+                pageSize: pageSize,
+                total: total,
+                page: page,
+                onChange: (page) => {
+                  this.setState({page: page}, () => this.fetchDatas())
+                }
+              }}
+            />
+          </React.Fragment>
+        )
+        break
+      case 1:
+        content = (
+          <React.Fragment>
+            <Table
+              columns={columns}
+              data={tableDatas}
+              name="sorter"
+              pagination={{
+                pageSize: pageSize,
+                total: total,
+                page: page,
+                onChange: (page) => {
+                  this.setState({page: page}, () => this.fetchDatas())
+                }
+              }}
+            />
+          </React.Fragment>
+        )
+        break
+      default:
+        content = activeMenu
     }
+
+    return content
   }
 
   render() {
+    const Row = Grid.Row
+    const Col = Grid.Col
     const {
       activeMenu
     } = this.state
 
     return (
-      <div className="hi-tpl__container hi-tpl__container--group-horizontal">
-        <NavMenu
-          selectedKey={activeMenu}
-          data={this.menus}
-          onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
-        />
+      <div className="page page--gutter">
+        <Row>
+          <Col span={24}>
+
+            <NavMenu
+              selectedKey={activeMenu}
+              data={this.menus}
+              onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
+            />
+
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+
+            {this.renderMenuContent()}
+
+          </Col>
+        </Row>
+
         <div className="menu-content">
-          {this.renderMenuContent()}
+
         </div>
       </div>
     )

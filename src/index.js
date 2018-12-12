@@ -124,8 +124,8 @@ render((
     routes={rootRoute}
     sider={sider}
     config={{
-      color: 'black'
-      // type: 'card'
+      color: 'black',
+      type: 'flat'
     }}
-  ></Page>
+  />
 ), document.getElementById('app'))

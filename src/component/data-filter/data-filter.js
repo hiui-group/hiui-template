@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
+import SearchAction from './actions/search'
 import QueryTool from './tools/query'
 import FilterTool from './tools/filter'
 import RowHeightTool from './tools/row-height'
@@ -52,14 +53,13 @@ export default class DataFilter extends Component {
 
   static propTypes = {
     canSubmit: PropTypes.bool,
-    beforeSubmit: PropTypes.func,
-    Map: PropTypes.array
+    actions: PropTypes.array
   }
 
   static defaultProps = {
-    beforeSubmit: () => true,
     canSubmit: true,
     tools: [ 'query', 'filter', 'row-height', 'column', 'statistics' ],
+    actions: [],
     columnMixins: [],
     columns: []
   }
@@ -113,6 +113,10 @@ export default class DataFilter extends Component {
     })
     
     this.setState({activeTools})
+  }
+
+  submit(forms) {
+    this.fetchDatas(this.props, forms)
   }
 
   fetchDatas(props, forms={}) {
@@ -295,6 +299,34 @@ export default class DataFilter extends Component {
     }
   }
 
+  renderActions() {
+    const {
+      actions
+    } = this.props
+
+    return (
+      <div className="hi-form-filter__actions">
+        <div className="hi-form-filter__actions--container">
+          {
+            actions.map((action, index) => (
+              <div className="hi-form-filter__action" key={index}>
+                {this.renderAction(action)}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    )
+  }
+
+  renderAction(action) {
+    if (typeof action === 'object') {
+      return action
+    } else if (action === 'search') {
+      return <SearchAction />
+    }
+  }
+
   render() {
     const {
       activeTools,
@@ -327,6 +359,7 @@ export default class DataFilter extends Component {
     return (
       <React.Fragment>
         <div className="hi-form-filter">
+          {this.renderActions()}
           {this.renderTools()}
           { activeTools.indexOf('query')>-1 && this.renderToolContent(this.mixinTool('query')) }
         </div>

@@ -1,12 +1,12 @@
 .hi-tpl-form-modal__container{
+  padding: 0 20px;
 }
 
-.modal-big-form-containe{
+.hi-tpl-form-modal__big{
   display: flex;
   justify-content: space-between;
   padding: 30px 26px 0 26px;
-  .form-left-column,
-  .form-right-column{
+  .hi-form-item{
     width: 50%;
   }
 }

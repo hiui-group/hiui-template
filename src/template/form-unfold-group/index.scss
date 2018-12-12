@@ -1,9 +1,24 @@
-.hi-tpl-unfold__title{
+.hi-tpl-unfold__container{
   font-size: 14px;
   color: #4A4A4A;
   margin: 0 0 30px 16px;
-  .hi-icon{
-    color: #000000;
-    padding-right: 14px;
+  .hi-tpl-form__title{
+    position: relative;
+  }
+  .hi-tpl-form__vertical__menu{
+    margin-bottom: 30px;
+  }
+  .hi-collapse .collapse-item>.head{
+    background: none
+  }
+  .hi-collapse,
+  .hi-collapse .collapse-item,
+  .hi-collapse .collapse-item.show>.content{
+    border: none
+  }
+}
+.hi-tpl-form__container{
+  .hi-tpl-form__title{
+    padding: 20px 0;
   }
 }

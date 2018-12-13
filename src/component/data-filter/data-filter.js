@@ -16,10 +16,12 @@ export default class DataFilter extends Component {
   forms = {}
   toolsMap = {
     'query': {
+      className: 'hi-form-filter__tool-query',
       type: 'query',
       icon: 'approve',
       title: '查询',
-      trigger: 'toggle'
+      trigger: 'toggle',
+      expandIcon: true
     }, 
     'filter': {
       type: 'filter',
@@ -229,9 +231,10 @@ export default class DataFilter extends Component {
             } else if (typeof item === 'object') {
               tool = Object.assign({}, this.toolsMap[item.type], item)
             } 
-            if (!tool.title) {
+            
+            if (!tool.title) { // 自定义元素
               return (
-                <div className="hi-form-filter__tool hi-form-filter__tool--custom" key={index}>
+                <div className={classNames('hi-form-filter__tool hi-form-filter__tool--custom', tool.className)} key={index}>
                   {item}
                 </div>
               )
@@ -241,7 +244,7 @@ export default class DataFilter extends Component {
 
             return (
               <div 
-                className={classNames('hi-form-filter__tool', {'hi-form-filter__tool--active': active})}
+                className={classNames('hi-form-filter__tool', tool.className, {'hi-form-filter__tool--active': active})}
                 key={index}
               >
                 <div 
@@ -252,8 +255,14 @@ export default class DataFilter extends Component {
                     this.hidePopper(e, tool.type)
                   }}
                 >
-                  <Icon name={tool.icon} />
-                  {tool.title && tool.title}
+                  <Icon className="icon" name={tool.icon} />
+                  <span className="text">
+                    {tool.title && tool.title}
+                  </span>
+                  {
+                    tool.expandIcon &&
+                    <Icon className="expand-icon" name={active ? 'up' : 'down'} />
+                  }
                 </div>
                 {
                   tool.popper &&

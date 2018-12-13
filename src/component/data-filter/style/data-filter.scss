@@ -48,9 +48,21 @@
   &__tool {
     position: relative;
     display: inline-block;
-    padding: 13px 15px;
+    padding: 12px 8px;
+    margin-right: 8px;
+    &-query {
+      .text {
+        font-weight: bold;
+      }
+      .icon {
+        color: #4284F5;
+      }
+    }
     &--active {
       background-color: #F8FAFE;
+      .icon {
+        color: #383E47;
+      }
     }
     &--title {
       cursor: pointer;
@@ -69,6 +81,12 @@
     }
     .hi-icon {
       margin-right: 8px;
+    }
+    .expand-icon {
+      position: relative;
+      left: 5px;
+      margin-right: 0px;
+      color: #999;
     }
   }
   &__data {

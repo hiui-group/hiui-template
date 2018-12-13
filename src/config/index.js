@@ -9,6 +9,7 @@ const config = {
     host: 'http://10.236.90.214:7002'
   }
 }
+
 console.log(process.env.NODE_ENV)
 export default key => {
   if (config[process.env.NODE_ENV][key] !== undefined) {

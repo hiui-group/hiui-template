@@ -8,9 +8,6 @@ import '../style/filter.scss'
 export default class FilterTool extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      filters: [] // 筛选
-    }
   }
 
   matchFuncs = {
@@ -30,7 +27,7 @@ export default class FilterTool extends Component {
   }
 
   addFilter() {
-    const filters = this.state.filters
+    const filters = this.parent().state.filters
 
     filters.push({
       column: '',
@@ -39,34 +36,28 @@ export default class FilterTool extends Component {
       type: ''
     })
 
-    this.setState({
-      filters
-    })
     this.parent().setState({
-      filterCount: filters.length
+      filters
     })
   }
 
   deleteFilter(index) {
-    const filters = this.state.filters
+    const filters = this.parent().state.filters
 
     filters.splice(index, 1)
 
-    this.setState({
+    this.parent().setState({
       filters
     }, () => {
       this.filterDatas(filters)
     })
-    this.parent().setState({
-      filterCount: filters.length
-    })
   }
 
   updateFilter(index, options) {
-    const filters = [ ...this.state.filters ]
+    const filters = [ ...this.parent().state.filters ]
     
     filters[index] = Object.assign({}, filters[index], options)
-    this.setState({filters}, () => {
+    this.parent().setState({filters}, () => {
       this.filterDatas(filters)
     })
   }
@@ -147,11 +138,9 @@ export default class FilterTool extends Component {
   renderFilters() {
     const parent = this.parent()
     const {
-      columns
-    } = parent.state
-    const {
+      columns,
       filters
-    } = this.state
+    } = parent.state
     const options = this.getColumnOptions(columns)
 
     return filters.map((filter, index) => (
@@ -265,7 +254,7 @@ export default class FilterTool extends Component {
   render() {
     const {
       filters
-    } = this.state
+    } = this.parent().state
 
     return (
       <div className="hi-form-filter__filters">

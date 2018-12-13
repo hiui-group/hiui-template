@@ -76,7 +76,7 @@ export default class DataFilter extends Component {
       activeTools: [ 'query' ],
       datas: [],
       filteredDatas: [],
-      filterCount: 0,
+      filters: 0,
       page: 1,
       total: 0,
       pageSize: 0
@@ -219,7 +219,7 @@ export default class DataFilter extends Component {
     } = this.props
     const {
       activeTools,
-      filterCount
+      filters
     } = this.state
 
     return (
@@ -266,8 +266,8 @@ export default class DataFilter extends Component {
                     <Icon className="expand-icon" name={active ? 'up' : 'down'} />
                   }
                   {
-                    tool.type==='filter' && filterCount>0 &&
-                    <span className="count-tip">{filterCount}</span>
+                    tool.type==='filter' && filters.length>0 &&
+                    <span className="count-tip">{filters.length}</span>
                   }
                 </div>
                 {

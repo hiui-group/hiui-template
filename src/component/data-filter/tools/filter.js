@@ -42,15 +42,23 @@ export default class FilterTool extends Component {
     this.setState({
       filters
     })
+    this.parent().setState({
+      filterCount: filters.length
+    })
   }
 
   deleteFilter(index) {
-    this.state.filters.splice(index, 1)
+    const filters = this.state.filters
+
+    filters.splice(index, 1)
 
     this.setState({
-      filters: this.state.filters
+      filters
     }, () => {
-      this.filterDatas(this.state.filters)
+      this.filterDatas(filters)
+    })
+    this.parent().setState({
+      filterCount: filters.length
     })
   }
 

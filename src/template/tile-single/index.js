@@ -87,9 +87,6 @@ export default class Template extends Component {
           url={`${config('host')}/table/get-datas`}
           params={params}
           columnMixins={this.columnMixins}
-          table={{
-            name: 'sorter'
-          }}
           actions={[ 
             'search',
             <Link to="/form-unfold-group" className="hi-tpl__add">

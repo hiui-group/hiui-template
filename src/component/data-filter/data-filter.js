@@ -351,7 +351,8 @@ export default class DataFilter extends Component {
       page,
       total,
       rowHeight,
-      statistics
+      statistics,
+      filters
     } = this.state
     const {
       table,
@@ -359,8 +360,11 @@ export default class DataFilter extends Component {
     } = this.props
     const tableProps = Object.assign({...statistics}, table, {
       columns: filteredColumns,
-      data: filteredDatas,
-      pagination: {
+      data: filteredDatas
+    })
+
+    if (filters.length === 0) { // 有筛选时隐藏分页
+      tableProps.pagination = {
         pageSize: params.pageSize,
         total: total,
         page: page,
@@ -370,7 +374,7 @@ export default class DataFilter extends Component {
           })
         }
       }
-    })
+    }
 
     return (
       <React.Fragment>

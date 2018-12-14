@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Checkbox from '@hi-ui/hiui/es/checkbox'
 import '../style/statistics.scss'
 
 export default class StatisticsTool extends Component {
@@ -7,8 +8,9 @@ export default class StatisticsTool extends Component {
     super(props)
   }
 
-  heights = {
-    'sum': '求和'
+  statistics = {
+    'sum': '求和',
+    'ave': '平均值'
   }
 
   parent () {
@@ -17,19 +19,32 @@ export default class StatisticsTool extends Component {
 
   render() {
     const parent = this.parent()
+    const {
+      statistics
+    } = parent.state
 
     return (
       <div className="hi-form-filter__statistics">
         {
-          Object.entries(this.heights).map(([ value, label ]) => (
+          Object.entries(this.statistics).map(([ value, label ]) => (
             <div 
               className="hi-form-filter__statistics--item"
               key={value}
-              onClick={() => {
-                parent.onChange({'statistics': value})
-              }}
             >
-              {label}
+              <Checkbox
+                checked={statistics[value]}
+                onChange={() => {
+                  statistics[value] = !statistics[value]
+                  
+                  if (this.props.onChange) {
+                    this.props.onChange(statistics)
+                  } else {
+                    parent.setState({statistics})
+                  }
+                }}
+              >
+                {label}
+              </Checkbox>
             </div>
           ))
         }

@@ -79,7 +79,8 @@ export default class DataFilter extends Component {
       filters: 0,
       page: 1,
       total: 0,
-      pageSize: 0
+      pageSize: 0,
+      statistics: {}
     }
   }
 
@@ -349,16 +350,16 @@ export default class DataFilter extends Component {
       filteredDatas,
       page,
       total,
-      rowHeight
+      rowHeight,
+      statistics
     } = this.state
     const {
       table,
       params
     } = this.props
-    const tableProps = Object.assign({}, table, {
+    const tableProps = Object.assign({...statistics}, table, {
       columns: filteredColumns,
       data: filteredDatas,
-      name: 'sorter',
       pagination: {
         pageSize: params.pageSize,
         total: total,

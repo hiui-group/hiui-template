@@ -126,7 +126,6 @@ export default class Template extends Component {
           tools={[
             {
               type: 'query',
-              title: '查询',
               forms,
               beforeSubmit: this.beforeSubmit.bind(this),
               onCancel: () => {

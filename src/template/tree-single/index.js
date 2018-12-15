@@ -8,20 +8,20 @@ import config from '../../config'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.columnMixins = {
       column1: {
-        sorter(pre, next) {
+        sorter (pre, next) {
           return pre.column1 - next.column1
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name="edit" />
-            <Icon name="close" />
-            <Icon name="more" />
+            <Icon name='edit' />
+            <Icon name='close' />
+            <Icon name='more' />
           </React.Fragment>
         )
       }
@@ -37,34 +37,36 @@ export default class Template extends Component {
       currentTree: '',
 
       treeData: [
-        { id: 1, title: '小米',
+        { id: 1,
+          title: '小米',
           children: [
-            { id: 2, title: '技术',
+            { id: 2,
+              title: '技术',
               children: [
-                { id: 3, title: '后端', onClick: () => {this.onTreeClick(3)}  }, 
-                { id: 4, title: '运维', onClick: () => {this.onTreeClick(4)}},
-                { id: 5, title: '前端', onClick: () => {this.onTreeClick(5)} }
+                { id: 3, title: '后端', onClick: () => { this.onTreeClick(3) } },
+                { id: 4, title: '运维', onClick: () => { this.onTreeClick(4) } },
+                { id: 5, title: '前端', onClick: () => { this.onTreeClick(5) } }
               ]
             },
-            { id: 6, title: '产品', onClick: () => {this.onTreeClick(6)} }
+            { id: 6, title: '产品', onClick: () => { this.onTreeClick(6) } }
           ]
         }]
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.fetchDatas()
   }
 
-  onTreeClick(id) {
+  onTreeClick (id) {
     const treeData = [...this.state.treeData]
     let hasGet = false
-  
-    const mapToGet = (data,id) =>{
+
+    const mapToGet = (data, id) => {
       data.map(item => {
         if (item.id === id) {
           hasGet = true
-          item.style = {color:'#4284f5'}
+          item.style = { color: '#4284f5' }
         } else if (item.style) {
           item.style = null
         }
@@ -73,18 +75,18 @@ export default class Template extends Component {
         }
       })
     }
-  
-    mapToGet(treeData,id)
-  
+
+    mapToGet(treeData, id)
+
     this.setState({
       treeData
     })
-    
-    this.setState({currentTree: id})
+
+    this.setState({ currentTree: id })
     this.fetchDatas()
   }
 
-  fetchDatas() {
+  fetchDatas () {
     const {
       page
     } = this.state
@@ -115,7 +117,7 @@ export default class Template extends Component {
     })
   }
 
-  setTableColumns(columns) {
+  setTableColumns (columns) {
     const _columns = []
 
     columns.map(column => {
@@ -130,7 +132,7 @@ export default class Template extends Component {
     return _columns
   }
 
-  renderMenuContent() {
+  renderMenuContent () {
     const {
       activeMenu,
       tableDatas,
@@ -142,17 +144,17 @@ export default class Template extends Component {
 
     if (activeMenu === 0) {
       return (
-        <div className="hi-table__container">
-          <Table 
-            columns={columns} 
-            data={tableDatas} 
-            name="sorter"
+        <div className='hi-table__container'>
+          <Table
+            columns={columns}
+            data={tableDatas}
+            name='sorter'
             pagination={{
               pageSize: pageSize,
-              total:total,
+              total: total,
               page: page,
-              onChange:(page, pre, size) => {
-                this.setState({page: page}, () => this.fetchDatas())
+              onChange: (page, pre, size) => {
+                this.setState({ page: page }, () => this.fetchDatas())
               }
             }}
           />
@@ -163,15 +165,15 @@ export default class Template extends Component {
     }
   }
 
-  renderTree() {
-    return(
-      <div className="hi-tree__container">
+  renderTree () {
+    return (
+      <div className='hi-tree__container'>
         <Tree
           defaultExpandAll
           data={this.state.treeData}
           defaultCheckedKeys={[2]}
-          onNodeToggle={(data, isExpanded) => {console.log('toggle: data isExpanded', data, isExpanded)}}
-          onChange={data => {console.log('Tree data:', data)}}
+          onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
+          onChange={data => { console.log('Tree data:', data) }}
           openIcon='down'
           closeIcon='up'
         />
@@ -179,11 +181,10 @@ export default class Template extends Component {
     )
   }
 
-  render() {
-
+  render () {
     return (
-      <div className="hi-tpl__container">
-        <div className="hi-tpl__content">
+      <div className='hi-tpl__container'>
+        <div className='hi-tpl__content'>
           {this.renderTree()}
           {this.renderMenuContent()}
         </div>
@@ -191,4 +192,3 @@ export default class Template extends Component {
     )
   }
 }
-

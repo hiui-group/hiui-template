@@ -12,11 +12,11 @@ export default class Action extends Component {
     type: ''
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  renderAction(type) {
+  renderAction (type) {
     if (type === 'search') {
       return (
         <SearchAction />
@@ -24,7 +24,7 @@ export default class Action extends Component {
     }
   }
 
-  render() {
+  render () {
     const {
       type,
       children
@@ -32,14 +32,14 @@ export default class Action extends Component {
 
     if (type) {
       return (
-        <div className="hi-form-filter__action">
+        <div className='hi-form-filter__action'>
           {this.renderAction(type)}
         </div>
       )
     }
 
     return (
-      <div className="hi-form-filter__action">
+      <div className='hi-form-filter__action'>
         {children}
       </div>
     )

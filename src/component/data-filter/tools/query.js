@@ -4,7 +4,7 @@ import Button from '@hi-ui/hiui/es/button'
 import '../style/query.scss'
 
 export default class QueryTool extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
   static defaultProps = {
@@ -17,7 +17,7 @@ export default class QueryTool extends Component {
     return this.context.component
   }
 
-  submit(can) {
+  submit (can) {
     const {
       beforeSubmit,
       forms
@@ -27,13 +27,13 @@ export default class QueryTool extends Component {
       return
     }
     const parent = this.parent()
-    
-    parent.setState({page: 1}, () => {
+
+    parent.setState({ page: 1 }, () => {
       parent.fetchDatas(parent.props, forms)
     })
   }
 
-  render() {
+  render () {
     const parent = this.parent()
     const {
       children
@@ -45,13 +45,13 @@ export default class QueryTool extends Component {
     } = this.props
 
     return (
-      <div className="hi-form-filter__form">
-        <div className="hi-form-filter__form-groups">
+      <div className='hi-form-filter__form'>
+        <div className='hi-form-filter__form-groups'>
           {children}
         </div>
         {
           submit &&
-          <div className="hi-form-filter__form-actions">
+          <div className='hi-form-filter__form-actions'>
             <Button
               type={canSubmit ? 'primary' : 'default'}
               disabled={!canSubmit}

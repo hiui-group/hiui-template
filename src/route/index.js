@@ -1,7 +1,7 @@
-import Basic from '../template/basic'
+// import Basic from '../template/basic'
 export default [
   // {
-  //   path: '/', 
+  //   path: '/',
   //   exact: true,
   //   component: require('../template/basic').default,
   //   indexRoute: {

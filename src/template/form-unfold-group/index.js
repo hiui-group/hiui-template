@@ -18,18 +18,18 @@ import './index.scss'
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       forms: this.initForms(),
       current: 0
     }
-    this.singleList= [
-      { name:'较长的一段描述文本', label: '这是一段较长的描述文本', id:'2' },
-      { name:'手机', label: 'tanke', id:'3' },
-      { name:'笔记本', label: 'chaojitanke', id:'4', disabled: true },
-      { name:'生活周边', label: 'wurenji', id:'5' },
-      { name:'生态链', label: 'huojian', id:'6' }
+    this.singleList = [
+      { name: '较长的一段描述文本', label: '这是一段较长的描述文本', id: '2' },
+      { name: '手机', label: 'tanke', id: '3' },
+      { name: '笔记本', label: 'chaojitanke', id: '4', disabled: true },
+      { name: '生活周边', label: 'wurenji', id: '5' },
+      { name: '生态链', label: 'huojian', id: '6' }
     ]
     this.list = [
       {
@@ -42,72 +42,71 @@ export default class Template extends Component {
         title: 'tab3'
       }
     ]
-    
   }
 
-  initForms() {
+  initForms () {
     return Object.assign({}, {
       text: '',
-      Date: {start: new Date(), end: new Date()},
+      Date: { start: new Date(), end: new Date() },
       num: 0,
       time: new Date(),
-      select:'4',
-      radio:'北京',
-      longText:''
+      select: '4',
+      radio: '北京',
+      longText: ''
     })
   }
 
-  handleChange() {
+  handleChange () {
 
   }
 
-  handleSubmit() {
+  handleSubmit () {
 
   }
 
-  reset() {
+  reset () {
 
   }
 
-  render() {
-    const {forms} = this.state
+  render () {
+    const { forms } = this.state
 
     return (
-      <div className="hi-tpl-unfold__container">
-        <p className="hi-tpl-form__title">表单</p>
+      <div className='hi-tpl-unfold__container'>
+        <p className='hi-tpl-form__title'>表单</p>
 
-        <Menu list={this.list} mode="horizontal"/>
+        <Menu list={this.list} mode='horizontal' />
 
-        <div className="hi-tpl-unfold__title">
-          <Icon name="down"/>
+        <div className='hi-tpl-unfold__title'>
+          <Icon name='down' />
           表单1
         </div>
 
-        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth="90">
-          <FormItem label="label" prop="text">
-            <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{width: '250px'}}/>
+        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90'>
+          <FormItem label='label' prop='text'>
+            <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
           </FormItem>
-          <FormItem label="Date" prop="Date">
-            <DatePicker 
-              type="daterange"
+          <FormItem label='Date' prop='Date'>
+            <DatePicker
+              type='daterange'
               value={forms.Date}
               onChange={d => {
                 console.log(d)
               }}
             />
           </FormItem>
-          <FormItem label="Numer" prop="num">
+          <FormItem label='Numer' prop='num'>
             <Counter
               value={forms.num}
-              step="1"
-              min="0"
-              max="8"
+              step='1'
+              min='0'
+              max='8'
               onChange={val => console.log('变化后的值：', val)}
             />
           </FormItem>
-          <FormItem label="Time" prop="time">
-            <TimePicker 
-              type="time"
+          <FormItem label='Time' prop='time'>
+            <TimePicker
+              type='time'
               value={forms.time}
               onChange={d => {
                 console.log(d)
@@ -116,47 +115,46 @@ export default class Template extends Component {
           </FormItem>
           <FormItem>
             <Button type={'primary'} onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type="default" appearance="line" onClick={this.reset.bind(this)}>重置</Button>
+            <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
           </FormItem>
         </Form>
 
-        <div className="hi-tpl-unfold__title">
-          <Icon name="down"/>
+        <div className='hi-tpl-unfold__title'>
+          <Icon name='down' />
           表单2
         </div>
-        
-        <Form ref={this.form2} model={forms} rules={this.state.rules} labelWidth="80" >
-          <FormItem label="label" prop="text">
-            <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{width: '250px'}}/>
+
+        <Form ref={this.form2} model={forms} rules={this.state.rules} labelWidth='80' >
+          <FormItem label='label' prop='text'>
+            <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
           </FormItem>
-          <FormItem label="label" prop="select">
+          <FormItem label='label' prop='select'>
             <Select
               list={this.singleList}
-              placeholder="请选择种类"
-              style={{width: '200px'}}
+              placeholder='请选择种类'
+              style={{ width: '200px' }}
               value={forms.select}
               onChange={item => {
                 console.log('单选结果', item)
               }}
             />
           </FormItem>
-          <FormItem label="Raido" prop="radio">
+          <FormItem label='Raido' prop='radio'>
             <Radio
               list={[ '北京', '上海', '重庆' ]}
               checked={forms.radio}
               onChange={this.handleChange.bind(this, 'region', '')}
             />
           </FormItem>
-          <FormItem label="long text" prop="longText">
-            <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{width: '250px'}}  type="textarea"/>
+          <FormItem label='long text' prop='longText'>
+            <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} type='textarea' />
           </FormItem>
           <FormItem>
             <Button type={'primary'} onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type="default" appearance="line" onClick={this.reset.bind(this)}>重置</Button>
+            <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
           </FormItem>
         </Form>
       </div>
     )
   }
-
 }

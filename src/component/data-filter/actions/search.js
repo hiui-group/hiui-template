@@ -4,7 +4,7 @@ import Icon from '@hi-ui/hiui/es/icon'
 import '../style/search.scss'
 
 export default class SearchAction extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       showInput: false,
@@ -12,7 +12,7 @@ export default class SearchAction extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     window.addEventListener('click', this.hideInput.bind(this))
   }
 
@@ -20,7 +20,7 @@ export default class SearchAction extends Component {
     window.removeEventListener('click', this.hideInput.bind(this))
   }
 
-  hideInput(e) {
+  hideInput (e) {
     if (this.searchRef && !this.searchRef.contains(e.target)) {
       this.setState({
         showInput: false,
@@ -33,20 +33,20 @@ export default class SearchAction extends Component {
     return this.context.component
   }
 
-  search() {
+  search () {
     const {
       showInput,
       value
     } = this.state
 
     if (showInput && value) {
-      this.parent().submit({s: value})
+      this.parent().submit({ s: value })
     } else {
-      this.setState({showInput: true})
+      this.setState({ showInput: true })
     }
   }
 
-  render() {
+  render () {
     const {
       showInput,
       value
@@ -55,19 +55,19 @@ export default class SearchAction extends Component {
     return (
       <div ref={node => this.searchRef = node}>
         {
-          showInput && 
-          <div className="hi-form-filter__action-search">
+          showInput &&
+          <div className='hi-form-filter__action-search'>
             <input
               value={value}
-              placeholder="搜索关键词"
+              placeholder='搜索关键词'
               onChange={e => {
-                this.setState({value: e.target.value})
+                this.setState({ value: e.target.value })
               }}
             />
           </div>
         }
         <div onClick={() => this.search()}>
-          <Icon name="search"/>
+          <Icon name='search' />
         </div>
       </div>
     )

@@ -17,7 +17,7 @@ export default class FieldGroup extends Component {
   fieldsCache = []
   advancedFieldsCache = []
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -33,17 +33,17 @@ export default class FieldGroup extends Component {
     }
   }
 
-  addField(fieldName, advanced) {
+  addField (fieldName, advanced) {
     if (advanced) {
       this.state.advancedFields.push(fieldName)
     } else {
       this.state.fields.push(fieldName)
     }
-    
+
     this.forceUpdate()
   }
 
-  removeField(fieldName, advanced) {
+  removeField (fieldName, advanced) {
     if (advanced) {
       const index = this.state.advancedFields.indexOf(fieldName)
 
@@ -57,25 +57,25 @@ export default class FieldGroup extends Component {
     this.forceUpdate()
   }
 
-  renderManage() {
+  renderManage () {
     if (this.props.main) {
       return (
-        <div 
-          className="hi-field-group__manage"
+        <div
+          className='hi-field-group__manage'
           onClick={() => {
             this.fieldsCache = this.state.fields.slice(0)
             this.advancedFieldsCache = this.state.advancedFields.slice(0)
-            this.setState({showModal: true})
+            this.setState({ showModal: true })
           }}
         >
-          <Icon name="set" />
+          <Icon name='set' />
             管理
         </div>
       )
     }
   }
 
-  render() {
+  render () {
     const {
       children,
       main,
@@ -88,18 +88,18 @@ export default class FieldGroup extends Component {
     } = this.state
 
     return (
-      <div className="hi-field-group" >
-        <div className="hi-field-group__fields">
+      <div className='hi-field-group' >
+        <div className='hi-field-group__fields'>
           {children}
         </div>
         { main && this.renderManage() }
         {
           main &&
           <Modal
-            title="管理"
+            title='管理'
             show={showModal}
-            backDrop={true}
-            onConfirm={() => { 
+            backDrop
+            onConfirm={() => {
               this.setState({
                 showModal: false
               })
@@ -112,11 +112,11 @@ export default class FieldGroup extends Component {
                 showModal: false
               })
             }}>
-            <div className="hi-fields hi-fields--selected">
-              <div className="hi-fields__label">
+            <div className='hi-fields hi-fields--selected'>
+              <div className='hi-fields__label'>
                 已选
               </div>
-              <div className="hi-fields__items">
+              <div className='hi-fields__items'>
                 {
                   fields.map((field, index) => (
                     <Button key={index} onClick={() => {
@@ -124,17 +124,17 @@ export default class FieldGroup extends Component {
                       this.addField(field, true)
                     }}>
                       {field}
-                      <Icon name="minus" />
+                      <Icon name='minus' />
                     </Button>
                   ))
                 }
               </div>
             </div>
-            <div className="hi-fields hi-fields--unselected">
-              <div className="hi-fields__label">
+            <div className='hi-fields hi-fields--unselected'>
+              <div className='hi-fields__label'>
                 未选
               </div>
-              <div className="hi-fields__items">
+              <div className='hi-fields__items'>
                 {
                   advancedFields.map((field, index) => (
                     <Button key={index} onClick={() => {
@@ -142,7 +142,7 @@ export default class FieldGroup extends Component {
                       this.addField(field, false)
                     }}>
                       {field}
-                      <Icon name="plus" />
+                      <Icon name='plus' />
                     </Button>
                   ))
                 }

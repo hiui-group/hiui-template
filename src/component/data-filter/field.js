@@ -13,11 +13,11 @@ export default class Field extends Component {
     advanced: false
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  componentWillMount() {
+  componentWillMount () {
     const {
       label,
       advanced
@@ -30,7 +30,7 @@ export default class Field extends Component {
     return this.context.component
   }
 
-  render() {
+  render () {
     const {
       children,
       label,
@@ -40,16 +40,16 @@ export default class Field extends Component {
       advancedFields
     } = this.parent().state
 
-    if (advancedFields.indexOf(label)>-1) {
+    if (advancedFields.indexOf(label) > -1) {
       return null
     }
 
     return (
-      <div className="hi-form-filter__field" style={{width: `${width}px`}}>
-        <div className="hi-form-filter__field--label">
+      <div className='hi-form-filter__field' style={{ width: `${width}px` }}>
+        <div className='hi-form-filter__field--label'>
           {label}
         </div>
-        <div className="hi-form-filter__field--content">
+        <div className='hi-form-filter__field--content'>
           {children}
         </div>
       </div>

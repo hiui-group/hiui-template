@@ -15,7 +15,6 @@ export default key => {
   if (config[process.env.NODE_ENV][key] !== undefined) {
     return config[process.env.NODE_ENV][key]
   }
-  
+
   return config[key]
 }
-  

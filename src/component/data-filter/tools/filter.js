@@ -6,18 +6,18 @@ import Input from '@hi-ui/hiui/es/input'
 import '../style/filter.scss'
 
 export default class FilterTool extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
   matchFuncs = {
-    'gt': (value, compareValue) => value>compareValue,
-    'gte': (value, compareValue) => value>=compareValue,
-    'lt': (value, compareValue) => value<compareValue,
-    'lte': (value, compareValue) => value<=compareValue,
-    'eq': (value, compareValue) => value==compareValue,
-    'include': (value, compareValue) => value.indexOf(compareValue)>-1,
-    'exclude': (value, compareValue) => value.indexOf(compareValue)==-1,
+    'gt': (value, compareValue) => value > compareValue,
+    'gte': (value, compareValue) => value >= compareValue,
+    'lt': (value, compareValue) => value < compareValue,
+    'lte': (value, compareValue) => value <= compareValue,
+    'eq': (value, compareValue) => value === compareValue,
+    'include': (value, compareValue) => value.indexOf(compareValue) > -1,
+    'exclude': (value, compareValue) => value.indexOf(compareValue) === -1,
     'empty': value => !value,
     'no-empty': value => !!value
   }
@@ -26,7 +26,7 @@ export default class FilterTool extends Component {
     return this.context.component
   }
 
-  addFilter() {
+  addFilter () {
     const filters = this.parent().state.filters
 
     filters.push({
@@ -41,7 +41,7 @@ export default class FilterTool extends Component {
     })
   }
 
-  deleteFilter(index) {
+  deleteFilter (index) {
     const filters = this.parent().state.filters
 
     filters.splice(index, 1)
@@ -53,16 +53,16 @@ export default class FilterTool extends Component {
     })
   }
 
-  updateFilter(index, options) {
+  updateFilter (index, options) {
     const filters = [ ...this.parent().state.filters ]
-    
+
     filters[index] = Object.assign({}, filters[index], options)
-    this.parent().setState({filters}, () => {
+    this.parent().setState({ filters }, () => {
       this.filterDatas(filters)
     })
   }
 
-  filterDatas(filters) {
+  filterDatas (filters) {
     const filteredDatas = []
     const parent = this.parent()
 
@@ -77,25 +77,24 @@ export default class FilterTool extends Component {
       match && filteredDatas.push(data)
     })
 
-    parent.setState({filteredDatas})
+    parent.setState({ filteredDatas })
   }
 
-  matchFilter(data, filter) {
+  matchFilter (data, filter) {
     if (filter.column && filter.operator && this.needValue(filter.operator, filter.value)) {
       const value = data[filter.column]
       const compareValue = filter.value
       const operator = filter.operator
 
       console.log('----------matchFilter', value, operator, compareValue)
-      
+
       return this.matchFuncs[operator](value, compareValue)
-      
     }
 
     return true
   }
 
-  needValue(operator, value) {
+  needValue (operator, value) {
     if ([ 'empty', 'no-empty' ].indexOf(operator) > -1) {
       return true
     } else {
@@ -103,25 +102,25 @@ export default class FilterTool extends Component {
     }
   }
 
-  changeColumn(value, index) {
+  changeColumn (value, index) {
     console.log('------------changeColumn', value, index)
 
-    this.updateFilter(index, {column: value[0].id, type: value[0].type, operator: ''})
+    this.updateFilter(index, { column: value[0].id, type: value[0].type, operator: '' })
   }
 
-  changeOperator(value, index) {
+  changeOperator (value, index) {
     console.log('------------changeOperator', value, index)
 
-    this.updateFilter(index, {operator: value[0].id})
+    this.updateFilter(index, { operator: value[0].id })
   }
 
-  changeValue(value, index) {
+  changeValue (value, index) {
     console.log('------------changeValue', value, index)
 
-    this.updateFilter(index, {value: value})
+    this.updateFilter(index, { value: value })
   }
 
-  getColumnOptions(columns) {
+  getColumnOptions (columns) {
     const options = []
 
     columns.map(column => {
@@ -135,7 +134,7 @@ export default class FilterTool extends Component {
     return options
   }
 
-  renderFilters() {
+  renderFilters () {
     const parent = this.parent()
     const {
       columns,
@@ -144,17 +143,17 @@ export default class FilterTool extends Component {
     const options = this.getColumnOptions(columns)
 
     return filters.map((filter, index) => (
-      <div className="hi-form-filter__filters-item" key={index}>
-        <div className="hi-form-filter__filters-delete" onClick={e => {
+      <div className='hi-form-filter__filters-item' key={index}>
+        <div className='hi-form-filter__filters-delete' onClick={e => {
           e.stopPropagation()
           this.deleteFilter(index)
         }}>
-          <Icon name="delete" />
+          <Icon name='delete' />
         </div>
-        <div className="hi-form-filter__filters-column">
+        <div className='hi-form-filter__filters-column'>
           <Select
             clearable={false}
-            style={{width: '150px'}}
+            style={{ width: '150px' }}
             list={options}
             value={filter.column}
             onChange={value => this.changeColumn(value, index)}
@@ -166,7 +165,7 @@ export default class FilterTool extends Component {
     ))
   }
 
-  renderOperator(type, operator, index) {
+  renderOperator (type, operator, index) {
     let options = []
 
     if (!type) {
@@ -175,12 +174,12 @@ export default class FilterTool extends Component {
       options = this.getOperators(type)
     }
     console.log('--------renderOperator', options)
-    
+
     return (
-      <div className="hi-form-filter__filters-operator">
+      <div className='hi-form-filter__filters-operator'>
         <Select
           clearable={false}
-          style={{width: '100px'}}
+          style={{ width: '100px' }}
           list={options}
           value={operator}
           onChange={value => this.changeOperator(value, index)}
@@ -189,9 +188,9 @@ export default class FilterTool extends Component {
     )
   }
 
-  getOperators(type) {
+  getOperators (type) {
     if (type === 'number') {
-      return [ 
+      return [
         {
           name: '小于',
           id: 'lt'
@@ -235,44 +234,44 @@ export default class FilterTool extends Component {
     }
   }
 
-  renderValue(type, operator, value, index) {
-    if (operator==='empty' || operator==='no-empty') {
+  renderValue (type, operator, value, index) {
+    if (operator === 'empty' || operator === 'no-empty') {
       return null
     }
 
     return (
-      <div className="hi-form-filter__filters-value">
-        <Input 
-          value={value} 
-          style={{width: '150px'}} 
+      <div className='hi-form-filter__filters-value'>
+        <Input
+          value={value}
+          style={{ width: '150px' }}
           onChange={e => this.changeValue(e.target.value, index)}
         />
       </div>
     )
   }
 
-  render() {
+  render () {
     const {
       filters
     } = this.parent().state
 
     return (
-      <div className="hi-form-filter__filters">
+      <div className='hi-form-filter__filters'>
         {
           filters.length === 0 &&
-          <div className="hi-form-filter__filters-empty">
+          <div className='hi-form-filter__filters-empty'>
             筛选条件为空
           </div>
         }
         {
           filters.length > 0 &&
-          <div className="hi-form-filter__filters-items">
+          <div className='hi-form-filter__filters-items'>
             {this.renderFilters()}
           </div>
         }
-        <div className="hi-form-filter__filters-add">
-          <div onClick={this.addFilter.bind(this)} style={{display: 'inline-block'}}>
-            <Icon name="plus" />
+        <div className='hi-form-filter__filters-add'>
+          <div onClick={this.addFilter.bind(this)} style={{ display: 'inline-block' }}>
+            <Icon name='plus' />
             增加条件
           </div>
         </div>

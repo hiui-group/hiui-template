@@ -4,7 +4,7 @@ import Checkbox from '@hi-ui/hiui/es/checkbox'
 import '../style/statistics.scss'
 
 export default class StatisticsTool extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
@@ -17,29 +17,29 @@ export default class StatisticsTool extends Component {
     return this.context.component
   }
 
-  render() {
+  render () {
     const parent = this.parent()
     const {
       statistics
     } = parent.state
 
     return (
-      <div className="hi-form-filter__statistics">
+      <div className='hi-form-filter__statistics'>
         {
           Object.entries(this.statistics).map(([ value, label ]) => (
-            <div 
-              className="hi-form-filter__statistics--item"
+            <div
+              className='hi-form-filter__statistics--item'
               key={value}
             >
               <Checkbox
                 checked={statistics[value]}
                 onChange={() => {
                   statistics[value] = !statistics[value]
-                  
+
                   if (this.props.onChange) {
                     this.props.onChange(statistics)
                   } else {
-                    parent.setState({statistics})
+                    parent.setState({ statistics })
                   }
                 }}
               >

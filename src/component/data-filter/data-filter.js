@@ -22,28 +22,28 @@ export default class DataFilter extends Component {
       title: '查询',
       trigger: 'toggle',
       expandIcon: true
-    }, 
+    },
     'filter': {
       type: 'filter',
       popper: true,
       icon: 'label',
       title: '筛选',
       trigger: 'outside'
-    }, 
+    },
     'row-height': {
       type: 'row-height',
       popper: true,
       icon: 'phone',
       title: '行高',
       trigger: 'outside'
-    }, 
+    },
     'column': {
       type: 'column',
       popper: true,
       icon: 'phone',
       title: '列显示',
       trigger: 'outside'
-    }, 
+    },
     'statistics': {
       type: 'statistics',
       popper: true,
@@ -66,7 +66,7 @@ export default class DataFilter extends Component {
     columns: []
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -84,11 +84,11 @@ export default class DataFilter extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     if (this.props.columns.length > 0) {
       const filteredColumns = this.filterColumns(this.props.columns)
 
-      this.props.setState({filteredColumns})
+      this.props.setState({ filteredColumns })
     }
     this.fetchDatas(this.props)
     window.addEventListener('click', this.hidePopper.bind(this))
@@ -104,26 +104,26 @@ export default class DataFilter extends Component {
     }
   }
 
-  hidePopper(e, type) {
+  hidePopper (e, type) {
     if (e.target.closest('.hi-form-filter__tool--active')) {
       return
     }
     const activeTools = this.state.activeTools.splice(0)
 
     activeTools.map((tool, index) => {
-      if (this.toolsMap[tool].trigger === 'outside' && type!==tool) {
+      if (this.toolsMap[tool].trigger === 'outside' && type !== tool) {
         activeTools.splice(index, 1)
       }
     })
-    
-    this.setState({activeTools})
+
+    this.setState({ activeTools })
   }
 
-  submit(forms) {
+  submit (forms) {
     this.fetchDatas(this.props, forms)
   }
 
-  fetchDatas(props, forms={}) {
+  fetchDatas (props, forms = {}) {
     const {
       params,
       url
@@ -158,7 +158,7 @@ export default class DataFilter extends Component {
           this.mixinColumns(data.columns, true)
           const filteredColumns = this.filterColumns()
 
-          this.setState({filteredColumns, ...state})
+          this.setState({ filteredColumns, ...state })
         } else {
           this.setState(state)
         }
@@ -166,7 +166,7 @@ export default class DataFilter extends Component {
     })
   }
 
-  mixinColumns(columns, updateState=false) {
+  mixinColumns (columns, updateState = false) {
     const _columns = []
 
     columns.map(column => {
@@ -178,12 +178,12 @@ export default class DataFilter extends Component {
       })
     })
 
-    updateState && this.setState({columns: _columns})
+    updateState && this.setState({ columns: _columns })
 
     return _columns
   }
 
-  filterColumns() {
+  filterColumns () {
     const _columns = []
 
     this.state.columns.map(column => {
@@ -197,24 +197,24 @@ export default class DataFilter extends Component {
     return _columns
   }
 
-  setActiveTool(tool) {
+  setActiveTool (tool) {
     const {
       activeTools
     } = this.state
     const index = activeTools.indexOf(tool.type)
 
-    if (index>-1) {
+    if (index > -1) {
       activeTools.splice(index, 1)
     } else {
       activeTools.push(tool.type)
     }
-    
+
     this.setState({
       activeTools
     })
   }
 
-  renderTools() {
+  renderTools () {
     const {
       tools
     } = this.props
@@ -224,7 +224,7 @@ export default class DataFilter extends Component {
     } = this.state
 
     return (
-      <div className="hi-form-filter__tools">
+      <div className='hi-form-filter__tools'>
         {
           tools.map((item, index) => {
             let tool
@@ -233,8 +233,8 @@ export default class DataFilter extends Component {
               tool = this.toolsMap[item]
             } else if (typeof item === 'object') {
               tool = Object.assign({}, this.toolsMap[item.type], item)
-            } 
-            
+            }
+
             if (!tool.title) { // 自定义元素
               return (
                 <div className={classNames('hi-form-filter__tool hi-form-filter__tool--custom', tool.className)} key={index}>
@@ -242,39 +242,39 @@ export default class DataFilter extends Component {
                 </div>
               )
             }
-            
+
             const active = activeTools.indexOf(tool.type) > -1
 
             return (
-              <div 
-                className={classNames('hi-form-filter__tool', tool.className, {'hi-form-filter__tool--active': active})}
+              <div
+                className={classNames('hi-form-filter__tool', tool.className, { 'hi-form-filter__tool--active': active })}
                 key={index}
               >
-                <div 
-                  className="hi-form-filter__tool--title"
+                <div
+                  className='hi-form-filter__tool--title'
                   data-type={tool.type}
                   onClick={e => {
                     this.setActiveTool(tool)
                     this.hidePopper(e, tool.type)
                   }}
                 >
-                  <Icon className="icon" name={tool.icon} />
-                  <span className="text">
+                  <Icon className='icon' name={tool.icon} />
+                  <span className='text'>
                     {tool.title && tool.title}
                   </span>
                   {
                     tool.expandIcon &&
-                    <Icon className="expand-icon" name={active ? 'up' : 'down'} />
+                    <Icon className='expand-icon' name={active ? 'up' : 'down'} />
                   }
                   {
-                    tool.type==='filter' && filters.length>0 &&
-                    <span className="count-tip">{filters.length}</span>
+                    tool.type === 'filter' && filters.length > 0 &&
+                    <span className='count-tip'>{filters.length}</span>
                   }
                 </div>
                 {
                   tool.popper &&
-                  <div 
-                    className={classNames('hi-form-filter__tool--content', {'hi-form-filter__tool--active': active})}>
+                  <div
+                    className={classNames('hi-form-filter__tool--content', { 'hi-form-filter__tool--active': active })}>
                     {this.renderToolContent(tool)}
                   </div>
                 }
@@ -286,46 +286,46 @@ export default class DataFilter extends Component {
     )
   }
 
-  mixinTool(type) {
+  mixinTool (type) {
     for (let tool of this.props.tools) {
       if (tool.type === type) {
         return Object.assign({}, this.toolsMap[type], tool)
       }
     }
-    
+
     return this.toolsMap[type]
   }
 
-  renderToolContent(tool) {
+  renderToolContent (tool) {
     const {
       type,
       ...props
     } = tool
 
     if (type === 'query') {
-      return <QueryTool {...props}/>
+      return <QueryTool {...props} />
     } else if (type === 'filter') {
-      return <FilterTool {...props}/>
+      return <FilterTool {...props} />
     } else if (type === 'row-height') {
-      return <RowHeightTool {...props}/>
+      return <RowHeightTool {...props} />
     } else if (type === 'statistics') {
-      return <StatisticsTool {...props}/>
+      return <StatisticsTool {...props} />
     } else if (type === 'column') {
-      return <ColumnTool {...props}/>
+      return <ColumnTool {...props} />
     }
   }
 
-  renderActions() {
+  renderActions () {
     const {
       actions
     } = this.props
 
     return (
-      <div className="hi-form-filter__actions">
-        <div className="hi-form-filter__actions--container">
+      <div className='hi-form-filter__actions'>
+        <div className='hi-form-filter__actions--container'>
           {
             actions.map((action, index) => (
-              <div className="hi-form-filter__action" key={index}>
+              <div className='hi-form-filter__action' key={index}>
                 {this.renderAction(action)}
               </div>
             ))
@@ -335,7 +335,7 @@ export default class DataFilter extends Component {
     )
   }
 
-  renderAction(action) {
+  renderAction (action) {
     if (typeof action === 'object') {
       return action
     } else if (action === 'search') {
@@ -343,7 +343,7 @@ export default class DataFilter extends Component {
     }
   }
 
-  render() {
+  render () {
     const {
       activeTools,
       filteredColumns,
@@ -358,7 +358,7 @@ export default class DataFilter extends Component {
       table,
       params
     } = this.props
-    const tableProps = Object.assign({...statistics}, table, {
+    const tableProps = Object.assign({ ...statistics }, table, {
       columns: filteredColumns,
       data: filteredDatas
     })
@@ -369,7 +369,7 @@ export default class DataFilter extends Component {
         total: total,
         page: page,
         onChange: page => {
-          this.setState({page: page}, () => {
+          this.setState({ page: page }, () => {
             this.fetchDatas(this.props)
           })
         }
@@ -378,10 +378,10 @@ export default class DataFilter extends Component {
 
     return (
       <React.Fragment>
-        <div className="hi-form-filter">
+        <div className='hi-form-filter'>
           {this.renderActions()}
           {this.renderTools()}
-          { activeTools.indexOf('query')>-1 && this.renderToolContent(this.mixinTool('query')) }
+          { activeTools.indexOf('query') > -1 && this.renderToolContent(this.mixinTool('query')) }
         </div>
         <div className={classNames('hi-form-filter__data', `hi-form-filter__data--${rowHeight}`)}>
           <Table {...tableProps} />

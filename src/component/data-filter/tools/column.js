@@ -4,7 +4,7 @@ import Checkbox from '@hi-ui/hiui/es/checkbox'
 import '../style/column.scss'
 
 export default class ColumnTool extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
@@ -12,15 +12,15 @@ export default class ColumnTool extends Component {
     return this.context.component
   }
 
-  render() {
+  render () {
     const parent = this.parent()
 
     return (
-      <div className="hi-form-filter__column">
+      <div className='hi-form-filter__column'>
         {
           parent.state.columns.map((column, index) => (
-            <div 
-              className="hi-form-filter__column--item"
+            <div
+              className='hi-form-filter__column--item'
               key={index}
             >
               <Checkbox
@@ -28,11 +28,11 @@ export default class ColumnTool extends Component {
                 onChange={() => {
                   column.hide = !column.hide
                   const filteredColumns = parent.filterColumns()
-                  
+
                   if (this.props.onChange) {
                     this.props.onChange(filteredColumns)
                   } else {
-                    parent.setState({filteredColumns})
+                    parent.setState({ filteredColumns })
                   }
                 }}
               >

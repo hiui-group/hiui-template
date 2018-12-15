@@ -9,20 +9,20 @@ import config from '../../config'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.columnMixins = {
       column1: {
-        sorter(pre, next) {
+        sorter (pre, next) {
           return pre.column1 - next.column1
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name="edit" />
-            <Icon name="close" />
-            <Icon name="more" />
+            <Icon name='edit' />
+            <Icon name='close' />
+            <Icon name='more' />
           </React.Fragment>
         )
       }
@@ -38,26 +38,28 @@ export default class Template extends Component {
       currentChose: [],
       reset: true,
       treeData: [
-        { id: 1, title: '小米',
+        { id: 1,
+          title: '小米',
           children: [
-            { id: 2, title: '技术',
+            { id: 2,
+              title: '技术',
               children: [
-                { id: 3, title: '后端'}, 
-                { id: 4, title: '运维'},
-                { id: 5, title: '前端'}
+                { id: 3, title: '后端' },
+                { id: 4, title: '运维' },
+                { id: 5, title: '前端' }
               ]
             },
-            { id: 6, title: '产品'}
+            { id: 6, title: '产品' }
           ]
         }]
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.fetchDatas()
   }
 
-  fetchDatas() {
+  fetchDatas () {
     const {
       page
     } = this.state
@@ -88,7 +90,7 @@ export default class Template extends Component {
     })
   }
 
-  setTableColumns(columns) {
+  setTableColumns (columns) {
     const _columns = []
 
     columns.map(column => {
@@ -103,12 +105,12 @@ export default class Template extends Component {
     return _columns
   }
 
-  markSure() {
+  markSure () {
     console.log(this.state.currentChose)
     this.fetchDatas()
   }
 
-  reset() {
+  reset () {
     this.setState({
       reset: false,
       currentChose: []
@@ -119,8 +121,8 @@ export default class Template extends Component {
     })
   }
 
-  onChange(value) {
-    const {currentChose} = this.state
+  onChange (value) {
+    const { currentChose } = this.state
 
     let tempArr = currentChose
     const mapToPush = data => {
@@ -130,14 +132,14 @@ export default class Template extends Component {
         tempArr.push(data.id)
       }
       if (data.children) {
-        data.children.map( item =>{
+        data.children.map(item => {
           mapToPush(item)
         })
       }
     }
 
     const treeData = [ ...this.state.treeData ]
-  
+
     const mapToGet = (data, currentChose) => {
       data.map(item => {
         if (item.children) {
@@ -159,10 +161,10 @@ export default class Template extends Component {
 
     mapToPush(value)
     mapToGet(treeData, currentChose)
-    this.setState({currentChose: tempArr})
+    this.setState({ currentChose: tempArr })
   }
 
-  renderMenuContent() {
+  renderMenuContent () {
     const {
       activeMenu,
       tableDatas,
@@ -174,17 +176,17 @@ export default class Template extends Component {
 
     if (activeMenu === 0) {
       return (
-        <div className="hi-table__container">
-          <Table 
-            columns={columns} 
-            data={tableDatas} 
-            name="sorter"
+        <div className='hi-table__container'>
+          <Table
+            columns={columns}
+            data={tableDatas}
+            name='sorter'
             pagination={{
               pageSize: pageSize,
-              total:total,
+              total: total,
               page: page,
-              onChange:(page, pre, size) => {
-                this.setState({page: page}, () => this.fetchDatas())
+              onChange: (page, pre, size) => {
+                this.setState({ page: page }, () => this.fetchDatas())
               }
             }}
           />
@@ -195,9 +197,9 @@ export default class Template extends Component {
     }
   }
 
-  renderTree() {
-    return(
-      <div className="hi-tree__container">
+  renderTree () {
+    return (
+      <div className='hi-tree__container'>
         {this.state.reset && <Tree
           defaultExpandAll
           checkable
@@ -206,19 +208,18 @@ export default class Template extends Component {
           openIcon='down'
           closeIcon='up'
         />}
-        <div className="hi-tree__confirm">
-          <Button type="primary" onClick={this.markSure.bind(this)}>确认</Button>
-          <Button type="default" appearance="line" onClick={this.reset.bind(this)}>重置</Button>
+        <div className='hi-tree__confirm'>
+          <Button type='primary' onClick={this.markSure.bind(this)}>确认</Button>
+          <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
         </div>
       </div>
     )
   }
 
-  render() {
-
+  render () {
     return (
-      <div className="hi-tpl__container">
-        <div className="hi-tpl__content">
+      <div className='hi-tpl__container'>
+        <div className='hi-tpl__content'>
           {this.renderTree()}
           {this.renderMenuContent()}
         </div>

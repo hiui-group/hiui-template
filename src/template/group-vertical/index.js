@@ -8,27 +8,27 @@ import config from '../../config'
 import '../content.scss'
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.menus = [
-      {title: '全部'},
-      {title: '异常'},
-      {title: '调拨管理'},
-      {title: '超期监控'}
+      { title: '全部' },
+      { title: '异常' },
+      { title: '调拨管理' },
+      { title: '超期监控' }
     ]
     this.columnMixins = {
       column1: {
-        sorter(pre, next) {
+        sorter (pre, next) {
           return pre.column1 - next.column1
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name="edit" />
-            <Icon name="close" />
-            <Icon name="more" />
+            <Icon name='edit' />
+            <Icon name='close' />
+            <Icon name='more' />
           </React.Fragment>
         )
       }
@@ -45,11 +45,11 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.fetchDatas()
   }
 
-  fetchDatas() {
+  fetchDatas () {
     const {
       page,
       forms
@@ -82,7 +82,7 @@ export default class Template extends Component {
     })
   }
 
-  initForms() {
+  initForms () {
     return Object.assign({}, {
       column1: '',
       column2: '全部',
@@ -90,7 +90,7 @@ export default class Template extends Component {
     })
   }
 
-  setTableColumns(columns) {
+  setTableColumns (columns) {
     const _columns = []
 
     columns.map(column => {
@@ -105,7 +105,7 @@ export default class Template extends Component {
     return _columns
   }
 
-  updateForm(data, callback=undefined) {
+  updateForm (data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState({
@@ -115,11 +115,11 @@ export default class Template extends Component {
     })
   }
 
-  reset() {
+  reset () {
     this.updateForm(this.initForms(), () => this.fetchDatas())
   }
 
-  renderMenuContent() {
+  renderMenuContent () {
     const {
       activeMenu,
       tableDatas,
@@ -132,16 +132,16 @@ export default class Template extends Component {
     if (activeMenu === 0) {
       return (
         <React.Fragment>
-          <Table 
-            columns={columns} 
-            data={tableDatas} 
-            name="sorter"
+          <Table
+            columns={columns}
+            data={tableDatas}
+            name='sorter'
             pagination={{
               pageSize: pageSize,
-              total:total,
+              total: total,
               page: page,
               onChange: page => {
-                this.setState({page: page}, () => this.fetchDatas())
+                this.setState({ page: page }, () => this.fetchDatas())
               }
             }}
           />
@@ -152,7 +152,7 @@ export default class Template extends Component {
     }
   }
 
-  render() {
+  render () {
     const Row = Grid.Row
     const Col = Grid.Col
     const {
@@ -160,14 +160,14 @@ export default class Template extends Component {
     } = this.state
 
     return (
-      <div className="page">
+      <div className='page'>
         <Row>
           <Col span={3}>
 
             <NavMenu
               selectedKey={activeMenu}
               data={this.menus}
-              onClick={(e, menu) => this.setState({activeMenu: parseInt(menu)})}
+              onClick={(e, menu) => this.setState({ activeMenu: parseInt(menu) })}
               vertical
             />
 

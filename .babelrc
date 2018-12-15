@@ -1,8 +1,24 @@
 {
-    "presets": [
-      "es2015",
-    	"stage-0",
-      "react"
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "ie >= 10"
+          ]
+        },
+        "loose": true,
+        "modules": false,
+        "useBuiltIns": "usage"
+      }
     ],
-    "plugins": ["transform-decorators-legacy"]
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-decorators-legacy"
+  ]
 }

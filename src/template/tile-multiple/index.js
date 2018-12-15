@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Checkbox from '@hi-ui/hiui/es/checkbox'
 import { DataFilter } from '../../component/data-filter'
 import Icon from '@hi-ui/hiui/es/icon'
-import './index.scss'
+import '../content.scss'
 import config from '../../config'
 
 export default class Template extends Component {
@@ -167,105 +167,110 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='hi-tpl__container'>
-        <DataFilter
-          ref={node => this.dataFilter = node}
-          url={`${config('host')}/table/get-datas`}
-          params={params}
-          columnMixins={this.columnMixins}
-          actions={[
-            'search',
-            <Link to='/form-unfold-group' className='hi-tpl__add'>
-              <Icon name='plus' />
-            </Link>,
-            <div className='hi-tpl__download' onClick={() => {
-              console.log('------------click download')
-            }}>
-              <Icon name='download' />
-            </div>,
-            <div className='hi-tpl__share' onClick={() => {
-              console.log('------------click share')
-            }}>
-              <Icon name='mark' />
-            </div>,
-            <div className='hi-tpl__more' onClick={() => {
-              console.log('------------click more')
-            }}>
-              <Icon name='more' />
-            </div>
-          ]}
-          tools={[
-            {
-              type: 'query',
-              title: '查询',
-              forms,
-              onCancel: () => {
-                this.handleResetClick()
-              }
-            }
-          ]}
-        >
-          <Row>
-            <Col>
-              <span className='field-name'>订单类型</span>
-            </Col>
-            <Col>
-              <Checkbox all='one' onChange={list => {
-                const fieldList = this.state.field1.list
+      <div className='page page--gutter'>
+        <Row>
+          <Col span={24}>
 
-                fieldList.forEach(item => {
-                  if (list.indexOf(item.value) > -1) {
-                    item.checked = true
-                  } else {
-                    item.checked = false
+            <DataFilter
+              ref={node => this.dataFilter = node}
+              url={`${config('host')}/table/get-datas`}
+              params={params}
+              columnMixins={this.columnMixins}
+              actions={[
+                'search',
+                <Link to='/form-unfold-group' className='hi-tpl__add'>
+                  <Icon name='plus' />
+                </Link>,
+                <div className='hi-tpl__download' onClick={() => {
+                  console.log('------------click download')
+                }}>
+                  <Icon name='download' />
+                </div>,
+                <div className='hi-tpl__share' onClick={() => {
+                  console.log('------------click share')
+                }}>
+                  <Icon name='mark' />
+                </div>,
+                <div className='hi-tpl__more' onClick={() => {
+                  console.log('------------click more')
+                }}>
+                  <Icon name='more' />
+                </div>
+              ]}
+              tools={[
+                {
+                  type: 'query',
+                  title: '查询',
+                  forms,
+                  onCancel: () => {
+                    this.handleResetClick()
                   }
-                })
-                this.setForm()
-              }}>全选</Checkbox>
-              <Checkbox list={this.state.field1.list} name='one' />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span className='field-name'>业务来源</span>
-            </Col>
-            <Col>
-              <Checkbox all='two' onChange={list => {
-                const fieldList = this.state.field2.list
+                }
+              ]}
+            >
+              <Row gutter>
+                <Col span={2}>
+                  <div style={{ textAlign: 'right' }}>订单类型</div>
+                </Col>
+                <Col>
+                  <Checkbox all='one' onChange={list => {
+                    const fieldList = this.state.field1.list
 
-                fieldList.forEach(item => {
-                  if (list.indexOf(item.value) > -1) {
-                    item.checked = true
-                  } else {
-                    item.checked = false
-                  }
-                })
-                this.setForm()
-              }}>全选</Checkbox>
-              <Checkbox list={this.state.field2.list} name='two' />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span className='field-name'>运输方式</span>
-            </Col>
-            <Col>
-              <Checkbox all='three' onChange={list => {
-                const fieldList = this.state.field3.list
+                    fieldList.forEach(item => {
+                      if (list.indexOf(item.value) > -1) {
+                        item.checked = true
+                      } else {
+                        item.checked = false
+                      }
+                    })
+                    this.setForm()
+                  }}>全选</Checkbox>
+                  <Checkbox list={this.state.field1.list} name='one' />
+                </Col>
+              </Row>
+              <Row gutter>
+                <Col span={2}>
+                  <div style={{ textAlign: 'right' }}>业务来源</div>
+                </Col>
+                <Col>
+                  <Checkbox all='two' onChange={list => {
+                    const fieldList = this.state.field2.list
 
-                fieldList.forEach(item => {
-                  if (list.indexOf(item.value) > -1) {
-                    item.checked = true
-                  } else {
-                    item.checked = false
-                  }
-                })
-                this.setForm()
-              }}>全选</Checkbox>
-              <Checkbox list={this.state.field3.list} name='three' />
-            </Col>
-          </Row>
-        </DataFilter>
+                    fieldList.forEach(item => {
+                      if (list.indexOf(item.value) > -1) {
+                        item.checked = true
+                      } else {
+                        item.checked = false
+                      }
+                    })
+                    this.setForm()
+                  }}>全选</Checkbox>
+                  <Checkbox list={this.state.field2.list} name='two' />
+                </Col>
+              </Row>
+              <Row gutter>
+                <Col span={2}>
+                  <div style={{ textAlign: 'right' }}>运输方式</div>
+                </Col>
+                <Col>
+                  <Checkbox all='three' onChange={list => {
+                    const fieldList = this.state.field3.list
+
+                    fieldList.forEach(item => {
+                      if (list.indexOf(item.value) > -1) {
+                        item.checked = true
+                      } else {
+                        item.checked = false
+                      }
+                    })
+                    this.setForm()
+                  }}>全选</Checkbox>
+                  <Checkbox list={this.state.field3.list} name='three' />
+                </Col>
+              </Row>
+            </DataFilter>
+          </Col>
+        </Row>
       </div>
     )
   }

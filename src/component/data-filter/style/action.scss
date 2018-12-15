@@ -1,12 +1,35 @@
-.hi-form-filter__action {
+@import '@hi-ui/core-css/index.scss';
+
+.block-filter-action {
+  position: relative;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
   width: 32px;
   height: 32px;
+  border: 1px solid #4284F5;
   line-height: 32px;
   color: #4284F5;
-  border: 1px solid #4284F5;
-  &:not(:last-child) {
-    margin-right: 10px;
+  cursor: pointer;
+
+  & + & {
+    margin-left: $spacer-2;
+  }
+
+  &__search {
+    position: absolute;
+    width: 150px;
+    left: -151px;
+    top: -1px;
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      height: 32px;
+      padding: 5px 10px;
+      border: 1px solid #4284F5;
+      border-right: none;
+      outline: none;
+    }
   }
 }

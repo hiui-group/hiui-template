@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Icon from '@hi-ui/hiui/es/icon'
-import '../style/search.scss'
 
 export default class SearchAction extends Component {
   constructor (props) {
@@ -56,7 +55,7 @@ export default class SearchAction extends Component {
       <div ref={node => this.searchRef = node}>
         {
           showInput &&
-          <div className='hi-form-filter__action-search'>
+          <div className='block-filter-action__search'>
             <input
               value={value}
               placeholder='搜索关键词'

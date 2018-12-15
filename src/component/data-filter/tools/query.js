@@ -45,15 +45,15 @@ export default class QueryTool extends Component {
     } = this.props
 
     return (
-      <div className='hi-form-filter__form'>
-        <div className='hi-form-filter__form-groups'>
+      <div className='block-filter__form block-filter-form'>
+        <div className='block-filter-form__groups'>
           {children}
         </div>
         {
           submit &&
-          <div className='hi-form-filter__form-actions'>
+          <div className='block-filter-form__actions'>
             <Button
-              type={canSubmit ? 'primary' : 'default'}
+              type='primary'
               disabled={!canSubmit}
               onClick={() => this.submit(canSubmit)}
             >

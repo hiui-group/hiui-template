@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Checkbox from '@hi-ui/hiui/es/checkbox'
-import '../style/statistics.scss'
 
 export default class StatisticsTool extends Component {
   constructor (props) {
@@ -24,11 +23,11 @@ export default class StatisticsTool extends Component {
     } = parent.state
 
     return (
-      <div className='hi-form-filter__statistics'>
+      <div className='block-filter-tool__menu block-filter-tool__menu--statistics'>
         {
           Object.entries(this.statistics).map(([ value, label ]) => (
             <div
-              className='hi-form-filter__statistics--item'
+              className='block-filter-tool__menu-item'
               key={value}
             >
               <Checkbox

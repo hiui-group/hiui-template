@@ -1,0 +1,59 @@
+@import '@hi-ui/core-css/index.scss';
+
+.block-filter-tool__menu {
+  min-width: 120px;
+  padding: $spacer-3;
+  overflow: auto;
+
+  &--condition {
+    min-width: 420px;
+    max-height: 300px;
+  }
+
+  &--row-height {
+    min-width: 120px;
+  }
+
+  &--columns {
+    min-width: 160px;
+  }
+}
+
+.block-filter-tool__menu-item {
+  margin: $spacer-1 0;
+}
+
+// Condition filter tool
+.block-filter-condition {
+  &__text {
+    margin-top: $spacer-2;
+    margin-bottom: $spacer-2;
+    text-align: center;
+    color: $gray-dark;
+  }
+
+  &__item {
+    display: flex;
+    margin-bottom: $spacer-4;
+  }
+
+  &__column,
+  &__operator,
+  &__value {
+    margin-right: $spacer-2;
+  }
+
+  &__add {
+    .hi-icon {
+      margin-left: $spacer-1 * -1;
+      margin-right: $spacer-1;
+    }
+  }
+
+  &__delete {
+    display: flex;
+    align-items: center;
+    flex: none;
+    cursor: pointer;
+  }
+}

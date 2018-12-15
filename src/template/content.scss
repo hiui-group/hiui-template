@@ -4,4 +4,28 @@
   &--gutter {
     padding: 0 $spacer-6;
   }
+
+  &--gutter--horizontal {
+    padding-left: $spacer-4;
+    padding-right: $spacer-4;
+  }
+
+  &--gutter--vertical {
+    padding-top: $spacer-4;
+    padding-bottom: $spacer-4;
+  }
+}
+
+// Patch
+.hi-radio {
+  height: auto !important;
+  line-height: initial !important;
+}
+
+.hi-radio .input-group .hi-raido-simulation-input {
+  background-color: #fff;
+}
+
+.hi-checkbox .hi-checkbox-input {
+  background-color: #fff;
 }

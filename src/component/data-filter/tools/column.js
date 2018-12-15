@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Checkbox from '@hi-ui/hiui/es/checkbox'
-import '../style/column.scss'
 
 export default class ColumnTool extends Component {
   constructor (props) {
@@ -16,11 +15,11 @@ export default class ColumnTool extends Component {
     const parent = this.parent()
 
     return (
-      <div className='hi-form-filter__column'>
+      <div className='block-filter-tool__menu block-filter-tool__menu--columns'>
         {
           parent.state.columns.map((column, index) => (
             <div
-              className='hi-form-filter__column--item'
+              className='block-filter-tool__menu-item'
               key={index}
             >
               <Checkbox

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SearchAction from './actions/search'
-import './style/action.scss'
 
 export default class Action extends Component {
   static propTypes = {
@@ -32,14 +31,14 @@ export default class Action extends Component {
 
     if (type) {
       return (
-        <div className='hi-form-filter__action'>
+        <div className='block-filter__action block-filter-action'>
           {this.renderAction(type)}
         </div>
       )
     }
 
     return (
-      <div className='hi-form-filter__action'>
+      <div className='block-filter__action block-filter-action'>
         {children}
       </div>
     )

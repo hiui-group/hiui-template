@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import './style/field.scss'
 
 export default class Field extends Component {
   static propTypes = {
@@ -45,11 +44,11 @@ export default class Field extends Component {
     }
 
     return (
-      <div className='hi-form-filter__field' style={{ width: `${width}px` }}>
-        <div className='hi-form-filter__field--label'>
+      <div className='block-filter-form__field block-filter-field' style={{ width: `${width}px` }}>
+        <div className='block-filter-field__label'>
           {label}
         </div>
-        <div className='hi-form-filter__field--content'>
+        <div className='block-filter-field__content'>
           {children}
         </div>
       </div>

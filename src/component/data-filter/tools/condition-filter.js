@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import Icon from '@hi-ui/hiui/es/icon'
 import Select from '@hi-ui/hiui/es/select'
 import Input from '@hi-ui/hiui/es/input'
-import '../style/filter.scss'
+import Button from '@hi-ui/hiui/es/button'
 
-export default class FilterTool extends Component {
+export default class ConditionFilterTool extends Component {
   constructor (props) {
     super(props)
   }
@@ -143,14 +143,8 @@ export default class FilterTool extends Component {
     const options = this.getColumnOptions(columns)
 
     return filters.map((filter, index) => (
-      <div className='hi-form-filter__filters-item' key={index}>
-        <div className='hi-form-filter__filters-delete' onClick={e => {
-          e.stopPropagation()
-          this.deleteFilter(index)
-        }}>
-          <Icon name='delete' />
-        </div>
-        <div className='hi-form-filter__filters-column'>
+      <div className='block-filter-condition__item' key={index}>
+        <div className='block-filter-condition__column'>
           <Select
             clearable={false}
             style={{ width: '150px' }}
@@ -161,6 +155,12 @@ export default class FilterTool extends Component {
         </div>
         { this.renderOperator(filter.type, filter.operator, index) }
         { this.renderValue(filter.type, filter.operator, filter.value, index) }
+        <div className='block-filter-condition__delete' onClick={e => {
+          e.stopPropagation()
+          this.deleteFilter(index)
+        }}>
+          <Icon name='delete' />
+        </div>
       </div>
     ))
   }
@@ -176,10 +176,10 @@ export default class FilterTool extends Component {
     console.log('--------renderOperator', options)
 
     return (
-      <div className='hi-form-filter__filters-operator'>
+      <div className='block-filter-condition__operator'>
         <Select
           clearable={false}
-          style={{ width: '100px' }}
+          style={{ width: '120px' }}
           list={options}
           value={operator}
           onChange={value => this.changeOperator(value, index)}
@@ -240,7 +240,7 @@ export default class FilterTool extends Component {
     }
 
     return (
-      <div className='hi-form-filter__filters-value'>
+      <div className='block-filter-condition__value'>
         <Input
           value={value}
           style={{ width: '150px' }}
@@ -256,30 +256,28 @@ export default class FilterTool extends Component {
     } = this.parent().state
 
     return (
-      <div className='hi-form-filter__filters'>
+      <div className='block-filter-tool__menu block-filter-tool__menu--condition block-filter-condition'>
         {
           filters.length === 0 &&
-          <div className='hi-form-filter__filters-empty'>
+          <div className='block-filter-condition__text'>
             筛选条件为空
           </div>
         }
         {
           filters.length > 0 &&
-          <div className='hi-form-filter__filters-items'>
+          <div className='block-filter-condition__items'>
             {this.renderFilters()}
           </div>
         }
-        <div className='hi-form-filter__filters-add'>
-          <div onClick={this.addFilter.bind(this)} style={{ display: 'inline-block' }}>
-            <Icon name='plus' />
-            增加条件
-          </div>
-        </div>
+        <Button type='primary' appearance='link' className='block-filter-condition__add' onClick={this.addFilter.bind(this)}>
+          <Icon name='plus' />
+          增加条件
+        </Button>
       </div>
     )
   }
 }
 
-FilterTool.contextTypes = {
+ConditionFilterTool.contextTypes = {
   component: PropTypes.any
 }

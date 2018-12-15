@@ -43,11 +43,23 @@ const sider = {
   items: [
     {
       title: '表格模板',
-      icon: <Icon name='usergroup' />,
+      icon: <Icon name='list' />,
       children: [
         {
-          title: '基础表格',
-          to: '/basic'
+          title: '查询',
+          to: '/query'
+        },
+        // {
+        //   title: '基础表格',
+        //   to: '/basic'
+        // },
+        {
+          title: '平铺-单选',
+          to: '/tile-single'
+        },
+        {
+          title: '平铺-多选',
+          to: '/tile-multiple'
         },
         {
           title: '分组-横向',
@@ -58,30 +70,18 @@ const sider = {
           to: '/group-vertical'
         },
         {
-          title: '平铺-多选',
-          to: '/tile-multiple'
-        },
-        {
-          title: '平铺-单选',
-          to: '/tile-single'
-        },
-        {
-          title: '树形-多选',
-          to: '/tree-multiple'
-        },
-        {
           title: '树形-单选',
           to: '/tree-single'
         },
         {
-          title: '查询',
-          to: '/query'
+          title: '树形-多选',
+          to: '/tree-multiple'
         }
       ]
     },
     {
       title: '表单模板',
-      icon: <Icon name='usergroup' />,
+      icon: <Icon name='approve' />,
       children: [
         {
           title: '分组1',

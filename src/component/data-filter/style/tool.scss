@@ -1,0 +1,68 @@
+@import '@hi-ui/core-css/index.scss';
+
+.block-filter-tool {
+  position: relative;
+  margin-right: $spacer-2;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: $font-size-normal;
+  line-height: 24px;
+
+  &--query {
+    .icon {
+      color: get-color($palette-hiui, '50');
+    }
+  }
+
+  &--active {
+    background-color: #f1f6ff;
+
+    .block-filter-tool__icon {
+      color: get-color($palette-hiui, 'g100');
+    }
+  }
+
+  &__title {
+    padding: $spacer-2 $spacer-3;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &__badge {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    padding: 2px;
+    margin-left: $spacer-1;
+    border-radius: 100%;
+    vertical-align: super;
+    font-size: $font-size-small;
+    line-height: $line-height-condensed-ultra;
+    text-align: center;
+    background-color: $gray-dark;
+    color: $white;
+  }
+
+  &__content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: $white;
+    box-shadow: 0 1px 2px $gray;
+    z-index: 99;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+
+  &__expand {
+    margin-left: 4px;
+    color: #999;
+  }
+}

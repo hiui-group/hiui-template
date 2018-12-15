@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import Table from '@hi-ui/hiui/es/table'
 import Button from '@hi-ui/hiui/es/button'
 import Tree from '@hi-ui/hiui/es/tree'
+import Grid from '@hi-ui/hiui/es/grid'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '../../config'
-import './index.scss'
+import '../content.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -208,6 +209,7 @@ export default class Template extends Component {
           openIcon='down'
           closeIcon='up'
         />}
+        <br />
         <div className='hi-tree__confirm'>
           <Button type='primary' onClick={this.markSure.bind(this)}>确认</Button>
           <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
@@ -217,12 +219,23 @@ export default class Template extends Component {
   }
 
   render () {
+    const Row = Grid.Row
+    const Col = Grid.Col
+
     return (
-      <div className='hi-tpl__container'>
-        <div className='hi-tpl__content'>
-          {this.renderTree()}
-          {this.renderMenuContent()}
-        </div>
+      <div className='page page--gutter--vertical'>
+        <Row>
+          <Col span={3}>
+
+            {this.renderTree()}
+
+          </Col>
+          <Col span={21}>
+
+            {this.renderMenuContent()}
+
+          </Col>
+        </Row>
       </div>
     )
   }

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Icon from '@hi-ui/hiui/es/icon'
 import Modal from '@hi-ui/hiui/es/modal'
-import './style/field-group.scss'
 import Button from '@hi-ui/hiui/es/button'
 
 export default class FieldGroup extends Component {
@@ -61,7 +60,7 @@ export default class FieldGroup extends Component {
     if (this.props.main) {
       return (
         <div
-          className='hi-field-group__manage'
+          className='block-filter-form__manage'
           onClick={() => {
             this.fieldsCache = this.state.fields.slice(0)
             this.advancedFieldsCache = this.state.advancedFields.slice(0)
@@ -88,17 +87,22 @@ export default class FieldGroup extends Component {
     } = this.state
 
     return (
-      <div className='hi-field-group' >
-        <div className='hi-field-group__fields'>
-          {children}
+      <React.Fragment>
+        <div className='block-filter-form__group'>
+          <div className='block-filter-form__fields'>
+            {children}
+          </div>
         </div>
-        { main && this.renderManage() }
+
+        {main && this.renderManage()}
+
         {
           main &&
           <Modal
             title='管理'
             show={showModal}
             backDrop
+            width='720px'
             onConfirm={() => {
               this.setState({
                 showModal: false
@@ -112,37 +116,37 @@ export default class FieldGroup extends Component {
                 showModal: false
               })
             }}>
-            <div className='hi-fields hi-fields--selected'>
-              <div className='hi-fields__label'>
+            <div className='block-field block-field--selected'>
+              <div className='block-field__label'>
                 已选
               </div>
-              <div className='hi-fields__items'>
+              <div className='block-field__list'>
                 {
                   fields.map((field, index) => (
-                    <Button key={index} onClick={() => {
+                    <Button type='line' className='block-field__item' key={index} onClick={() => {
                       this.removeField(field, false)
                       this.addField(field, true)
                     }}>
                       {field}
-                      <Icon name='minus' />
+                      <Icon className='block-field__icon' name='minus' />
                     </Button>
                   ))
                 }
               </div>
             </div>
-            <div className='hi-fields hi-fields--unselected'>
-              <div className='hi-fields__label'>
+            <div className='block-field'>
+              <div className='block-field__label'>
                 未选
               </div>
-              <div className='hi-fields__items'>
+              <div className='block-field__list'>
                 {
                   advancedFields.map((field, index) => (
-                    <Button key={index} onClick={() => {
+                    <Button className='block-field__item' key={index} onClick={() => {
                       this.removeField(field, true)
                       this.addField(field, false)
                     }}>
                       {field}
-                      <Icon name='plus' />
+                      <Icon className='block-field__icon' name='plus' />
                     </Button>
                   ))
                 }
@@ -150,7 +154,7 @@ export default class FieldGroup extends Component {
             </div>
           </Modal>
         }
-      </div>
+      </React.Fragment>
     )
   }
 }

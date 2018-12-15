@@ -1,17 +1,18 @@
 {
-  "name": "react-base",
+  "name": "hiui-template",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1",
-    "@hi-ui/hiui": "^1.2.0-beta.2",
     "@hi-ui/classic-theme": "^1.0.0-beta.7",
+    "@hi-ui/core-css": "^1.0.0",
+    "@hi-ui/hiui": "^1.2.0-beta.2",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "node-sass": "^4.9.3",
     "postcss-loader": "^2.1.5",
-    "node-sass": "^4.9.3"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

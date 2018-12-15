@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Table from '@hi-ui/hiui/es/table'
 import Tree from '@hi-ui/hiui/es/tree'
+import Grid from '@hi-ui/hiui/es/grid'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '../../config'
-import './index.scss'
+import '../content.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -182,12 +183,23 @@ export default class Template extends Component {
   }
 
   render () {
+    const Row = Grid.Row
+    const Col = Grid.Col
+
     return (
-      <div className='hi-tpl__container'>
-        <div className='hi-tpl__content'>
-          {this.renderTree()}
-          {this.renderMenuContent()}
-        </div>
+      <div className='page page--gutter--vertical'>
+        <Row>
+          <Col span={3}>
+
+            {this.renderTree()}
+
+          </Col>
+          <Col span={21}>
+
+            {this.renderMenuContent()}
+
+          </Col>
+        </Row>
       </div>
     )
   }

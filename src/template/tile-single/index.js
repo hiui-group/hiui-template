@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { DataFilter } from '../../component/data-filter'
 import Radio from '@hi-ui/hiui/es/radio'
 import Icon from '@hi-ui/hiui/es/icon'
-import './index.scss'
+import '../content.scss'
 import config from '../../config'
 
 export default class Template extends Component {
@@ -80,100 +80,106 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='hi-tpl__container hi-tpl__container--tile-single'>
-        <DataFilter
-          ref={node => this.dataFilter = node}
-          url={`${config('host')}/table/get-datas`}
-          params={params}
-          columnMixins={this.columnMixins}
-          actions={[
-            'search',
-            <Link to='/form-unfold-group' className='hi-tpl__add'>
-              <Icon name='plus' />
-            </Link>,
-            <div className='hi-tpl__download' onClick={() => {
-              console.log('------------click download')
-            }}>
-              <Icon name='download' />
-            </div>,
-            <div className='hi-tpl__share' onClick={() => {
-              console.log('------------click share')
-            }}>
-              <Icon name='mark' />
-            </div>,
-            <div className='hi-tpl__more' onClick={() => {
-              console.log('------------click more')
-            }}>
-              <Icon name='more' />
-            </div>
-          ]}
-          tools={[
-            {
-              type: 'query',
-              title: '查询',
-              forms,
-              submit: false
-            }
-          ]}
-        >
-          <Row>
-            <Col>
-              <span className='field-name'>订单类型</span>
-            </Col>
-            <Col>
-              <Radio
-                list={field1.list}
-                checked={field1.checkIndex}
-                onChange={data => {
-                  field1.checkIndex = field1.list.indexOf(data)
-                  this.setState({
-                    field1
-                  }, () => {
-                    this.updateForm({ 'column1': data })
-                  })
-                }}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span className='field-name'>业务来源</span>
-            </Col>
-            <Col>
-              <Radio
-                list={field2.list}
-                checked={field2.checkIndex}
-                onChange={data => {
-                  field2.checkIndex = field2.list.indexOf(data)
-                  this.setState({
-                    field2
-                  }, () => {
-                    this.updateForm({ 'column2': data })
-                  })
-                }}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <span className='field-name'>运输方式</span>
-            </Col>
-            <Col>
-              <Radio
-                list={field3.list}
-                checked={field3.checkIndex}
-                onChange={data => {
-                  field3.checkIndex = field3.list.indexOf(data)
-                  this.setState({
-                    field3
-                  }, () => {
-                    this.updateForm({ 'column3': data })
-                  })
-                }}
-              />
-            </Col>
-          </Row>
-        </DataFilter>
+      <div className='page page--gutter'>
+        <Row>
+          <Col span={24}>
+
+            <DataFilter
+              ref={node => this.dataFilter = node}
+              url={`${config('host')}/table/get-datas`}
+              params={params}
+              columnMixins={this.columnMixins}
+              actions={[
+                'search',
+                <Link to='/form-unfold-group' className='hi-tpl__add'>
+                  <Icon name='plus' />
+                </Link>,
+                <div className='hi-tpl__download' onClick={() => {
+                  console.log('------------click download')
+                }}>
+                  <Icon name='download' />
+                </div>,
+                <div className='hi-tpl__share' onClick={() => {
+                  console.log('------------click share')
+                }}>
+                  <Icon name='mark' />
+                </div>,
+                <div className='hi-tpl__more' onClick={() => {
+                  console.log('------------click more')
+                }}>
+                  <Icon name='more' />
+                </div>
+              ]}
+              tools={[
+                {
+                  type: 'query',
+                  title: '查询',
+                  forms,
+                  submit: false
+                }
+              ]}
+            >
+              <Row gutter>
+                <Col span={2}>
+                  <div style={{ textAlign: 'right' }}>订单类型</div>
+                </Col>
+                <Col span={22}>
+                  <Radio
+                    list={field1.list}
+                    checked={field1.checkIndex}
+                    onChange={data => {
+                      field1.checkIndex = field1.list.indexOf(data)
+                      this.setState({
+                        field1
+                      }, () => {
+                        this.updateForm({ 'column1': data })
+                      })
+                    }}
+                  />
+                </Col>
+              </Row>
+              <Row gutter>
+                <Col span={2}>
+                  <div style={{ textAlign: 'right' }}>业务来源</div>
+                </Col>
+                <Col span={22}>
+                  <Radio
+                    list={field2.list}
+                    checked={field2.checkIndex}
+                    onChange={data => {
+                      field2.checkIndex = field2.list.indexOf(data)
+                      this.setState({
+                        field2
+                      }, () => {
+                        this.updateForm({ 'column2': data })
+                      })
+                    }}
+                  />
+                </Col>
+              </Row>
+              <Row gutter>
+                <Col span={2}>
+                  <div style={{ textAlign: 'right' }}>运输方式</div>
+                </Col>
+                <Col span={22}>
+                  <Radio
+                    list={field3.list}
+                    checked={field3.checkIndex}
+                    onChange={data => {
+                      field3.checkIndex = field3.list.indexOf(data)
+                      this.setState({
+                        field3
+                      }, () => {
+                        this.updateForm({ 'column3': data })
+                      })
+                    }}
+                  />
+                </Col>
+              </Row>
+            </DataFilter>
+
+          </Col>
+        </Row>
       </div>
     )
   }

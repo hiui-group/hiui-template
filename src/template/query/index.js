@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
+import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter, FieldGroup, Field } from '../../component/data-filter'
 import config from '../../config'
-import './index.scss'
-import Button from '@hi-ui/hiui/es/button/Button'
+import '../content.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -84,6 +84,8 @@ export default class Template extends Component {
   }
 
   render () {
+    const Row = Grid.Row
+    const Col = Grid.Col
     const {
       forms,
       pageSize
@@ -93,118 +95,124 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='hi-tpl__query-2'>
-        <DataFilter
-          url={`${config('host')}/table/get-datas`}
-          params={params}
-          columnMixins={this.columnMixins}
-          actions={[
-            'search',
-            <Link to='/form-unfold-group' className='hi-tpl__add'>
-              <Icon name='plus' />
-            </Link>,
-            <div className='hi-tpl__download' onClick={() => {
-              console.log('------------click download')
-            }}>
-              <Icon name='download' />
-            </div>,
-            <div className='hi-tpl__share' onClick={() => {
-              console.log('------------click share')
-            }}>
-              <Icon name='mark' />
-            </div>,
-            <div className='hi-tpl__more' onClick={() => {
-              console.log('------------click more')
-            }}>
-              <Icon name='more' />
-            </div>
-          ]}
-          tools={[
-            {
-              type: 'query',
-              forms,
-              beforeSubmit: this.beforeSubmit.bind(this),
-              onCancel: () => {
-                this.updateForm(this.initForms())
-              }
-            },
-            'filter',
-            {
-              type: 'row-height',
-              rowHeight: 'small'
-            },
-            'column',
-            'statistics'
-          ]}
-        >
-          <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>
-            <Field label='订单号' width='220'>
-              <Input
-                placeholder='请输入'
-                value={forms.column1}
-                onChange={(e, value) => {
-                  this.updateForm({ column1: value })
-                }}
-              />
-            </Field>
-            <Field label='业务来源' width='200'>
-              <Seclet
-                list={this.businessOptions}
-                placeholder='请选择业务来源'
-                value={forms.column2}
-                onChange={value => this.updateForm({ column2: value[0] && value[0].id || '全部' })}
-              />
-            </Field>
-            <Field label='运输方式' width='200'>
-              <Seclet
-                list={this.transportOptions}
-                placeholder='请选择运输方式'
-                value={forms.column3}
-                onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
-              />
-            </Field>
-            <Field label='运输方式1' width='200' advanced>
-              <Seclet
-                list={this.transportOptions}
-                placeholder='请选择运输方式'
-                value={forms.column3}
-                onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
-              />
-            </Field>
-            <Field label='运输方式2' width='200' advanced>
-              <Seclet
-                list={this.transportOptions}
-                placeholder='请选择运输方式'
-                value={forms.column3}
-                onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
-              />
-            </Field>
-            <Field label='运输方式3' width='200' advanced>
-              <Seclet
-                list={this.transportOptions}
-                placeholder='请选择运输方式'
-                value={forms.column3}
-                onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
-              />
-            </Field>
-            <Field label='运输方式4' width='200' advanced>
-              <Seclet
-                list={this.transportOptions}
-                placeholder='请选择运输方式'
-                value={forms.column3}
-                onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
-              />
-            </Field>
-            <Field label='运输方式5' width='200' advanced>
-              <Seclet
-                list={this.transportOptions}
-                placeholder='请选择运输方式'
-                value={forms.column3}
-                onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
-              />
-            </Field>
-          </FieldGroup>
-        </DataFilter>
+      <div className='page page--gutter'>
+        <Row>
+          <Col span={24}>
+
+            <DataFilter
+              url={`${config('host')}/table/get-datas`}
+              params={params}
+              columnMixins={this.columnMixins}
+              actions={[
+                'search',
+                <Link to='/form-unfold-group' className='hi-tpl__add'>
+                  <Icon name='plus' />
+                </Link>,
+                <div className='hi-tpl__download' onClick={() => {
+                  console.log('------------click download')
+                }}>
+                  <Icon name='download' />
+                </div>,
+                <div className='hi-tpl__share' onClick={() => {
+                  console.log('------------click share')
+                }}>
+                  <Icon name='mark' />
+                </div>,
+                <div className='hi-tpl__more' onClick={() => {
+                  console.log('------------click more')
+                }}>
+                  <Icon name='more' />
+                </div>
+              ]}
+              tools={[
+                {
+                  type: 'query',
+                  forms,
+                  beforeSubmit: this.beforeSubmit.bind(this),
+                  onCancel: () => {
+                    this.updateForm(this.initForms())
+                  }
+                },
+                'filter',
+                {
+                  type: 'row-height',
+                  rowHeight: 'small'
+                },
+                'column',
+                'statistics'
+              ]}
+            >
+              <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>
+                <Field label='订单号' width='220'>
+                  <Input
+                    placeholder='请输入'
+                    value={forms.column1}
+                    onChange={(e, value) => {
+                      this.updateForm({ column1: value })
+                    }}
+                  />
+                </Field>
+                <Field label='业务来源' width='200'>
+                  <Seclet
+                    list={this.businessOptions}
+                    placeholder='请选择业务来源'
+                    value={forms.column2}
+                    onChange={value => this.updateForm({ column2: value[0] && value[0].id || '全部' })}
+                  />
+                </Field>
+                <Field label='运输方式' width='200'>
+                  <Seclet
+                    list={this.transportOptions}
+                    placeholder='请选择运输方式'
+                    value={forms.column3}
+                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                  />
+                </Field>
+                <Field label='运输方式1' width='200' advanced>
+                  <Seclet
+                    list={this.transportOptions}
+                    placeholder='请选择运输方式'
+                    value={forms.column3}
+                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                  />
+                </Field>
+                <Field label='运输方式2' width='200' advanced>
+                  <Seclet
+                    list={this.transportOptions}
+                    placeholder='请选择运输方式'
+                    value={forms.column3}
+                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                  />
+                </Field>
+                <Field label='运输方式3' width='200' advanced>
+                  <Seclet
+                    list={this.transportOptions}
+                    placeholder='请选择运输方式'
+                    value={forms.column3}
+                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                  />
+                </Field>
+                <Field label='运输方式4' width='200' advanced>
+                  <Seclet
+                    list={this.transportOptions}
+                    placeholder='请选择运输方式'
+                    value={forms.column3}
+                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                  />
+                </Field>
+                <Field label='运输方式5' width='200' advanced>
+                  <Seclet
+                    list={this.transportOptions}
+                    placeholder='请选择运输方式'
+                    value={forms.column3}
+                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                  />
+                </Field>
+              </FieldGroup>
+            </DataFilter>
+
+          </Col>
+        </Row>
       </div>
     )
   }

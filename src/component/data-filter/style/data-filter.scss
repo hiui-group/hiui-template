@@ -1,109 +1,57 @@
-.hi-form-filter {
+@import '@hi-ui/core-css/index.scss';
+
+.block-filter {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: $spacer-5;
+
   &__title {
-    font-size: 16px;
+    font-size: $font-size-large;
     color: #4A4A4A;
   }
+
+  // Filter actions
   &__actions {
     position: absolute;
     right: 0;
+    top: 8px;
     display: flex;
     align-items: center;
-    padding: 10px 15px;
-    .hi-form-filter__title {
+
+    .block-filter__title {
       flex: auto;
     }
-    &--container {
-      flex: none;
-      display: flex;
-    }
   }
-  &__action {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    color: #4284F5;
-    border: 1px solid #4284F5;
-    box-sizing: border-box;
-    cursor: pointer;
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
-  }
+
+  // Filter tools
   &__tools {
-    padding-top: 7px;
-    font-size: 14px;
-    color: #383E47;
-    border-top: 1px solid #F6F6F6;
-    &--content {
-      position: relative;
+    display: flex;
+    padding-top: $spacer-2;
+    padding-left: $spacer-2;
+    padding-right: $spacer-2;
+    color: get-color($palette-hiui, 'g100');
+  }
+}
+
+// Block data view
+.block-data {
+  padding-bottom: $spacer-5;
+  &--rowheight--small {
+    .hi-table table tr {
+      height: 40px;
     }
   }
-  &__tool {
-    position: relative;
-    display: inline-block;
-    padding: 12px 8px;
-    margin-right: 8px;
-    &-query {
-      .text {
-        font-weight: bold;
-      }
-      .icon {
-        color: #4284F5;
-      }
-    }
-    &--active {
-      background-color: #F8FAFE;
-      .icon {
-        color: #383E47;
-      }
-    }
-    &--title {
-      cursor: pointer;
-    }
-    &--content {
-      display: none;
-      position: absolute;
-      top: 46px;
-      left: 0px;
-      background-color: #F8FAFE;
-      box-shadow: -1px 1px 1px 0px #ccc, inset -1px 0px 1px 0px #ccc;
-      z-index: 99;
-    }
-    &--active {
-      display: inline-block;
-    }
-    .hi-icon {
-      margin-right: 8px;
-    }
-    .expand-icon {
-      position: relative;
-      left: 5px;
-      margin-right: 0px;
-      color: #999;
+
+  &--rowheight--middle {
+    .hi-table table tr {
+      height: 50px;
     }
   }
-  &__data {
-    &--small {
-      .hi-table table tr {
-        height: 40px;
-      }
-    }
-    &--middle {
-      .hi-table table tr {
-        height: 50px;
-      }
-    }
-    &--big {
-      .hi-table table tr {
-        height: 60px;
-      }
+
+  &--rowheight--big {
+    .hi-table table tr {
+      height: 60px;
     }
   }
 }

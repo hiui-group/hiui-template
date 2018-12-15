@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Radio from '@hi-ui/hiui/es/radio'
-import '../style/row-height.scss'
 
 export default class RowHeightTool extends Component {
   constructor (props) {
@@ -46,7 +45,7 @@ export default class RowHeightTool extends Component {
     ]
 
     return (
-      <div className='hi-form-filter__row-height'>
+      <div className='block-filter-tool__menu block-filter-tool__menu--row-height'>
         <Radio
           list={list}
           layout='vertical'

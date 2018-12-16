@@ -156,7 +156,7 @@ export default class Template extends Component {
           <React.Fragment>
             <Table
               columns={columns}
-              data={tableDatas}
+              data={tableDatas.slice(0).reverse()}
               name='sorter'
               pagination={{
                 pageSize: pageSize,
@@ -170,6 +170,44 @@ export default class Template extends Component {
           </React.Fragment>
         )
         break
+        case 2:
+          content = (
+            <React.Fragment>
+              <Table
+                columns={columns}
+                data={tableDatas}
+                name='sorter'
+                pagination={{
+                  pageSize: pageSize,
+                  total: total,
+                  page: page,
+                  onChange: (page) => {
+                    this.setState({ page: page }, () => this.fetchDatas())
+                  }
+                }}
+              />
+            </React.Fragment>
+          )
+          break
+          case 3:
+            content = (
+              <React.Fragment>
+                <Table
+                  columns={columns}
+                  data={tableDatas.slice(0).reverse()}
+                  name='sorter'
+                  pagination={{
+                    pageSize: pageSize,
+                    total: total,
+                    page: page,
+                    onChange: (page) => {
+                      this.setState({ page: page }, () => this.fetchDatas())
+                    }
+                  }}
+                />
+              </React.Fragment>
+            )
+            break
       default:
         content = activeMenu
     }

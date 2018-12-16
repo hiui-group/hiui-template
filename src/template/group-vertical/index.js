@@ -147,8 +147,60 @@ export default class Template extends Component {
           />
         </React.Fragment>
       )
-    } else {
-      return activeMenu
+    } else if (activeMenu === 1) {
+      return (
+        <React.Fragment>
+          <Table
+            columns={columns}
+            data={tableDatas.slice(0).reverse()}
+            name='sorter'
+            pagination={{
+              pageSize: pageSize,
+              total: total,
+              page: page,
+              onChange: page => {
+                this.setState({ page: page }, () => this.fetchDatas())
+              }
+            }}
+          />
+        </React.Fragment>
+      )
+    } else if (activeMenu === 2) {
+      return (
+        <React.Fragment>
+          <Table
+            columns={columns}
+            data={tableDatas}
+            name='sorter'
+            pagination={{
+              pageSize: pageSize,
+              total: total,
+              page: page,
+              onChange: page => {
+                this.setState({ page: page }, () => this.fetchDatas())
+              }
+            }}
+          />
+        </React.Fragment>
+      )
+    } else if (activeMenu === 3) {
+      return (
+        <React.Fragment>
+          <Table
+            columns={columns}
+            data={tableDatas.slice(0).reverse()}
+            name='sorter'
+            pagination={{
+              pageSize: pageSize,
+              total: total,
+              page: page,
+              onChange: page => {
+                this.setState({ page: page }, () => this.fetchDatas())
+              }
+            }}
+          />
+        </React.Fragment>
+      )
     }
   }
 

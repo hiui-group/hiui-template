@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Table from '@hi-ui/hiui/es/table'
+import Input from '@hi-ui/hiui/es/input'
 import Button from '@hi-ui/hiui/es/button'
 import Grid from '@hi-ui/hiui/es/grid'
 import Icon from '@hi-ui/hiui/es/icon'
@@ -115,7 +116,8 @@ export default class Template extends Component {
       tableDatas,
       pageSize,
       total,
-      page
+      page,
+      value
     } = this.state
     const Row = Grid.Row
     const Col = Grid.Col
@@ -126,12 +128,17 @@ export default class Template extends Component {
           <Col span={24}>
             <div className="page-basic-1__form">
               <div className="page-basic-1__form-input">
-                <input onChange={e=>{
-                  this.setState({s: e.target.value})
-                }} />
-                <div className="page-basic-1__form-submit" onClick={() => this.search()}>
+                <Input
+                  value={value}
+                  placeholder="搜索关键词"
+                  style={{width: '150px'}}
+                  onChange={e => {
+                    this.setState({s: e.target.value})
+                  }}
+                />
+                <Button type="line" onClick={() => this.search()}>
                   <Icon name='search' />
-                </div>
+                </Button>
               </div>
               <div className="page-basic-1__form-actions">
                 <Link to='/form-unfold-group' className='hi-tpl__add'>

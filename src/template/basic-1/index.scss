@@ -3,40 +3,27 @@
   
   &__form {
     display: flex;
-
-    input {
-      box-sizing: border-box;
-      width: 240px;
-      height: 32px;
-      padding: 5px 10px;
-      border: 1px solid #D8D8D8;
-      outline: none;
-      vertical-align: middle;
-      &:focus {
-        border-color: #4284F5;
-      }
-    }
   }
   &__form-input {
     flex: auto;
+    button {
+      border-left: none;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      vertical-align: middle;
+    }
+    .hi-input {
+      vertical-align: middle;
+    }
+    .hi-input .hi-input__inner {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
   }
   &__form-actions {
     flex: none;
   }
-  &__form-submit {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    border: 1px solid #D8D8D8;
-    border-left: none;
-    color: #4285f4;
-    font-weight: bold;
-    box-sizing: border-box;
-    vertical-align: middle;
-    cursor: pointer;
-  }
+
   .hi-tpl__add {
     margin-right: 8px;
   }

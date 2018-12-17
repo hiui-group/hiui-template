@@ -45,6 +45,10 @@ export default [
     component: require('../template/query').default
   },
   {
+    path: '/query-basic',
+    component: require('../template/query-basic').default
+  },
+  {
     path: '/form-group',
     component: require('../template/form-group').default
   },

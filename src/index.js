@@ -49,6 +49,10 @@ const sider = {
           title: '查询',
           to: '/query'
         },
+        {
+          title: '查询-基础',
+          to: '/query-basic'
+        },
         // {
         //   title: '基础表格',
         //   to: '/basic'

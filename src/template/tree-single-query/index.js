@@ -34,18 +34,18 @@ export default class Template extends Component {
       currentTree: '',
 
       treeData: [
-        { id: 1,
+        { id: '小米',
           title: '小米',
           children: [
-            { id: 2,
+            { id: '技术',
               title: '技术',
               children: [
-                { id: 3, title: '后端', onClick: () => { this.onTreeClick(3) } },
-                { id: 4, title: '运维', onClick: () => { this.onTreeClick(4) } },
-                { id: 5, title: '前端', onClick: () => { this.onTreeClick(5) } }
+                { id: '后端', title: '后端', onClick: () => { this.onTreeClick('后端') } },
+                { id: '运维', title: '运维', onClick: () => { this.onTreeClick('运维') } },
+                { id: '前端', title: '前端', onClick: () => { this.onTreeClick('前端') } }
               ]
             },
-            { id: 6, title: '产品', onClick: () => { this.onTreeClick(6) } }
+            { id: '产品', title: '产品', onClick: () => { this.onTreeClick('产品') } }
           ]
         }]
     }
@@ -77,7 +77,7 @@ export default class Template extends Component {
     })
 
     this.setState({ currentTree: id }, () => {
-      this.dataFilter.submit({ currentTree: id })
+      this.dataFilter.submit({ column1: id })
     })
   }
 

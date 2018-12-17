@@ -132,7 +132,7 @@ export default class Template extends Component {
       pageSize
     }
     const forms = {
-      currentChose: currentChose
+      column1: currentChose.join('-')
     }
 
     return (
@@ -175,7 +175,7 @@ export default class Template extends Component {
                   type: 'query',
                   forms,
                   onCancel: () => {
-                    this.updateForm(this.initForms())
+                    this.reset()
                   }
                 },
                 'filter',

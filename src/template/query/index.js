@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Button from '@hi-ui/hiui/es/button'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
@@ -106,23 +107,25 @@ export default class Template extends Component {
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Icon name='plus' />
+                  <Button type="primary">
+                    <Icon name='plus' />
+                  </Button>
                 </Link>,
-                <div className='hi-tpl__download' onClick={() => {
+                <Button type="line" onClick={() => {
                   console.log('------------click download')
                 }}>
                   <Icon name='download' />
-                </div>,
-                <div className='hi-tpl__share' onClick={() => {
+                </Button>,
+                <Button type="line" onClick={() => {
                   console.log('------------click share')
                 }}>
                   <Icon name='mark' />
-                </div>,
-                <div className='hi-tpl__more' onClick={() => {
+                </Button>,
+                <Button type="line" onClick={() => {
                   console.log('------------click more')
                 }}>
                   <Icon name='more' />
-                </div>
+                </Button>
               ]}
               tools={[
                 {

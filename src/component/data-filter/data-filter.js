@@ -55,7 +55,9 @@ export default class DataFilter extends Component {
 
   static propTypes = {
     canSubmit: PropTypes.bool,
-    actions: PropTypes.array
+    actions: PropTypes.array,
+    vertical: PropTypes.bool,
+    verticalWidth: PropTypes.string
   }
 
   static defaultProps = {
@@ -64,7 +66,9 @@ export default class DataFilter extends Component {
     activeTools: [],
     actions: [],
     columnMixins: [],
-    columns: []
+    columns: [],
+    vertical: false,
+    verticalWidth: 'auto'
   }
 
   constructor (props) {
@@ -275,7 +279,7 @@ export default class DataFilter extends Component {
                 {
                   tool.popper &&
                   <div
-                    className={classNames('block-filter-tool__content', { 'block-filter-tool__content--active': active })}>
+                    className={classNames('block-filter-tool__popper', { 'block-filter-tool__popper--active': active })}>
                     {this.renderToolContent(tool)}
                   </div>
                 }
@@ -355,7 +359,9 @@ export default class DataFilter extends Component {
     } = this.state
     const {
       table,
-      params
+      params,
+      vertical,
+      verticalWidth
     } = this.props
     const tableProps = Object.assign({ ...statistics }, table, {
       columns: filteredColumns,
@@ -377,13 +383,20 @@ export default class DataFilter extends Component {
 
     return (
       <React.Fragment>
-        <div className='block-filter'>
+        <div className={classNames('block-filter')}>
           {this.renderActions()}
           {this.renderTools()}
-          { activeTools.indexOf('query') > -1 && this.renderToolContent(this.mixinTool('query')) }
         </div>
-        <div className={classNames('block-data', `block-data--rowheight--${rowHeight}`)}>
-          <Table {...tableProps} />
+        <div className={classNames('block-main', {'block-main--vertical': vertical})}>
+          { 
+            activeTools.indexOf('query') > -1 && 
+            <div className="block-filter-tool__content" style={{width: verticalWidth}}>
+              {this.renderToolContent(this.mixinTool('query'))}
+            </div>
+          }
+          <div className={classNames('block-data', `block-data--rowheight--${rowHeight}`)}>
+            <Table {...tableProps} />
+          </div>
         </div>
       </React.Fragment>
     )

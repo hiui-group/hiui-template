@@ -37,6 +37,18 @@
   }
 }
 
+.block-main {
+  &--vertical {
+    display: flex;
+    .block-filter-tool__content {
+      flex: none;
+      margin-right: 12px;
+    }
+    .block-data {
+      flex: auto;
+    }
+  }
+}
 // Block data view
 .block-data {
   padding-bottom: $spacer-5;

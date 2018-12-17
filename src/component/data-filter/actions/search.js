@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from '@hi-ui/hiui/es/button'
+import Input from '@hi-ui/hiui/es/input'
 import Icon from '@hi-ui/hiui/es/icon'
 
 export default class SearchAction extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      showInput: false,
+      showInput: true,
       value: ''
     }
   }
 
   componentDidMount () {
-    window.addEventListener('click', this.hideInput.bind(this))
+    // window.addEventListener('click', this.hideInput.bind(this))
   }
 
   componentWillUnmount () {
-    window.removeEventListener('click', this.hideInput.bind(this))
+    // window.removeEventListener('click', this.hideInput.bind(this))
   }
 
   hideInput (e) {
@@ -53,13 +54,14 @@ export default class SearchAction extends Component {
     } = this.state
 
     return (
-      <div ref={node => this.searchRef = node}>
+      <div className='block-filter-action__search' ref={node => this.searchRef = node}>
         {
           showInput &&
-          <div className='block-filter-action__search'>
-            <input
+          <div className='block-filter-action__input'>
+            <Input
               value={value}
-              placeholder='搜索关键词'
+              placeholder="搜索关键词"
+              style={{width: '150px'}}
               onChange={e => {
                 this.setState({ value: e.target.value })
               }}

@@ -58,6 +58,10 @@ const sider = {
         //   to: '/basic'
         // },
         {
+          title: '基础-1',
+          to: '/basic/1'
+        },
+        {
           title: '平铺-单选',
           to: '/tile-single'
         },

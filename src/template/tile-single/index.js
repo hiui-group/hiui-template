@@ -3,6 +3,7 @@ import Grid from '@hi-ui/hiui/es/grid'
 import { Link } from 'react-router-dom'
 import { DataFilter } from '../../component/data-filter'
 import Radio from '@hi-ui/hiui/es/radio'
+import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import '../content.scss'
 import config from '../../config'
@@ -92,24 +93,27 @@ export default class Template extends Component {
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Icon name='plus' />
+                  <Button type="primary">
+                    <Icon name='plus' />
+                  </Button>
                 </Link>,
-                <div className='hi-tpl__download' onClick={() => {
+                <Button type="line" onClick={() => {
                   console.log('------------click download')
                 }}>
                   <Icon name='download' />
-                </div>,
-                <div className='hi-tpl__share' onClick={() => {
+                </Button>,
+                <Button type="line" onClick={() => {
                   console.log('------------click share')
                 }}>
                   <Icon name='mark' />
-                </div>,
-                <div className='hi-tpl__more' onClick={() => {
+                </Button>,
+                <Button type="line" onClick={() => {
                   console.log('------------click more')
                 }}>
                   <Icon name='more' />
-                </div>
+                </Button>
               ]}
+              activeTools={['query']}
               tools={[
                 {
                   type: 'query',

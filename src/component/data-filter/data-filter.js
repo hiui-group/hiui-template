@@ -61,6 +61,7 @@ export default class DataFilter extends Component {
   static defaultProps = {
     canSubmit: true,
     tools: [ 'query', 'filter', 'row-height', 'column', 'statistics' ],
+    activeTools: [],
     actions: [],
     columnMixins: [],
     columns: []
@@ -73,7 +74,7 @@ export default class DataFilter extends Component {
       columns: this.mixinColumns(props.columns), // all columns
       filteredColumns: [], // filtered columns
       rowHeight: 'middle', // 行高
-      activeTools: [ 'query' ],
+      activeTools: props.activeTools,
       datas: [],
       filteredDatas: [],
       filters: 0,

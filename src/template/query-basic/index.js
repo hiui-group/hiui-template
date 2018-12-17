@@ -136,14 +136,7 @@ export default class Template extends Component {
                   onCancel: () => {
                     this.updateForm(this.initForms())
                   }
-                },
-                'filter',
-                {
-                  type: 'row-height',
-                  rowHeight: 'small'
-                },
-                'column',
-                'statistics'
+                }
               ]}
             >
               <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>

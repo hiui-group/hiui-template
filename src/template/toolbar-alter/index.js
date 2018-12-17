@@ -96,7 +96,7 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page page--gutter'>
+      <div className='page page--gutter page--toolbar--fixed'>
         <Row>
           <Col span={24}>
 

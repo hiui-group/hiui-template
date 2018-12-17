@@ -41,8 +41,12 @@
   &--vertical {
     display: flex;
     .block-filter-tool__content {
+      display: flex;
+      flex-direction: column;
       flex: none;
-      margin-right: 12px;
+      .block-filter__form {
+        flex: auto;
+      }
     }
     .block-data {
       flex: auto;

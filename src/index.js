@@ -98,6 +98,10 @@ const sider = {
           to: '/tree-single'
         },
         {
+          title: '树形-单选-查询',
+          to: '/tree-single-query'
+        },
+        {
           title: '树形-多选',
           to: '/tree-multiple'
         }

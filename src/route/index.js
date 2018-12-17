@@ -53,6 +53,10 @@ export default [
     component: require('../template/group-vertical').default
   },
   {
+    path: '/tree-single-query',
+    component: require('../template/tree-single-query').default
+  },
+  {
     path: '/tree-single',
     component: require('../template/tree-single').default
   },

@@ -136,16 +136,17 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page page--gutter--vertical'>
+      <div className='page page--gutter'>
         <Row>
-        <Col span={24}>
+          <Col span={24}>
+
             <DataFilter
               ref={node => this.dataFilter = node}
               url={`${config('host')}/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               vertical
-              verticalWidth='215px'
+              verticalWidth='12.5%'
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
@@ -186,6 +187,7 @@ export default class Template extends Component {
             >
               {this.renderTree()}
             </DataFilter>
+
           </Col>
         </Row>
       </div>

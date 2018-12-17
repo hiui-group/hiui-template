@@ -11,18 +11,18 @@
   &__input {
     position: absolute;
     width: 150px;
-    left: -150px;
+    left: -149px;
   }
 
   &__search {
     button {
-      border-left: none;
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
+
     .hi-input .hi-input__inner {
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 }

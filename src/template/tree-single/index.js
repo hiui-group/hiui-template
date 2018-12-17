@@ -187,7 +187,7 @@ export default class Template extends Component {
     const Col = Grid.Col
 
     return (
-      <div className='page page--gutter--vertical'>
+      <div className='page page--gutter page--gutter--vertical'>
         <Row>
           <Col span={3}>
 

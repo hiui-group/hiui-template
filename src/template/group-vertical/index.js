@@ -212,8 +212,8 @@ export default class Template extends Component {
     } = this.state
 
     return (
-      <div className='page page--gutter--vertical'>
-        <Row>
+      <div className='page page--gutter page--gutter--vertical'>
+        <Row gutter>
           <Col span={3}>
 
             <NavMenu

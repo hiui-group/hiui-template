@@ -223,8 +223,8 @@ export default class Template extends Component {
     const Col = Grid.Col
 
     return (
-      <div className='page page--gutter--vertical'>
-        <Row>
+      <div className='page page--gutter page--gutter--vertical'>
+        <Row gutter>
           <Col span={3}>
 
             {this.renderTree()}

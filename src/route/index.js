@@ -14,7 +14,7 @@ export default [
   // },
   {
     path: '/common-search',
-    component: require('../template/common-basic').default
+    component: require('../template/common-search').default
   },
   {
     path: '/common-basic',

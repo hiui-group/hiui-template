@@ -74,10 +74,6 @@ const sider = {
         //   to: '/basic'
         // },
         {
-          title: '基础-1',
-          to: '/basic/1'
-        },
-        {
           title: '平铺-单选',
           to: '/tile-single'
         },
@@ -116,6 +112,14 @@ const sider = {
       icon: <Icon name='approve' />,
       children: [
         {
+          title: '单列',
+          to: '/form-basic'
+        },
+        {
+          title: '双列',
+          to: '/form-double-column'
+        },
+        {
           title: '分组1',
           to: '/form-vertical-group'
         },
@@ -130,14 +134,6 @@ const sider = {
         {
           title: '分步骤',
           to: '/form-with-stepper'
-        },
-        {
-          title: '双列',
-          to: '/form-double-column'
-        },
-        {
-          title: '单列',
-          to: '/form-basic'
         },
         {
           title: '弹窗表格',

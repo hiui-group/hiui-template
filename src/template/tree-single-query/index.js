@@ -109,7 +109,7 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page page--gutter--vertical'>
+      <div className='page page--gutter'>
         <Row>
           <Col span={24}>
             <DataFilter

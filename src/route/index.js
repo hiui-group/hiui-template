@@ -13,6 +13,30 @@ export default [
   //   }
   // },
   {
+    path: '/common-search',
+    component: require('../template/common-basic').default
+  },
+  {
+    path: '/common-basic',
+    component: require('../template/common-basic').default
+  },
+  {
+    path: '/query',
+    component: require('../template/query').default
+  },
+  {
+    path: '/query-basic',
+    component: require('../template/query-basic').default
+  },
+  {
+    path: '/toolbar',
+    component: require('../template/toolbar').default
+  },
+  {
+    path: '/toolbar-alter',
+    component: require('../template/toolbar-alter').default
+  },
+  {
     path: '/basic/1',
     component: require('../template/basic-1').default
   },
@@ -43,14 +67,6 @@ export default [
   {
     path: '/tile-multiple',
     component: require('../template/tile-multiple').default
-  },
-  {
-    path: '/query',
-    component: require('../template/query').default
-  },
-  {
-    path: '/query-basic',
-    component: require('../template/query-basic').default
   },
   {
     path: '/form-group',

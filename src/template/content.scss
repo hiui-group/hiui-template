@@ -14,6 +14,15 @@
     padding-top: $spacer-4;
     padding-bottom: $spacer-4;
   }
+
+  &--toolbar--fixed {
+    .block-filter__actions {
+      position: fixed;
+      top: $spacer-4;
+      right: $spacer-4;
+      z-index: 12;
+    }
+  }
 }
 
 // Patch

@@ -18,7 +18,7 @@ const header = (
       </NavGroup.Item>
       <NavGroup.Item>
         <Icon name="more" className="header__operation-btns"/>
-      </NavGroup.Item> */}
+      </NavGroup.Item>
       <div className='header__btns'>
         <Icon name='search' className='header__operation-btns' />
 
@@ -27,7 +27,7 @@ const header = (
         <Icon name='share' className='header__operation-btns' />
 
         <Icon name='more' className='header__operation-btns' />
-      </div>
+      </div> */}
 
     </NavGroup>
   </React.Fragment>
@@ -46,12 +46,28 @@ const sider = {
       icon: <Icon name='list' />,
       children: [
         {
-          title: '查询',
+          title: '通用-搜索',
+          to: '/common-search'
+        },
+        {
+          title: '通用-基础',
+          to: '/common-basic'
+        },
+        {
+          title: '查询-标准',
           to: '/query'
         },
         {
           title: '查询-基础',
           to: '/query-basic'
+        },
+        {
+          title: '工具条-标准',
+          to: '/toolbar'
+        },
+        {
+          title: '工具条-固定',
+          to: '/toolbar-alter'
         },
         // {
         //   title: '基础表格',

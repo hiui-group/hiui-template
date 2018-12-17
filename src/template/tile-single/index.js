@@ -113,6 +113,7 @@ export default class Template extends Component {
                   <Icon name='more' />
                 </Button>
               ]}
+              activeTools={['query']}
               tools={[
                 {
                   type: 'query',

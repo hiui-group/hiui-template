@@ -104,6 +104,10 @@ const sider = {
         {
           title: '树形-多选',
           to: '/tree-multiple'
+        },
+        {
+          title: '树形-多选-查询',
+          to: '/tree-multiple-query'
         }
       ]
     },

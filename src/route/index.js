@@ -61,6 +61,10 @@ export default [
     component: require('../template/tree-single').default
   },
   {
+    path: '/tree-multiple-query',
+    component: require('../template/tree-multiple-query').default
+  },
+  {
     path: '/tree-multiple',
     component: require('../template/tree-multiple').default
   },

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Tree from '@hi-ui/hiui/es/tree'
 import Button from '@hi-ui/hiui/es/button'
+import Tree from '@hi-ui/hiui/es/tree'
 import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter } from '../../component/data-filter'
 import '@hi-ui/hiui/es/table/style/index.css'
@@ -31,8 +31,8 @@ export default class Template extends Component {
 
     this.state = {
       pageSize: 10,
-      currentTree: '',
-
+      currentChose: [],
+      reset: true,
       treeData: [
         { id: 1,
           title: '小米',
@@ -40,59 +40,83 @@ export default class Template extends Component {
             { id: 2,
               title: '技术',
               children: [
-                { id: 3, title: '后端', onClick: () => { this.onTreeClick(3) } },
-                { id: 4, title: '运维', onClick: () => { this.onTreeClick(4) } },
-                { id: 5, title: '前端', onClick: () => { this.onTreeClick(5) } }
+                { id: 3, title: '后端' },
+                { id: 4, title: '运维' },
+                { id: 5, title: '前端' }
               ]
             },
-            { id: 6, title: '产品', onClick: () => { this.onTreeClick(6) } }
+            { id: 6, title: '产品' }
           ]
         }]
     }
   }
 
 
-  onTreeClick (id) {
-    const treeData = [...this.state.treeData]
-    let hasGet = false
+  reset () {
+    this.setState({
+      reset: false,
+      currentChose: []
+    }, () => {
+      this.setState({
+        reset: true
+      })
+    })
+  }
 
-    const mapToGet = (data, id) => {
+  onChange (value) {
+    const { currentChose } = this.state
+
+    let tempArr = currentChose
+    const mapToPush = data => {
+      if (tempArr.indexOf(data.id) >= 0) {
+        tempArr = tempArr.splice(tempArr.indexOf(data.id), 1)
+      } else {
+        tempArr.push(data.id)
+      }
+      if (data.children) {
+        data.children.map(item => {
+          mapToPush(item)
+        })
+      }
+    }
+
+    const treeData = [ ...this.state.treeData ]
+
+    const mapToGet = (data, currentChose) => {
       data.map(item => {
-        if (item.id === id) {
-          hasGet = true
-          item.style = { color: '#4284f5' }
-        } else if (item.style) {
-          item.style = null
-        }
-        if (item.children && !hasGet) {
-          mapToGet(item.children, id)
+        if (item.children) {
+          let allIn = true
+
+          item.children.map(child => {
+            if (currentChose.indexOf(child.id) < 0) {
+              allIn = false
+            }
+          })
+
+          if (allIn && currentChose.indexOf(item.id) < 0) {
+            currentChose.push(item.id)
+          }
+          mapToGet(item.children, currentChose)
         }
       })
     }
 
-    mapToGet(treeData, id)
-
-    this.setState({
-      treeData
-    })
-
-    this.setState({ currentTree: id }, () => {
-      this.dataFilter.submit({ currentTree: id })
-    })
+    mapToPush(value)
+    mapToGet(treeData, currentChose)
+    this.setState({ currentChose: tempArr })
   }
 
   renderTree () {
     return (
       <div className='hi-tree__container'>
-        <Tree
+        {this.state.reset && <Tree
           defaultExpandAll
+          checkable
           data={this.state.treeData}
-          defaultCheckedKeys={[2]}
-          onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
-          onChange={data => { console.log('Tree data:', data) }}
+          onChange={this.onChange.bind(this)}
           openIcon='down'
           closeIcon='up'
-        />
+        />}
       </div>
     )
   }
@@ -101,17 +125,20 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     const {
-      forms,
-      pageSize
+      pageSize,
+      currentChose
     } = this.state
     const params = {
       pageSize
+    }
+    const forms = {
+      currentChose: currentChose
     }
 
     return (
       <div className='page page--gutter--vertical'>
         <Row>
-          <Col span={24}>
+        <Col span={24}>
             <DataFilter
               ref={node => this.dataFilter = node}
               url={`${config('host')}/table/get-datas`}
@@ -147,7 +174,6 @@ export default class Template extends Component {
                 {
                   type: 'query',
                   forms,
-                  submit: false,
                   onCancel: () => {
                     this.updateForm(this.initForms())
                   }

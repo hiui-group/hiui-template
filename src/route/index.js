@@ -37,10 +37,6 @@ export default [
     component: require('../template/toolbar-alter').default
   },
   {
-    path: '/basic/1',
-    component: require('../template/basic-1').default
-  },
-  {
     path: '/basic',
     component: require('../template/basic').default
   },

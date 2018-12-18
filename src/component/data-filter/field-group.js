@@ -77,8 +77,7 @@ export default class FieldGroup extends Component {
   render () {
     const {
       children,
-      main,
-      onCancel
+      main
     } = this.props
     const {
       showModal,
@@ -107,7 +106,6 @@ export default class FieldGroup extends Component {
               this.setState({
                 showModal: false
               })
-              onCancel()
             }}
             onCancel={() => {
               this.setState({

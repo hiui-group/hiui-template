@@ -146,7 +146,7 @@ export default class Template extends Component {
               params={params}
               columnMixins={this.columnMixins}
               vertical
-              verticalWidth='12.5%'
+              verticalWidth='200px'
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
@@ -178,11 +178,7 @@ export default class Template extends Component {
                   onCancel: () => {
                     this.reset()
                   }
-                },
-                'filter',
-                'row-height',
-                'column',
-                'statistics'
+                }
               ]}
             >
               {this.renderTree()}

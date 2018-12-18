@@ -131,14 +131,16 @@ export default class Template extends Component {
                 <Input
                   value={value}
                   placeholder="搜索关键词"
-                  style={{width: '150px'}}
+                  style={{width: '200px'}}
+                  append={
+                    <Button type="line" onClick={() => this.search()}>
+                      <Icon name='search' />
+                    </Button>
+                  }
                   onChange={e => {
                     this.setState({s: e.target.value})
                   }}
                 />
-                <Button type="line" onClick={() => this.search()}>
-                  <Icon name='search' />
-                </Button>
               </div>
               <div className="page-basic-1__form-actions">
                 <Link to='/form-unfold-group' className='hi-tpl__add'>

@@ -37,7 +37,7 @@ export default class Template extends Component {
       num: 0,
       time: new Date(),
       select: '4',
-      radio: '北京',
+      radio: 0,
       longText: ''
     })
   }
@@ -65,6 +65,7 @@ export default class Template extends Component {
           <Col span={24}>
 
             <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
+              <h2>表单</h2>
               <FormItem label='ID' prop='text'>
                 <Input value={forms.text} placeholder={'请输入'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} required />
               </FormItem>
@@ -135,8 +136,8 @@ export default class Template extends Component {
               </FormItem>
 
               <FormItem>
-                <Button type={'primary'} onClick={this.handleSubmit.bind(this)}>提交</Button>
-                <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
+                <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
+                <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
               </FormItem>
             </Form>
 

@@ -153,7 +153,7 @@ render((
     sider={sider}
     config={{
       color: 'black',
-      type: 'flat'
+      type: 'card'
     }}
   />
 ), document.getElementById('app'))

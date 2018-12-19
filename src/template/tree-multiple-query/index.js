@@ -51,7 +51,6 @@ export default class Template extends Component {
     }
   }
 
-
   reset () {
     this.setState({
       reset: false,
@@ -141,7 +140,7 @@ export default class Template extends Component {
           <Col span={24}>
 
             <DataFilter
-              ref={node => this.dataFilter = node}
+              ref={node => (this.dataFilter = node)}
               url={`${config('host')}/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}

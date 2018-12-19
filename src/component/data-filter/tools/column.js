@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 import Checkbox from '@hi-ui/hiui/es/checkbox'
 
 export default class ColumnTool extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   parent () {
     return this.context.component
   }

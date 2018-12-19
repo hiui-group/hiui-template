@@ -142,9 +142,9 @@ export default class Template extends Component {
     console.log('-------handleResetClick')
     const { field1, field2, field3 } = this.state
 
-    field1.list.forEach(item => item.checked = false)
-    field2.list.forEach(item => item.checked = false)
-    field3.list.forEach(item => item.checked = false)
+    field1.list.forEach(item => (item.checked = false))
+    field2.list.forEach(item => (item.checked = false))
+    field3.list.forEach(item => (item.checked = false))
 
     this.setState({
       field1,
@@ -173,28 +173,28 @@ export default class Template extends Component {
           <Col span={24}>
 
             <DataFilter
-              ref={node => this.dataFilter = node}
+              ref={node => (this.dataFilter = node)}
               url={`${config('host')}/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type="primary">
+                  <Button type='primary'>
                     <Icon name='plus' />
                   </Button>
                 </Link>,
-                <Button type="line" onClick={() => {
+                <Button type='line' onClick={() => {
                   console.log('------------click download')
                 }}>
                   <Icon name='download' />
                 </Button>,
-                <Button type="line" onClick={() => {
+                <Button type='line' onClick={() => {
                   console.log('------------click share')
                 }}>
                   <Icon name='mark' />
                 </Button>,
-                <Button type="line" onClick={() => {
+                <Button type='line' onClick={() => {
                   console.log('------------click more')
                 }}>
                   <Icon name='more' />
@@ -216,7 +216,7 @@ export default class Template extends Component {
                 <Col span={2}>
                   <div style={{ textAlign: 'right' }}>订单类型</div>
                 </Col>
-                <Col className="checkboxs-group">
+                <Col className='checkboxs-group'>
                   <Checkbox all='one' onChange={list => {
                     const fieldList = this.state.field1.list
 
@@ -236,7 +236,7 @@ export default class Template extends Component {
                 <Col span={2}>
                   <div style={{ textAlign: 'right' }}>业务来源</div>
                 </Col>
-                <Col className="checkboxs-group">
+                <Col className='checkboxs-group'>
                   <Checkbox all='two' onChange={list => {
                     const fieldList = this.state.field2.list
 
@@ -256,7 +256,7 @@ export default class Template extends Component {
                 <Col span={2}>
                   <div style={{ textAlign: 'right' }}>运输方式</div>
                 </Col>
-                <Col className="checkboxs-group">
+                <Col className='checkboxs-group'>
                   <Checkbox all='three' onChange={list => {
                     const fieldList = this.state.field3.list
 

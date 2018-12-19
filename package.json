@@ -15,12 +15,11 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss'",
+    "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss' --fix",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/standard",
-    "lint-fix": "./node_modules/.bin/standard --fix"
+    "build": "react-scripts build",
+    "start": "react-scripts start"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -39,6 +38,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.4.0"
   }
 }

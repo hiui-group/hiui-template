@@ -12,10 +12,6 @@ export default class Field extends Component {
     advanced: false
   }
 
-  constructor (props) {
-    super(props)
-  }
-
   componentWillMount () {
     const {
       label,

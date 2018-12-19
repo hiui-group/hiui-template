@@ -5,7 +5,6 @@ import Input from '@hi-ui/hiui/es/input'
 import Button from '@hi-ui/hiui/es/button'
 import DatePicker from '@hi-ui/hiui/es/date-picker'
 import Counter from '@hi-ui/hiui/es/counter'
-import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
 import Select from '@hi-ui/hiui/es/select'
 import Radio from '@hi-ui/hiui/es/radio'
 import Modal from '@hi-ui/hiui/es/modal'
@@ -68,7 +67,7 @@ export default class Template extends Component {
     const { forms } = this.state
 
     return (
-      <div className='page page--gutter page--gutter--vertical'>
+      <div className='page page--gutter'>
         <h2 className='hi-form__title'>表单</h2>
 
         <Button type='primary' onClick={this.triggerBig.bind(this, true)}>点击预览大号表单</Button>

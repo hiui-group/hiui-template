@@ -6,10 +6,6 @@ import Input from '@hi-ui/hiui/es/input'
 import Button from '@hi-ui/hiui/es/button'
 
 export default class ConditionFilterTool extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   matchFuncs = {
     'gt': (value, compareValue) => value > compareValue,
     'gte': (value, compareValue) => value >= compareValue,

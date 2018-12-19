@@ -7,7 +7,6 @@ import Grid from '@hi-ui/hiui/es/grid'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '../../config'
-import './index.scss'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -92,7 +91,6 @@ export default class Template extends Component {
     return _columns
   }
 
-
   search () {
     const {
       s
@@ -109,7 +107,6 @@ export default class Template extends Component {
     })
   }
 
-
   render () {
     const {
       columns,
@@ -123,42 +120,38 @@ export default class Template extends Component {
     const Col = Grid.Col
 
     return (
-      <div className='page page--gutter page-basic-1'>
+      <div className='page page--gutter'>
         <Row>
-          <Col span={24}>
-            <div className="page-basic-1__form">
-              <div className="page-basic-1__form-input">
-                <Input
-                  value={value}
-                  placeholder="搜索关键词"
-                  style={{width: '200px'}}
-                  append={
-                    <Button type="line" onClick={() => this.search()}>
-                      <Icon name='search' />
-                    </Button>
-                  }
-                  onChange={e => {
-                    this.setState({s: e.target.value})
-                  }}
-                />
-              </div>
-              <div className="page-basic-1__form-actions">
-                <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type="primary">
-                    <Icon name='plus' />
-                  </Button>
-                </Link>
-                <Button type="line">
-                  <Icon name="download"/>
+          <Col span={18}>
+            <Input
+              value={value}
+              placeholder='搜索关键词'
+              style={{ width: '200px' }}
+              append={
+                <Button type='line' onClick={() => this.search()}>
+                  <Icon name='search' />
                 </Button>
-                <Button type="line">
-                  <Icon name="mark"/>
-                </Button>
-                <Button type="line">
-                  <Icon name="more"/>
-                </Button>
-              </div>
-            </div>
+              }
+              onChange={e => {
+                this.setState({ s: e.target.value })
+              }}
+            />
+          </Col>
+          <Col span={6} style={{ 'textAlign': 'right' }}>
+            <Link to='/form-unfold-group' style={{ 'marginRight': '8px' }}>
+              <Button type='primary'>
+                <Icon name='plus' />
+              </Button>
+            </Link>
+            <Button type='line'>
+              <Icon name='download' />
+            </Button>
+            <Button type='line'>
+              <Icon name='mark' />
+            </Button>
+            <Button type='line'>
+              <Icon name='more' />
+            </Button>
           </Col>
         </Row>
         <Row>

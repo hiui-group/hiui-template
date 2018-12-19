@@ -2,17 +2,17 @@
 
 .page {
   &--gutter {
-    padding: 0 $spacer-6;
+    margin: $spacer-6;
   }
 
   &--gutter--horizontal {
-    padding-left: $spacer-4;
-    padding-right: $spacer-4;
+    margin-left: $spacer-6;
+    margin-right: $spacer-6;
   }
 
   &--gutter--vertical {
-    padding-top: $spacer-4;
-    padding-bottom: $spacer-4;
+    margin-top: $spacer-4;
+    margin-bottom: $spacer-6;
   }
 
   &--toolbar--fixed {
@@ -46,8 +46,9 @@
   position: relative;
 
   fieldset {
-    border: 0;
+    margin: 0;
     padding: 0;
+    border: 0;
 
     & + fieldset {
       margin-top: 16px;
@@ -61,13 +62,10 @@
 
   &__title {
     box-sizing: border-box;
-    margin-top: 8px;
+    margin-top: 0;
     margin-bottom: 24px;
     font-size: 16px;
     font-weight: 400;
-
-    .hi-form-label-right & {
-    }
   }
 
   &__submit {

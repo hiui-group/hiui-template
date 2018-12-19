@@ -154,7 +154,7 @@ export default class Template extends Component {
                     list={this.businessOptions}
                     placeholder='请选择业务来源'
                     value={forms.column2}
-                    onChange={value => this.updateForm({ column2: value[0] && value[0].id || '全部' })}
+                    onChange={value => this.updateForm({ column2: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
                 <Field label='运输方式' width='200'>
@@ -162,7 +162,7 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
                 <Field label='运输方式1' width='200' advanced>
@@ -170,7 +170,7 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
                 <Field label='运输方式2' width='200' advanced>
@@ -178,7 +178,7 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
                 <Field label='运输方式3' width='200' advanced>
@@ -186,7 +186,7 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
                 <Field label='运输方式4' width='200' advanced>
@@ -194,7 +194,7 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
                 <Field label='运输方式5' width='200' advanced>
@@ -202,7 +202,7 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: value[0] && value[0].id || '全部' })}
+                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
               </FieldGroup>

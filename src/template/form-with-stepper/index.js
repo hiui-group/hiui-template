@@ -71,7 +71,7 @@ export default class Template extends Component {
     const { forms } = this.state
 
     return (
-      <div className='page page--gutter page--gutter--vertical'>
+      <div className='page page--gutter'>
 
         <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
           <h2 className='hi-form__title'>表单</h2>

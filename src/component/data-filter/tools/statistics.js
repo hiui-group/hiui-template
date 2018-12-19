@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 import Checkbox from '@hi-ui/hiui/es/checkbox'
 
 export default class StatisticsTool extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   statistics = {
     'sum': '求和',
     'ave': '平均值'

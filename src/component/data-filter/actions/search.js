@@ -13,14 +13,6 @@ export default class SearchAction extends Component {
     }
   }
 
-  componentDidMount () {
-    // window.addEventListener('click', this.hideInput.bind(this))
-  }
-
-  componentWillUnmount () {
-    // window.removeEventListener('click', this.hideInput.bind(this))
-  }
-
   hideInput (e) {
     if (this.searchRef && !this.searchRef.contains(e.target)) {
       this.setState({
@@ -54,21 +46,21 @@ export default class SearchAction extends Component {
     } = this.state
 
     return (
-      <div className='block-filter-action__search' ref={node => this.searchRef = node}>
+      <div className='block-filter-action__search' ref={node => (this.searchRef = node)}>
         {
           showInput &&
           <div className='block-filter-action__input'>
             <Input
               value={value}
-              placeholder="搜索关键词"
-              style={{width: '150px'}}
+              placeholder='搜索关键词'
+              style={{ width: '150px' }}
               onChange={e => {
                 this.setState({ value: e.target.value })
               }}
             />
           </div>
         }
-        <Button type="line" onClick={() => this.search()}>
+        <Button type='line' onClick={() => this.search()}>
           <Icon name='search' />
         </Button>
       </div>

@@ -86,28 +86,28 @@ export default class Template extends Component {
           <Col span={24}>
 
             <DataFilter
-              ref={node => this.dataFilter = node}
+              ref={node => (this.dataFilter = node)}
               url={`${config('host')}/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type="primary">
+                  <Button type='primary'>
                     <Icon name='plus' />
                   </Button>
                 </Link>,
-                <Button type="line" onClick={() => {
+                <Button type='line' onClick={() => {
                   console.log('------------click download')
                 }}>
                   <Icon name='download' />
                 </Button>,
-                <Button type="line" onClick={() => {
+                <Button type='line' onClick={() => {
                   console.log('------------click share')
                 }}>
                   <Icon name='mark' />
                 </Button>,
-                <Button type="line" onClick={() => {
+                <Button type='line' onClick={() => {
                   console.log('------------click more')
                 }}>
                   <Icon name='more' />

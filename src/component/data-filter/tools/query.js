@@ -4,9 +4,6 @@ import Button from '@hi-ui/hiui/es/button'
 import '../style/query.scss'
 
 export default class QueryTool extends Component {
-  constructor (props) {
-    super(props)
-  }
   static defaultProps = {
     beforeSubmit: () => true,
     canSubmit: true,

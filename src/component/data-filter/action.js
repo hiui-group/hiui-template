@@ -11,10 +11,6 @@ export default class Action extends Component {
     type: ''
   }
 
-  constructor (props) {
-    super(props)
-  }
-
   renderAction (type) {
     if (type === 'search') {
       return (

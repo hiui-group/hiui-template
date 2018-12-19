@@ -387,10 +387,10 @@ export default class DataFilter extends Component {
           {this.renderActions()}
           {this.renderTools()}
         </div>
-        <div className={classNames('block-main', {'block-main--vertical': vertical})}>
-          { 
-            activeTools.indexOf('query') > -1 && 
-            <div className="block-filter-tool__content" style={{width: verticalWidth}}>
+        <div className={classNames('block-main', { 'block-main--vertical': vertical })}>
+          {
+            activeTools.indexOf('query') > -1 &&
+            <div className='block-filter-tool__content' style={{ width: verticalWidth }}>
               {this.renderToolContent(this.mixinTool('query'))}
             </div>
           }

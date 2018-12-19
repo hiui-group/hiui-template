@@ -206,7 +206,7 @@ export default class Template extends Component {
               >
                 确定
               </Button>
-              <Button onClick={this.reset.bind(this)} type='default' appearance='line'>重置</Button>
+              <Button onClick={this.reset.bind(this)} type='default'>重置</Button>
             </Form.Item>
           </Form>
           <Table

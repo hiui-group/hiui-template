@@ -61,11 +61,12 @@ export default class Template extends Component {
 
     return (
       <div className='page page--gutter page--gutter--vertical'>
-        <Row>
-          <Col span={24}>
+        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
+          <h2 className='hi-form__title' style={{ 'width': '80px' }}>表单</h2>
 
-            <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
-              <h2>表单</h2>
+          <Row>
+            <Col span={24}>
+
               <FormItem label='ID' prop='text'>
                 <Input value={forms.text} placeholder={'请输入'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} required />
               </FormItem>
@@ -139,10 +140,10 @@ export default class Template extends Component {
                 <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
                 <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
               </FormItem>
-            </Form>
 
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </Form>
       </div>
     )
   }

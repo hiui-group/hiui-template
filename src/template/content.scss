@@ -41,3 +41,40 @@
 .hi-tree-checkbox {
   background-color: #fff;
 }
+
+.hi-form {
+  position: relative;
+
+  fieldset {
+    border: 0;
+    padding: 0;
+
+    & + fieldset {
+      margin-top: 16px;
+    }
+  }
+
+  legend {
+    margin: 0 0 16px;
+    color: $gray-darker;
+  }
+
+  &__title {
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 400;
+
+    .hi-form-label-right & {
+    }
+  }
+
+  &__submit {
+    &--fixed {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

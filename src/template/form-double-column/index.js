@@ -8,11 +8,7 @@ import Counter from '@hi-ui/hiui/es/counter'
 import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
 import Select from '@hi-ui/hiui/es/select'
 import Radio from '@hi-ui/hiui/es/radio'
-// import Icon from '@hi-ui/hiui/es/icon'
-// import Menu from '@hi-ui/hiui/es/menu'
-// import axios from 'axios'
-// import config from '../../config'
-import './index.scss'
+import Grid from '@hi-ui/hiui/es/grid'
 
 const FormItem = Form.Item
 
@@ -50,7 +46,7 @@ export default class Template extends Component {
       num: 0,
       time: new Date(),
       select: '4',
-      radio: '北京',
+      radio: 1,
       longText: ''
     })
   }
@@ -68,21 +64,19 @@ export default class Template extends Component {
   }
 
   render () {
+    const Row = Grid.Row
+    const Col = Grid.Col
     const { forms } = this.state
 
     return (
-      <div className='hi-tpl-form__doubleColumn'>
-        <div className='hi-tpl-form__title'>
-        表单
-          <div className='hi-tpl-form__btnContainer'>
-            <Button type={'primary'} onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
-          </div>
-        </div>
+      <div className='page page--gutter page--gutter--vertical'>
 
-        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90' labelPosition='top'>
-          <div className='form-container'>
-            <div className='form-left-column'>
+        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='80' labelPosition='top'>
+          <h2 className='hi-form__title'>表单</h2>
+
+          <Row>
+            <Col span={12}>
+
               <FormItem label='label' prop='text'>
                 <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
               </FormItem>
@@ -97,11 +91,12 @@ export default class Template extends Component {
                 />
               </FormItem>
               <FormItem label='long text' prop='longText'>
-                <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} type='textarea' />
+                <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '320px', height: '100px' }} type='textarea' />
               </FormItem>
 
-            </div>
-            <div className='form-right-column'>
+            </Col>
+            <Col span={12}>
+
               <FormItem label='Date' prop='Date'>
                 <DatePicker
                   type='daterange'
@@ -124,7 +119,7 @@ export default class Template extends Component {
               </FormItem>
               <FormItem label='Raido' prop='radio'>
                 <Radio
-                  list={[ '北京', '上海', '重庆', '北京', '上海', '重庆' ]}
+                  list={['北京', '上海', '重庆', '北京', '上海', '重庆']}
                   checked={forms.radio}
                   onChange={this.handleChange.bind(this, 'region', '')}
                 />
@@ -139,7 +134,13 @@ export default class Template extends Component {
                   }}
                 />
               </FormItem>
-            </div>
+
+            </Col>
+          </Row>
+
+          <div className='hi-form__submit hi-form__submit--fixed'>
+            <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
+            <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
           </div>
 
         </Form>

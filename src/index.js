@@ -120,15 +120,15 @@ const sider = {
           to: '/form-double-column'
         },
         {
-          title: '分组1',
+          title: '分组-标签',
           to: '/form-vertical-group'
         },
         {
-          title: '分组2',
+          title: '分组-区块',
           to: '/form-group'
         },
         {
-          title: '分组3',
+          title: '分组-组合',
           to: '/form-unfold-group'
         },
         {

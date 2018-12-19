@@ -8,12 +8,8 @@ import Counter from '@hi-ui/hiui/es/counter'
 import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
 import Select from '@hi-ui/hiui/es/select'
 import Radio from '@hi-ui/hiui/es/radio'
-import Icon from '@hi-ui/hiui/es/icon'
-
-import Menu from '@hi-ui/hiui/es/menu'
-import axios from 'axios'
-import config from '../../config'
-import './index.scss'
+import NavMenu from '@hi-ui/hiui/es/nav-menu'
+import Grid from '@hi-ui/hiui/es/grid'
 
 const FormItem = Form.Item
 
@@ -51,7 +47,7 @@ export default class Template extends Component {
       num: 0,
       time: new Date(),
       select: '4',
-      radio: '北京',
+      radio: 1,
       longText: ''
     })
   }
@@ -69,90 +65,100 @@ export default class Template extends Component {
   }
 
   render () {
+    const Row = Grid.Row
+    const Col = Grid.Col
     const { forms } = this.state
 
     return (
-      <div className='hi-tpl-unfold__container'>
-        <p className='hi-tpl-form__title'>表单</p>
-
-        <Menu list={this.list} mode='horizontal' />
-
-        <div className='hi-tpl-unfold__title'>
-          <Icon name='down' />
-          表单1
-        </div>
+      <div className='page page--gutter page--gutter--vertical'>
 
         <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90'>
-          <FormItem label='label' prop='text'>
-            <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
-          </FormItem>
-          <FormItem label='Date' prop='Date'>
-            <DatePicker
-              type='daterange'
-              value={forms.Date}
-              onChange={d => {
-                console.log(d)
-              }}
-            />
-          </FormItem>
-          <FormItem label='Numer' prop='num'>
-            <Counter
-              value={forms.num}
-              step='1'
-              min='0'
-              max='8'
-              onChange={val => console.log('变化后的值：', val)}
-            />
-          </FormItem>
-          <FormItem label='Time' prop='time'>
-            <TimePicker
-              type='time'
-              value={forms.time}
-              onChange={d => {
-                console.log(d)
-              }}
-            />
-          </FormItem>
-          <FormItem>
-            <Button type={'primary'} onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
-          </FormItem>
-        </Form>
+          <h2 className='hi-form__title'>表单</h2>
 
-        <div className='hi-tpl-unfold__title'>
-          <Icon name='down' />
-          表单2
-        </div>
+          <Row>
+            <Col span={24}>
 
-        <Form ref={this.form2} model={forms} rules={this.state.rules} labelWidth='80' >
-          <FormItem label='label' prop='text'>
-            <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
-          </FormItem>
-          <FormItem label='label' prop='select'>
-            <Select
-              list={this.singleList}
-              placeholder='请选择种类'
-              style={{ width: '200px' }}
-              value={forms.select}
-              onChange={item => {
-                console.log('单选结果', item)
-              }}
-            />
-          </FormItem>
-          <FormItem label='Raido' prop='radio'>
-            <Radio
-              list={[ '北京', '上海', '重庆' ]}
-              checked={forms.radio}
-              onChange={this.handleChange.bind(this, 'region', '')}
-            />
-          </FormItem>
-          <FormItem label='long text' prop='longText'>
-            <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} type='textarea' />
-          </FormItem>
-          <FormItem>
-            <Button type={'primary'} onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type='default' appearance='line' onClick={this.reset.bind(this)}>重置</Button>
-          </FormItem>
+              <NavMenu
+                onClick={this.handleClick}
+                data={this.list}
+              >
+                <div>
+
+                  <fieldset>
+                    <legend>基础信息</legend>
+
+                    <FormItem label='label' prop='text'>
+                      <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
+                    </FormItem>
+                    <FormItem label='Date' prop='Date'>
+                      <DatePicker
+                        type='daterange'
+                        value={forms.Date}
+                        onChange={d => {
+                          console.log(d)
+                        }}
+                      />
+                    </FormItem>
+                    <FormItem label='Numer' prop='num'>
+                      <Counter
+                        value={forms.num}
+                        step='1'
+                        min='0'
+                        max='8'
+                        onChange={val => console.log('变化后的值：', val)}
+                      />
+                    </FormItem>
+                    <FormItem label='Time' prop='time'>
+                      <TimePicker
+                        type='time'
+                        value={forms.time}
+                        onChange={d => {
+                          console.log(d)
+                        }}
+                      />
+                    </FormItem>
+                  </fieldset>
+
+                  <fieldset>
+                    <legend>基础信息</legend>
+
+                    <FormItem label='label' prop='text'>
+                      <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
+                    </FormItem>
+                    <FormItem label='label' prop='select'>
+                      <Select
+                        list={this.singleList}
+                        placeholder='请选择种类'
+                        style={{ width: '200px' }}
+                        value={forms.select}
+                        onChange={item => {
+                          console.log('单选结果', item)
+                        }}
+                      />
+                    </FormItem>
+                    <FormItem label='Raido' prop='radio'>
+                      <Radio
+                        list={['北京', '上海', '重庆']}
+                        checked={forms.radio}
+                        onChange={this.handleChange.bind(this, 'region', '')}
+                      />
+                    </FormItem>
+                    <FormItem label='long text' prop='longText'>
+                      <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '320px', height: '100px' }} type='textarea' />
+                    </FormItem>
+                  </fieldset>
+                </div>
+                <div>1</div>
+                <div>2</div>
+              </NavMenu>
+
+            </Col>
+          </Row>
+
+          <div className='hi-form__submit hi-form__submit--fixed'>
+            <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
+            <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
+          </div>
         </Form>
       </div>
     )

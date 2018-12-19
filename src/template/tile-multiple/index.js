@@ -216,7 +216,7 @@ export default class Template extends Component {
                 <Col span={2}>
                   <div style={{ textAlign: 'right' }}>订单类型</div>
                 </Col>
-                <Col>
+                <Col className="checkboxs-group">
                   <Checkbox all='one' onChange={list => {
                     const fieldList = this.state.field1.list
 
@@ -236,7 +236,7 @@ export default class Template extends Component {
                 <Col span={2}>
                   <div style={{ textAlign: 'right' }}>业务来源</div>
                 </Col>
-                <Col>
+                <Col className="checkboxs-group">
                   <Checkbox all='two' onChange={list => {
                     const fieldList = this.state.field2.list
 
@@ -256,7 +256,7 @@ export default class Template extends Component {
                 <Col span={2}>
                   <div style={{ textAlign: 'right' }}>运输方式</div>
                 </Col>
-                <Col>
+                <Col className="checkboxs-group">
                   <Checkbox all='three' onChange={list => {
                     const fieldList = this.state.field3.list
 

@@ -6,22 +6,6 @@
   }
   &__form-input {
     flex: auto;
-
-    button {
-      margin-left: -1px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      vertical-align: middle;
-    }
-
-    .hi-input {
-      vertical-align: middle;
-    }
-
-    .hi-input .hi-input__inner {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
   }
 
   &__form-actions {

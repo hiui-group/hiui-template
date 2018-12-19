@@ -225,12 +225,12 @@ export default class Template extends Component {
     return (
       <div className='page page--gutter page--gutter--vertical'>
         <Row gutter>
-          <Col span={3}>
+          <Col span={4}>
 
             {this.renderTree()}
 
           </Col>
-          <Col span={21}>
+          <Col span={20}>
 
             {this.renderMenuContent()}
 

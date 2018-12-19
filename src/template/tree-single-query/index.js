@@ -151,11 +151,7 @@ export default class Template extends Component {
                   onCancel: () => {
                     this.updateForm(this.initForms())
                   }
-                },
-                'filter',
-                'row-height',
-                'column',
-                'statistics'
+                }
               ]}
             >
               {this.renderTree()}

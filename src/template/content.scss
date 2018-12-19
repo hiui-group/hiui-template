@@ -26,17 +26,17 @@
 }
 
 // Patch
-.hi-radio {
-  height: auto !important;
-  line-height: initial !important;
-}
-
 .hi-radio .input-group .hi-raido-simulation-input {
   background-color: #fff;
 }
 
 .hi-checkbox .hi-checkbox-input {
   background-color: #fff;
+}
+
+.hi-radio {
+  height: auto !important;
+  line-height: initial !important;
 }
 
 .hi-tree-checkbox {
@@ -69,12 +69,10 @@
     font-weight: 400;
   }
 
-  &__submit {
-    &--fixed {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
+  &__item--fixed {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 

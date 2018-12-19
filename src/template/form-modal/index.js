@@ -74,7 +74,6 @@ export default class Template extends Component {
         <Button type='primary' onClick={this.triggerSmall.bind(this, true)}>点击预览小号表单</Button>
 
         <Modal
-          closeBtn={false}
           title='标题'
           show={this.state.bigShow}
           onConfirm={this.triggerBig.bind(this, false)}
@@ -143,7 +142,6 @@ export default class Template extends Component {
         </Modal>
 
         <Modal
-          closeBtn={false}
           title='标题'
           show={this.state.smallShow}
           onConfirm={this.triggerSmall.bind(this, false)}

@@ -8,6 +8,15 @@
   font-size: $font-size-normal;
   line-height: 24px;
 
+  &__icon {
+    margin-right: 8px;
+  }
+
+  &__expand {
+    margin-left: 4px;
+    color: #999;
+  }
+
   &--query {
     .icon {
       color: get-color($palette-hiui, '50');
@@ -55,14 +64,5 @@
     &--active {
       display: block;
     }
-  }
-
-  &__icon {
-    margin-right: 8px;
-  }
-
-  &__expand {
-    margin-left: 4px;
-    color: #999;
   }
 }

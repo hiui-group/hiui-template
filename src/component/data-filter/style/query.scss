@@ -25,7 +25,7 @@
     right: 16px;
     bottom: 16px;
     font-size: 14px;
-    color: #383E47;
+    color: #383e47;
     cursor: pointer;
 
     .hi-icon {
@@ -44,7 +44,7 @@
   &__label {
     margin-bottom: $spacer-2;
     font-size: $font-size-normal;
-    color: #383E47;
+    color: #383e47;
   }
 }
 
@@ -62,6 +62,7 @@
   &__item {
     margin-bottom: $spacer-2;
     margin-right: $spacer-2;
+
     & + & {
       margin-left: 0;
     }

@@ -7,7 +7,7 @@
 
   &__title {
     font-size: $font-size-large;
-    color: #4A4A4A;
+    color: #4a4a4a;
   }
 
   // Filter actions
@@ -36,34 +36,8 @@
   }
 }
 
-.block-main {
-  &--vertical {
-    display: flex;
-
-    .block-filter-tool__content {
-      display: flex;
-      flex-direction: column;
-      flex: none;
-      margin-right: $spacer-6;
-
-      .block-filter__form {
-        flex: auto;
-      }
-    }
-
-    .block-filter {
-      margin-bottom: 0;
-    }
-
-    .block-data {
-      flex: auto;
-    }
-  }
-}
 // Block data view
 .block-data {
-  //padding-bottom: $spacer-5;
-
   &--rowheight--small {
     .hi-table table tr {
       height: 40px;
@@ -79,6 +53,32 @@
   &--rowheight--big {
     .hi-table table tr {
       height: 60px;
+    }
+  }
+}
+
+// Block vertical view
+.block-main {
+  &--vertical {
+    display: flex;
+
+    .block-filter-tool__content {
+      display: flex;
+      flex-direction: column;
+      flex: none;
+      margin-right: $spacer-6;
+    }
+
+    .block-filter {
+      margin-bottom: 0;
+    }
+
+    .block-filter__form {
+      flex: auto;
+    }
+
+    .block-data {
+      flex: auto;
     }
   }
 }

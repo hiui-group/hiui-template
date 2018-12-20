@@ -364,9 +364,10 @@ export default class DataFilter extends Component {
       vertical,
       verticalWidth
     } = this.props
-    const tableProps = Object.assign({ ...statistics }, table, {
+    const tableProps = Object.assign({}, table, {
       columns: filteredColumns,
-      data: filteredDatas
+      data: filteredDatas,
+      advance: {...statistics}
     })
 
     if (filters.length === 0) { // 有筛选时隐藏分页

@@ -5,7 +5,7 @@ import Checkbox from '@hi-ui/hiui/es/checkbox'
 export default class StatisticsTool extends Component {
   statistics = {
     'sum': '求和',
-    'ave': '平均值'
+    'avg': '平均值'
   }
 
   parent () {

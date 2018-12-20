@@ -1,6 +1,7 @@
 const config = {
   development: {
-    host: 'http://10.236.91.196:7002'
+    // host: 'http://10.236.91.196:7002'
+    host: 'https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui'
   },
   test: {
   },

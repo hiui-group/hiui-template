@@ -26,54 +26,10 @@
 }
 
 // Patch
-.hi-radio .input-group .hi-raido-simulation-input {
-  background-color: #fff;
-}
-
-.hi-checkbox .hi-checkbox-input {
-  background-color: #fff;
-}
 
 .hi-radio {
   height: auto !important;
   line-height: initial !important;
-}
-
-.hi-tree-checkbox {
-  background-color: #fff;
-}
-
-.hi-form {
-  position: relative;
-
-  fieldset {
-    margin: 0;
-    padding: 0;
-    border: 0;
-
-    & + fieldset {
-      margin-top: 16px;
-    }
-  }
-
-  legend {
-    margin: 0 0 16px;
-    color: $gray-darker;
-  }
-
-  &__title {
-    box-sizing: border-box;
-    margin-top: 0;
-    margin-bottom: 24px;
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  &__item--fixed {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
 }
 
 .checkboxs-group {

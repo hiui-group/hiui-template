@@ -9,7 +9,6 @@ import Grid from '@hi-ui/hiui/es/grid'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import config from '../../config'
-import './index.scss'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -237,7 +236,7 @@ export default class Template extends Component {
     const Col = Grid.Col
 
     return (
-      <div className='page hi-tpl__container1 hi-tpl__container--basic'>
+      <div className='page page--gutter'>
         <Row>
           <Col span={24}>
             <NavMenu
@@ -252,8 +251,6 @@ export default class Template extends Component {
             {this.renderMenuContent()}
           </Col>
         </Row>
-
-        <div className='menu-content' />
       </div>
     )
   }

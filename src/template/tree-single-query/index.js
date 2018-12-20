@@ -82,17 +82,15 @@ export default class Template extends Component {
 
   renderTree () {
     return (
-      <div className='hi-tree__container'>
-        <Tree
-          defaultExpandAll
-          data={this.state.treeData}
-          defaultCheckedKeys={[2]}
-          onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
-          onChange={data => { console.log('Tree data:', data) }}
-          openIcon='down'
-          closeIcon='up'
-        />
-      </div>
+      <Tree
+        defaultExpandAll
+        data={this.state.treeData}
+        defaultCheckedKeys={[2]}
+        onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
+        onChange={data => { console.log('Tree data:', data) }}
+        openIcon='down'
+        closeIcon='up'
+      />
     )
   }
 
@@ -121,25 +119,17 @@ export default class Template extends Component {
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary'>
-                    <Icon name='plus' />
-                  </Button>
+                  <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' onClick={() => {
+                <Button type='line' icon='download' onClick={() => {
                   console.log('------------click download')
-                }}>
-                  <Icon name='download' />
-                </Button>,
-                <Button type='line' onClick={() => {
+                }} />,
+                <Button type='line' icon='mark' onClick={() => {
                   console.log('------------click share')
-                }}>
-                  <Icon name='mark' />
-                </Button>,
-                <Button type='line' onClick={() => {
+                }} />,
+                <Button type='line' icon='more' onClick={() => {
                   console.log('------------click more')
-                }}>
-                  <Icon name='more' />
-                </Button>
+                }} />
               ]}
               activeTools={['query']}
               tools={[

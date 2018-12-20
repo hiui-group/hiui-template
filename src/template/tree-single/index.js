@@ -145,21 +145,18 @@ export default class Template extends Component {
 
     if (activeMenu === 0) {
       return (
-        <div className='hi-table__container'>
-          <Table
-            columns={columns}
-            data={tableDatas}
-            name='sorter'
-            pagination={{
-              pageSize: pageSize,
-              total: total,
-              page: page,
-              onChange: (page, pre, size) => {
-                this.setState({ page: page }, () => this.fetchDatas())
-              }
-            }}
-          />
-        </div>
+        <Table
+          columns={columns}
+          data={tableDatas}
+          pagination={{
+            pageSize: pageSize,
+            total: total,
+            page: page,
+            onChange: (page, pre, size) => {
+              this.setState({ page: page }, () => this.fetchDatas())
+            }
+          }}
+        />
       )
     } else {
       return activeMenu
@@ -168,17 +165,15 @@ export default class Template extends Component {
 
   renderTree () {
     return (
-      <div className='hi-tree__container'>
-        <Tree
-          defaultExpandAll
-          data={this.state.treeData}
-          defaultCheckedKeys={[2]}
-          onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
-          onChange={data => { console.log('Tree data:', data) }}
-          openIcon='down'
-          closeIcon='up'
-        />
-      </div>
+      <Tree
+        defaultExpandAll
+        data={this.state.treeData}
+        defaultCheckedKeys={[2]}
+        onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
+        onChange={data => { console.log('Tree data:', data) }}
+        openIcon='down'
+        closeIcon='up'
+      />
     )
   }
 

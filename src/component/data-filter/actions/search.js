@@ -60,9 +60,7 @@ export default class SearchAction extends Component {
             />
           </div>
         }
-        <Button type='line' onClick={() => this.search()}>
-          <Icon name='search' />
-        </Button>
+        <Button type='line' icon='search' onClick={() => this.search()} />
       </div>
     )
   }

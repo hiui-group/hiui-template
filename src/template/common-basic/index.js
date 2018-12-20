@@ -81,25 +81,17 @@ export default class Template extends Component {
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary'>
-                    <Icon name='plus' />
-                  </Button>
+                  <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' onClick={() => {
+                <Button type='line' icon='download' onClick={() => {
                   console.log('------------click download')
-                }}>
-                  <Icon name='download' />
-                </Button>,
-                <Button type='line' onClick={() => {
+                }} />,
+                <Button type='line' icon='mark' onClick={() => {
                   console.log('------------click share')
-                }}>
-                  <Icon name='mark' />
-                </Button>,
-                <Button type='line' onClick={() => {
+                }} />,
+                <Button type='line' icon='more' onClick={() => {
                   console.log('------------click more')
-                }}>
-                  <Icon name='more' />
-                </Button>
+                }} />
               ]}
               tools={[
                 'filter',

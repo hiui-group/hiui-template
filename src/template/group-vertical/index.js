@@ -135,7 +135,6 @@ export default class Template extends Component {
           <Table
             columns={columns}
             data={tableDatas}
-            name='sorter'
             pagination={{
               pageSize: pageSize,
               total: total,
@@ -153,7 +152,6 @@ export default class Template extends Component {
           <Table
             columns={columns}
             data={tableDatas.slice(0).reverse()}
-            name='sorter'
             pagination={{
               pageSize: pageSize,
               total: total,
@@ -171,7 +169,6 @@ export default class Template extends Component {
           <Table
             columns={columns}
             data={tableDatas}
-            name='sorter'
             pagination={{
               pageSize: pageSize,
               total: total,
@@ -189,7 +186,6 @@ export default class Template extends Component {
           <Table
             columns={columns}
             data={tableDatas.slice(0).reverse()}
-            name='sorter'
             pagination={{
               pageSize: pageSize,
               total: total,

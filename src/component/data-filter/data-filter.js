@@ -87,6 +87,7 @@ export default class DataFilter extends Component {
       pageSize: 0,
       statistics: {}
     }
+    this.hidePopperHandel = this.hidePopper.bind(this)
   }
 
   componentDidMount () {
@@ -96,11 +97,11 @@ export default class DataFilter extends Component {
       this.props.setState({ filteredColumns })
     }
     this.fetchDatas(this.props)
-    window.addEventListener('click', this.hidePopper.bind(this))
+    window.addEventListener('click', this.hidePopperHandel)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('click', this.hidePopper.bind(this))
+    window.removeEventListener('click', this.hidePopperHandel)
   }
 
   getChildContext () {
@@ -260,7 +261,7 @@ export default class DataFilter extends Component {
                   data-type={tool.type}
                   onClick={e => {
                     this.setActiveTool(tool)
-                    this.hidePopper(e, tool.type)
+                    this.hidePopperHandel(e, tool.type)
                   }}
                 >
                   <Icon className='block-filter-tool__icon' name={tool.icon} />

@@ -1,17 +1,9 @@
-// import Basic from '../template/basic'
 export default [
-  // {
-  //   path: '/',
-  //   exact: true,
-  //   component: require('../template/basic').default,
-  //   indexRoute: {
-  //     getComponent(nextState, cb) {
-  //       require.ensure([], require => {
-  //         cb(null, require('../template/basic').default)
-  //       }, 'index')
-  //     }
-  //   }
-  // },
+  {
+    path: '/',
+    exact: true,
+    component: require('../template/query').default
+  },
   {
     path: '/common-search',
     component: require('../template/common-search').default

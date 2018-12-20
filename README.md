@@ -1,1 +1,1 @@
-# hiui-template
+# HIUI Template

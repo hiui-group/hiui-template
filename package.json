@@ -19,6 +19,7 @@
     "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss' --fix",
     "eject": "react-scripts eject",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start"
   },
   "standard": {
@@ -38,6 +39,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "standard": "^12.0.1",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended-scss": "^3.2.0",

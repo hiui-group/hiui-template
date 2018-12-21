@@ -210,7 +210,6 @@ export default class Template extends Component {
           <Table
             columns={columns}
             data={tableDatas}
-            name='sorter'
             pagination={{
               pageSize: pageSize,
               total: total,

@@ -6,8 +6,6 @@ import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 
-import '../content.scss'
-
 export default class Template extends Component {
   constructor (props) {
     super(props)

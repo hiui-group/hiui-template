@@ -4,7 +4,6 @@ import Grid from '@hi-ui/hiui/es/grid'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
-import '../content.scss'
 
 export default class Template extends Component {
   constructor (props) {

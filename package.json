@@ -1,7 +1,7 @@
 {
   "name": "hiui-template",
-  "version": "0.1.0",
-  "description": "HIUI Templates",
+  "version": "0.1.1",
+  "description": "HIUI Template",
   "scripts": {
     "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss'",
     "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss' --fix",
@@ -15,6 +15,7 @@
   "homepage": "http://hiui-group.github.io/hiui-template/",
   "dependencies": {
     "@hi-ui/classic-theme": "^1.0.0-beta.7",
+    "@hi-ui/component-kit": "^0.1.1",
     "@hi-ui/core-css": "^1.0.0",
     "@hi-ui/hiui": "^1.2.1-beta.1",
     "axios": "^0.18.0",
@@ -30,8 +31,6 @@
     "ignore": [
       "/es/",
       "/lib/",
-      "/dist/",
-      "/libs/markdown/code.js",
       "yarn.lock"
     ]
   },

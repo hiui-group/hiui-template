@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import rootRoute from './route'
 import Icon from '@hi-ui/hiui/es/icon'
 import { Hisotry, NavGroup, Logo, Genuine as Page } from '@hi-ui/classic-theme'
-import './app.scss'
+import './template/content.scss'
 
 Hisotry.createHashHistory()
 const header = (
@@ -20,25 +20,15 @@ const header = (
       </NavGroup.Item>
       <NavGroup.Item>
         <Icon name="more" className="header__operation-btns"/>
-      </NavGroup.Item>
-      <div className='header__btns'>
-        <Icon name='search' className='header__operation-btns' />
-
-        <Icon name='plus' className='header__operation-btns' />
-
-        <Icon name='share' className='header__operation-btns' />
-
-        <Icon name='more' className='header__operation-btns' />
-      </div> */}
-
+      </NavGroup.Item> */}
     </NavGroup>
   </React.Fragment>
 )
 const logo = <Logo
-  url='https://xiaomi.github.io/hiui/#/'
+  url='https://hiui-group.github.io/hiui-template/'
   logoUrl='https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
-  text='HIUI Demo'
-  title='HIUI Classic Theme Demo'
+  text='HIUI Template'
+  title='HIUI Template'
   alt='Project Logo'
 />
 const sider = {
@@ -71,10 +61,6 @@ const sider = {
           title: '工具条-固定',
           to: '/toolbar-alter'
         },
-        // {
-        //   title: '基础表格',
-        //   to: '/basic'
-        // },
         {
           title: '平铺-单选',
           to: '/tile-single'
@@ -149,7 +135,6 @@ const sider = {
 render((
   <Page
     header={header}
-    // footer={footer}
     logo={logo}
     routes={rootRoute}
     sider={sider}

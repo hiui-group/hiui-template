@@ -6,7 +6,6 @@ import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
-import '../content.scss'
 
 export default class Template extends Component {
   constructor (props) {

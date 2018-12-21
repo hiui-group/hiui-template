@@ -2,8 +2,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import rootRoute from './route'
 import Icon from '@hi-ui/hiui/es/icon'
-import { NavGroup, Logo, Genuine as Page } from '@hi-ui/classic-theme'
+import { Hisotry, NavGroup, Logo, Genuine as Page } from '@hi-ui/classic-theme'
 import './app.scss'
+
+Hisotry.createHashHistory()
 const header = (
   <React.Fragment>
     <NavGroup pos='right'>

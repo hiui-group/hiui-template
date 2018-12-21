@@ -6,7 +6,6 @@ import Button from '@hi-ui/hiui/es/button'
 import Grid from '@hi-ui/hiui/es/grid'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
-import config from '../../config'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -49,7 +48,7 @@ export default class Template extends Component {
       s
     } = this.state
 
-    axios.get(`${config('host')}/table/get-datas`, {
+    axios.get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
       params: {
         page,
         s
@@ -128,9 +127,7 @@ export default class Template extends Component {
               placeholder='搜索关键词'
               style={{ width: '200px' }}
               append={
-                <Button type='line' onClick={() => this.search()}>
-                  <Icon name='search' />
-                </Button>
+                <Button type='line' icon='search' onClick={() => this.search()} />
               }
               onChange={e => {
                 this.setState({ s: e.target.value })
@@ -139,19 +136,11 @@ export default class Template extends Component {
           </Col>
           <Col span={6} style={{ 'textAlign': 'right' }}>
             <Link to='/form-unfold-group' style={{ 'marginRight': '8px' }}>
-              <Button type='primary'>
-                <Icon name='plus' />
-              </Button>
+              <Button type='primary' icon='plus' />
             </Link>
-            <Button type='line'>
-              <Icon name='download' />
-            </Button>
-            <Button type='line'>
-              <Icon name='mark' />
-            </Button>
-            <Button type='line'>
-              <Icon name='more' />
-            </Button>
+            <Button type='line' icon='download' />
+            <Button type='line' icon='mark' />
+            <Button type='line' icon='more' />
           </Col>
         </Row>
         <Row>
@@ -159,7 +148,6 @@ export default class Template extends Component {
             <Table
               columns={columns}
               data={tableDatas}
-              name='sorter'
               pagination={{
                 pageSize: pageSize,
                 total: total,

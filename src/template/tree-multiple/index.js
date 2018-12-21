@@ -6,7 +6,6 @@ import Grid from '@hi-ui/hiui/es/grid'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
-import config from '../../config'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -65,7 +64,7 @@ export default class Template extends Component {
       page
     } = this.state
 
-    axios.get(`${config('host')}/table/get-datas`, {
+    axios.get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
       params: {
         page
       }
@@ -181,7 +180,6 @@ export default class Template extends Component {
           <Table
             columns={columns}
             data={tableDatas}
-            name='sorter'
             pagination={{
               pageSize: pageSize,
               total: total,

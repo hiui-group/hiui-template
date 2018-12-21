@@ -6,7 +6,6 @@ import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
-import config from '../../config'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -82,17 +81,15 @@ export default class Template extends Component {
 
   renderTree () {
     return (
-      <div className='hi-tree__container'>
-        <Tree
-          defaultExpandAll
-          data={this.state.treeData}
-          defaultCheckedKeys={[2]}
-          onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
-          onChange={data => { console.log('Tree data:', data) }}
-          openIcon='down'
-          closeIcon='up'
-        />
-      </div>
+      <Tree
+        defaultExpandAll
+        data={this.state.treeData}
+        defaultCheckedKeys={[2]}
+        onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
+        onChange={data => { console.log('Tree data:', data) }}
+        openIcon='down'
+        closeIcon='up'
+      />
     )
   }
 
@@ -113,7 +110,7 @@ export default class Template extends Component {
           <Col span={24}>
             <DataFilter
               ref={node => (this.dataFilter = node)}
-              url={`${config('host')}/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               vertical
@@ -121,25 +118,17 @@ export default class Template extends Component {
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary'>
-                    <Icon name='plus' />
-                  </Button>
+                  <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' onClick={() => {
+                <Button type='line' icon='download' onClick={() => {
                   console.log('------------click download')
-                }}>
-                  <Icon name='download' />
-                </Button>,
-                <Button type='line' onClick={() => {
+                }} />,
+                <Button type='line' icon='mark' onClick={() => {
                   console.log('------------click share')
-                }}>
-                  <Icon name='mark' />
-                </Button>,
-                <Button type='line' onClick={() => {
+                }} />,
+                <Button type='line' icon='more' onClick={() => {
                   console.log('------------click more')
-                }}>
-                  <Icon name='more' />
-                </Button>
+                }} />
               ]}
               activeTools={['query']}
               tools={[

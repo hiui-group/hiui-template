@@ -11,7 +11,7 @@
   }
 
   &--gutter--vertical {
-    margin-top: $spacer-4;
+    margin-top: $spacer-6;
     margin-bottom: $spacer-6;
   }
 
@@ -26,16 +26,19 @@
 }
 
 // Patch
-
 .hi-radio {
   height: auto !important;
   line-height: initial !important;
 }
 
-.checkboxs-group {
-  display: flex;
+.hi-checkbox__input {
+  background-color: #fff;
 }
 
 .hi-tree .hi-tree-bar .hi-tree-checkbox {
   background-color: #fff;
+}
+
+.checkboxs-group {
+  display: flex;
 }

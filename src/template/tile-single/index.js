@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import Grid from '@hi-ui/hiui/es/grid'
 import { Link } from 'react-router-dom'
-import { DataFilter } from '../../component/data-filter'
+import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import Radio from '@hi-ui/hiui/es/radio'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import '../content.scss'
-import config from '../../config'
 
 export default class Template extends Component {
   constructor (props) {
@@ -87,7 +86,7 @@ export default class Template extends Component {
 
             <DataFilter
               ref={node => (this.dataFilter = node)}
-              url={`${config('host')}/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[

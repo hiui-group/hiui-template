@@ -11,7 +11,6 @@ import Radio from '@hi-ui/hiui/es/radio'
 import Upload from '@hi-ui/hiui/es/upload'
 import Grid from '@hi-ui/hiui/es/grid'
 // import axios from 'axios'
-// import config from '../../config'
 
 const FormItem = Form.Item
 

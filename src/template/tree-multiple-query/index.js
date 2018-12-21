@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom'
 import Button from '@hi-ui/hiui/es/button'
 import Tree from '@hi-ui/hiui/es/tree'
 import Grid from '@hi-ui/hiui/es/grid'
-import { DataFilter } from '../../component/data-filter'
+import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
-import config from '../../config'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -141,7 +140,7 @@ export default class Template extends Component {
 
             <DataFilter
               ref={node => (this.dataFilter = node)}
-              url={`${config('host')}/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               vertical

@@ -5,8 +5,7 @@ import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
-import { DataFilter, FieldGroup, Field } from '../../component/data-filter'
-import config from '../../config'
+import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -101,7 +100,7 @@ export default class Template extends Component {
           <Col span={24}>
 
             <DataFilter
-              url={`${config('host')}/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[

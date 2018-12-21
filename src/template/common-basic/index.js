@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import Icon from '@hi-ui/hiui/es/icon'
 import Button from '@hi-ui/hiui/es/button'
 import Grid from '@hi-ui/hiui/es/grid'
-import { DataFilter } from '../../component/data-filter'
-import config from '../../config'
+import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import '../content.scss'
 
 export default class Template extends Component {
@@ -75,7 +74,7 @@ export default class Template extends Component {
           <Col span={24}>
 
             <DataFilter
-              url={`${config('host')}/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[

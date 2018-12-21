@@ -1,7 +1,18 @@
 {
   "name": "hiui-template",
   "version": "0.1.0",
-  "private": true,
+  "description": "HIUI Templates",
+  "scripts": {
+    "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss'",
+    "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss' --fix",
+    "eject": "react-scripts eject",
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start"
+  },
+  "author": "HIUI <mi-hiui@xiaomi.com>",
+  "license": "MIT",
+  "homepage": "http://hiui-group.github.io/hiui-template/",
   "dependencies": {
     "@hi-ui/classic-theme": "^1.0.0-beta.7",
     "@hi-ui/core-css": "^1.0.0",
@@ -13,14 +24,6 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"
-  },
-  "scripts": {
-    "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss'",
-    "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss' --fix",
-    "eject": "react-scripts eject",
-    "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start"
   },
   "standard": {
     "parser": "babel-eslint",

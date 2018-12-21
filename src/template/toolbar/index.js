@@ -5,7 +5,7 @@ import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
-import { DataFilter, FieldGroup, Field } from '../../component/data-filter'
+import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
 import config from '../../config'
 import '../content.scss'
 

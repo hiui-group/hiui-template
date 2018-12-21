@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Grid from '@hi-ui/hiui/es/grid'
 import { Link } from 'react-router-dom'
-import { DataFilter } from '../../component/data-filter'
+import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import Radio from '@hi-ui/hiui/es/radio'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'

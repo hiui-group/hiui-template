@@ -22,9 +22,11 @@
     "classnames": "^2.2.5",
     "node-sass": "^4.9.3",
     "postcss-loader": "^2.1.5",
-    "react": "^16.6.3",
+    "react": "^16.7.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "react-syntax-highlighter": "^10.1.2"
   },
   "standard": {
     "parser": "babel-eslint",

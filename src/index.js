@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import rootRoute from './route'
 import Icon from '@hi-ui/hiui/es/icon'
 import { Hisotry, NavGroup, Logo, Genuine as Page } from '@hi-ui/classic-theme'
+import Copy from './component/copy'
 import './template/content.scss'
 
 Hisotry.createHashHistory()
@@ -133,14 +134,17 @@ const sider = {
 }
 
 render((
-  <Page
-    header={header}
-    logo={logo}
-    routes={rootRoute}
-    sider={sider}
-    config={{
-      color: 'black',
-      type: 'card'
-    }}
-  />
+  <React.Fragment>
+    <Page
+      header={header}
+      logo={logo}
+      routes={rootRoute}
+      sider={sider}
+      config={{
+        color: 'black',
+        type: 'card'
+      }}
+    />
+    <Copy />
+  </React.Fragment>
 ), document.getElementById('app'))

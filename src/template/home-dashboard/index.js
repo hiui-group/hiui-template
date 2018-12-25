@@ -6,8 +6,6 @@ import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import Progress from '@hi-ui/hiui/es/progress'
 import echarts from 'echarts'
-import axios from 'axios'
-import config from '../../config'
 import theme from './echart-theme'
 import './index.scss'
 
@@ -22,13 +20,40 @@ function debounce (fn, wait) {
     timeout = setTimeout(fn, wait)
   }
 }
-
 class HomeDashboard extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      tableDatas: [],
-      columns: []
+
+    this.columns = [
+    { title: 'Column 1', dataIndex: 'name', key: '1'},
+    { title: 'Column 1', dataIndex: 'age', key: '2'},
+    { title: 'Column 1', dataIndex: 'address', key: '3'},
+    { 
+      title: ()=><div>自定义标题</div>, 
+      dataIndex: 'address', key: '4',
+      render(text,record,index){
+      return (
+        <div>
+            {text} --- {index} --- 自定义渲染
+        </div>
+      )
+    }},
+    {
+      title: 'Action',
+      key: 'operation',
+      width: 100,
+      render: () => <a href="javascript:;">action</a>,
+    },
+  ]
+  
+  this.tableDatas = []
+  for (let i = 0; i < 10; i++) {
+    this.tableDatas.push({
+      // key: i,
+      name: `Don Diablo ${i}`,
+      age: `${i}${i}`,
+      address: `EDC Las Vegas no. ${i}`,
+    });
     }
 
     this.echartRefs = []
@@ -63,26 +88,6 @@ class HomeDashboard extends Component {
       { title: '10月' },
       { title: '9月' }
     ]
-    this.columnMixins = {
-      column1: {
-        sorter (pre, next) {
-          return pre.column1 - next.column1
-        }
-      },
-      action: {
-        render: () => (
-          <Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
-          </Fragment>
-        )
-      }
-    }
-  }
-
-  componentWillMount () {
-    this.fetchDatas()
   }
 
   componentDidMount () {
@@ -95,54 +100,6 @@ class HomeDashboard extends Component {
 
   componentWillUnmount () {
     window.onresize = null
-  }
-
-  fetchDatas () {
-    const {
-      page,
-      s
-    } = this.state
-
-    axios.get(`${config('host')}/table/get-datas`, {
-      params: {
-        page,
-        s
-      }
-    }).then(ret => {
-      const datas = []
-
-      if (ret && ret.data.code === 200) {
-        const data = ret.data.data
-        const columns = data.columns
-        const pageInfo = data.pageInfo
-
-        data.data.map(data => {
-          datas.push(data)
-        })
-        this.setState({
-          tableDatas: datas,
-          page: pageInfo.page,
-          total: pageInfo.total,
-          pageSize: pageInfo.pageSize,
-          columns: this.setTableColumns(columns)
-        })
-      }
-    })
-  }
-
-  setTableColumns (columns) {
-    const _columns = []
-
-    columns.map(column => {
-      const key = column.key
-
-      _columns.push({
-        ...column,
-        ...this.columnMixins[key]
-      })
-    })
-
-    return _columns
   }
 
   columnarOption = {
@@ -380,9 +337,9 @@ class HomeDashboard extends Component {
             <div className='content-box table'>
               <div className='table-title'>Title</div>
               <Table
-                columns={this.state.columns}
-                data={this.state.tableDatas}
-                name='sorter'
+                columns={this.columns}
+                data={this.tableDatas}
+                name='dashborad-table'
               />
             </div>
           </div>

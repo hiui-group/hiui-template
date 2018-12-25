@@ -1,0 +1,59 @@
+.content {
+  .workbench-container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .workbench-header {
+    margin-bottom: 12px;
+    line-height: 60px;
+    
+    .user-icon {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      margin: 0 20px 0 10px;;
+      background: #FFFFFF;
+      border: 1px solid #E0E1E2;
+      border-radius: 50%;
+      text-align: center;
+    }
+  }
+
+  .todo, .schedule, .project {
+    margin-right: 10px;
+    padding: 20px;
+    background-color: #FFFFFF;
+  }
+
+  .todo, .schedule {
+    height: 400px;
+  }
+
+  .todo {
+    height: 400px;
+    .todo-content {
+      padding: 15px 0;
+      .todo-item {
+        background-color: #F9FAFC;
+        margin: 10px 0; 
+        padding: 0 10px 0 15px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  .schedule {
+    .schedule-content {
+      height: 350px;
+      padding: 15px 0;
+
+    }
+
+  }
+
+  .stepper-container {
+    margin: 40px 20px;
+  }
+
+}

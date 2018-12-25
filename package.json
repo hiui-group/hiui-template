@@ -20,6 +20,8 @@
     "@hi-ui/hiui": "^1.2.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "echarts": "^4.2.0-rc.2",
+    "echarts-for-react": "^2.0.15-beta.0",
     "node-sass": "^4.9.3",
     "postcss-loader": "^2.1.5",
     "react": "^16.7.0",

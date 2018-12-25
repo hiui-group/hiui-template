@@ -1,0 +1,40 @@
+.content {
+
+  .search-box {
+    width: 450px;
+    margin: 200px auto;
+
+    .search-guide {
+      font-size: 18px;
+    }
+    .search-hot {
+      margin-right: 15px; 
+      cursor: pointer;
+    }
+  }
+
+  .tab-box {
+    max-width: 1100px;
+    margin: 0 auto;
+    .tab-content {
+      padding-top: 20px;
+      .tab-item {
+        width: 200px;
+        padding: 13px 26px;
+        background: #FFFFFF;
+        border: 1px solid #E0E1E2;
+        cursor: pointer;
+
+        .title {
+          font-size: 16px;
+          color: #383E47;
+        }
+
+        .detail {
+          font-size: 14px;
+          color: #82868C;
+        }
+      }
+    }
+  }
+}

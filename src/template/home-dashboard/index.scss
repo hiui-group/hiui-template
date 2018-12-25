@@ -1,0 +1,111 @@
+.content {
+  height: 100%;
+  background-color: #f6f6f6;
+  color: #4A4A4A; 
+  overflow: hidden;
+
+  .dashboard-container {
+    max-width: 1600px;
+    min-width: 100%;
+    margin: 0 auto;
+  }
+
+  .action-button {
+    color: #538aef;
+    cursor: pointer;
+}
+
+  .dashboard-title {
+    font-size: 16px;
+  }
+
+  .content-box {
+    margin-bottom: 14px;
+  }
+
+  .tab {
+    display: flex;
+    justify-content: flex-start;
+    margin: 24px 0 16px 10px;
+
+    .tab-item {
+      margin-right: 25px;
+      padding: 7px 30px;
+      border-radius: 18px;
+      font-size: 13px;
+      cursor: pointer;
+      
+      &.active {
+        background: #E88956;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .card {
+    margin-right: -4px;
+
+    .card-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 125px;
+      margin-right: 4px;
+      background: #ffffff;
+
+      .amount {
+        margin: 30px 0 20px 0;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .name {
+        color: #82868C;
+      }
+    }
+  }
+
+  .chart {
+    margin-right: -7px;
+    
+    .chart-item {
+      height: 365px;
+      box-sizing: border-box;
+      padding: 25px;
+      background: #ffffff;
+      margin-right: 7px;
+
+      .chart-item-header {
+        display: flex;
+        justify-content: space-between;
+        margin-top: -10px;
+
+        .filter {
+          display: flex;
+        }
+      }
+
+      .chart-item-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 90%;
+      }
+    }
+
+    &.small .chart-item {
+      height: 280px;
+    }
+  }
+
+  .table {
+    padding: 25px;
+    background: #ffffff;
+
+    .table-title {
+      margin-bottom: 15px;
+    }
+  }
+
+}

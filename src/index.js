@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import rootRoute from './route'
 import Icon from '@hi-ui/hiui/es/icon'
 import { Hisotry, NavGroup, Logo, Genuine as Page } from '@hi-ui/classic-theme'
+import Copy from './component/copy'
 import './template/content.scss'
 
 Hisotry.createHashHistory()
@@ -128,19 +129,44 @@ const sider = {
           to: '/form-modal'
         }
       ]
+    },
+    {
+      title: '首页模板',
+      icon: <Icon name='home' />,
+      children: [
+        {
+          title: '仪表盘',
+          to: '/home-dashboard'
+        },
+        {
+          title: '工作台',
+          to: '/home-workbench'
+        },
+        {
+          title: '门户',
+          to: '/home-portal'
+        },
+        {
+          title: '搜索',
+          to: '/home-search'
+        }
+      ]
     }
   ]
 }
 
 render((
-  <Page
-    header={header}
-    logo={logo}
-    routes={rootRoute}
-    sider={sider}
-    config={{
-      color: 'black',
-      type: 'card'
-    }}
-  />
+  <React.Fragment>
+    <Page
+      header={header}
+      logo={logo}
+      routes={rootRoute}
+      sider={sider}
+      config={{
+        color: 'black',
+        type: 'card'
+      }}
+    />
+    <Copy />
+  </React.Fragment>
 ), document.getElementById('app'))

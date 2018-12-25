@@ -91,5 +91,21 @@ export default [
   {
     path: '/form-modal',
     component: require('../template/form-modal').default
+  },
+  {
+    path: '/home-dashboard',
+    component: require('../template/home-dashboard').default
+  },
+  {
+    path: '/home-workbench',
+    component: require('../template/home-workbench').default
+  },
+  {
+    path: '/home-portal',
+    component: require('../template/home-portal').default
+  },
+  {
+    path: '/home-search',
+    component: require('../template/home-search').default
   }
 ]

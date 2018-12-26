@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import ReactEcharts from 'echarts-for-react'
 import Grid from '@hi-ui/hiui/es/grid'
 import Dropdown from '@hi-ui/hiui/es/dropdown'
 import Table from '@hi-ui/hiui/es/table'
-import Icon from '@hi-ui/hiui/es/icon'
 import Progress from '@hi-ui/hiui/es/progress'
 import echarts from 'echarts'
 import theme from './echart-theme'
@@ -14,54 +13,52 @@ const { Row, Col } = Grid
 
 // 防抖处理
 function debounce (fn, wait) {
-  var timeout = null
+  let timeout = null
   return function () {
     if (timeout !== null) clearTimeout(timeout)
     timeout = setTimeout(fn, wait)
   }
 }
+
 class HomeDashboard extends Component {
   constructor (props) {
     super(props)
 
     this.columns = [
-    { title: 'Column 1', dataIndex: 'name', key: '1'},
-    { title: 'Column 1', dataIndex: 'age', key: '2'},
-    { title: 'Column 1', dataIndex: 'address', key: '3'},
-    { 
-      title: ()=><div>自定义标题</div>, 
-      dataIndex: 'address', key: '4',
-      render(text,record,index){
-      return (
-        <div>
-            {text} --- {index} --- 自定义渲染
-        </div>
-      )
-    }},
-    {
-      title: 'Action',
-      key: 'operation',
-      width: 100,
-      render: () => <a href="javascript:;">action</a>,
-    },
-  ]
-  
-  this.tableDatas = []
-  for (let i = 0; i < 10; i++) {
-    this.tableDatas.push({
-      // key: i,
-      name: `Don Diablo ${i}`,
-      age: `${i}${i}`,
-      address: `EDC Las Vegas no. ${i}`,
-    });
+      { title: 'Column 1', dataIndex: 'name', key: '1' },
+      { title: 'Column 1', dataIndex: 'age', key: '2' },
+      { title: 'Column 1', dataIndex: 'address', key: '3' },
+      {
+        title: () => <div>自定义标题</div>,
+        dataIndex: 'address', key: '4',
+        render (text, record, index) {
+          return (
+            <div>
+              {text} --- {index} --- 自定义渲染
+            </div>
+          )
+        }
+      },
+      {
+        title: 'Action',
+        key: 'operation',
+        width: 100,
+        render: () => <a href='javascript: void(0)'>action</a>
+      }
+    ]
+
+    this.tableDatas = []
+    for (let i = 0; i < 10; i++) {
+      this.tableDatas.push({
+        // key: i,
+        name: `Don Diablo ${i}`,
+        age: `${i}${i}`,
+        address: `EDC Las Vegas no. ${i}`
+      })
     }
 
     this.echartRefs = []
     this.indexData = [
-      {
-        amount: 100,
-        name: 'index name'
-      },
       {
         amount: 100,
         name: 'index name'
@@ -226,7 +223,119 @@ class HomeDashboard extends Component {
   render () {
     this.echartRefs.length = 0
     return (
-      <div className='content'>
+      <div className='page page--gutter'>
+        <Row gutter>
+          {
+            this.indexData.map((item, index) => {
+              return (
+                <Col span={4} key={index}>
+                  <div className='card'>
+                    <span className='card__amount'>{item.amount}</span>
+                    <span className='card__name'>{item.name}</span>
+                  </div>
+                </Col>
+              )
+            })
+          }
+        </Row>
+        <Row gutter>
+          <Col span={12}>
+            <div className='chart'>
+              <div className='chart__header'>
+                <h3 className='chart__title'>Title</h3>
+              </div>
+              <div className='chart__body'>
+                <ReactEcharts
+                  ref={echart => this.echartRefs.push(echart)}
+                  option={this.columnarOption}
+                  opts={{ renderer: 'svg' }}
+                  className='chart__canvas'
+                  theme='my_theme'
+                />
+              </div>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className='chart'>
+              <div className='chart__header'>
+                <h3 className='chart__title'>Title</h3>
+                <div className='chart__filter'>
+                  <Dropdown list={this.transportList} title='物流公司' onClick={(val) => console.log(val)} />
+                  <Dropdown list={this.monthList} title='本月' onClick={(val) => console.log(val)} />
+                </div>
+              </div>
+              <div className='chart__body'>
+                <ReactEcharts
+                  ref={echart => this.echartRefs.push(echart)}
+                  option={this.linearOption}
+                  opts={{ renderer: 'svg' }}
+                  className='chart__canvas'
+                  theme='my_theme'
+                />
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row gutter>
+          <Col span={8}>
+            <div className='chart'>
+              <div className='chart__header'>
+                <h3 className='chart__title'>Title</h3>
+              </div>
+              <div className='chart__body'>
+                <ReactEcharts
+                  ref={echart => this.echartRefs.push(echart)}
+                  option={this.pieOption}
+                  opts={{ renderer: 'svg' }}
+                  className='chart__canvas'
+                  theme='my_theme'
+                />
+              </div>
+            </div>
+          </Col>
+          <Col span={8}>
+            <div className='chart'>
+              <div className='chart__header'>
+                <h3 className='chart__title'>Title</h3>
+              </div>
+              <div className='chart__body'>
+                <ReactEcharts
+                  ref={echart => this.echartRefs.push(echart)}
+                  option={this.linearOption}
+                  opts={{ renderer: 'svg' }}
+                  className='chart__canvas'
+                  theme='my_theme'
+                />
+              </div>
+            </div>
+          </Col>
+          <Col span={8}>
+            <div className='chart'>
+              <div className='chart__header'>
+                <h3 className='chart__title'>Risk</h3>
+              </div>
+              <div className='chart__body'>
+                <Progress percent={50} type='circle' status='error' radius={55} />
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <div className='chart'>
+              <div className='chart__header'>
+                <h3 className='chart__title'>Title</h3>
+              </div>
+              <div className='chart__body'>
+                <Table
+                  columns={this.columns}
+                  data={this.tableDatas}
+                />
+              </div>
+            </div>
+          </Col>
+        </Row>
+
         <div className='dashboard-container'>
           <div className='dashboard-title'>首页</div>
           <div className='dashboard-content'>
@@ -236,111 +345,6 @@ class HomeDashboard extends Component {
               <div className='tab-item'>标签</div>
               <div className='tab-item'>标签</div>
               <div className='tab-item'>标签</div>
-            </div>
-            <div className='content-box card'>
-              <Row>
-                {
-                  this.indexData.map((item, index) => {
-                    return (
-                      <Col span={3} key={index}>
-                        <div className='card-item'>
-                          <span className='amount'>{item.amount}</span>
-                          <span className='name'>{item.name}</span>
-                        </div>
-                      </Col>
-                    )
-                  })
-                }
-              </Row>
-            </div>
-            <div className='content-box chart'>
-              <Row>
-                <Col span={12}>
-                  <div className='chart-item columnar'>
-                    <div className='chart-item-header'>
-                      <span>Title</span>
-                      <div className='filter' />
-                    </div>
-                    <ReactEcharts
-                      ref={echart => this.echartRefs.push(echart)}
-                      option={this.columnarOption}
-                      style={{ width: '100%' }}
-                      opts={{ renderer: 'svg' }}
-                      className='react_for_echarts'
-                      theme='my_theme'
-                    />
-                  </div>
-                </Col>
-                <Col span={12}>
-                  <div className='chart-item linear'>
-                    <div className='chart-item-header'>
-                      <span>Title</span>
-                      <div className='filter'>
-                        <Dropdown list={this.transportList} title='物流公司' onClick={(val) => console.log(val)} />
-                        <Dropdown list={this.monthList} title='本月' onClick={(val) => console.log(val)} />
-                      </div>
-                    </div>
-                    <ReactEcharts
-                      ref={echart => this.echartRefs.push(echart)}
-                      option={this.linearOption}
-                      style={{ width: '100%' }}
-                      opts={{ renderer: 'svg' }}
-                      className='react_for_echarts'
-                      theme='my_theme'
-                    />
-                  </div>
-                </Col>
-              </Row>
-            </div>
-            <div className='content-box chart small'>
-              <Row>
-                <Col span={8}>
-                  <div className='chart-item pie'>
-                    <div className='chart-item-header'>Title</div>
-                    <ReactEcharts
-                      ref={echart => this.echartRefs.push(echart)}
-                      option={this.pieOption}
-                      style={{ width: '100%', height: '100%' }}
-                      opts={{ renderer: 'svg' }}
-                      className='react_for_echarts'
-                      theme='my_theme'
-                    />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className='chart-item columnar'>
-                    <div className='chart-item-header'>Title</div>
-                    <ReactEcharts
-                      ref={echart => this.echartRefs.push(echart)}
-                      option={this.linearOption}
-                      style={{ width: '100%', height: '100%' }}
-                      opts={{ renderer: 'svg' }}
-                      className='react_for_echarts'
-                      theme='my_theme'
-                    />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className='chart-item columnar'>
-                    <div className='chart-item-header'>Title</div>
-                    <div className='chart-item-content'>
-                      <span>PROJECT RISK</span>
-                      <Progress percent={50} type='circle' status='error' radius={55} />
-                      <span>Balanced</span>
-                      <span className='action-button'>Change your risk</span>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-
-            <div className='content-box table'>
-              <div className='table-title'>Title</div>
-              <Table
-                columns={this.columns}
-                data={this.tableDatas}
-                name='dashborad-table'
-              />
             </div>
           </div>
         </div>

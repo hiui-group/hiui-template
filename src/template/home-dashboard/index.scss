@@ -1,4 +1,8 @@
-.card {
+.page--dashboard {
+  background-color: #f6f6f6;
+}
+
+.info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,11 +20,10 @@
   }
 }
 
-.chart {
+.card {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  //min-height: 360px;
   padding: 24px;
   background: #ffffff;
 
@@ -59,9 +62,14 @@
   }
 }
 
-.page {
+// patch
+.layout--card .layout__body .layout__content {
+  overflow: visible !important;
+}
+
+//.page {
   //height: 100%;
-  background-color: #f6f6f6;
+  //background-color: #f6f6f6;
   //color: #4A4A4A;
   //overflow: hidden;
 
@@ -84,24 +92,24 @@
 //    margin-bottom: 14px;
 //  }
 
-  .tab {
-    display: flex;
-    justify-content: flex-start;
-    margin: 24px 0 16px 10px;
-
-    .tab-item {
-      margin-right: 25px;
-      padding: 7px 30px;
-      border-radius: 18px;
-      font-size: 13px;
-      cursor: pointer;
-      
-      &.active {
-        background: #E88956;
-        color: #ffffff;
-      }
-    }
-  }
+  //.tab {
+  //  display: flex;
+  //  justify-content: flex-start;
+  //  margin: 24px 0 16px 10px;
+  //
+  //  .tab-item {
+  //    margin-right: 25px;
+  //    padding: 7px 30px;
+  //    border-radius: 18px;
+  //    font-size: 13px;
+  //    cursor: pointer;
+  //
+  //    &.active {
+  //      background: #E88956;
+  //      color: #ffffff;
+  //    }
+  //  }
+  //}
 
   //.chart {
   //  margin-right: -7px;
@@ -145,5 +153,4 @@
   //    margin-bottom: 15px;
   //  }
   //}
-
-}
+//}

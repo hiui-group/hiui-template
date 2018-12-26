@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import ReactEcharts from 'echarts-for-react'
+import ReactEcards from 'echarts-for-react'
 import Grid from '@hi-ui/hiui/es/grid'
+import Badge from '@hi-ui/hiui/es/badge'
+import Button from '@hi-ui/hiui/es/button'
 import Dropdown from '@hi-ui/hiui/es/dropdown'
 import Table from '@hi-ui/hiui/es/table'
 import Progress from '@hi-ui/hiui/es/progress'
@@ -8,7 +10,7 @@ import echarts from 'echarts'
 import theme from './echart-theme'
 import './index.scss'
 
-echarts.registerTheme('my_theme', theme)
+echarts.registerTheme('hiui_theme', theme)
 const { Row, Col } = Grid
 
 // 防抖处理
@@ -30,7 +32,8 @@ class HomeDashboard extends Component {
       { title: 'Column 1', dataIndex: 'address', key: '3' },
       {
         title: () => <div>自定义标题</div>,
-        dataIndex: 'address', key: '4',
+        dataIndex: 'address',
+        key: '4',
         render (text, record, index) {
           return (
             <div>
@@ -43,7 +46,7 @@ class HomeDashboard extends Component {
         title: 'Action',
         key: 'operation',
         width: 100,
-        render: () => <a href='javascript: void(0)'>action</a>
+        render: () => <Button appearance='link' href='#'>action</Button>
       }
     ]
 
@@ -89,8 +92,8 @@ class HomeDashboard extends Component {
 
   componentDidMount () {
     window.onresize = debounce(() => {
-      this.echartRefs.forEach(chart => {
-        chart && chart.getEchartsInstance().resize()
+      this.echartRefs.forEach(card => {
+        card && card.getEcardsInstance().resize()
       })
     }, 50)
   }
@@ -223,15 +226,24 @@ class HomeDashboard extends Component {
   render () {
     this.echartRefs.length = 0
     return (
-      <div className='page page--gutter'>
+      <div className='page page--dashboard'>
+        <Row gutter>
+          <Col span={24}>
+            <Badge dot style={{ marginRight: '8px' }}>
+              <Button type='default'>最新报表</Button>
+            </Badge>
+            <Button type='default'>昨日报表</Button>
+            <Button type='default'>本月报表</Button>
+          </Col>
+        </Row>
         <Row gutter>
           {
             this.indexData.map((item, index) => {
               return (
                 <Col span={4} key={index}>
-                  <div className='card'>
-                    <span className='card__amount'>{item.amount}</span>
-                    <span className='card__name'>{item.name}</span>
+                  <div className='info'>
+                    <span className='info__amount'>{item.amount}</span>
+                    <span className='info__name'>{item.name}</span>
                   </div>
                 </Col>
               )
@@ -240,37 +252,37 @@ class HomeDashboard extends Component {
         </Row>
         <Row gutter>
           <Col span={12}>
-            <div className='chart'>
-              <div className='chart__header'>
-                <h3 className='chart__title'>Title</h3>
+            <div className='card'>
+              <div className='card__header'>
+                <h3 className='card__title'>Title</h3>
               </div>
-              <div className='chart__body'>
-                <ReactEcharts
+              <div className='card__body'>
+                <ReactEcards
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.columnarOption}
                   opts={{ renderer: 'svg' }}
-                  className='chart__canvas'
-                  theme='my_theme'
+                  className='card__canvas'
+                  theme='hiui_theme'
                 />
               </div>
             </div>
           </Col>
           <Col span={12}>
-            <div className='chart'>
-              <div className='chart__header'>
-                <h3 className='chart__title'>Title</h3>
-                <div className='chart__filter'>
+            <div className='card'>
+              <div className='card__header'>
+                <h3 className='card__title'>Title</h3>
+                <div className='card__filter'>
                   <Dropdown list={this.transportList} title='物流公司' onClick={(val) => console.log(val)} />
                   <Dropdown list={this.monthList} title='本月' onClick={(val) => console.log(val)} />
                 </div>
               </div>
-              <div className='chart__body'>
-                <ReactEcharts
+              <div className='card__body'>
+                <ReactEcards
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.linearOption}
                   opts={{ renderer: 'svg' }}
-                  className='chart__canvas'
-                  theme='my_theme'
+                  className='card__canvas'
+                  theme='hiui_theme'
                 />
               </div>
             </div>
@@ -278,43 +290,43 @@ class HomeDashboard extends Component {
         </Row>
         <Row gutter>
           <Col span={8}>
-            <div className='chart'>
-              <div className='chart__header'>
-                <h3 className='chart__title'>Title</h3>
+            <div className='card'>
+              <div className='card__header'>
+                <h3 className='card__title'>Title</h3>
               </div>
-              <div className='chart__body'>
-                <ReactEcharts
+              <div className='card__body'>
+                <ReactEcards
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.pieOption}
                   opts={{ renderer: 'svg' }}
-                  className='chart__canvas'
-                  theme='my_theme'
+                  className='card__canvas'
+                  theme='hiui_theme'
                 />
               </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className='chart'>
-              <div className='chart__header'>
-                <h3 className='chart__title'>Title</h3>
+            <div className='card'>
+              <div className='card__header'>
+                <h3 className='card__title'>Title</h3>
               </div>
-              <div className='chart__body'>
-                <ReactEcharts
+              <div className='card__body'>
+                <ReactEcards
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.linearOption}
                   opts={{ renderer: 'svg' }}
-                  className='chart__canvas'
-                  theme='my_theme'
+                  className='card__canvas'
+                  theme='hiui_theme'
                 />
               </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className='chart'>
-              <div className='chart__header'>
-                <h3 className='chart__title'>Risk</h3>
+            <div className='card'>
+              <div className='card__header'>
+                <h3 className='card__title'>Risk</h3>
               </div>
-              <div className='chart__body'>
+              <div className='card__body'>
                 <Progress percent={50} type='circle' status='error' radius={55} />
               </div>
             </div>
@@ -322,11 +334,11 @@ class HomeDashboard extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <div className='chart'>
-              <div className='chart__header'>
-                <h3 className='chart__title'>Title</h3>
+            <div className='card'>
+              <div className='card__header'>
+                <h3 className='card__title'>Title</h3>
               </div>
-              <div className='chart__body'>
+              <div className='card__body'>
                 <Table
                   columns={this.columns}
                   data={this.tableDatas}
@@ -335,19 +347,6 @@ class HomeDashboard extends Component {
             </div>
           </Col>
         </Row>
-
-        <div className='dashboard-container'>
-          <div className='dashboard-title'>首页</div>
-          <div className='dashboard-content'>
-            <div className='tab'>
-              <div className='tab-item active'>标签</div>
-              <div className='tab-item'>标签</div>
-              <div className='tab-item'>标签</div>
-              <div className='tab-item'>标签</div>
-              <div className='tab-item'>标签</div>
-            </div>
-          </div>
-        </div>
       </div>
     )
   }

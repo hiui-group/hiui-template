@@ -54,8 +54,8 @@ export default class Copy extends Component {
           show={showModal}
           onCancel={this.closeModal.bind(this)}
           footers={[
-            <Button type='default' onClick={this.closeModal.bind(this)}>关闭</Button>,
-            <CopyToClipboard text={code} onCopy={() => {
+            <Button type='default' key={0} onClick={this.closeModal.bind(this)}>关闭</Button>,
+            <CopyToClipboard key={1} text={code} onCopy={() => {
               handleNotificate({ type: 'success', showClose: false, autoClose: true, message: '复制成功' })
             }}>
               <Button type='primary'>复制</Button>

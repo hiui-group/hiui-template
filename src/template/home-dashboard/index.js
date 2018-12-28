@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactEcards from 'echarts-for-react'
+import ReactEcharts from 'echarts-for-react'
 import Grid from '@hi-ui/hiui/es/grid'
 import Badge from '@hi-ui/hiui/es/badge'
 import Button from '@hi-ui/hiui/es/button'
@@ -92,8 +92,8 @@ class HomeDashboard extends Component {
 
   componentDidMount () {
     window.onresize = debounce(() => {
-      this.echartRefs.forEach(card => {
-        card && card.getEcardsInstance().resize()
+      this.echartRefs.forEach(chart => {
+        chart && chart.getEchartsInstance().resize()
       })
     }, 50)
   }
@@ -257,7 +257,7 @@ class HomeDashboard extends Component {
                 <h3 className='card__title'>Title</h3>
               </div>
               <div className='card__body'>
-                <ReactEcards
+                <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.columnarOption}
                   opts={{ renderer: 'svg' }}
@@ -277,7 +277,7 @@ class HomeDashboard extends Component {
                 </div>
               </div>
               <div className='card__body'>
-                <ReactEcards
+                <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.linearOption}
                   opts={{ renderer: 'svg' }}
@@ -295,7 +295,7 @@ class HomeDashboard extends Component {
                 <h3 className='card__title'>Title</h3>
               </div>
               <div className='card__body'>
-                <ReactEcards
+                <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.pieOption}
                   opts={{ renderer: 'svg' }}
@@ -311,7 +311,7 @@ class HomeDashboard extends Component {
                 <h3 className='card__title'>Title</h3>
               </div>
               <div className='card__body'>
-                <ReactEcards
+                <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.linearOption}
                   opts={{ renderer: 'svg' }}

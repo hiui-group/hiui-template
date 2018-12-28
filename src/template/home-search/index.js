@@ -22,7 +22,7 @@ class HomeSearch extends Component {
     let tabList = []
     for (let i = 0; i < 4; i++) {
       tabList.push(
-        <Col key={i}>
+        <Col key={i} span={6}>
           <div className='tab-item'>
             <div className='title'>标题</div>
             <p className='detail'>功能简介</p>
@@ -35,15 +35,18 @@ class HomeSearch extends Component {
 
   render () {
     return (
-      <div className='content'>
+      <div className='page page--search'>
         <div className='search-box'>
           <Row justify='center'>
-            <Col><span className='search-guide'>Sologn引导文案</span></Col>
+            <h3 className='search-guide'>Sologn引导文案</h3>
           </Row>
           <Row>
             <Col>
-              <Input placeholder='Search' style={{ width: '400px' }} />
-              <Button><Icon name='search' style={{ color: '#4284F5' }} /></Button>
+              <Input
+                style={{ width: '450px' }}
+                append={<Button type='primary'><Icon name='search' /></Button>}
+                placeholder='Search'
+              />
             </Col>
           </Row>
           <Row>
@@ -62,7 +65,7 @@ class HomeSearch extends Component {
             data={this.data1}
           />
           <div className='tab-content'>
-            <Row justify='space-between'>{this.renderTab()}</Row>
+            <Row gutter justify='space-between'>{this.renderTab()}</Row>
           </div>
         </div>
       </div>

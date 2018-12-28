@@ -4,20 +4,35 @@ import Input from '@hi-ui/hiui/es/input'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import Badge from '@hi-ui/hiui/es/badge'
+import Popover from '@hi-ui/hiui/es/popover'
+import Modal from '@hi-ui/hiui/es/modal'
 import './index.scss'
 
 const { Row, Col } = Grid
 
 class HomePortal extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showShortcutModal: false,
+      showBusinessModal: false
+    }
+  }
+
   renderShortcut () {
     let shortcutList = []
     for (let i = 0; i < 3; i++) {
       shortcutList.push(
-        <Col key={i}>
-          <div className='shortcut-item'>
-            <div className='title'>AppTitle</div>
-            <p className='detail'>Application discription inscribed user，Scene and usage…</p>
-            <span>use <Icon name='right' /></span>
+        <Col key={i} span={8}>
+          <div className='shortcut'>
+            <h4>AppTitle</h4>
+            <p>Application discription inscribed user，Scene and usage…</p>
+            <Button
+              size='small'
+              onClick={() => { this.setState({ showShortcutModal: true }) }}
+            >
+              use <Icon name='right' />
+            </Button>
           </div>
         </Col>
       )
@@ -29,21 +44,27 @@ class HomePortal extends Component {
     let businessList = []
     for (let i = 0; i < 6; i++) {
       businessList.push(
-        <div className='business-item' key={i}>
+        <div className='business--item' key={i}>
           <Row justify='space-between'>
             <Col>
-              <span className={(i % 2) ? 'title success' : ' title error'}>事务标题</span>
+              <span className={(i % 2) ? 'business--item__title success' : ' business--item__title error'}>事务标题</span>
             </Col>
             <Col>
-              <span className='time'>2018-10-21</span>
+              <span className='business--item__time'>2018-10-21</span>
             </Col>
           </Row>
           <Row justify='space-between'>
             <Col>
-              <div className='detail'>事务具体内容</div>
+              <div className='business--item__detail'>事务具体内容</div>
             </Col>
             <Col>
-              <span className='action-button'>action</span>
+              <Button
+                type='line'
+                size='small'
+                onClick={() => { this.setState({ showBusinessModal: true }) }}
+              >
+                查看详情
+              </Button>
             </Col>
           </Row>
         </div>
@@ -54,40 +75,69 @@ class HomePortal extends Component {
 
   render () {
     return (
-      <div className='content'>
-        <div className='portal-container'>
-          <div className='portal-header'>
-            <Row justify='space-between'>
-              <Col>
-                <Input placeholder='Search' style={{ width: '250px' }} />
-                <Button><Icon name='search' style={{ color: '#4284F5' }} /></Button>
-              </Col>
-              <Col>
-                <Badge dot>
-                  <Icon name='prompt' style={{ fontSize: '20px' }} />
-                </Badge>
-                <span> 消息中心（1）</span>
-              </Col>
-            </Row>
-          </div>
-          <div className='portal-content'>
-            <div className='portal-content-box shortcut'>
-              <div className='shortcut-header'>
-                <Icon name='menu' style={{ fontSize: '28px' }} />
-                <span className='title'>快捷访问</span>
+      <div className='page page--portal'>
+        <div className='portal--container'>
+          <Row justify='space-between'>
+            <Col>
+              <Input
+                style={{ width: '250px' }}
+                append={<Button type='primary'><Icon name='search' /></Button>}
+                placeholder='Search'
+              />
+            </Col>
+            <Col>
+              <Badge dot>
+                <Icon name='prompt' style={{ fontSize: '20px' }} />
+              </Badge>
+              <Popover content={'你有99条新消息'} placement='bottom' trigger='hover' style={{ margin: '10px 10px' }}>
+                <span> 消息中心</span>
+              </Popover>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <div className='portal--item__header'>
+                <Icon name='menu' style={{ fontSize: '28px', marginRight: '12px' }} />
+                <span>快捷访问</span>
               </div>
-              <div className='shortcut-content'>
-                <Row justify='space-between'>{this.renderShortcut()}</Row>
+              <Row gutter justify='space-between'>
+                {this.renderShortcut()}
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <div className='portal--item__header'>
+                <Icon name='time' style={{ fontSize: '28px', marginRight: '12px' }} />
+                <span className='title'>待办事务</span>
               </div>
-            </div>
-            <div className='portal-content-box business'>
-              <div className='business-header'>
-                <Icon name='time' style={{ fontSize: '28px' }} />
-                <span className='title'>代办事务</span>
-              </div>
-              <div className='business-content'>{this.renderBusiness()}</div>
-            </div>
-          </div>
+              <Row>
+                <Col span={24}>
+                  <div className='business'>{this.renderBusiness()}</div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Modal
+            size='small'
+            title='AppTitle'
+            show={this.state.showShortcutModal}
+            backDrop
+            onConfirm={() => { this.setState({ showShortcutModal: false }) }}
+            onCancel={() => { this.setState({ showShortcutModal: false }) }}
+          >
+            <p>Application discription inscribed user，Scene and usage…</p>
+          </Modal>
+          <Modal
+            size='small'
+            title='待办事务标题'
+            show={this.state.showBusinessModal}
+            backDrop
+            onConfirm={() => { this.setState({ showBusinessModal: false }) }}
+            onCancel={() => { this.setState({ showBusinessModal: false }) }}
+          >
+            <p>待办事务具体内容</p>
+          </Modal>
         </div>
       </div>
     )

@@ -1,7 +1,7 @@
 import cs from '../template/common-search'
 export default {
   routes: [
-    
+
     {
       path: '/common-search',
       component: cs

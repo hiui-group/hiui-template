@@ -138,7 +138,7 @@ export default class Template extends Component {
             </Col>
           </Row>
 
-          <div className='hi-form__item--fixed'>
+          <div className='hi-form-item--fixed'>
             <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
             <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
           </div>

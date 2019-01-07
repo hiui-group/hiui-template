@@ -2,29 +2,12 @@ import React from 'react'
 import { render } from 'react-dom'
 import rootRoute from './route'
 import Icon from '@hi-ui/hiui/es/icon'
-import { Hisotry, NavGroup, Logo, Genuine as Page } from '@hi-ui/classic-theme'
+import { History, Logo, Genuine as Page } from '@hi-ui/classic-theme'
 import Copy from './component/copy'
 import './template/content.scss'
 
-Hisotry.createHashHistory()
-const header = (
-  <React.Fragment>
-    <NavGroup pos='right'>
-      {/* <NavGroup.Item>
-        <Icon name="search" className="header__operation-btns"/>
-      </NavGroup.Item>
-      <NavGroup.Item>
-        <Icon name="plus" className="header__operation-btns"/>
-      </NavGroup.Item>
-      <NavGroup.Item>
-        <Icon name="share" className="header__operation-btns"/>
-      </NavGroup.Item>
-      <NavGroup.Item>
-        <Icon name="more" className="header__operation-btns"/>
-      </NavGroup.Item> */}
-    </NavGroup>
-  </React.Fragment>
-)
+History.createHashHistory()
+
 const logo = <Logo
   url='https://hiui-group.github.io/hiui-template/'
   logoUrl='https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
@@ -32,6 +15,11 @@ const logo = <Logo
   title='HIUI Template'
   alt='Project Logo'
 />
+
+const header = (
+  <React.Fragment />
+)
+
 const sider = {
   items: [
     {
@@ -160,7 +148,7 @@ render((
     <Page
       header={header}
       logo={logo}
-      routes={rootRoute}
+      routeConfig={rootRoute}
       sider={sider}
       config={{
         color: 'black',

@@ -100,6 +100,9 @@ export default class Template extends Component {
 
             <DataFilter
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
+              onFetched={ret => {
+                console.log('------------fetchDatas', ret)
+              }}
               params={params}
               columnMixins={this.columnMixins}
               actions={[
@@ -129,7 +132,7 @@ export default class Template extends Component {
                 }
               ]}
             >
-              <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>
+              <FieldGroup main>
                 <Field label='订单号' width='220'>
                   <Input
                     placeholder='请输入'

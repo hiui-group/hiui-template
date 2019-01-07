@@ -16,16 +16,18 @@
     }
   }
 
-  .shortcut, .business {
+  .shortcut,
+  .business {
     padding: 24px;
-    background: #FFFFFF;
-    border: 1px solid #E0E1E2;
-    color: #383E47;
+    background: #fff;
+    border: 1px solid #e0e1e2;
+    color: #383e47;
     font-size: 16px;
   }
 
   .business--item {
     margin-left: 20px;
+
     &:not(:last-child) {
       margin-bottom: 24px;
     }
@@ -41,20 +43,24 @@
         border-radius: 50%;
         content: '';
       }
+
       &.success::before {
-        background: #0DE629;
+        background: #0de629;
       }
+
       &.error::before {
-        background: #EB5252;
+        background: #eb5252;
       }
+
       &.warning::before {
-        background: #FFD738;
+        background: #ffd738;
       }
     }
 
-    &__time, &__detail {
+    &__time,
+    &__detail {
       font-size: 14px;
-      color: #82868C;
+      color: #82868c;
     }
   }
 }

@@ -10,14 +10,14 @@
 
   .user {
     line-height: 60px;
-    
+
     &__icon {
       display: inline-block;
       width: 60px;
       height: 60px;
       margin-right: 20px;
-      background: #FFFFFF;
-      border: 1px solid #E0E1E2;
+      background: #fff;
+      border: 1px solid #e0e1e2;
       border-radius: 50%;
       text-align: center;
     }
@@ -25,10 +25,10 @@
 
   .todo {
     &__item {
-      background-color: #F9FAFC;
+      background-color: #f9fafc;
       padding: 0 16px;
       line-height: 40px;
-      
+
       &:not(:last-child) {
         margin-bottom: 8px;
       }

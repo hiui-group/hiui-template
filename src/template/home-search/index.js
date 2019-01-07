@@ -24,8 +24,8 @@ class HomeSearch extends Component {
       tabList.push(
         <Col key={i} span={6}>
           <div className='tab-item'>
-            <div className='title'>标题</div>
-            <p className='detail'>功能简介</p>
+            <div className='tab-item__title'>标题</div>
+            <p className='tab-item__detail'>功能简介</p>
           </div>
         </Col>
       )

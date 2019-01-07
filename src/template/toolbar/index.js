@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import Button from '@hi-ui/hiui/es/button'
 import Input from '@hi-ui/hiui/es/input'
 import Seclet from '@hi-ui/hiui/es/select'
@@ -82,9 +83,7 @@ export default class Template extends Component {
     return true
   }
 
-  render () {
-    const Row = Grid.Row
-    const Col = Grid.Col
+  fetchDatas (args) {
     const {
       forms,
       pageSize
@@ -93,15 +92,40 @@ export default class Template extends Component {
       pageSize
     }
 
+    return axios.get('https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas', {
+      params: {
+        ...args,
+        ...params,
+        ...forms
+      }
+    }).then(ret => {
+      if (ret && ret.data.code === 200) {
+        return ret.data.data
+      }
+    })
+  }
+
+  render () {
+    const Row = Grid.Row
+    const Col = Grid.Col
+    const {
+      forms,
+      pageSize
+    } = this.state
+
     return (
       <div className='page page--gutter'>
         <Row>
           <Col span={24}>
 
             <DataFilter
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
-              params={params}
+              fetchDatas={this.fetchDatas.bind(this)}
               columnMixins={this.columnMixins}
+              table={
+                {
+                  pageSize
+                }
+              }
               actions={[
                 'search',
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
@@ -121,7 +145,6 @@ export default class Template extends Component {
               tools={[
                 {
                   type: 'query',
-                  forms,
                   beforeSubmit: this.beforeSubmit.bind(this),
                   onCancel: () => {
                     this.updateForm(this.initForms())

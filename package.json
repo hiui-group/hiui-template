@@ -17,7 +17,6 @@
     "@hi-ui/classic-theme": "^1.0.0-beta.9",
     "@hi-ui/component-kit": "^0.4.0",
     "@hi-ui/core-css": "^1.0.0",
-    "@hi-ui/hiui": "^1.3.0-beta.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "echarts": "^4.2.0-rc.2",
@@ -45,6 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@hi-ui/hiui": "^1.3.0-beta.4",
     "gh-pages": "^2.0.1",
     "standard": "^12.0.1",
     "stylelint": "^9.9.0",

@@ -1,0 +1,63 @@
+.page--dashboard {
+  background-color: #f6f6f6;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 125px;
+  background: #fff;
+
+  &__amount {
+    margin: 30px 0 20px 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  &__name {
+    color: #82868c;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 24px;
+  background: #fff;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 18px;
+  }
+
+  &__filter {
+    display: flex;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .hi-grid__col-12 & {
+      flex-basis: 300px;
+    }
+
+    .hi-grid__col-8 & {
+      flex-basis: 240px;
+    }
+  }
+
+  &__canvas {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}

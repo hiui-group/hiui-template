@@ -148,13 +148,16 @@ export default class Template extends Component {
                 </FormItem>
 
               </fieldset>
+              <fieldset>
 
+                <FormItem>
+                  <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
+                  <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
+                </FormItem>
+
+              </fieldset>
             </Col>
           </Row>
-          <FormItem>
-            <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
-          </FormItem>
         </Form>
       </div>
     )

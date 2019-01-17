@@ -83,7 +83,7 @@ export default class Template extends Component {
     return true
   }
 
-  fetchDatas(args) {
+  fetchDatas (args) {
     const {
       forms,
       pageSize

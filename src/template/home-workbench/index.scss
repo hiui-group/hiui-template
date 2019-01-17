@@ -1,0 +1,45 @@
+.page--workbench {
+  width: 100%;
+  height: 100%;
+  background-color: #f6f6f6;
+
+  .workbench--container {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .user {
+    line-height: 60px;
+
+    &__icon {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      margin-right: 20px;
+      background: #fff;
+      border: 1px solid #e0e1e2;
+      border-radius: 50%;
+      text-align: center;
+    }
+  }
+
+  .todo {
+    &__item {
+      background-color: #f9fafc;
+      padding: 0 16px;
+      line-height: 40px;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .schedule {
+    height: 336px;
+  }
+
+  .approval {
+    padding: 40px;
+  }
+}

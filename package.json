@@ -44,7 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@hi-ui/hiui": "^1.3.0-beta.4",
+    "@hi-ui/hiui": "^1.3.0",
     "gh-pages": "^2.0.1",
     "standard": "^12.0.1",
     "stylelint": "^9.9.0",

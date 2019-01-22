@@ -143,10 +143,6 @@ export default [
           routes={
             [
               {
-                path: '/',
-                component: require('../template/common-search').default
-              },
-              {
                 path: '/common-search',
                 component: require('../template/common-search').default
               },
@@ -249,6 +245,10 @@ export default [
               {
                 path: '/home-search',
                 component: require('../template/home-search').default
+              },
+              {
+                path: '/',
+                component: require('../template/common-search').default
               }
             ]
           }

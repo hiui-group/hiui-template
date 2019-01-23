@@ -129,15 +129,8 @@ export default class Template extends Component {
 
                 <FormItem label='Picture' prop='radio'>
                   <Upload
-                    uploadType='photo'
-                    uploadAction='http://10.236.94.247:3005/jvid'
-                    headers={{ 'Content-type': 'application/x-www-form-urlencoded', name: 'mi' }}
-                    onUploadSuccess={res => {
-                      console.log(res, 'success callback')
-                    }}
-                    onDeleteSuccess={res => {
-                      console.log(res, 'normal delete callback')
-                    }}
+                    type='photo'
+                    uploadAction='http://127.0.0.1:8000'
                     param={{ id: 'uid', channel: 'youpin' }}
                     name={'files[]'}
                   />

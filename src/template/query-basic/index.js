@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '@hi-ui/hiui/es/button'
 import Input from '@hi-ui/hiui/es/input'
+import DatePicker from '@hi-ui/hiui/es/date-picker'
 import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
@@ -56,7 +57,8 @@ export default class Template extends Component {
       page: 1,
       tableDatas: [],
       columns: [],
-      forms: this.initForms()
+      forms: this.initForms(),
+      _date: new Date()
     }
   }
 
@@ -143,12 +145,10 @@ export default class Template extends Component {
                   />
                 </Field>
                 <Field label='业务来源' width='200'>
-                  <Seclet
-                    list={this.businessOptions}
-                    placeholder='请选择业务来源'
-                    value={forms.column2}
-                    onChange={value => this.updateForm({ column2: (value[0] && value[0].id) || '全部' })}
-                  />
+                  <DatePicker onChange={(d) => {
+                    console.log('选择月份', d)
+                    // this.setState({_date: d})
+                  }}/>
                 </Field>
                 <Field label='运输方式' width='200'>
                   <Seclet

@@ -1,6 +1,6 @@
 {
   "name": "hiui-template",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "HIUI Template",
   "scripts": {
     "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss'",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "homepage": "http://hiui-group.github.io/hiui-template/",
   "dependencies": {
-    "@hi-ui/classic-theme": "^1.0.2",
+    "@hi-ui/classic-theme": "^1.1.0",
     "@hi-ui/component-kit": "^0.5.2",
     "@hi-ui/core-css": "^1.0.0",
     "axios": "^0.18.0",
@@ -26,12 +26,12 @@
     "react": "^16.7.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1",
     "react-syntax-highlighter": "^10.1.2"
   },
   "devDependencies": {
     "@hi-ui/hiui": "^1.3.0",
     "gh-pages": "^2.0.1",
+    "react-scripts": "2.1.1",
     "standard": "^12.0.1",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended-scss": "^3.2.0",

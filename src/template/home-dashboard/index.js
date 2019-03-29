@@ -63,15 +63,15 @@ class HomeDashboard extends Component {
     this.echartRefs = []
     this.indexData = [
       {
-        amount: 100,
+        amount: '1,300,800',
         name: 'index name'
       },
       {
-        amount: 100,
+        amount: '34,000',
         name: 'index name'
       },
       {
-        amount: 100,
+        amount: '82',
         name: 'index name'
       }
     ]
@@ -185,7 +185,7 @@ class HomeDashboard extends Component {
     legend: {
       orient: 'vertical',
       x: 'right',
-      data: ['China', 'Europe', 'America', 'Others']
+      data: ['顺丰快递', '申通快递', '中通快递', '其它快递']
     },
     grid: {
       containLabel: true
@@ -214,26 +214,94 @@ class HomeDashboard extends Component {
           }
         },
         data: [
-          { value: 45, name: 'China' },
-          { value: 20, name: 'Europe' },
-          { value: 25, name: 'America' },
-          { value: 10, name: 'Others' }
+          { value: 45, name: '顺丰快递' },
+          { value: 20, name: '申通快递' },
+          { value: 25, name: '中通快递' },
+          { value: 10, name: '其它快递' }
         ]
       }
     ]
   }
 
+  areaOption = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            type:'line',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            areaStyle: {normal: {}},
+            data:[540,732, 1320]
+        }
+    ]
+  }
+  gaugeOption = {
+    tooltip : {
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    toolbox: {
+        feature: {
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    series: [
+        {
+            name: '完成率',
+            type: 'gauge',
+            splitNumber: 4,
+            detail: {formatter:'{value}%'},
+            data: [{value: 50}],
+            axisLine: {
+              lineStyle: {
+                width: 10
+              }
+            },
+            splitLine: {
+                length: 15
+            }
+        }
+    ]
+  }
   render () {
     this.echartRefs.length = 0
     return (
       <div className='page page--dashboard'>
         <Row gutter>
           <Col span={24}>
-            <Badge dot style={{ marginRight: '8px' }}>
-              <Button type='default'>最新报表</Button>
-            </Badge>
-            <Button type='default'>昨日报表</Button>
-            <Button type='default'>本月报表</Button>
+            <span className="top-btn">最新报表</span>
+            <span className="top-btn">昨日报表</span>
+            <span className="top-btn">本月报表</span>
           </Col>
         </Row>
         <Row gutter>
@@ -254,7 +322,7 @@ class HomeDashboard extends Component {
           <Col span={12}>
             <div className='card'>
               <div className='card__header'>
-                <h3 className='card__title'>Title</h3>
+                <span className='card__title'>快递数量</span>
               </div>
               <div className='card__body'>
                 <ReactEcharts
@@ -270,7 +338,7 @@ class HomeDashboard extends Component {
           <Col span={12}>
             <div className='card'>
               <div className='card__header'>
-                <h3 className='card__title'>Title</h3>
+                <span className='card__title'>询价下单量</span>
                 <div className='card__filter'>
                   <Dropdown list={this.transportList} title='物流公司' onClick={(val) => console.log(val)} />
                   <Dropdown list={this.monthList} title='本月' onClick={(val) => console.log(val)} />
@@ -292,7 +360,7 @@ class HomeDashboard extends Component {
           <Col span={8}>
             <div className='card'>
               <div className='card__header'>
-                <h3 className='card__title'>Title</h3>
+                <span className='card__title'>快递类别占比</span>
               </div>
               <div className='card__body'>
                 <ReactEcharts
@@ -308,12 +376,12 @@ class HomeDashboard extends Component {
           <Col span={8}>
             <div className='card'>
               <div className='card__header'>
-                <h3 className='card__title'>Title</h3>
+                <span className='card__title'>预算情况（万元）</span>
               </div>
               <div className='card__body'>
                 <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
-                  option={this.linearOption}
+                  option={this.areaOption}
                   opts={{ renderer: 'svg' }}
                   className='card__canvas'
                   theme='hiui_theme'
@@ -324,10 +392,16 @@ class HomeDashboard extends Component {
           <Col span={8}>
             <div className='card'>
               <div className='card__header'>
-                <h3 className='card__title'>Risk</h3>
+                <span className='card__title'>完成率</span>
               </div>
               <div className='card__body'>
-                <Progress percent={50} type='circle' status='error' radius={55} />
+                <ReactEcharts
+                  ref={echart => this.echartRefs.push(echart)}
+                  option={this.gaugeOption}
+                  opts={{ renderer: 'svg' }}
+                  className='card__canvas'
+                  theme='hiui_theme'
+                />
               </div>
             </div>
           </Col>
@@ -336,7 +410,7 @@ class HomeDashboard extends Component {
           <Col span={24}>
             <div className='card'>
               <div className='card__header'>
-                <h3 className='card__title'>Title</h3>
+                <span className='card__title'>列表</span>
               </div>
               <div className='card__body'>
                 <Table

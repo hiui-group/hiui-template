@@ -152,7 +152,7 @@ export default class Template extends Component {
       this.reset()
     })
   }
-
+  dataFilter = null
   render () {
     const Row = Grid.Row
     const Col = Grid.Col

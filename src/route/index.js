@@ -9,7 +9,7 @@ const logo = <Logo
   title='HIUI Template'
   alt='Project Logo'
 />
-const sider = {
+export const sider = {
   items: [
     {
       title: '表格模板',

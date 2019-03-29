@@ -60,7 +60,7 @@ export default class Template extends Component {
 
     return (
       <div className='page page--gutter'>
-        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
+        <Form model={forms} rules={this.state.rules} labelWidth='80'>
           <h2 className='hi-form__title' style={{ 'width': '80px' }}>表单</h2>
 
           <Row>

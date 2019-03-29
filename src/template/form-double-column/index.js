@@ -71,7 +71,7 @@ export default class Template extends Component {
     return (
       <div className='page page--gutter'>
 
-        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='80' labelPosition='top'>
+        <Form model={forms} rules={this.state.rules} labelWidth='80' labelPosition='top'>
           <h2 className='hi-form__title'>表单</h2>
 
           <Row>

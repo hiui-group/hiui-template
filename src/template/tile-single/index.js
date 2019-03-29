@@ -115,7 +115,7 @@ export default class Template extends Component {
             >
               <Row gutter>
                 <Col span={2}>
-                  <div style={{ textAlign: 'right' }}>订单类型</div>
+                  <div style={{ textAlign: 'right', height: 32, lineHeight: '32px' }}>订单类型</div>
                 </Col>
                 <Col span={22}>
                   <Radio
@@ -134,7 +134,7 @@ export default class Template extends Component {
               </Row>
               <Row gutter>
                 <Col span={2}>
-                  <div style={{ textAlign: 'right' }}>业务来源</div>
+                  <div style={{ textAlign: 'right', height: 32, lineHeight: '32px' }}>业务来源</div>
                 </Col>
                 <Col span={22}>
                   <Radio
@@ -153,7 +153,7 @@ export default class Template extends Component {
               </Row>
               <Row gutter>
                 <Col span={2}>
-                  <div style={{ textAlign: 'right' }}>运输方式</div>
+                  <div style={{ textAlign: 'right', height: 32, lineHeight: '32px' }}>运输方式</div>
                 </Col>
                 <Col span={22}>
                   <Radio

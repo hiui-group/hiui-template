@@ -95,13 +95,12 @@ class HomeWorkbench extends Component {
           <Row justify='space-between'>
             <Col>设备采购审批申请</Col>
             <Col>
-              <Button
-                type='line'
-                size='small'
+              <span
+                className='approval-btn'
                 onClick={() => { this.setState({ showAuditModal: true }) }}
               >
                 审批
-              </Button>
+              </span>
             </Col>
           </Row>
         </div>
@@ -127,85 +126,69 @@ class HomeWorkbench extends Component {
           <Row gutter>
             <Col span={12}>
               <div className='card'>
-                <Row>
+                <div className='card__header'>
                   <span className='card__title'>待办</span>
-                </Row>
-                <Row>
-                  <Col span={24}>
-                    {this.renderTodo()}
-                  </Col>
-                </Row>
-                <Row justify='flex-end'>
-                  <Button><Icon name='left' /></Button>
-                  <Button><Icon name='right' /></Button>
-                </Row>
+                </div>
+                <div className='card__body'>
+                  {this.renderTodo()}
+                  <div className='card__footer'>
+                    <Button><Icon name='left' /></Button>
+                    <Button><Icon name='right' /></Button>
+                  </div>
+                </div>
               </div>
             </Col>
             <Col span={12}>
               <div className='card'>
-                <Row justify='space-between'>
+                <div className='card__header'>
                   <span className='card__title'>日程</span>
-                  <Button size='small'><Icon name='plus' /> 新建日程</Button>
-                </Row>
-                <Row>
-                  <Col span={24}>
-                    <div className='schedule'>
-                      <Row justify='space-between' style={{ height: '100%' }}>
-                        <Col>
-                          <DatePicker
-                            value={new Date()}
-                            onChange={(d) => {
-                              console.log('value 为 Date 实例', DatePicker.format(d, 'YYYY-MM-DD E'))
-                            }}
-                          />
-                        </Col>
-                        <Col>
-                          <Stepper list={this.scheduleStepList} current={1} vertical />
-                        </Col>
-                      </Row>
-                    </div>
-                  </Col>
-                </Row>
+                  <span><Icon name='plus' /> 新建日程</span>
+                </div>
+                <div className='card__body'>
+                  <div className='schedule'>
+                    <DatePicker
+                      value={new Date()}
+                      onChange={(d) => {
+                        console.log('value 为 Date 实例', DatePicker.format(d, 'YYYY-MM-DD E'))
+                      }}
+                    />
+                    <Stepper list={this.scheduleStepList} current={1} vertical />
+                  </div>
+                </div>
               </div>
             </Col>
           </Row>
           <Row>
             <Col span={24}>
               <div className='card'>
-                <Row justify='space-between'>
+                <div className='card__header'>
                   <span>项目／审批流程</span>
                   <Dropdown list={this.projectList} title={this.projectList[0].title} onClick={(val) => console.log(val)} />
-                </Row>
-                <Row>
-                  <Col span={24}>
-                    <div className='approval'>
-                      <Row gutter justify='center'>
-                        <Stepper up list={this.approvalStepList} current={this.state.approvalStep} />
-                      </Row>
-                      <Row gutter justify='center'>
-                        <Button
-                          type='danger'
-                          onClick={() => { this.handleSwitchStep(false) }}
-                          disabled={this.state.approvalStep < 0}
-                        >
-                          <Icon name='close-circle-o' /> 撤销
-                        </Button>
-                        <Button
-                          type='success'
-                          onClick={() => { this.handleSwitchStep(true) }}
-                          disabled={this.state.approvalStep === (this.approvalStepList.length - 1)}
-                        >
-                          <Icon name='check-circle-o' /> 通过
-                        </Button>
-                      </Row>
-                    </div>
-                  </Col>
-                </Row>
+                </div>
+                <div className='card__body'>
+                  <Stepper up list={this.approvalStepList} current={this.state.approvalStep} />
+                  <Row gutter justify='center'>
+                    <Button
+                      type='danger'
+                      onClick={() => { this.handleSwitchStep(false) }}
+                      disabled={this.state.approvalStep < 0}
+                    >
+                      <Icon name='close-circle-o' /> 撤销
+                    </Button>
+                    <Button
+                      type='success'
+                      onClick={() => { this.handleSwitchStep(true) }}
+                      disabled={this.state.approvalStep === (this.approvalStepList.length - 1)}
+                    >
+                      <Icon name='check-circle-o' /> 通过
+                    </Button>
+                  </Row>
+                </div>
               </div>
             </Col>
           </Row>
           <Modal
-            size='small'
+            size='normal'
             title='设备采购申请'
             show={this.state.showAuditModal}
             backDrop

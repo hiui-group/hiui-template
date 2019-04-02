@@ -82,7 +82,6 @@ export default class Template extends Component {
       <div className='page page--gutter'>
         <Row>
           <Col span={24}>
-
             <DataFilter
               ref={node => (this.dataFilter = node)}
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
@@ -114,64 +113,51 @@ export default class Template extends Component {
               ]}
             >
               <Row gutter>
-                <Col span={2}>
-                  <div style={{ textAlign: 'right', height: 32, lineHeight: '32px' }}>订单类型</div>
-                </Col>
-                <Col span={22}>
-                  <Radio
-                    list={field1.list}
-                    checked={field1.checkIndex}
-                    onChange={data => {
-                      field1.checkIndex = field1.list.indexOf(data)
-                      this.setState({
-                        field1
-                      }, () => {
-                        this.updateForm({ 'column1': data })
-                      })
-                    }}
-                  />
-                </Col>
+                <div className='block-filter__label block-filter__label--radio'>订单类型</div>
+                <Radio
+                  list={field1.list}
+                  checked={field1.checkIndex}
+                  onChange={data => {
+                    field1.checkIndex = field1.list.indexOf(data)
+                    this.setState({
+                      field1
+                    }, () => {
+                      this.updateForm({ 'column1': data })
+                    })
+                  }}
+                />
               </Row>
               <Row gutter>
-                <Col span={2}>
-                  <div style={{ textAlign: 'right', height: 32, lineHeight: '32px' }}>业务来源</div>
-                </Col>
-                <Col span={22}>
-                  <Radio
-                    list={field2.list}
-                    checked={field2.checkIndex}
-                    onChange={data => {
-                      field2.checkIndex = field2.list.indexOf(data)
-                      this.setState({
-                        field2
-                      }, () => {
-                        this.updateForm({ 'column2': data })
-                      })
-                    }}
-                  />
-                </Col>
+                <div className='block-filter__label block-filter__label--radio'>业务来源...</div>
+                <Radio
+                  list={field2.list}
+                  checked={field2.checkIndex}
+                  onChange={data => {
+                    field2.checkIndex = field2.list.indexOf(data)
+                    this.setState({
+                      field2
+                    }, () => {
+                      this.updateForm({ 'column2': data })
+                    })
+                  }}
+                />
               </Row>
               <Row gutter>
-                <Col span={2}>
-                  <div style={{ textAlign: 'right', height: 32, lineHeight: '32px' }}>运输方式</div>
-                </Col>
-                <Col span={22}>
-                  <Radio
-                    list={field3.list}
-                    checked={field3.checkIndex}
-                    onChange={data => {
-                      field3.checkIndex = field3.list.indexOf(data)
-                      this.setState({
-                        field3
-                      }, () => {
-                        this.updateForm({ 'column3': data })
-                      })
-                    }}
-                  />
-                </Col>
+                <div className='block-filter__label block-filter__label--radio'>运输</div>
+                <Radio
+                  list={field3.list}
+                  checked={field3.checkIndex}
+                  onChange={data => {
+                    field3.checkIndex = field3.list.indexOf(data)
+                    this.setState({
+                      field3
+                    }, () => {
+                      this.updateForm({ 'column3': data })
+                    })
+                  }}
+                />
               </Row>
             </DataFilter>
-
           </Col>
         </Row>
       </div>

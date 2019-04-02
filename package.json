@@ -1,6 +1,6 @@
 {
   "name": "hiui-template",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "HIUI Template",
   "scripts": {
     "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss'",
@@ -15,7 +15,7 @@
   "homepage": "http://hiui-group.github.io/hiui-template/",
   "dependencies": {
     "@hi-ui/classic-theme": "^1.1.0",
-    "@hi-ui/component-kit": "^0.5.2",
+    "@hi-ui/component-kit": "^0.5.4",
     "@hi-ui/core-css": "^1.0.0",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",

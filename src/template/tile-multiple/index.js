@@ -203,9 +203,7 @@ export default class Template extends Component {
               ]}
             >
               <Row gutter>
-                <Col span={2}>
-                  <div style={{ textAlign: 'right' }}>订单类型</div>
-                </Col>
+                <div className='block-filter__label block-filter__label--checkbox'>订单类型</div>
                 <Col className='checkboxs-group'>
                   <Checkbox all='one' onChange={list => {
                     const fieldList = this.state.field1.list
@@ -223,9 +221,7 @@ export default class Template extends Component {
                 </Col>
               </Row>
               <Row gutter>
-                <Col span={2}>
-                  <div style={{ textAlign: 'right' }}>业务来源</div>
-                </Col>
+                <div className='block-filter__label block-filter__label--checkbox'>业务来源</div>
                 <Col className='checkboxs-group'>
                   <Checkbox all='two' onChange={list => {
                     const fieldList = this.state.field2.list
@@ -243,9 +239,7 @@ export default class Template extends Component {
                 </Col>
               </Row>
               <Row gutter>
-                <Col span={2}>
-                  <div style={{ textAlign: 'right' }}>运输方式</div>
-                </Col>
+                <div className='block-filter__label block-filter__label--checkbox'>运输方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox all='three' onChange={list => {
                     const fieldList = this.state.field3.list

@@ -23,6 +23,35 @@
       z-index: 12;
     }
   }
+  .block-filter__label {
+    width: 108px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0 20px 0 20px;
+    height: 32px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      right: 0;
+      width: 1px;
+      height: 14px;
+      background: rgba(216, 216, 216, 1);
+    }
+    &--radio {
+      margin-right: 20px;
+      line-height: 32px;
+    }
+    &--checkbox {
+      margin-right: 8px;
+      &::after {
+        top: 4px;
+      }
+    }
+  }
 }
 
 // Patch

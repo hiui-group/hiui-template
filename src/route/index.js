@@ -16,36 +16,8 @@ export const sider = {
       icon: <Icon name='list' />,
       children: [
         {
-          title: '通用-搜索',
-          to: '/common-search'
-        },
-        {
-          title: '通用-基础',
-          to: '/common-basic'
-        },
-        {
           title: '查询-标准',
           to: '/query'
-        },
-        {
-          title: '查询-基础',
-          to: '/query-basic'
-        },
-        {
-          title: '工具条-标准',
-          to: '/toolbar'
-        },
-        {
-          title: '工具条-固定',
-          to: '/toolbar-alter'
-        },
-        {
-          title: '平铺-单选',
-          to: '/tile-single'
-        },
-        {
-          title: '平铺-多选',
-          to: '/tile-multiple'
         },
         {
           title: '分组-横向',
@@ -54,22 +26,6 @@ export const sider = {
         {
           title: '分组-纵向',
           to: '/group-vertical'
-        },
-        {
-          title: '树形-单选',
-          to: '/tree-single'
-        },
-        {
-          title: '树形-单选-查询',
-          to: '/tree-single-query'
-        },
-        {
-          title: '树形-多选',
-          to: '/tree-multiple'
-        },
-        {
-          title: '树形-多选-查询',
-          to: '/tree-multiple-query'
         }
       ]
     },
@@ -82,20 +38,8 @@ export const sider = {
           to: '/form-basic'
         },
         {
-          title: '双列',
-          to: '/form-double-column'
-        },
-        {
-          title: '分组-标签',
-          to: '/form-vertical-group'
-        },
-        {
           title: '分组-区块',
           to: '/form-group'
-        },
-        {
-          title: '分组-组合',
-          to: '/form-unfold-group'
         },
         {
           title: '分步骤',

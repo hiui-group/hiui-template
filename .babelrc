@@ -1,24 +1,6 @@
 {
   "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": [
-            "last 2 versions",
-            "ie >= 10"
-          ]
-        },
-        "loose": true,
-        "modules": false,
-        "useBuiltIns": "usage"
-      }
-    ],
-    "stage-0",
-    "react"
-  ],
-  "plugins": [
-    "react-hot-loader/babel",
-    "transform-decorators-legacy"
+    "react-app",
+    "mobx"
   ]
 }

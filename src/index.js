@@ -5,6 +5,8 @@ import { History, Genuine as Page, NavGroup, Login } from '@hi-ui/classic-theme'
 import Icon from '@hi-ui/hiui/es/icon'
 import Copy from './component/copy'
 import './template/content.scss'
+import { inject, observer, Provider } from 'mobx-react'
+import store from './model'
 const login = {
   name: 'Mi Guest',
   icon: <span className='hi-icon icon-user' />,
@@ -29,16 +31,19 @@ const header = (
     </NavGroup>
   </React.Fragment>
 )
-
+window.store = store
 render(
-  <React.Fragment>
-    <Page
-      header={header}
-      routes={rootRoute}
-      config={{
-        color: 'black',
-        type: 'card'
-      }}
-    />
-    <Copy />
-  </React.Fragment>, document.getElementById('app'))
+  <Provider {...store}>
+    <React.Fragment>
+      <Page
+        header={header}
+        routes={rootRoute}
+        config={{
+          color: 'black',
+          type: 'card'
+        }}
+      />
+      <Copy />
+    </React.Fragment>
+
+  </Provider>, document.getElementById('app'))

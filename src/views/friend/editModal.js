@@ -21,7 +21,10 @@ class EditModal extends Component {
         title='编辑数据'
         onConfirm={async () => {
           store.UI.showEditModal = false
-          await store.handleUpdate()
+          let { data: { code } } = await store.handleUpdate()
+          if (code === 200) {
+
+          }
           store.fetch()
         }}
         onCancel={() => {

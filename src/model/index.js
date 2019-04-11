@@ -1,7 +1,5 @@
-import test from './test'
-import query from './query'
+import friend from './friend'
 
 export default {
-  test,
-  query
+  friend
 }

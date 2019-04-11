@@ -8,32 +8,35 @@ import {
 import { observer, inject } from 'mobx-react'
 const FormItem = Form.Item
 
-@inject('query')
+@inject('friend')
 @observer
 class EditModal extends Component {
   render () {
     const {
-      query: store
+      friend: store
     } = this.props
     return (
       <Modal
-        show={store.showEditModal}
+        show={store.UI.showEditModal}
         title='编辑数据'
-        onConfirm={() => {
-          store.handleUpdate()
-          store.closeEditModal()
+        onConfirm={async () => {
+          store.UI.showEditModal = false
+          await store.handleUpdate()
+          store.fetch()
         }}
-        onCancel={() => (store.closeEditModal())}
+        onCancel={() => {
+          store.UI.showEditModal = false
+        }}
       >
         <Form>
           <FormItem label='姓名'>
-            <Input value={store.currentItem.name} onChange={(e) => (store.updateCurrentItemByName('name', e.target.value))} />
+            <Input value={store.currentItem.name} onChange={(e) => (store.currentItem.name = e.target.value)} />
           </FormItem>
           <FormItem label='年龄'>
-            <Input value={store.currentItem.age} onChange={(e) => (store.updateCurrentItemByName('age', e.target.value))} />
+            <Input value={store.currentItem.age} onChange={(e) => (store.currentItem.age = e.target.value)} />
           </FormItem>
           <FormItem label='性别'>
-            <Input value={store.currentItem.sex} onChange={(e) => (store.updateCurrentItemByName('sex', e.target.value))} />
+            <Input value={store.currentItem.sex} onChange={(e) => (store.currentItem.sex = e.target.value)} />
           </FormItem>
         </Form>
       </Modal>

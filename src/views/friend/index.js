@@ -15,13 +15,13 @@ import AddModal from './addModal'
 import EditModal from './editModal'
 const FormItem = Form.Item
 
-@inject('query')
+@inject('friend')
 @observer
 class Template extends Component {
   constructor (props) {
     super(props)
     const {
-      query: store
+      friend: store
     } = props
     this.columns = [
       { dataIndex: 'name', title: '姓名' },
@@ -34,9 +34,18 @@ class Template extends Component {
             <React.Fragment>
               <Button
                 type='primary'
-                onClick={() => (store.openEditModal(id))}
+                onClick={() => {
+                  store.currentId = id
+                  store.UI.showEditModal = true
+                }}
               >编辑</Button>
-              <Button type='danger'>删除</Button>
+              <Button
+                type='danger'
+                onClick={() => {
+                  store.currentId = id
+                  store.UI.showDelConfirmModal = true
+                }}
+              >删除</Button>
             </React.Fragment>
           )
         }
@@ -46,8 +55,9 @@ class Template extends Component {
 
   render () {
     const {
-      query: store
+      friend: store
     } = this.props
+    console.log(store, 'store')
     return (
       <div className='page page--gutter'>
         <Form inline>
@@ -60,11 +70,13 @@ class Template extends Component {
             />
           </FormItem>
           <FormItem >
-            <Button onClick={() => (store.openAddModal())}>增加</Button>
+            <Button onClick={() => {
+              store.UI.showAddModal = true
+            }}>增加</Button>
           </FormItem>
         </Form>
 
-        <Modal show={store.showDelConfirmModal}>
+        <Modal show={store.UI.showDelConfirmModal}>
           确认删除吗
         </Modal>
         <AddModal />
@@ -77,7 +89,7 @@ class Template extends Component {
 
   componentDidMount () {
     const {
-      query: store
+      friend: store
     } = this.props
     store.fetch()
   }

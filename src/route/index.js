@@ -17,27 +17,7 @@ export const sider = {
       children: [
         {
           title: '查询-标准',
-          to: '/query'
-        },
-      ]
-    },
-    {
-      title: '表单模板',
-      icon: <Icon name='approve' />,
-      children: [
-        {
-          title: '单列',
-          to: '/form-basic'
-        }
-      ]
-    },
-    {
-      title: '首页模板',
-      icon: <Icon name='home' />,
-      children: [
-        {
-          title: '仪表盘',
-          to: '/home-dashboard'
+          to: '/friend'
         }
       ]
     }
@@ -55,16 +35,8 @@ export default [
           routes={
             [
               {
-                path: '/query',
-                component: require('../template/query').default
-              },
-              {
-                path: '/form-basic',
-                component: require('../template/form-basic').default
-              },
-              {
-                path: '/home-dashboard',
-                component: require('../template/home-dashboard').default
+                path: '/friend',
+                component: require('../views/friend').default
               }
             ]
           }

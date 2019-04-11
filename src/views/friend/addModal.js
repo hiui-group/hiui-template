@@ -7,31 +7,35 @@ import {
 } from '@hi-ui/hiui/es'
 import { observer, inject } from 'mobx-react'
 const FormItem = Form.Item
-@inject('query')
+@inject('friend')
 @observer
 class AddModal extends Component {
   render () {
     const {
-      query: store
+      friend: store
     } = this.props
     return (
       <Modal
-        show={store.showAddModal}
+        show={store.UI.showAddModal}
         title='增加数据'
-        onClick={() => {
-          store.handlePost()
-          store.closeAddModal()
+        onCancel={async () => {
+          store.UI.showAddModal = false
+        }}
+        onConfirm={async () => {
+          let res = await store.handlePost()
+          store.UI.showAddModal = false
+          store.fetch()
         }}
       >
         <Form>
           <FormItem label='姓名'>
-            <Input value={store.currentItem.name} onChange={(e) => (store.updateAddItemByName('name', e.target.value))} />
+            <Input value={store.tempAddItem.name} onChange={(e) => (store.tempAddItem.name = e.target.value)} />
           </FormItem>
           <FormItem label='年龄'>
-            <Input value={store.currentItem.age} onChange={(e) => (store.updateAddItemByName('age', e.target.value))} />
+            <Input value={store.tempAddItem.age} onChange={(e) => (store.tempAddItem.age = e.target.value)} />
           </FormItem>
           <FormItem label='性别'>
-            <Input value={store.currentItem.sex} onChange={(e) => (store.updateAddItemByName('sex', e.target.value))} />
+            <Input value={store.tempAddItem.sex} onChange={(e) => (store.tempAddItem.sex = e.target.value)} />
           </FormItem>
         </Form>
       </Modal>

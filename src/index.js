@@ -4,7 +4,7 @@ import rootRoute from './route'
 import { History, Genuine as Page, NavGroup, Login } from '@hi-ui/classic-theme'
 import Icon from '@hi-ui/hiui/es/icon'
 import Copy from './component/copy'
-import './template/content.scss'
+import './views/content.scss'
 import { inject, observer, Provider } from 'mobx-react'
 import store from './model'
 const login = {

@@ -1,5 +1,9 @@
 @import '@hi-ui/core-css/index.scss';
-
+.layout--card {
+  .layout__main {
+    background-color: $gray-lighter;
+  }
+}
 .page {
   &--gutter {
     padding: $spacer-6;

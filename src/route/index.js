@@ -154,6 +154,36 @@ export const sider = {
           to: '/normal-loading'
         }
       ]
+    },
+    {
+      title: '结果页模板',
+      icon: <Icon name='user' />,
+      children: [
+        {
+          title: '服务器出错',
+          to: '/result-server-error'
+        },
+        {
+          title: '暂无数据',
+          to: '/result-no-data'
+        },
+        {
+          title: '暂无权限',
+          to: '/result-no-auth'
+        },
+        {
+          title: '网络中断',
+          to: '/result-network-broken'
+        },
+        {
+          title: '成功',
+          to: '/result-success'
+        },
+        {
+          title: '失败',
+          to: '/result-failed'
+        }
+      ]
     }
   ]
 }
@@ -282,6 +312,30 @@ export default [
             {
               path: '/normal-loading',
               component: require('../template/normal-loading').default
+            },
+            {
+              path: '/result-server-error',
+              component: require('../template/result-server-error').default
+            },
+            {
+              path: '/result-no-data',
+              component: require('../template/result-no-data').default
+            },
+            {
+              path: '/result-no-auth',
+              component: require('../template/result-no-auth').default
+            },
+            {
+              path: '/result-network-broken',
+              component: require('../template/result-network-broken').default
+            },
+            {
+              path: '/result-success',
+              component: require('../template/result-success').default
+            },
+            {
+              path: '/result-failed',
+              component: require('../template/result-failed').default
             },
             {
               path: '/',

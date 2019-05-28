@@ -2,13 +2,15 @@ import React from 'react'
 import { Logo, SiderLayout } from '@hi-ui/classic-theme'
 import Icon from '@hi-ui/hiui/es/icon'
 
-const logo = <Logo
-  url='https://hiui-group.github.io/hiui-template/'
-  logoUrl='https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
-  text='HIUI Template'
-  title='HIUI Template'
-  alt='Project Logo'
-/>
+const logo = (
+  <Logo
+    url='https://hiui-group.github.io/hiui-template/'
+    logoUrl='https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
+    text='HIUI Template'
+    title='HIUI Template'
+    alt='Project Logo'
+  />
+)
 export const sider = {
   items: [
     {
@@ -128,6 +130,16 @@ export const sider = {
           to: '/home-search'
         }
       ]
+    },
+    {
+      title: '个人页模板',
+      icon: <Icon name='user' />,
+      children: [
+        {
+          title: '账号中心',
+          to: '/user-center'
+        }
+      ]
     }
   ]
 }
@@ -140,118 +152,120 @@ export default [
         <SiderLayout
           sider={sider.items}
           logo={logo}
-          routes={
-            [
-              {
-                path: '/common-search',
-                component: require('../template/common-search').default
-              },
-              {
-                path: '/common-basic',
-                component: require('../template/common-basic').default
-              },
-              {
-                path: '/query',
-                component: require('../template/query').default
-              },
-              {
-                path: '/query-basic',
-                component: require('../template/query-basic').default
-              },
-              {
-                path: '/toolbar',
-                component: require('../template/toolbar').default
-              },
-              {
-                path: '/toolbar-alter',
-                component: require('../template/toolbar-alter').default
-              },
-              {
-                path: '/basic',
-                component: require('../template/basic').default
-              },
-              {
-                path: '/group-horizontal',
-                component: require('../template/group-horizontal').default
-              },
-              {
-                path: '/group-vertical',
-                component: require('../template/group-vertical').default
-              },
-              {
-                path: '/tree-single-query',
-                component: require('../template/tree-single-query').default
-              },
-              {
-                path: '/tree-single',
-                component: require('../template/tree-single').default
-              },
-              {
-                path: '/tree-multiple-query',
-                component: require('../template/tree-multiple-query').default
-              },
-              {
-                path: '/tree-multiple',
-                component: require('../template/tree-multiple').default
-              },
-              {
-                path: '/tile-single',
-                component: require('../template/tile-single').default
-              },
-              {
-                path: '/tile-multiple',
-                component: require('../template/tile-multiple').default
-              },
-              {
-                path: '/form-group',
-                component: require('../template/form-group').default
-              },
-              {
-                path: '/form-with-stepper',
-                component: require('../template/form-with-stepper').default
-              },
-              {
-                path: '/form-unfold-group',
-                component: require('../template/form-unfold-group').default
-              },
-              {
-                path: '/form-vertical-group',
-                component: require('../template/form-vertical-group').default
-              },
-              {
-                path: '/form-double-column',
-                component: require('../template/form-double-column').default
-              },
-              {
-                path: '/form-basic',
-                component: require('../template/form-basic').default
-              },
-              {
-                path: '/form-modal',
-                component: require('../template/form-modal').default
-              },
-              {
-                path: '/home-dashboard',
-                component: require('../template/home-dashboard').default
-              },
-              {
-                path: '/home-workbench',
-                component: require('../template/home-workbench').default
-              },
-              {
-                path: '/home-portal',
-                component: require('../template/home-portal').default
-              },
-              {
-                path: '/home-search',
-                component: require('../template/home-search').default
-              },
-              {
-                path: '/',
-                component: require('../template/common-search').default
-              }
-            ]
-          }
+          routes={[
+            {
+              path: '/common-search',
+              component: require('../template/common-search').default
+            },
+            {
+              path: '/common-basic',
+              component: require('../template/common-basic').default
+            },
+            {
+              path: '/query',
+              component: require('../template/query').default
+            },
+            {
+              path: '/query-basic',
+              component: require('../template/query-basic').default
+            },
+            {
+              path: '/toolbar',
+              component: require('../template/toolbar').default
+            },
+            {
+              path: '/toolbar-alter',
+              component: require('../template/toolbar-alter').default
+            },
+            {
+              path: '/basic',
+              component: require('../template/basic').default
+            },
+            {
+              path: '/group-horizontal',
+              component: require('../template/group-horizontal').default
+            },
+            {
+              path: '/group-vertical',
+              component: require('../template/group-vertical').default
+            },
+            {
+              path: '/tree-single-query',
+              component: require('../template/tree-single-query').default
+            },
+            {
+              path: '/tree-single',
+              component: require('../template/tree-single').default
+            },
+            {
+              path: '/tree-multiple-query',
+              component: require('../template/tree-multiple-query').default
+            },
+            {
+              path: '/tree-multiple',
+              component: require('../template/tree-multiple').default
+            },
+            {
+              path: '/tile-single',
+              component: require('../template/tile-single').default
+            },
+            {
+              path: '/tile-multiple',
+              component: require('../template/tile-multiple').default
+            },
+            {
+              path: '/form-group',
+              component: require('../template/form-group').default
+            },
+            {
+              path: '/form-with-stepper',
+              component: require('../template/form-with-stepper').default
+            },
+            {
+              path: '/form-unfold-group',
+              component: require('../template/form-unfold-group').default
+            },
+            {
+              path: '/form-vertical-group',
+              component: require('../template/form-vertical-group').default
+            },
+            {
+              path: '/form-double-column',
+              component: require('../template/form-double-column').default
+            },
+            {
+              path: '/form-basic',
+              component: require('../template/form-basic').default
+            },
+            {
+              path: '/form-modal',
+              component: require('../template/form-modal').default
+            },
+            {
+              path: '/home-dashboard',
+              component: require('../template/home-dashboard').default
+            },
+            {
+              path: '/home-workbench',
+              component: require('../template/home-workbench').default
+            },
+            {
+              path: '/home-portal',
+              component: require('../template/home-portal').default
+            },
+            {
+              path: '/home-search',
+              component: require('../template/home-search').default
+            },
+            {
+              path: '/user-center',
+              component: require('../template/user-center').default
+            },
+            {
+              path: '/',
+              component: require('../template/common-search').default
+            }
+          ]}
           {...props}
         />
       )

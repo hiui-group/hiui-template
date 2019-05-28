@@ -138,6 +138,20 @@ export const sider = {
         {
           title: '账号中心',
           to: '/user-center'
+        },
+        {
+          title: '活动信息-混合',
+          to: '/user-dashboard'
+        }
+      ]
+    },
+    {
+      title: '加载页',
+      icon: <Icon name='user' />,
+      children: [
+        {
+          title: '普通',
+          to: '/normal-loading'
         }
       ]
     }
@@ -260,6 +274,14 @@ export default [
             {
               path: '/user-center',
               component: require('../template/user-center').default
+            },
+            {
+              path: '/user-dashboard',
+              component: require('../template/user-dashboard').default
+            },
+            {
+              path: '/normal-loading',
+              component: require('../template/normal-loading').default
             },
             {
               path: '/',

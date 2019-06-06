@@ -144,6 +144,10 @@ export const sider = {
         {
           title: '分组',
           to: '/detail-group'
+        },
+        {
+          title: '步骤',
+          to: '/detail-stepper'
         }
       ]
     }
@@ -280,6 +284,10 @@ export default [
               {
                 path: '/detail-group',
                 component: require('../template/detail-group').default
+              },
+              {
+                path: '/detail-stepper',
+                component: require('../template/detail-stepper').default
               }
             ]
           }

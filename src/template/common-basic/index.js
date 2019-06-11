@@ -42,7 +42,7 @@ export default class Template extends Component {
         render: () => (
           <React.Fragment>
             <Link to='/form-unfold-group'><Icon name='edit' /></Link>
-            <Icon style={{color: '#4285f4', cursor: 'pointer'}} name='close' onClick={() => {
+            <Icon style={{ color: '#4285f4', cursor: 'pointer' }} name='close' onClick={() => {
               handleNotificate({
                 type: 'success',
                 duration: 3000,

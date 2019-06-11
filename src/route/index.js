@@ -128,6 +128,36 @@ export const sider = {
           to: '/home-search'
         }
       ]
+    },
+    {
+      title: '详情模板',
+      icon: <Icon name='document' />,
+      children: [
+        {
+          title: '单列',
+          to: '/detail-basic'
+        },
+        {
+          title: '双列',
+          to: '/detail-double-column'
+        },
+        {
+          title: '分组',
+          to: '/detail-group'
+        },
+        {
+          title: '步骤',
+          to: '/detail-stepper'
+        },
+        {
+          title: '关联',
+          to: '/detail-relevance'
+        },
+        {
+          title: '卡片',
+          to: '/detail-card'
+        }
+      ]
     }
   ]
 }
@@ -248,7 +278,32 @@ export default [
               },
               {
                 path: '/',
-                component: require('../template/common-search').default
+                component: require('../template/common-search').default,
+                exact: true
+              },
+              {
+                path: '/detail-basic',
+                component: require('../template/detail-basic').default
+              },
+              {
+                path: '/detail-double-column',
+                component: require('../template/detail-double-column').default
+              },
+              {
+                path: '/detail-group',
+                component: require('../template/detail-group').default
+              },
+              {
+                path: '/detail-stepper',
+                component: require('../template/detail-stepper').default
+              },
+              {
+                path: '/detail-relevance',
+                component: require('../template/detail-relevance').default
+              },
+              {
+                path: '/detail-card',
+                component: require('../template/detail-card').default
               }
             ]
           }

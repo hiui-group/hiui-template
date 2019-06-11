@@ -20,12 +20,12 @@
       border: 1px solid #e0e1e2;
       border-radius: 50%;
       text-align: center;
-    } 
+    }
   }
 
   .todo {
     width: 100%;
-    
+
     &__item {
       background-color: #f9fafc;
       padding: 0 16px;
@@ -34,9 +34,9 @@
       &:not(:last-child) {
         margin-bottom: 8px;
       }
-      
+
       .approval-btn {
-        color: #4284f5
+        color: #4284f5;
       }
     }
   }

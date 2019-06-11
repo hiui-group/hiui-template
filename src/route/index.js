@@ -156,6 +156,28 @@ export const sider = {
       ]
     },
     {
+      title: '列表页',
+      icon: <Icon name='user' />,
+      children: [
+        {
+          title: '嵌入式',
+          to: '/list-embeded'
+        },
+        {
+          title: '信息流',
+          to: '/list-info-flow'
+        },
+        {
+          title: '任务清单',
+          to: '/list-task'
+        },
+        {
+          title: '指标百科',
+          to: '/list-indicator'
+        }
+      ]
+    },
+    {
       title: '结果页模板',
       icon: <Icon name='user' />,
       children: [
@@ -336,6 +358,22 @@ export default [
             {
               path: '/result-failed',
               component: require('../template/result-failed').default
+            },
+            {
+              path: '/list-embeded',
+              component: require('../template/list-embeded').default
+            },
+            {
+              path: '/list-info-flow',
+              component: require('../template/list-info-flow').default
+            },
+            {
+              path: '/list-task',
+              component: require('../template/list-task').default
+            },
+            {
+              path: '/list-indicator',
+              component: require('../template/list-indicator').default
             },
             {
               path: '/',

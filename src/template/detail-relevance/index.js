@@ -3,7 +3,7 @@ import '@hi-ui/hiui/es/table/style/index.css'
 import { Link } from 'react-router-dom'
 import Input from '@hi-ui/hiui/es/input'
 import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Seclet from '@hi-ui/hiui/es/select'
+import Select from '@hi-ui/hiui/es/select'
 import Button from '@hi-ui/hiui/es/button'
 import NavMenu from '@hi-ui/hiui/es/nav-menu'
 import Icon from '@hi-ui/hiui/es/icon'
@@ -258,7 +258,7 @@ class QueryBasic extends Component {
                   }} />
                 </Field>
                 <Field label='运输方式' width='200'>
-                  <Seclet
+                  <Select
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
@@ -266,7 +266,7 @@ class QueryBasic extends Component {
                   />
                 </Field>
                 <Field label='运输方式1' width='200' advanced>
-                  <Seclet
+                  <Select
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
@@ -274,7 +274,7 @@ class QueryBasic extends Component {
                   />
                 </Field>
                 <Field label='运输方式2' width='200' advanced>
-                  <Seclet
+                  <Select
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
@@ -282,7 +282,7 @@ class QueryBasic extends Component {
                   />
                 </Field>
                 <Field label='运输方式3' width='200' advanced>
-                  <Seclet
+                  <Select
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
@@ -290,7 +290,7 @@ class QueryBasic extends Component {
                   />
                 </Field>
                 <Field label='运输方式4' width='200' advanced>
-                  <Seclet
+                  <Select
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
@@ -298,7 +298,7 @@ class QueryBasic extends Component {
                   />
                 </Field>
                 <Field label='运输方式5' width='200' advanced>
-                  <Seclet
+                  <Select
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}

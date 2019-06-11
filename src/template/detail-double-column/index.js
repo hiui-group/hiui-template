@@ -3,25 +3,47 @@ import '@hi-ui/hiui/es/table/style/index.css'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
+import Loading from '@hi-ui/hiui/es/loading'
 import './index.scss'
-// import axios from 'axios'
+import axios from 'axios'
 
 export default class Template extends Component {
-  static defaultProps = {
+  state = {
     title: '小米8屏幕指纹版',
     desc: Array(3).fill({
       key: '状态',
       value: '已借出'
     }),
-    detailInfo: Array(20).fill({
-      key: '设备名称',
-      value:
-        '全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作，手持超级夜景全球首款压感屏幕指纹，快速解锁，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作 ，手持超级夜景，全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面…'
-    }),
-    otherInfo: Array(20).fill({
-      key: '创建人',
-      value: '王国强'
-    })
+    detailInfo: {},
+    otherInfo: {}
+  }
+
+  fetchOtherInfo = () => {
+    return axios
+      .get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo')
+      .then(({ data: { data: otherInfo } }) => {
+        this.setState({ otherInfo })
+      })
+  }
+
+  fetchDetailInfo = () => {
+    return axios
+      .get(
+        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo'
+      )
+      .then(({ data: { data: detailInfo } }) => {
+        this.setState({ detailInfo })
+      })
+  }
+
+  async componentDidMount () {
+    const closure = Loading.open()
+    try {
+      await this.fetchOtherInfo()
+      await this.fetchDetailInfo()
+    } finally {
+      closure.close()
+    }
   }
 
   handleBackClick = () => {}
@@ -32,11 +54,11 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, desc, detailInfo, otherInfo } = this.props
+    const { title, desc, detailInfo, otherInfo } = this.state
 
     return (
       <React.Fragment>
-        <div className='detail-double-column detail-double-column__header'>
+        <Col className='detail-double-column detail-double-column__header'>
           <Row className='row row-01' align='center'>
             <span onClick={this.handleBackClick}>
               <Icon name='left' />
@@ -74,27 +96,27 @@ export default class Template extends Component {
               <Button icon='more' type='line' onClick={this.handleMoreClick} />
             </Col>
           </Row>
-        </div>
-        <div className='detail-double-column detail-double-column__body page page--gutter'>
-          <div className='title'>详细信息</div>
+        </Col>
+        <Col className='detail-double-column detail-double-column__body page page--gutter'>
+          <Row className='title'>详细信息</Row>
           <ul>
-            {detailInfo.map(({ key, value }, idx) => (
+            {Object.values(detailInfo).map(({ key, value }, idx) => (
               <li key={idx}>
                 <div>{key}</div>
                 <div>{value}</div>
               </li>
             ))}
           </ul>
-          <div className='title'>其它信息</div>
+          <Row className='title'>其它信息</Row>
           <ul>
-            {otherInfo.map(({ key, value }, idx) => (
+            {Object.values(otherInfo).map(({ key, value }, idx) => (
               <li key={idx}>
                 <div>{key}</div>
                 <div>{value}</div>
               </li>
             ))}
           </ul>
-        </div>
+        </Col>
       </React.Fragment>
     )
   }

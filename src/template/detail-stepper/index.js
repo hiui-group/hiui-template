@@ -8,29 +8,37 @@ import DatePicker from '@hi-ui/hiui/es/date-picker'
 import Input from '@hi-ui/hiui/es/input'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
+import Loading from '@hi-ui/hiui/es/loading'
 import './index.scss'
+import axios from 'axios'
 
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  static defaultProps = {
+  state = {
     title: '小米8屏幕指纹版',
     desc: Array(3).fill({
       key: '状态',
       value: '已借出'
     }),
-    baseInfo: Array(20).fill({
-      key: '设备名称',
-      value:
-        '全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作，手持超级夜景全球首款压感屏幕指纹，快速解锁，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作 ，手持超级夜景，全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面…'
-    }),
+    baseInfo: {},
     stepper: {
       list: Array(5).fill({
         title: '账号信息',
         text: '请输入账号信息'
       }),
-      current: Math.round(Math.random() * 5)
+      current: Math.round(Math.random() * 4)
     }
+  }
+
+  fetchBaseInfo = () => {
+    return axios
+      .get(
+        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo'
+      )
+      .then(({ data: { data: baseInfo } }) => {
+        this.setState({ baseInfo })
+      })
   }
 
   handleBackClick = () => {}
@@ -39,14 +47,23 @@ export default class Template extends Component {
   handleMoreClick = () => {}
   handleSaveClick = () => {}
 
+  async componentDidMount () {
+    const closure = Loading.open()
+    try {
+      await this.fetchBaseInfo()
+    } finally {
+      closure.close()
+    }
+  }
+
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, stepper } = this.props
+    const { title, baseInfo, stepper } = this.state
     const formTitle = stepper.list[stepper.current].title
     return (
-      <div className='detail-stepper'>
-        <div className='detail-stepper__header'>
+      <Col className='detail-stepper'>
+        <Col className='detail-stepper__header'>
           <Row className='row row-01' align='center'>
             <span onClick={this.handleBackClick}>
               <Icon name='left' />
@@ -73,20 +90,20 @@ export default class Template extends Component {
               <Button icon='more' type='line' onClick={this.handleMoreClick} />
             </Col>
           </Row>
-        </div>
-        <div className='detail-stepper__card detail-stepper__card--base page page--gutter'>
-          <div className='title'>基础信息</div>
+        </Col>
+        <Col className='detail-stepper__card detail-stepper__card--base page page--gutter'>
+          <Row className='title'>基础信息</Row>
           <ul>
-            {baseInfo.map(({ key, value }, idx) => (
+            {Object.values(baseInfo).map(({ key, value }, idx) => (
               <li key={idx}>
                 <div>{key}</div>
                 <div>{value}</div>
               </li>
             ))}
           </ul>
-        </div>
-        <div className='detail-stepper__card detail-stepper__card--stepper page page--gutter'>
-          <div className='title'>项目流程</div>
+        </Col>
+        <Col className='detail-stepper__card detail-stepper__card--stepper page page--gutter'>
+          <Row className='title'>项目流程</Row>
           <Row className='stepper'>
             <Stepper {...{ ...stepper, up: true }} />
           </Row>
@@ -111,8 +128,8 @@ export default class Template extends Component {
               <Button onClick={this.handleSaveClick} type='primary'>保存</Button>
             </FormItem>
           </Form>
-        </div>
-      </div>
+        </Col>
+      </Col>
     )
   }
 }

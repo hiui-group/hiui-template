@@ -1,26 +1,62 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Button from '@hi-ui/hiui/es/button'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Loading from '@hi-ui/hiui/es/loading'
-import Icon from '@hi-ui/hiui/es/icon'
+import Stepper from '@hi-ui/hiui/es/stepper'
 import Table from '@hi-ui/hiui/es/table'
+import NavMenu from '@hi-ui/hiui/es/nav-menu'
+import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
+import Loading from '@hi-ui/hiui/es/loading'
+import Timeline from '@hi-ui/hiui/es/timeline'
 import './index.scss'
 import axios from 'axios'
 
 export default class Template extends Component {
   state = {
-    activeNavMenuIndex: 0,
     title: '小米8屏幕指纹版',
+    activeNavMenuIndex: 0,
     desc: Array(3).fill({
       key: '状态',
       value: '已借出'
     }),
     baseInfo: {},
-    expressInfo: [],
-    carInfo: {},
-    productInfo: {}
+    stepper: {
+      list: Array(5).fill({
+        title: '账号信息',
+        text: '请输入账号信息'
+      }),
+      current: Math.round(Math.random() * 4)
+    },
+    timelineList: [{
+      groupTitle: '2月',
+      children: [{
+        title: 'Title - 1',
+        description: 'Here are some descriptions',
+        timestamp: '10:00',
+        extraTime: '02-23'
+      }, {
+        dot: 'circle',
+        title: 'Title 2',
+        description: 'Here are some descriptions',
+        timestamp: '10:00',
+        extraTime: '02-27'
+      }]
+    }, {
+      groupTitle: '3月',
+      children: [{
+        dot: 'circle',
+        title: 'Title 3',
+        description: 'Here are some descriptions',
+        timestamp: '12:00',
+        extraTime: '03-02'
+      }, {
+        dot: 'circle',
+        title: 'Title 4',
+        description: 'Here are some descriptions',
+        timestamp: '11:00',
+        extraTime: '03-10'
+      }]
+    }]
   }
 
   fetchBaseInfo = () => {
@@ -31,24 +67,6 @@ export default class Template extends Component {
       .then(({ data: { data: baseInfo } }) => {
         this.setState({ baseInfo })
       })
-  }
-
-  fetchExpressInfo = () => {
-    return Promise.all([
-      axios.get(
-        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo'
-      ),
-      axios.get(
-        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo'
-      )
-    ]).then(([{ data: { data: data1 } }, { data: { data: data2 } }]) => {
-      this.setState({
-        expressInfo: [
-          { ...data1, title: '发件人信息' },
-          { ...data2, title: '收件人信息' }
-        ]
-      })
-    })
   }
 
   fetchCarInfo = () => {
@@ -75,12 +93,12 @@ export default class Template extends Component {
   handleDeleteClick = () => {}
   handleEditClick = () => {}
   handleMoreClick = () => {}
+  handleSaveClick = () => {}
 
   async componentDidMount () {
     const closure = Loading.open()
     try {
       await this.fetchBaseInfo()
-      await this.fetchExpressInfo()
       await this.fetchCarInfo()
       await this.fetchProductInfo()
     } finally {
@@ -91,12 +109,11 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, expressInfo, carInfo, productInfo } = this.state
-    const { activeNavMenuIndex } = this.state
+    const { title, baseInfo, stepper, timelineList, activeNavMenuIndex, productInfo, carInfo } = this.state
     const ani = Number.parseInt(activeNavMenuIndex)
     return (
-      <Col className='detail-group'>
-        <Col className='detail-group__header'>
+      <Col className='detail-card'>
+        <Col className='detail-card__header'>
           <Row className='row row-01' align='center'>
             <span onClick={this.handleBackClick}>
               <Icon name='left' />
@@ -124,38 +141,31 @@ export default class Template extends Component {
             </Col>
           </Row>
         </Col>
-        <Col className='detail-group__card detail-group__card--base page page--gutter'>
-          <Row className='title'>基础信息</Row>
-          <ul>
-            {Object.values(baseInfo).map(({ key, value }, idx) => (
-              <li key={idx}>
-                <div>{key}</div>
-                <div>{value}</div>
-              </li>
-            ))}
-          </ul>
+        <Row>
+          <Col className='detail-card__card detail-card__card--base page page--gutter'>
+            <Row className='title'>基础信息</Row>
+            <ul>
+              {Object.values(baseInfo).map(({ key, value }, idx) => (
+                <li key={idx}>
+                  <div>{key}</div>
+                  <div>{value}</div>
+                </li>
+              ))}
+            </ul>
+          </Col>
+          <Col className='detail-card__card detail-card__card--record page page--gutter'>
+            <Row className='title'>修改记录</Row>
+            <Timeline list={timelineList} />
+          </Col>
+        </Row>
+
+        <Col className='detail-card__card detail-card__card--stepper page page--gutter'>
+          <Row className='title'>项目流程</Row>
+          <Row className='stepper'>
+            <Stepper {...{ ...stepper, up: true }} />
+          </Row>
         </Col>
-        <Col className='detail-group__card detail-group__card--express page page--gutter'>
-          <Row className='title'>收发信息</Row>
-          <ul className='card-list'>
-            {expressInfo.map(({ title, avatar, ...info }, idx) => (
-              <li className='card-item' key={idx}>
-                <Row className='row row-01'>{title}</Row>
-                <Row className='row row-02'>
-                  <img src={avatar.value} />
-                  <ul>
-                    {Object.values(info).map(({ key, value }, idx) => (
-                      <li key={idx}>
-                        <div>{key}</div>
-                        <div>{value}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </Row>
-              </li>
-            ))}
-          </ul>
-        </Col>
+
         <Col className='detail-group__card page page--gutter'>
           <NavMenu
             data={[{ title: '车辆信息' }, { title: '商品信息' }]}

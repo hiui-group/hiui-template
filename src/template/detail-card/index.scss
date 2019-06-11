@@ -1,6 +1,6 @@
-.detail-stepper {
+.detail-card {
   height: 100%;
-  width: 100%;
+  // width: 100%;
   background: #e7e7e7;
 
   &__header {
@@ -36,11 +36,8 @@
   }
 
   &__card {
+    box-sizing: border-box;
     background: #fff;
-
-    &:not(:nth-child(2)) {
-      margin-top: 24px;
-    }
 
     .title {
       font-size: 16px;
@@ -66,8 +63,10 @@
     }
 
     &--base {
+      width: calc(100% - 384px - 24px);
+
       li {
-        width: 33%;
+        width: 50%;
 
         div {
           &:first-child {
@@ -89,7 +88,19 @@
       }
     }
 
+    &--record {
+      width: 384px;
+      flex-shrink: 0;
+      margin-left: 24px;
+
+      .hi-timeline {
+        margin-top: 24px;
+      }
+    }
+
     &--stepper {
+      margin-top: 24px;
+
       .stepper {
         padding-top: 24px;
       }

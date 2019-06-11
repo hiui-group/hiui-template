@@ -148,6 +148,14 @@ export const sider = {
         {
           title: '步骤',
           to: '/detail-stepper'
+        },
+        {
+          title: '关联',
+          to: '/detail-relevance'
+        },
+        {
+          title: '卡片',
+          to: '/detail-card'
         }
       ]
     }
@@ -288,6 +296,14 @@ export default [
               {
                 path: '/detail-stepper',
                 component: require('../template/detail-stepper').default
+              },
+              {
+                path: '/detail-relevance',
+                component: require('../template/detail-relevance').default
+              },
+              {
+                path: '/detail-card',
+                component: require('../template/detail-card').default
               }
             ]
           }

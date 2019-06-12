@@ -6,34 +6,23 @@ import Card from '@hi-ui/hiui/es/card'
 import Pagination from '@hi-ui/hiui/es/pagination'
 import './index.scss'
 
-const generateTaskData = (sample, num) => {
-  let dataList = []
-  for (let i = 0; i < num; i++) {
-    dataList.push(sample)
-  }
-  return dataList
-}
-
 export default class ListIndicator extends Component {
   state = {
     highlightValue: '',
     value: '',
-    taskList: generateTaskData(
-      {
-        title: '商业智能报表的…',
-        content: '使用线上分析处理技术，快速设计各类报表，提高开发率, 提供…'
-      },
-      80
-    ),
+    taskList: Array(80).fill({
+      title: '商业智能报表的…',
+      content: '使用线上分析处理技术，快速设计各类报表，提高开发率, 提供…'
+    }),
     pageNum: 1,
     pageSize: 15
   }
-  render() {
+  render () {
     const { value, highlightValue, taskList, pageNum, pageSize } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
     console.log(tasks)
     return (
-      <div className="page--list-indicator">
+      <div className='page--list-indicator'>
         <div
           style={{
             display: 'flex',
@@ -46,12 +35,12 @@ export default class ListIndicator extends Component {
           <div style={{ width: 271 }}>
             <Input
               value={value}
-              placeholder="搜索 指标"
+              placeholder='搜索 指标'
               onChange={e => this.setState({ value: e.target.value })}
               append={
                 <Button
-                  type="line"
-                  icon="search"
+                  type='line'
+                  icon='search'
                   onClick={() => {
                     this.setState({
                       highlightValue: value
@@ -63,7 +52,7 @@ export default class ListIndicator extends Component {
           </div>
         </div>
 
-        <div className="indicator__container">
+        <div className='indicator__container'>
           <div>
             {['部门订单', '个人订单', '历史订单', '消息进度'].map((tag, index) => (
               <span
@@ -114,8 +103,8 @@ export default class ListIndicator extends Component {
                 ].map(item => (
                   <Card
                     hoverable
-                    type="simple"
-                    size="small"
+                    type='simple'
+                    size='small'
                     style={{ marginRight: 36, marginBottom: 24 }}
                   >
                     简易卡片

@@ -17,9 +17,40 @@
     border-radius: 50%;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     transition: 0.5s ease-in-out;
+
     &:hover {
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-      background: lighten($color: #2684fc, $amount: 6)
+      background: lighten($color: #2684fc, $amount: 6);
     }
+  }
+}
+
+.code-modal {
+  i {
+    cursor: pointer;
+  }
+
+  .hi-modal__dialog--large {
+    width: fit-content;
+    min-width: 800px;
+    max-width: 75%;
+  }
+
+  .hi-modal__content {
+    padding: 0;
+  }
+
+  .code-container {
+    max-height: calc(80vh - 200px);
+    overflow: auto;
+    background: #f8f8fe;
+  }
+
+  .hi-navmenu__list {
+    padding: 0 16px !important;
+  }
+
+  pre {
+    padding: 0 16px !important;
   }
 }

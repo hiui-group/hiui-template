@@ -7,6 +7,7 @@ import Modal from '@hi-ui/hiui/es/modal'
 import NavMenu from '@hi-ui/hiui/es/nav-menu'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
+import Tooltip from '@hi-ui/hiui/es/tooltip'
 import { handleNotificate } from '@hi-ui/hiui/es/notification'
 import './style/index.scss'
 
@@ -22,7 +23,7 @@ export default class Copy extends Component {
     }
   }
 
-  showModal () {
+  showModal = () => {
     this.setState({ showModal: true })
     const pathname = window.location.hash.replace(/#?(.*)/, (a, b) => {
       return b
@@ -49,7 +50,7 @@ export default class Copy extends Component {
 
   getTabs (cssCode) {
     return cssCode
-      ? [{ title: 'js 代码' }, { title: 'css 代码' }]
+      ? [{ title: 'js 代码' }, { title: 'scss 代码' }]
       : [{ title: 'js 代码' }]
   }
 
@@ -63,13 +64,18 @@ export default class Copy extends Component {
     return (
       <React.Fragment>
         <div className='copy-container'>
-          <div className='copy' onClick={() => this.showModal()}>
+          <div className='copy' onClick={this.showModal}>
             <Icon name='copy' />
           </div>
         </div>
         <Modal
           className='code-modal'
-          title='复制代码'
+          title={<React.Fragment>
+            <span>复制代码&nbsp;&nbsp;</span>
+            <Tooltip title='点击复制按钮复制代码至你现有的项目中'>
+              <Icon name='problem-circle-o' />
+            </Tooltip>
+          </React.Fragment>}
           size='large'
           show={showModal}
           onCancel={this.closeModal.bind(this)}
@@ -106,16 +112,18 @@ export default class Copy extends Component {
               })
             }}
           />
-          {selectedKey === 0 && (
-            <SyntaxHighlighter language='jsx' style={docco}>
-              {jsCode}
-            </SyntaxHighlighter>
-          )}
-          {selectedKey === 1 && (
-            <SyntaxHighlighter language='scss' style={docco}>
-              {cssCode}
-            </SyntaxHighlighter>
-          )}
+          <div className='code-container'>
+            {selectedKey === 0 && (
+              <SyntaxHighlighter language='jsx' style={docco}>
+                {jsCode}
+              </SyntaxHighlighter>
+            )}
+            {selectedKey === 1 && (
+              <SyntaxHighlighter language='scss' style={docco}>
+                {cssCode}
+              </SyntaxHighlighter>
+            )}
+          </div>
         </Modal>
       </React.Fragment>
     )

@@ -73,7 +73,7 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, expressInfo, carInfo, productInfo } = this.state
+    const { title, baseInfo, expressInfo } = this.state
     const { activeNavMenuIndex } = this.state
     const ani = Number.parseInt(activeNavMenuIndex)
     return (

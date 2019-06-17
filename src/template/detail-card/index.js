@@ -111,7 +111,7 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, stepper, timelineList, activeNavMenuIndex, productInfo, carInfo } = this.state
+    const { title, baseInfo, stepper, timelineList, activeNavMenuIndex } = this.state
     const ani = Number.parseInt(activeNavMenuIndex)
     return (
       <Col className='detail-card'>

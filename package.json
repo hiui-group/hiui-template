@@ -14,29 +14,29 @@
   "license": "MIT",
   "homepage": "http://hiui-group.github.io/hiui-template/",
   "dependencies": {
-    "@hi-ui/classic-theme": "^1.1.0",
+    "@hi-ui/classic-theme": "^1.2.5",
     "@hi-ui/component-kit": "^0.5.4",
     "@hi-ui/core-css": "^1.0.0",
     "@hi-ui/hiui": "^1.5.0-rc.6",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "classnames": "^2.2.5",
-    "echarts": "^4.2.0-rc.2",
+    "echarts": "^4.2.1",
     "echarts-for-react": "^2.0.15-beta.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.12.0",
     "postcss-loader": "^2.1.5",
-    "react": "^16.7.0",
+    "react": "^16.8.6",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.6.3",
-    "react-syntax-highlighter": "^10.1.2"
+    "react-dom": "^16.8.6",
+    "react-syntax-highlighter": "^10.3.0"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1",
     "react-scripts": "2.1.1",
     "standard": "^12.0.1",
-    "stylelint": "^9.9.0",
-    "stylelint-config-recommended-scss": "^3.2.0",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-scss": "^3.4.0"
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-scss": "^3.8.0"
   },
   "standard": {
     "parser": "babel-eslint",

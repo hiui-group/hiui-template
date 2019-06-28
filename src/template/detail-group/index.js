@@ -124,7 +124,7 @@ export default class Template extends Component {
               <li className='card-item' key={idx}>
                 <Row className='row row-01'>{title}</Row>
                 <Row className='row row-02'>
-                  <img src={avatar.value} />
+                  <img src={avatar.value} alt='' />
                   <ul>
                     {Object.values(info).map(({ key, value }, idx) => (
                       <li key={idx}>

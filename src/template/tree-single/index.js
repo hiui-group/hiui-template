@@ -36,20 +36,47 @@ export default class Template extends Component {
       currentTree: '',
 
       treeData: [
-        { id: 1,
+        {
+          id: 1,
           title: '小米',
           children: [
-            { id: 2,
+            {
+              id: 2,
               title: '技术',
               children: [
-                { id: 3, title: '后端', onClick: () => { this.onTreeClick(3) } },
-                { id: 4, title: '运维', onClick: () => { this.onTreeClick(4) } },
-                { id: 5, title: '前端', onClick: () => { this.onTreeClick(5) } }
+                {
+                  id: 3,
+                  title: '后端',
+                  onClick: () => {
+                    this.onTreeClick(3)
+                  }
+                },
+                {
+                  id: 4,
+                  title: '运维',
+                  onClick: () => {
+                    this.onTreeClick(4)
+                  }
+                },
+                {
+                  id: 5,
+                  title: '前端',
+                  onClick: () => {
+                    this.onTreeClick(5)
+                  }
+                }
               ]
             },
-            { id: 6, title: '产品', onClick: () => { this.onTreeClick(6) } }
+            {
+              id: 6,
+              title: '产品',
+              onClick: () => {
+                this.onTreeClick(6)
+              }
+            }
           ]
-        }]
+        }
+      ]
     }
   }
 
@@ -85,35 +112,33 @@ export default class Template extends Component {
     this.fetchDatas()
   }
 
-  fetchDatas () {
-    const {
-      page
-    } = this.state
+  fetchDatas (page) {
+    axios
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
+        params: {
+          page
+        }
+      })
+      .then(ret => {
+        const datas = []
 
-    axios.get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
-      params: {
-        page
-      }
-    }).then(ret => {
-      const datas = []
+        if (ret && ret.data.code === 200) {
+          const data = ret.data.data
+          const columns = data.columns
+          const pageInfo = data.pageInfo
 
-      if (ret && ret.data.code === 200) {
-        const data = ret.data.data
-        const columns = data.columns
-        const pageInfo = data.pageInfo
-
-        data.data.map(data => {
-          datas.push(data)
-        })
-        this.setState({
-          tableDatas: datas,
-          page: pageInfo.page,
-          total: pageInfo.total,
-          pageSize: pageInfo.pageSize,
-          columns: this.setTableColumns(columns)
-        })
-      }
-    })
+          data.data.map(data => {
+            datas.push(data)
+          })
+          this.setState({
+            tableDatas: datas,
+            page: page,
+            total: pageInfo.total,
+            pageSize: pageInfo.pageSize,
+            columns: this.setTableColumns(columns)
+          })
+        }
+      })
   }
 
   setTableColumns (columns) {
@@ -132,14 +157,7 @@ export default class Template extends Component {
   }
 
   renderMenuContent () {
-    const {
-      activeMenu,
-      tableDatas,
-      columns,
-      pageSize,
-      total,
-      page
-    } = this.state
+    const { activeMenu, tableDatas, columns, pageSize, total, page } = this.state
 
     if (activeMenu === 0) {
       return (
@@ -149,9 +167,9 @@ export default class Template extends Component {
           pagination={{
             pageSize: pageSize,
             total: total,
-            page: page,
+            defaultCurrent: page,
             onChange: (page, pre, size) => {
-              this.setState({ page: page }, () => this.fetchDatas())
+              this.fetchDatas(page)
             }
           }}
         />
@@ -167,8 +185,12 @@ export default class Template extends Component {
         defaultExpandAll
         data={this.state.treeData}
         defaultCheckedKeys={[2]}
-        onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
-        onChange={data => { console.log('Tree data:', data) }}
+        onNodeToggle={(data, isExpanded) => {
+          console.log('toggle: data isExpanded', data, isExpanded)
+        }}
+        onChange={data => {
+          console.log('Tree data:', data)
+        }}
         openIcon='down'
         closeIcon='up'
       />
@@ -182,16 +204,8 @@ export default class Template extends Component {
     return (
       <div className='page page--gutter'>
         <Row>
-          <Col span={3}>
-
-            {this.renderTree()}
-
-          </Col>
-          <Col span={21}>
-
-            {this.renderMenuContent()}
-
-          </Col>
+          <Col span={3}>{this.renderTree()}</Col>
+          <Col span={21}>{this.renderMenuContent()}</Col>
         </Row>
       </div>
     )

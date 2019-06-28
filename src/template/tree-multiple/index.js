@@ -37,10 +37,12 @@ export default class Template extends Component {
       currentChose: [],
       reset: true,
       treeData: [
-        { id: 1,
+        {
+          id: 1,
           title: '小米',
           children: [
-            { id: 2,
+            {
+              id: 2,
               title: '技术',
               children: [
                 { id: 3, title: '后端' },
@@ -50,7 +52,8 @@ export default class Template extends Component {
             },
             { id: 6, title: '产品' }
           ]
-        }]
+        }
+      ]
     }
   }
 
@@ -58,35 +61,33 @@ export default class Template extends Component {
     this.fetchDatas()
   }
 
-  fetchDatas () {
-    const {
-      page
-    } = this.state
+  fetchDatas (page) {
+    axios
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
+        params: {
+          page
+        }
+      })
+      .then(ret => {
+        const datas = []
 
-    axios.get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
-      params: {
-        page
-      }
-    }).then(ret => {
-      const datas = []
+        if (ret && ret.data.code === 200) {
+          const data = ret.data.data
+          const columns = data.columns
+          const pageInfo = data.pageInfo
 
-      if (ret && ret.data.code === 200) {
-        const data = ret.data.data
-        const columns = data.columns
-        const pageInfo = data.pageInfo
-
-        data.data.map(data => {
-          datas.push(data)
-        })
-        this.setState({
-          tableDatas: datas,
-          page: pageInfo.page,
-          total: pageInfo.total,
-          pageSize: pageInfo.pageSize,
-          columns: this.setTableColumns(columns)
-        })
-      }
-    })
+          data.data.map(data => {
+            datas.push(data)
+          })
+          this.setState({
+            tableDatas: datas,
+            page: page,
+            total: pageInfo.total,
+            pageSize: pageInfo.pageSize,
+            columns: this.setTableColumns(columns)
+          })
+        }
+      })
   }
 
   setTableColumns (columns) {
@@ -110,14 +111,17 @@ export default class Template extends Component {
   }
 
   reset () {
-    this.setState({
-      reset: false,
-      currentChose: []
-    }, () => {
-      this.setState({
-        reset: true
-      })
-    })
+    this.setState(
+      {
+        reset: false,
+        currentChose: []
+      },
+      () => {
+        this.setState({
+          reset: true
+        })
+      }
+    )
   }
 
   onChange (value) {
@@ -137,7 +141,7 @@ export default class Template extends Component {
       }
     }
 
-    const treeData = [ ...this.state.treeData ]
+    const treeData = [...this.state.treeData]
 
     const mapToGet = (data, currentChose) => {
       data.map(item => {
@@ -164,14 +168,7 @@ export default class Template extends Component {
   }
 
   renderMenuContent () {
-    const {
-      activeMenu,
-      tableDatas,
-      columns,
-      pageSize,
-      total,
-      page
-    } = this.state
+    const { activeMenu, tableDatas, columns, pageSize, total, page } = this.state
 
     if (activeMenu === 0) {
       return (
@@ -182,9 +179,9 @@ export default class Template extends Component {
             pagination={{
               pageSize: pageSize,
               total: total,
-              page: page,
+              defaultCurrent: page,
               onChange: (page, pre, size) => {
-                this.setState({ page: page }, () => this.fetchDatas())
+                this.fetchDatas(page)
               }
             }}
           />
@@ -198,18 +195,24 @@ export default class Template extends Component {
   renderTree () {
     return (
       <div className='hi-tree__container'>
-        {this.state.reset && <Tree
-          defaultExpandAll
-          checkable
-          data={this.state.treeData}
-          onChange={this.onChange.bind(this)}
-          openIcon='down'
-          closeIcon='up'
-        />}
+        {this.state.reset && (
+          <Tree
+            defaultExpandAll
+            checkable
+            data={this.state.treeData}
+            onChange={this.onChange.bind(this)}
+            openIcon='down'
+            closeIcon='up'
+          />
+        )}
         <br />
         <div className='hi-tree__confirm'>
-          <Button type='primary' onClick={this.markSure.bind(this)}>确认</Button>
-          <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
+          <Button type='primary' onClick={this.markSure.bind(this)}>
+            确认
+          </Button>
+          <Button type='default' onClick={this.reset.bind(this)}>
+            重置
+          </Button>
         </div>
       </div>
     )
@@ -222,16 +225,8 @@ export default class Template extends Component {
     return (
       <div className='page page--gutter'>
         <Row gutter>
-          <Col span={4}>
-
-            {this.renderTree()}
-
-          </Col>
-          <Col span={20}>
-
-            {this.renderMenuContent()}
-
-          </Col>
+          <Col span={4}>{this.renderTree()}</Col>
+          <Col span={20}>{this.renderMenuContent()}</Col>
         </Row>
       </div>
     )

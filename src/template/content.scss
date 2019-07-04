@@ -27,6 +27,7 @@
       z-index: 12;
     }
   }
+
   .block-filter__label {
     width: 108px;
     box-sizing: border-box;
@@ -36,6 +37,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
     &::after {
       content: '';
       position: absolute;
@@ -45,12 +47,15 @@
       height: 14px;
       background: rgba(216, 216, 216, 1);
     }
+
     &--radio {
       margin-right: 20px;
       line-height: 32px;
     }
+
     &--checkbox {
       margin-right: 8px;
+
       &::after {
         top: 4px;
       }

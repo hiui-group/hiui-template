@@ -47,45 +47,47 @@ export default class Template extends Component {
     this.fetchDatas()
   }
 
-  fetchDatas () {
-    const {
-      page,
-      forms
-    } = this.state
+  fetchDatas (page) {
+    const { forms } = this.state
 
-    axios.get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
-      params: {
-        page,
-        ...forms
-      }
-    }).then(ret => {
-      const datas = []
+    axios
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
+        params: {
+          page,
+          ...forms
+        }
+      })
+      .then(ret => {
+        const datas = []
 
-      if (ret && ret.data.code === 200) {
-        const data = ret.data.data
-        const columns = data.columns
-        const pageInfo = data.pageInfo
+        if (ret && ret.data.code === 200) {
+          const data = ret.data.data
+          const columns = data.columns
+          const pageInfo = data.pageInfo
 
-        data.data.map(data => {
-          datas.push(data)
-        })
-        this.setState({
-          tableDatas: datas,
-          page: pageInfo.page,
-          total: pageInfo.total,
-          pageSize: pageInfo.pageSize,
-          columns: this.setTableColumns(columns)
-        })
-      }
-    })
+          data.data.map(data => {
+            datas.push(data)
+          })
+          this.setState({
+            tableDatas: datas,
+            page: page,
+            total: pageInfo.total,
+            pageSize: pageInfo.pageSize,
+            columns: this.setTableColumns(columns)
+          })
+        }
+      })
   }
 
   initForms () {
-    return Object.assign({}, {
-      column1: '',
-      column2: '全部',
-      column3: '全部'
-    })
+    return Object.assign(
+      {},
+      {
+        column1: '',
+        column2: '全部',
+        column3: '全部'
+      }
+    )
   }
 
   setTableColumns (columns) {
@@ -106,11 +108,14 @@ export default class Template extends Component {
   updateForm (data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
-    this.setState({
-      forms
-    }, () => {
-      callback && callback()
-    })
+    this.setState(
+      {
+        forms
+      },
+      () => {
+        callback && callback()
+      }
+    )
   }
 
   reset () {
@@ -118,14 +123,7 @@ export default class Template extends Component {
   }
 
   renderMenuContent () {
-    const {
-      activeMenu,
-      tableDatas,
-      columns,
-      pageSize,
-      total,
-      page
-    } = this.state
+    const { activeMenu, tableDatas, columns, pageSize, total, page } = this.state
 
     if (activeMenu === 0) {
       return (
@@ -136,9 +134,9 @@ export default class Template extends Component {
             pagination={{
               pageSize: pageSize,
               total: total,
-              page: page,
+              defaultCurrent: page,
               onChange: page => {
-                this.setState({ page: page }, () => this.fetchDatas())
+                this.fetchDatas(page)
               }
             }}
           />
@@ -201,28 +199,20 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const {
-      activeMenu
-    } = this.state
+    const { activeMenu } = this.state
 
     return (
       <div className='page page--gutter'>
         <Row gutter>
           <Col span={3}>
-
             <NavMenu
               selectedKey={activeMenu}
               data={this.menus}
               onClick={(e, menu) => this.setState({ activeMenu: parseInt(menu) })}
               vertical
             />
-
           </Col>
-          <Col span={21}>
-
-            {this.renderMenuContent()}
-
-          </Col>
+          <Col span={21}>{this.renderMenuContent()}</Col>
         </Row>
       </div>
     )

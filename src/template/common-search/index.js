@@ -41,9 +41,8 @@ export default class Template extends Component {
     this.fetchDatas()
   }
 
-  fetchDatas () {
+  fetchDatas (page) {
     const {
-      page,
       s
     } = this.state
 
@@ -65,7 +64,7 @@ export default class Template extends Component {
         })
         this.setState({
           tableDatas: datas,
-          page: pageInfo.page,
+          page: page,
           total: pageInfo.total,
           pageSize: pageInfo.pageSize,
           columns: this.setTableColumns(columns)
@@ -150,9 +149,9 @@ export default class Template extends Component {
               pagination={{
                 pageSize: pageSize,
                 total: total,
-                page: page,
+                defaultCurrent: page,
                 onChange: (page, pre, size) => {
-                  this.setState({ page: page }, () => this.fetchDatas())
+                  this.fetchDatas(page)
                 }
               }}
             />

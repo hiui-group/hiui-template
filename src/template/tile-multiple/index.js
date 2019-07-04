@@ -5,6 +5,7 @@ import Checkbox from '@hi-ui/hiui/es/checkbox'
 import Button from '@hi-ui/hiui/es/button'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import Icon from '@hi-ui/hiui/es/icon'
+import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -51,7 +52,6 @@ export default class Template extends Component {
             value: '订单E'
           }
         ]
-
       },
       field2: {
         list: [
@@ -107,11 +107,14 @@ export default class Template extends Component {
   }
 
   initForms () {
-    return Object.assign({}, {
-      column1: '全部',
-      column2: '全部',
-      column3: '全部'
-    })
+    return Object.assign(
+      {},
+      {
+        column1: '全部',
+        column2: '全部',
+        column3: '全部'
+      }
+    )
   }
 
   updateForm (data) {
@@ -128,9 +131,18 @@ export default class Template extends Component {
 
   setForm () {
     const forms = {
-      column1: this.state.field1.list.filter(item => item.checked).map(item => item.value).join(' '),
-      column2: this.state.field2.list.filter(item => item.checked).map(item => item.value).join(' '),
-      column3: this.state.field3.list.filter(item => item.checked).map(item => item.value).join(' ')
+      column1: this.state.field1.list
+        .filter(item => item.checked)
+        .map(item => item.value)
+        .join(' '),
+      column2: this.state.field2.list
+        .filter(item => item.checked)
+        .map(item => item.value)
+        .join(' '),
+      column3: this.state.field3.list
+        .filter(item => item.checked)
+        .map(item => item.value)
+        .join(' ')
     }
 
     this.updateForm(forms)
@@ -144,32 +156,31 @@ export default class Template extends Component {
     field2.list.forEach(item => (item.checked = false))
     field3.list.forEach(item => (item.checked = false))
 
-    this.setState({
-      field1,
-      field2,
-      field3
-    }, () => {
-      this.reset()
-    })
+    this.setState(
+      {
+        field1,
+        field2,
+        field3
+      },
+      () => {
+        this.reset()
+      }
+    )
   }
   dataFilter = null
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
 
-    const {
-      forms,
-      pageSize
-    } = this.state
+    const { forms, pageSize } = this.state
     const params = {
       pageSize
     }
 
     return (
-      <div className='page page--gutter'>
+      <div className='page page--tile-multiple'>
         <Row>
           <Col span={24}>
-
             <DataFilter
               ref={node => (this.dataFilter = node)}
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
@@ -180,15 +191,27 @@ export default class Template extends Component {
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
                   <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type='line'
+                  icon='download'
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='mark'
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='more'
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               activeTools={['query']}
               tools={[
@@ -205,54 +228,69 @@ export default class Template extends Component {
               <Row gutter>
                 <div className='block-filter__label block-filter__label--checkbox'>订单类型</div>
                 <Col className='checkboxs-group'>
-                  <Checkbox all='one' onChange={list => {
-                    const fieldList = this.state.field1.list
+                  <Checkbox
+                    all='one'
+                    onChange={list => {
+                      const fieldList = this.state.field1.list
 
-                    fieldList.forEach(item => {
-                      if (list.indexOf(item.value) > -1) {
-                        item.checked = true
-                      } else {
-                        item.checked = false
-                      }
-                    })
-                    this.setForm()
-                  }}>全选</Checkbox>
+                      fieldList.forEach(item => {
+                        if (list.indexOf(item.value) > -1) {
+                          item.checked = true
+                        } else {
+                          item.checked = false
+                        }
+                      })
+                      this.setForm()
+                    }}
+                  >
+                    全选
+                  </Checkbox>
                   <Checkbox list={this.state.field1.list} name='one' />
                 </Col>
               </Row>
               <Row gutter>
                 <div className='block-filter__label block-filter__label--checkbox'>业务来源</div>
                 <Col className='checkboxs-group'>
-                  <Checkbox all='two' onChange={list => {
-                    const fieldList = this.state.field2.list
+                  <Checkbox
+                    all='two'
+                    onChange={list => {
+                      const fieldList = this.state.field2.list
 
-                    fieldList.forEach(item => {
-                      if (list.indexOf(item.value) > -1) {
-                        item.checked = true
-                      } else {
-                        item.checked = false
-                      }
-                    })
-                    this.setForm()
-                  }}>全选</Checkbox>
+                      fieldList.forEach(item => {
+                        if (list.indexOf(item.value) > -1) {
+                          item.checked = true
+                        } else {
+                          item.checked = false
+                        }
+                      })
+                      this.setForm()
+                    }}
+                  >
+                    全选
+                  </Checkbox>
                   <Checkbox list={this.state.field2.list} name='two' />
                 </Col>
               </Row>
               <Row gutter>
                 <div className='block-filter__label block-filter__label--checkbox'>运输方式</div>
                 <Col className='checkboxs-group'>
-                  <Checkbox all='three' onChange={list => {
-                    const fieldList = this.state.field3.list
+                  <Checkbox
+                    all='three'
+                    onChange={list => {
+                      const fieldList = this.state.field3.list
 
-                    fieldList.forEach(item => {
-                      if (list.indexOf(item.value) > -1) {
-                        item.checked = true
-                      } else {
-                        item.checked = false
-                      }
-                    })
-                    this.setForm()
-                  }}>全选</Checkbox>
+                      fieldList.forEach(item => {
+                        if (list.indexOf(item.value) > -1) {
+                          item.checked = true
+                        } else {
+                          item.checked = false
+                        }
+                      })
+                      this.setForm()
+                    }}
+                  >
+                    全选
+                  </Checkbox>
                   <Checkbox list={this.state.field3.list} name='three' />
                 </Col>
               </Row>

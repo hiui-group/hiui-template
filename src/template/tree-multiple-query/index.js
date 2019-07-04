@@ -6,6 +6,7 @@ import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
+import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -32,10 +33,12 @@ export default class Template extends Component {
       currentChose: [],
       reset: true,
       treeData: [
-        { id: 1,
+        {
+          id: 1,
           title: '小米',
           children: [
-            { id: 2,
+            {
+              id: 2,
               title: '技术',
               children: [
                 { id: 3, title: '后端' },
@@ -45,19 +48,23 @@ export default class Template extends Component {
             },
             { id: 6, title: '产品' }
           ]
-        }]
+        }
+      ]
     }
   }
 
   reset () {
-    this.setState({
-      reset: false,
-      currentChose: []
-    }, () => {
-      this.setState({
-        reset: true
-      })
-    })
+    this.setState(
+      {
+        reset: false,
+        currentChose: []
+      },
+      () => {
+        this.setState({
+          reset: true
+        })
+      }
+    )
   }
 
   onChange (value) {
@@ -77,7 +84,7 @@ export default class Template extends Component {
       }
     }
 
-    const treeData = [ ...this.state.treeData ]
+    const treeData = [...this.state.treeData]
 
     const mapToGet = (data, currentChose) => {
       data.map(item => {
@@ -106,14 +113,16 @@ export default class Template extends Component {
   renderTree () {
     return (
       <div className='hi-tree__container'>
-        {this.state.reset && <Tree
-          defaultExpandAll
-          checkable
-          data={this.state.treeData}
-          onChange={this.onChange.bind(this)}
-          openIcon='down'
-          closeIcon='up'
-        />}
+        {this.state.reset && (
+          <Tree
+            defaultExpandAll
+            checkable
+            data={this.state.treeData}
+            onChange={this.onChange.bind(this)}
+            openIcon='down'
+            closeIcon='up'
+          />
+        )}
       </div>
     )
   }
@@ -121,10 +130,7 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const {
-      pageSize,
-      currentChose
-    } = this.state
+    const { pageSize, currentChose } = this.state
     const params = {
       pageSize
     }
@@ -133,10 +139,9 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--tree-multiple-query'>
         <Row>
           <Col span={24}>
-
             <DataFilter
               ref={node => (this.dataFilter = node)}
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
@@ -149,15 +154,27 @@ export default class Template extends Component {
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
                   <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type='line'
+                  icon='download'
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='mark'
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='more'
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               activeTools={['query']}
               tools={[
@@ -172,7 +189,6 @@ export default class Template extends Component {
             >
               {this.renderTree()}
             </DataFilter>
-
           </Col>
         </Row>
       </div>

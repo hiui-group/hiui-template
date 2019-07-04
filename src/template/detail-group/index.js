@@ -29,9 +29,7 @@ export default class Template extends Component {
 
   fetchBaseInfo = () => {
     return axios
-      .get(
-        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo'
-      )
+      .get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo')
       .then(({ data: { data: baseInfo } }) => {
         this.setState({ baseInfo })
       })
@@ -39,18 +37,11 @@ export default class Template extends Component {
 
   fetchExpressInfo = () => {
     return Promise.all([
-      axios.get(
-        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo'
-      ),
-      axios.get(
-        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo'
-      )
+      axios.get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo'),
+      axios.get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo')
     ]).then(([{ data: { data: data1 } }, { data: { data: data2 } }]) => {
       this.setState({
-        expressInfo: [
-          { ...data1, title: '发件人信息' },
-          { ...data2, title: '收件人信息' }
-        ]
+        expressInfo: [{ ...data1, title: '发件人信息' }, { ...data2, title: '收件人信息' }]
       })
     })
   }
@@ -60,7 +51,7 @@ export default class Template extends Component {
   handleEditClick = () => {}
   handleMoreClick = () => {}
 
-  async componentDidMount () {
+  async componentDidMount() {
     const closure = Loading.open()
     try {
       await this.fetchBaseInfo()
@@ -70,94 +61,92 @@ export default class Template extends Component {
     }
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { title, baseInfo, expressInfo } = this.state
     const { activeNavMenuIndex } = this.state
     const ani = Number.parseInt(activeNavMenuIndex)
     return (
-      <Col className='detail-group'>
-        <Col className='detail-group__header'>
-          <Row className='row row-01' align='center'>
-            <span onClick={this.handleBackClick}>
-              <Icon name='left' />
-              <span>返回</span>
-            </span>
-            <span className='spacer'>|</span>
-            <span>详情</span>
-          </Row>
-          <Row className='row row-02' justify='space-between'>
-            <Col>
-              <h3>{title}</h3>
-            </Col>
-            <Col>
-              <Button icon='edit' type='primary' onClick={this.handleEditClick}>
-                编辑
-              </Button>
-              <Button
-                icon='delete'
-                type='danger'
-                onClick={this.handleDeleteClick}
-              >
-                删除
-              </Button>
-              <Button icon='more' type='line' onClick={this.handleMoreClick} />
-            </Col>
-          </Row>
+      <div className="page--detail-group">
+        <Col className="detail-group">
+          <Col className="detail-group__header">
+            <Row className="row row-01" align="center">
+              <span onClick={this.handleBackClick}>
+                <Icon name="left" />
+                <span>返回</span>
+              </span>
+              <span className="spacer">|</span>
+              <span>详情</span>
+            </Row>
+            <Row className="row row-02" justify="space-between">
+              <Col>
+                <h3>{title}</h3>
+              </Col>
+              <Col>
+                <Button icon="edit" type="primary" onClick={this.handleEditClick}>
+                  编辑
+                </Button>
+                <Button icon="delete" type="danger" onClick={this.handleDeleteClick}>
+                  删除
+                </Button>
+                <Button icon="more" type="line" onClick={this.handleMoreClick} />
+              </Col>
+            </Row>
+          </Col>
+          <Col className="detail-group__card detail-group__card--base page page--gutter">
+            <Row className="title">基础信息</Row>
+            <ul>
+              {Object.values(baseInfo).map(({ key, value }, idx) => (
+                <li key={idx}>
+                  <div>{key}</div>
+                  <div>{value}</div>
+                </li>
+              ))}
+            </ul>
+          </Col>
+          <Col className="detail-group__card detail-group__card--express page page--gutter">
+            <Row className="title">收发信息</Row>
+            <ul className="card-list">
+              {expressInfo.map(({ title, avatar, ...info }, idx) => (
+                <li className="card-item" key={idx}>
+                  <Row className="row row-01">{title}</Row>
+                  <Row className="row row-02">
+                    <img src={avatar.value} alt="" />
+                    <ul>
+                      {Object.values(info).map(({ key, value }, idx) => (
+                        <li key={idx}>
+                          <div>{key}</div>
+                          <div>{value}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  </Row>
+                </li>
+              ))}
+            </ul>
+          </Col>
+          <Col className="detail-group__card page page--gutter">
+            <NavMenu
+              data={[{ title: '车辆信息' }, { title: '商品信息' }]}
+              onClick={(_, idx) => {
+                this.setState({
+                  activeNavMenuIndex: idx
+                })
+              }}
+            />
+            {ani === 0 && <QueryBasic />}
+            {ani === 1 && <QueryBasic />}
+            <ul />
+          </Col>
         </Col>
-        <Col className='detail-group__card detail-group__card--base page page--gutter'>
-          <Row className='title'>基础信息</Row>
-          <ul>
-            {Object.values(baseInfo).map(({ key, value }, idx) => (
-              <li key={idx}>
-                <div>{key}</div>
-                <div>{value}</div>
-              </li>
-            ))}
-          </ul>
-        </Col>
-        <Col className='detail-group__card detail-group__card--express page page--gutter'>
-          <Row className='title'>收发信息</Row>
-          <ul className='card-list'>
-            {expressInfo.map(({ title, avatar, ...info }, idx) => (
-              <li className='card-item' key={idx}>
-                <Row className='row row-01'>{title}</Row>
-                <Row className='row row-02'>
-                  <img src={avatar.value} alt='' />
-                  <ul>
-                    {Object.values(info).map(({ key, value }, idx) => (
-                      <li key={idx}>
-                        <div>{key}</div>
-                        <div>{value}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </Row>
-              </li>
-            ))}
-          </ul>
-        </Col>
-        <Col className='detail-group__card page page--gutter'>
-          <NavMenu
-            data={[{ title: '车辆信息' }, { title: '商品信息' }]}
-            onClick={(_, idx) => {
-              this.setState({
-                activeNavMenuIndex: idx
-              })
-            }}
-          />
-          {ani === 0 && <QueryBasic />}
-          {ani === 1 && <QueryBasic />}
-          <ul />
-        </Col>
-      </Col>
+      </div>
     )
   }
 }
 
 class QueryBasic extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.businessOptions = [
@@ -181,7 +170,7 @@ class QueryBasic extends Component {
     ]
     this.columnMixins = {
       column1: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.column1 - next.column1
         }
       },
@@ -191,9 +180,9 @@ class QueryBasic extends Component {
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
+            <Icon name="edit" />
+            <Icon name="close" />
+            <Icon name="more" />
           </React.Fragment>
         )
       }
@@ -210,44 +199,46 @@ class QueryBasic extends Component {
     }
   }
 
-  updateForm (data, callback = undefined) {
+  updateForm(data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
-    this.setState({
-      forms
-    }, () => {
-      callback && callback()
-    })
+    this.setState(
+      {
+        forms
+      },
+      () => {
+        callback && callback()
+      }
+    )
   }
 
-  initForms () {
-    return Object.assign({}, {
-      column1: '',
-      column2: '全部',
-      column3: '全部'
-    })
+  initForms() {
+    return Object.assign(
+      {},
+      {
+        column1: '',
+        column2: '全部',
+        column3: '全部'
+      }
+    )
   }
 
-  beforeSubmit () {
+  beforeSubmit() {
     return true
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
-    const {
-      forms,
-      pageSize
-    } = this.state
+    const { forms, pageSize } = this.state
     const params = {
       pageSize
     }
 
     return (
-      <div className='page page--gutter'>
+      <div>
         <Row>
           <Col span={24}>
-
             <DataFilter
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               onFetched={ret => {
@@ -257,18 +248,30 @@ class QueryBasic extends Component {
               columnMixins={this.columnMixins}
               actions={[
                 'search',
-                <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary' icon='plus' />
+                <Link to="/form-unfold-group" className="hi-tpl__add">
+                  <Button type="primary" icon="plus" />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type="line"
+                  icon="download"
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type="line"
+                  icon="mark"
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type="line"
+                  icon="more"
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               activeTools={['query']}
               tools={[
@@ -283,72 +286,85 @@ class QueryBasic extends Component {
               ]}
             >
               <FieldGroup main>
-                <Field label='订单号' width='220'>
+                <Field label="订单号" width="220">
                   <Input
-                    placeholder='请输入'
+                    placeholder="请输入"
                     value={forms.column1}
                     onChange={(e, value) => {
                       this.updateForm({ column1: value })
                     }}
                   />
                 </Field>
-                <Field label='业务来源' width='200'>
-                  <DatePicker onChange={(d) => {
-                    console.log('选择月份', d)
-                    // this.setState({_date: d})
-                  }} />
-                </Field>
-                <Field label='运输方式' width='200'>
-                  <Select
-                    list={this.transportOptions}
-                    placeholder='请选择运输方式'
-                    value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                <Field label="业务来源" width="200">
+                  <DatePicker
+                    onChange={d => {
+                      console.log('选择月份', d)
+                      // this.setState({_date: d})
+                    }}
                   />
                 </Field>
-                <Field label='运输方式1' width='200' advanced>
+                <Field label="运输方式" width="200">
                   <Select
                     list={this.transportOptions}
-                    placeholder='请选择运输方式'
+                    placeholder="请选择运输方式"
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
-                <Field label='运输方式2' width='200' advanced>
+                <Field label="运输方式1" width="200" advanced>
                   <Select
                     list={this.transportOptions}
-                    placeholder='请选择运输方式'
+                    placeholder="请选择运输方式"
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
-                <Field label='运输方式3' width='200' advanced>
+                <Field label="运输方式2" width="200" advanced>
                   <Select
                     list={this.transportOptions}
-                    placeholder='请选择运输方式'
+                    placeholder="请选择运输方式"
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
-                <Field label='运输方式4' width='200' advanced>
+                <Field label="运输方式3" width="200" advanced>
                   <Select
                     list={this.transportOptions}
-                    placeholder='请选择运输方式'
+                    placeholder="请选择运输方式"
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
-                <Field label='运输方式5' width='200' advanced>
+                <Field label="运输方式4" width="200" advanced>
                   <Select
                     list={this.transportOptions}
-                    placeholder='请选择运输方式'
+                    placeholder="请选择运输方式"
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
+                  />
+                </Field>
+                <Field label="运输方式5" width="200" advanced>
+                  <Select
+                    list={this.transportOptions}
+                    placeholder="请选择运输方式"
+                    value={forms.column3}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
               </FieldGroup>
             </DataFilter>
-
           </Col>
         </Row>
       </div>

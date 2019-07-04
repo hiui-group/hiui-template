@@ -5,6 +5,7 @@ import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import Radio from '@hi-ui/hiui/es/radio'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
+import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -29,15 +30,15 @@ export default class Template extends Component {
 
     this.state = {
       field1: {
-        list: [ '全部', '订单A', '订单B', '订单C', '订单D', '订单E', '订单F' ],
+        list: ['全部', '订单A', '订单B', '订单C', '订单D', '订单E', '订单F'],
         checkIndex: 0
       },
       field2: {
-        list: [ '全部', '小米商城', '小米之家', '天猫旗舰店', '京东旗舰店' ],
+        list: ['全部', '小米商城', '小米之家', '天猫旗舰店', '京东旗舰店'],
         checkIndex: 0
       },
       field3: {
-        list: [ '全部', '顺丰', 'EMS', '中通', '申通', '圆通', '自取' ],
+        list: ['全部', '顺丰', 'EMS', '中通', '申通', '圆通', '自取'],
         checkIndex: 0
       },
       pageSize: 10,
@@ -48,38 +49,38 @@ export default class Template extends Component {
   updateForm (data) {
     const forms = Object.assign({}, this.state.forms, data)
 
-    this.setState({
-      forms
-    }, () => {
-      this.dataFilter.submit(forms)
-    })
+    this.setState(
+      {
+        forms
+      },
+      () => {
+        this.dataFilter.submit(forms)
+      }
+    )
   }
 
   initForms () {
-    return Object.assign({}, {
-      column1: '全部',
-      column2: '全部',
-      column3: '全部'
-    })
+    return Object.assign(
+      {},
+      {
+        column1: '全部',
+        column2: '全部',
+        column3: '全部'
+      }
+    )
   }
 
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
 
-    const {
-      field1,
-      field2,
-      field3,
-      pageSize,
-      forms
-    } = this.state
+    const { field1, field2, field3, pageSize, forms } = this.state
     const params = {
       pageSize
     }
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--tile-single page'>
         <Row>
           <Col span={24}>
             <DataFilter
@@ -92,15 +93,27 @@ export default class Template extends Component {
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
                   <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type='line'
+                  icon='download'
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='mark'
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='more'
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               activeTools={['query']}
               tools={[
@@ -119,11 +132,14 @@ export default class Template extends Component {
                   checked={field1.checkIndex}
                   onChange={data => {
                     field1.checkIndex = field1.list.indexOf(data)
-                    this.setState({
-                      field1
-                    }, () => {
-                      this.updateForm({ 'column1': data })
-                    })
+                    this.setState(
+                      {
+                        field1
+                      },
+                      () => {
+                        this.updateForm({ column1: data })
+                      }
+                    )
                   }}
                 />
               </Row>
@@ -134,11 +150,14 @@ export default class Template extends Component {
                   checked={field2.checkIndex}
                   onChange={data => {
                     field2.checkIndex = field2.list.indexOf(data)
-                    this.setState({
-                      field2
-                    }, () => {
-                      this.updateForm({ 'column2': data })
-                    })
+                    this.setState(
+                      {
+                        field2
+                      },
+                      () => {
+                        this.updateForm({ column2: data })
+                      }
+                    )
                   }}
                 />
               </Row>
@@ -149,11 +168,14 @@ export default class Template extends Component {
                   checked={field3.checkIndex}
                   onChange={data => {
                     field3.checkIndex = field3.list.indexOf(data)
-                    this.setState({
-                      field3
-                    }, () => {
-                      this.updateForm({ 'column3': data })
-                    })
+                    this.setState(
+                      {
+                        field3
+                      },
+                      () => {
+                        this.updateForm({ column3: data })
+                      }
+                    )
                   }}
                 />
               </Row>

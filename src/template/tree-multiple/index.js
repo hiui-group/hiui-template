@@ -6,6 +6,7 @@ import Grid from '@hi-ui/hiui/es/grid'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
+import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -223,7 +224,7 @@ export default class Template extends Component {
     const Col = Grid.Col
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--tree-multiple'>
         <Row gutter>
           <Col span={4}>{this.renderTree()}</Col>
           <Col span={20}>{this.renderMenuContent()}</Col>

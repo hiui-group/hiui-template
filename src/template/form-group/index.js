@@ -10,11 +10,12 @@ import Select from '@hi-ui/hiui/es/select'
 import Radio from '@hi-ui/hiui/es/radio'
 import Upload from '@hi-ui/hiui/es/upload'
 import Grid from '@hi-ui/hiui/es/grid'
+import './index.scss'
 
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       forms: this.initForms()
@@ -28,85 +29,84 @@ export default class Template extends Component {
     ]
   }
 
-  initForms () {
-    return Object.assign({}, {
-      text: '',
-      Date: { start: new Date(), end: new Date() },
-      num: 0,
-      time: new Date(),
-      select: 1,
-      radio: 2,
-      longText: ''
-    })
+  initForms() {
+    return Object.assign(
+      {},
+      {
+        text: '',
+        Date: { start: new Date(), end: new Date() },
+        num: 0,
+        time: new Date(),
+        select: 1,
+        radio: 2,
+        longText: ''
+      }
+    )
   }
 
-  handleChange () {
+  handleChange() {}
 
-  }
+  handleSubmit() {}
 
-  handleSubmit () {
+  reset() {}
 
-  }
-
-  reset () {
-
-  }
-
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms } = this.state
 
     return (
-      <div className='page page--gutter'>
-
-        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
+      <div className="page--form-group">
+        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth="80">
           <Row>
             <Col span={24}>
-
-              <h2 className='hi-form__title'>表单</h2>
+              <h2 className="hi-form__title">表单</h2>
               <fieldset>
                 <legend>基础信息</legend>
 
-                <FormItem label='label' prop='text'>
-                  <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
+                <FormItem label="label" prop="text">
+                  <Input
+                    value={forms.text}
+                    placeholder={'name'}
+                    onChange={this.handleChange.bind(this, 'column1')}
+                    style={{ width: '250px' }}
+                  />
                 </FormItem>
-                <FormItem label='Date' prop='Date'>
+                <FormItem label="Date" prop="Date">
                   <DatePicker
-                    type='daterange'
+                    type="daterange"
                     value={forms.Date}
                     onChange={d => {
                       console.log(d)
                     }}
                   />
                 </FormItem>
-                <FormItem label='Numer' prop='num'>
+                <FormItem label="Numer" prop="num">
                   <Counter
                     value={forms.num}
-                    step='1'
-                    min='0'
-                    max='8'
+                    step="1"
+                    min="0"
+                    max="8"
                     onChange={val => console.log('变化后的值：', val)}
                   />
                 </FormItem>
-
               </fieldset>
               <fieldset>
                 <legend>附加信息</legend>
 
-                <FormItem label='Time' prop='time'>
+                <FormItem label="Time" prop="time">
                   <TimePicker
-                    type='time'
+                    type="time"
                     value={forms.time}
                     onChange={d => {
                       console.log(d)
                     }}
                   />
                 </FormItem>
-                <FormItem label='label' prop='select'>
+                <FormItem label="label" prop="select">
                   <Select
                     list={this.singleList}
-                    placeholder='请选择种类'
+                    placeholder="请选择种类"
                     style={{ width: '200px' }}
                     value={forms.select}
                     onChange={item => {
@@ -114,12 +114,11 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-
               </fieldset>
               <fieldset>
                 <legend>可选信息</legend>
 
-                <FormItem label='Raido' prop='radio'>
+                <FormItem label="Raido" prop="radio">
                   <Radio
                     list={['北京', '上海', '重庆']}
                     checked={forms.radio}
@@ -127,27 +126,34 @@ export default class Template extends Component {
                   />
                 </FormItem>
 
-                <FormItem label='Picture' prop='radio'>
+                <FormItem label="Picture" prop="radio">
                   <Upload
-                    type='photo'
-                    uploadAction='http://127.0.0.1:8000'
+                    type="photo"
+                    uploadAction="http://127.0.0.1:8000"
                     param={{ id: 'uid', channel: 'youpin' }}
                     name={'files[]'}
                   />
                 </FormItem>
 
-                <FormItem label='long text' prop='longText'>
-                  <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '320px', height: '100px' }} type='textarea' />
+                <FormItem label="long text" prop="longText">
+                  <Input
+                    value={forms.longText}
+                    placeholder={'多行文本'}
+                    onChange={this.handleChange.bind(this, 'column1')}
+                    style={{ width: '320px', height: '100px' }}
+                    type="textarea"
+                  />
                 </FormItem>
-
               </fieldset>
               <fieldset>
-
                 <FormItem>
-                  <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
-                  <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
+                  <Button type="primary" onClick={this.handleSubmit.bind(this)}>
+                    提交
+                  </Button>
+                  <Button type="default" onClick={this.reset.bind(this)}>
+                    重置
+                  </Button>
                 </FormItem>
-
               </fieldset>
             </Col>
           </Row>

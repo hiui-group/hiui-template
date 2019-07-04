@@ -6,6 +6,7 @@ import Button from '@hi-ui/hiui/es/button'
 import NavMenu from '@hi-ui/hiui/es/nav-menu'
 import Cascader from '@hi-ui/hiui/es/cascader'
 import Select from '@hi-ui/hiui/es/select'
+import './index.scss'
 
 const FormItem = Form.Item
 const menuList = [
@@ -144,7 +145,7 @@ export default class UserCenter extends Component {
       address
     } = this.state
     return (
-      <div style={{ marginTop: 8 }}>
+      <div className='page--user-center'>
         <Form labelWidth='152'>
           <NavMenu onClick={this.handleClick} data={menuList}>
             <div style={{ width: 592, marginTop: 14, marginLeft: 14 }}>

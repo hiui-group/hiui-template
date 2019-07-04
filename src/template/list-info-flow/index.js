@@ -64,9 +64,8 @@ export default class ListInfoFlow extends Component {
     highlightValue: '',
     value: ''
   }
-  render() {
+  render () {
     const { value, highlightValue } = this.state
-    console.log('123', value, highlightValue)
     return (
       <div>
         <div
@@ -85,8 +84,8 @@ export default class ListInfoFlow extends Component {
               onChange={e => this.setState({ value: e.target.value })}
               append={
                 <Button
-                  type="line"
-                  icon="search"
+                  type='line'
+                  icon='search'
                   onClick={() => {
                     this.setState({
                       highlightValue: value
@@ -99,12 +98,20 @@ export default class ListInfoFlow extends Component {
         </div>
         <div
           style={{
-            padding: 24
+            padding: 24,
+            paddingTop: 15
           }}
         >
-          {listData.map((item, index) => (
-            <ListItem item={item} key={index} highlightValue={highlightValue} />
-          ))}
+          <div
+            style={{
+              background: '#fff',
+              padding: 24
+            }}
+          >
+            {listData.map((item, index) => (
+              <ListItem item={item} key={index} highlightValue={highlightValue} />
+            ))}
+          </div>
         </div>
       </div>
     )

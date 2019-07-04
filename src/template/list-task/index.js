@@ -29,7 +29,7 @@ export default class ListTask extends Component {
     pageSize: 15
   }
   render() {
-    const { value, highlightValue, taskList, pageNum, pageSize } = this.state
+    const { value, taskList, pageNum, pageSize } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
     console.log(tasks)
     return (
@@ -70,7 +70,7 @@ export default class ListTask extends Component {
                 <div
                   style={{ height: '144px', width: '25%', padding: 10, boxSizing: 'border-box' }}
                 >
-                  <Card title={t.title} style={{ height: '100%' }} hoverable>
+                  <Card title={t.title} style={{ height: '100%', background: '#fff' }} hoverable>
                     <p>{t.content}</p>
                   </Card>
                 </div>
@@ -89,7 +89,7 @@ export default class ListTask extends Component {
                       cursor: 'pointer'
                     }}
                   >
-                    <Icon name="plus" style={{ fontSize: 40 }} />
+                    <Icon name="plus" style={{ fontSize: 40, background: '#fff' }} />
                   </Card>
                 </div>
               )}

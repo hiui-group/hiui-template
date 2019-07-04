@@ -1,7 +1,11 @@
+.page--detail-stepper {
+  padding: 24px;
+  box-sizing: border-box;
+}
+
 .detail-stepper {
   height: 100%;
   width: 100%;
-  background: #e7e7e7;
 
   &__header {
     .row {

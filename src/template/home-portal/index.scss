@@ -1,6 +1,8 @@
 .page--portal {
-  height: 100%;
-  background-color: #f6f6f6;
+  background: #fff;
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
 
   .portal--container {
     max-width: 1300px;

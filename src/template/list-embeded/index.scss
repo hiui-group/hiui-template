@@ -1,0 +1,18 @@
+.page--list-embeded {
+  box-sizing: border-box;
+  padding: 24px;
+
+  .list {
+    box-sizing: border-box;
+    padding: 24px;
+    background: #fff;
+  }
+
+  .list-item {
+    margin-bottom: 20px;
+
+    &__content {
+      display: flex;
+    }
+  }
+}

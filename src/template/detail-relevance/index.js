@@ -27,9 +27,7 @@ export default class Template extends Component {
 
   fetchBaseInfo = () => {
     axios
-      .get(
-        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo'
-      )
+      .get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo')
       .then(({ data: { data: baseInfo } }) => {
         this.setState({ baseInfo })
       })
@@ -55,49 +53,47 @@ export default class Template extends Component {
     const { title, baseInfo, activeNavMenuIndex } = this.state
     const ani = Number.parseInt(activeNavMenuIndex)
     return (
-      <Col className='detail-relevance'>
-        <Col className='detail-relevance__header'>
-          <Row className='row row-01' align='center'>
-            <span onClick={this.handleBackClick}>
-              <Icon name='left' />
-              <span>返回</span>
-            </span>
-            <span className='spacer'>|</span>
-            <span>详情</span>
-          </Row>
-          <Row className='row row-02' justify='space-between'>
-            <Col>
-              <h3>{title}</h3>
-            </Col>
-            <Col>
-              <Button icon='edit' type='primary' onClick={this.handleEditClick}>
-                编辑
-              </Button>
-              <Button
-                icon='delete'
-                type='danger'
-                onClick={this.handleDeleteClick}
-              >
-                删除
-              </Button>
-              <Button icon='more' type='line' onClick={this.handleMoreClick} />
-            </Col>
-          </Row>
+      <div className='page--detail-relevance'>
+        <Col className='detail-relevance'>
+          <Col className='detail-relevance__header'>
+            <Row className='row row-01' align='center'>
+              <span onClick={this.handleBackClick}>
+                <Icon name='left' />
+                <span>返回</span>
+              </span>
+              <span className='spacer'>|</span>
+              <span>详情</span>
+            </Row>
+            <Row className='row row-02' justify='space-between'>
+              <Col>
+                <h3>{title}</h3>
+              </Col>
+              <Col>
+                <Button icon='edit' type='primary' onClick={this.handleEditClick}>
+                  编辑
+                </Button>
+                <Button icon='delete' type='danger' onClick={this.handleDeleteClick}>
+                  删除
+                </Button>
+                <Button icon='more' type='line' onClick={this.handleMoreClick} />
+              </Col>
+            </Row>
+          </Col>
+          <Col className='detail-relevance__card page page--gutter'>
+            <NavMenu
+              data={[{ title: '基础信息' }, { title: '设备清单' }]}
+              onClick={(_, idx) => {
+                this.setState({
+                  activeNavMenuIndex: idx
+                })
+              }}
+            />
+            {ani === 0 && <BaseInfo {...{ baseInfo }} />}
+            {ani === 1 && <QueryBasic />}
+            <ul />
+          </Col>
         </Col>
-        <Col className='detail-relevance__card page page--gutter'>
-          <NavMenu
-            data={[{ title: '基础信息' }, { title: '设备清单' }]}
-            onClick={(_, idx) => {
-              this.setState({
-                activeNavMenuIndex: idx
-              })
-            }}
-          />
-          {ani === 0 && <BaseInfo {...{ baseInfo }} />}
-          {ani === 1 && <QueryBasic />}
-          <ul />
-        </Col>
-      </Col>
+      </div>
     )
   }
 }
@@ -172,19 +168,25 @@ class QueryBasic extends Component {
   updateForm (data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
-    this.setState({
-      forms
-    }, () => {
-      callback && callback()
-    })
+    this.setState(
+      {
+        forms
+      },
+      () => {
+        callback && callback()
+      }
+    )
   }
 
   initForms () {
-    return Object.assign({}, {
-      column1: '',
-      column2: '全部',
-      column3: '全部'
-    })
+    return Object.assign(
+      {},
+      {
+        column1: '',
+        column2: '全部',
+        column3: '全部'
+      }
+    )
   }
 
   beforeSubmit () {
@@ -194,10 +196,7 @@ class QueryBasic extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const {
-      forms,
-      pageSize
-    } = this.state
+    const { forms, pageSize } = this.state
     const params = {
       pageSize
     }
@@ -206,7 +205,6 @@ class QueryBasic extends Component {
       <div className='page page--gutter'>
         <Row>
           <Col span={24}>
-
             <DataFilter
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               onFetched={ret => {
@@ -219,15 +217,27 @@ class QueryBasic extends Component {
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
                   <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type='line'
+                  icon='download'
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='mark'
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='more'
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               activeTools={['query']}
               tools={[
@@ -252,17 +262,21 @@ class QueryBasic extends Component {
                   />
                 </Field>
                 <Field label='业务来源' width='200'>
-                  <DatePicker onChange={(d) => {
-                    console.log('选择月份', d)
-                    // this.setState({_date: d})
-                  }} />
+                  <DatePicker
+                    onChange={d => {
+                      console.log('选择月份', d)
+                      // this.setState({_date: d})
+                    }}
+                  />
                 </Field>
                 <Field label='运输方式' width='200'>
                   <Select
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式1' width='200' advanced>
@@ -270,7 +284,9 @@ class QueryBasic extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式2' width='200' advanced>
@@ -278,7 +294,9 @@ class QueryBasic extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式3' width='200' advanced>
@@ -286,7 +304,9 @@ class QueryBasic extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式4' width='200' advanced>
@@ -294,7 +314,9 @@ class QueryBasic extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式5' width='200' advanced>
@@ -302,12 +324,13 @@ class QueryBasic extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
               </FieldGroup>
             </DataFilter>
-
           </Col>
         </Row>
       </div>

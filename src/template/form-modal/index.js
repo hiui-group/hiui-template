@@ -9,6 +9,7 @@ import Select from '@hi-ui/hiui/es/select'
 import Radio from '@hi-ui/hiui/es/radio'
 import Modal from '@hi-ui/hiui/es/modal'
 import Grid from '@hi-ui/hiui/es/grid'
+import './index.scss'
 
 const FormItem = Form.Item
 
@@ -30,28 +31,25 @@ export default class Template extends Component {
   }
 
   initForms () {
-    return Object.assign({}, {
-      text: '',
-      Date: { start: new Date(), end: new Date() },
-      num: 0,
-      time: new Date(),
-      select: '4',
-      radio: 2,
-      longText: ''
-    })
+    return Object.assign(
+      {},
+      {
+        text: '',
+        Date: { start: new Date(), end: new Date() },
+        num: 0,
+        time: new Date(),
+        select: '4',
+        radio: 2,
+        longText: ''
+      }
+    )
   }
 
-  handleChange () {
+  handleChange () {}
 
-  }
+  handleSubmit () {}
 
-  handleSubmit () {
-
-  }
-
-  reset () {
-
-  }
+  reset () {}
 
   triggerBig (value) {
     this.setState({ bigShow: value })
@@ -67,11 +65,15 @@ export default class Template extends Component {
     const { forms } = this.state
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--form-modal'>
         <h2 className='hi-form__title'>表单</h2>
 
-        <Button type='primary' onClick={this.triggerBig.bind(this, true)}>点击预览大号表单</Button>
-        <Button type='primary' onClick={this.triggerSmall.bind(this, true)}>点击预览小号表单</Button>
+        <Button type='primary' onClick={this.triggerBig.bind(this, true)}>
+          点击预览大号表单
+        </Button>
+        <Button type='primary' onClick={this.triggerSmall.bind(this, true)}>
+          点击预览小号表单
+        </Button>
 
         <Modal
           title='标题'
@@ -80,17 +82,30 @@ export default class Template extends Component {
           onCancel={this.triggerBig.bind(this, false)}
           width={800}
           footers={[
-            <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>提交</Button>,
-            <Button type='default' key={2} onClick={this.reset.bind(this)}>重置</Button>
+            <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>
+              提交
+            </Button>,
+            <Button type='default' key={2} onClick={this.reset.bind(this)}>
+              重置
+            </Button>
           ]}
         >
-          <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90' labelPosition='right'>
-
+          <Form
+            ref={this.form1}
+            model={forms}
+            rules={this.state.rules}
+            labelWidth='90'
+            labelPosition='right'
+          >
             <Row>
               <Col span={14}>
-
                 <FormItem label='label' prop='text'>
-                  <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '320px' }} />
+                  <Input
+                    value={forms.text}
+                    placeholder={'name'}
+                    onChange={this.handleChange.bind(this, 'column1')}
+                    style={{ width: '320px' }}
+                  />
                 </FormItem>
                 <FormItem label='Date' prop='Date'>
                   <DatePicker
@@ -102,12 +117,16 @@ export default class Template extends Component {
                   />
                 </FormItem>
                 <FormItem label='long text' prop='longText'>
-                  <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '320px', height: '100px' }} type='textarea' />
+                  <Input
+                    value={forms.longText}
+                    placeholder={'多行文本'}
+                    onChange={this.handleChange.bind(this, 'column1')}
+                    style={{ width: '320px', height: '100px' }}
+                    type='textarea'
+                  />
                 </FormItem>
-
               </Col>
               <Col span={10}>
-
                 <FormItem label='label' prop='select'>
                   <Select
                     list={this.singleList}
@@ -135,7 +154,6 @@ export default class Template extends Component {
                     onChange={this.handleChange.bind(this, 'region', '')}
                   />
                 </FormItem>
-
               </Col>
             </Row>
           </Form>
@@ -148,13 +166,28 @@ export default class Template extends Component {
           onCancel={this.triggerSmall.bind(this, false)}
           width={600}
           footers={[
-            <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>提交</Button>,
-            <Button type='default' key={2} onClick={this.reset.bind(this)}>重置</Button>
+            <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>
+              提交
+            </Button>,
+            <Button type='default' key={2} onClick={this.reset.bind(this)}>
+              重置
+            </Button>
           ]}
         >
-          <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90' labelPosition='right'>
+          <Form
+            ref={this.form1}
+            model={forms}
+            rules={this.state.rules}
+            labelWidth='90'
+            labelPosition='right'
+          >
             <FormItem label='label' prop='text'>
-              <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
+              <Input
+                value={forms.text}
+                placeholder={'name'}
+                onChange={this.handleChange.bind(this, 'column1')}
+                style={{ width: '250px' }}
+              />
             </FormItem>
             <FormItem label='Date' prop='Date'>
               <DatePicker
@@ -186,7 +219,6 @@ export default class Template extends Component {
               />
             </FormItem>
           </Form>
-
         </Modal>
       </div>
     )

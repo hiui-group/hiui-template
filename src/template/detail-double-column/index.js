@@ -28,9 +28,7 @@ export default class Template extends Component {
 
   fetchDetailInfo = () => {
     return axios
-      .get(
-        'https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo'
-      )
+      .get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo')
       .then(({ data: { data: detailInfo } }) => {
         this.setState({ detailInfo })
       })
@@ -57,7 +55,7 @@ export default class Template extends Component {
     const { title, desc, detailInfo, otherInfo } = this.state
 
     return (
-      <React.Fragment>
+      <div className='page--detail-double-column'>
         <Col className='detail-double-column detail-double-column__header'>
           <Row className='row row-01' align='center'>
             <span onClick={this.handleBackClick}>
@@ -86,11 +84,7 @@ export default class Template extends Component {
               <Button icon='edit' type='primary' onClick={this.handleEditClick}>
                 编辑
               </Button>
-              <Button
-                icon='delete'
-                type='danger'
-                onClick={this.handleDeleteClick}
-              >
+              <Button icon='delete' type='danger' onClick={this.handleDeleteClick}>
                 删除
               </Button>
               <Button icon='more' type='line' onClick={this.handleMoreClick} />
@@ -117,7 +111,7 @@ export default class Template extends Component {
             ))}
           </ul>
         </Col>
-      </React.Fragment>
+      </div>
     )
   }
 }

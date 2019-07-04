@@ -6,22 +6,23 @@ import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import '@hi-ui/hiui/es/table/style/index.css'
 import Icon from '@hi-ui/hiui/es/icon'
+import './index.scss'
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.columnMixins = {
       column1: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.column1 - next.column1
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
+            <Icon name="edit" />
+            <Icon name="close" />
+            <Icon name="more" />
           </React.Fragment>
         )
       }
@@ -32,24 +33,51 @@ export default class Template extends Component {
       currentTree: '',
 
       treeData: [
-        { id: '小米',
+        {
+          id: '小米',
           title: '小米',
           children: [
-            { id: '技术',
+            {
+              id: '技术',
               title: '技术',
               children: [
-                { id: '后端', title: '后端', onClick: () => { this.onTreeClick('后端') } },
-                { id: '运维', title: '运维', onClick: () => { this.onTreeClick('运维') } },
-                { id: '前端', title: '前端', onClick: () => { this.onTreeClick('前端') } }
+                {
+                  id: '后端',
+                  title: '后端',
+                  onClick: () => {
+                    this.onTreeClick('后端')
+                  }
+                },
+                {
+                  id: '运维',
+                  title: '运维',
+                  onClick: () => {
+                    this.onTreeClick('运维')
+                  }
+                },
+                {
+                  id: '前端',
+                  title: '前端',
+                  onClick: () => {
+                    this.onTreeClick('前端')
+                  }
+                }
               ]
             },
-            { id: '产品', title: '产品', onClick: () => { this.onTreeClick('产品') } }
+            {
+              id: '产品',
+              title: '产品',
+              onClick: () => {
+                this.onTreeClick('产品')
+              }
+            }
           ]
-        }]
+        }
+      ]
     }
   }
 
-  onTreeClick (id) {
+  onTreeClick(id) {
     const treeData = [...this.state.treeData]
     let hasGet = false
 
@@ -78,33 +106,34 @@ export default class Template extends Component {
     })
   }
 
-  renderTree () {
+  renderTree() {
     return (
       <Tree
         defaultExpandAll
         data={this.state.treeData}
         defaultCheckedKeys={[2]}
-        onNodeToggle={(data, isExpanded) => { console.log('toggle: data isExpanded', data, isExpanded) }}
-        onChange={data => { console.log('Tree data:', data) }}
-        openIcon='down'
-        closeIcon='up'
+        onNodeToggle={(data, isExpanded) => {
+          console.log('toggle: data isExpanded', data, isExpanded)
+        }}
+        onChange={data => {
+          console.log('Tree data:', data)
+        }}
+        openIcon="down"
+        closeIcon="up"
       />
     )
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
-    const {
-      forms,
-      pageSize
-    } = this.state
+    const { forms, pageSize } = this.state
     const params = {
       pageSize
     }
 
     return (
-      <div className='page page--gutter'>
+      <div className="page--tree-single-query">
         <Row>
           <Col span={24}>
             <DataFilter
@@ -113,21 +142,33 @@ export default class Template extends Component {
               params={params}
               columnMixins={this.columnMixins}
               vertical
-              verticalWidth='215px'
+              verticalWidth="215px"
               actions={[
                 'search',
-                <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary' icon='plus' />
+                <Link to="/form-unfold-group" className="hi-tpl__add">
+                  <Button type="primary" icon="plus" />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type="line"
+                  icon="download"
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type="line"
+                  icon="mark"
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type="line"
+                  icon="more"
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               activeTools={['query']}
               tools={[

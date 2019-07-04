@@ -11,6 +11,7 @@ import Radio from '@hi-ui/hiui/es/radio'
 import Upload from '@hi-ui/hiui/es/upload'
 import Grid from '@hi-ui/hiui/es/grid'
 // import axios from 'axios'
+import './index.scss'
 
 const FormItem = Form.Item
 
@@ -30,28 +31,25 @@ export default class Template extends Component {
   }
 
   initForms () {
-    return Object.assign({}, {
-      text: '',
-      date: { start: new Date(), end: new Date() },
-      num: 0,
-      time: new Date(),
-      select: '4',
-      radio: 0,
-      longText: ''
-    })
+    return Object.assign(
+      {},
+      {
+        text: '',
+        date: { start: new Date(), end: new Date() },
+        num: 0,
+        time: new Date(),
+        select: '4',
+        radio: 0,
+        longText: ''
+      }
+    )
   }
 
-  handleChange () {
+  handleChange () {}
 
-  }
+  handleSubmit () {}
 
-  handleSubmit () {
-
-  }
-
-  reset () {
-
-  }
+  reset () {}
 
   render () {
     const Row = Grid.Row
@@ -59,15 +57,22 @@ export default class Template extends Component {
     const { forms } = this.state
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--form-basic'>
         <Form model={forms} rules={this.state.rules} labelWidth='80'>
-          <h2 className='hi-form__title' style={{ 'width': '80px' }}>表单</h2>
+          <h2 className='hi-form__title' style={{ width: '80px' }}>
+            表单
+          </h2>
 
           <Row>
             <Col span={24}>
-
               <FormItem label='ID' prop='text'>
-                <Input value={forms.text} placeholder={'请输入'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} required />
+                <Input
+                  value={forms.text}
+                  placeholder={'请输入'}
+                  onChange={this.handleChange.bind(this, 'column1')}
+                  style={{ width: '250px' }}
+                  required
+                />
               </FormItem>
               <FormItem label='Date' prop='Date'>
                 <DatePicker
@@ -109,7 +114,7 @@ export default class Template extends Component {
               </FormItem>
               <FormItem label='Raido' prop='radio'>
                 <Radio
-                  list={[ '北京', '上海', '重庆' ]}
+                  list={['北京', '上海', '重庆']}
                   checked={forms.radio}
                   onChange={this.handleChange.bind(this, 'region', '')}
                 />
@@ -125,14 +130,23 @@ export default class Template extends Component {
               </FormItem>
 
               <FormItem label='long text' prop='longText'>
-                <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '320px', height: '100px' }} type='textarea' />
+                <Input
+                  value={forms.longText}
+                  placeholder={'多行文本'}
+                  onChange={this.handleChange.bind(this, 'column1')}
+                  style={{ width: '320px', height: '100px' }}
+                  type='textarea'
+                />
               </FormItem>
 
               <FormItem>
-                <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
-                <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
+                <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+                  提交
+                </Button>
+                <Button type='default' onClick={this.reset.bind(this)}>
+                  重置
+                </Button>
               </FormItem>
-
             </Col>
           </Row>
         </Form>

@@ -1,5 +1,7 @@
 .page--dashboard {
-  background-color: #f6f6f6;
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
 }
 
 .top-btn {

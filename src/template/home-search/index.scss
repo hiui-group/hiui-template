@@ -1,5 +1,8 @@
 .page--search {
-  padding: 16px 0;
+  background: #fff;
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
 
   .search-box {
     width: 450px;

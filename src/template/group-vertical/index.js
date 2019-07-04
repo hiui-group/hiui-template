@@ -4,6 +4,7 @@ import Grid from '@hi-ui/hiui/es/grid'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
+import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -202,7 +203,7 @@ export default class Template extends Component {
     const { activeMenu } = this.state
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--group-vertical'>
         <Row gutter>
           <Col span={3}>
             <NavMenu

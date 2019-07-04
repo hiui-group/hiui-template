@@ -1,7 +1,12 @@
+.page--detail-card {
+  padding: 24px;
+  box-sizing: border-box;
+}
+
 .detail-card {
   height: 100%;
   // width: 100%;
-  background: #e7e7e7;
+  // background: #e7e7e7;
 
   &__header {
     .row {

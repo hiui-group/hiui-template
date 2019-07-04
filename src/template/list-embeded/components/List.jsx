@@ -6,12 +6,12 @@ class ListItem extends React.Component {
   state = {
     open: false
   }
-  render() {
+  render () {
     const { title, status, info, operation, detail } = this.props.item
     const { open } = this.state
     return (
-      <div style={{ marginBottom: 20, borderBottom: '1px solid #E7E7E7' }}>
-        <div style={{ display: 'flex' }}>
+      <div className='list-item'>
+        <div className='list-item__content'>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               {title}
@@ -59,7 +59,7 @@ class ListItem extends React.Component {
           </div>
           <div style={{ flex: '0 0 auto' }}>
             {operation.map((o, index) => (
-              <Button type="line" key={index}>
+              <Button type='line' key={index}>
                 {o}
               </Button>
             ))}
@@ -94,15 +94,16 @@ class ListItem extends React.Component {
             ))}
           </div>
         )}
+        <hr style={{ marginTop: 11, marginBottom: 11, border: '1px solid #E7E7E7' }} />
       </div>
     )
   }
 }
 
 export default class List extends React.Component {
-  render() {
+  render () {
     return (
-      <div style={{ padding: 24 }}>
+      <div className='list'>
         {this.props.data.map((item, index) => (
           <ListItem item={item} key={index} />
         ))}

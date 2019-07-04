@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import List from './components/List'
-
+import './index.scss'
 const listData = [
   {
     title: '设备采购申请',
@@ -186,7 +186,11 @@ const listData = [
   }
 ]
 export default class ListEmbeded extends Component {
-  render () {
-    return <List data={listData} />
+  render() {
+    return (
+      <div className="page--list-embeded">
+        <List data={listData} />
+      </div>
+    )
   }
 }

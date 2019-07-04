@@ -7,6 +7,7 @@ import Seclet from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
+import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -65,19 +66,25 @@ export default class Template extends Component {
   updateForm (data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
-    this.setState({
-      forms
-    }, () => {
-      callback && callback()
-    })
+    this.setState(
+      {
+        forms
+      },
+      () => {
+        callback && callback()
+      }
+    )
   }
 
   initForms () {
-    return Object.assign({}, {
-      column1: '',
-      column2: '全部',
-      column3: '全部'
-    })
+    return Object.assign(
+      {},
+      {
+        column1: '',
+        column2: '全部',
+        column3: '全部'
+      }
+    )
   }
 
   beforeSubmit () {
@@ -87,19 +94,15 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const {
-      forms,
-      pageSize
-    } = this.state
+    const { forms, pageSize } = this.state
     const params = {
       pageSize
     }
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--query-basic'>
         <Row>
           <Col span={24}>
-
             <DataFilter
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               onFetched={ret => {
@@ -112,15 +115,27 @@ export default class Template extends Component {
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
                   <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type='line'
+                  icon='download'
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='mark'
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='more'
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               activeTools={['query']}
               tools={[
@@ -145,17 +160,21 @@ export default class Template extends Component {
                   />
                 </Field>
                 <Field label='业务来源' width='200'>
-                  <DatePicker onChange={(d) => {
-                    console.log('选择月份', d)
-                    // this.setState({_date: d})
-                  }} />
+                  <DatePicker
+                    onChange={d => {
+                      console.log('选择月份', d)
+                      // this.setState({_date: d})
+                    }}
+                  />
                 </Field>
                 <Field label='运输方式' width='200'>
                   <Seclet
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式1' width='200' advanced>
@@ -163,7 +182,9 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式2' width='200' advanced>
@@ -171,7 +192,9 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式3' width='200' advanced>
@@ -179,7 +202,9 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式4' width='200' advanced>
@@ -187,7 +212,9 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式5' width='200' advanced>
@@ -195,12 +222,13 @@ export default class Template extends Component {
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
                     value={forms.column3}
-                    onChange={value => this.updateForm({ column3: (value[0] && value[0].id) || '全部' })}
+                    onChange={value =>
+                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
               </FieldGroup>
             </DataFilter>
-
           </Col>
         </Row>
       </div>

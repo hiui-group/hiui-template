@@ -5,6 +5,7 @@ import Button from '@hi-ui/hiui/es/button'
 import Grid from '@hi-ui/hiui/es/grid'
 import { handleNotificate } from '@hi-ui/hiui/es/notification'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
+import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
@@ -41,23 +42,27 @@ export default class Template extends Component {
       action: {
         render: () => (
           <React.Fragment>
-            <Link to='/form-unfold-group'><Icon name='edit' /></Link>
-            <Icon style={{ color: '#4285f4', cursor: 'pointer' }} name='close' onClick={() => {
-              handleNotificate({
-                type: 'success',
-                duration: 3000,
-                showClose: false,
-                autoClose: true,
-                title: '消息',
-                message: '数据已删除',
-                onClose: () => { console.log('关闭回调') }
-              })
-            }}
+            <Link to='/form-unfold-group'>
+              <Icon name='edit' />
+            </Link>
+            <Icon
+              style={{ color: '#4285f4', cursor: 'pointer' }}
+              name='close'
+              onClick={() => {
+                handleNotificate({
+                  type: 'success',
+                  duration: 3000,
+                  showClose: false,
+                  autoClose: true,
+                  title: '消息',
+                  message: '数据已删除',
+                  onClose: () => {
+                    console.log('关闭回调')
+                  }
+                })
+              }}
             />
-            <Icon name='more' onClick={() => {
-
-            }}
-            />
+            <Icon name='more' onClick={() => {}} />
           </React.Fragment>
         )
       }
@@ -75,18 +80,15 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const {
-      pageSize
-    } = this.state
+    const { pageSize } = this.state
     const params = {
       pageSize
     }
 
     return (
-      <div className='page page--gutter'>
+      <div className='page--common-basic'>
         <Row>
           <Col span={24}>
-
             <DataFilter
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               params={params}
@@ -96,15 +98,27 @@ export default class Template extends Component {
                 <Link to='/form-unfold-group' className='hi-tpl__add'>
                   <Button type='primary' icon='plus' />
                 </Link>,
-                <Button type='line' icon='download' onClick={() => {
-                  console.log('------------click download')
-                }} />,
-                <Button type='line' icon='mark' onClick={() => {
-                  console.log('------------click share')
-                }} />,
-                <Button type='line' icon='more' onClick={() => {
-                  console.log('------------click more')
-                }} />
+                <Button
+                  type='line'
+                  icon='download'
+                  onClick={() => {
+                    console.log('------------click download')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='mark'
+                  onClick={() => {
+                    console.log('------------click share')
+                  }}
+                />,
+                <Button
+                  type='line'
+                  icon='more'
+                  onClick={() => {
+                    console.log('------------click more')
+                  }}
+                />
               ]}
               tools={[
                 'filter',
@@ -116,7 +130,6 @@ export default class Template extends Component {
                 'statistics'
               ]}
             />
-
           </Col>
         </Row>
       </div>

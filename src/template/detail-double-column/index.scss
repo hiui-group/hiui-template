@@ -1,7 +1,11 @@
+.page--detail-double-column {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+}
+
 .detail-double-column {
   &__header {
-    background: #e7e7e7;
-
     .row {
       &-01 {
         color: #999;
@@ -34,6 +38,8 @@
   }
 
   &__body {
+    background: #fff;
+
     .title {
       font-size: 16px;
 

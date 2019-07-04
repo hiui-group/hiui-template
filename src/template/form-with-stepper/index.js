@@ -11,7 +11,7 @@ import Radio from '@hi-ui/hiui/es/radio'
 import Upload from '@hi-ui/hiui/es/upload'
 import Stepper from '@hi-ui/hiui/es/stepper'
 import Grid from '@hi-ui/hiui/es/grid'
-
+import './index.scss'
 const FormItem = Form.Item
 
 export default class Template extends Component {
@@ -42,28 +42,25 @@ export default class Template extends Component {
   }
 
   initForms () {
-    return Object.assign({}, {
-      text: '',
-      Date: { start: new Date(), end: new Date() },
-      num: 0,
-      time: new Date(),
-      select: '4',
-      radio: 2,
-      longText: ''
-    })
+    return Object.assign(
+      {},
+      {
+        text: '',
+        Date: { start: new Date(), end: new Date() },
+        num: 0,
+        time: new Date(),
+        select: '4',
+        radio: 2,
+        longText: ''
+      }
+    )
   }
 
-  handleChange () {
+  handleChange () {}
 
-  }
+  handleSubmit () {}
 
-  handleSubmit () {
-
-  }
-
-  reset () {
-
-  }
+  reset () {}
 
   render () {
     const Row = Grid.Row
@@ -71,23 +68,23 @@ export default class Template extends Component {
     const { forms } = this.state
 
     return (
-      <div className='page page--gutter'>
-
+      <div className='page--form-with-stepper'>
         <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
           <h2 className='hi-form__title'>表单</h2>
           <Row>
             <Col span={6} offset={1}>
-              <Stepper
-                list={this.list}
-                current={0}
-              />
+              <Stepper list={this.list} current={0} />
             </Col>
           </Row>
           <Row>
             <Col span={24}>
-
               <FormItem label='label' prop='text'>
-                <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} />
+                <Input
+                  value={forms.text}
+                  placeholder={'name'}
+                  onChange={this.handleChange.bind(this, 'column1')}
+                  style={{ width: '250px' }}
+                />
               </FormItem>
               <FormItem label='Date' prop='Date'>
                 <DatePicker
@@ -145,14 +142,23 @@ export default class Template extends Component {
               </FormItem>
 
               <FormItem label='long text' prop='longText'>
-                <Input value={forms.longText} placeholder={'多行文本'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '320px', height: '100px' }} type='textarea' />
+                <Input
+                  value={forms.longText}
+                  placeholder={'多行文本'}
+                  onChange={this.handleChange.bind(this, 'column1')}
+                  style={{ width: '320px', height: '100px' }}
+                  type='textarea'
+                />
               </FormItem>
 
               <FormItem>
-                <Button type='primary' onClick={this.handleSubmit.bind(this)}>下一步</Button>
-                <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
+                <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+                  下一步
+                </Button>
+                <Button type='default' onClick={this.reset.bind(this)}>
+                  重置
+                </Button>
               </FormItem>
-
             </Col>
           </Row>
         </Form>

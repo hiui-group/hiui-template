@@ -4,18 +4,18 @@ import Icon from '@hi-ui/hiui/es/icon'
 
 const logo = (
   <Logo
-    url='https://hiui-group.github.io/hiui-template/'
-    logoUrl='https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
-    text='HIUI Template'
-    title='HIUI Template'
-    alt='Project Logo'
+    url="https://hiui-group.github.io/hiui-template/"
+    logoUrl="https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05"
+    text="HIUI Template"
+    title="HIUI Template"
+    alt="Project Logo"
   />
 )
 export const sider = {
   items: [
     {
       title: '表格模板',
-      icon: <Icon name='list' />,
+      icon: <Icon name="list" />,
       children: [
         {
           title: '通用-搜索',
@@ -77,7 +77,7 @@ export const sider = {
     },
     {
       title: '表单模板',
-      icon: <Icon name='approve' />,
+      icon: <Icon name="approve" />,
       children: [
         {
           title: '单列',
@@ -111,7 +111,7 @@ export const sider = {
     },
     {
       title: '首页模板',
-      icon: <Icon name='home' />,
+      icon: <Icon name="home" />,
       children: [
         {
           title: '仪表盘',
@@ -133,7 +133,7 @@ export const sider = {
     },
     {
       title: '个人页模板',
-      icon: <Icon name='user' />,
+      icon: <Icon name="user" />,
       children: [
         {
           title: '账号中心',
@@ -147,7 +147,7 @@ export const sider = {
     },
     {
       title: '加载页',
-      icon: <Icon name='user' />,
+      icon: <Icon name="user" />,
       children: [
         {
           title: '普通',
@@ -157,7 +157,7 @@ export const sider = {
     },
     {
       title: '列表页',
-      icon: <Icon name='user' />,
+      icon: <Icon name="user" />,
       children: [
         {
           title: '嵌入式',
@@ -179,7 +179,7 @@ export const sider = {
     },
     {
       title: '结果页模板',
-      icon: <Icon name='user' />,
+      icon: <Icon name="user" />,
       children: [
         {
           title: '服务器出错',
@@ -209,7 +209,7 @@ export const sider = {
     },
     {
       title: '详情模板',
-      icon: <Icon name='document' />,
+      icon: <Icon name="document" />,
       children: [
         {
           title: '单列',
@@ -407,7 +407,8 @@ export default [
             },
             {
               path: '/',
-              component: require('../template/common-search').default
+              component: require('../template/common-search').default,
+              exact: true
             },
             {
               path: '/detail-basic',

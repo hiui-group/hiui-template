@@ -1,7 +1,11 @@
+.page--detail-relevance {
+  padding: 24px;
+  box-sizing: border-box;
+}
+
 .detail-relevance {
   height: 100%;
   width: 100%;
-  background: #e7e7e7;
 
   &__header {
     .row {

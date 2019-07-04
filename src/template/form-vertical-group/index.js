@@ -8,6 +8,7 @@ import Counter from '@hi-ui/hiui/es/counter'
 import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
 import NavMenu from '@hi-ui/hiui/es/nav-menu'
 import Grid from '@hi-ui/hiui/es/grid'
+import './index.scss'
 
 const FormItem = Form.Item
 
@@ -39,28 +40,25 @@ export default class Template extends Component {
   }
 
   initForms () {
-    return Object.assign({}, {
-      text: '',
-      Date: { start: new Date(), end: new Date() },
-      num: 0,
-      time: new Date(),
-      select: '4',
-      radio: '北京',
-      longText: ''
-    })
+    return Object.assign(
+      {},
+      {
+        text: '',
+        Date: { start: new Date(), end: new Date() },
+        num: 0,
+        time: new Date(),
+        select: '4',
+        radio: '北京',
+        longText: ''
+      }
+    )
   }
 
-  handleChange () {
+  handleChange () {}
 
-  }
+  handleSubmit () {}
 
-  handleSubmit () {
-
-  }
-
-  reset () {
-
-  }
+  reset () {}
 
   render () {
     const Row = Grid.Row
@@ -68,22 +66,22 @@ export default class Template extends Component {
     const { forms } = this.state
 
     return (
-      <div className='page page--gutter'>
-
+      <div className='page--form-vertical-group'>
         <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90'>
           <h2 className='hi-form__title'>表单</h2>
 
           <Row>
             <Col span={24}>
-
-              <NavMenu
-                onClick={this.handleClick}
-                data={this.list}
-              >
+              <NavMenu onClick={this.handleClick} data={this.list}>
                 <div>
-
                   <FormItem label='label' prop='text'>
-                    <Input value={forms.text} placeholder={'name'} onChange={this.handleChange.bind(this, 'column1')} style={{ width: '250px' }} required />
+                    <Input
+                      value={forms.text}
+                      placeholder={'name'}
+                      onChange={this.handleChange.bind(this, 'column1')}
+                      style={{ width: '250px' }}
+                      required
+                    />
                   </FormItem>
                   <FormItem label='Date' prop='Date'>
                     <DatePicker
@@ -112,20 +110,21 @@ export default class Template extends Component {
                       }}
                     />
                   </FormItem>
-
                 </div>
                 <div>1</div>
                 <div>2</div>
               </NavMenu>
-
             </Col>
           </Row>
 
           <div className='hi-form-item--fixed'>
-            <Button type='primary' onClick={this.handleSubmit.bind(this)}>提交</Button>
-            <Button type='default' onClick={this.reset.bind(this)}>重置</Button>
+            <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+              提交
+            </Button>
+            <Button type='default' onClick={this.reset.bind(this)}>
+              重置
+            </Button>
           </div>
-
         </Form>
       </div>
     )

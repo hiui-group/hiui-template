@@ -75,11 +75,6 @@ const header = (
           结果页
         </NavLink>
       </NavGroup.Item>
-      <NavGroup.Item>
-        <NavLink to="/detail/detail-basic" activeClassName="header__nav-link--active">
-          详情页
-        </NavLink>
-      </NavGroup.Item>
     </NavGroup>
     <NavGroup position="right">
       <div style={{ cursor: 'pointer' }}>

@@ -83,7 +83,7 @@ const myCollect = [
     title: '年会Banner 宣传',
     time: '2019-03-05',
     operation: '取消收藏',
-    image: 'https://xiaomi.github.io/hiui/hiui-template/static/img/logo.png?241e0618fe55d933c280e38954edea05'
+    image: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
   }
 ]
 const mySubscribe = [
@@ -120,7 +120,7 @@ class UserDashboard extends Component {
           <div className='aside__avator'>
             <img
               src={
-                'https://xiaomi.github.io/hiui/hiui-template/static/img/logo.png?241e0618fe55d933c280e38954edea05'
+                'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
               }
               style={{
                 width: 80,

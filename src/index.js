@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import rootRoute from './route'
-import { History, Genuine as Page, NavGroup, Login, Logo } from '@hi-ui/classic-theme'
+import { NavLink } from 'react-router-dom'
+import { History, Classic as Page, NavGroup, Login, Logo } from '@hi-ui/classic-theme'
 import Icon from '@hi-ui/hiui/es/icon'
 import Copy from './component/copy'
 import './template/content.scss'
@@ -33,7 +34,46 @@ History.createHashHistory()
 const header = (
   <React.Fragment>
     <NavGroup position='left'>
-      <h4 style={{ paddingLeft: 24 }}>二级菜单</h4>
+      <NavGroup.Item>
+        <NavLink to='/table/common-search' exact activeClassName='header__nav-link--active'>
+          表格模板
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/form/form-basic' activeClassName='header__nav-link--active'>
+          表单模板
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/home/home-dashboard' activeClassName='header__nav-link--active'>
+          首页模板
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/user/user-center' activeClassName='header__nav-link--active'>
+          个人页模板
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/loading/normal-loading' activeClassName='header__nav-link--active'>
+          加载页模板
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/list/list-embeded' activeClassName='header__nav-link--active'>
+          列表页模板
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/result/result-server-error' activeClassName='header__nav-link--active'>
+          结果页模板
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/detail/detail-basic' activeClassName='header__nav-link--active'>
+          详情页模板
+        </NavLink>
+      </NavGroup.Item>
     </NavGroup>
     <NavGroup position='right'>
       <div style={{ cursor: 'pointer' }}>
@@ -52,7 +92,7 @@ render(
       header={header}
       routes={rootRoute}
       config={{
-        color: 'black',
+        color: 'blue',
         type: 'card'
       }}
     />

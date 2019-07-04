@@ -61,6 +61,10 @@ export default [
               component: require('../template/tree-multiple-query').default
             },
             {
+              path: '/table/tree-multiple',
+              component: require('../template/tree-multiple').default
+            },
+            {
               path: '/table/tile-single',
               component: require('../template/tile-single').default
             },
@@ -168,24 +172,24 @@ export default [
       )
     }
   },
-  {
-    path: '/loading',
-    render: props => {
-      return (
-        <SiderLayout
-          sider={siders.loading}
-          accordion={false}
-          routes={[
-            {
-              path: '/loading/normal-loading',
-              component: require('../template/normal-loading').default
-            }
-          ]}
-          {...props}
-        />
-      )
-    }
-  },
+  // {
+  //   path: '/loading',
+  //   render: props => {
+  //     return (
+  //       <SiderLayout
+  //         sider={siders.loading}
+  //         accordion={false}
+  //         routes={[
+  //           {
+  //             path: '/loading/normal-loading',
+  //             component: require('../template/normal-loading').default
+  //           }
+  //         ]}
+  //         {...props}
+  //       />
+  //     )
+  //   }
+  // },
   {
     path: '/result',
     render: props => {

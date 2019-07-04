@@ -54,11 +54,11 @@ const header = (
           个人页模板
         </NavLink>
       </NavGroup.Item>
-      <NavGroup.Item>
+      {/*      <NavGroup.Item>
         <NavLink to='/loading/normal-loading' activeClassName='header__nav-link--active'>
           加载页模板
         </NavLink>
-      </NavGroup.Item>
+</NavGroup.Item> */}
       <NavGroup.Item>
         <NavLink to='/list/list-embeded' activeClassName='header__nav-link--active'>
           列表页模板

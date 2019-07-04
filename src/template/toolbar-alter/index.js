@@ -98,7 +98,7 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page--toolbar-alter page--toolbar--fixed'>
+      <div className='page--toolbar-alter '>
         <Row>
           <Col span={24}>
             <DataFilter

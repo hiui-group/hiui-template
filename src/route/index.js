@@ -1,11 +1,15 @@
 import React from 'react'
 import { SiderLayout } from '@hi-ui/classic-theme'
-import Icon from '@hi-ui/hiui/es/icon'
 import { siders } from './siders'
 
 export default [
   {
     path: '/',
+    component: require('../template/home-dashboard').default,
+    exact: true
+  },
+  {
+    path: '/home',
     render: props => {
       return (
         <SiderLayout
@@ -13,7 +17,7 @@ export default [
           accordion={false}
           routes={[
             {
-              path: '/',
+              path: '/home/home-dashboard',
               component: require('../template/home-dashboard').default
             },
             {

@@ -23,7 +23,7 @@ const login = {
 const logo = (
   <Logo
     url="https://xiaomi.github.io/hiui/"
-    logoUrl="https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05"
+    logoUrl="https://xiaomi.github.io/hiui/hiui-template/static/img/logo.png?241e0618fe55d933c280e38954edea05"
     text="HIUI Template"
     title="HIUI Template Demo"
     alt="HIUI"
@@ -35,7 +35,7 @@ const header = (
   <React.Fragment>
     <NavGroup position="left">
       <NavGroup.Item>
-        <NavLink to="/" activeClassName="header__nav-link--active">
+        <NavLink to="/home/home-dashboard" activeClassName="header__nav-link--active">
           首页
         </NavLink>
       </NavGroup.Item>

@@ -28,12 +28,12 @@ export default class ListTask extends Component {
     pageNum: 1,
     pageSize: 15
   }
-  render() {
+  render () {
     const { value, taskList, pageNum, pageSize } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
     console.log(tasks)
     return (
-      <div className="page--list-task">
+      <div className='page--list-task'>
         <div
           style={{
             display: 'flex',
@@ -47,12 +47,12 @@ export default class ListTask extends Component {
           <div style={{ width: 271 }}>
             <Input
               value={value}
-              placeholder="搜索任务"
+              placeholder='搜索任务'
               onChange={e => this.setState({ value: e.target.value })}
               append={
                 <Button
-                  type="line"
-                  icon="search"
+                  type='line'
+                  icon='search'
                   onClick={() => {
                     this.setState({
                       highlightValue: value
@@ -63,7 +63,7 @@ export default class ListTask extends Component {
             />
           </div>
         </div>
-        <div className="tasks__container">
+        <div className='tasks__container'>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {tasks
               .map(t => (
@@ -86,10 +86,11 @@ export default class ListTask extends Component {
                       alignItems: 'center',
                       display: 'flex',
                       justifyContent: 'center',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      background: '#fff'
                     }}
                   >
-                    <Icon name="plus" style={{ fontSize: 40, background: '#fff' }} />
+                    <Icon name='plus' style={{ fontSize: 40, background: '#fff' }} />
                   </Card>
                 </div>
               )}

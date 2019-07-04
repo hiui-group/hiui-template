@@ -97,12 +97,12 @@ export const siders = {
       to: '/user/user-dashboard'
     }
   ],
-  loading: [
-    {
-      title: '普通',
-      to: '/loading/normal-loading'
-    }
-  ],
+  // loading: [
+  //   {
+  //     title: '普通',
+  //     to: '/loading/normal-loading'
+  //   }
+  // ],
   list: [
     {
       title: '嵌入式',

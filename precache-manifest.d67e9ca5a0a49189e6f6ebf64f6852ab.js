@@ -4,15 +4,15 @@ self.__precacheManifest = [
     "url": "/hiui-template/static/js/runtime~main.a8db7e09.js"
   },
   {
-    "revision": "2e8f2fa582d6fcaa7cac",
-    "url": "/hiui-template/static/js/main.2e8f2fa5.chunk.js"
+    "revision": "7ecada51e89ccc3ccaa7",
+    "url": "/hiui-template/static/js/main.7ecada51.chunk.js"
   },
   {
     "revision": "1ee00e0d66c0a92a32a2",
     "url": "/hiui-template/static/js/1.1ee00e0d.chunk.js"
   },
   {
-    "revision": "2e8f2fa582d6fcaa7cac",
+    "revision": "7ecada51e89ccc3ccaa7",
     "url": "/hiui-template/static/css/main.501735a8.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/hiui-template/static/css/1.8eea79c4.chunk.css"
   },
   {
-    "revision": "c719dd77fd387eca779ebfbfb732f22d",
+    "revision": "ce4ee4564538d892f18604a3e3c91dcf",
     "url": "/hiui-template/index.html"
   }
 ];

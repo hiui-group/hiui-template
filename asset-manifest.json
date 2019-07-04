@@ -1,7 +1,7 @@
 {
   "main.css": "/hiui-template/static/css/main.501735a8.chunk.css",
-  "main.js": "/hiui-template/static/js/main.2e8f2fa5.chunk.js",
-  "main.js.map": "/hiui-template/static/js/main.2e8f2fa5.chunk.js.map",
+  "main.js": "/hiui-template/static/js/main.7ecada51.chunk.js",
+  "main.js.map": "/hiui-template/static/js/main.7ecada51.chunk.js.map",
   "static/css/1.8eea79c4.chunk.css": "/hiui-template/static/css/1.8eea79c4.chunk.css",
   "static/js/1.1ee00e0d.chunk.js": "/hiui-template/static/js/1.1ee00e0d.chunk.js",
   "static/js/1.1ee00e0d.chunk.js.map": "/hiui-template/static/js/1.1ee00e0d.chunk.js.map",
@@ -10,6 +10,6 @@
   "static/css/main.501735a8.chunk.css.map": "/hiui-template/static/css/main.501735a8.chunk.css.map",
   "static/css/1.8eea79c4.chunk.css.map": "/hiui-template/static/css/1.8eea79c4.chunk.css.map",
   "index.html": "/hiui-template/index.html",
-  "precache-manifest.a7a028aaaa96513984c8440eb9f7a451.js": "/hiui-template/precache-manifest.a7a028aaaa96513984c8440eb9f7a451.js",
+  "precache-manifest.d67e9ca5a0a49189e6f6ebf64f6852ab.js": "/hiui-template/precache-manifest.d67e9ca5a0a49189e6f6ebf64f6852ab.js",
   "service-worker.js": "/hiui-template/service-worker.js"
 }

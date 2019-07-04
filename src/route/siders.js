@@ -176,7 +176,7 @@ export const siders = {
   home: [
     {
       title: '仪表盘',
-      to: '/home/home-dashboard'
+      to: '/'
     },
     {
       title: '工作台',

@@ -5,6 +5,36 @@ import { siders } from './siders'
 
 export default [
   {
+    path: '/',
+    render: props => {
+      return (
+        <SiderLayout
+          sider={siders.home}
+          accordion={false}
+          routes={[
+            {
+              path: '/',
+              component: require('../template/home-dashboard').default
+            },
+            {
+              path: '/home/home-workbench',
+              component: require('../template/home-workbench').default
+            },
+            {
+              path: '/home/home-portal',
+              component: require('../template/home-portal').default
+            },
+            {
+              path: '/home/home-search',
+              component: require('../template/home-search').default
+            }
+          ]}
+          {...props}
+        />
+      )
+    }
+  },
+  {
     path: '/table',
     render: props => {
       return (
@@ -120,36 +150,7 @@ export default [
       )
     }
   },
-  {
-    path: '/home',
-    render: props => {
-      return (
-        <SiderLayout
-          sider={siders.home}
-          accordion={false}
-          routes={[
-            {
-              path: '/home/home-dashboard',
-              component: require('../template/home-dashboard').default
-            },
-            {
-              path: '/home/home-workbench',
-              component: require('../template/home-workbench').default
-            },
-            {
-              path: '/home/home-portal',
-              component: require('../template/home-portal').default
-            },
-            {
-              path: '/home/home-search',
-              component: require('../template/home-search').default
-            }
-          ]}
-          {...props}
-        />
-      )
-    }
-  },
+
   {
     path: '/user',
     render: props => {

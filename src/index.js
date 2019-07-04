@@ -35,43 +35,49 @@ const header = (
   <React.Fragment>
     <NavGroup position='left'>
       <NavGroup.Item>
-        <NavLink to='/table/common-search' exact activeClassName='header__nav-link--active'>
-          表格模板
+        <NavLink to='/home/home-dashboard' activeClassName='header__nav-link--active'>
+          首页
         </NavLink>
       </NavGroup.Item>
       <NavGroup.Item>
         <NavLink to='/form/form-basic' activeClassName='header__nav-link--active'>
-          表单模板
+          表单
         </NavLink>
       </NavGroup.Item>
       <NavGroup.Item>
-        <NavLink to='/home/home-dashboard' activeClassName='header__nav-link--active'>
-          首页模板
+        <NavLink to='/table/common-search' exact activeClassName='header__nav-link--active'>
+          表格
         </NavLink>
       </NavGroup.Item>
-      <NavGroup.Item>
-        <NavLink to='/user/user-center' activeClassName='header__nav-link--active'>
-          个人页模板
-        </NavLink>
-      </NavGroup.Item>
-      {/*      <NavGroup.Item>
-        <NavLink to='/loading/normal-loading' activeClassName='header__nav-link--active'>
-          加载页模板
-        </NavLink>
-</NavGroup.Item> */}
       <NavGroup.Item>
         <NavLink to='/list/list-embeded' activeClassName='header__nav-link--active'>
-          列表页模板
-        </NavLink>
-      </NavGroup.Item>
-      <NavGroup.Item>
-        <NavLink to='/result/result-server-error' activeClassName='header__nav-link--active'>
-          结果页模板
+          列表页
         </NavLink>
       </NavGroup.Item>
       <NavGroup.Item>
         <NavLink to='/detail/detail-basic' activeClassName='header__nav-link--active'>
-          详情页模板
+          详情页
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/user/user-center' activeClassName='header__nav-link--active'>
+          个人页
+        </NavLink>
+      </NavGroup.Item>
+      {/*      <NavGroup.Item>
+        <NavLink to='/loading/normal-loading' activeClassName='header__nav-link--active'>
+          加载页
+        </NavLink>
+</NavGroup.Item> */}
+
+      <NavGroup.Item>
+        <NavLink to='/result/result-server-error' activeClassName='header__nav-link--active'>
+          结果页
+        </NavLink>
+      </NavGroup.Item>
+      <NavGroup.Item>
+        <NavLink to='/detail/detail-basic' activeClassName='header__nav-link--active'>
+          详情页
         </NavLink>
       </NavGroup.Item>
     </NavGroup>

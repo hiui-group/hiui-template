@@ -1,0 +1,7 @@
+#app {
+  aside {
+    & > .hi-menu--vertical {
+      overflow: auto;
+    }
+  }
+}

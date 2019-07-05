@@ -25,9 +25,11 @@ export default class Copy extends Component {
 
   showModal = () => {
     this.setState({ showModal: true })
-    const pathname = window.location.hash.replace(/#?(.*)/, (a, b) => {
-      return b
-    })
+    let pathname = window.location.hash.split('#')[1].replace(/^\/\w+/, '')
+
+    if (!pathname || pathname === '/') {
+      pathname = '/home-dashboard'
+    }
 
     axios
       .get(
@@ -70,12 +72,14 @@ export default class Copy extends Component {
         </div>
         <Modal
           className='code-modal'
-          title={<React.Fragment>
-            <span>复制代码&nbsp;&nbsp;</span>
-            <Tooltip title='点击复制按钮复制代码至你现有的项目中'>
-              <Icon name='problem-circle-o' />
-            </Tooltip>
-          </React.Fragment>}
+          title={
+            <React.Fragment>
+              <span>复制代码&nbsp;&nbsp;</span>
+              <Tooltip title='点击复制按钮复制代码至你现有的项目中'>
+                <Icon name='problem-circle-o' />
+              </Tooltip>
+            </React.Fragment>
+          }
           size='large'
           show={showModal}
           onCancel={this.closeModal.bind(this)}

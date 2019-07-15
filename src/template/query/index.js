@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '@hi-ui/hiui/es/button'
 import Input from '@hi-ui/hiui/es/input'
-import Seclet from '@hi-ui/hiui/es/select'
+import DatePicker from '@hi-ui/hiui/es/date-picker'
+import Select from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
@@ -92,7 +93,8 @@ export default class Template extends Component {
         order_id: '',
         order_platform: '全部',
         order_delivery: '全部',
-        order_payment: '全部'
+        order_payment: '全部',
+        order_date: new Date()
       }
     )
   }
@@ -173,8 +175,16 @@ export default class Template extends Component {
                     }}
                   />
                 </Field>
+                <Field label='订单日期' width='200'>
+                  <DatePicker
+                    value={forms.order_date}
+                    onChange={d => {
+                      this.updateForm({ order_date: DatePicker.format(d, 'YYYY-MM-DD') })
+                    }}
+                  />
+                </Field>
                 <Field label='业务来源' width='200'>
-                  <Seclet
+                  <Select
                     list={this.orderPlatformOptions}
                     placeholder='请选择业务来源'
                     value={forms.order_platform}
@@ -184,7 +194,7 @@ export default class Template extends Component {
                   />
                 </Field>
                 <Field label='运输方式' width='200'>
-                  <Seclet
+                  <Select
                     list={this.orderDeliveryOptions}
                     placeholder='请选择运输方式'
                     value={forms.order_delivery}
@@ -194,7 +204,7 @@ export default class Template extends Component {
                   />
                 </Field>
                 <Field label='支付方式' width='200' advanced>
-                  <Seclet
+                  <Select
                     list={this.orderPaymentOptions}
                     placeholder='请选择支付方式'
                     value={forms.order_payment}
@@ -204,7 +214,7 @@ export default class Template extends Component {
                   />
                 </Field>
                 <Field label='订单状态' width='200' advanced>
-                  <Seclet
+                  <Select
                     list={this.orderStatusOptions}
                     placeholder='请选择订单状态'
                     value={forms.order_status}

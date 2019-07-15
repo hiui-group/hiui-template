@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from '@hi-ui/hiui/es/button'
 import Input from '@hi-ui/hiui/es/input'
 import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Seclet from '@hi-ui/hiui/es/select'
+import Select from '@hi-ui/hiui/es/select'
 import Icon from '@hi-ui/hiui/es/icon'
 import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
@@ -13,33 +13,44 @@ export default class Template extends Component {
   constructor (props) {
     super(props)
 
-    this.businessOptions = [
+    this.orderPlatformOptions = [
       { name: '全部', id: '全部' },
       { name: '小米商城', id: '小米商城' },
       { name: '小米之家', id: '小米之家' },
       { name: '天猫旗舰店', id: '天猫旗舰店' },
       { name: '京东旗舰店', id: '京东旗舰店' }
     ]
-    this.transportOptions = [
+    this.orderDeliveryOptions = [
       { name: '全部', id: '全部' },
       { name: '顺丰', id: '顺丰' },
       { name: 'EMS', id: 'EMS' },
+      { name: '如风达', id: '如风达' },
+      { name: '百世汇通', id: '百世汇通' },
       { name: '自取', id: '自取' }
     ]
-    this.menus = [
-      { title: '全部' },
-      { title: '异常' },
-      { title: '调拨管理' },
-      { title: '超期监控' }
+    this.orderPaymentOptions = [
+      { name: '全部', id: '全部' },
+      { name: '微信支付', id: '微信支付' },
+      { name: '支付宝', id: '支付宝' },
+      { name: '银联', id: '银联' },
+      { name: '信用卡', id: '信用卡' },
+      { name: '现金', id: '现金' }
+    ]
+    this.orderStatusOptions = [
+      { name: '全部', id: '全部' },
+      { name: '待支付', id: '待支付' },
+      { name: '已支付', id: '已支付' },
+      { name: '配货中', id: '配货中' },
+      { name: '配送中', id: '配送中' },
+      { name: '已收货', id: '已收货' },
+      { name: '已取消', id: '已取消' },
+      { name: '已关闭', id: '已关闭' }
     ]
     this.columnMixins = {
-      column1: {
+      id: {
         sorter (pre, next) {
-          return pre.column1 - next.column1
+          return pre.id - next.id
         }
-      },
-      column2: {
-        options: this.transportOptions
       },
       action: {
         render: () => (
@@ -80,9 +91,11 @@ export default class Template extends Component {
     return Object.assign(
       {},
       {
-        column1: '',
-        column2: '全部',
-        column3: '全部'
+        order_id: '',
+        order_platform: '全部',
+        order_delivery: '全部',
+        order_payment: '全部',
+        order_date: new Date()
       }
     )
   }
@@ -104,9 +117,9 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order`}
               onFetched={ret => {
-                console.log('------------fetchDatas', ret)
+                console.log('fetchDatas', ret)
               }}
               params={params}
               columnMixins={this.columnMixins}
@@ -119,21 +132,21 @@ export default class Template extends Component {
                   type='line'
                   icon='download'
                   onClick={() => {
-                    console.log('------------click download')
+                    console.log('click download')
                   }}
                 />,
                 <Button
                   type='line'
                   icon='mark'
                   onClick={() => {
-                    console.log('------------click share')
+                    console.log('click share')
                   }}
                 />,
                 <Button
                   type='line'
                   icon='more'
                   onClick={() => {
-                    console.log('------------click more')
+                    console.log('click more')
                   }}
                 />
               ]}
@@ -153,77 +166,57 @@ export default class Template extends Component {
                 <Field label='订单号' width='220'>
                   <Input
                     placeholder='请输入'
-                    value={forms.column1}
+                    value={forms.order_id}
                     onChange={(e, value) => {
-                      this.updateForm({ column1: value })
+                      this.updateForm({ order_id: value })
+                    }}
+                  />
+                </Field>
+                <Field label='订单日期' width='200'>
+                  <DatePicker
+                    value={forms.order_date}
+                    onChange={d => {
+                      this.updateForm({ order_date: DatePicker.format(d, 'YYYY-MM-DD') })
                     }}
                   />
                 </Field>
                 <Field label='业务来源' width='200'>
-                  <DatePicker
-                    onChange={d => {
-                      console.log('选择月份', d)
-                      // this.setState({_date: d})
-                    }}
+                  <Select
+                    list={this.orderPlatformOptions}
+                    placeholder='请选择业务来源'
+                    value={forms.order_platform}
+                    onChange={value =>
+                      this.updateForm({ order_platform: (value[0] && value[0].id) || '全部' })
+                    }
                   />
                 </Field>
                 <Field label='运输方式' width='200'>
-                  <Seclet
-                    list={this.transportOptions}
+                  <Select
+                    list={this.orderDeliveryOptions}
                     placeholder='请选择运输方式'
-                    value={forms.column3}
+                    value={forms.order_delivery}
                     onChange={value =>
-                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                      this.updateForm({ order_delivery: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>
-                <Field label='运输方式1' width='200' advanced>
-                  <Seclet
-                    list={this.transportOptions}
-                    placeholder='请选择运输方式'
-                    value={forms.column3}
+                <Field label='支付方式' width='200' advanced>
+                  <Select
+                    list={this.orderPaymentOptions}
+                    placeholder='请选择支付方式'
+                    value={forms.order_payment}
                     onChange={value =>
-                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                      this.updateForm({ order_payment: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>
-                <Field label='运输方式2' width='200' advanced>
-                  <Seclet
-                    list={this.transportOptions}
-                    placeholder='请选择运输方式'
-                    value={forms.column3}
+                <Field label='订单状态' width='200' advanced>
+                  <Select
+                    list={this.orderStatusOptions}
+                    placeholder='请选择订单状态'
+                    value={forms.order_status}
                     onChange={value =>
-                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
-                    }
-                  />
-                </Field>
-                <Field label='运输方式3' width='200' advanced>
-                  <Seclet
-                    list={this.transportOptions}
-                    placeholder='请选择运输方式'
-                    value={forms.column3}
-                    onChange={value =>
-                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
-                    }
-                  />
-                </Field>
-                <Field label='运输方式4' width='200' advanced>
-                  <Seclet
-                    list={this.transportOptions}
-                    placeholder='请选择运输方式'
-                    value={forms.column3}
-                    onChange={value =>
-                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
-                    }
-                  />
-                </Field>
-                <Field label='运输方式5' width='200' advanced>
-                  <Seclet
-                    list={this.transportOptions}
-                    placeholder='请选择运输方式'
-                    value={forms.column3}
-                    onChange={value =>
-                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                      this.updateForm({ order_status: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>

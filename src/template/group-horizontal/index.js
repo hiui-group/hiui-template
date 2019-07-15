@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import NavMenu from '@hi-ui/hiui/es/nav-menu'
 import Grid from '@hi-ui/hiui/es/grid'
 import Table from '@hi-ui/hiui/es/table'
 import Icon from '@hi-ui/hiui/es/icon'
+import Modal from '@hi-ui/hiui/es/modal'
+import Button from '@hi-ui/hiui/es/button'
+import Dropdown from '@hi-ui/hiui/es/dropdown'
+import { handleNotificate } from '@hi-ui/hiui/es/notification'
 import axios from 'axios'
 import './index.scss'
 export default class Template extends Component {
@@ -10,24 +15,19 @@ export default class Template extends Component {
     super(props)
 
     this.menus = [
-      { title: '全部' },
-      { title: '异常' },
-      { title: '调拨管理' },
-      { title: '超期监控' }
+      { title: '全部订单' },
+      { title: '已完成' },
+      { title: '待付款' },
+      { title: '已关闭' }
     ]
 
     this.columnMixins = {
-      column1: {
-        sorter (pre, next) {
-          return pre.column1 - next.column1
-        }
-      },
       action: {
-        render: () => (
+        render: (key, row) => (
           <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
+            <Link to='/form/form-basic' className='hi-tpl__add' ><Icon name='edit' /></Link>
+            <span onClick={this.showDelModal.bind(this, row)} className='action-del'><Icon name='close' /></span>
+            <span className='action-more'><Dropdown list={[{ title: '打印小票' }]} title='更多' onClick={(val) => console.log(val)} /></span>
           </React.Fragment>
         )
       }
@@ -40,7 +40,7 @@ export default class Template extends Component {
       tableDatas: [],
       columns: [],
       activeMenu: 0,
-      forms: this.initForms()
+      delModal: false
     }
   }
 
@@ -48,14 +48,31 @@ export default class Template extends Component {
     this.fetchDatas()
   }
 
-  fetchDatas (page) {
-    const { forms } = this.state
+  showDelModal (row) {
+    this.setState({
+      delModal: row
+    })
+  }
 
+  cancelEvent () {
+    this.setState({
+      delModal: false
+    })
+  }
+
+  delEvent () {
+    handleNotificate({ type: 'success', duration: 2500, showClose: false, autoClose: true, title: '标题', message: '订单号为' + this.state.delModal.order_id + '已删除' })
+    this.setState({
+      delModal: false
+    })
+  }
+
+  fetchDatas (page = 1) {
     axios
-      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/tabel/group`, {
         params: {
           page,
-          ...forms
+          status: this.menus[this.state.activeMenu].title
         }
       })
       .then(ret => {
@@ -80,17 +97,6 @@ export default class Template extends Component {
       })
   }
 
-  initForms () {
-    return Object.assign(
-      {},
-      {
-        column1: '',
-        column2: '全部',
-        column3: '全部'
-      }
-    )
-  }
-
   setTableColumns (columns) {
     const _columns = []
 
@@ -106,103 +112,35 @@ export default class Template extends Component {
     return _columns
   }
 
-  updateForm (data, callback = undefined) {
-    const forms = Object.assign({}, this.state.forms, data)
-
-    this.setState(
-      {
-        forms
-      },
-      () => {
-        callback && callback()
-      }
-    )
-  }
-
-  reset () {
-    this.updateForm(this.initForms(), () => this.fetchDatas())
+  changeStatus (status) {
+    this.setState({
+      activeMenu: status,
+      page: 1
+    }, () => {
+      this.fetchDatas()
+    })
   }
 
   renderMenuContent () {
-    const { activeMenu, tableDatas, columns, pageSize, total, page } = this.state
+    const { tableDatas, columns, pageSize, total, page } = this.state
     let content
 
-    switch (activeMenu) {
-      case 0:
-        content = (
-          <React.Fragment>
-            <Table
-              columns={columns}
-              data={tableDatas}
-              pagination={{
-                pageSize: pageSize,
-                total: total,
-                defaultCurrent: page,
-                onChange: page => {
-                  this.fetchDatas(page)
-                }
-              }}
-            />
-          </React.Fragment>
-        )
-        break
-      case 1:
-        content = (
-          <React.Fragment>
-            <Table
-              columns={columns}
-              data={tableDatas.slice(0).reverse()}
-              pagination={{
-                pageSize: pageSize,
-                total: total,
-                page: page,
-                onChange: page => {
-                  this.setState({ page: page }, () => this.fetchDatas())
-                }
-              }}
-            />
-          </React.Fragment>
-        )
-        break
-      case 2:
-        content = (
-          <React.Fragment>
-            <Table
-              columns={columns}
-              data={tableDatas}
-              pagination={{
-                pageSize: pageSize,
-                total: total,
-                page: page,
-                onChange: page => {
-                  this.setState({ page: page }, () => this.fetchDatas())
-                }
-              }}
-            />
-          </React.Fragment>
-        )
-        break
-      case 3:
-        content = (
-          <React.Fragment>
-            <Table
-              columns={columns}
-              data={tableDatas.slice(0).reverse()}
-              pagination={{
-                pageSize: pageSize,
-                total: total,
-                page: page,
-                onChange: page => {
-                  this.setState({ page: page }, () => this.fetchDatas())
-                }
-              }}
-            />
-          </React.Fragment>
-        )
-        break
-      default:
-        content = activeMenu
-    }
+    content = (
+      <React.Fragment>
+        <Table
+          columns={columns}
+          data={tableDatas}
+          pagination={{
+            pageSize: pageSize,
+            total: total,
+            defaultCurrent: page,
+            onChange: page => {
+              this.setState({ page: page }, () => this.fetchDatas(page))
+            }
+          }}
+        />
+      </React.Fragment>
+    )
 
     return content
   }
@@ -219,13 +157,25 @@ export default class Template extends Component {
             <NavMenu
               selectedKey={activeMenu}
               data={this.menus}
-              onClick={(e, menu) => this.setState({ activeMenu: parseInt(menu) })}
+              onClick={(e, menu) => this.changeStatus(parseInt(menu))}
             />
           </Col>
         </Row>
         <Row>
           <Col span={24}>{this.renderMenuContent()}</Col>
         </Row>
+        <Modal
+          title='确认'
+          size='small'
+          show={!!this.state.delModal}
+          onCancel={this.cancelEvent.bind(this)}
+          footers={[
+            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>取消</Button>,
+            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>确认</Button>
+          ]}
+        >
+          <span>确认要删除订单号为{this.state.delModal.order_id}的订单么？</span>
+        </Modal>
       </div>
     )
   }

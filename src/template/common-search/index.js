@@ -9,21 +9,21 @@ import axios from 'axios'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.columnMixins = {
-      column1: {
-        sorter(pre, next) {
-          return pre.column1 - next.column1
+      id: {
+        sorter (pre, next) {
+          return pre.id - next.id
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name="edit" />
-            <Icon name="close" />
-            <Icon name="more" />
+            <Icon name='edit' />
+            <Icon name='close' />
+            <Icon name='more' />
           </React.Fragment>
         )
       }
@@ -38,15 +38,15 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.fetchDatas()
   }
 
-  fetchDatas(page) {
+  fetchDatas (page) {
     const { s } = this.state
 
     axios
-      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order`, {
         params: {
           page,
           s
@@ -74,7 +74,7 @@ export default class Template extends Component {
       })
   }
 
-  setTableColumns(columns) {
+  setTableColumns (columns) {
     const _columns = []
 
     columns.map(column => {
@@ -89,7 +89,7 @@ export default class Template extends Component {
     return _columns
   }
 
-  search() {
+  search () {
     const { s } = this.state
 
     if (!s) {
@@ -106,32 +106,32 @@ export default class Template extends Component {
     )
   }
 
-  render() {
+  render () {
     const { columns, tableDatas, pageSize, total, page, value } = this.state
     const Row = Grid.Row
     const Col = Grid.Col
 
     return (
-      <div className="page--common-search">
+      <div className='page--common-search'>
         <Row>
           <Col span={18}>
             <Input
               value={value}
-              placeholder="搜索关键词"
+              placeholder='搜索关键词'
               style={{ width: '200px' }}
-              append={<Button type="line" icon="search" onClick={() => this.search()} />}
+              append={<Button type='line' icon='search' onClick={() => this.search()} />}
               onChange={e => {
                 this.setState({ s: e.target.value })
               }}
             />
           </Col>
           <Col span={6} style={{ textAlign: 'right' }}>
-            <Link to="/form-unfold-group" style={{ marginRight: '8px' }}>
-              <Button type="primary" icon="plus" />
+            <Link to='/form-unfold-group' style={{ marginRight: '8px' }}>
+              <Button type='primary' icon='plus' />
             </Link>
-            <Button type="line" icon="download" />
-            <Button type="line" icon="mark" />
-            <Button type="line" icon="more" />
+            <Button type='line' icon='download' />
+            <Button type='line' icon='mark' />
+            <Button type='line' icon='more' />
           </Col>
         </Row>
         <Row>
@@ -143,7 +143,7 @@ export default class Template extends Component {
                 pageSize: pageSize,
                 total: total,
                 defaultCurrent: page,
-                onChange: (page, pre, size) => {
+                onChange: (page) => {
                   this.fetchDatas(page)
                 }
               }}

@@ -51,9 +51,6 @@ export default class Template extends Component {
           return pre.id - next.id
         }
       },
-      order_platform: {
-        options: this.orderPlatformOptions
-      },
       action: {
         render: () => (
           <React.Fragment>

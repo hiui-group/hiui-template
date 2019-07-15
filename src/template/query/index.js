@@ -37,7 +37,7 @@ export default class Template extends Component {
           return pre.column1 - next.column1
         }
       },
-      column2: {
+      order_platform: {
         options: this.transportOptions
       },
       action: {
@@ -79,8 +79,8 @@ export default class Template extends Component {
       {},
       {
         column1: '',
-        column2: '全部',
-        column3: '全部'
+        order_platform: '全部',
+        order_delivery: '全部'
       }
     )
   }
@@ -102,7 +102,7 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[
@@ -114,21 +114,21 @@ export default class Template extends Component {
                   type='line'
                   icon='download'
                   onClick={() => {
-                    console.log('------------click download')
+                    console.log('click download')
                   }}
                 />,
                 <Button
                   type='line'
                   icon='mark'
                   onClick={() => {
-                    console.log('------------click share')
+                    console.log('click share')
                   }}
                 />,
                 <Button
                   type='line'
                   icon='more'
                   onClick={() => {
-                    console.log('------------click more')
+                    console.log('click more')
                   }}
                 />
               ]}
@@ -165,9 +165,9 @@ export default class Template extends Component {
                   <Seclet
                     list={this.businessOptions}
                     placeholder='请选择业务来源'
-                    value={forms.column2}
+                    value={forms.order_platform}
                     onChange={value =>
-                      this.updateForm({ column2: (value[0] && value[0].id) || '全部' })
+                      this.updateForm({ order_platform: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>
@@ -175,9 +175,9 @@ export default class Template extends Component {
                   <Seclet
                     list={this.transportOptions}
                     placeholder='请选择运输方式'
-                    value={forms.column3}
+                    value={forms.order_delivery}
                     onChange={value =>
-                      this.updateForm({ column3: (value[0] && value[0].id) || '全部' })
+                      this.updateForm({ order_delivery: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>

@@ -43,11 +43,9 @@ export default class Template extends Component {
         render: () => (
           <React.Fragment>
             <Link to='/form-unfold-group'>
-              <Icon name='edit' />
+              <Button type='default' appearance='link' icon='edit' />
             </Link>
-            <Icon
-              style={{ color: '#4285f4', cursor: 'pointer' }}
-              name='close'
+            <Button type='default' appearance='link' icon='delete'
               onClick={() => {
                 handleNotificate({
                   type: 'success',
@@ -62,7 +60,7 @@ export default class Template extends Component {
                 })
               }}
             />
-            <Icon name='more' onClick={() => {}} />
+            <Button type='default' appearance='link' icon='more' onClick={() => {}} />
           </React.Fragment>
         )
       }
@@ -90,7 +88,7 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[

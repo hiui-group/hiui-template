@@ -4,7 +4,6 @@ import Button from '@hi-ui/hiui/es/button'
 import Tree from '@hi-ui/hiui/es/tree'
 import Grid from '@hi-ui/hiui/es/grid'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import './index.scss'
 
@@ -12,20 +11,6 @@ export default class Template extends Component {
   constructor (props) {
     super(props)
     this.columnMixins = {
-      column1: {
-        sorter (pre, next) {
-          return pre.column1 - next.column1
-        }
-      },
-      action: {
-        render: () => (
-          <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
-          </React.Fragment>
-        )
-      }
     }
 
     this.state = {
@@ -34,27 +19,9 @@ export default class Template extends Component {
       page: 1,
       tableDatas: [],
       columns: [],
-      activeMenu: 0,
       currentChose: [],
       reset: true,
-      treeData: [
-        {
-          id: 1,
-          title: '小米',
-          children: [
-            {
-              id: 2,
-              title: '技术',
-              children: [
-                { id: 3, title: '后端' },
-                { id: 4, title: '运维' },
-                { id: 5, title: '前端' }
-              ]
-            },
-            { id: 6, title: '产品' }
-          ]
-        }
-      ]
+      treeData: []
     }
   }
 
@@ -64,9 +31,10 @@ export default class Template extends Component {
 
   fetchDatas (page) {
     axios
-      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`, {
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`, {
         params: {
-          page
+          page,
+          id: this.state.activeId
         }
       })
       .then(ret => {
@@ -85,7 +53,8 @@ export default class Template extends Component {
             page: page,
             total: pageInfo.total,
             pageSize: pageInfo.pageSize,
-            columns: this.setTableColumns(columns)
+            columns: this.setTableColumns(columns),
+            treeData: data.treeData
           })
         }
       })
@@ -107,17 +76,25 @@ export default class Template extends Component {
   }
 
   markSure () {
-    console.log(this.state.currentChose)
     this.fetchDatas()
+  }
+
+  onChange (checkedKeys) {
+    this.setState({
+      currentChose: checkedKeys,
+      activeId: checkedKeys.join(',')
+    })
   }
 
   reset () {
     this.setState(
       {
         reset: false,
-        currentChose: []
+        currentChose: [],
+        activeId: ''
       },
       () => {
+        this.fetchDatas()
         this.setState({
           reset: true
         })
@@ -125,83 +102,39 @@ export default class Template extends Component {
     )
   }
 
-  onChange (value) {
-    const { currentChose } = this.state
-
-    let tempArr = currentChose
-    const mapToPush = data => {
-      if (tempArr.indexOf(data.id) >= 0) {
-        tempArr = tempArr.splice(tempArr.indexOf(data.id), 1)
-      } else {
-        tempArr.push(data.id)
-      }
-      if (data.children) {
-        data.children.map(item => {
-          mapToPush(item)
-        })
-      }
-    }
-
-    const treeData = [...this.state.treeData]
-
-    const mapToGet = (data, currentChose) => {
-      data.map(item => {
-        if (item.children) {
-          let allIn = true
-
-          item.children.map(child => {
-            if (currentChose.indexOf(child.id) < 0) {
-              allIn = false
-            }
-          })
-
-          if (allIn && currentChose.indexOf(item.id) < 0) {
-            currentChose.push(item.id)
-          }
-          mapToGet(item.children, currentChose)
-        }
-      })
-    }
-
-    mapToPush(value)
-    mapToGet(treeData, currentChose)
-    this.setState({ currentChose: tempArr })
-  }
-
   renderMenuContent () {
-    const { activeMenu, tableDatas, columns, pageSize, total, page } = this.state
+    const { tableDatas, columns, pageSize, total, page } = this.state
 
-    if (activeMenu === 0) {
-      return (
-        <div className='hi-table__container'>
-          <Table
-            columns={columns}
-            data={tableDatas}
-            pagination={{
-              pageSize: pageSize,
-              total: total,
-              defaultCurrent: page,
-              onChange: (page, pre, size) => {
-                this.fetchDatas(page)
-              }
-            }}
-          />
-        </div>
-      )
-    } else {
-      return activeMenu
-    }
+    return (
+      <div className='hi-table__container'>
+        <Table
+          columns={columns}
+          data={tableDatas}
+          pagination={{
+            pageSize: pageSize,
+            total: total,
+            defaultCurrent: page,
+            onChange: (page, pre, size) => {
+              this.fetchDatas(page)
+            }
+          }}
+        />
+      </div>
+    )
   }
 
   renderTree () {
     return (
       <div className='hi-tree__container'>
-        {this.state.reset && (
+        {this.state.reset && this.state.treeData.length && (
           <Tree
             defaultExpandAll
             checkable
             data={this.state.treeData}
-            onChange={this.onChange.bind(this)}
+            onChange={(checkedKeys) => {
+              this.onChange(checkedKeys)
+            }}
+            checkedKeys={this.state.currentChose}
             openIcon='down'
             closeIcon='up'
           />

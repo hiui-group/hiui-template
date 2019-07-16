@@ -5,27 +5,12 @@ import Tree from '@hi-ui/hiui/es/tree'
 import Grid from '@hi-ui/hiui/es/grid'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Icon from '@hi-ui/hiui/es/icon'
 import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
     super(props)
     this.columnMixins = {
-      column1: {
-        sorter (pre, next) {
-          return pre.column1 - next.column1
-        }
-      },
-      action: {
-        render: () => (
-          <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
-          </React.Fragment>
-        )
-      }
     }
 
     this.state = {
@@ -34,19 +19,81 @@ export default class Template extends Component {
       reset: true,
       treeData: [
         {
+          sku: 66808,
+          title: '手机',
           id: 1,
-          title: '小米',
-          children: [
-            {
-              id: 2,
-              title: '技术',
-              children: [
-                { id: 3, title: '后端' },
-                { id: 4, title: '运维' },
-                { id: 5, title: '前端' }
-              ]
+          children: [{
+            sku: 53631,
+            id: 2,
+            title: '小米手机',
+            children: [{
+              sku: 52577,
+              id: 3,
+              title: '小米5S',
+              children: [{
+                sku: 66463,
+                id: 4,
+                title: '小米手机5s 高配全网通版'
+              }]
             },
-            { id: 6, title: '产品' }
+            {
+              sku: 85250,
+              id: 5,
+              title: '小米6',
+              children: [{
+                sku: 47709,
+                id: 6,
+                title: '小米6 全网通版'
+              }]
+            }
+            ]
+          } ]
+        },
+        {
+          sku: 18562,
+          id: 7,
+          title: '电视',
+          children: [{
+            sku: 73687,
+            id: 8,
+            title: '小米电视3s'
+          },
+          {
+            sku: 21284,
+            id: 9,
+            title: '小米电视4'
+          }
+          ]
+        },
+        {
+          sku: 89858,
+          id: 10,
+          title: '生态链及其他',
+          children: [{
+            sku: 43975,
+            id: 11,
+            title: '路由器',
+            children: [{
+              sku: 31163,
+              id: 12,
+              title: '小米路由器',
+              children: [{
+                sku: 77421,
+                id: 13,
+                title: '小米路由器 青春版 黑色'
+              }]
+            }]
+          },
+          {
+            sku: 31338,
+            id: 14,
+            title: '其他',
+            children: [{
+              sku: 68829,
+              id: 15,
+              title: '小米圆领纯色T恤 '
+            }]
+          }
           ]
         }
       ]
@@ -57,9 +104,11 @@ export default class Template extends Component {
     this.setState(
       {
         reset: false,
-        currentChose: []
+        currentChose: [],
+        activeId: ''
       },
       () => {
+        this.dataFilter.submit({ })
         this.setState({
           reset: true
         })
@@ -67,58 +116,25 @@ export default class Template extends Component {
     )
   }
 
-  onChange (value) {
-    const { currentChose } = this.state
-
-    let tempArr = currentChose
-    const mapToPush = data => {
-      if (tempArr.indexOf(data.id) >= 0) {
-        tempArr = tempArr.splice(tempArr.indexOf(data.id), 1)
-      } else {
-        tempArr.push(data.id)
-      }
-      if (data.children) {
-        data.children.map(item => {
-          mapToPush(item)
-        })
-      }
-    }
-
-    const treeData = [...this.state.treeData]
-
-    const mapToGet = (data, currentChose) => {
-      data.map(item => {
-        if (item.children) {
-          let allIn = true
-
-          item.children.map(child => {
-            if (currentChose.indexOf(child.id) < 0) {
-              allIn = false
-            }
-          })
-
-          if (allIn && currentChose.indexOf(item.id) < 0) {
-            currentChose.push(item.id)
-          }
-          mapToGet(item.children, currentChose)
-        }
-      })
-    }
-
-    mapToPush(value)
-    mapToGet(treeData, currentChose)
-    this.setState({ currentChose: tempArr })
+  onChange (checkedKeys) {
+    this.setState({
+      currentChose: checkedKeys,
+      activeId: checkedKeys.join(',')
+    })
   }
 
   renderTree () {
     return (
       <div className='hi-tree__container'>
-        {this.state.reset && (
+        {this.state.reset && this.state.treeData.length && (
           <Tree
             defaultExpandAll
             checkable
             data={this.state.treeData}
-            onChange={this.onChange.bind(this)}
+            onChange={(checkedKeys) => {
+              this.onChange(checkedKeys)
+            }}
+            checkedKeys={this.state.currentChose}
             openIcon='down'
             closeIcon='up'
           />
@@ -130,12 +146,12 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { pageSize, currentChose } = this.state
+    const { pageSize, activeId } = this.state
     const params = {
-      pageSize
+      pageSize,
+      id: activeId
     }
     const forms = {
-      column1: currentChose.join('-')
     }
 
     return (
@@ -144,7 +160,7 @@ export default class Template extends Component {
           <Col span={24}>
             <DataFilter
               ref={node => (this.dataFilter = node)}
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
+              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`}
               params={params}
               columnMixins={this.columnMixins}
               vertical

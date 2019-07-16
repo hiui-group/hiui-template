@@ -69,7 +69,7 @@ export default class Template extends Component {
 
   fetchDatas (page = 1) {
     axios
-      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/tabel/group`, {
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/group`, {
         params: {
           page,
           status: this.menus[this.state.activeMenu].title

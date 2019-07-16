@@ -3,4 +3,19 @@
   padding: 24px;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
+
+  .action-del {
+    margin: 0 3px;
+    color: #eb5252;
+    cursor: pointer;
+  }
+
+  .action-more {
+    display: inline-block;
+    width: 55px;
+
+    .hi-dropdown__title {
+      padding: 0 5px;
+    }
+  }
 }

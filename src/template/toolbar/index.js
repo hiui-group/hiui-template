@@ -95,7 +95,7 @@ export default class Template extends Component {
         order_platform: '全部',
         order_delivery: '全部',
         order_payment: '全部',
-        order_date: new Date()
+        order_date: DatePicker.format(new Date(), 'YYYY-MM-DD')
       }
     )
   }

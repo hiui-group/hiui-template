@@ -1,10 +1,10 @@
 export default {
   'color': [
-    '#3fb1e3',
-    '#6be6c1',
-    '#626c91',
-    '#a0a7e6',
-    '#c4ebad',
+    '#679DF6',
+    '#9773F0',
+    '#6BC9AD',
+    '#EF7474',
+    '#FF845B',
     '#96dee8'
   ],
   'backgroundColor': 'rgba(252,252,252,0)',

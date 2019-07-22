@@ -9,6 +9,9 @@ import Table from '@hi-ui/hiui/es/table'
 import echarts from 'echarts'
 import theme from './echart-theme'
 import DatePicker from '@hi-ui/hiui/es/date-picker'
+import { handleNotificate } from '@hi-ui/hiui/es/notification'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import './index.scss'
 
 echarts.registerTheme('hiui_theme', theme)
@@ -27,38 +30,45 @@ class HomeDashboard extends Component {
   constructor (props) {
     super(props)
 
-    this.columns = [
-      { title: 'Column 1', dataIndex: 'name', key: '1' },
-      { title: 'Column 1', dataIndex: 'age', key: '2' },
-      { title: 'Column 1', dataIndex: 'address', key: '3' },
-      {
-        title: () => <div>自定义标题</div>,
-        dataIndex: 'address',
-        key: '4',
-        render (text, record, index) {
-          return (
-            <div>
-              {text} --- {index} --- 自定义渲染
-            </div>
-          )
+    this.state = {
+      pageSize: 10,
+      total: 0,
+      page: 1,
+      tableDatas: [],
+      columns: []
+    }
+
+    this.columnMixins = {
+      id: {
+        sorter (pre, next) {
+          return pre.id - next.id
         }
       },
-      {
-        title: 'Action',
-        key: 'operation',
-        width: 100,
-        render: () => <Button appearance='link' href='#'>action</Button>
+      action: {
+        render: () => (
+          <React.Fragment>
+            <Link to='/form-unfold-group'>
+              <Button type='default' appearance='link' icon='edit' />
+            </Link>
+            <Button type='default' appearance='link' icon='delete'
+              onClick={() => {
+                handleNotificate({
+                  type: 'success',
+                  duration: 3000,
+                  showClose: false,
+                  autoClose: true,
+                  title: '消息',
+                  message: '数据已删除',
+                  onClose: () => {
+                    console.log('关闭回调')
+                  }
+                })
+              }}
+            />
+            <Button type='default' appearance='link' icon='more' onClick={() => {}} />
+          </React.Fragment>
+        )
       }
-    ]
-
-    this.tableDatas = []
-    for (let i = 0; i < 10; i++) {
-      this.tableDatas.push({
-        // key: i,
-        name: `Don Diablo ${i}`,
-        age: `${i}${i}`,
-        address: `EDC Las Vegas no. ${i}`
-      })
     }
 
     this.echartRefs = []
@@ -96,6 +106,53 @@ class HomeDashboard extends Component {
         chart && chart.getEchartsInstance().resize()
       })
     }, 50)
+    this.fetchDatas()
+  }
+  fetchDatas (page) {
+    const { s } = this.state
+
+    axios
+      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order`, {
+        params: {
+          page,
+          s
+        }
+      })
+      .then(ret => {
+        const datas = []
+
+        if (ret && ret.data.code === 200) {
+          const data = ret.data.data
+          const columns = data.columns
+          const pageInfo = data.pageInfo
+
+          data.data.map(data => {
+            datas.push(data)
+          })
+          this.setState({
+            tableDatas: datas,
+            page: page,
+            total: pageInfo.total,
+            pageSize: pageInfo.pageSize,
+            columns: this.setTableColumns(columns)
+          })
+        }
+      })
+  }
+
+  setTableColumns (columns) {
+    const _columns = []
+
+    columns.map(column => {
+      const key = column.key
+
+      _columns.push({
+        ...column,
+        ...this.columnMixins[key]
+      })
+    })
+
+    return _columns
   }
 
   componentWillUnmount () {
@@ -398,7 +455,6 @@ class HomeDashboard extends Component {
         name: '完成率',
         type: 'gauge',
         splitNumber: 4,
-        detail: { formatter: '{value}%' },
         data: [{ value: 87 }],
         axisLine: {
           lineStyle: {
@@ -409,30 +465,69 @@ class HomeDashboard extends Component {
             ]
           }
         },
+        axisLabel: {
+          color: '#333'
+        },
         splitLine: {
           length: 15,
           lineStyle: {
-            color: '#699DF5'
+            color: '#699DF5',
+            width: 4
           }
         },
-        emphasis: {
-          itemStyle: {
-            color: '#fff',
-            borderWidth: 3
-          }
+        itemStyle: {
+          color: '#699DF5'
         },
         pointer: {
-          width: 5,
-          color: '#699DF5'
+          width: 2
         },
         axisTick: {
           show: false
+        },
+        detail: {
+          offsetCenter: [0, '90%'],
+          fontSize: 22,
+          formatter: '{value}%',
+          color: '#333'
         }
+      },
+      {
+        name: '完成率',
+        type: 'gauge',
+        splitNumber: 4,
+        startAngle: 225,
+        endAngle: -12.5,
+        data: [{ value: 100 }],
+        axisLine: {
+          lineStyle: {
+            width: 10,
+            color: [
+              [0.25, '#699DF5'],
+              [1, '#699DF5']
+            ]
+          }
+        },
+        axisLabel: {
+          show: false
+        },
+        splitLine: {
+          show: false
+        },
+        pointer: {
+          show: false
+        },
+        axisTick: {
+          show: false
+        },
+        itemStyle: {},
+        title: { show: false },
+        detail: { show: false }
       }
     ]
   }
   render () {
     this.echartRefs.length = 0
+    const { columns, tableDatas, pageSize, total, page } = this.state
     return (
       <div className='page page--dashboard'>
         <Row gutter>
@@ -587,8 +682,16 @@ class HomeDashboard extends Component {
               </div>
               <div className='card__body'>
                 <Table
-                  columns={this.columns}
-                  data={this.tableDatas}
+                  columns={columns}
+                  data={tableDatas}
+                  pagination={{
+                    pageSize: pageSize,
+                    total: total,
+                    defaultCurrent: page,
+                    onChange: (page) => {
+                      this.fetchDatas(page)
+                    }
+                  }}
                 />
               </div>
             </div>

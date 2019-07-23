@@ -1,5 +1,7 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--workbench {
-  padding: 24px;
+  padding: $spacer-4 $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
@@ -9,46 +11,65 @@
   }
 
   .user {
-    line-height: 60px;
+    line-height: 36px;
+    color: $black;
 
     &__icon {
       display: inline-block;
-      width: 60px;
-      height: 60px;
-      margin-right: 20px;
-      background: #fff;
-      border: 1px solid #e0e1e2;
+      width: 36px;
+      height: 36px;
+      margin-right: $spacer-3;
+      background: $white;
+      border: 1px solid $gray-lighter;
       border-radius: 50%;
       text-align: center;
     }
   }
 
-  .todo {
-    width: 100%;
+  .hi-grid__col-8 .card {
+    height: 377px;
 
-    &__item {
-      background-color: #f9fafc;
-      padding: 0 16px;
-      line-height: 40px;
+    .card__body {
+      flex-basis: 377px;
+      padding: $spacer-3 $spacer-6 $spacer-6 $spacer-6; 
+    }
+  }
 
-      &:not(:last-child) {
-        margin-bottom: 8px;
+  .hi-grid__col-16 .card {
+    height: 377px;
+
+    .card__body {
+      flex-basis: 377px;
+
+      .hi-grid__row {
+        width: 100%;
       }
 
-      .approval-btn {
-        color: #4284f5;
+      .hi-timeline {
+        margin-top: 14px;
+        width: 100%;
       }
     }
   }
 
-  .schedule {
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
+  .todo {
     width: 100%;
+    color: $black;
+
+    &__item {
+      padding: 9px 0;
+
+      .approval-btn {
+        color: get-color($palette-hiui, '50');
+      }
+    }
   }
 
-  .approval {
-    padding: 40px;
+  .hi-dropdown__title-text {
+    padding-right: $spacer-1;
+  }
+
+  .hi-stepper {
+    padding: $spacer-6 0 $spacer-5 0;
   }
 }

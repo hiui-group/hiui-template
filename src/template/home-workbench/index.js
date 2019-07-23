@@ -9,6 +9,7 @@ import Modal from '@hi-ui/hiui/es/modal'
 import Form from '@hi-ui/hiui/es/form'
 import Radio from '@hi-ui/hiui/es/radio'
 import Input from '@hi-ui/hiui/es/input'
+import Timeline from '@hi-ui/hiui/es/timeline'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -33,19 +34,30 @@ class HomeWorkbench extends Component {
 
     this.scheduleStepList = [
       {
-        title: '账号信息',
-        text: '请输入账号信息',
-        icon: <Icon name='user' />
-      },
-      {
-        title: '邮箱激活',
-        text: '请输入邮箱',
-        icon: <Icon name='time' />
-      },
-      {
-        title: '信息登记',
-        text: '请输入个人信息',
-        icon: <Icon name='list' />
+        groupTitle: '上午',
+        children: [{
+          title: '管理层例会',
+          description: '毕加索会议室 B2层 可提前预定',
+          timestamp: '9:00'
+        }, {
+          dot: 'circle',
+          title: '社招面试-设计师',
+          description: '总参',
+          timestamp: '10:30'
+        }]
+      }, {
+        groupTitle: '下午',
+        children: [{
+          dot: 'circle',
+          title: '管理层例会',
+          description: '毕加索会议室 B2层 可提前预定',
+          timestamp: '12:00'
+        }, {
+          dot: 'circle',
+          title: '社招面试-设计师',
+          description: '总参',
+          timestamp: '11:00'
+        }]
       }
     ]
 
@@ -118,13 +130,13 @@ class HomeWorkbench extends Component {
           <Row>
             <Col span={24}>
               <div className='user'>
-                <span className='user__icon'>头像</span>
+                <span className='user__icon'>Ad</span>
                 <span className='user__greet'>Admin，上午好！ 美好的一天开始了</span>
               </div>
             </Col>
           </Row>
           <Row gutter>
-            <Col span={12}>
+            <Col span={8}>
               <div className='card'>
                 <div className='card__header'>
                   <span className='card__title'>待办</span>
@@ -138,22 +150,26 @@ class HomeWorkbench extends Component {
                 </div>
               </div>
             </Col>
-            <Col span={12}>
+            <Col span={16}>
               <div className='card'>
                 <div className='card__header'>
                   <span className='card__title'>日程</span>
                   <span><Icon name='plus' /> 新建日程</span>
                 </div>
                 <div className='card__body'>
-                  <div className='schedule'>
-                    <DatePicker
-                      value={new Date()}
-                      onChange={(d) => {
-                        console.log('value 为 Date 实例', DatePicker.format(d, 'YYYY-MM-DD E'))
-                      }}
-                    />
-                    <Stepper list={this.scheduleStepList} current={1} vertical />
-                  </div>
+                  <Row gutter>
+                    <Col span={12}>
+                      <DatePicker
+                        value={new Date()}
+                        onChange={(d) => {
+                          console.log('value 为 Date 实例', DatePicker.format(d, 'YYYY-MM-DD E'))
+                        }}
+                      />
+                    </Col>
+                    <Col span={12}>
+                      <Timeline list={this.scheduleStepList} />
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </Col>
@@ -167,7 +183,7 @@ class HomeWorkbench extends Component {
                 </div>
                 <div className='card__body'>
                   <Stepper up list={this.approvalStepList} current={this.state.approvalStep} />
-                  <Row gutter justify='center'>
+                  {/* <Row gutter justify='center'>
                     <Button
                       type='danger'
                       onClick={() => { this.handleSwitchStep(false) }}
@@ -182,7 +198,7 @@ class HomeWorkbench extends Component {
                     >
                       <Icon name='check-circle-o' /> 通过
                     </Button>
-                  </Row>
+                  </Row> */}
                 </div>
               </div>
             </Col>

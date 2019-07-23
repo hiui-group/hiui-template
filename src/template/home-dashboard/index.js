@@ -446,7 +446,8 @@ class HomeDashboard extends Component {
   }
   gaugeOption = {
     tooltip: {
-      formatter: '{a} <br/>{b} : {c}%'
+      formatter: '{a} <br/>{b} : {c}%',
+      backgroundColor: 'rgba(56, 62, 71, 1)'
     },
     toolbox: {
     },

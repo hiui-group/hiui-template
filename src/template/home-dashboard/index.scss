@@ -4,94 +4,60 @@
   padding: $spacer-5;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
-}
 
-.dashboard-title {
-  font-size: $font-size-x-large;
-  font-weight: $font-weight-bold;
-}
-
-.tag-btn {
-  display: inline-block;
-  width: 80px;
-  height: 36px;
-  border-radius: 18px;
-  line-height: 36px;
-  text-align: center;
-  font-size: $font-size-normal;
-  color: $black;
-  margin-right: $spacer-6;
-  border: 1px solid $gray-dark;
-  background: $white;
-  cursor: pointer;
-
-  &:hover {
-    border-color: get-color($palette-hiui, '50');
-    color: get-color($palette-hiui, '50');
+  .dashboard-title {
+    font-size: $font-size-x-large;
+    font-weight: $font-weight-bold;
   }
 
-  &.active {
-    border-color: get-color($palette-hiui, '50');
-    background: get-color($palette-hiui, '50');
-    color: $white;
-  }
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 96px;
-  width: 100%;
-  background: $white;
-
-  &__amount {
-    margin: 20px 0 0 0;
-    font-size: $font-size-h3;
-    font-weight: $font-weight-semibold;
-    color: get-color($palette-hiui, '50');
-  }
-
-  &__name {
-    margin-top: 6px;
-    color: $black;
-  }
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  background: $white;
-  height: 100%;
-  width: 100%;
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 47px;
-    border-bottom: 1px solid $gray-light;
-    padding: 0 $spacer-6;
-  }
-
-  &__title {
+  .tag-btn {
+    display: inline-block;
+    width: 80px;
+    height: 36px;
+    border-radius: 18px;
+    line-height: 36px;
+    text-align: center;
     font-size: $font-size-normal;
-    font-weight: $font-weight-normal;
     color: $black;
+    margin-right: $spacer-6;
+    border: 1px solid $gray-dark;
+    background: $white;
+    cursor: pointer;
+
+    &:hover {
+      border-color: get-color($palette-hiui, '50');
+      color: get-color($palette-hiui, '50');
+    }
+
+    &.active {
+      border-color: get-color($palette-hiui, '50');
+      background: get-color($palette-hiui, '50');
+      color: $white;
+    }
   }
 
-  &__filter {
-    display: flex;
-  }
-
-  &__body {
+  .info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    padding: $spacer-6;
+    height: 96px;
+    width: 100%;
+    background: $white;
 
+    &__amount {
+      margin: 20px 0 0 0;
+      font-size: $font-size-h3;
+      font-weight: $font-weight-semibold;
+      color: get-color($palette-hiui, '50');
+    }
+
+    &__name {
+      margin-top: 6px;
+      color: $black;
+    }
+  }
+
+  .card {
     .hi-grid__col-12 & {
       flex-basis: 280px;
     }
@@ -104,17 +70,10 @@
     .hi-table {
       width: 100%;
     }
-  }
 
-  &__footer {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    margin-top: 12px;
-  }
-
-  &__canvas {
-    box-sizing: border-box;
-    width: 100%;
+    &__canvas {
+      box-sizing: border-box;
+      width: 100%;
+    }
   }
 }

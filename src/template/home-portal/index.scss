@@ -1,68 +1,97 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--portal {
-  background: #fff;
-  padding: 24px;
+  padding: $spacer-9 $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
   .portal--container {
     max-width: 1300px;
     margin: 0 auto;
+
+    .search-btn {
+      padding: 0 5px;
+    }
+
+    .icon-search {
+      color: get-color($palette-hiui, '50');
+      font-size: $font-size-h3;
+    }
   }
 
   .portal--item {
     &__header {
       display: flex;
       align-items: center;
-      margin-bottom: 25px;
-      font-size: 16px;
+      font-size: $font-size-large;
     }
   }
 
-  .shortcut,
+  .short--cut__container {
+    flex-wrap: wrap;
+
+    .hi-card {
+      height: 120px;
+      background: $white;
+      box-sizing: border-box;
+      margin: $spacer-3 0;
+      border: none;
+
+      p {
+        margin: 0;
+        color: $gray-darker;
+        font-size: $font-size-normal;
+      }
+
+      .short--cut__title {
+        color: $black;
+        margin-bottom: $spacer-3;
+        font-size: $font-size-large;
+      }
+    }
+  }
+
   .business {
     padding: 24px;
-    background: #fff;
-    border: 1px solid #e0e1e2;
-    color: #383e47;
-    font-size: 16px;
+    background: $white;
+    color: $gray-dark;
+    font-size: $font-size-large;
+    margin-top: $spacer-3;
+    position: relative;
+
+    .look--all__btn {
+      margin-top: $spacer-5;
+      font-size: $font-size-normal;
+      display: block;
+    }
   }
 
   .business--item {
-    margin-left: 20px;
+    font-size: $font-size-normal;
 
     &:not(:last-child) {
-      margin-bottom: 24px;
+      margin-bottom: $spacer-3;
+      margin-top: $spacer-0;
     }
 
     &__title {
-      &::before {
-        display: block;
-        position: absolute;
-        top: 7px;
-        left: -20px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        content: '';
-      }
+      color: $black;
+    }
 
-      &.success::before {
-        background: #0de629;
-      }
-
-      &.error::before {
-        background: #eb5252;
-      }
-
-      &.warning::before {
-        background: #ffd738;
-      }
+    &__title,
+    &__action {
+      line-height: 22px;
+      padding-bottom: 2px;
     }
 
     &__time,
     &__detail {
-      font-size: 14px;
-      color: #82868c;
+      font-size: $font-size-small;
+    }
+
+    &__action {
+      color: get-color($palette-hiui, '50');
+      text-align: right;
     }
   }
 }

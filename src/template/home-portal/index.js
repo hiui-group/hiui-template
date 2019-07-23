@@ -5,7 +5,9 @@ import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
 import Badge from '@hi-ui/hiui/es/badge'
 import Popover from '@hi-ui/hiui/es/popover'
+import Card from '@hi-ui/hiui/es/card'
 import Modal from '@hi-ui/hiui/es/modal'
+import { Link } from 'react-router-dom'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -20,56 +22,80 @@ class HomePortal extends Component {
   }
 
   renderShortcut () {
-    let shortcutList = []
-    for (let i = 0; i < 3; i++) {
-      shortcutList.push(
-        <Col key={i} span={8}>
-          <div className='shortcut'>
-            <h4>AppTitle</h4>
-            <p>Application discription inscribed user，Scene and usage…</p>
-            <Button
-              size='small'
-              onClick={() => { this.setState({ showShortcutModal: true }) }}
-            >
-              use <Icon name='right' />
-            </Button>
-          </div>
-        </Col>
-      )
-    }
+    let shortcutList = [{
+      title: '福利介绍',
+      desc: '福利介绍',
+      color: '#529DFD'
+    }, {
+      title: '职场介绍',
+      desc: '职场介绍',
+      color: '#FF7C4E'
+    }, {
+      title: 'HR系统',
+      desc: 'HR系统',
+      color: '#31CCAC'
+    }, {
+      title: '会议室预定',
+      desc: '会议室预定',
+      color: '#00E0FF'
+    }, {
+      title: '培训平台',
+      desc: '培训平台',
+      color: '#D26AEB'
+    }, {
+      title: '海外派驻',
+      desc: '海外派驻',
+      color: '#FFE200'
+    }]
+
+    // shortcutList
+    shortcutList = shortcutList.map((item, i) => {
+      return <Col key={i} span={8}>
+        <Card hoverable style={{
+          borderLeft: `2px solid ${item.color}`
+        }}>
+          <p className='short--cut__title'>{item.title}</p>
+          <p>{item.desc}</p>
+        </Card>
+      </Col>
+    })
+
     return shortcutList
   }
 
   renderBusiness () {
-    let businessList = []
-    for (let i = 0; i < 6; i++) {
-      businessList.push(
-        <div className='business--item' key={i}>
-          <Row justify='space-between'>
-            <Col>
-              <span className={(i % 2) ? 'business--item__title success' : ' business--item__title error'}>事务标题</span>
-            </Col>
-            <Col>
-              <span className='business--item__time'>2018-10-21</span>
-            </Col>
-          </Row>
-          <Row justify='space-between'>
-            <Col>
-              <div className='business--item__detail'>事务具体内容</div>
-            </Col>
-            <Col>
-              <Button
-                type='line'
-                size='small'
-                onClick={() => { this.setState({ showBusinessModal: true }) }}
-              >
-                查看详情
-              </Button>
-            </Col>
-          </Row>
-        </div>
+    let businessList = [{
+      title: '项目评审',
+      desc: '项目评审'
+    }, {
+      title: '项目评审',
+      desc: '项目评审'
+    }, {
+      title: '项目评审',
+      desc: '项目评审'
+    }, {
+      title: '项目评审',
+      desc: '项目评审'
+    }, {
+      title: '项目评审',
+      desc: '项目评审'
+    }]
+    businessList = businessList.map((item, index) => {
+      return (
+        <Row justify='space-between' className='business--item'>
+          <Col>
+            <div className='business--item__title'>{item.title}</div>
+            <div className='business--item__detail'>{item.desc}</div>
+          </Col>
+
+          <Col>
+            <div onClick={() => { this.setState({ showBusinessModal: true }) }} className='business--item__action'>办理</div>
+            <div className='business--item__time'>{new Date().toLocaleDateString()}</div>
+          </Col>
+
+        </Row>
       )
-    }
+    })
     return businessList
   }
 
@@ -80,27 +106,18 @@ class HomePortal extends Component {
           <Row justify='space-between'>
             <Col>
               <Input
-                style={{ width: '250px' }}
-                append={<Button type='primary'><Icon name='search' /></Button>}
-                placeholder='Search'
+                style={{ width: '259px' }}
+                append={<Button className='search-btn'><Icon name='search' /></Button>}
+                placeholder='关键词搜索'
               />
-            </Col>
-            <Col>
-              <Badge dot>
-                <Icon name='prompt' style={{ fontSize: '20px' }} />
-              </Badge>
-              <Popover content={'你有99条新消息'} placement='bottom' trigger='hover' style={{ margin: '10px 10px' }}>
-                <span> 消息中心</span>
-              </Popover>
             </Col>
           </Row>
           <Row>
             <Col span={24}>
               <div className='portal--item__header'>
-                <Icon name='menu' style={{ fontSize: '28px', marginRight: '12px' }} />
                 <span>快捷访问</span>
               </div>
-              <Row gutter justify='space-between'>
+              <Row gutter justify='space-between' className='short--cut__container'>
                 {this.renderShortcut()}
               </Row>
             </Col>
@@ -108,12 +125,16 @@ class HomePortal extends Component {
           <Row>
             <Col span={24}>
               <div className='portal--item__header'>
-                <Icon name='time' style={{ fontSize: '28px', marginRight: '12px' }} />
                 <span className='title'>待办事务</span>
               </div>
-              <Row>
+              <Row className='business'>
                 <Col span={24}>
-                  <div className='business'>{this.renderBusiness()}</div>
+                  <div>{this.renderBusiness()}</div>
+                  <Row justify='flex-end'>
+                    <Link to='/list/list-task'>
+                      <span className='look--all__btn'>查看全部 <Icon name='right' /></span>
+                    </Link>
+                  </Row>
                 </Col>
               </Row>
             </Col>

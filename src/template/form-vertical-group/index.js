@@ -68,8 +68,17 @@ export default class Template extends Component {
     return (
       <div className='page--form-vertical-group'>
         <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90'>
-          <h2 className='hi-form__title'>表单</h2>
-
+          <h2 className='hi-form__title'>
+            表单
+            <div>
+              <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+                提交
+              </Button>
+              <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
+                重置
+              </Button>
+            </div>
+          </h2>
           <Row>
             <Col span={24}>
               <NavMenu onClick={this.handleClick} data={this.list}>
@@ -117,14 +126,6 @@ export default class Template extends Component {
             </Col>
           </Row>
 
-          <div className='hi-form-item--fixed'>
-            <Button type='primary' onClick={this.handleSubmit.bind(this)}>
-              提交
-            </Button>
-            <Button type='default' onClick={this.reset.bind(this)}>
-              重置
-            </Button>
-          </div>
         </Form>
       </div>
     )

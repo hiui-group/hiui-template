@@ -1,6 +1,28 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--form-vertical-group {
-  background: #fff;
-  padding: 24px;
+  background: $white;
+  margin: $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
+
+  .hi-form-item {
+    padding: 0 $spacer-6;
+  }
+
+  .hi-form__title {
+    font-size: $font-size-large;
+    height: 47px;
+    line-height: 47px;
+    padding: 0 $spacer-6;
+    border-bottom: 1px solid $gray-light;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .photo-display {
+    padding: 0;
+  }
 }

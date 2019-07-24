@@ -1,20 +1,59 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--search {
-  background: #fff;
-  padding: 24px;
+  background: $white;
+  background-size: 100% 100%;
+  padding: $spacer-6;
+  color: $white;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
   .search-box {
     width: 450px;
-    margin: 200px auto;
+    margin: 152px auto 59px auto;
 
     .search-guide {
-      font-size: 18px;
+      font-size: $font-size-h2;
+      color: $white;
+      margin: 0 0 $spacer-6 0;
+      font-weight: $font-weight-normal;
+    }
+
+    .search-input {
+      margin-top: 0;
+
+      .hi-input {
+        height: 42px;
+      }
+
+      .hi-input__inner {
+        border: none;
+      }
+
+      .search-btn {
+        border: none;
+        position: relative;
+        height: 42px;
+        color: get-color($palette-hiui, '50');
+        font-size: $font-size-h3;
+      }
+
+      .search-btn::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 1px;
+        height: 20px;
+        left: 0;
+        top: 11px;
+        background: $gray-light;
+      }
     }
 
     .search-hot {
-      margin-right: 15px;
+      margin-right: $spacer-6;
       cursor: pointer;
+      font-size: $font-size-normal;
     }
   }
 
@@ -24,22 +63,58 @@
 
     .tab-content {
       padding-top: 20px;
-    }
 
-    .tab-item {
-      padding: 12px 24px;
-      background: #fff;
-      border: 1px solid #e0e1e2;
-      cursor: pointer;
-
-      &__title {
-        font-size: 16px;
-        color: #383e47;
+      .hi-card {
+        height: 120px;
+        background: $white;
+        box-sizing: border-box;
+        margin: $spacer-3 0;
+        border: none;
       }
 
-      &__detail {
-        font-size: 14px;
-        color: #82868c;
+      .hi-card p {
+        margin: 0;
+        color: $gray-darker;
+        font-size: $font-size-normal;
+      }
+
+      .hi-card .short--cut__title {
+        color: $black;
+        margin-bottom: $spacer-3;
+        font-size: $font-size-large;
+      }
+    }
+
+    .hi-navmenu__list {
+      border-bottom: none;
+
+      .hi-navmenu__item {
+        color: $white;
+        opacity: 0.75;
+      }
+
+      li.on {
+        opacity: 1;
+      }
+
+      li.on::after {
+        background: $white;
+      }
+    }
+
+    .mine-tab {
+      flex-wrap: wrap;
+
+      .hi-card__content {
+        display: flex;
+        height: 100%;
+        align-items: center;
+      }
+
+      .mine-info-icon {
+        width: 46px;
+        height: 46px;
+        margin-right: $spacer-6;
       }
     }
   }

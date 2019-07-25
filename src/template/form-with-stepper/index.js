@@ -19,7 +19,23 @@ export default class Template extends Component {
     super(props)
     this.state = {
       forms: this.initForms(),
-      current: 0
+      current: 0,
+      rules: {
+        text: [
+          {
+            required: true,
+            message: <span style={{ color: '#ccc' }}>请输入姓名</span>,
+            trigger: 'onBlur,onChange'
+          }
+        ],
+        date: [
+          {
+            required: true,
+            message: <span style={{ color: '#ccc' }}>请选择时间</span>,
+            trigger: 'onBlur,onChange'
+          }
+        ]
+      }
     }
     this.singleList = [
       { name: '较长的一段描述文本', label: '这是一段较长的描述文本', id: '2' },
@@ -30,13 +46,13 @@ export default class Template extends Component {
     ]
     this.list = [
       {
-        title: 'Stepname'
+        title: '账号信息'
       },
       {
-        title: 'Stepname'
+        title: '邮箱激活'
       },
       {
-        title: 'Stepname'
+        title: '信息登记'
       }
     ]
   }
@@ -69,94 +85,104 @@ export default class Template extends Component {
 
     return (
       <div className='page--form-with-stepper'>
-        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='80'>
-          <h2 className='hi-form__title'>表单</h2>
-          <Row>
-            <Col span={6} offset={1}>
+        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='120'>
+          <h2 className='hi-form__title'>
+            表单
+            <div className='stepper-container'>
               <Stepper list={this.list} current={0} />
-            </Col>
-          </Row>
+            </div>
+          </h2>
+
           <Row>
             <Col span={24}>
-              <FormItem label='label' prop='text'>
-                <Input
-                  value={forms.text}
-                  placeholder={'name'}
-                  onChange={this.handleChange.bind(this, 'column1')}
-                  style={{ width: '250px' }}
-                />
-              </FormItem>
-              <FormItem label='Date' prop='Date'>
-                <DatePicker
-                  type='daterange'
-                  value={forms.Date}
-                  onChange={d => {
-                    console.log(d)
-                  }}
-                />
-              </FormItem>
-              <FormItem label='Numer' prop='num'>
-                <Counter
-                  value={forms.num}
-                  step='1'
-                  min='0'
-                  max='8'
-                  onChange={val => console.log('变化后的值：', val)}
-                />
-              </FormItem>
-              <FormItem label='Time' prop='time'>
-                <TimePicker
-                  type='time'
-                  value={forms.time}
-                  onChange={d => {
-                    console.log(d)
-                  }}
-                />
-              </FormItem>
-              <FormItem label='label' prop='select'>
-                <Select
-                  list={this.singleList}
-                  placeholder='请选择种类'
-                  style={{ width: '200px' }}
-                  value={forms.select}
-                  onChange={item => {
-                    console.log('单选结果', item)
-                  }}
-                />
-              </FormItem>
-              <FormItem label='Raido' prop='radio'>
-                <Radio
-                  list={['北京', '上海', '重庆']}
-                  checked={forms.radio}
-                  onChange={this.handleChange.bind(this, 'region', '')}
-                />
-              </FormItem>
+              <fieldset>
+                <legend>基础信息</legend>
 
-              <FormItem label='Picture' prop='radio'>
-                <Upload
-                  type='photo'
-                  uploadAction='http://127.0.0.1:8000'
-                  param={{ id: 'uid', channel: 'youpin' }}
-                  name={'files[]'}
-                />
-              </FormItem>
+                <FormItem label='姓名' prop='text'>
+                  <Input
+                    value={forms.text}
+                    placeholder={'请输入'}
+                    onChange={this.handleChange.bind(this, 'column1')}
+                    style={{ width: '250px' }}
+                  />
+                </FormItem>
+                <FormItem label='时间' prop='date'>
+                  <DatePicker
+                    type='daterange'
+                    value={forms.date}
+                    onChange={d => {
+                      console.log(d)
+                    }}
+                  />
+                </FormItem>
+                <FormItem label='数量' prop='num'>
+                  <Counter
+                    value={forms.num}
+                    step='1'
+                    min='0'
+                    max='8'
+                    onChange={val => console.log('变化后的值：', val)}
+                  />
+                </FormItem>
+              </fieldset>
+              <fieldset>
+                <legend>附加信息</legend>
 
-              <FormItem label='long text' prop='longText'>
-                <Input
-                  value={forms.longText}
-                  placeholder={'多行文本'}
-                  onChange={this.handleChange.bind(this, 'column1')}
-                  style={{ width: '320px', height: '100px' }}
-                  type='textarea'
-                />
-              </FormItem>
+                <FormItem label='时间' prop='time'>
+                  <TimePicker
+                    type='time'
+                    value={forms.time}
+                    onChange={d => {
+                      console.log(d)
+                    }}
+                  />
+                </FormItem>
+                <FormItem label='种类' prop='select'>
+                  <Select
+                    list={this.singleList}
+                    placeholder='请选择种类'
+                    style={{ width: '200px' }}
+                    value={forms.select}
+                    onChange={item => {
+                      console.log('单选结果', item)
+                    }}
+                  />
+                </FormItem>
+                <FormItem label='单选' prop='radio'>
+                  <Radio
+                    list={['北京', '上海', '重庆']}
+                    checked={forms.radio}
+                    onChange={this.handleChange.bind(this, 'region', '')}
+                  />
+                </FormItem>
+
+                <FormItem label='照片' prop='radio'>
+                  <Upload
+                    type='photo'
+                    uploadAction='http://127.0.0.1:8000'
+                    param={{ id: 'uid', channel: 'youpin' }}
+                    name={'files[]'}
+                  />
+                </FormItem>
+
+                <FormItem label='文本框' prop='longText'>
+                  <Input
+                    value={forms.longText}
+                    placeholder={'多行文本'}
+                    onChange={this.handleChange.bind(this, 'column1')}
+                    style={{ width: '320px', height: '100px' }}
+                    type='textarea'
+                  />
+                </FormItem>
+
+              </fieldset>
 
               <FormItem>
                 <Button type='primary' onClick={this.handleSubmit.bind(this)}>
                   下一步
                 </Button>
-                <Button type='default' onClick={this.reset.bind(this)}>
-                  重置
+                <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
+                    重置
                 </Button>
               </FormItem>
             </Col>

@@ -22,6 +22,14 @@
     justify-content: space-between;
   }
 
+  .hi-navmenu {
+    margin: 0 $spacer-6;
+  }
+
+  .hi-navmenu__content {
+    padding-top: $spacer-6;
+  }
+
   .photo-display {
     padding: 0;
   }

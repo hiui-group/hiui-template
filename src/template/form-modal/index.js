@@ -19,7 +19,23 @@ export default class Template extends Component {
     this.state = {
       forms: this.initForms(),
       smallShow: false,
-      bigShow: false
+      bigShow: false,
+      rules: {
+        text: [
+          {
+            required: true,
+            message: <span style={{ color: '#ccc' }}>请输入姓名</span>,
+            trigger: 'onBlur,onChange'
+          }
+        ],
+        date: [
+          {
+            required: true,
+            message: <span style={{ color: '#ccc' }}>请选择时间</span>,
+            trigger: 'onBlur,onChange'
+          }
+        ]
+      }
     }
     this.singleList = [
       { name: '较长的一段描述文本', label: '这是一段较长的描述文本', id: '2' },
@@ -85,7 +101,7 @@ export default class Template extends Component {
             <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>
               提交
             </Button>,
-            <Button type='default' key={2} onClick={this.reset.bind(this)}>
+            <Button type='line' key={2} onClick={this.reset.bind(this)}>
               重置
             </Button>
           ]}
@@ -95,11 +111,11 @@ export default class Template extends Component {
             model={forms}
             rules={this.state.rules}
             labelWidth='90'
-            labelPosition='right'
+            labelPosition='top'
           >
             <Row>
-              <Col span={14}>
-                <FormItem label='label' prop='text'>
+              <Col span={12}>
+                <FormItem label='名字' prop='text'>
                   <Input
                     value={forms.text}
                     placeholder={'name'}
@@ -107,7 +123,7 @@ export default class Template extends Component {
                     style={{ width: '320px' }}
                   />
                 </FormItem>
-                <FormItem label='Date' prop='Date'>
+                <FormItem label='时间' prop='date'>
                   <DatePicker
                     type='daterange'
                     value={forms.Date}
@@ -116,18 +132,18 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-                <FormItem label='long text' prop='longText'>
+                <FormItem label='备注' prop='longText'>
                   <Input
                     value={forms.longText}
                     placeholder={'多行文本'}
                     onChange={this.handleChange.bind(this, 'column1')}
-                    style={{ width: '320px', height: '100px' }}
+                    style={{ width: '320px', height: '100px', resize: 'none' }}
                     type='textarea'
                   />
                 </FormItem>
               </Col>
-              <Col span={10}>
-                <FormItem label='label' prop='select'>
+              <Col span={12}>
+                <FormItem label='种类' prop='select'>
                   <Select
                     list={this.singleList}
                     placeholder='请选择种类'
@@ -138,7 +154,7 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-                <FormItem label='Numer' prop='num'>
+                <FormItem label='数量' prop='num'>
                   <Counter
                     value={forms.num}
                     step='1'
@@ -147,7 +163,7 @@ export default class Template extends Component {
                     onChange={val => console.log('变化后的值：', val)}
                   />
                 </FormItem>
-                <FormItem label='Raido' prop='radio'>
+                <FormItem label='单选' prop='radio'>
                   <Radio
                     list={['北京', '上海', '重庆', '北京', '上海', '重庆']}
                     checked={forms.radio}
@@ -169,7 +185,7 @@ export default class Template extends Component {
             <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>
               提交
             </Button>,
-            <Button type='default' key={2} onClick={this.reset.bind(this)}>
+            <Button type='line' key={2} onClick={this.reset.bind(this)}>
               重置
             </Button>
           ]}
@@ -178,10 +194,10 @@ export default class Template extends Component {
             ref={this.form1}
             model={forms}
             rules={this.state.rules}
-            labelWidth='90'
+            labelWidth='120'
             labelPosition='right'
           >
-            <FormItem label='label' prop='text'>
+            <FormItem label='名字' prop='text'>
               <Input
                 value={forms.text}
                 placeholder={'name'}
@@ -189,7 +205,7 @@ export default class Template extends Component {
                 style={{ width: '250px' }}
               />
             </FormItem>
-            <FormItem label='Date' prop='Date'>
+            <FormItem label='时间' prop='Date'>
               <DatePicker
                 type='daterange'
                 value={forms.Date}
@@ -198,7 +214,7 @@ export default class Template extends Component {
                 }}
               />
             </FormItem>
-            <FormItem label='Numer' prop='num'>
+            <FormItem label='数量' prop='num'>
               <Counter
                 value={forms.num}
                 step='1'
@@ -207,7 +223,7 @@ export default class Template extends Component {
                 onChange={val => console.log('变化后的值：', val)}
               />
             </FormItem>
-            <FormItem label='label' prop='select'>
+            <FormItem label='种类' prop='select'>
               <Select
                 list={this.singleList}
                 placeholder='请选择种类'

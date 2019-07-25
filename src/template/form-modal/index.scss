@@ -1,6 +1,8 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--form-modal {
-  background: #fff;
-  padding: 24px;
+  background: $white;
+  padding: $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 }

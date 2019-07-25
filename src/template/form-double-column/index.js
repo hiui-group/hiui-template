@@ -92,7 +92,7 @@ export default class Template extends Component {
               <FormItem label='姓名' prop='name'>
                 <Input
                   value={forms.text}
-                  placeholder={'name'}
+                  placeholder={'请输入'}
                   onChange={this.handleChange.bind(this, 'column1')}
                   style={{ width: '320px' }}
                 />

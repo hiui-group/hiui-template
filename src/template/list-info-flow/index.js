@@ -84,7 +84,6 @@ export default class ListInfoFlow extends Component {
               }}
               placeholder='搜索'
             />
-            <Button type='primary' icon='plus' className='creat-btn'>创建</Button>
           </div>
         </div>
         <div className='page--list-container'>

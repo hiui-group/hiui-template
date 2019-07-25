@@ -2,20 +2,17 @@
 
 .page--list-task {
   box-sizing: border-box;
-  background: $white;
-  min-height: calc(100vh - 64px);
 
   .page--list-header {
     height: 56px;
     display: flex;
     justify-content: space-between;
     font-size: $font-size-x-large;
-    border-bottom: 1px solid $gray-light;
     align-items: center;
     font-weight: $font-weight-semibold;
     padding: $spacer-6;
     box-sizing: border-box;
-    margin-bottom: $spacer-6;
+    margin-bottom: $spacer-2;
 
     .search-btn {
       padding: 0 5px;

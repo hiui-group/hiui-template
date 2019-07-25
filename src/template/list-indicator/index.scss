@@ -1,5 +1,71 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--list-indicator {
+  box-sizing: border-box;
+  background: $white;
+  min-height: calc(100vh - 64px);
+  
   .indicator__container {
-    padding: 0 24px;
+    padding: $spacer-4 $spacer-6;
+  }
+
+  .indicator——type_container {
+    display: flex;
+    padding-bottom: 16px;
+  }
+
+  .indicator——type_item {
+    height: 36px;
+    width: 96px;
+    border: 1px solid $gray-light;
+    border-radius: 18px;
+    font-size: $font-size-normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+
+    &:hover {
+      color: get-color($palette-hiui, '50');
+      border-color: get-color($palette-hiui, '50');
+    }
+  }
+
+  .indicator——item_header {
+    padding-left: 11px;
+    font-size: $font-size-large;
+    margin: $spacer-3 0;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 15px;
+      width: 3px;
+      left: 0;
+      top: 4.5px;
+      background: get-color($palette-hiui, '50');
+    }
+  }
+
+  .page--list-header {
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    font-size: $font-size-x-large;
+    border-bottom: 1px solid $gray-light;
+    align-items: center;
+    font-weight: $font-weight-semibold;
+    padding: $spacer-6;
+    box-sizing: border-box;
+
+    .search-btn {
+      padding: 0 5px;
+    }
+
+    .icon-search {
+      color: get-color($palette-hiui, '50');
+      font-size: $font-size-h3;
+    }
   }
 }

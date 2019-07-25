@@ -31,66 +31,42 @@ export default class ListTask extends Component {
   render () {
     const { value, taskList, pageNum, pageSize } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
-    console.log(tasks)
+
     return (
       <div className='page--list-task'>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '15px 24px',
-            alignItems: 'center',
-            marginBottom: 16
-          }}
-        >
-          <div style={{ flex: '0 0 auto', fontSize: '18px', fontWeight: 600 }}>任务清单</div>
-          <div style={{ width: 271 }}>
+        <div className='page--list-header'>
+          任务清单
+          <div>
             <Input
-              value={value}
-              placeholder='搜索任务'
-              onChange={e => this.setState({ value: e.target.value })}
-              append={
-                <Button
-                  type='line'
-                  icon='search'
-                  onClick={() => {
-                    this.setState({
-                      highlightValue: value
-                    })
-                  }}
-                />
-              }
+              style={{ width: '259px' }}
+              append={<Button className='search-btn'><Icon name='search' /></Button>}
+              placeholder='搜索'
             />
           </div>
         </div>
+
         <div className='tasks__container'>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          <div className='tasks--card-container'>
             {tasks
               .map(t => (
-                <div
-                  style={{ height: '144px', width: '25%', padding: 10, boxSizing: 'border-box' }}
-                >
-                  <Card title={t.title} style={{ height: '100%', background: '#fff' }} hoverable>
+                <div className='tasks--card-item'>
+                  <Card title={t.title} hoverable extra={[<Icon name='delete' key={1} />, <Icon name='more' key={2} />]}>
                     <p>{t.content}</p>
                   </Card>
                 </div>
               ))
               .concat(
-                <div
-                  style={{ height: '144px', width: '25%', padding: 10, boxSizing: 'border-box' }}
-                >
+                <div className='tasks--card-item'>
                   <Card
                     hoverable
                     style={{
-                      height: '100%',
                       alignItems: 'center',
                       display: 'flex',
                       justifyContent: 'center',
-                      cursor: 'pointer',
-                      background: '#fff'
+                      cursor: 'pointer'
                     }}
                   >
-                    <Icon name='plus' style={{ fontSize: 40, background: '#fff' }} />
+                    <Icon name='plus' />
                   </Card>
                 </div>
               )}

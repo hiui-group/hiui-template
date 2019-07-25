@@ -1,6 +1,6 @@
 @import '@hi-ui/core-css/index.scss';
 
-.page--list-task {
+.page--list-flow {
   box-sizing: border-box;
   background: $white;
   min-height: calc(100vh - 64px);
@@ -25,38 +25,15 @@
       color: get-color($palette-hiui, '50');
       font-size: $font-size-h3;
     }
-  }
 
-  .hi-card {
-    width: 276px;
-    height: 144px;
-    background: $white;
-
-    .hi-card__extra {
-      font-size: $font-size-large;
-      color: $black;
+    .creat-btn {
+      margin-left: $spacer-4;
+      height: 30px;
     }
   }
 
-  .tasks--card-item {
-    width: 25%;
-    margin-bottom: $spacer-6;
-    display: flex;
-    justify-content: center;
+  .page--list-container {
+    padding: 0 $spacer-6;
   }
 
-  .tasks--card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .tasks__container {
-    padding: 0 24px 24px 24px;
-  }
-
-  .icon-plus {
-    font-size: 32px;
-    color: $gray-dark;
-  }
 }

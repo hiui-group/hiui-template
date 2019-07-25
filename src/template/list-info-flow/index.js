@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import ListItem from './components/ListItem'
 import Input from '@hi-ui/hiui/es/input'
+import Icon from '@hi-ui/hiui/es/icon'
 import Button from '@hi-ui/hiui/es/button'
+import './index.scss'
 
 const listData = [
   {
@@ -61,57 +63,34 @@ const listData = [
 
 export default class ListInfoFlow extends Component {
   state = {
-    highlightValue: '',
-    value: ''
+    value: '下单'
   }
   render () {
-    const { value, highlightValue } = this.state
+    const { value } = this.state
     return (
-      <div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '15px 24px',
-            alignItems: 'center',
-            marginBottom: 16
-          }}
-        >
-          <div style={{ flex: '0 0 auto', fontSize: '18px', fontWeight: 600 }}>搜索中心</div>
-          <div style={{ width: 271 }}>
+      <div className='page--list-flow'>
+        <div className='page--list-header'>
+          搜索中心
+
+          <div>
             <Input
+              style={{ width: '259px' }}
               value={value}
-              onChange={e => this.setState({ value: e.target.value })}
-              append={
-                <Button
-                  type='line'
-                  icon='search'
-                  onClick={() => {
-                    this.setState({
-                      highlightValue: value
-                    })
-                  }}
-                />
-              }
+              append={<Button className='search-btn'><Icon name='search' /></Button>}
+              onChange={(event) => {
+                this.setState({
+                  value: event.target.value
+                })
+              }}
+              placeholder='搜索'
             />
+            <Button type='primary' icon='plus' className='creat-btn'>创建</Button>
           </div>
         </div>
-        <div
-          style={{
-            padding: 24,
-            paddingTop: 15
-          }}
-        >
-          <div
-            style={{
-              background: '#fff',
-              padding: 24
-            }}
-          >
-            {listData.map((item, index) => (
-              <ListItem item={item} key={index} highlightValue={highlightValue} />
-            ))}
-          </div>
+        <div className='page--list-container'>
+          {listData.map((item, index) => (
+            <ListItem item={item} key={index} highlightValue={value} />
+          ))}
         </div>
       </div>
     )

@@ -6,28 +6,37 @@ class ListItem extends React.Component {
   state = {
     open: false
   }
+  getTagColor(status){
+    switch (status){
+      case '审批中':
+        return '#4284F5';
+      case '待审批':
+        return '#E19D0C';
+      case '已通过':
+        return '#1DA653'
+    }
+  }
   render () {
     const { title, status, info, operation, detail } = this.props.item
     const { open } = this.state
+
     return (
       <div className='list-item'>
         <div className='list-item__content'>
           <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div className='list-item__header'>
               {title}
               <span
                 style={{
-                  marginLeft: 8,
-                  borderRadius: '9px',
-                  fontSize: '12px',
-                  border: '1px solid',
-                  padding: '0 6px'
+                  borderColor: this.getTagColor(status),
+                  color: this.getTagColor(status),
                 }}
+                className='tag'
               >
                 {status}
               </span>
             </div>
-            <div style={{ display: 'flex', color: '#666' }}>
+            <div className='list-item__info'>
               {info.map((i, index) => [
                 <div
                   key={index}
@@ -39,7 +48,7 @@ class ListItem extends React.Component {
                   <span>{i.label + '：'}</span>
                   <span>{i.value}</span>
                 </div>,
-                index !== info.length - 1 && <span key={index + 'span'}>|</span>
+                index !== info.length - 1 && <span key={index + 'span'} className='list-item__separation'>|</span>
               ])}
               <div
                 style={{
@@ -58,11 +67,8 @@ class ListItem extends React.Component {
             </div>
           </div>
           <div style={{ flex: '0 0 auto' }}>
-            {operation.map((o, index) => (
-              <Button type='line' key={index}>
-                {o}
-              </Button>
-            ))}
+            {status == '待审批' && <Button type='line' >审批</Button>}
+            <Button type='line' icon="more"></Button>
           </div>
         </div>
 
@@ -73,8 +79,7 @@ class ListItem extends React.Component {
               flexWrap: 'wrap',
               display: 'flex',
               padding: '12px 24px 8px 24px',
-              marginTop: 4,
-              marginBottom: 20
+              marginTop: 4
             }}
           >
             {detail.map((i, index) => (
@@ -94,7 +99,6 @@ class ListItem extends React.Component {
             ))}
           </div>
         )}
-        <hr style={{ marginTop: 11, marginBottom: 11, border: '1px solid #E7E7E7' }} />
       </div>
     )
   }

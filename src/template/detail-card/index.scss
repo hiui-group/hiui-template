@@ -1,78 +1,86 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--detail-card {
-  padding: 24px;
+  padding: 0 $spacer-6;
+  min-height: calc(100vh - 64px);
   box-sizing: border-box;
-}
 
-.detail-card {
-  height: 100%;
-  // width: 100%;
-  // background: #e7e7e7;
-
-  &__header {
+  .detail-card__header{
     .row {
       &-01 {
-        color: #999;
+        color: $gray-dark;
+        height: 32px;
+        align-items: center;
+      }
 
-        .spacer {
-          margin: 0 10px;
-        }
+      .spacer {
+        margin: 0 10px;
       }
 
       &-02 {
         color: #383e47;
-        margin-top: 14px;
-        padding: 0 0 18px;
+        margin-top: 0;
+        align-items: center;
+        height: 52px;
+        padding: 0;
+        margin-bottom: $spacer-3;
+      }
+
+      &-02 h3 {
+        margin: 0 0 $spacer-1 0;
       }
 
       &-03 {
-        padding-top: 4px;
-        font-size: 12px;
+        padding-top: $spacer-1;
+        font-size: $font-size-small;
         color: #999;
+        margin-bottom: 18px;
+      }
 
-        .spacer {
-          margin: 0 20px;
+      &-03 .spacer {
+        margin: 0 20px;
+        color: $gray-light;
+      }
 
-          &:last-child {
-            display: none;
-          }
-        }
+      &-03 .spacer:last-child {
+        display: none;
       }
     }
   }
 
-  &__card {
+  .detail-card__card {
     box-sizing: border-box;
     background: #fff;
-
+  
     .title {
       font-size: 16px;
       border-bottom: 1px solid #e7e7e7;
       padding: 0 24px 12px;
       margin: -12px -24px 0 -24px;
-
+  
       &:not(:first-child) {
         margin-top: 32px;
       }
     }
-
+  
     ul {
       list-style: none;
       padding: 0;
       display: flex;
       flex-wrap: wrap;
     }
-
+  
     li {
       display: flex;
       margin-top: 8px;
     }
-
+  
     &--base {
       width: calc(100% - 384px - 24px);
-
+  
       li {
         width: 50%;
-
+  
         div {
           &:first-child {
             width: 110px;
@@ -80,7 +88,7 @@
             flex-shrink: 0;
             color: #999;
           }
-
+  
           &:last-child {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -92,30 +100,40 @@
         }
       }
     }
-
+  
     &--record {
       width: 384px;
       flex-shrink: 0;
       margin-left: 24px;
-
+  
       .hi-timeline {
         margin-top: 24px;
       }
     }
-
+  
     &--stepper {
       margin-top: 24px;
-
+  
       .stepper {
         padding-top: 24px;
       }
-
+  
       .form-title {
         font-size: 16px;
         // text-align: center;
         justify-content: center;
         padding: 24px 0 12px;
       }
+    }
+  }
+
+  .detail-group__card {
+    margin-top: $spacer-6;
+    background: $white;
+    padding: 0;
+
+    .hi-navmenu__list {
+      padding: 0 $spacer-6 !important;
     }
   }
 }

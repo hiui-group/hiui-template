@@ -1,76 +1,85 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--detail-basic {
-  padding: 24px;
+  padding: 0 $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
-}
 
-.detail-basic {
-  &__header {
-    // background: #e7e7e7;
-
+  .detail-basic__header {
     .row {
       &-01 {
-        color: #999;
+        color: $gray-dark;
+        height: 32px;
+        align-items: center;
+      }
 
-        .spacer {
-          margin: 0 10px;
-        }
+      .spacer {
+        margin: 0 10px;
       }
 
       &-02 {
         color: #383e47;
-        margin-top: 14px;
         padding: 0 0 18px;
+        margin-top: 0;
+        align-items: center;
+      }
+
+      &-02 h2 {
+        margin: $spacer-1 0;
       }
 
       &-03 {
         padding-top: 4px;
         font-size: 12px;
         color: #999;
+      }
 
-        .spacer {
-          margin: 0 20px;
+      &-03 .spacer {
+        margin: 0 20px;
+        color: $gray-light;
+      }
 
-          &:last-child {
-            display: none;
-          }
-        }
+      &-03 .spacer:last-child {
+        display: none;
       }
     }
   }
 
-  &__body {
-    background: #fff;
-    .title {
-      font-size: 16px;
+  .detail-basic__body {
+    background: $white;
+    padding: $spacer-3 $spacer-6;
 
-      &:not(:first-child) {
-        margin-top: 12px;
-      }
+    .title {
+      font-size: $font-size-large;
+      height: 48px;
+      line-height: 48px;
+    }
+
+    .title:not(:first-child) {
+      margin-top: 12px;
     }
 
     ul {
       list-style: none;
       padding: 0;
+      margin: 0 0 $spacer-3 0;
     }
 
     li {
       display: flex;
       margin-top: 8px;
       line-height: 22px;
+    }
 
-      div {
-        &:first-child {
-          width: 110px;
-          height: 100%;
-          flex-shrink: 0;
-          color: #999;
-        }
+    li div:first-child {
+      width: 96px;
+      height: 100%;
+      flex-shrink: 0;
+      color: #999;
+    }
 
-        &:last-child {
-          width: 68%;
-        }
-      }
+    li div:last-child {
+      width: 68%;
     }
   }
 }

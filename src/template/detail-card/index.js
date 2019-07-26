@@ -58,34 +58,25 @@ export default class Template extends Component {
           {
             title: 'Title - 1',
             description: 'Here are some descriptions',
-            timestamp: '10:00',
-            extraTime: '02-23'
+            timestamp: '10:00'
           },
           {
             dot: 'circle',
             title: 'Title 2',
             description: 'Here are some descriptions',
-            timestamp: '10:00',
-            extraTime: '02-27'
-          }
-        ]
-      },
-      {
-        groupTitle: '3月',
-        children: [
+            timestamp: '10:00'
+          },
           {
             dot: 'circle',
             title: 'Title 3',
             description: 'Here are some descriptions',
-            timestamp: '12:00',
-            extraTime: '03-02'
+            timestamp: '12:00'
           },
           {
             dot: 'circle',
             title: 'Title 4',
             description: 'Here are some descriptions',
-            timestamp: '11:00',
-            extraTime: '03-10'
+            timestamp: '11:00'
           }
         ]
       }
@@ -140,8 +131,8 @@ export default class Template extends Component {
                 <Button icon='edit' type='primary' onClick={this.handleEditClick}>
                   编辑
                 </Button>
-                <Button icon='delete' type='danger' onClick={this.handleDeleteClick}>
-                  删除
+                <Button icon='collection' type='line' onClick={this.handleDeleteClick}>
+                收藏
                 </Button>
                 <Button icon='more' type='line' onClick={this.handleMoreClick} />
               </Col>
@@ -151,6 +142,12 @@ export default class Template extends Component {
             <Col className='detail-card__card detail-card__card--base page page--gutter'>
               <Row className='title'>基础信息</Row>
               <ul>
+                {Object.values(baseInfo).map(({ key, value }, idx) => (
+                  <li key={idx}>
+                    <div>{key}</div>
+                    <div>{value}</div>
+                  </li>
+                ))}
                 {Object.values(baseInfo).map(({ key, value }, idx) => (
                   <li key={idx}>
                     <div>{key}</div>

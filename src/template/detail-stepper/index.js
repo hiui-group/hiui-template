@@ -79,8 +79,8 @@ export default class Template extends Component {
                 <Button icon='edit' type='primary' onClick={this.handleEditClick}>
                   编辑
                 </Button>
-                <Button icon='delete' type='danger' onClick={this.handleDeleteClick}>
-                  删除
+                <Button icon='collection' type='line' onClick={this.handleDeleteClick}>
+                  收藏
                 </Button>
                 <Button icon='more' type='line' onClick={this.handleMoreClick} />
               </Col>
@@ -98,32 +98,39 @@ export default class Template extends Component {
             </ul>
           </Col>
           <Col className='detail-stepper__card detail-stepper__card--stepper page page--gutter'>
-            <Row className='title'>项目流程</Row>
+            <Row className='title'>项目流程
+            </Row>
             <Row className='stepper'>
               <Stepper {...{ ...stepper, up: true }} />
             </Row>
-            <Row className='form-title'>{formTitle}</Row>
-            <Form labelPosition='left' labelWidth='80'>
-              <FormItem label='项目名称'>
-                <Input />
-              </FormItem>
-              <FormItem label='项目类型'>
-                <Select />
-              </FormItem>
-              <FormItem label='项目周期'>
-                <DatePicker type='daterange' />
-              </FormItem>
-              <FormItem label='项目执行人'>
-                <Input />
-              </FormItem>
-              <FormItem label='备注'>
-                <Input type='textarea' />
-              </FormItem>
-              <FormItem>
-                <Button onClick={this.handleSaveClick} type='primary'>
-                  保存
-                </Button>
-              </FormItem>
+            <Row className='form-title'>
+              {formTitle}
+              <Button onClick={this.handleSaveClick} type='line'>
+                保存
+              </Button>
+            </Row>
+            <Form labelPosition='left' labelWidth='96'>
+              <Row>
+                <Col span={12}>
+                  <FormItem label='项目名称'>
+                    <Input style={{ width: '320px' }} />
+                  </FormItem>
+                  <FormItem label='项目类型'>
+                    <Select style={{ width: '320px' }} />
+                  </FormItem>
+                  <FormItem label='项目周期'>
+                    <DatePicker type='daterange' style={{ width: '320px' }} />
+                  </FormItem>
+                </Col>
+                <Col span={12}>
+                  <FormItem label='项目执行人'>
+                    <Input style={{ width: '320px' }} />
+                  </FormItem>
+                  <FormItem label='备注'>
+                    <Input type='textarea' style={{ width: '320px', resize: 'none' }} />
+                  </FormItem>
+                </Col>
+              </Row>
             </Form>
           </Col>
         </Col>

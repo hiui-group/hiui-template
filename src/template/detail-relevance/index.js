@@ -50,7 +50,7 @@ export default class Template extends Component {
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, activeNavMenuIndex } = this.state
+    const { title, baseInfo, activeNavMenuIndex, desc } = this.state
     const ani = Number.parseInt(activeNavMenuIndex)
     return (
       <div className='page--detail-relevance'>
@@ -67,13 +67,23 @@ export default class Template extends Component {
             <Row className='row row-02' justify='space-between'>
               <Col>
                 <h3>{title}</h3>
+                <Row className='row row-03'>
+                  {desc.map(({ key, value }, idx) => (
+                  <>
+                    <span>
+                      {key}：{value}
+                    </span>
+                    <span className='spacer'>|</span>
+                  </>
+                  ))}
+                </Row>
               </Col>
               <Col>
                 <Button icon='edit' type='primary' onClick={this.handleEditClick}>
                   编辑
                 </Button>
-                <Button icon='delete' type='danger' onClick={this.handleDeleteClick}>
-                  删除
+                <Button icon='collection' type='line' onClick={this.handleDeleteClick}>
+                  收藏
                 </Button>
                 <Button icon='more' type='line' onClick={this.handleMoreClick} />
               </Col>

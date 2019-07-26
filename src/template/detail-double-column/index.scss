@@ -1,51 +1,62 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--detail-double-column {
-  padding: 24px;
+  padding: 0 $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
-}
 
-.detail-double-column {
-  &__header {
+  .detail-double-column__header {
     .row {
       &-01 {
-        color: #999;
+        color: $gray-dark;
+        height: 32px;
+        align-items: center;
+      }
 
-        .spacer {
-          margin: 0 10px;
-        }
+      .spacer {
+        margin: 0 10px;
       }
 
       &-02 {
         color: #383e47;
-        margin-top: 14px;
         padding: 0 0 18px;
+        margin-top: 0;
+        align-items: center;
+      }
+
+      &-02 h2 {
+        margin: $spacer-1 0;
       }
 
       &-03 {
         padding-top: 4px;
         font-size: 12px;
         color: #999;
+      }
 
-        .spacer {
-          margin: 0 20px;
+      &-03 .spacer {
+        margin: 0 20px;
+        color: $gray-light;
+      }
 
-          &:last-child {
-            display: none;
-          }
-        }
+      &-03 .spacer:last-child {
+        display: none;
       }
     }
   }
 
-  &__body {
-    background: #fff;
+  .detail-double-column__body {
+    background: $white;
+    padding: $spacer-3 $spacer-6;
 
     .title {
-      font-size: 16px;
+      font-size: $font-size-large;
+      height: 48px;
+      line-height: 48px;
+    }
 
-      &:not(:first-child) {
-        margin-top: 32px;
-      }
+    .title:not(:first-child) {
+      margin-top: 12px;
     }
 
     ul {
@@ -53,30 +64,29 @@
       padding: 0;
       display: flex;
       flex-wrap: wrap;
+      margin: 0 0 $spacer-3 0;
     }
 
     li {
       display: flex;
       margin-top: 8px;
       width: 50%;
+    }
 
-      div {
-        &:first-child {
-          width: 110px;
-          height: 100%;
-          flex-shrink: 0;
-          color: #999;
-        }
+    li div:first-child {
+      width: 96px;
+      height: 100%;
+      flex-shrink: 0;
+      color: #999;
+    }
 
-        &:last-child {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          word-break: keep-all;
-          width: 75%;
-          line-height: 22px;
-        }
-      }
+    li div:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: keep-all;
+      width: 75%;
+      line-height: 22px;
     }
   }
 }

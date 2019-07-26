@@ -12,7 +12,7 @@
     font-weight: $font-weight-semibold;
     padding: $spacer-6;
     box-sizing: border-box;
-    margin-bottom: $spacer-2;
+    margin-bottom: $spacer-4;
 
     .search-btn {
       padding: 0 5px;
@@ -36,16 +36,14 @@
   }
 
   .tasks--card-item {
-    width: 25%;
     margin-bottom: $spacer-6;
-    display: flex;
-    justify-content: center;
   }
 
   .tasks--card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    flex: 1 0 25%;
   }
 
   .tasks__container {
@@ -55,5 +53,9 @@
   .icon-plus {
     font-size: 32px;
     color: $gray-dark;
+  }
+
+  .hi-pagination__item {
+    background: $white;
   }
 }

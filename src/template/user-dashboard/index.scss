@@ -36,11 +36,12 @@
       line-height: 48px;
       height: 48px;
       border-bottom: 1px solid #e6e7e8;
-      padding: 0 24px;
-      font-size: 16px;
+      padding: 0 $spacer-6;
+      font-size: $font-size-large;
     }
+
     &__content {
-      padding: 24px;
+      padding: $spacer-6;
       display: flex;
       flex: 1;
       flex-direction: column;
@@ -49,9 +50,9 @@
 
   .user-dashboard__aside {
     flex: 0 0 216px;
-    margin-right: 24px;
+    margin-right: $spacer-6;
     height: 100%;
-    background-color: #fff;
+    background-color: $white;
 
     .aside__avator {
       height: 216px;
@@ -62,13 +63,13 @@
     }
 
     .aside__section {
-      margin-top: 12px;
-      padding-left: 24px;
+      margin-top: $spacer-3;
+      padding-left: $spacer-6;
 
       .title {
         height: 48px;
         line-height: 48px;
-        font-size: 16px;
+        font-size: $font-size-large;
       }
 
       .content-item {

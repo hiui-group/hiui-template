@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Grid from '@hi-ui/hiui/es/grid'
 import Button from '@hi-ui/hiui/es/button'
+import Icon from '@hi-ui/hiui/es/icon'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -110,6 +111,19 @@ const mySubscribe = [
   }
 ]
 class UserDashboard extends Component {
+  getTagColor (status) {
+    switch (status) {
+      case '审批中':
+        return '#4284F5'
+      case '待审批':
+        return '#E19D0C'
+      case '已通过':
+        return '#1DA653'
+      case '未通过':
+        return '#EB5252'
+    }
+  }
+
   render () {
     return (
       <div className='page page--user-dashboard'>
@@ -127,6 +141,7 @@ class UserDashboard extends Component {
               }}
             />
             <div>王成</div>
+            <Icon name='edit' />
           </div>
           {asideInfo.map(info => (
             <div className='aside__section'>
@@ -185,7 +200,10 @@ class UserDashboard extends Component {
                           }}
                         >
                           <div>{apply.title}</div>
-                          <div className={`tag tag--${apply.statusCode}`}>{apply.status}</div>
+                          <div className={`tag`} style={{
+                            borderColor: this.getTagColor(apply.status),
+                            color: this.getTagColor(apply.status)
+                          }}>{apply.status}</div>
                         </div>
                         <div
                           style={{

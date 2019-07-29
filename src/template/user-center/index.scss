@@ -1,5 +1,11 @@
+@import '@hi-ui/core-css/index.scss';
+
 .page--user-center {
-  background: #fff;
+  background: $white;
   height: calc(100vh - 72px);
-  margin-top: 8;
+  margin: $spacer-6;
+
+  .hi-navmenu__list {
+    padding: 0 $spacer-4 !important;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
-import { Icon, Modal, Dropdown, handleNotificate, Checkbox, Button, Grid } from '@hi-ui/hiui'
+import { Icon, Modal, Dropdown, Notification, Checkbox, Button, Grid } from '@hi-ui/hiui'
 import './index.scss'
 
 const orderPlatformList = ['小米商城', '小米之家', '天猫旗舰店', '京东旗舰店']
@@ -99,13 +99,9 @@ export default class Template extends Component {
   }
 
   delEvent () {
-    handleNotificate({
+    Notification.open({
       type: 'success',
-      duration: 2500,
-      showClose: false,
-      autoClose: true,
-      title: '标题',
-      message: '订单号为' + this.state.delModal.order_id + '已删除'
+      title: '订单号为' + this.state.delModal.order_id + '已删除'
     })
     this.setState({
       delModal: false

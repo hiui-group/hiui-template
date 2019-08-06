@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { NavMenu, Grid, Table, Icon, Modal, Button, Dropdown, handleNotificate } from '@hi-ui/hiui'
+import { NavMenu, Grid, Table, Icon, Modal, Button, Dropdown, Notification } from '@hi-ui/hiui'
 import axios from 'axios'
 import './index.scss'
 export default class Template extends Component {
@@ -64,13 +64,9 @@ export default class Template extends Component {
   }
 
   delEvent () {
-    handleNotificate({
+    Notification.open({
       type: 'success',
-      duration: 2500,
-      showClose: false,
-      autoClose: true,
-      title: '标题',
-      message: '订单号为' + this.state.delModal.order_id + '已删除'
+      title: '订单号为' + this.state.delModal.order_id + '已删除'
     })
     this.setState({
       delModal: false

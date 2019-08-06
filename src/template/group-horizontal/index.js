@@ -4,7 +4,7 @@ import { NavMenu, Grid, Table, Icon, Modal, Button, Dropdown, Notification } fro
 import axios from 'axios'
 import './index.scss'
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.menus = [
@@ -18,16 +18,16 @@ export default class Template extends Component {
       action: {
         render: (key, row) => (
           <React.Fragment>
-            <Link to="/form/form-basic" className="hi-tpl__add">
-              <Icon name="edit" />
+            <Link to='/form/form-basic' className='hi-tpl__add'>
+              <Icon name='edit' />
             </Link>
-            <span onClick={this.showDelModal.bind(this, row)} className="action-del">
-              <Icon name="close" />
+            <span onClick={this.showDelModal.bind(this, row)} className='action-del'>
+              <Icon name='close' />
             </span>
-            <span className="action-more">
+            <span className='action-more'>
               <Dropdown
                 list={[{ title: '打印小票' }]}
-                title="更多"
+                title='更多'
                 onClick={val => console.log(val)}
               />
             </span>
@@ -47,23 +47,23 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.fetchData()
   }
 
-  showDelModal(row) {
+  showDelModal (row) {
     this.setState({
       delModal: row
     })
   }
 
-  cancelEvent() {
+  cancelEvent () {
     this.setState({
       delModal: false
     })
   }
 
-  delEvent() {
+  delEvent () {
     Notification.open({
       type: 'success',
       title: '订单号为' + this.state.delModal.order_id + '已删除'
@@ -73,7 +73,7 @@ export default class Template extends Component {
     })
   }
 
-  fetchData(page = 1) {
+  fetchData (page = 1) {
     axios
       .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/group`, {
         params: {
@@ -103,7 +103,7 @@ export default class Template extends Component {
       })
   }
 
-  setTableColumns(columns) {
+  setTableColumns (columns) {
     const _columns = []
 
     columns.map(column => {
@@ -118,7 +118,7 @@ export default class Template extends Component {
     return _columns
   }
 
-  changeStatus(status) {
+  changeStatus (status) {
     this.setState(
       {
         activeMenu: status,
@@ -130,7 +130,7 @@ export default class Template extends Component {
     )
   }
 
-  renderMenuContent() {
+  renderMenuContent () {
     const { tableDatas, columns, pageSize, total, page } = this.state
     let content
 
@@ -154,13 +154,13 @@ export default class Template extends Component {
     return content
   }
 
-  render() {
+  render () {
     const Row = Grid.Row
     const Col = Grid.Col
     const { activeMenu } = this.state
 
     return (
-      <div className="page--group-horizontal">
+      <div className='page--group-horizontal'>
         <Row>
           <Col span={24}>
             <NavMenu
@@ -174,15 +174,15 @@ export default class Template extends Component {
           <Col span={24}>{this.renderMenuContent()}</Col>
         </Row>
         <Modal
-          title="确认"
-          size="small"
+          title='确认'
+          size='small'
           visible={!!this.state.delModal}
           onCancel={this.cancelEvent.bind(this)}
           footers={[
-            <Button type="default" key={'cancel'} onClick={this.cancelEvent.bind(this)}>
+            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>
               取消
             </Button>,
-            <Button type="danger" key={'sure'} onClick={this.delEvent.bind(this)}>
+            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>
               确认
             </Button>
           ]}

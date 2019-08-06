@@ -32,7 +32,7 @@ export default class Template extends Component {
   }
 
   async componentDidMount () {
-    Loading.open(null, {key: 'lk'})
+    Loading.open(null, { key: 'lk' })
     try {
       await this.fetchOtherInfo()
       await this.fetchDetailInfo()

@@ -5,7 +5,7 @@ import axios from 'axios'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.columnMixins = {}
 
@@ -21,11 +21,11 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.fetchData()
   }
 
-  fetchData(page = 1) {
+  fetchData (page = 1) {
     axios
       .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`, {
         params: {
@@ -56,7 +56,7 @@ export default class Template extends Component {
       })
   }
 
-  setTableColumns(columns) {
+  setTableColumns (columns) {
     const _columns = []
 
     columns.map(column => {
@@ -70,7 +70,7 @@ export default class Template extends Component {
 
     return _columns
   }
-  setId(item) {
+  setId (item) {
     let itemName = []
 
     const mapToGet = (list, parent = {}) => {
@@ -110,7 +110,7 @@ export default class Template extends Component {
     )
   }
 
-  renderMenuContent() {
+  renderMenuContent () {
     const { tableDatas, columns, pageSize, total, page } = this.state
     return (
       <Table
@@ -128,7 +128,7 @@ export default class Template extends Component {
     )
   }
 
-  renderTree() {
+  renderTree () {
     return (
       <Tree
         defaultExpandAll
@@ -146,12 +146,12 @@ export default class Template extends Component {
     )
   }
 
-  render() {
+  render () {
     const Row = Grid.Row
     const Col = Grid.Col
 
     return (
-      <div className="page--tree-single">
+      <div className='page--tree-single'>
         <Row gutter>
           <Col span={4}>{this.renderTree()}</Col>
           <Col span={19}>{this.renderMenuContent()}</Col>

@@ -8,7 +8,7 @@ class ListItem extends React.Component {
     open: false
   }
   render () {
-    const { title, status, statusDesc, info, operation, detail } = this.props.item
+    const { title, status, statusDesc, info, detail } = this.props.item
     const { open } = this.state
 
     return (
@@ -50,8 +50,8 @@ class ListItem extends React.Component {
             </div>
           </div>
           <div style={{ flex: '0 0 auto' }}>
-            {status == '待审批' && <Button type='line' >审批</Button>}
-            <Button type='line' icon="more"></Button>
+            {status === '待审批' && <Button type='line' >审批</Button>}
+            <Button type='line' icon='more' />
           </div>
         </div>
 

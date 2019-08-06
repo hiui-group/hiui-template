@@ -185,7 +185,7 @@ export default class Template extends Component {
                   data={field2.list}
                   value={field2.checkValue}
                   onChange={data => {
-                    field2.checkValue =data
+                    field2.checkValue = data
                     this.setState(
                       {
                         field2

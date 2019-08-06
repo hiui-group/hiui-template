@@ -270,17 +270,17 @@ export default class Template extends Component {
               <Row gutter>
                 <div className='block-filter__label block-filter__label--checkbox'>订单状态</div>
                 <Col className='checkboxs-group'>
-                <Checkbox
-                  indeterminate={this.getIndeterminate1()}
-                  checked={this.state.value1.length === this.state.field1.length}
-                  onChange={this.handleCheckAllClick1}
+                  <Checkbox
+                    indeterminate={this.getIndeterminate1()}
+                    checked={this.state.value1.length === this.state.field1.length}
+                    onChange={this.handleCheckAllClick1}
                   >
                   全选
-                </Checkbox>
-                <Checkbox.Group value={this.state.value1} data={this.state.field1} onChange={value1 => {
-                  console.log(value1)
-                  this.setState({ value1 })
-                }} />
+                  </Checkbox>
+                  <Checkbox.Group value={this.state.value1} data={this.state.field1} onChange={value1 => {
+                    console.log(value1)
+                    this.setState({ value1 })
+                  }} />
                   {/* <Checkbox
                     all='one'
                     onChange={list => {
@@ -308,7 +308,7 @@ export default class Template extends Component {
                     indeterminate={this.getIndeterminate2()}
                     checked={this.state.value2.length === this.state.field2.length}
                     onChange={this.handleCheckAllClick2}
-                    >
+                  >
                     全选
                   </Checkbox>
                   <Checkbox.Group value={this.state.value2} data={this.state.field2} onChange={value2 => {
@@ -338,10 +338,10 @@ export default class Template extends Component {
                 <div className='block-filter__label block-filter__label--checkbox'>运输方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
-                      indeterminate={this.getIndeterminate3()}
-                      checked={this.state.value3.length === this.state.field3.length}
-                      onChange={this.handleCheckAllClick3}
-                    >
+                    indeterminate={this.getIndeterminate3()}
+                    checked={this.state.value3.length === this.state.field3.length}
+                    onChange={this.handleCheckAllClick3}
+                  >
                     全选
                   </Checkbox>
                   <Checkbox.Group value={this.state.value3} data={this.state.field3} onChange={value3 => {
@@ -375,7 +375,7 @@ export default class Template extends Component {
                     indeterminate={this.getIndeterminate4()}
                     checked={this.state.value4.length === this.state.field4.length}
                     onChange={this.handleCheckAllClick4}
-                    >
+                  >
                     全选
                   </Checkbox>
                   <Checkbox.Group value={this.state.value4} data={this.state.field4} onChange={value4 => {

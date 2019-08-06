@@ -24,43 +24,43 @@ export default class ListTask extends Component {
     pageNum: 1,
     pageSize: 15
   }
-  render() {
-    const { value, taskList, pageNum, pageSize } = this.state
+  render () {
+    const { taskList, pageNum, pageSize } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
 
     return (
-      <div className="page--list-task">
-        <div className="page--list-header">
+      <div className='page--list-task'>
+        <div className='page--list-header'>
           任务清单
           <div>
             <Input
               style={{ width: '259px' }}
               append={
-                <Button className="search-btn">
-                  <Icon name="search" />
+                <Button className='search-btn'>
+                  <Icon name='search' />
                 </Button>
               }
-              placeholder="搜索"
+              placeholder='搜索'
             />
           </div>
         </div>
 
-        <div className="tasks__container">
-          <div className="tasks--card-container">
+        <div className='tasks__container'>
+          <div className='tasks--card-container'>
             {tasks
               .map(t => (
-                <div className="tasks--card-item">
+                <div className='tasks--card-item'>
                   <Card
                     title={t.title}
                     hoverable
-                    extra={[<Icon name="delete" key={1} />, <Icon name="more" key={2} />]}
+                    extra={[<Icon name='delete' key={1} />, <Icon name='more' key={2} />]}
                   >
                     <p>{t.content}</p>
                   </Card>
                 </div>
               ))
               .concat(
-                <div className="tasks--card-item">
+                <div className='tasks--card-item'>
                   <Card
                     hoverable
                     style={{
@@ -70,7 +70,7 @@ export default class ListTask extends Component {
                       cursor: 'pointer'
                     }}
                   >
-                    <Icon name="plus" />
+                    <Icon name='plus' />
                   </Card>
                 </div>
               )}

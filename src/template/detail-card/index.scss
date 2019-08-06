@@ -5,7 +5,7 @@
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
-  .detail-card__header{
+  .detail-card__header {
     .row {
       &-01 {
         color: $gray-dark;
@@ -51,36 +51,36 @@
   .detail-card__card {
     box-sizing: border-box;
     background: #fff;
-  
+
     .title {
       font-size: 16px;
       border-bottom: 1px solid #e7e7e7;
       padding: 0 24px 12px;
       margin: -12px -24px 0 -24px;
-  
+
       &:not(:first-child) {
         margin-top: 32px;
       }
     }
-  
+
     ul {
       list-style: none;
       padding: 0;
       display: flex;
       flex-wrap: wrap;
     }
-  
+
     li {
       display: flex;
       margin-top: 8px;
     }
-  
+
     &--base {
       width: calc(100% - 384px - 24px);
-  
+
       li {
         width: 50%;
-  
+
         div {
           &:first-child {
             width: 110px;
@@ -88,7 +88,7 @@
             flex-shrink: 0;
             color: #999;
           }
-  
+
           &:last-child {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -100,24 +100,24 @@
         }
       }
     }
-  
+
     &--record {
       width: 384px;
       flex-shrink: 0;
       margin-left: 24px;
-  
+
       .hi-timeline {
         margin-top: 24px;
       }
     }
-  
+
     &--stepper {
       margin-top: 24px;
-  
+
       .stepper {
         padding-top: 24px;
       }
-  
+
       .form-title {
         font-size: 16px;
         // text-align: center;

@@ -20,7 +20,7 @@ export default class Copy extends Component {
 
   showModal = () => {
     this.setState({ showModal: true })
-    let pathname = window.location.href.split('\/')[3]
+    let pathname = window.location.href.split('/')[3]
     if (pathname.includes('#')) {
       pathname = pathname.split('#')[0]
     }
@@ -48,7 +48,7 @@ export default class Copy extends Component {
   }
 
   getTabs (cssCode) {
-    return cssCode ? [{ id: 0, content: 'js 代码' }, { id: 1,  content: 'scss 代码' }] : [{ id: 0,  content: 'js 代码' }]
+    return cssCode ? [{ id: 0, content: 'js 代码' }, { id: 1, content: 'scss 代码' }] : [{ id: 0, content: 'js 代码' }]
   }
 
   closeModal () {
@@ -97,10 +97,10 @@ export default class Copy extends Component {
         >
           <Menu
             data={this.getTabs(cssCode)}
-            placement="horizontal"
-            className="menus"
+            placement='horizontal'
+            className='menus'
             activeId={selectedKey.toString()}
-            onClick={(id, prevId)=>console.log('-----click', id, prevId)}
+            onClick={(id, prevId) => console.log('-----click', id, prevId)}
             onClickSubMenu={index => console.log('-----onClickSubMenu', index)}
           />
           <div className='code-container'>

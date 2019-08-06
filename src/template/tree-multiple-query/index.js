@@ -6,7 +6,7 @@ import '@hi-ui/hiui/es/table/style/index.css'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.columnMixins = {}
 
@@ -112,7 +112,7 @@ export default class Template extends Component {
     }
   }
 
-  reset() {
+  reset () {
     this.setState(
       {
         reset: false,
@@ -128,16 +128,16 @@ export default class Template extends Component {
     )
   }
 
-  onChange(checkedKeys) {
+  onChange (checkedKeys) {
     this.setState({
       currentChose: checkedKeys,
       activeId: checkedKeys.join(',')
     })
   }
 
-  renderTree() {
+  renderTree () {
     return (
-      <div className="hi-tree__container">
+      <div className='hi-tree__container'>
         {this.state.reset && this.state.treeData.length && (
           <Tree
             defaultExpandAll
@@ -153,7 +153,7 @@ export default class Template extends Component {
     )
   }
 
-  render() {
+  render () {
     const Row = Grid.Row
     const Col = Grid.Col
     const { pageSize, activeId } = this.state
@@ -164,7 +164,7 @@ export default class Template extends Component {
     const forms = {}
 
     return (
-      <div className="page--tree-multiple-query">
+      <div className='page--tree-multiple-query'>
         <Row>
           <Col span={24}>
             <DataFilter
@@ -173,29 +173,29 @@ export default class Template extends Component {
               params={params}
               columnMixins={this.columnMixins}
               vertical
-              verticalWidth="200px"
+              verticalWidth='200px'
               actions={[
                 'search',
-                <Link to="/form-unfold-group" className="hi-tpl__add">
-                  <Button type="primary" icon="plus" />
+                <Link to='/form-unfold-group' className='hi-tpl__add'>
+                  <Button type='primary' icon='plus' />
                 </Link>,
                 <Button
-                  type="line"
-                  icon="download"
+                  type='line'
+                  icon='download'
                   onClick={() => {
                     console.log('------------click download')
                   }}
                 />,
                 <Button
-                  type="line"
-                  icon="mark"
+                  type='line'
+                  icon='mark'
                   onClick={() => {
                     console.log('------------click share')
                   }}
                 />,
                 <Button
-                  type="line"
-                  icon="more"
+                  type='line'
+                  icon='more'
                   onClick={() => {
                     console.log('------------click more')
                   }}

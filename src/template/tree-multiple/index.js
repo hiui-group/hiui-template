@@ -5,7 +5,7 @@ import axios from 'axios'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.columnMixins = {}
 
@@ -21,11 +21,11 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.fetchData()
   }
 
-  fetchData(page) {
+  fetchData (page) {
     axios
       .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`, {
         params: {
@@ -56,7 +56,7 @@ export default class Template extends Component {
       })
   }
 
-  setTableColumns(columns) {
+  setTableColumns (columns) {
     const _columns = []
 
     columns.map(column => {
@@ -71,18 +71,18 @@ export default class Template extends Component {
     return _columns
   }
 
-  markSure() {
+  markSure () {
     this.fetchData()
   }
 
-  onChange(checkedKeys) {
+  onChange (checkedKeys) {
     this.setState({
       currentChose: checkedKeys,
       activeId: checkedKeys.join(',')
     })
   }
 
-  reset() {
+  reset () {
     this.setState(
       {
         reset: false,
@@ -98,11 +98,11 @@ export default class Template extends Component {
     )
   }
 
-  renderMenuContent() {
+  renderMenuContent () {
     const { tableDatas, columns, pageSize, total, page } = this.state
 
     return (
-      <div className="hi-table__container">
+      <div className='hi-table__container'>
         <Table
           columns={columns}
           data={tableDatas}
@@ -119,9 +119,9 @@ export default class Template extends Component {
     )
   }
 
-  renderTree() {
+  renderTree () {
     return (
-      <div className="hi-tree__container">
+      <div className='hi-tree__container'>
         {this.state.reset && this.state.treeData.length && (
           <Tree
             defaultExpandAll
@@ -134,11 +134,11 @@ export default class Template extends Component {
           />
         )}
         <br />
-        <div className="hi-tree__confirm">
-          <Button type="primary" onClick={this.markSure.bind(this)}>
+        <div className='hi-tree__confirm'>
+          <Button type='primary' onClick={this.markSure.bind(this)}>
             确认
           </Button>
-          <Button type="default" onClick={this.reset.bind(this)}>
+          <Button type='default' onClick={this.reset.bind(this)}>
             重置
           </Button>
         </div>
@@ -146,12 +146,12 @@ export default class Template extends Component {
     )
   }
 
-  render() {
+  render () {
     const Row = Grid.Row
     const Col = Grid.Col
 
     return (
-      <div className="page--tree-multiple">
+      <div className='page--tree-multiple'>
         <Row gutter>
           <Col span={4}>{this.renderTree()}</Col>
           <Col span={20}>{this.renderMenuContent()}</Col>

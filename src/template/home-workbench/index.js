@@ -18,7 +18,7 @@ const { Row, Col } = Grid
 const FormItem = Form.Item
 
 class HomeWorkbench extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       showAuditModal: false,
@@ -40,13 +40,13 @@ class HomeWorkbench extends Component {
         children: [
           {
             title: '管理层例会',
-            description: '毕加索会议室 B2层 可提前预定',
+            content: '毕加索会议室 B2层 可提前预定',
             timestamp: '9:00'
           },
           {
             dot: 'circle',
             title: '社招面试-设计师',
-            description: '总参',
+            content: '总参',
             timestamp: '10:30'
           }
         ]
@@ -57,13 +57,13 @@ class HomeWorkbench extends Component {
           {
             dot: 'circle',
             title: '管理层例会',
-            description: '毕加索会议室 B2层 可提前预定',
+            content: '毕加索会议室 B2层 可提前预定',
             timestamp: '12:00'
           },
           {
             dot: 'circle',
             title: '社招面试-设计师',
-            description: '总参',
+            content: '总参',
             timestamp: '11:00'
           }
         ]
@@ -96,7 +96,7 @@ class HomeWorkbench extends Component {
     this.handleSwitchStep = this.handleSwitchStep.bind(this)
   }
 
-  handleSwitchStep (isNext) {
+  handleSwitchStep(isNext) {
     if (isNext) {
       this.setState(prevState => {
         return { approvalStep: prevState.approvalStep + 1 }
@@ -108,16 +108,16 @@ class HomeWorkbench extends Component {
     }
   }
 
-  renderTodo () {
+  renderTodo() {
     let todoList = []
     for (let i = 0; i < 6; i++) {
       todoList.push(
-        <div className='todo__item' key={i}>
-          <Row justify='space-between'>
+        <div className="todo__item" key={i}>
+          <Row justify="space-between">
             <Col>设备采购审批申请</Col>
             <Col>
               <span
-                className='approval-btn'
+                className="approval-btn"
                 onClick={() => {
                   this.setState({ showAuditModal: true })
                 }}
@@ -129,49 +129,49 @@ class HomeWorkbench extends Component {
         </div>
       )
     }
-    return <div className='todo'>{todoList}</div>
+    return <div className="todo">{todoList}</div>
   }
 
-  render () {
+  render() {
     return (
-      <div className='page page--workbench'>
-        <div className='workbench--container'>
+      <div className="page page--workbench">
+        <div className="workbench--container">
           <Row>
             <Col span={24}>
-              <div className='user'>
-                <span className='user__icon'>Ad</span>
-                <span className='user__greet'>Admin，上午好！ 美好的一天开始了</span>
+              <div className="user">
+                <span className="user__icon">Ad</span>
+                <span className="user__greet">Admin，上午好！ 美好的一天开始了</span>
               </div>
             </Col>
           </Row>
           <Row gutter>
             <Col span={8}>
-              <div className='card'>
-                <div className='card__header'>
-                  <span className='card__title'>待办</span>
+              <div className="card">
+                <div className="card__header">
+                  <span className="card__title">待办</span>
                 </div>
-                <div className='card__body'>
+                <div className="card__body">
                   {this.renderTodo()}
-                  <div className='card__footer'>
+                  <div className="card__footer">
                     <Button>
-                      <Icon name='left' />
+                      <Icon name="left" />
                     </Button>
                     <Button>
-                      <Icon name='right' />
+                      <Icon name="right" />
                     </Button>
                   </div>
                 </div>
               </div>
             </Col>
             <Col span={16}>
-              <div className='card'>
-                <div className='card__header'>
-                  <span className='card__title'>日程</span>
+              <div className="card">
+                <div className="card__header">
+                  <span className="card__title">日程</span>
                   <span>
-                    <Icon name='plus' /> 新建日程
+                    <Icon name="plus" /> 新建日程
                   </span>
                 </div>
-                <div className='card__body'>
+                <div className="card__body">
                   <Row gutter>
                     <Col span={12}>
                       <DatePicker
@@ -191,8 +191,8 @@ class HomeWorkbench extends Component {
           </Row>
           <Row>
             <Col span={24}>
-              <div className='card'>
-                <div className='card__header'>
+              <div className="card">
+                <div className="card__header">
                   <span>项目／审批流程</span>
                   <Dropdown
                     list={this.projectList}
@@ -200,15 +200,15 @@ class HomeWorkbench extends Component {
                     onClick={val => console.log(val)}
                   />
                 </div>
-                <div className='card__body'>
+                <div className="card__body">
                   <Stepper up list={this.approvalStepList} current={this.state.approvalStep} />
                 </div>
               </div>
             </Col>
           </Row>
           <Modal
-            size='normal'
-            title='设备采购申请'
+            size="normal"
+            title="设备采购申请"
             visible={this.state.showAuditModal}
             onConfirm={() => {
               this.setState({ showAuditModal: false })
@@ -217,12 +217,12 @@ class HomeWorkbench extends Component {
               this.setState({ showAuditModal: false })
             }}
           >
-            <Form labelPosition='left'>
-              <FormItem label='原因' labelWidth='60'>
+            <Form labelPosition="left">
+              <FormItem label="原因" labelWidth="60">
                 <Radio list={['通过', '驳回']} />
               </FormItem>
-              <FormItem label='备注' labelWidth='60'>
-                <Input type='textarea' />
+              <FormItem label="备注" labelWidth="60">
+                <Input type="textarea" />
               </FormItem>
             </Form>
           </Modal>

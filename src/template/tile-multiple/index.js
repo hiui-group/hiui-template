@@ -322,9 +322,9 @@ export default class Template extends Component {
         <Modal
           title='确认'
           size='small'
-          show={!!this.state.delModal}
+          visible={!!this.state.delModal}
           onCancel={this.cancelEvent.bind(this)}
-          footers={[
+          footer={[
             <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>
               取消
             </Button>,

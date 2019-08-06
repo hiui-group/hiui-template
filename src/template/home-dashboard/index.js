@@ -540,7 +540,7 @@ class HomeDashboard extends Component {
             <Row gutter>
               {this.indexData.map((item, index) => {
                 return (
-                  <Col span={8}>
+                  <Col span={8} key={index}>
                     <div className="info">
                       <span className="info__amount">{item.amount}</span>
                       <span className="info__name">{item.name}</span>
@@ -554,7 +554,7 @@ class HomeDashboard extends Component {
             <Row gutter>
               {this.indexData.map((item, index) => {
                 return (
-                  <Col span={8}>
+                  <Col span={8} key={index}>
                     <div className="info">
                       <span className="info__amount">{item.amount}</span>
                       <span className="info__name">{item.name}</span>

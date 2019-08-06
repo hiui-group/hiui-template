@@ -20,52 +20,52 @@ const menuList = [
 ]
 const groups = [
   {
-    value: '信息技术部',
-    label: '信息技术部',
+    id: '信息技术部',
+    content: '信息技术部',
     children: [
       {
-        value: '平台组',
-        label: '平台组',
+        id: '平台组',
+        content: '平台组',
         children: [
           {
-            value: '前端组',
-            label: '前端组'
+            id: '前端组',
+            content: '前端组'
           },
           {
-            value: '测试组',
-            label: '测试组'
+            id: '测试组',
+            content: '测试组'
           }
         ]
       }
     ]
   },
   {
-    value: '云平台',
-    label: '云平台',
+    id: '云平台',
+    content: '云平台',
     children: [
       {
-        value: '小爱',
-        label: '小爱'
+        id: '小爱',
+        content: '小爱'
       },
       {
-        value: 'AI',
-        label: 'AI'
+        id: 'AI',
+        content: 'AI'
       }
     ]
   }
 ]
 const provinces = [
   {
-    value: '湖北',
-    label: '湖北',
+    id: '湖北',
+    content: '湖北',
     children: [
       {
-        value: '武汉',
-        label: '武汉'
+        id: '武汉',
+        content: '武汉'
       },
       {
-        value: '宜昌',
-        label: '宜昌'
+        id: '宜昌',
+        content: '宜昌'
       }
     ]
   }
@@ -180,7 +180,7 @@ export default class UserCenter extends Component {
                   onChange={value => {
                     this.onValueChange('group', value)
                   }}
-                  options={groups}
+                  data={groups}
                 />
               </FormItem>
               <FormItem label='联系方式'>
@@ -207,7 +207,7 @@ export default class UserCenter extends Component {
                   onChange={value => {
                     this.onValueChange('province', value)
                   }}
-                  options={provinces}
+                  data={provinces}
                 />
               </FormItem>
               <FormItem label='详细地址'>

@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import Icon from '@hi-ui/hiui/es/icon'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import Card from '@hi-ui/hiui/es/card'
+import { Icon, Input, Button, Card } from '@hi-ui/hiui'
 import './index.scss'
 
 export default class ListIndicator extends Component {
@@ -27,7 +24,11 @@ export default class ListIndicator extends Component {
           <div>
             <Input
               style={{ width: '259px' }}
-              append={<Button className='search-btn'><Icon name='search' /></Button>}
+              append={
+                <Button className='search-btn'>
+                  <Icon name='search' />
+                </Button>
+              }
               placeholder='搜索'
             />
           </div>
@@ -36,19 +37,14 @@ export default class ListIndicator extends Component {
         <div className='indicator__container'>
           <div className='indicator——type_container'>
             {['部门订单', '个人订单', '历史订单', '消息进度'].map((tag, index) => (
-              <span
-                key={index}
-                className='indicator——type_item'
-              >
+              <span key={index} className='indicator——type_item'>
                 {tag}
               </span>
             ))}
           </div>
           {['财务部订单', '人力部订单', '开发部订单', '信息部订单'].map(category => (
             <div>
-              <div className='indicator——item_header'>
-                {category}
-              </div>
+              <div className='indicator——item_header'>{category}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {[
                   '笔记本出库数量',

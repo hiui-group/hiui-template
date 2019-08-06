@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Button from '@hi-ui/hiui/es/button'
-import Input from '@hi-ui/hiui/es/input'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Select from '@hi-ui/hiui/es/select'
-import Icon from '@hi-ui/hiui/es/icon'
-import Grid from '@hi-ui/hiui/es/grid'
+import { Button, Input, DatePicker, Select, Icon, Grid } from '@hi-ui/hiui'
 import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
 import './index.scss'
 
@@ -14,37 +9,37 @@ export default class Template extends Component {
     super(props)
 
     this.orderPlatformOptions = [
-      { name: '全部', id: '全部' },
-      { name: '小米商城', id: '小米商城' },
-      { name: '小米之家', id: '小米之家' },
-      { name: '天猫旗舰店', id: '天猫旗舰店' },
-      { name: '京东旗舰店', id: '京东旗舰店' }
+      { title: '全部', id: '全部' },
+      { title: '小米商城', id: '小米商城' },
+      { title: '小米之家', id: '小米之家' },
+      { title: '天猫旗舰店', id: '天猫旗舰店' },
+      { title: '京东旗舰店', id: '京东旗舰店' }
     ]
     this.orderDeliveryOptions = [
-      { name: '全部', id: '全部' },
-      { name: '顺丰', id: '顺丰' },
-      { name: 'EMS', id: 'EMS' },
-      { name: '如风达', id: '如风达' },
-      { name: '百世汇通', id: '百世汇通' },
-      { name: '自取', id: '自取' }
+      { title: '全部', id: '全部' },
+      { title: '顺丰', id: '顺丰' },
+      { title: 'EMS', id: 'EMS' },
+      { title: '如风达', id: '如风达' },
+      { title: '百世汇通', id: '百世汇通' },
+      { title: '自取', id: '自取' }
     ]
     this.orderPaymentOptions = [
-      { name: '全部', id: '全部' },
-      { name: '微信支付', id: '微信支付' },
-      { name: '支付宝', id: '支付宝' },
-      { name: '银联', id: '银联' },
-      { name: '信用卡', id: '信用卡' },
-      { name: '现金', id: '现金' }
+      { title: '全部', id: '全部' },
+      { title: '微信支付', id: '微信支付' },
+      { title: '支付宝', id: '支付宝' },
+      { title: '银联', id: '银联' },
+      { title: '信用卡', id: '信用卡' },
+      { title: '现金', id: '现金' }
     ]
     this.orderStatusOptions = [
-      { name: '全部', id: '全部' },
-      { name: '待支付', id: '待支付' },
-      { name: '已支付', id: '已支付' },
-      { name: '配货中', id: '配货中' },
-      { name: '配送中', id: '配送中' },
-      { name: '已收货', id: '已收货' },
-      { name: '已取消', id: '已取消' },
-      { name: '已关闭', id: '已关闭' }
+      { title: '全部', id: '全部' },
+      { title: '待支付', id: '待支付' },
+      { title: '已支付', id: '已支付' },
+      { title: '配货中', id: '配货中' },
+      { title: '配送中', id: '配送中' },
+      { title: '已收货', id: '已收货' },
+      { title: '已取消', id: '已取消' },
+      { title: '已关闭', id: '已关闭' }
     ]
     this.columnMixins = {
       id: {
@@ -119,7 +114,7 @@ export default class Template extends Component {
             <DataFilter
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order`}
               onFetched={ret => {
-                console.log('fetchDatas', ret)
+                console.log('fetchData', ret)
               }}
               params={params}
               columnMixins={this.columnMixins}
@@ -182,7 +177,7 @@ export default class Template extends Component {
                 </Field>
                 <Field label='业务来源' width='200'>
                   <Select
-                    list={this.orderPlatformOptions}
+                    data={this.orderPlatformOptions}
                     placeholder='请选择业务来源'
                     value={forms.order_platform}
                     onChange={value =>
@@ -192,7 +187,7 @@ export default class Template extends Component {
                 </Field>
                 <Field label='运输方式' width='200'>
                   <Select
-                    list={this.orderDeliveryOptions}
+                    data={this.orderDeliveryOptions}
                     placeholder='请选择运输方式'
                     value={forms.order_delivery}
                     onChange={value =>
@@ -202,7 +197,7 @@ export default class Template extends Component {
                 </Field>
                 <Field label='支付方式' width='200' advanced>
                   <Select
-                    list={this.orderPaymentOptions}
+                    data={this.orderPaymentOptions}
                     placeholder='请选择支付方式'
                     value={forms.order_payment}
                     onChange={value =>
@@ -212,7 +207,7 @@ export default class Template extends Component {
                 </Field>
                 <Field label='订单状态' width='200' advanced>
                   <Select
-                    list={this.orderStatusOptions}
+                    data={this.orderStatusOptions}
                     placeholder='请选择订单状态'
                     value={forms.order_status}
                     onChange={value =>

@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import Grid from '@hi-ui/hiui/es/grid'
 import { Link } from 'react-router-dom'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
-import Radio from '@hi-ui/hiui/es/radio'
-import Icon from '@hi-ui/hiui/es/icon'
-import Modal from '@hi-ui/hiui/es/modal'
-import Button from '@hi-ui/hiui/es/button'
-import Dropdown from '@hi-ui/hiui/es/dropdown'
-import { handleNotificate } from '@hi-ui/hiui/es/notification'
+import { Radio, Icon, Modal, Button, Dropdown, Notification } from '@hi-ui/hiui'
 import './index.scss'
 
 export default class Template extends Component {
@@ -23,9 +18,19 @@ export default class Template extends Component {
       action: {
         render: (key, row) => (
           <React.Fragment>
-            <Link to='/form/form-basic' className='hi-tpl__add' ><Icon name='edit' /></Link>
-            <span onClick={this.showDelModal.bind(this, row)} className='action-del'><Icon name='close' /></span>
-            <span className='action-more'><Dropdown list={[{ title: '打印小票' }]} title='更多' onClick={(val) => console.log(val)} /></span>
+            <Link to='/form/form-basic' className='hi-tpl__add'>
+              <Icon name='edit' />
+            </Link>
+            <span onClick={this.showDelModal.bind(this, row)} className='action-del'>
+              <Icon name='close' />
+            </span>
+            <span className='action-more'>
+              <Dropdown
+                data={[{ title: '打印小票' }]}
+                title='更多'
+                onClick={val => console.log(val)}
+              />
+            </span>
           </React.Fragment>
         )
       }
@@ -34,19 +39,19 @@ export default class Template extends Component {
     this.state = {
       field1: {
         list: ['全部', '待支付', '已支付', '配货中', '配送中', '已收货', '已取消', '已关闭'],
-        checkIndex: 0
+        checkValue: '全部'
       },
       field2: {
         list: ['全部', '小米商城', '小米之家', '天猫旗舰店', '京东旗舰店'],
-        checkIndex: 0
+        checkValue: '全部'
       },
       field3: {
         list: ['全部', '顺丰', 'EMS', '如风达', '百世汇通', '自取'],
-        checkIndex: 0
+        checkValue: '全部'
       },
       field4: {
         list: ['全部', '微信支付', '支付宝', '银联', '信用卡', '现金'],
-        checkIndex: 0
+        checkValue: '全部'
       },
       pageSize: 10,
       forms: this.initForms(),
@@ -67,7 +72,10 @@ export default class Template extends Component {
   }
 
   delEvent () {
-    handleNotificate({ type: 'success', duration: 2500, showClose: false, autoClose: true, title: '标题', message: '订单号为' + this.state.delModal.order_id + '已删除' })
+    Notification.open({
+      type: 'success',
+      title: '订单号为' + this.state.delModal.order_id + '已删除'
+    })
     this.setState({
       delModal: false
     })
@@ -155,11 +163,11 @@ export default class Template extends Component {
             >
               <Row gutter>
                 <div className='block-filter__label block-filter__label--radio'>订单状态</div>
-                <Radio
-                  list={field1.list}
-                  checked={field1.checkIndex}
+                <Radio.Group
+                  data={field1.list}
+                  value={field1.checkValue}
                   onChange={data => {
-                    field1.checkIndex = field1.list.indexOf(data)
+                    field1.checkValue = data
                     this.setState(
                       {
                         field1
@@ -173,11 +181,11 @@ export default class Template extends Component {
               </Row>
               <Row gutter>
                 <div className='block-filter__label block-filter__label--radio'>业务来源</div>
-                <Radio
-                  list={field2.list}
-                  checked={field2.checkIndex}
+                <Radio.Group
+                  data={field2.list}
+                  value={field2.checkValue}
                   onChange={data => {
-                    field2.checkIndex = field2.list.indexOf(data)
+                    field2.checkValue =data
                     this.setState(
                       {
                         field2
@@ -191,11 +199,11 @@ export default class Template extends Component {
               </Row>
               <Row gutter>
                 <div className='block-filter__label block-filter__label--radio'>运输方式</div>
-                <Radio
-                  list={field3.list}
-                  checked={field3.checkIndex}
+                <Radio.Group
+                  data={field3.list}
+                  value={field3.checkValue}
                   onChange={data => {
-                    field3.checkIndex = field3.list.indexOf(data)
+                    field3.checkValue = data
                     this.setState(
                       {
                         field3
@@ -209,11 +217,11 @@ export default class Template extends Component {
               </Row>
               <Row gutter>
                 <div className='block-filter__label block-filter__label--radio'>支付方式</div>
-                <Radio
-                  list={field4.list}
-                  checked={field4.checkIndex}
+                <Radio.Group
+                  data={field4.list}
+                  value={field4.checkValue}
                   onChange={data => {
-                    field4.checkIndex = field4.list.indexOf(data)
+                    field4.checkValue = data
                     this.setState(
                       {
                         field3
@@ -231,14 +239,20 @@ export default class Template extends Component {
         <Modal
           title='确认'
           size='small'
-          show={!!this.state.delModal}
+          visible={!!this.state.delModal}
           onCancel={this.cancelEvent.bind(this)}
-          footers={[
-            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>取消</Button>,
-            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>确认</Button>
+          footer={[
+            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>
+              取消
+            </Button>,
+            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>
+              确认
+            </Button>
           ]}
         >
-          <span>确认要删除订单号为{this.state.delModal && this.state.delModal.order_id}的订单么？</span>
+          <span>
+            确认要删除订单号为{this.state.delModal && this.state.delModal.order_id}的订单么？
+          </span>
         </Modal>
       </div>
     )

@@ -1,22 +1,24 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Counter from '@hi-ui/hiui/es/counter'
-import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Grid from '@hi-ui/hiui/es/grid'
-import Select from '@hi-ui/hiui/es/select'
-import Radio from '@hi-ui/hiui/es/radio'
-import Upload from '@hi-ui/hiui/es/upload'
+import {
+  Form,
+  Input,
+  Button,
+  DatePicker,
+  Counter,
+  TimePicker,
+  NavMenu,
+  Grid,
+  Select,
+  Radio,
+  Upload
+} from '@hi-ui/hiui'
 import './index.scss'
 
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       forms: this.initForms(),
@@ -39,11 +41,11 @@ export default class Template extends Component {
       }
     }
     this.singleList = [
-      { name: '较长的一段描述文本', label: '这是一段较长的描述文本', id: '2' },
-      { name: '手机', label: 'tanke', id: '3' },
-      { name: '笔记本', label: 'chaojitanke', id: '4', disabled: true },
-      { name: '生活周边', label: 'wurenji', id: '5' },
-      { name: '生态链', label: 'huojian', id: '6' }
+      { title: '较长的一段描述文本', id: '2' },
+      { title: '手机', id: '3' },
+      { title: '笔记本', id: '4', disabled: true },
+      { title: '生活周边', id: '5' },
+      { title: '生态链', id: '6' }
     ]
     this.list = [
       {
@@ -58,7 +60,7 @@ export default class Template extends Component {
     ]
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
@@ -73,27 +75,27 @@ export default class Template extends Component {
     )
   }
 
-  handleChange () {}
+  handleChange() {}
 
-  handleSubmit () {}
+  handleSubmit() {}
 
-  reset () {}
+  reset() {}
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms } = this.state
 
     return (
-      <div className='page--form-vertical-group'>
-        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='120'>
-          <h2 className='hi-form__title'>
+      <div className="page--form-vertical-group">
+        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth="120">
+          <h2 className="hi-form__title">
             表单
             <div>
-              <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+              <Button type="primary" onClick={this.handleSubmit.bind(this)}>
                 提交
               </Button>
-              <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
+              <Button type="line" onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
                 重置
               </Button>
             </div>
@@ -102,7 +104,7 @@ export default class Template extends Component {
             <Col span={24}>
               <NavMenu onClick={this.handleClick} data={this.list}>
                 <div>
-                  <FormItem label='姓名' prop='text'>
+                  <FormItem label='姓名' field='text'>
                     <Input
                       value={forms.text}
                       placeholder={'请输入'}
@@ -110,37 +112,37 @@ export default class Template extends Component {
                       style={{ width: '250px' }}
                     />
                   </FormItem>
-                  <FormItem label='时间' prop='date'>
+                  <FormItem label='时间' field='date'>
                     <DatePicker
-                      type='daterange'
+                      type="daterange"
                       value={forms.date}
                       onChange={d => {
                         console.log(d)
                       }}
                     />
                   </FormItem>
-                  <FormItem label='数量' prop='num'>
+                  <FormItem label='数量' field='num'>
                     <Counter
-                      value={forms.num}
-                      step='1'
-                      min='0'
-                      max='8'
-                      onChange={val => console.log('变化后的值：', val)}
+                      defaultValue={forms.num}
+                      step={1}
+                      min={0}
+                      max={8}
+                      onChange={(e, val) => console.log('变化后的值：', val)}
                     />
                   </FormItem>
-                  <FormItem label='时间' prop='time'>
+                  <FormItem label='时间' field='time'>
                     <TimePicker
-                      type='time'
+                      type="time"
                       value={forms.time}
                       onChange={d => {
                         console.log(d)
                       }}
                     />
                   </FormItem>
-                  <FormItem label='类别' prop='select'>
+                  <FormItem label='类别' field='select'>
                     <Select
-                      list={this.singleList}
-                      placeholder='请选择种类'
+                      data={this.singleList}
+                      placeholder="请选择种类"
                       style={{ width: '200px' }}
                       value={forms.select}
                       onChange={item => {
@@ -148,30 +150,29 @@ export default class Template extends Component {
                       }}
                     />
                   </FormItem>
-                  <FormItem label='地点' prop='radio'>
-                    <Radio
-                      list={['北京', '上海', '重庆']}
-                      checked={forms.radio}
-                      onChange={this.handleChange.bind(this, 'region', '')}
+                  <FormItem label='地点' field='radio'>
+                    <Radio.Group
+                      data={['北京', '上海', '重庆']}
+                      defaultValue={forms.radio}
                     />
                   </FormItem>
 
-                  <FormItem label='照片' prop='radio'>
+                  <FormItem label='照片' field='radio'>
                     <Upload
-                      type='photo'
-                      uploadAction='http://127.0.0.1:8000'
-                      param={{ id: 'uid', channel: 'youpin' }}
+                      type="photo"
+                      uploadAction="http://127.0.0.1:8000"
+                      params={{ id: 'uid', channel: 'youpin' }}
                       name={'files[]'}
                     />
                   </FormItem>
 
-                  <FormItem label='备注' prop='longText'>
+                  <FormItem label='备注' field='longText'>
                     <Input
                       value={forms.longText}
                       placeholder={'多行文本'}
                       onChange={this.handleChange.bind(this, 'column1')}
                       style={{ width: '320px', height: '160px', resize: 'none' }}
-                      type='textarea'
+                      type="textarea"
                     />
                   </FormItem>
                 </div>
@@ -180,7 +181,6 @@ export default class Template extends Component {
               </NavMenu>
             </Col>
           </Row>
-
         </Form>
       </div>
     )

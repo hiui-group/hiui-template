@@ -1,5 +1,5 @@
 import React from 'react'
-import Loading from '@hi-ui/hiui/es/loading'
+import { Loading } from '@hi-ui/hiui'
 import './index.scss'
 
 const NormalLoading = () => {

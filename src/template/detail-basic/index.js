@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Button from '@hi-ui/hiui/es/button'
-import Icon from '@hi-ui/hiui/es/icon'
-import Grid from '@hi-ui/hiui/es/grid'
-import Loading from '@hi-ui/hiui/es/loading'
+import { Button, Icon, Grid, Loading } from '@hi-ui/hiui'
 import './index.scss'
 import axios from 'axios'
 
@@ -40,12 +37,12 @@ export default class Template extends Component {
   handleMoreClick = () => {}
 
   async componentDidMount () {
-    const closure = Loading.open()
+    Loading.open(null, {key: 'lk'})
     try {
       await this.fetchOtherInfo()
       await this.fetchDetailInfo()
     } finally {
-      closure.close()
+      Loading.close('lk')
     }
   }
 

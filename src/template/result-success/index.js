@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '@hi-ui/hiui/es/button'
+import { Button } from '@hi-ui/hiui'
 import './index.scss'
 
 const Success = () => {

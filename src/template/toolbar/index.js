@@ -1,64 +1,59 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Button from '@hi-ui/hiui/es/button'
-import Input from '@hi-ui/hiui/es/input'
-import Select from '@hi-ui/hiui/es/select'
-import Icon from '@hi-ui/hiui/es/icon'
-import Grid from '@hi-ui/hiui/es/grid'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
+import { Button, Input, Select, Icon, Grid, DatePicker } from '@hi-ui/hiui'
 import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.orderPlatformOptions = [
-      { name: '全部', id: '全部' },
-      { name: '小米商城', id: '小米商城' },
-      { name: '小米之家', id: '小米之家' },
-      { name: '天猫旗舰店', id: '天猫旗舰店' },
-      { name: '京东旗舰店', id: '京东旗舰店' }
+      { title: '全部', id: '全部' },
+      { title: '小米商城', id: '小米商城' },
+      { title: '小米之家', id: '小米之家' },
+      { title: '天猫旗舰店', id: '天猫旗舰店' },
+      { title: '京东旗舰店', id: '京东旗舰店' }
     ]
     this.orderDeliveryOptions = [
-      { name: '全部', id: '全部' },
-      { name: '顺丰', id: '顺丰' },
-      { name: 'EMS', id: 'EMS' },
-      { name: '如风达', id: '如风达' },
-      { name: '百世汇通', id: '百世汇通' },
-      { name: '自取', id: '自取' }
+      { title: '全部', id: '全部' },
+      { title: '顺丰', id: '顺丰' },
+      { title: 'EMS', id: 'EMS' },
+      { title: '如风达', id: '如风达' },
+      { title: '百世汇通', id: '百世汇通' },
+      { title: '自取', id: '自取' }
     ]
     this.orderPaymentOptions = [
-      { name: '全部', id: '全部' },
-      { name: '微信支付', id: '微信支付' },
-      { name: '支付宝', id: '支付宝' },
-      { name: '银联', id: '银联' },
-      { name: '信用卡', id: '信用卡' },
-      { name: '现金', id: '现金' }
+      { title: '全部', id: '全部' },
+      { title: '微信支付', id: '微信支付' },
+      { title: '支付宝', id: '支付宝' },
+      { title: '银联', id: '银联' },
+      { title: '信用卡', id: '信用卡' },
+      { title: '现金', id: '现金' }
     ]
     this.orderStatusOptions = [
-      { name: '全部', id: '全部' },
-      { name: '待支付', id: '待支付' },
-      { name: '已支付', id: '已支付' },
-      { name: '配货中', id: '配货中' },
-      { name: '配送中', id: '配送中' },
-      { name: '已收货', id: '已收货' },
-      { name: '已取消', id: '已取消' },
-      { name: '已关闭', id: '已关闭' }
+      { title: '全部', id: '全部' },
+      { title: '待支付', id: '待支付' },
+      { title: '已支付', id: '已支付' },
+      { title: '配货中', id: '配货中' },
+      { title: '配送中', id: '配送中' },
+      { title: '已收货', id: '已收货' },
+      { title: '已取消', id: '已取消' },
+      { title: '已关闭', id: '已关闭' }
     ]
     this.columnMixins = {
       id: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.id - next.id
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
+            <Icon name="edit" />
+            <Icon name="close" />
+            <Icon name="more" />
           </React.Fragment>
         )
       }
@@ -74,7 +69,7 @@ export default class Template extends Component {
     }
   }
 
-  updateForm (data, callback = undefined) {
+  updateForm(data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState(
@@ -87,7 +82,7 @@ export default class Template extends Component {
     )
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
@@ -95,16 +90,16 @@ export default class Template extends Component {
         order_platform: '全部',
         order_delivery: '全部',
         order_payment: '全部',
-        order_date: DatePicker.format(new Date(), 'YYYY-MM-DD')
+        order_date: new Date()
       }
     )
   }
 
-  beforeSubmit () {
+  beforeSubmit() {
     return true
   }
 
-  fetchDatas (args) {
+  fetchData(args) {
     const { forms, pageSize } = this.state
     const params = {
       pageSize
@@ -125,43 +120,43 @@ export default class Template extends Component {
       })
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms, pageSize } = this.state
 
     return (
-      <div className='page--toolbar'>
+      <div className="page--toolbar">
         <Row>
           <Col span={24}>
             <DataFilter
-              fetchDatas={this.fetchDatas.bind(this)}
+              fetchData={this.fetchData.bind(this)}
               columnMixins={this.columnMixins}
               table={{
                 pageSize
               }}
               actions={[
                 'search',
-                <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary' icon='plus' />
+                <Link to="/form-unfold-group" className="hi-tpl__add">
+                  <Button type="primary" icon="plus" />
                 </Link>,
                 <Button
-                  type='line'
-                  icon='download'
+                  type="line"
+                  icon="download"
                   onClick={() => {
                     console.log('------------click download')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='mark'
+                  type="line"
+                  icon="mark"
                   onClick={() => {
                     console.log('------------click share')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='more'
+                  type="line"
+                  icon="more"
                   onClick={() => {
                     console.log('------------click more')
                   }}
@@ -186,16 +181,16 @@ export default class Template extends Component {
               ]}
             >
               <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>
-                <Field label='订单号' width='220'>
+                <Field label="订单号" width="220">
                   <Input
-                    placeholder='请输入'
+                    placeholder="请输入"
                     value={forms.order_id}
                     onChange={(e, value) => {
                       this.updateForm({ order_id: value })
                     }}
                   />
                 </Field>
-                <Field label='订单日期' width='200'>
+                <Field label="订单日期" width="200">
                   <DatePicker
                     value={forms.order_date}
                     onChange={d => {
@@ -203,40 +198,40 @@ export default class Template extends Component {
                     }}
                   />
                 </Field>
-                <Field label='业务来源' width='200'>
+                <Field label="业务来源" width="200">
                   <Select
-                    list={this.orderPlatformOptions}
-                    placeholder='请选择业务来源'
+                    data={this.orderPlatformOptions}
+                    placeholder="请选择业务来源"
                     value={forms.order_platform}
                     onChange={value =>
                       this.updateForm({ order_platform: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>
-                <Field label='运输方式' width='200'>
+                <Field label="运输方式" width="200">
                   <Select
-                    list={this.orderDeliveryOptions}
-                    placeholder='请选择运输方式'
+                    data={this.orderDeliveryOptions}
+                    placeholder="请选择运输方式"
                     value={forms.order_delivery}
                     onChange={value =>
                       this.updateForm({ order_delivery: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>
-                <Field label='支付方式' width='200' advanced>
+                <Field label="支付方式" width="200" advanced>
                   <Select
-                    list={this.orderPaymentOptions}
-                    placeholder='请选择支付方式'
+                    data={this.orderPaymentOptions}
+                    placeholder="请选择支付方式"
                     value={forms.order_payment}
                     onChange={value =>
                       this.updateForm({ order_payment: (value[0] && value[0].id) || '全部' })
                     }
                   />
                 </Field>
-                <Field label='订单状态' width='200' advanced>
+                <Field label="订单状态" width="200" advanced>
                   <Select
-                    list={this.orderStatusOptions}
-                    placeholder='请选择订单状态'
+                    data={this.orderStatusOptions}
+                    placeholder="请选择订单状态"
                     value={forms.order_status}
                     onChange={value =>
                       this.updateForm({ order_status: (value[0] && value[0].id) || '全部' })

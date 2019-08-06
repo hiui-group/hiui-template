@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import ReactEcharts from 'echarts-for-react'
-import Grid from '@hi-ui/hiui/es/grid'
-// import Badge from '@hi-ui/hiui/es/badge'
-import Button from '@hi-ui/hiui/es/button'
-import Dropdown from '@hi-ui/hiui/es/dropdown'
-import Table from '@hi-ui/hiui/es/table'
-// import Progress from '@hi-ui/hiui/es/progress'
 import echarts from 'echarts'
 import theme from './echart-theme'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import { handleNotificate } from '@hi-ui/hiui/es/notification'
+import { Notification, DatePicker, Button, Dropdown, Table, Grid } from '@hi-ui/hiui'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './index.scss'
@@ -18,16 +11,16 @@ echarts.registerTheme('hiui_theme', theme)
 const { Row, Col } = Grid
 
 // 防抖处理
-function debounce (fn, wait) {
+function debounce(fn, wait) {
   let timeout = null
-  return function () {
+  return function() {
     if (timeout !== null) clearTimeout(timeout)
     timeout = setTimeout(fn, wait)
   }
 }
 
 class HomeDashboard extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -40,32 +33,29 @@ class HomeDashboard extends Component {
 
     this.columnMixins = {
       id: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.id - next.id
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Link to='/form-unfold-group'>
-              <Button type='default' appearance='link' icon='edit' />
+            <Link to="/form-unfold-group">
+              <Button type="default" appearance="link" icon="edit" />
             </Link>
-            <Button type='default' appearance='link' icon='delete'
+            <Button
+              type="default"
+              appearance="link"
+              icon="delete"
               onClick={() => {
-                handleNotificate({
+                Notification.open({
                   type: 'success',
-                  duration: 3000,
-                  showClose: false,
-                  autoClose: true,
                   title: '消息',
-                  message: '数据已删除',
-                  onClose: () => {
-                    console.log('关闭回调')
-                  }
+                  content: '数据已删除'
                 })
               }}
             />
-            <Button type='default' appearance='link' icon='more' onClick={() => {}} />
+            <Button type="default" appearance="link" icon="more" onClick={() => {}} />
           </React.Fragment>
         )
       }
@@ -93,22 +83,18 @@ class HomeDashboard extends Component {
       { title: '百世快递' },
       { title: '韵达快递' }
     ]
-    this.monthList = [
-      { title: '11月' },
-      { title: '10月' },
-      { title: '9月' }
-    ]
+    this.monthList = [{ title: '11月' }, { title: '10月' }, { title: '9月' }]
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.onresize = debounce(() => {
       this.echartRefs.forEach(chart => {
         chart && chart.getEchartsInstance().resize()
       })
     }, 50)
-    this.fetchDatas()
+    this.fetchData()
   }
-  fetchDatas (page) {
+  fetchData(page) {
     const { s } = this.state
 
     axios
@@ -140,7 +126,7 @@ class HomeDashboard extends Component {
       })
   }
 
-  setTableColumns (columns) {
+  setTableColumns(columns) {
     const _columns = []
 
     columns.map(column => {
@@ -155,7 +141,7 @@ class HomeDashboard extends Component {
     return _columns
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.onresize = null
   }
 
@@ -281,11 +267,16 @@ class HomeDashboard extends Component {
             y: 0,
             x2: 0,
             y2: 1,
-            colorStops: [{
-              offset: 0, color: 'rgba(72, 161, 255, 0.24)' // 0% 处的颜色
-            }, {
-              offset: 0.6, color: 'rgba(126, 207, 255, 0)'
-            }],
+            colorStops: [
+              {
+                offset: 0,
+                color: 'rgba(72, 161, 255, 0.24)' // 0% 处的颜色
+              },
+              {
+                offset: 0.6,
+                color: 'rgba(126, 207, 255, 0)'
+              }
+            ],
             global: false // 缺省为 false
           }
         }
@@ -307,22 +298,30 @@ class HomeDashboard extends Component {
             y: 0,
             x2: 0,
             y2: 1,
-            colorStops: [{
-              offset: 0, color: 'rgba(151, 115, 240, 0.24)' // 0% 处的颜色
-            }, {
-              offset: 0.6, color: 'rgba(151, 115, 240, 0)'
-            }],
+            colorStops: [
+              {
+                offset: 0,
+                color: 'rgba(151, 115, 240, 0.24)' // 0% 处的颜色
+              },
+              {
+                offset: 0.6,
+                color: 'rgba(151, 115, 240, 0)'
+              }
+            ],
             global: false // 缺省为 false
           }
         }
-      }]
+      }
+    ]
   }
 
-  circleData = [{ value: 45, name: '顺丰快递' },
+  circleData = [
+    { value: 45, name: '顺丰快递' },
     { value: 20, name: '申通快递' },
     { value: 25, name: '中通快递' },
     { value: 15, name: '韵达快递' },
-    { value: 10, name: '其它快递' }]
+    { value: 10, name: '其它快递' }
+  ]
 
   pieOption = {
     tooltip: {
@@ -334,7 +333,7 @@ class HomeDashboard extends Component {
       orient: 'vertical',
       right: 20,
       top: 5,
-      formatter: (name) => {
+      formatter: name => {
         let data = this.circleData
         let total = 0
         let target = ''
@@ -449,8 +448,7 @@ class HomeDashboard extends Component {
       formatter: '{a} <br/>{b} : {c}%',
       backgroundColor: 'rgba(56, 62, 71, 1)'
     },
-    toolbox: {
-    },
+    toolbox: {},
     series: [
       {
         name: '完成率',
@@ -460,10 +458,7 @@ class HomeDashboard extends Component {
         axisLine: {
           lineStyle: {
             width: 10,
-            color: [
-              [0.25, '#EFF2F5'],
-              [1, '#EFF2F5']
-            ]
+            color: [[0.25, '#EFF2F5'], [1, '#EFF2F5']]
           }
         },
         axisLabel: {
@@ -502,10 +497,7 @@ class HomeDashboard extends Component {
         axisLine: {
           lineStyle: {
             width: 10,
-            color: [
-              [0.25, '#699DF5'],
-              [1, '#699DF5']
-            ]
+            color: [[0.25, '#699DF5'], [1, '#699DF5']]
           }
         },
         axisLabel: {
@@ -526,97 +518,99 @@ class HomeDashboard extends Component {
       }
     ]
   }
-  render () {
+  render() {
     this.echartRefs.length = 0
     const { columns, tableDatas, pageSize, total, page } = this.state
     return (
-      <div className='page page--dashboard'>
+      <div className="page page--dashboard">
         <Row gutter>
           <Col span={24}>
-            <span className='dashboard-title'>首页</span>
+            <span className="dashboard-title">首页</span>
           </Col>
         </Row>
         <Row gutter>
           <Col span={24}>
-            <span className='tag-btn active'>最新报表</span>
-            <span className='tag-btn'>昨日报表</span>
-            <span className='tag-btn'>本月报表</span>
+            <span className="tag-btn active">最新报表</span>
+            <span className="tag-btn">昨日报表</span>
+            <span className="tag-btn">本月报表</span>
           </Col>
         </Row>
         <Row gutter>
           <Col span={12}>
             <Row gutter>
-              {
-                this.indexData.map((item, index) => {
-                  return (
-                    <Col span={8} >
-                      <div className='info'>
-                        <span className='info__amount'>{item.amount}</span>
-                        <span className='info__name'>{item.name}</span>
-                      </div>
-                    </Col>
-                  )
-                })
-              }
+              {this.indexData.map((item, index) => {
+                return (
+                  <Col span={8} key={index}>
+                    <div className="info">
+                      <span className="info__amount">{item.amount}</span>
+                      <span className="info__name">{item.name}</span>
+                    </div>
+                  </Col>
+                )
+              })}
             </Row>
           </Col>
           <Col span={12}>
             <Row gutter>
-              {
-                this.indexData.map((item, index) => {
-                  return (
-                    <Col span={8}>
-                      <div className='info'>
-                        <span className='info__amount'>{item.amount}</span>
-                        <span className='info__name'>{item.name}</span>
-                      </div>
-                    </Col>
-                  )
-                })
-              }
+              {this.indexData.map((item, index) => {
+                return (
+                  <Col span={8} key={index}>
+                    <div className="info">
+                      <span className="info__amount">{item.amount}</span>
+                      <span className="info__name">{item.name}</span>
+                    </div>
+                  </Col>
+                )
+              })}
             </Row>
           </Col>
         </Row>
         <Row gutter>
           <Col span={12}>
-            <div className='card'>
-              <div className='card__header'>
-                <span className='card__title'>快递数量</span>
+            <div className="card">
+              <div className="card__header">
+                <span className="card__title">快递数量</span>
                 <DatePicker
-                  type='daterange'
+                  type="daterange"
                   shortcuts={['近一周', '近一月', '近三月', '近一年']}
-                  onChange={(d) => { console.log(d) }}
+                  onChange={d => {
+                    console.log(d)
+                  }}
                 />
               </div>
-              <div className='card__body'>
+              <div className="card__body">
                 <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.columnarOption}
                   style={{ height: '280px', width: '100%' }}
                   opts={{ renderer: 'svg' }}
-                  className='card__canvas'
-                  theme='hiui_theme'
+                  className="card__canvas"
+                  theme="hiui_theme"
                 />
               </div>
             </div>
           </Col>
           <Col span={12}>
-            <div className='card'>
-              <div className='card__header'>
-                <span className='card__title'>询价下单量</span>
-                <div className='card__filter'>
-                  <Dropdown list={this.transportList} title='物流公司' onClick={(val) => console.log(val)} />
-                  <Dropdown list={this.monthList} title='本月' onClick={(val) => console.log(val)} />
+            <div className="card">
+              <div className="card__header">
+                <span className="card__title">询价下单量</span>
+                <div className="card__filter">
+                  <Dropdown
+                    list={this.transportList}
+                    title="物流公司"
+                    onClick={val => console.log(val)}
+                  />
+                  <Dropdown list={this.monthList} title="本月" onClick={val => console.log(val)} />
                 </div>
               </div>
-              <div className='card__body'>
+              <div className="card__body">
                 <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.linearOption}
                   opts={{ renderer: 'svg' }}
                   style={{ height: '280px', width: '100%' }}
-                  className='card__canvas'
-                  theme='hiui_theme'
+                  className="card__canvas"
+                  theme="hiui_theme"
                 />
               </div>
             </div>
@@ -624,52 +618,52 @@ class HomeDashboard extends Component {
         </Row>
         <Row gutter>
           <Col span={8}>
-            <div className='card'>
-              <div className='card__header'>
-                <span className='card__title'>快递类别占比</span>
+            <div className="card">
+              <div className="card__header">
+                <span className="card__title">快递类别占比</span>
               </div>
-              <div className='card__body'>
+              <div className="card__body">
                 <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.pieOption}
                   opts={{ renderer: 'svg' }}
                   style={{ height: '164px', width: '100%' }}
-                  className='card__canvas'
-                  theme='hiui_theme'
+                  className="card__canvas"
+                  theme="hiui_theme"
                 />
               </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className='card'>
-              <div className='card__header'>
-                <span className='card__title'>预算情况（万元）</span>
+            <div className="card">
+              <div className="card__header">
+                <span className="card__title">预算情况（万元）</span>
               </div>
-              <div className='card__body'>
+              <div className="card__body">
                 <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.areaOption}
                   opts={{ renderer: 'svg' }}
-                  className='card__canvas'
+                  className="card__canvas"
                   style={{ height: '164px', width: '100%' }}
-                  theme='hiui_theme'
+                  theme="hiui_theme"
                 />
               </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className='card'>
-              <div className='card__header'>
-                <span className='card__title'>完成率</span>
+            <div className="card">
+              <div className="card__header">
+                <span className="card__title">完成率</span>
               </div>
-              <div className='card__body'>
+              <div className="card__body">
                 <ReactEcharts
                   ref={echart => this.echartRefs.push(echart)}
                   option={this.gaugeOption}
                   opts={{ renderer: 'svg' }}
                   style={{ height: '232px', width: '232px', position: 'absolute' }}
-                  className='card__canvas'
-                  theme='hiui_theme'
+                  className="card__canvas"
+                  theme="hiui_theme"
                 />
               </div>
             </div>
@@ -677,20 +671,20 @@ class HomeDashboard extends Component {
         </Row>
         <Row>
           <Col span={24}>
-            <div className='card'>
-              <div className='card__header'>
-                <span className='card__title'>列表</span>
+            <div className="card">
+              <div className="card__header">
+                <span className="card__title">列表</span>
               </div>
-              <div className='card__body'>
+              <div className="card__body">
                 <Table
                   columns={columns}
                   data={tableDatas}
                   pagination={{
                     pageSize: pageSize,
                     total: total,
-                    defaultCurrent: page,
-                    onChange: (page) => {
-                      this.fetchDatas(page)
+                    current: page,
+                    onChange: page => {
+                      this.fetchData(page)
                     }
                   }}
                 />

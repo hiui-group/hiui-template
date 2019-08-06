@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Cascader from '@hi-ui/hiui/es/cascader'
-import Select from '@hi-ui/hiui/es/select'
+import { Form, Input, Button, NavMenu, Cascader, Select } from '@hi-ui/hiui'
 import './index.scss'
 
 const FormItem = Form.Item
@@ -25,62 +20,62 @@ const menuList = [
 ]
 const groups = [
   {
-    value: '信息技术部',
-    label: '信息技术部',
+    id: '信息技术部',
+    content: '信息技术部',
     children: [
       {
-        value: '平台组',
-        label: '平台组',
+        id: '平台组',
+        content: '平台组',
         children: [
           {
-            value: '前端组',
-            label: '前端组'
+            id: '前端组',
+            content: '前端组'
           },
           {
-            value: '测试组',
-            label: '测试组'
+            id: '测试组',
+            content: '测试组'
           }
         ]
       }
     ]
   },
   {
-    value: '云平台',
-    label: '云平台',
+    id: '云平台',
+    content: '云平台',
     children: [
       {
-        value: '小爱',
-        label: '小爱'
+        id: '小爱',
+        content: '小爱'
       },
       {
-        value: 'AI',
-        label: 'AI'
+        id: 'AI',
+        content: 'AI'
       }
     ]
   }
 ]
 const provinces = [
   {
-    value: '湖北',
-    label: '湖北',
+    id: '湖北',
+    content: '湖北',
     children: [
       {
-        value: '武汉',
-        label: '武汉'
+        id: '武汉',
+        content: '武汉'
       },
       {
-        value: '宜昌',
-        label: '宜昌'
+        id: '宜昌',
+        content: '宜昌'
       }
     ]
   }
 ]
 const countrys = [
-  { name: '中国', id: '3' },
-  { name: '美国', id: '2' },
-  { name: '日本', id: '4' },
-  { name: '韩国', id: '5' },
-  { name: '英国', id: '6' }
+  { title: '中国', id: '3' },
+  { title: '美国', id: '2' },
+  { title: '日本', id: '4' },
+  { title: '韩国', id: '5' },
+  { title: '英国', id: '6' }
 ]
 export default class UserCenter extends Component {
   constructor (props) {
@@ -185,7 +180,7 @@ export default class UserCenter extends Component {
                   onChange={value => {
                     this.onValueChange('group', value)
                   }}
-                  options={groups}
+                  data={groups}
                 />
               </FormItem>
               <FormItem label='联系方式'>
@@ -198,8 +193,8 @@ export default class UserCenter extends Component {
 
               <FormItem label='国家'>
                 <Select
-                  mode='single'
-                  list={countrys}
+                  type='single'
+                  data={countrys}
                   value={country}
                   onChange={value => {
                     this.onValueChange('country', value)
@@ -212,7 +207,7 @@ export default class UserCenter extends Component {
                   onChange={value => {
                     this.onValueChange('province', value)
                   }}
-                  options={provinces}
+                  data={provinces}
                 />
               </FormItem>
               <FormItem label='详细地址'>

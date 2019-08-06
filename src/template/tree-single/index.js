@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
-import Table from '@hi-ui/hiui/es/table'
-import Tree from '@hi-ui/hiui/es/tree'
-import Grid from '@hi-ui/hiui/es/grid'
+import { Table, Tree, Grid } from '@hi-ui/hiui'
 import '@hi-ui/hiui/es/table/style/index.css'
-// import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-    this.columnMixins = {
-    }
+    this.columnMixins = {}
 
     this.state = {
       pageSize: 0,
@@ -25,11 +21,11 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount () {
-    this.fetchDatas()
+  componentWillMount() {
+    this.fetchData()
   }
 
-  fetchDatas (page = 1) {
+  fetchData(page = 1) {
     axios
       .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`, {
         params: {
@@ -60,7 +56,7 @@ export default class Template extends Component {
       })
   }
 
-  setTableColumns (columns) {
+  setTableColumns(columns) {
     const _columns = []
 
     columns.map(column => {
@@ -74,11 +70,11 @@ export default class Template extends Component {
 
     return _columns
   }
-  setId (item) {
+  setId(item) {
     let itemName = []
 
     const mapToGet = (list, parent = {}) => {
-      list.map((item) => {
+      list.map(item => {
         if (item.children) {
           mapToGet(item.children, item)
         } else {
@@ -103,15 +99,18 @@ export default class Template extends Component {
       activeId = item.id
     }
 
-    this.setState({
-      activeId: activeId,
-      page: 1
-    }, () => {
-      this.fetchDatas()
-    })
+    this.setState(
+      {
+        activeId: activeId,
+        page: 1
+      },
+      () => {
+        this.fetchData()
+      }
+    )
   }
 
-  renderMenuContent () {
+  renderMenuContent() {
     const { tableDatas, columns, pageSize, total, page } = this.state
     return (
       <Table
@@ -120,40 +119,39 @@ export default class Template extends Component {
         pagination={{
           pageSize: pageSize,
           total: total,
-          defaultCurrent: page,
+          current: page,
           onChange: (page, pre, size) => {
-            this.fetchDatas(page)
+            this.fetchData(page)
           }
         }}
       />
     )
   }
 
-  renderTree () {
+  renderTree() {
     return (
       <Tree
         defaultExpandAll
         data={this.state.treeData}
-        defaultCheckedKeys={[2]}
-        onNodeToggle={(data, isExpanded) => {
-          console.log('toggle: data isExpanded', data, isExpanded)
+        onExpand={(expanded, expandIds, expandedNode) => {
+          console.log('toggle', expanded, expandIds, expandedNode)
         }}
         onChange={data => {
           console.log('Tree data:', data)
         }}
-        openIcon='down'
-        closeIcon='up'
-        onNodeClick={(item) => { this.setId(item) }}
+        onClick={item => {
+          this.setId(item)
+        }}
       />
     )
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
 
     return (
-      <div className='page--tree-single'>
+      <div className="page--tree-single">
         <Row gutter>
           <Col span={4}>{this.renderTree()}</Col>
           <Col span={19}>{this.renderMenuContent()}</Col>

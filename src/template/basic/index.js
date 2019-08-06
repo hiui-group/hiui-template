@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Table from '@hi-ui/hiui/es/table'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Seclet from '@hi-ui/hiui/es/select'
-import Button from '@hi-ui/hiui/es/button'
-import Grid from '@hi-ui/hiui/es/grid'
-import Icon from '@hi-ui/hiui/es/icon'
+import { Table, NavMenu, Form, Input, Seclet, Button, Grid, Icon } from '@hi-ui/hiui'
 import axios from 'axios'
 
 export default class Template extends Component {
@@ -61,10 +54,10 @@ export default class Template extends Component {
   }
 
   componentWillMount() {
-    this.fetchDatas()
+    this.fetchData()
   }
 
-  fetchDatas() {
+  fetchData() {
     const { page, forms } = this.state
 
     axios
@@ -150,13 +143,13 @@ export default class Template extends Component {
         page: 1
       },
       () => {
-        this.fetchDatas()
+        this.fetchData()
       }
     )
   }
 
   reset() {
-    this.updateForm(this.initForms(), () => this.fetchDatas())
+    this.updateForm(this.initForms(), () => this.fetchData())
   }
 
   renderMenuContent() {
@@ -218,9 +211,9 @@ export default class Template extends Component {
             pagination={{
               pageSize: pageSize,
               total: total,
-              page: page,
+              current: page,
               onChange: (page, pre, size) => {
-                this.setState({ page: page }, () => this.fetchDatas())
+                this.setState({ page: page }, () => this.fetchData())
               }
             }}
           />

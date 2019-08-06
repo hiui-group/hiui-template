@@ -3,12 +3,7 @@ import axios from 'axios'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { docco } from 'react-syntax-highlighter/dist/styles/hljs'
-import Modal from '@hi-ui/hiui/es/modal'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Button from '@hi-ui/hiui/es/button'
-import Icon from '@hi-ui/hiui/es/icon'
-import Tooltip from '@hi-ui/hiui/es/tooltip'
-import { handleNotificate } from '@hi-ui/hiui/es/notification'
+import { Modal, Menu, Button, Icon, Tooltip, Notification } from '@hi-ui/hiui'
 import './style/index.scss'
 
 export default class Copy extends Component {
@@ -25,24 +20,26 @@ export default class Copy extends Component {
 
   showModal = () => {
     this.setState({ showModal: true })
-    let pathname = window.location.hash.split('#')[1].replace(/^\/\w+/, '')
-
+    let pathname = window.location.href.split('\/')[3]
+    if (pathname.includes('#')) {
+      pathname = pathname.split('#')[0]
+    }
     if (!pathname || pathname === '/') {
       pathname = '/home-dashboard'
     }
 
     axios
       .get(
-        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template${pathname}/index.js`
+        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.js`
       )
-      .then((ret) => {
+      .then(ret => {
         this.setState({ jsCode: ret.data })
       })
     axios
       .get(
-        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template${pathname}/index.scss`
+        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.scss`
       )
-      .then((ret) => {
+      .then(ret => {
         this.setState({ cssCode: ret.data })
       })
       .catch(() => {
@@ -51,9 +48,7 @@ export default class Copy extends Component {
   }
 
   getTabs (cssCode) {
-    return cssCode
-      ? [{ title: 'js 代码' }, { title: 'scss 代码' }]
-      : [{ title: 'js 代码' }]
+    return cssCode ? [{ id: 0, content: 'js 代码' }, { id: 1,  content: 'scss 代码' }] : [{ id: 0,  content: 'js 代码' }]
   }
 
   closeModal () {
@@ -62,7 +57,6 @@ export default class Copy extends Component {
 
   render () {
     const { showModal, jsCode, cssCode, selectedKey } = this.state
-
     return (
       <React.Fragment>
         <div className='copy-container'>
@@ -84,21 +78,15 @@ export default class Copy extends Component {
           show={showModal}
           onCancel={this.closeModal.bind(this)}
           footers={[
-            <Button
-              type='default'
-              onClick={this.closeModal.bind(this)}
-              key='close'
-            >
+            <Button type='default' onClick={this.closeModal.bind(this)} key='close'>
               关闭
             </Button>,
             <CopyToClipboard
               text={selectedKey === 0 ? jsCode : cssCode}
               onCopy={() => {
-                handleNotificate({
+                Notification.open({
                   type: 'success',
-                  showClose: false,
-                  autoClose: true,
-                  message: '复制成功'
+                  title: '复制成功'
                 })
               }}
               key='copy'
@@ -107,14 +95,13 @@ export default class Copy extends Component {
             </CopyToClipboard>
           ]}
         >
-          <NavMenu
+          <Menu
             data={this.getTabs(cssCode)}
-            selectedKey={selectedKey}
-            onClick={(_, key) => {
-              this.setState({
-                selectedKey: parseInt(key)
-              })
-            }}
+            placement="horizontal"
+            className="menus"
+            activeId={selectedKey.toString()}
+            onClick={(id, prevId)=>console.log('-----click', id, prevId)}
+            onClickSubMenu={index => console.log('-----onClickSubMenu', index)}
           />
           <div className='code-container'>
             {selectedKey === 0 && (

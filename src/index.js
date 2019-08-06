@@ -1,15 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
 import rootRoute from './route'
-import { NavLink } from 'react-router-dom'
-import { History, Theme, Login, Logo } from '@hi-ui/classic-theme'
-import Icon from '@hi-ui/hiui/es/icon'
+import { Theme } from '@hi-ui/classic-theme'
 import Copy from './component/copy'
 import './template/content.scss'
 import './index.scss'
 
 const loginConfig = {
-  name: 'Mi Guest',
+  name: '叶舟',
   icon: <span className='hi-icon icon-user' />,
   children: [
     <div key='1' style={{ textAlign: 'center', margin: 4, width: '100px' }}>
@@ -20,20 +18,16 @@ const loginConfig = {
     </div>
   ]
 }
-const login = <Login {...loginConfig} />
-const logo = (
-  <Logo
-    url='https://hiui-group.github.io/hiui-template/ '
-    logoUrl='https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
-    text='HIUI Template'
-    title='HIUI Template Demo'
-    alt='HIUI'
-  />
-)
+
+const logoConfig = {
+  url: 'https://hiui-group.github.io/hiui-template/',
+  logoUrl: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
+  name: 'HIUI Templates'
+}
 
 render(
   <React.Fragment>
-    <Theme logo={logo} login={login} routes={rootRoute} />
+    <Theme logo={logoConfig} login={loginConfig} routes={rootRoute} />
     <Copy />
   </React.Fragment>,
   document.getElementById('app')

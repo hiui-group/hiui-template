@@ -97,7 +97,7 @@ const config = [
       },
       {
         name: '平铺-多选',
-        path: '/table/tile-multiple'
+        path: '/tile-multiple'
       }
     ]
   },
@@ -195,14 +195,13 @@ const config = [
   }
 ]
 
-const transformConfig = (config, parentId) => {
-  config.forEach((c, index) => {
+const transformConfig = (config) => {
+  config.forEach((c) => {
     if (c.path) {
       c.component = components[c.path.split('/')[1]]
     }
-    c.id = parentId || parentId === 0 ? `${parentId}-${index}` : index
     if (c.children) {
-      transformConfig(c.children, c.id)
+      transformConfig(c.children)
     }
   })
   return config

@@ -37,7 +37,7 @@ export default class Copy extends Component {
       })
     axios
       .get(
-        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template${pathname}/index.scss`
+        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.scss`
       )
       .then(ret => {
         this.setState({ cssCode: ret.data })

@@ -85,11 +85,11 @@ export default class Template extends Component {
 
         <Modal
           title='标题'
-          show={this.state.bigShow}
+          visible={this.state.bigShow}
           onConfirm={this.triggerBig.bind(this, false)}
           onCancel={this.triggerBig.bind(this, false)}
           width={800}
-          footers={[
+          footer={[
             <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>
               提交
             </Button>,
@@ -169,11 +169,11 @@ export default class Template extends Component {
 
         <Modal
           title='标题'
-          show={this.state.smallShow}
+          visible={this.state.smallShow}
           onConfirm={this.triggerSmall.bind(this, false)}
           onCancel={this.triggerSmall.bind(this, false)}
           width={600}
-          footers={[
+          footer={[
             <Button type='primary' key={1} onClick={this.handleSubmit.bind(this)}>
               提交
             </Button>,

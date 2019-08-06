@@ -6,7 +6,7 @@ import './index.scss'
 const { Row, Col } = Grid
 
 class HomePortal extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       showShortcutModal: false,
@@ -14,7 +14,7 @@ class HomePortal extends Component {
     }
   }
 
-  renderShortcut() {
+  renderShortcut () {
     let shortcutList = [
       {
         title: '福利介绍',
@@ -58,7 +58,7 @@ class HomePortal extends Component {
               borderLeft: `2px solid ${item.color}`
             }}
           >
-            <p className="short--cut__title">{item.title}</p>
+            <p className='short--cut__title'>{item.title}</p>
             <p>{item.desc}</p>
           </Card>
         </Col>
@@ -68,7 +68,7 @@ class HomePortal extends Component {
     return shortcutList
   }
 
-  renderBusiness() {
+  renderBusiness () {
     let businessList = [
       {
         title: '项目评审',
@@ -93,10 +93,10 @@ class HomePortal extends Component {
     ]
     businessList = businessList.map((item, index) => {
       return (
-        <Row justify="space-between" className="business--item">
+        <Row justify='space-between' className='business--item'>
           <Col>
-            <div className="business--item__title">{item.title}</div>
-            <div className="business--item__detail">{item.desc}</div>
+            <div className='business--item__title'>{item.title}</div>
+            <div className='business--item__detail'>{item.desc}</div>
           </Col>
 
           <Col>
@@ -104,11 +104,11 @@ class HomePortal extends Component {
               onClick={() => {
                 this.setState({ showBusinessModal: true })
               }}
-              className="business--item__action"
+              className='business--item__action'
             >
               办理
             </div>
-            <div className="business--item__time">{new Date().toLocaleDateString()}</div>
+            <div className='business--item__time'>{new Date().toLocaleDateString()}</div>
           </Col>
         </Row>
       )
@@ -116,45 +116,45 @@ class HomePortal extends Component {
     return businessList
   }
 
-  render() {
+  render () {
     return (
-      <div className="page page--portal">
-        <div className="portal--container">
-          <Row justify="space-between">
+      <div className='page page--portal'>
+        <div className='portal--container'>
+          <Row justify='space-between'>
             <Col>
               <Input
                 style={{ width: '259px' }}
                 append={
-                  <Button className="search-btn">
-                    <Icon name="search" />
+                  <Button className='search-btn'>
+                    <Icon name='search' />
                   </Button>
                 }
-                placeholder="关键词搜索"
+                placeholder='关键词搜索'
               />
             </Col>
           </Row>
           <Row>
             <Col span={24}>
-              <div className="portal--item__header">
+              <div className='portal--item__header'>
                 <span>快捷访问</span>
               </div>
-              <Row gutter justify="space-between" className="short--cut__container">
+              <Row gutter justify='space-between' className='short--cut__container'>
                 {this.renderShortcut()}
               </Row>
             </Col>
           </Row>
           <Row>
             <Col span={24}>
-              <div className="portal--item__header">
-                <span className="title">待办事务</span>
+              <div className='portal--item__header'>
+                <span className='title'>待办事务</span>
               </div>
-              <Row className="business">
+              <Row className='business'>
                 <Col span={24}>
                   <div>{this.renderBusiness()}</div>
-                  <Row justify="flex-end">
-                    <Link to="/list/list-task">
-                      <span className="look--all__btn">
-                        查看全部 <Icon name="right" />
+                  <Row justify='flex-end'>
+                    <Link to='/list/list-task'>
+                      <span className='look--all__btn'>
+                        查看全部 <Icon name='right' />
                       </span>
                     </Link>
                   </Row>
@@ -163,10 +163,9 @@ class HomePortal extends Component {
             </Col>
           </Row>
           <Modal
-            size="small"
-            title="AppTitle"
-            show={this.state.showShortcutModal}
-            backDrop
+            size='small'
+            title='AppTitle'
+            visible={this.state.showShortcutModal}
             onConfirm={() => {
               this.setState({ showShortcutModal: false })
             }}
@@ -177,10 +176,9 @@ class HomePortal extends Component {
             <p>Application discription inscribed user，Scene and usage…</p>
           </Modal>
           <Modal
-            size="small"
-            title="待办事务标题"
-            show={this.state.showBusinessModal}
-            backDrop
+            size='small'
+            title='待办事务标题'
+            visible={this.state.showBusinessModal}
             onConfirm={() => {
               this.setState({ showBusinessModal: false })
             }}

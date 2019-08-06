@@ -202,22 +202,6 @@ class HomeWorkbench extends Component {
                 </div>
                 <div className='card__body'>
                   <Stepper up list={this.approvalStepList} current={this.state.approvalStep} />
-                  {/* <Row gutter justify='center'>
-                    <Button
-                      type='danger'
-                      onClick={() => { this.handleSwitchStep(false) }}
-                      disabled={this.state.approvalStep < 0}
-                    >
-                      <Icon name='close-circle-o' /> 撤销
-                    </Button>
-                    <Button
-                      type='success'
-                      onClick={() => { this.handleSwitchStep(true) }}
-                      disabled={this.state.approvalStep === (this.approvalStepList.length - 1)}
-                    >
-                      <Icon name='check-circle-o' /> 通过
-                    </Button>
-                  </Row> */}
                 </div>
               </div>
             </Col>
@@ -225,8 +209,7 @@ class HomeWorkbench extends Component {
           <Modal
             size='normal'
             title='设备采购申请'
-            show={this.state.showAuditModal}
-            backDrop
+            visible={this.state.showAuditModal}
             onConfirm={() => {
               this.setState({ showAuditModal: false })
             }}

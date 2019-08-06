@@ -97,7 +97,7 @@ const config = [
       },
       {
         name: '平铺-多选',
-        path: '/table/tile-multiple'
+        path: '/tile-multiple'
       }
     ]
   },

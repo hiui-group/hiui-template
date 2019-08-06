@@ -44,6 +44,11 @@ export default class Template extends Component {
       field2: [],
       field3: [],
       field4: [],
+      value1: [],
+      value2: [],
+      value3: [],
+      value4: [],
+      value: [],
       pageSize: 10,
       forms: this.initForms()
     }
@@ -51,20 +56,20 @@ export default class Template extends Component {
 
   componentDidMount () {
     let orderPlatformState = orderPlatformList.map(item => ({
-      text: item,
-      value: item
+      id: item,
+      content: item
     }))
     let orderDeliveryState = orderDeliveryList.map(item => ({
-      text: item,
-      value: item
+      id: item,
+      content: item
     }))
     let orderPaymentState = orderPaymentList.map(item => ({
-      text: item,
-      value: item
+      id: item,
+      content: item
     }))
     let orderStatusState = orderStatusList.map(item => ({
-      text: item,
-      value: item
+      id: item,
+      content: item
     }))
     this.setState({
       field1: orderPlatformState,
@@ -165,6 +170,9 @@ export default class Template extends Component {
     )
   }
   dataFilter = null
+  getIndeterminate () {
+    return this.state.value1.length > 0 && this.state.value1.length < 4
+  }
   render () {
     const Row = Grid.Row
     const Col = Grid.Col
@@ -173,7 +181,7 @@ export default class Template extends Component {
     const params = {
       pageSize
     }
-
+    console.log(1, this.state.value1)
     return (
       <div className='page page--tile-multiple'>
         <Row>
@@ -225,7 +233,18 @@ export default class Template extends Component {
               <Row gutter>
                 <div className='block-filter__label block-filter__label--checkbox'>订单状态</div>
                 <Col className='checkboxs-group'>
-                  <Checkbox
+                <Checkbox
+                  indeterminate={this.getIndeterminate()}
+                  // checked={value.length === 4}
+                  // onChange={this.handleCheckAllClick}
+                  >
+                  全选
+                </Checkbox>
+                <Checkbox.Group value={this.state.value1} data={this.state.field1} onChange={value1 => {
+                  console.log(value1)
+                  this.setState({ value1 })
+                }} />
+                  {/* <Checkbox
                     all='one'
                     onChange={list => {
                       const fieldList = this.state.field1
@@ -242,13 +261,23 @@ export default class Template extends Component {
                   >
                     全选
                   </Checkbox>
-                  <Checkbox list={this.state.field1} name='one' />
+                  <Checkbox list={this.state.field1} name='one' /> */}
                 </Col>
               </Row>
               <Row gutter>
                 <div className='block-filter__label block-filter__label--checkbox'>业务来源</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
+                    indeterminate={this.getIndeterminate()}
+                    // checked={value.length === 4}
+                    // onChange={this.handleCheckAllClick}
+                    >
+                    全选
+                  </Checkbox>
+                  <Checkbox.Group value={this.state.value2} data={this.state.field2} onChange={value2 => {
+                    this.setState({ value2 })
+                  }} />
+                  {/* <Checkbox
                     all='two'
                     onChange={list => {
                       const fieldList = this.state.field2
@@ -265,13 +294,23 @@ export default class Template extends Component {
                   >
                     全选
                   </Checkbox>
-                  <Checkbox list={this.state.field2} name='two' />
+                  <Checkbox list={this.state.field2} name='two' /> */}
                 </Col>
               </Row>
               <Row gutter>
                 <div className='block-filter__label block-filter__label--checkbox'>运输方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
+                      indeterminate={this.getIndeterminate()}
+                      // checked={value.length === 4}
+                      // onChange={this.handleCheckAllClick}
+                    >
+                    全选
+                  </Checkbox>
+                  <Checkbox.Group value={this.state.value3} data={this.state.field3} onChange={value3 => {
+                    this.setState({ value3 })
+                  }} />
+                  {/* <Checkbox
                     all='three'
                     onChange={list => {
                       const fieldList = this.state.field3
@@ -288,7 +327,7 @@ export default class Template extends Component {
                   >
                     全选
                   </Checkbox>
-                  <Checkbox list={this.state.field3} name='three' />
+                  <Checkbox list={this.state.field3} name='three' /> */}
                 </Col>
               </Row>
 
@@ -296,6 +335,16 @@ export default class Template extends Component {
                 <div className='block-filter__label block-filter__label--checkbox'>支付方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
+                    indeterminate={this.getIndeterminate()}
+                    // checked={value.length === 4}
+                    // onChange={this.handleCheckAllClick}
+                    >
+                    全选
+                  </Checkbox>
+                  <Checkbox.Group value={this.state.value4} data={this.state.field4} onChange={value4 => {
+                    this.setState({ value4 })
+                  }} />
+                  {/* <Checkbox
                     all='four'
                     onChange={list => {
                       const fieldList = this.state.field4
@@ -312,7 +361,7 @@ export default class Template extends Component {
                   >
                     全选
                   </Checkbox>
-                  <Checkbox list={this.state.field4} name='four' />
+                  <Checkbox list={this.state.field4} name='four' /> */}
                 </Col>
               </Row>
             </DataFilter>

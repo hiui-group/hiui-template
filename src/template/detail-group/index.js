@@ -241,7 +241,7 @@ class QueryBasic extends Component {
             <DataFilter
               url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
               onFetched={ret => {
-                console.log('------------fetchDatas', ret)
+                console.log('------------fetchData', ret)
               }}
               params={params}
               columnMixins={this.columnMixins}

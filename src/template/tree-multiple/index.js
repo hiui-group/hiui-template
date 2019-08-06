@@ -22,10 +22,10 @@ export default class Template extends Component {
   }
 
   componentWillMount () {
-    this.fetchDatas()
+    this.fetchData()
   }
 
-  fetchDatas (page) {
+  fetchData (page) {
     axios
       .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`, {
         params: {
@@ -72,7 +72,7 @@ export default class Template extends Component {
   }
 
   markSure () {
-    this.fetchDatas()
+    this.fetchData()
   }
 
   onChange (checkedKeys) {
@@ -90,7 +90,7 @@ export default class Template extends Component {
         activeId: ''
       },
       () => {
-        this.fetchDatas()
+        this.fetchData()
         this.setState({
           reset: true
         })
@@ -109,9 +109,9 @@ export default class Template extends Component {
           pagination={{
             pageSize: pageSize,
             total: total,
-            defaultCurrent: page,
+            current: page,
             onChange: (page, pre, size) => {
-              this.fetchDatas(page)
+              this.fetchData(page)
             }
           }}
         />

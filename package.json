@@ -14,7 +14,7 @@
   "license": "MIT",
   "homepage": "http://hiui-group.github.io/hiui-template/",
   "dependencies": {
-    "@hi-ui/classic-theme": "^2.0.0-rc.3",
+    "@hi-ui/classic-theme": "^2.0.0-rc.5",
     "@hi-ui/component-kit": "^0.5.4",
     "@hi-ui/core-css": "^1.0.0",
     "@hi-ui/hiui": "^2.0.1",

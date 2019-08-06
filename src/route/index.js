@@ -195,17 +195,4 @@ const config = [
   }
 ]
 
-const transformConfig = (config, parentId) => {
-  config.forEach((c, index) => {
-    if (c.path) {
-      c.component = components[c.path.split('/')[1]]
-    }
-    c.id = parentId || parentId === 0 ? `${parentId}-${index}` : index
-    if (c.children) {
-      transformConfig(c.children, c.id)
-    }
-  })
-  return config
-}
-
-export default transformConfig(config)
+export default config

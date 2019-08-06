@@ -170,8 +170,45 @@ export default class Template extends Component {
     )
   }
   dataFilter = null
-  getIndeterminate () {
+  getIndeterminate1 () {
     return this.state.value1.length > 0 && this.state.value1.length < 4
+  }
+  handleCheckAllClick1 = () => {
+    this.setState(({ value1, field1 }) => {
+      return {
+        value1: value1.length < 4 ? field1.map(({ id }) => id) : []
+      }
+    })
+  }
+  getIndeterminate2 () {
+    return this.state.value2.length > 0 && this.state.value2.length < 4
+  }
+  handleCheckAllClick2 = () => {
+    this.setState(({ value2, field2 }) => {
+      return {
+        value2: value2.length < 4 ? field2.map(({ id }) => id) : []
+      }
+    })
+  }
+  getIndeterminate3 () {
+    return this.state.value3.length > 0 && this.state.value3.length < 4
+  }
+  handleCheckAllClick3 = () => {
+    this.setState(({ value3, field3 }) => {
+      return {
+        value3: value3.length < 4 ? field3.map(({ id }) => id) : []
+      }
+    })
+  }
+  getIndeterminate4 () {
+    return this.state.value4.length > 0 && this.state.value4.length < 4
+  }
+  handleCheckAllClick4 = () => {
+    this.setState(({ value4, field4 }) => {
+      return {
+        value4: value4.length < 4 ? field4.map(({ id }) => id) : []
+      }
+    })
   }
   render () {
     const Row = Grid.Row
@@ -234,9 +271,9 @@ export default class Template extends Component {
                 <div className='block-filter__label block-filter__label--checkbox'>订单状态</div>
                 <Col className='checkboxs-group'>
                 <Checkbox
-                  indeterminate={this.getIndeterminate()}
-                  // checked={value.length === 4}
-                  // onChange={this.handleCheckAllClick}
+                  indeterminate={this.getIndeterminate1()}
+                  checked={this.state.value1.length === this.state.field1.length}
+                  onChange={this.handleCheckAllClick1}
                   >
                   全选
                 </Checkbox>
@@ -268,9 +305,9 @@ export default class Template extends Component {
                 <div className='block-filter__label block-filter__label--checkbox'>业务来源</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
-                    indeterminate={this.getIndeterminate()}
-                    // checked={value.length === 4}
-                    // onChange={this.handleCheckAllClick}
+                    indeterminate={this.getIndeterminate2()}
+                    checked={this.state.value2.length === this.state.field2.length}
+                    onChange={this.handleCheckAllClick2}
                     >
                     全选
                   </Checkbox>
@@ -301,9 +338,9 @@ export default class Template extends Component {
                 <div className='block-filter__label block-filter__label--checkbox'>运输方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
-                      indeterminate={this.getIndeterminate()}
-                      // checked={value.length === 4}
-                      // onChange={this.handleCheckAllClick}
+                      indeterminate={this.getIndeterminate3()}
+                      checked={this.state.value3.length === this.state.field3.length}
+                      onChange={this.handleCheckAllClick3}
                     >
                     全选
                   </Checkbox>
@@ -335,9 +372,9 @@ export default class Template extends Component {
                 <div className='block-filter__label block-filter__label--checkbox'>支付方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
-                    indeterminate={this.getIndeterminate()}
-                    // checked={value.length === 4}
-                    // onChange={this.handleCheckAllClick}
+                    indeterminate={this.getIndeterminate4()}
+                    checked={this.state.value4.length === this.state.field4.length}
+                    onChange={this.handleCheckAllClick4}
                     >
                     全选
                   </Checkbox>

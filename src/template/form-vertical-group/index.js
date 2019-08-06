@@ -151,10 +151,9 @@ export default class Template extends Component {
                     />
                   </FormItem>
                   <FormItem label='地点' field='radio'>
-                    <Radio
-                      list={['北京', '上海', '重庆']}
-                      checked={forms.radio}
-                      onChange={this.handleChange.bind(this, 'region', '')}
+                    <Radio.Group
+                      data={['北京', '上海', '重庆']}
+                      defaultValue={forms.radio}
                     />
                   </FormItem>
 

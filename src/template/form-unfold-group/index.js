@@ -51,7 +51,7 @@ export default class Template extends Component {
         num: 0,
         time: new Date(),
         select: '4',
-        radio: 1,
+        radio: '上海',
         longText: ''
       }
     )
@@ -141,7 +141,7 @@ export default class Template extends Component {
                       />
                     </FormItem>
                     <FormItem label="单选" field="radio">
-                      <Radio
+                      <Radio.Group
                         list={['北京', '上海', '重庆']}
                         checked={forms.radio}
                         onChange={this.handleChange.bind(this, 'region', '')}

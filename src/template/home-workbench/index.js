@@ -219,7 +219,7 @@ class HomeWorkbench extends Component {
           >
             <Form labelPlacement='left'>
               <FormItem label="原因" labelWidth="60">
-                <Radio list={['通过', '驳回']} />
+                <Radio.Group data={['通过', '驳回']} />
               </FormItem>
               <FormItem label="备注" labelWidth="60">
                 <Input type="textarea" />

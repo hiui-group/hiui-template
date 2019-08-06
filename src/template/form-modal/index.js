@@ -217,7 +217,7 @@ export default class Template extends Component {
             </FormItem>
             <FormItem label='种类' field='select'>
               <Select
-                list={this.singleList}
+                data={this.singleList}
                 placeholder='请选择种类'
                 style={{ width: '200px' }}
                 value={forms.select}

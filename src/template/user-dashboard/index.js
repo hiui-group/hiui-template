@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Button, Icon } from '@hi-ui/hiui'
+import { Grid, Button, Icon, Tag } from '@hi-ui/hiui'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -33,29 +33,29 @@ const myApply = [
   {
     title: '小米8 屏幕指纹版 项目需求申请一个',
     desc: '测试机使用',
-    status: '审批中',
-    statusCode: 'approving',
+    statusDesc: '审批中',
+    status: '',
     time: '2019-02-08'
   },
   {
     title: '苹果iMac A1419 27寸一体机显示屏的维修申…',
     desc: '设备驱动故障：1',
-    status: '已通过',
-    statusCode: 'pass',
+    statusDesc: '已通过',
+    status: 'success',
     time: '2019-02-01'
   },
   {
     title: '小米8 屏幕指纹版 项目需求申请一个 ',
     desc: '测试机使用',
-    status: '审批中',
-    statusCode: 'approving',
+    statusDesc: '审批中',
+    status: '',
     time: '2019-01-28'
   },
   {
     title: '苹果iMac A1419 27寸一体机显示屏的维修申请',
     desc: '设备驱动故障',
-    status: '未通过',
-    statusCode: 'no-pass',
+    statusDesc: '未通过',
+    status: 'danger',
     time: '2019-01-20'
   }
 ]
@@ -109,19 +109,6 @@ const mySubscribe = [
   }
 ]
 class UserDashboard extends Component {
-  getTagColor (status) {
-    switch (status) {
-      case '审批中':
-        return '#4284F5'
-      case '待审批':
-        return '#E19D0C'
-      case '已通过':
-        return '#1DA653'
-      case '未通过':
-        return '#EB5252'
-    }
-  }
-
   render () {
     return (
       <div className='page page--user-dashboard'>
@@ -194,19 +181,11 @@ class UserDashboard extends Component {
                           style={{
                             marginBottom: 2,
                             display: 'flex',
-                            justifyContent: 'space-between '
+                            justifyContent: 'space-between'
                           }}
                         >
                           <div>{apply.title}</div>
-                          <div
-                            className={`tag`}
-                            style={{
-                              borderColor: this.getTagColor(apply.status),
-                              color: this.getTagColor(apply.status)
-                            }}
-                          >
-                            {apply.status}
-                          </div>
+                          <Tag type={apply.status}>{apply.statusDesc}</Tag>
                         </div>
                         <div
                           style={{
@@ -214,7 +193,7 @@ class UserDashboard extends Component {
                             lineHeight: '20px',
                             color: '#999',
                             display: 'flex',
-                            justifyContent: 'space-between '
+                            justifyContent: 'space-between'
                           }}
                         >
                           <div>{apply.desc}</div>

@@ -5,7 +5,8 @@ import './index.scss'
 const listData = [
   {
     title: '设备采购申请',
-    status: '审批中',
+    status: '',
+    statusDesc: '审批中',
     info: [
       { label: '申请编号', value: 'YH7290121' },
       { label: '申请人', value: '张某某' },
@@ -31,7 +32,8 @@ const listData = [
   },
   {
     title: '设备采购申请',
-    status: '待审批',
+    status: 'warning',
+    statusDesc: '待审批',
     info: [
       { label: '申请编号', value: 'YH7290121' },
       { label: '申请人', value: '张某某' },
@@ -57,7 +59,8 @@ const listData = [
   },
   {
     title: '设备采购申请',
-    status: '已通过',
+    status: 'success',
+    statusDesc: '已通过',
     info: [
       { label: '申请编号', value: 'YH7290121' },
       { label: '申请人', value: '张某某' },
@@ -83,7 +86,8 @@ const listData = [
   },
   {
     title: '设备采购申请',
-    status: '审批中',
+    status: '',
+    statusDesc: '审批中',
     info: [
       { label: '申请编号', value: 'YH7290121' },
       { label: '申请人', value: '张某某' },
@@ -109,7 +113,8 @@ const listData = [
   },
   {
     title: '设备采购申请',
-    status: '已通过',
+    status: 'success',
+    statusDesc: '已通过',
     info: [
       { label: '申请编号', value: 'YH7290121' },
       { label: '申请人', value: '张某某' },
@@ -135,7 +140,8 @@ const listData = [
   },
   {
     title: '设备采购申请',
-    status: '待审批',
+    status: 'warning',
+    statusDesc: '待审批',
     info: [
       { label: '申请编号', value: 'YH7290121' },
       { label: '申请人', value: '张某某' },
@@ -161,7 +167,8 @@ const listData = [
   },
   {
     title: '正版办公软件自购申请',
-    status: '审批中',
+    status: '',
+    statusDesc: '审批中',
     info: [
       { label: '申请编号', value: 'YH7290121' },
       { label: '申请人', value: '张某某' },

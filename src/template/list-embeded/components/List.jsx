@@ -1,23 +1,14 @@
 import React from 'react'
 import Button from '@hi-ui/hiui/es/button'
 import Icon from '@hi-ui/hiui/es/icon'
+import Tag from '@hi-ui/hiui/es/tag'
 
 class ListItem extends React.Component {
   state = {
     open: false
   }
-  getTagColor(status){
-    switch (status){
-      case '审批中':
-        return '#4284F5';
-      case '待审批':
-        return '#E19D0C';
-      case '已通过':
-        return '#1DA653'
-    }
-  }
   render () {
-    const { title, status, info, operation, detail } = this.props.item
+    const { title, status, statusDesc, info, operation, detail } = this.props.item
     const { open } = this.state
 
     return (
@@ -26,15 +17,7 @@ class ListItem extends React.Component {
           <div style={{ flex: 1 }}>
             <div className='list-item__header'>
               {title}
-              <span
-                style={{
-                  borderColor: this.getTagColor(status),
-                  color: this.getTagColor(status),
-                }}
-                className='tag'
-              >
-                {status}
-              </span>
+              <Tag type={status} className='tag'>{statusDesc}</Tag>
             </div>
             <div className='list-item__info'>
               {info.map((i, index) => [

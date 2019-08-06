@@ -38,11 +38,11 @@ export default class Template extends Component {
   handleSaveClick = () => {}
 
   async componentDidMount () {
-    const closure = Loading.open()
+    Loading.open(null, {key: 'lk'})
     try {
       await this.fetchBaseInfo()
     } finally {
-      closure.close()
+      Loading.close('lk')
     }
   }
 

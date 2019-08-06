@@ -37,12 +37,12 @@ export default class Template extends Component {
   handleMoreClick = () => {}
 
   async componentDidMount () {
-    const closure = Loading.open()
+    Loading.open(null, {key: 'lk'})
     try {
       await this.fetchOtherInfo()
       await this.fetchDetailInfo()
     } finally {
-      closure.close()
+      Loading.close('lk')
     }
   }
 

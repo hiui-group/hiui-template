@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import ListItem from './components/ListItem'
-import Input from '@hi-ui/hiui/es/input'
-import Icon from '@hi-ui/hiui/es/icon'
-import Button from '@hi-ui/hiui/es/button'
+import { Input, Icon, Button } from '@hi-ui/hiui'
 import './index.scss'
 
 const listData = [
@@ -71,13 +69,16 @@ export default class ListInfoFlow extends Component {
       <div className='page--list-flow'>
         <div className='page--list-header'>
           搜索中心
-
           <div>
             <Input
               style={{ width: '259px' }}
               value={value}
-              append={<Button className='search-btn'><Icon name='search' /></Button>}
-              onChange={(event) => {
+              append={
+                <Button className='search-btn'>
+                  <Icon name='search' />
+                </Button>
+              }
+              onChange={event => {
                 this.setState({
                   value: event.target.value
                 })

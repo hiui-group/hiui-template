@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import List from './components/List'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import Icon from '@hi-ui/hiui/es/icon'
-import Dropdown from '@hi-ui/hiui/es/dropdown'
+import { Input, Button, Icon, Dropdown } from '@hi-ui/hiui'
 import './index.scss'
 const listData = [
   {
@@ -195,24 +192,37 @@ export default class ListEmbeded extends Component {
       <div className='page--list-embeded'>
         <div className='page--list-header'>
           任务清单
-
           <div>
             <Input
               style={{ width: '259px' }}
-              append={<Button className='search-btn'><Icon name='search' /></Button>}
+              append={
+                <Button className='search-btn'>
+                  <Icon name='search' />
+                </Button>
+              }
               placeholder='待审批'
             />
-            <Button type='primary' icon='plus' className='creat-btn'>创建</Button>
+            <Button type='primary' icon='plus' className='creat-btn'>
+              创建
+            </Button>
           </div>
         </div>
 
-        <Dropdown list={[{
-          title: '全部'
-        }, {
-          title: '待审批'
-        }, {
-          title: '已通过'
-        }]} title='全部' onClick={(val) => console.log(val)} />
+        <Dropdown
+          list={[
+            {
+              title: '全部'
+            },
+            {
+              title: '待审批'
+            },
+            {
+              title: '已通过'
+            }
+          ]}
+          title='全部'
+          onClick={val => console.log(val)}
+        />
 
         <List data={listData} />
       </div>

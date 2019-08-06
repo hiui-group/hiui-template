@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Table from '@hi-ui/hiui/es/table'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import Grid from '@hi-ui/hiui/es/grid'
-import Icon from '@hi-ui/hiui/es/icon'
+import { Table, Input, Button, Grid, Icon } from '@hi-ui/hiui'
 import axios from 'axios'
 import './index.scss'
 
@@ -143,7 +139,7 @@ export default class Template extends Component {
                 pageSize: pageSize,
                 total: total,
                 defaultCurrent: page,
-                onChange: (page) => {
+                onChange: page => {
                   this.fetchDatas(page)
                 }
               }}

@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Input from '@hi-ui/hiui/es/input'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Select from '@hi-ui/hiui/es/select'
-import Button from '@hi-ui/hiui/es/button'
-import Stepper from '@hi-ui/hiui/es/stepper'
-import Form from '@hi-ui/hiui/es/form'
-import Icon from '@hi-ui/hiui/es/icon'
-import Grid from '@hi-ui/hiui/es/grid'
-import Loading from '@hi-ui/hiui/es/loading'
+import { Input, DatePicker, Select, Button, Stepper, Form, Icon, Grid, Loading } from '@hi-ui/hiui'
 import './index.scss'
 import axios from 'axios'
 
@@ -98,8 +90,7 @@ export default class Template extends Component {
             </ul>
           </Col>
           <Col className='detail-stepper__card detail-stepper__card--stepper page page--gutter'>
-            <Row className='title'>项目流程
-            </Row>
+            <Row className='title'>项目流程</Row>
             <Row className='stepper'>
               <Stepper {...{ ...stepper, up: true }} />
             </Row>

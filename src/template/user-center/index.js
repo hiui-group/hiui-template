@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Cascader from '@hi-ui/hiui/es/cascader'
-import Select from '@hi-ui/hiui/es/select'
+import { Form, Input, Button, NavMenu, Cascader, Select } from '@hi-ui/hiui'
 import './index.scss'
 
 const FormItem = Form.Item

@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
-import Table from '@hi-ui/hiui/es/table'
-import Tree from '@hi-ui/hiui/es/tree'
-import Grid from '@hi-ui/hiui/es/grid'
+import { Table, Tree, Grid } from '@hi-ui/hiui'
 import '@hi-ui/hiui/es/table/style/index.css'
-// import Icon from '@hi-ui/hiui/es/icon'
 import axios from 'axios'
 import './index.scss'
 
 export default class Template extends Component {
   constructor (props) {
     super(props)
-    this.columnMixins = {
-    }
+    this.columnMixins = {}
 
     this.state = {
       pageSize: 0,
@@ -78,7 +74,7 @@ export default class Template extends Component {
     let itemName = []
 
     const mapToGet = (list, parent = {}) => {
-      list.map((item) => {
+      list.map(item => {
         if (item.children) {
           mapToGet(item.children, item)
         } else {
@@ -103,12 +99,15 @@ export default class Template extends Component {
       activeId = item.id
     }
 
-    this.setState({
-      activeId: activeId,
-      page: 1
-    }, () => {
-      this.fetchDatas()
-    })
+    this.setState(
+      {
+        activeId: activeId,
+        page: 1
+      },
+      () => {
+        this.fetchDatas()
+      }
+    )
   }
 
   renderMenuContent () {
@@ -143,7 +142,9 @@ export default class Template extends Component {
         }}
         openIcon='down'
         closeIcon='up'
-        onNodeClick={(item) => { this.setId(item) }}
+        onNodeClick={item => {
+          this.setId(item)
+        }}
       />
     )
   }

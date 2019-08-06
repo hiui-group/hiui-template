@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Counter from '@hi-ui/hiui/es/counter'
-import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
-import Select from '@hi-ui/hiui/es/select'
-import Radio from '@hi-ui/hiui/es/radio'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Grid from '@hi-ui/hiui/es/grid'
+import {
+  Form,
+  Input,
+  Button,
+  DatePicker,
+  Counter,
+  TimePicker,
+  Select,
+  Radio,
+  NavMenu,
+  Grid
+} from '@hi-ui/hiui'
 import './index.scss'
 const FormItem = Form.Item
 
@@ -71,7 +73,6 @@ export default class Template extends Component {
         <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='90'>
           <h2 className='hi-form__title'>
             表单
-
             <div>
               <Button type='primary' onClick={this.handleSubmit.bind(this)}>
                 提交
@@ -163,7 +164,6 @@ export default class Template extends Component {
               </NavMenu>
             </Col>
           </Row>
-
         </Form>
       </div>
     )

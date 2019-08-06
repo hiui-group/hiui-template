@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Grid from '@hi-ui/hiui/es/grid'
-import Button from '@hi-ui/hiui/es/button'
-import Icon from '@hi-ui/hiui/es/icon'
+import { Grid, Button, Icon } from '@hi-ui/hiui'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -200,10 +198,15 @@ class UserDashboard extends Component {
                           }}
                         >
                           <div>{apply.title}</div>
-                          <div className={`tag`} style={{
-                            borderColor: this.getTagColor(apply.status),
-                            color: this.getTagColor(apply.status)
-                          }}>{apply.status}</div>
+                          <div
+                            className={`tag`}
+                            style={{
+                              borderColor: this.getTagColor(apply.status),
+                              color: this.getTagColor(apply.status)
+                            }}
+                          >
+                            {apply.status}
+                          </div>
                         </div>
                         <div
                           style={{

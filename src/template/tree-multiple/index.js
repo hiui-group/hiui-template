@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import Table from '@hi-ui/hiui/es/table'
-import Button from '@hi-ui/hiui/es/button'
-import Tree from '@hi-ui/hiui/es/tree'
-import Grid from '@hi-ui/hiui/es/grid'
+import { Table, Button, Tree, Grid } from '@hi-ui/hiui'
 import '@hi-ui/hiui/es/table/style/index.css'
 import axios from 'axios'
 import './index.scss'
@@ -10,8 +7,7 @@ import './index.scss'
 export default class Template extends Component {
   constructor (props) {
     super(props)
-    this.columnMixins = {
-    }
+    this.columnMixins = {}
 
     this.state = {
       pageSize: 0,
@@ -131,7 +127,7 @@ export default class Template extends Component {
             defaultExpandAll
             checkable
             data={this.state.treeData}
-            onChange={(checkedKeys) => {
+            onChange={checkedKeys => {
               this.onChange(checkedKeys)
             }}
             checkedKeys={this.state.currentChose}

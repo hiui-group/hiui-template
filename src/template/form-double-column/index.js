@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Counter from '@hi-ui/hiui/es/counter'
-import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
-import Select from '@hi-ui/hiui/es/select'
-import Radio from '@hi-ui/hiui/es/radio'
-import Grid from '@hi-ui/hiui/es/grid'
+import {
+  Form,
+  Input,
+  Button,
+  DatePicker,
+  Counter,
+  TimePicker,
+  Select,
+  Radio,
+  Grid
+} from '@hi-ui/hiui'
 import './index.scss'
 
 const FormItem = Form.Item

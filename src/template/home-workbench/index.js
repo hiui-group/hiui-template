@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import Icon from '@hi-ui/hiui/es/icon'
-import Grid from '@hi-ui/hiui/es/grid'
-import Dropdown from '@hi-ui/hiui/es/dropdown'
-import Button from '@hi-ui/hiui/es/button'
-import Stepper from '@hi-ui/hiui/es/stepper'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Modal from '@hi-ui/hiui/es/modal'
-import Form from '@hi-ui/hiui/es/form'
-import Radio from '@hi-ui/hiui/es/radio'
-import Input from '@hi-ui/hiui/es/input'
-import Timeline from '@hi-ui/hiui/es/timeline'
+import {
+  Icon,
+  Grid,
+  Dropdown,
+  Button,
+  Stepper,
+  DatePicker,
+  Modal,
+  Form,
+  Radio,
+  Input,
+  Timeline
+} from '@hi-ui/hiui'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -35,29 +37,36 @@ class HomeWorkbench extends Component {
     this.scheduleStepList = [
       {
         groupTitle: '上午',
-        children: [{
-          title: '管理层例会',
-          description: '毕加索会议室 B2层 可提前预定',
-          timestamp: '9:00'
-        }, {
-          dot: 'circle',
-          title: '社招面试-设计师',
-          description: '总参',
-          timestamp: '10:30'
-        }]
-      }, {
+        children: [
+          {
+            title: '管理层例会',
+            description: '毕加索会议室 B2层 可提前预定',
+            timestamp: '9:00'
+          },
+          {
+            dot: 'circle',
+            title: '社招面试-设计师',
+            description: '总参',
+            timestamp: '10:30'
+          }
+        ]
+      },
+      {
         groupTitle: '下午',
-        children: [{
-          dot: 'circle',
-          title: '管理层例会',
-          description: '毕加索会议室 B2层 可提前预定',
-          timestamp: '12:00'
-        }, {
-          dot: 'circle',
-          title: '社招面试-设计师',
-          description: '总参',
-          timestamp: '11:00'
-        }]
+        children: [
+          {
+            dot: 'circle',
+            title: '管理层例会',
+            description: '毕加索会议室 B2层 可提前预定',
+            timestamp: '12:00'
+          },
+          {
+            dot: 'circle',
+            title: '社招面试-设计师',
+            description: '总参',
+            timestamp: '11:00'
+          }
+        ]
       }
     ]
 
@@ -89,11 +98,11 @@ class HomeWorkbench extends Component {
 
   handleSwitchStep (isNext) {
     if (isNext) {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return { approvalStep: prevState.approvalStep + 1 }
       })
     } else {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return { approvalStep: prevState.approvalStep - 1 }
       })
     }
@@ -109,7 +118,9 @@ class HomeWorkbench extends Component {
             <Col>
               <span
                 className='approval-btn'
-                onClick={() => { this.setState({ showAuditModal: true }) }}
+                onClick={() => {
+                  this.setState({ showAuditModal: true })
+                }}
               >
                 审批
               </span>
@@ -118,9 +129,7 @@ class HomeWorkbench extends Component {
         </div>
       )
     }
-    return (
-      <div className='todo'>{todoList}</div>
-    )
+    return <div className='todo'>{todoList}</div>
   }
 
   render () {
@@ -144,8 +153,12 @@ class HomeWorkbench extends Component {
                 <div className='card__body'>
                   {this.renderTodo()}
                   <div className='card__footer'>
-                    <Button><Icon name='left' /></Button>
-                    <Button><Icon name='right' /></Button>
+                    <Button>
+                      <Icon name='left' />
+                    </Button>
+                    <Button>
+                      <Icon name='right' />
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -154,14 +167,16 @@ class HomeWorkbench extends Component {
               <div className='card'>
                 <div className='card__header'>
                   <span className='card__title'>日程</span>
-                  <span><Icon name='plus' /> 新建日程</span>
+                  <span>
+                    <Icon name='plus' /> 新建日程
+                  </span>
                 </div>
                 <div className='card__body'>
                   <Row gutter>
                     <Col span={12}>
                       <DatePicker
                         value={new Date()}
-                        onChange={(d) => {
+                        onChange={d => {
                           console.log('value 为 Date 实例', DatePicker.format(d, 'YYYY-MM-DD E'))
                         }}
                       />
@@ -179,7 +194,11 @@ class HomeWorkbench extends Component {
               <div className='card'>
                 <div className='card__header'>
                   <span>项目／审批流程</span>
-                  <Dropdown list={this.projectList} title={this.projectList[0].title} onClick={(val) => console.log(val)} />
+                  <Dropdown
+                    list={this.projectList}
+                    title={this.projectList[0].title}
+                    onClick={val => console.log(val)}
+                  />
                 </div>
                 <div className='card__body'>
                   <Stepper up list={this.approvalStepList} current={this.state.approvalStep} />
@@ -208,8 +227,12 @@ class HomeWorkbench extends Component {
             title='设备采购申请'
             show={this.state.showAuditModal}
             backDrop
-            onConfirm={() => { this.setState({ showAuditModal: false }) }}
-            onCancel={() => { this.setState({ showAuditModal: false }) }}
+            onConfirm={() => {
+              this.setState({ showAuditModal: false })
+            }}
+            onCancel={() => {
+              this.setState({ showAuditModal: false })
+            }}
           >
             <Form labelPosition='left'>
               <FormItem label='原因' labelWidth='60'>

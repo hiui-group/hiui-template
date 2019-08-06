@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import '@hi-ui/hiui/es/table/style/index.css'
-import Form from '@hi-ui/hiui/es/form'
-import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
-import Counter from '@hi-ui/hiui/es/counter'
-import TimePicker from '@hi-ui/hiui/es/date-picker/TimePicker'
-import Select from '@hi-ui/hiui/es/select'
-import Radio from '@hi-ui/hiui/es/radio'
-import Upload from '@hi-ui/hiui/es/upload'
-import Stepper from '@hi-ui/hiui/es/stepper'
-import Grid from '@hi-ui/hiui/es/grid'
+import {
+  Form,
+  Input,
+  Button,
+  DatePicker,
+  Counter,
+  TimePicker,
+  Select,
+  Radio,
+  Upload,
+  Stepper,
+  Grid
+} from '@hi-ui/hiui'
 import './index.scss'
 const FormItem = Form.Item
 
@@ -174,7 +175,6 @@ export default class Template extends Component {
                     type='textarea'
                   />
                 </FormItem>
-
               </fieldset>
 
               <FormItem>
@@ -182,7 +182,7 @@ export default class Template extends Component {
                   下一步
                 </Button>
                 <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
-                    重置
+                  重置
                 </Button>
               </FormItem>
             </Col>

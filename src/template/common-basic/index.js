@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Icon from '@hi-ui/hiui/es/icon'
-import Button from '@hi-ui/hiui/es/button'
-import Grid from '@hi-ui/hiui/es/grid'
-import { handleNotificate } from '@hi-ui/hiui/es/notification'
+import { Button, Grid, handleNotificate } from '@hi-ui/hiui'
 import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import './index.scss'
 
@@ -23,7 +20,10 @@ export default class Template extends Component {
             <Link to='/form-unfold-group'>
               <Button type='default' appearance='link' icon='edit' />
             </Link>
-            <Button type='default' appearance='link' icon='delete'
+            <Button
+              type='default'
+              appearance='link'
+              icon='delete'
               onClick={() => {
                 handleNotificate({
                   type: 'success',

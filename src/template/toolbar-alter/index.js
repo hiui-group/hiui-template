@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Button from '@hi-ui/hiui/es/button'
-import Input from '@hi-ui/hiui/es/input'
-import Select from '@hi-ui/hiui/es/select'
-import Icon from '@hi-ui/hiui/es/icon'
-import Grid from '@hi-ui/hiui/es/grid'
-import DatePicker from '@hi-ui/hiui/es/date-picker'
+import { Button, Input, Select, Icon, Grid, DatePicker } from '@hi-ui/hiui'
 import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
 import './index.scss'
 

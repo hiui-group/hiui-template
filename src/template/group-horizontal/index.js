@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import NavMenu from '@hi-ui/hiui/es/nav-menu'
-import Grid from '@hi-ui/hiui/es/grid'
-import Table from '@hi-ui/hiui/es/table'
-import Icon from '@hi-ui/hiui/es/icon'
-import Modal from '@hi-ui/hiui/es/modal'
-import Button from '@hi-ui/hiui/es/button'
-import Dropdown from '@hi-ui/hiui/es/dropdown'
-import { handleNotificate } from '@hi-ui/hiui/es/notification'
+import { NavMenu, Grid, Table, Icon, Modal, Button, Dropdown, handleNotificate } from '@hi-ui/hiui'
 import axios from 'axios'
 import './index.scss'
 export default class Template extends Component {
@@ -25,9 +18,19 @@ export default class Template extends Component {
       action: {
         render: (key, row) => (
           <React.Fragment>
-            <Link to='/form/form-basic' className='hi-tpl__add' ><Icon name='edit' /></Link>
-            <span onClick={this.showDelModal.bind(this, row)} className='action-del'><Icon name='close' /></span>
-            <span className='action-more'><Dropdown list={[{ title: '打印小票' }]} title='更多' onClick={(val) => console.log(val)} /></span>
+            <Link to='/form/form-basic' className='hi-tpl__add'>
+              <Icon name='edit' />
+            </Link>
+            <span onClick={this.showDelModal.bind(this, row)} className='action-del'>
+              <Icon name='close' />
+            </span>
+            <span className='action-more'>
+              <Dropdown
+                list={[{ title: '打印小票' }]}
+                title='更多'
+                onClick={val => console.log(val)}
+              />
+            </span>
           </React.Fragment>
         )
       }
@@ -61,7 +64,14 @@ export default class Template extends Component {
   }
 
   delEvent () {
-    handleNotificate({ type: 'success', duration: 2500, showClose: false, autoClose: true, title: '标题', message: '订单号为' + this.state.delModal.order_id + '已删除' })
+    handleNotificate({
+      type: 'success',
+      duration: 2500,
+      showClose: false,
+      autoClose: true,
+      title: '标题',
+      message: '订单号为' + this.state.delModal.order_id + '已删除'
+    })
     this.setState({
       delModal: false
     })
@@ -113,12 +123,15 @@ export default class Template extends Component {
   }
 
   changeStatus (status) {
-    this.setState({
-      activeMenu: status,
-      page: 1
-    }, () => {
-      this.fetchDatas()
-    })
+    this.setState(
+      {
+        activeMenu: status,
+        page: 1
+      },
+      () => {
+        this.fetchDatas()
+      }
+    )
   }
 
   renderMenuContent () {
@@ -170,8 +183,12 @@ export default class Template extends Component {
           show={!!this.state.delModal}
           onCancel={this.cancelEvent.bind(this)}
           footers={[
-            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>取消</Button>,
-            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>确认</Button>
+            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>
+              取消
+            </Button>,
+            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>
+              确认
+            </Button>
           ]}
         >
           <span>确认要删除订单号为{this.state.delModal.order_id}的订单么？</span>

@@ -123,11 +123,11 @@ export default class Template extends Component {
                   </FormItem>
                   <FormItem label='数量' field='num'>
                     <Counter
-                      value={forms.num}
-                      step="1"
-                      min="0"
-                      max="8"
-                      onChange={val => console.log('变化后的值：', val)}
+                      defaultValue={forms.num}
+                      step={1}
+                      min={0}
+                      max={8}
+                      onChange={(e, val) => console.log('变化后的值：', val)}
                     />
                   </FormItem>
                   <FormItem label='时间' field='time'>

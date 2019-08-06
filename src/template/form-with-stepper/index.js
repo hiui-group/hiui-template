@@ -99,7 +99,7 @@ export default class Template extends Component {
               <fieldset>
                 <legend>基础信息</legend>
 
-                <FormItem label='姓名' prop='text'>
+                <FormItem label='姓名' field='text'>
                   <Input
                     value={forms.text}
                     placeholder={'请输入'}
@@ -107,7 +107,7 @@ export default class Template extends Component {
                     style={{ width: '250px' }}
                   />
                 </FormItem>
-                <FormItem label='时间' prop='date'>
+                <FormItem label='时间' field='date'>
                   <DatePicker
                     type='daterange'
                     value={forms.date}
@@ -116,7 +116,7 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-                <FormItem label='数量' prop='num'>
+                <FormItem label='数量' field='num'>
                   <Counter
                     value={forms.num}
                     step='1'
@@ -129,7 +129,7 @@ export default class Template extends Component {
               <fieldset>
                 <legend>附加信息</legend>
 
-                <FormItem label='时间' prop='time'>
+                <FormItem label='时间' field='time'>
                   <TimePicker
                     type='time'
                     value={forms.time}
@@ -138,7 +138,7 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-                <FormItem label='种类' prop='select'>
+                <FormItem label='种类' field='select'>
                   <Select
                     list={this.singleList}
                     placeholder='请选择种类'
@@ -149,7 +149,7 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-                <FormItem label='单选' prop='radio'>
+                <FormItem label='单选' field='radio'>
                   <Radio
                     list={['北京', '上海', '重庆']}
                     checked={forms.radio}
@@ -157,7 +157,7 @@ export default class Template extends Component {
                   />
                 </FormItem>
 
-                <FormItem label='照片' prop='radio'>
+                <FormItem label='照片' field='radio'>
                   <Upload
                     type='photo'
                     uploadAction='http://127.0.0.1:8000'
@@ -166,7 +166,7 @@ export default class Template extends Component {
                   />
                 </FormItem>
 
-                <FormItem label='文本框' prop='longText'>
+                <FormItem label='文本框' field='longText'>
                   <Input
                     value={forms.longText}
                     placeholder={'多行文本'}

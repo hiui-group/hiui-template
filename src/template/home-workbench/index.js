@@ -217,7 +217,7 @@ class HomeWorkbench extends Component {
               this.setState({ showAuditModal: false })
             }}
           >
-            <Form labelPosition="left">
+            <Form labelPlacement='left'>
               <FormItem label="原因" labelWidth="60">
                 <Radio list={['通过', '驳回']} />
               </FormItem>

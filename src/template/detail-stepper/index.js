@@ -100,7 +100,7 @@ export default class Template extends Component {
                 保存
               </Button>
             </Row>
-            <Form labelPosition='left' labelWidth='96'>
+            <Form labelPlacement='left' labelWidth='96'>
               <Row>
                 <Col span={12}>
                   <FormItem label='项目名称'>

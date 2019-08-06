@@ -90,7 +90,7 @@ export default class Template extends Component {
                   <fieldset>
                     <legend>基础信息</legend>
 
-                    <FormItem label='名字' prop='text'>
+                    <FormItem label='名字' field='text'>
                       <Input
                         value={forms.text}
                         placeholder={'name'}
@@ -98,7 +98,7 @@ export default class Template extends Component {
                         style={{ width: '250px' }}
                       />
                     </FormItem>
-                    <FormItem label='日期' prop='Date'>
+                    <FormItem label='日期' field='Date'>
                       <DatePicker
                         type='daterange'
                         value={forms.Date}
@@ -107,7 +107,7 @@ export default class Template extends Component {
                         }}
                       />
                     </FormItem>
-                    <FormItem label='数量' prop='num'>
+                    <FormItem label='数量' field='num'>
                       <Counter
                         value={forms.num}
                         step='1'
@@ -116,7 +116,7 @@ export default class Template extends Component {
                         onChange={val => console.log('变化后的值：', val)}
                       />
                     </FormItem>
-                    <FormItem label='时间' prop='time'>
+                    <FormItem label='时间' field='time'>
                       <TimePicker
                         type='time'
                         value={forms.time}
@@ -130,7 +130,7 @@ export default class Template extends Component {
                   <fieldset>
                     <legend>基础信息</legend>
 
-                    <FormItem label='类别' prop='select'>
+                    <FormItem label='类别' field='select'>
                       <Select
                         list={this.singleList}
                         placeholder='请选择种类'
@@ -141,14 +141,14 @@ export default class Template extends Component {
                         }}
                       />
                     </FormItem>
-                    <FormItem label='单选' prop='radio'>
+                    <FormItem label='单选' field='radio'>
                       <Radio
                         list={['北京', '上海', '重庆']}
                         checked={forms.radio}
                         onChange={this.handleChange.bind(this, 'region', '')}
                       />
                     </FormItem>
-                    <FormItem label='备注' prop='longText'>
+                    <FormItem label='备注' field='longText'>
                       <Input
                         value={forms.longText}
                         placeholder={'多行文本'}

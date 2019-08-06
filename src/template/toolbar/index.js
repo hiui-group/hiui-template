@@ -99,7 +99,7 @@ export default class Template extends Component {
     return true
   }
 
-  fetchDatas(args) {
+  fetchData(args) {
     const { forms, pageSize } = this.state
     const params = {
       pageSize
@@ -130,7 +130,7 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              fetchDatas={this.fetchDatas.bind(this)}
+              fetchData={this.fetchData.bind(this)}
               columnMixins={this.columnMixins}
               table={{
                 pageSize

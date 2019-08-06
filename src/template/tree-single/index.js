@@ -22,10 +22,10 @@ export default class Template extends Component {
   }
 
   componentWillMount () {
-    this.fetchDatas()
+    this.fetchData()
   }
 
-  fetchDatas (page = 1) {
+  fetchData (page = 1) {
     axios
       .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`, {
         params: {
@@ -105,7 +105,7 @@ export default class Template extends Component {
         page: 1
       },
       () => {
-        this.fetchDatas()
+        this.fetchData()
       }
     )
   }
@@ -119,9 +119,9 @@ export default class Template extends Component {
         pagination={{
           pageSize: pageSize,
           total: total,
-          defaultCurrent: page,
+          current: page,
           onChange: (page, pre, size) => {
-            this.fetchDatas(page)
+            this.fetchData(page)
           }
         }}
       />

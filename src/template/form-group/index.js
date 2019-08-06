@@ -148,7 +148,7 @@ export default class Template extends Component {
                   <Upload
                     type='photo'
                     uploadAction='http://127.0.0.1:8000'
-                    param={{ id: 'uid', channel: 'youpin' }}
+                    params={{ id: 'uid', channel: 'youpin' }}
                     name={'files[]'}
                   />
                 </FormItem>

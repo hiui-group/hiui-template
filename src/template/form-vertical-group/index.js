@@ -18,7 +18,7 @@ import './index.scss'
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       forms: this.initForms(),
@@ -60,7 +60,7 @@ export default class Template extends Component {
     ]
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
@@ -75,27 +75,27 @@ export default class Template extends Component {
     )
   }
 
-  handleChange () {}
+  handleChange() {}
 
-  handleSubmit () {}
+  handleSubmit() {}
 
-  reset () {}
+  reset() {}
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms } = this.state
 
     return (
-      <div className='page--form-vertical-group'>
-        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth='120'>
-          <h2 className='hi-form__title'>
+      <div className="page--form-vertical-group">
+        <Form ref={this.form1} model={forms} rules={this.state.rules} labelWidth="120">
+          <h2 className="hi-form__title">
             表单
             <div>
-              <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+              <Button type="primary" onClick={this.handleSubmit.bind(this)}>
                 提交
               </Button>
-              <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
+              <Button type="line" onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
                 重置
               </Button>
             </div>
@@ -114,7 +114,7 @@ export default class Template extends Component {
                   </FormItem>
                   <FormItem label='时间' field='date'>
                     <DatePicker
-                      type='daterange'
+                      type="daterange"
                       value={forms.date}
                       onChange={d => {
                         console.log(d)
@@ -124,15 +124,15 @@ export default class Template extends Component {
                   <FormItem label='数量' field='num'>
                     <Counter
                       value={forms.num}
-                      step='1'
-                      min='0'
-                      max='8'
+                      step="1"
+                      min="0"
+                      max="8"
                       onChange={val => console.log('变化后的值：', val)}
                     />
                   </FormItem>
                   <FormItem label='时间' field='time'>
                     <TimePicker
-                      type='time'
+                      type="time"
                       value={forms.time}
                       onChange={d => {
                         console.log(d)
@@ -142,7 +142,7 @@ export default class Template extends Component {
                   <FormItem label='类别' field='select'>
                     <Select
                       list={this.singleList}
-                      placeholder='请选择种类'
+                      placeholder="请选择种类"
                       style={{ width: '200px' }}
                       value={forms.select}
                       onChange={item => {
@@ -160,9 +160,9 @@ export default class Template extends Component {
 
                   <FormItem label='照片' field='radio'>
                     <Upload
-                      type='photo'
-                      uploadAction='http://127.0.0.1:8000'
-                      param={{ id: 'uid', channel: 'youpin' }}
+                      type="photo"
+                      uploadAction="http://127.0.0.1:8000"
+                      params={{ id: 'uid', channel: 'youpin' }}
                       name={'files[]'}
                     />
                   </FormItem>
@@ -173,7 +173,7 @@ export default class Template extends Component {
                       placeholder={'多行文本'}
                       onChange={this.handleChange.bind(this, 'column1')}
                       style={{ width: '320px', height: '160px', resize: 'none' }}
-                      type='textarea'
+                      type="textarea"
                     />
                   </FormItem>
                 </div>

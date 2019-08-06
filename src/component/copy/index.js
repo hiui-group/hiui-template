@@ -99,7 +99,7 @@ export default class Copy extends Component {
             data={this.getTabs(cssCode)}
             placement="horizontal"
             className="menus"
-            activeId={selectedKey}
+            activeId={selectedKey.toString()}
             onClick={(id, prevId)=>console.log('-----click', id, prevId)}
             onClickSubMenu={index => console.log('-----onClickSubMenu', index)}
           />

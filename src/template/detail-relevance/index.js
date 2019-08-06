@@ -118,24 +118,12 @@ class QueryBasic extends Component {
   constructor(props) {
     super(props)
 
-    this.businessOptions = [
-      { name: '全部', id: '全部' },
-      { name: '小米商城', id: '小米商城' },
-      { name: '小米之家', id: '小米之家' },
-      { name: '天猫旗舰店', id: '天猫旗舰店' },
-      { name: '京东旗舰店', id: '京东旗舰店' }
-    ]
+  
     this.transportOptions = [
-      { name: '全部', id: '全部' },
-      { name: '顺丰', id: '顺丰' },
-      { name: 'EMS', id: 'EMS' },
-      { name: '自取', id: '自取' }
-    ]
-    this.menus = [
-      { title: '全部' },
-      { title: '异常' },
-      { title: '调拨管理' },
-      { title: '超期监控' }
+      { title: '全部', id: '全部' },
+      { title: '顺丰', id: '顺丰' },
+      { title: 'EMS', id: 'EMS' },
+      { title: '自取', id: '自取' }
     ]
     this.columnMixins = {
       column1: {
@@ -274,7 +262,7 @@ class QueryBasic extends Component {
                 </Field>
                 <Field label="运输方式" width="200">
                   <Select
-                    list={this.transportOptions}
+                    data={this.transportOptions}
                     placeholder="请选择运输方式"
                     value={forms.column3}
                     onChange={value =>
@@ -284,7 +272,7 @@ class QueryBasic extends Component {
                 </Field>
                 <Field label="运输方式1" width="200" advanced>
                   <Select
-                    list={this.transportOptions}
+                    data={this.transportOptions}
                     placeholder="请选择运输方式"
                     value={forms.column3}
                     onChange={value =>
@@ -294,7 +282,7 @@ class QueryBasic extends Component {
                 </Field>
                 <Field label="运输方式2" width="200" advanced>
                   <Select
-                    list={this.transportOptions}
+                    data={this.transportOptions}
                     placeholder="请选择运输方式"
                     value={forms.column3}
                     onChange={value =>
@@ -304,7 +292,7 @@ class QueryBasic extends Component {
                 </Field>
                 <Field label="运输方式3" width="200" advanced>
                   <Select
-                    list={this.transportOptions}
+                    data={this.transportOptions}
                     placeholder="请选择运输方式"
                     value={forms.column3}
                     onChange={value =>
@@ -314,7 +302,7 @@ class QueryBasic extends Component {
                 </Field>
                 <Field label="运输方式4" width="200" advanced>
                   <Select
-                    list={this.transportOptions}
+                    data={this.transportOptions}
                     placeholder="请选择运输方式"
                     value={forms.column3}
                     onChange={value =>
@@ -324,7 +312,7 @@ class QueryBasic extends Component {
                 </Field>
                 <Field label="运输方式5" width="200" advanced>
                   <Select
-                    list={this.transportOptions}
+                    data={this.transportOptions}
                     placeholder="请选择运输方式"
                     value={forms.column3}
                     onChange={value =>

@@ -71,11 +71,11 @@ const provinces = [
   }
 ]
 const countrys = [
-  { name: '中国', id: '3' },
-  { name: '美国', id: '2' },
-  { name: '日本', id: '4' },
-  { name: '韩国', id: '5' },
-  { name: '英国', id: '6' }
+  { title: '中国', id: '3' },
+  { title: '美国', id: '2' },
+  { title: '日本', id: '4' },
+  { title: '韩国', id: '5' },
+  { title: '英国', id: '6' }
 ]
 export default class UserCenter extends Component {
   constructor (props) {
@@ -193,8 +193,8 @@ export default class UserCenter extends Component {
 
               <FormItem label='国家'>
                 <Select
-                  mode='single'
-                  list={countrys}
+                  type='single'
+                  data={countrys}
                   value={country}
                   onChange={value => {
                     this.onValueChange('country', value)

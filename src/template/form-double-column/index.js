@@ -39,11 +39,11 @@ export default class Template extends Component {
       }
     }
     this.singleList = [
-      { name: '较长的一段描述文本', label: '这是一段较长的描述文本', id: '2' },
-      { name: '手机', label: 'tanke', id: '3' },
-      { name: '笔记本', label: 'chaojitanke', id: '4', disabled: true },
-      { name: '生活周边', label: 'wurenji', id: '5' },
-      { name: '生态链', label: 'huojian', id: '6' }
+      { data: '较长的一段描述文本', id: '2' },
+      { data: '手机', id: '3' },
+      { data: '笔记本', id: '4', disabled: true },
+      { data: '生活周边', id: '5' },
+      { data: '生态链', id: '6' }
     ]
     this.list = [
       {
@@ -131,7 +131,7 @@ export default class Template extends Component {
               </FormItem>
               <FormItem label="种类" field="select">
                 <Select
-                  list={this.singleList}
+                  data={this.singleList}
                   placeholder="请选择种类"
                   style={{ width: '200px' }}
                   value={forms.select}

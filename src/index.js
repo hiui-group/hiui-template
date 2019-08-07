@@ -8,7 +8,7 @@ import './index.scss'
 
 const loginConfig = {
   name: '叶舟',
-  icon: <span className='hi-icon icon-user' />,
+  icon: 'user',
   children: [
     <div key='1' style={{ textAlign: 'center', margin: 4, width: '100px' }}>
       <a href='#info'>个人信息</a>

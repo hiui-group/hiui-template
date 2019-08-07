@@ -61,7 +61,7 @@ export default class Copy extends Component {
       <React.Fragment>
         <div className='copy-container'>
           <div className='copy' onClick={this.showModal}>
-            <Icon name='copy' />
+            <Icon name='tool' />
           </div>
         </div>
         <Modal

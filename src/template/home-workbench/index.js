@@ -73,23 +73,23 @@ class HomeWorkbench extends Component {
     this.approvalStepList = [
       {
         title: '创建工单',
-        text: this.nowDate
+        content: this.nowDate
       },
       {
         title: '工单审核',
-        text: this.nowDate
+        content: this.nowDate
       },
       {
         title: '提交材料',
-        text: this.nowDate
+        content: this.nowDate
       },
       {
         title: '完成申请',
-        text: this.nowDate
+        content: this.nowDate
       },
       {
         title: '成为店主',
-        text: this.nowDate
+        content: this.nowDate
       }
     ]
 
@@ -182,7 +182,7 @@ class HomeWorkbench extends Component {
                       />
                     </Col>
                     <Col span={12}>
-                      <Timeline list={this.scheduleStepList} />
+                      <Timeline data={this.scheduleStepList} />
                     </Col>
                   </Row>
                 </div>
@@ -195,13 +195,13 @@ class HomeWorkbench extends Component {
                 <div className='card__header'>
                   <span>项目／审批流程</span>
                   <Dropdown
-                    list={this.projectList}
+                    data={this.projectList}
                     title={this.projectList[0].title}
                     onClick={val => console.log(val)}
                   />
                 </div>
                 <div className='card__body'>
-                  <Stepper up list={this.approvalStepList} current={this.state.approvalStep} />
+                  <Stepper itemLayout='vertical' data={this.approvalStepList} current={this.state.approvalStep} />
                 </div>
               </div>
             </Col>

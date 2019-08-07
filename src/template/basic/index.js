@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, NavMenu, Form, Input, Seclet, Button, Grid, Icon } from '@hi-ui/hiui'
+import { Table, NavMenu, Form, Input, Select, Button, Grid, Icon } from '@hi-ui/hiui'
 import axios from 'axios'
 
 export default class Template extends Component {
@@ -170,8 +170,8 @@ export default class Template extends Component {
               />
             </Form.Item>
             <Form.Item label='业务来源'>
-              <Seclet
-                list={this.businessOptions}
+              <Select
+                data={this.businessOptions}
                 placeholder='请选择业务来源'
                 style={{ width: '220px' }}
                 value={forms.column2}
@@ -181,8 +181,8 @@ export default class Template extends Component {
               />
             </Form.Item>
             <Form.Item label='运输方式'>
-              <Seclet
-                list={this.transportOptions}
+              <Select
+                data={this.transportOptions}
                 placeholder='请选择运输方式'
                 style={{ width: '220px' }}
                 value={forms.column3}

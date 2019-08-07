@@ -115,6 +115,7 @@ class UserDashboard extends Component {
         <div className='user-dashboard__aside'>
           <div className='aside__avator'>
             <img
+              alt='avator'
               src={
                 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
               }
@@ -221,6 +222,7 @@ class UserDashboard extends Component {
                       <div style={{ marginBottom: 8, display: 'flex' }}>
                         {collect.image && (
                           <img
+                            alt=''
                             src={collect.image}
                             style={{
                               width: 80,
@@ -238,7 +240,7 @@ class UserDashboard extends Component {
                             }}
                           >
                             <div>{collect.title}</div>
-                            <a>{collect.operation}</a>
+                            <a href='/'>{collect.operation}</a>
                           </div>
                           <div
                             style={{
@@ -272,7 +274,7 @@ class UserDashboard extends Component {
                         }}
                       >
                         <div>{subscribe.title}</div>
-                        <a>{subscribe.operation}</a>
+                        <a href='/'>{subscribe.operation}</a>
                       </div>
                     ))}
                   </div>

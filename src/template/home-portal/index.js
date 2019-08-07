@@ -93,7 +93,7 @@ class HomePortal extends Component {
     ]
     businessList = businessList.map((item, index) => {
       return (
-        <Row justify='space-between' className='business--item'>
+        <Row justify='space-between' className='business--item' key={index}>
           <Col>
             <div className='business--item__title'>{item.title}</div>
             <div className='business--item__detail'>{item.desc}</div>

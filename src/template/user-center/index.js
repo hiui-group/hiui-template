@@ -146,6 +146,7 @@ export default class UserCenter extends Component {
             <div style={{ width: 592, marginTop: 14, marginLeft: 14 }}>
               <FormItem label='头像'>
                 <img
+                  alt='头像'
                   src={photo}
                   style={{
                     width: 80,

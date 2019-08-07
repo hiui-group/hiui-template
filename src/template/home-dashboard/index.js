@@ -112,7 +112,7 @@ class HomeDashboard extends Component {
           const columns = data.columns
           const pageInfo = data.pageInfo
 
-          data.data.map(data => {
+          data.data.forEach(data => {
             datas.push(data)
           })
           this.setState({
@@ -129,7 +129,7 @@ class HomeDashboard extends Component {
   setTableColumns (columns) {
     const _columns = []
 
-    columns.map(column => {
+    columns.forEach(column => {
       const key = column.key
 
       _columns.push({
@@ -337,7 +337,7 @@ class HomeDashboard extends Component {
         let data = this.circleData
         let total = 0
         let target = ''
-        data.map(item => {
+        data.forEach(item => {
           total += item.value
           if (item.name === name) {
             target = item.value

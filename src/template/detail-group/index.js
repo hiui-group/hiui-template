@@ -108,15 +108,13 @@ export default class Template extends Component {
                   <Row className='row row-02'>
                     <img src={avatar.value} alt='' />
                     <ul>
-                      {Object.values(info).map(({ key, value }, idx) => {
-                        if (key === '姓名' || key === '地址' || key === '性别') {
-                          return (
-                            <li key={idx}>
-                              <div>{key}</div>
-                              <div>{value}</div>
-                            </li>
-                          )
-                        }
+                      {Object.values(info).filter(item => ['姓名', '地址', '性别'].includes(item.key)).map(({ key, value }, idx) => {
+                        return (
+                          <li key={idx}>
+                            <div>{key}</div>
+                            <div>{value}</div>
+                          </li>
+                        )
                       })}
                     </ul>
                   </Row>

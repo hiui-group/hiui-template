@@ -116,7 +116,7 @@ export default class Template extends Component {
     let itemName = []
 
     const mapToGet = (list, parent = {}) => {
-      list.map(item => {
+      list.forEach(item => {
         if (item.children) {
           mapToGet(item.children, item)
         } else {

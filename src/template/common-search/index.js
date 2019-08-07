@@ -56,7 +56,7 @@ export default class Template extends Component {
           const columns = data.columns
           const pageInfo = data.pageInfo
 
-          data.data.map(data => {
+          data.data.forEach(data => {
             datas.push(data)
           })
           this.setState({
@@ -73,7 +73,7 @@ export default class Template extends Component {
   setTableColumns (columns) {
     const _columns = []
 
-    columns.map(column => {
+    columns.forEach(column => {
       const key = column.key
 
       _columns.push({

@@ -84,12 +84,12 @@ class HomeSearch extends Component {
       {
         title: '职场晋升',
         desc: '职场晋升',
-        img: '/hiui-template/static/职场晋升.png'
+        img: '/hiui-template/static/promotion.png'
       },
       {
         title: '360评估',
         desc: '360评估',
-        img: '/hiui-template/static/360评估.png'
+        img: '/hiui-template/static/360.png'
       },
       {
         title: 'E-HR',
@@ -99,17 +99,17 @@ class HomeSearch extends Component {
       {
         title: 'HR 报表',
         desc: 'HR 报表',
-        img: '/hiui-template/static/HR 报表.png'
+        img: '/hiui-template/static/HR-report.png'
       },
       {
         title: '海外派驻',
         desc: '海外派驻',
-        img: '/hiui-template/static/海外派驻.png'
+        img: '/hiui-template/static/overseas.png'
       },
       {
         title: '培训平台',
         desc: '培训平台',
-        img: '/hiui-template/static/培训平台.png'
+        img: '/hiui-template/static/training.png'
       }
     ]
 

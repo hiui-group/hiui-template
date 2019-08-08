@@ -12,7 +12,7 @@ export default class Copy extends Component {
 
     this.state = {
       showModal: false,
-      selectedKey: 0,
+      selectedKey: '0',
       cssCode: '',
       jsCode: ''
     }
@@ -48,11 +48,11 @@ export default class Copy extends Component {
   }
 
   getTabs (cssCode) {
-    return cssCode ? [{ id: 0, content: 'js 代码' }, { id: 1, content: 'scss 代码' }] : [{ id: 0, content: 'js 代码' }]
+    return cssCode ? [{ id: '0', content: 'js 代码' }, { id: '1', content: 'scss 代码' }] : [{ id: '0', content: 'js 代码' }]
   }
 
   closeModal () {
-    this.setState({ showModal: false, jsCode: '', cssCode: '', selectedKey: 0 })
+    this.setState({ showModal: false, jsCode: '', cssCode: '', selectedKey: '0' })
   }
 
   render () {
@@ -99,17 +99,17 @@ export default class Copy extends Component {
             data={this.getTabs(cssCode)}
             placement='horizontal'
             className='menus'
-            activeId={selectedKey.toString()}
-            onClick={(id, prevId) => console.log('-----click', id, prevId)}
+            activeId={selectedKey}
+            onClick={(id, prevId) => this.setState({selectedKey: id.toString()})}
             onClickSubMenu={index => console.log('-----onClickSubMenu', index)}
           />
           <div className='code-container'>
-            {selectedKey === 0 && (
+            {selectedKey === '0' && (
               <SyntaxHighlighter language='jsx' style={docco}>
                 {jsCode}
               </SyntaxHighlighter>
             )}
-            {selectedKey === 1 && (
+            {selectedKey === '1' && (
               <SyntaxHighlighter language='scss' style={docco}>
                 {cssCode}
               </SyntaxHighlighter>

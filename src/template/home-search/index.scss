@@ -1,13 +1,13 @@
 @import '@hi-ui/core-css/index.scss';
 
 .page--search {
-  background: $white;
-  background-size: cover;
-  background-repeat: no-repeat;
   padding: $spacer-6;
   color: $white;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
+  background-color: $black;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   .search-box {
     width: 500px;

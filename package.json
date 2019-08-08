@@ -7,7 +7,7 @@
     "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'src/**/*.scss' --fix",
     "eject": "react-scripts eject",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --git \"$(which git)\"",
     "start": "react-scripts start"
   },
   "author": "HIUI <mi-hiui@xiaomi.com>",

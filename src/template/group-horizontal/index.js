@@ -26,7 +26,7 @@ export default class Template extends Component {
             </span>
             <span className='action-more'>
               <Dropdown
-                list={[{ title: '打印小票' }]}
+                data={[{ title: '打印小票' }]}
                 title='更多'
                 onClick={val => console.log(val)}
               />

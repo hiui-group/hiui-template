@@ -90,7 +90,7 @@ export default class Template extends Component {
           <h2 className='hi-form__title'>
             表单
             <div className='stepper-container'>
-              <Stepper list={this.list} current={0} />
+              <Stepper data={this.list} current={0} />
             </div>
           </h2>
 

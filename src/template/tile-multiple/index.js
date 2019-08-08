@@ -29,7 +29,7 @@ export default class Template extends Component {
             </span>
             <span className='action-more'>
               <Dropdown
-                list={[{ title: '打印小票' }]}
+                data={[{ title: '打印小票' }]}
                 title='更多'
                 onClick={val => console.log(val)}
               />
@@ -281,24 +281,6 @@ export default class Template extends Component {
                     console.log(value1)
                     this.setState({ value1 })
                   }} />
-                  {/* <Checkbox
-                    all='one'
-                    onChange={list => {
-                      const fieldList = this.state.field1
-
-                      fieldList.forEach(item => {
-                        if (list.indexOf(item.value) > -1) {
-                          item.checked = true
-                        } else {
-                          item.checked = false
-                        }
-                      })
-                      this.setForm()
-                    }}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox list={this.state.field1} name='one' /> */}
                 </Col>
               </Row>
               <Row gutter>
@@ -314,24 +296,6 @@ export default class Template extends Component {
                   <Checkbox.Group value={this.state.value2} data={this.state.field2} onChange={value2 => {
                     this.setState({ value2 })
                   }} />
-                  {/* <Checkbox
-                    all='two'
-                    onChange={list => {
-                      const fieldList = this.state.field2
-
-                      fieldList.forEach(item => {
-                        if (list.indexOf(item.value) > -1) {
-                          item.checked = true
-                        } else {
-                          item.checked = false
-                        }
-                      })
-                      this.setForm()
-                    }}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox list={this.state.field2} name='two' /> */}
                 </Col>
               </Row>
               <Row gutter>
@@ -347,24 +311,6 @@ export default class Template extends Component {
                   <Checkbox.Group value={this.state.value3} data={this.state.field3} onChange={value3 => {
                     this.setState({ value3 })
                   }} />
-                  {/* <Checkbox
-                    all='three'
-                    onChange={list => {
-                      const fieldList = this.state.field3
-
-                      fieldList.forEach(item => {
-                        if (list.indexOf(item.value) > -1) {
-                          item.checked = true
-                        } else {
-                          item.checked = false
-                        }
-                      })
-                      this.setForm()
-                    }}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox list={this.state.field3} name='three' /> */}
                 </Col>
               </Row>
 
@@ -381,24 +327,6 @@ export default class Template extends Component {
                   <Checkbox.Group value={this.state.value4} data={this.state.field4} onChange={value4 => {
                     this.setState({ value4 })
                   }} />
-                  {/* <Checkbox
-                    all='four'
-                    onChange={list => {
-                      const fieldList = this.state.field4
-
-                      fieldList.forEach(item => {
-                        if (list.indexOf(item.value) > -1) {
-                          item.checked = true
-                        } else {
-                          item.checked = false
-                        }
-                      })
-                      this.setForm()
-                    }}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox list={this.state.field4} name='four' /> */}
                 </Col>
               </Row>
             </DataFilter>

@@ -596,11 +596,11 @@ class HomeDashboard extends Component {
                 <span className='card__title'>询价下单量</span>
                 <div className='card__filter'>
                   <Dropdown
-                    list={this.transportList}
+                    data={this.transportList}
                     title='物流公司'
                     onClick={val => console.log(val)}
                   />
-                  <Dropdown list={this.monthList} title='本月' onClick={val => console.log(val)} />
+                  <Dropdown data={this.monthList} title='本月' onClick={val => console.log(val)} />
                 </div>
               </div>
               <div className='card__body'>

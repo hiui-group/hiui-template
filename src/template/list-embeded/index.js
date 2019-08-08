@@ -216,7 +216,7 @@ export default class ListEmbeded extends Component {
         </div>
 
         <Dropdown
-          list={[
+          data={[
             {
               title: '全部'
             },

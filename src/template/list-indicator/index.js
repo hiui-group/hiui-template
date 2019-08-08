@@ -42,8 +42,8 @@ export default class ListIndicator extends Component {
               </span>
             ))}
           </div>
-          {['财务部订单', '人力部订单', '开发部订单', '信息部订单'].map(category => (
-            <div>
+          {['财务部订单', '人力部订单', '开发部订单', '信息部订单'].map((category, index) => (
+            <div key={index}>
               <div className='indicator——item_header'>{category}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {[
@@ -61,8 +61,9 @@ export default class ListIndicator extends Component {
                   '订书钉',
                   '计算器',
                   '修正液'
-                ].map(item => (
+                ].map((item, index) => (
                   <Card
+                    key={index}
                     hoverable
                     type='simple'
                     size='small'

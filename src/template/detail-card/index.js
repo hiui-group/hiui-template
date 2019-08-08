@@ -47,7 +47,7 @@ export default class Template extends Component {
     }),
     baseInfo: {},
     stepper: {
-      list: Array(5).fill({
+      data: Array(5).fill({
         title: '账号信息',
         content: '请输入账号信息'
       }),
@@ -167,7 +167,7 @@ export default class Template extends Component {
           <Col className='detail-card__card detail-card__card--stepper page page--gutter'>
             <Row className='title'>项目流程</Row>
             <Row className='stepper'>
-              <Stepper {...{ ...stepper, up: true }} />
+              <Stepper {...{ ...stepper, itemLayout: 'vertical' }} />
             </Row>
           </Col>
 

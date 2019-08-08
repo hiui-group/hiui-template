@@ -17,7 +17,7 @@ class ListItem extends React.Component {
           <div style={{ flex: 1 }}>
             <div className='list-item__header'>
               {title}
-              <Tag type={status} className='tag'>{statusDesc}</Tag>
+              <Tag type={status || 'primary'} className='tag'>{statusDesc}</Tag>
             </div>
             <div className='list-item__info'>
               {info.map((i, index) => [

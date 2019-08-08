@@ -48,8 +48,8 @@ export default class ListTask extends Component {
         <div className='tasks__container'>
           <div className='tasks--card-container'>
             {tasks
-              .map(t => (
-                <div className='tasks--card-item'>
+              .map((t, index) => (
+                <div className='tasks--card-item' key={index}>
                   <Card
                     title={t.title}
                     hoverable
@@ -60,7 +60,7 @@ export default class ListTask extends Component {
                 </div>
               ))
               .concat(
-                <div className='tasks--card-item'>
+                <div className='tasks--card-item' key='btn'>
                   <Card
                     hoverable
                     style={{

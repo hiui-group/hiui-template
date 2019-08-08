@@ -15,9 +15,9 @@ export default class Template extends Component {
     }),
     baseInfo: {},
     stepper: {
-      list: Array(5).fill({
+      data: Array(5).fill({
         title: '账号信息',
-        text: '请输入账号信息'
+        content: '请输入账号信息'
       }),
       current: Math.round(Math.random() * 4)
     }
@@ -50,7 +50,7 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     const { title, baseInfo, stepper } = this.state
-    const formTitle = stepper.list[stepper.current].title
+    const formTitle = stepper.data[stepper.current].title
     return (
       <div className='page--detail-stepper'>
         <Col className='detail-stepper'>
@@ -92,7 +92,7 @@ export default class Template extends Component {
           <Col className='detail-stepper__card detail-stepper__card--stepper page page--gutter'>
             <Row className='title'>项目流程</Row>
             <Row className='stepper'>
-              <Stepper {...{ ...stepper, up: true }} />
+              <Stepper {...{ ...stepper, itemLayout: 'vertical' }} />
             </Row>
             <Row className='form-title'>
               {formTitle}

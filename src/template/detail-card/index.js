@@ -49,7 +49,7 @@ export default class Template extends Component {
     stepper: {
       list: Array(5).fill({
         title: '账号信息',
-        text: '请输入账号信息'
+        content: '请输入账号信息'
       }),
       current: Math.round(Math.random() * 4)
     },
@@ -160,7 +160,7 @@ export default class Template extends Component {
             </Col>
             <Col className='detail-card__card detail-card__card--record page page--gutter'>
               <Row className='title'>修改记录</Row>
-              <Timeline list={timelineList} />
+              <Timeline data={timelineList} />
             </Col>
           </Row>
 

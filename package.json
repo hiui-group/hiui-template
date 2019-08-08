@@ -15,7 +15,7 @@
   "homepage": "http://hiui-group.github.io/hiui-template/",
   "dependencies": {
     "@hi-ui/classic-theme": "^2.0.0-rc.6",
-    "@hi-ui/component-kit": "^1.0.0-rc.0",
+    "@hi-ui/component-kit": "^1.0.0-rc.1",
     "@hi-ui/core-css": "^2.0.0",
     "@hi-ui/hiui": "^2.0.3",
     "axios": "^0.18.1",

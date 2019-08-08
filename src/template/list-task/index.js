@@ -19,7 +19,7 @@ export default class ListTask extends Component {
         title: '商业智能报表的…',
         content: '使用线上分析处理技术，快速设计各类报表，提高开发率, 提供…'
       },
-      80
+      36
     ),
     pageNum: 1,
     pageSize: 15

@@ -37,12 +37,12 @@
 
   .tasks--card-item {
     margin-bottom: $spacer-6;
+    margin-right: $spacer-6;
   }
 
   .tasks--card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     flex: 1 0 25%;
   }
 

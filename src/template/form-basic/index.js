@@ -52,7 +52,7 @@ export default class Template extends Component {
       {},
       {
         text: '',
-        date: '',
+        date: null,
         num: 0,
         time: new Date(),
         select: '4',
@@ -72,7 +72,6 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms, rules } = this.state
-
     return (
       <div className='page--form-basic'>
         <Form model={forms} rules={rules} labelWidth='120'>
@@ -93,7 +92,9 @@ export default class Template extends Component {
                   type='daterange'
                   value={forms.date}
                   onChange={d => {
-                    console.log(d)
+                    this.setState({
+                      forms: Object.assign({}, this.state.forms, { date: d })
+                    })
                   }}
                 />
               </FormItem>

@@ -43,7 +43,7 @@ export default class Template extends Component {
     }
 
     this.state = {
-      pageSize: 0,
+      pageSize: 10,
       total: 0,
       page: 1,
       tableDatas: [],

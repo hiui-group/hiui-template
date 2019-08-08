@@ -26,7 +26,7 @@ export default class Template extends Component {
     }
 
     this.state = {
-      pageSize: 0,
+      pageSize: 10,
       total: 0,
       page: 1,
       tableDatas: [],
@@ -106,7 +106,6 @@ export default class Template extends Component {
     const { columns, tableDatas, pageSize, total, page, value } = this.state
     const Row = Grid.Row
     const Col = Grid.Col
-    console.log(columns, tableDatas, pageSize, total, page)
     return (
       <div className='page--common-search'>
         <Row>

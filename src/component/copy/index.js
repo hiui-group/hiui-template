@@ -82,7 +82,7 @@ export default class Copy extends Component {
               关闭
             </Button>,
             <CopyToClipboard
-              text={selectedKey === 0 ? jsCode : cssCode}
+              text={selectedKey === '0' ? jsCode : cssCode}
               onCopy={() => {
                 Notification.open({
                   type: 'success',

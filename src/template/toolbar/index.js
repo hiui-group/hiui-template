@@ -130,7 +130,7 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              fetchData={this.fetchData.bind(this)}
+              fetchDatas={this.fetchData.bind(this)}
               columnMixins={this.columnMixins}
               table={{
                 pageSize

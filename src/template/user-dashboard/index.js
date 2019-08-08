@@ -129,11 +129,11 @@ class UserDashboard extends Component {
             <div>王成</div>
             <Icon name='edit' />
           </div>
-          {asideInfo.map(info => (
-            <div className='aside__section'>
+          {asideInfo.map((info, index) => (
+            <div className='aside__section' key={index}>
               <div className='title'>{info.title}</div>
-              {info.content.map(c => (
-                <div className='content-item'>
+              {info.content.map((c, index) => (
+                <div className='content-item' key={index}>
                   <div className='content-item--left'>{c.label}</div>
                   <div className='content-item--right'>{c.value}</div>
                 </div>
@@ -148,8 +148,8 @@ class UserDashboard extends Component {
                 <div className='card__header'>我的资产</div>
                 <div className='card__content'>
                   <div style={{ flex: 1 }}>
-                    {myAsset.map(assert => (
-                      <div style={{ marginBottom: 8 }}>
+                    {myAsset.map((assert, index) => (
+                      <div style={{ marginBottom: 8 }} key={index}>
                         <div style={{ marginBottom: 2 }}>{assert.title}</div>
                         <div
                           style={{
@@ -176,8 +176,8 @@ class UserDashboard extends Component {
                 <div className='card__header'>我提交的申请</div>
                 <div className='card__content'>
                   <div style={{ flex: 1 }}>
-                    {myApply.map(apply => (
-                      <div style={{ marginBottom: 8 }}>
+                    {myApply.map((apply, index) => (
+                      <div style={{ marginBottom: 8 }} key={index}>
                         <div
                           style={{
                             marginBottom: 2,
@@ -186,7 +186,7 @@ class UserDashboard extends Component {
                           }}
                         >
                           <div>{apply.title}</div>
-                          <Tag type={apply.status}>{apply.statusDesc}</Tag>
+                          <Tag type={apply.status || 'primary'}>{apply.statusDesc}</Tag>
                         </div>
                         <div
                           style={{
@@ -218,8 +218,8 @@ class UserDashboard extends Component {
                 <div className='card__header'>我的收藏</div>
                 <div className='card__content'>
                   <div style={{ flex: 1 }}>
-                    {myCollect.map(collect => (
-                      <div style={{ marginBottom: 8, display: 'flex' }}>
+                    {myCollect.map((collect, index) => (
+                      <div key={index} style={{ marginBottom: 8, display: 'flex' }}>
                         {collect.image && (
                           <img
                             alt=''
@@ -265,8 +265,9 @@ class UserDashboard extends Component {
                 <div className='card__header'>我的资产</div>
                 <div className='card__content'>
                   <div style={{ flex: 1 }}>
-                    {mySubscribe.map(subscribe => (
+                    {mySubscribe.map((subscribe, index) => (
                       <div
+                        key={index}
                         style={{
                           marginBottom: 18,
                           display: 'flex',

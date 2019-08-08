@@ -68,12 +68,12 @@ export default class Template extends Component {
               <h2>{title}</h2>
               <Row className='row row-03'>
                 {desc.map(({ key, value }, idx) => (
-                  <>
+                  <div key={idx}>
                     <span>
                       {key}：{value}
                     </span>
                     <span className='spacer'>|</span>
-                  </>
+                  </div>
                 ))}
               </Row>
             </Col>

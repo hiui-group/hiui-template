@@ -34,8 +34,8 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount () {
-    this.fetchData()
+  componentDidMount () {
+    this.fetchData(1)
   }
 
   fetchData (page) {
@@ -106,7 +106,7 @@ export default class Template extends Component {
     const { columns, tableDatas, pageSize, total, page, value } = this.state
     const Row = Grid.Row
     const Col = Grid.Col
-
+    console.log(columns, tableDatas, pageSize, total, page)
     return (
       <div className='page--common-search'>
         <Row>

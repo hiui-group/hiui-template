@@ -225,7 +225,7 @@ export default class Template extends Component {
           <Col span={24}>
             <DataFilter
               ref={node => (this.dataFilter = node)}
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tile`}
+              url={`http://yapi.demo.qunar.com/mock/26534/hiui/tile-table`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[
@@ -268,7 +268,7 @@ export default class Template extends Component {
               ]}
             >
               <Row gutter>
-                <div className='block-filter__label block-filter__label--checkbox'>订单状态</div>
+                <div className='block-filter__label block-filter__label--checkbox'>业务来源</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
                     indeterminate={this.getIndeterminate1()}
@@ -278,13 +278,12 @@ export default class Template extends Component {
                   全选
                   </Checkbox>
                   <Checkbox.Group value={this.state.value1} data={this.state.field1} onChange={value1 => {
-                    console.log(value1)
                     this.setState({ value1 })
                   }} />
                 </Col>
               </Row>
               <Row gutter>
-                <div className='block-filter__label block-filter__label--checkbox'>业务来源</div>
+                <div className='block-filter__label block-filter__label--checkbox'>运输方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
                     indeterminate={this.getIndeterminate2()}
@@ -299,7 +298,7 @@ export default class Template extends Component {
                 </Col>
               </Row>
               <Row gutter>
-                <div className='block-filter__label block-filter__label--checkbox'>运输方式</div>
+                <div className='block-filter__label block-filter__label--checkbox'>支付方式</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
                     indeterminate={this.getIndeterminate3()}
@@ -315,7 +314,7 @@ export default class Template extends Component {
               </Row>
 
               <Row gutter>
-                <div className='block-filter__label block-filter__label--checkbox'>支付方式</div>
+                <div className='block-filter__label block-filter__label--checkbox'>订单状态</div>
                 <Col className='checkboxs-group'>
                   <Checkbox
                     indeterminate={this.getIndeterminate4()}

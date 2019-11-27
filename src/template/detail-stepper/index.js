@@ -25,7 +25,7 @@ export default class Template extends Component {
 
   fetchBaseInfo = () => {
     return axios
-      .get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo')
+      .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail')
       .then(({ data: { data: baseInfo } }) => {
         this.setState({ baseInfo })
       })

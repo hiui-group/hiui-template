@@ -112,7 +112,7 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order`}
+              url={`http://yapi.demo.qunar.com/mock/26534/hiui/base-table`}
               onFetched={ret => {
                 console.log('fetchData', ret)
               }}

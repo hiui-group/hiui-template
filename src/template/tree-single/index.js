@@ -27,7 +27,7 @@ export default class Template extends Component {
 
   fetchData (page = 1) {
     axios
-      .get(`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`, {
+      .get(`http://yapi.demo.qunar.com/mock/26534/hiui/tree-table`, {
         params: {
           page,
           id: this.state.activeId

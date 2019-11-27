@@ -106,7 +106,7 @@ export default class Template extends Component {
     }
 
     return axios
-      .get('https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/list/order', {
+      .get('http://yapi.demo.qunar.com/mock/26534/hiui/base-table', {
         params: {
           ...args,
           ...params,

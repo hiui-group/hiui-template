@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/hiui-template/precache-manifest.3d0e577a86c5014dac5ad17d95111a4d.js"
+  "/hiui-template/precache-manifest.a9e1dfa474407ab6ab559be3c79d6635.js"
 );
 
 workbox.clientsClaim();

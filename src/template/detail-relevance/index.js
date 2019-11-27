@@ -20,7 +20,7 @@ export default class Template extends Component {
 
   fetchBaseInfo = () => {
     axios
-      .get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo')
+      .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail')
       .then(({ data: { data: baseInfo } }) => {
         this.setState({ baseInfo })
       })
@@ -196,7 +196,7 @@ class QueryBasic extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
+              url={`http://yapi.demo.qunar.com/mock/26534/hiui/get-datas`}
               onFetched={ret => {
                 console.log('------------fetchData', ret)
               }}

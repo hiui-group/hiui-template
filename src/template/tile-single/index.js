@@ -121,7 +121,7 @@ export default class Template extends Component {
           <Col span={24}>
             <DataFilter
               ref={node => (this.dataFilter = node)}
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tile`}
+              url={`http://yapi.demo.qunar.com/mock/26534/hiui/tile-table`}
               params={params}
               columnMixins={this.columnMixins}
               actions={[

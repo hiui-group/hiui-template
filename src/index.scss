@@ -54,3 +54,10 @@
     margin-top: 12px;
   }
 }
+
+.remote-data-tips {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -169,7 +169,7 @@ export default class Template extends Component {
           <Col span={24}>
             <DataFilter
               ref={node => (this.dataFilter = node)}
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/tree`}
+              url={`http://yapi.demo.qunar.com/mock/26534/hiui/tree-table`}
               params={params}
               columnMixins={this.columnMixins}
               vertical

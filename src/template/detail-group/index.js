@@ -22,7 +22,7 @@ export default class Template extends Component {
 
   fetchBaseInfo = () => {
     return axios
-      .get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/detailinfo')
+      .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail')
       .then(({ data: { data: baseInfo } }) => {
         this.setState({ baseInfo })
       })
@@ -30,8 +30,8 @@ export default class Template extends Component {
 
   fetchExpressInfo = () => {
     return Promise.all([
-      axios.get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo'),
-      axios.get('https://easy-mock.com/mock/5cff0b81700fad38e151c566/usual/userinfo')
+      axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/info'),
+      axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/info')
     ]).then(([{ data: { data: data1 } }, { data: { data: data2 } }]) => {
       this.setState({
         expressInfo: [{ ...data1, title: '发件人信息' }, { ...data2, title: '收件人信息' }]
@@ -225,7 +225,7 @@ class QueryBasic extends Component {
         <Row>
           <Col span={24}>
             <DataFilter
-              url={`https://easy-mock.com/mock/5c1b42e3fe5907404e6540e9/hiui/table/get-datas`}
+              url={`http://yapi.demo.qunar.com/mock/26534/hiui/get-datas`}
               onFetched={ret => {
                 console.log('------------fetchData', ret)
               }}

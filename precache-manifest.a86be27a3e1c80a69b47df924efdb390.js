@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/hiui-template/static/css/1.d369ccce.chunk.css"
   },
   {
-    "revision": "15363e02fd76f220ee9bacd085819d1e",
+    "revision": "02f44070b618b5c3cbe49e53e49418f9",
     "url": "/hiui-template/index.html"
   }
 ];

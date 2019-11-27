@@ -23,7 +23,7 @@ const DataTip = () => {
     >
       <div style={{ textAlign: 'center' }}>
         <p>由于使用了第三方在线 Mock 服务（仅支持 Http 请求协议）如果数据不能正确加载，请尝试点击浏览器地址栏盾牌按钮，选择「允许加载不安全脚本」</p>
-        <img src='/static/tips.gif' alt='tips' style={{ border: '1px solid #ccc' }} />
+        <img src='/hiui-template/static/tips.gif' alt='tips' style={{ border: '1px solid #ccc' }} />
       </div>
     </Modal>
   )

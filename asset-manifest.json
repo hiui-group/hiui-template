@@ -1,15 +1,15 @@
 {
-  "main.css": "/static/css/main.1a6c1daa.chunk.css",
-  "main.js": "/static/js/main.ea7497a0.chunk.js",
-  "main.js.map": "/static/js/main.ea7497a0.chunk.js.map",
-  "static/css/1.d369ccce.chunk.css": "/static/css/1.d369ccce.chunk.css",
-  "static/js/1.7c58b000.chunk.js": "/static/js/1.7c58b000.chunk.js",
-  "static/js/1.7c58b000.chunk.js.map": "/static/js/1.7c58b000.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
-  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/css/main.1a6c1daa.chunk.css.map": "/static/css/main.1a6c1daa.chunk.css.map",
-  "static/css/1.d369ccce.chunk.css.map": "/static/css/1.d369ccce.chunk.css.map",
-  "index.html": "/index.html",
-  "precache-manifest.825237407d182a7cb206cab9154fece1.js": "/precache-manifest.825237407d182a7cb206cab9154fece1.js",
-  "service-worker.js": "/service-worker.js"
+  "main.css": "/hiui-template/static/css/main.1a6c1daa.chunk.css",
+  "main.js": "/hiui-template/static/js/main.c984bee6.chunk.js",
+  "main.js.map": "/hiui-template/static/js/main.c984bee6.chunk.js.map",
+  "static/css/1.d369ccce.chunk.css": "/hiui-template/static/css/1.d369ccce.chunk.css",
+  "static/js/1.7c58b000.chunk.js": "/hiui-template/static/js/1.7c58b000.chunk.js",
+  "static/js/1.7c58b000.chunk.js.map": "/hiui-template/static/js/1.7c58b000.chunk.js.map",
+  "runtime~main.js": "/hiui-template/static/js/runtime~main.a8db7e09.js",
+  "runtime~main.js.map": "/hiui-template/static/js/runtime~main.a8db7e09.js.map",
+  "static/css/main.1a6c1daa.chunk.css.map": "/hiui-template/static/css/main.1a6c1daa.chunk.css.map",
+  "static/css/1.d369ccce.chunk.css.map": "/hiui-template/static/css/1.d369ccce.chunk.css.map",
+  "index.html": "/hiui-template/index.html",
+  "precache-manifest.dffb294cf109f1b44237b66add2f5e99.js": "/hiui-template/precache-manifest.dffb294cf109f1b44237b66add2f5e99.js",
+  "service-worker.js": "/hiui-template/service-worker.js"
 }

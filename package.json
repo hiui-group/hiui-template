@@ -12,7 +12,7 @@
   },
   "author": "HIUI <mi-hiui@xiaomi.com>",
   "license": "MIT",
-  "homepage": "http://hiui-group.github.io/hiui-template/",
+  "homepage": "http://hiui-template.github.io",
   "dependencies": {
     "@hi-ui/classic-theme": "^2.0.0-rc.6",
     "@hi-ui/component-kit": "^1.0.0-rc.1",

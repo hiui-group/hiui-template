@@ -8,7 +8,7 @@ const config = [
   {
     name: '首页',
     children: [
-      { name: '仪表盘', path: '/home-dashboard' },
+      { name: '仪表盘', path: '/' },
       { name: '门户', path: '/home-portal' },
       { name: '搜索', path: '/home-search' }
     ]

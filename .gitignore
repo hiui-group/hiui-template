@@ -1,0 +1,26 @@
+# MIFE dotfiles
+
+# Output files
+dist/
+es/
+
+# Editor generate files
+.idea/
+.settings/
+.vscode/
+.tmp/
+
+test/coverage/
+# Dev dependencies and cache files
+node_modules/
+
+# Misc files
+*~
+~*
+._*
+.DS_Store
+Desktop.ini
+Thumbs.db
+.Spotlight-V100
+.Trashes
+.eslintrc.json

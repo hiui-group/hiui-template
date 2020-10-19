@@ -1,6 +1,6 @@
 {
   "name": "hi-request",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.1",
   "description": "Promise based HTTP client for the browser",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,15 @@
     "build": "webpack",
     "prepublish": "webpack"
   },
-  "keywords": [],
-  "author": "HiUI-tema",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wugaoliang1116/hi-request.git"
+  },
+  "keywords": [
+    "react",
+    "request"
+  ],
+  "author": "HiUI-team",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",

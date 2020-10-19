@@ -42,6 +42,9 @@ METHODS.forEach((method) => {
 HiRequest.CancelToken = () => {
   return axios.CancelToken
 }
+HiRequest.Cancel = axios.Cancel;
+HiRequest.isCancel = axios.isCancel;
+
 /**
  * 获取cookies中的值作为参数使用
  * @param key

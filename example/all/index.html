@@ -40,31 +40,6 @@
           );
         }).join('');
       }));
-      const CancelToken = HiRequest.CancelToken
-      const source = CancelToken.source()
-
-      HiRequest.get('/user/12345', {
-        cancelToken: source.token
-      }).catch(function (thrown) {
-        if (HiRequest.isCancel(thrown)) {
-            console.log('Request canceled', thrown.message)
-        } else {
-            // handle error
-        }
-     })
-
-    HiRequest.post(
-      '/user/12349995',
-        {
-            name: 'new name'
-        },
-        {
-            cancelToken: source.token
-        }
-    )
-
-        // 取消这次请求
-        source.cancel('Operation canceled by the user.')
     </script>
   </body>
 </html>

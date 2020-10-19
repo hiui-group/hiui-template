@@ -39,11 +39,10 @@ METHODS.forEach((method) => {
   HiRequest[method] = (url, options) => HiRequest({ ...options, method, url })
 })
 // 取消请求
-HiRequest.CancelToken = () => {
-  return axios.CancelToken
-}
-HiRequest.Cancel = axios.Cancel;
-HiRequest.isCancel = axios.isCancel;
+const CANCEL = ['CancelToken','Cancel','isCancel']
+CANCEL.forEach(type=>{
+  HiRequest[type]= axios[type]
+})
 
 /**
  * 获取cookies中的值作为参数使用

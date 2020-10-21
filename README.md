@@ -5,7 +5,7 @@
 ### 快速使用
 
 ```javascript
-import HiRequest from 'hi-request'
+import HiRequest from '@hi-ui/hiui/es/hi-request'
 
 HiRequest.get('/user?ID=12345').then((response) => {
   // handle success
@@ -14,6 +14,7 @@ HiRequest.get('/user?ID=12345').then((response) => {
 ```
 
 ### 支持 AMD/CJS/ESM 模块引入
+
 ```js
 
 // ESM
@@ -210,8 +211,6 @@ HiRequest('/user/12345', { method: 'get' }, 'api')
 ##### HiRequest.put(url[, data[, config]])
 
 ##### HiRequest.patch(url[, data[, config]])
-
-##### HiRequest.getCookiesParam(url[, data[, config]])
 
 ##### HiRequest.upload(url[, data[, config]])
 
@@ -542,13 +541,10 @@ HiRequest.get('/user/12345', {
   }
 })
 
-HiRequest.post(
-  '/user/12345',
-  {
-    name: 'new name',
-    cancelToken: source.token
-  },
-)
+HiRequest.post('/user/12345', {
+  name: 'new name',
+  cancelToken: source.token
+})
 
 // 取消这两次请求
 
@@ -570,13 +566,6 @@ HiRequest.get('/user/12345', {
 
 // cancel the request
 cancel()
-```
-
-## Cookie
-
-```js
-//获取cookies中的指定项
-HiRequest.getCookiesParam(key)
 ```
 
 ## 使用建议
@@ -617,12 +606,10 @@ const HttpClient = (url, options = {}, host = 'api') => {
         console.log(error.request)
       },
       // 异常结果 返回或者其他异常都会走这个
-      errorCallback: [
-        function (error) {
-          // 对config进行自定义处理
-          console.log(err, error.request || error.response)
-        }
-      ],
+      errorCallback: (error) => {
+        // 对config进行自定义处理
+        console.log(err, error.request || error.response)
+      },
       ...restOptions
     },
     host

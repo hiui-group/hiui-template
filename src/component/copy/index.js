@@ -75,9 +75,9 @@ export default class Copy extends Component {
             </React.Fragment>
           }
           size='large'
-          show={showModal}
+          visible={showModal}
           onCancel={this.closeModal.bind(this)}
-          footers={[
+          footer={[
             <Button type='default' onClick={this.closeModal.bind(this)} key='close'>
               关闭
             </Button>,

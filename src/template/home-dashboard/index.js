@@ -17,7 +17,8 @@ export default class HomeDashboard extends Component{
     async componentDidMount(){
         this.setState({isLoadingData: true})
         // 获取面板分类信息
-        const {data: {data = []} } = await Axios.get('/api/home-dashboard/tabs')
+        const {data: {data = []} } = await Axios.get('http://mock.be.mi.com/mock/2532/home/dashboard/tabs')
+
         this.setState({tabInfos:data})
         // 做容错处理，以防止后端传回数据为空
         this.setState({nowActiveTabId:(data[0] || {}).id})
@@ -25,6 +26,9 @@ export default class HomeDashboard extends Component{
         this.setState({isLoadingData: false})
     }
 
+    /**
+     * 渲染右上角，tab切换信息部分
+     */
     renderTabInfos(){
         const { tabInfos, nowActiveTabId } = this.state
         const changeActiveTabDel = (newActiveId) => {

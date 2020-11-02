@@ -4,7 +4,6 @@ import rootRoute from './route'
 import { Theme } from '@hi-ui/classic-theme'
 import Copy from './component/copy'
 import DataTip from './component/dataTip'
-import './mocks'
 import './template/content.scss'
 import './index.scss'
 

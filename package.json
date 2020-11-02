@@ -23,7 +23,6 @@
     "classnames": "^2.2.5",
     "echarts": "^4.2.1",
     "echarts-for-react": "^2.0.15-beta.0",
-    "faker": "^5.1.0",
     "lodash": "^4.17.20",
     "node-sass": "^4.12.0",
     "postcss-loader": "^2.1.5",

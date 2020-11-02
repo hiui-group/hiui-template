@@ -2,23 +2,23 @@ import React, { useState } from 'react'
 import Modal from '@hi-ui/hiui/es/modal'
 
 const DataTip = () => {
-  const isShow = window.localStorage.getItem('__showt')
-  const [show, setShow] = useState(true)
-  console.log('show', show)
+  const isShowed = localStorage.getItem('__showt') || false
+  const [show, setShow] = useState(!isShowed)
+
+  console.log(show)
   return (
-    !isShow &&
+    show &&
     <Modal
       title='温馨提示'
-      show={show}
+      visible={show}
       cancelText='知道了'
       confirmText='不再提醒'
       onCancel={() => {
         setShow(false)
       }}
       onConfirm={() => {
-        console.log(11)
         setShow(false)
-        window.localStorage.setItem('__showt', true)
+        localStorage.setItem('__showt', true)
       }}
     >
       <div style={{ textAlign: 'center' }}>

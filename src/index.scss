@@ -61,3 +61,14 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+
+// FIXME: 修正 @hi-ui/component-kit 所带来的BUG，后续需要删除此部分
+.hi-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  z-index: 1000;
+}

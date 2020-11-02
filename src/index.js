@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import rootRoute from './route'
 import { Theme } from '@hi-ui/classic-theme'
 import Copy from './component/copy'
-// import DataTip from './component/dataTip'
+import DataTip from './component/dataTip'
+import './mocks'
 import './template/content.scss'
 import './index.scss'
 
@@ -30,7 +31,7 @@ render(
   <React.Fragment>
     <Theme logo={logoConfig} login={loginConfig} routes={rootRoute} />
     <Copy />
-    {/* <DataTip /> */}
+    <DataTip />
   </React.Fragment>,
   document.getElementById('app')
 )

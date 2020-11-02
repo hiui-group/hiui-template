@@ -1,9 +1,15 @@
 const components = {}
 const files = require.context('../template', true, /.js$/)
 files.keys().forEach(key => {
-  let _key = key.split('/')[1]
-  components[_key] = files(key).default
+  let componentName = key.split('/')[1]
+  let fileName = key.split('/')[2]
+  // 引入对应模板的index.js页面文件，排除其他文件
+  if(fileName === 'index.js'){
+    // console.log(componentName)
+    components[componentName] = files(key).default
+  }
 })
+
 const config = [
   {
     name: '首页',

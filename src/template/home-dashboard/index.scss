@@ -49,6 +49,10 @@
     }
   }
 
+  .order-info__company-select{
+    margin-right: 16px;
+  }
+
   .info {
     display: flex;
     flex-direction: column;
@@ -56,7 +60,8 @@
     height: 96px;
     width: 100%;
     background: $white;
-
+    border-radius: 4px;
+  
     &__amount {
       margin: 20px 0 0 0;
       font-size: $font-size-h3;
@@ -71,6 +76,13 @@
   }
 
   .card {
+    border-radius: 4px;
+  
+    &__title{
+      font-size: 16px;
+      font-weight: bold;
+      color: #333333;
+    }
     .hi-grid__col-12 & {
       flex-basis: 280px;
     }

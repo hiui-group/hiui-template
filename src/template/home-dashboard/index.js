@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import Cls from 'classnames'
+import Debounce from 'lodash/debounce'
 import {  Grid, Loading, DatePicker, Dropdown } from '@hi-ui/hiui'
 import Axios from 'axios'
 import EChartsForReact from 'echarts-for-react'
@@ -40,12 +41,26 @@ export default class HomeDashboard extends Component{
         enquiryAndOrderInfo:{
             enquiry: [],
             order: []
-        }
+        },
+        expressTypeInfos: [],
+        activityExpectInfos: [],
+        efficiencyRate: 0
     }
 
+    // 所有表格引用对象Map
     eChartRefMap = new Map()
 
     async componentDidMount(){
+        // 当窗口尺寸变化的时候，canvas需要绘制的大小也会改变，所以需要主动的去重新绘制canvas
+        // 增加防抖处理，以免函数频繁执行
+        window.onresize = Debounce(() => {
+            Array.from(this.eChartRefMap.values()).forEach(
+                chart => {
+                    chart && chart.getEchartsInstance().resize()
+                }
+            )
+        }, 100)
+    
         this.setState({isLoadingData: true})
         // 获取面板分类信息
         const {data: {data = []} } = await Axios.get('http://mock.be.mi.com/mock/2532/home/dashboard/tabs')
@@ -68,8 +83,9 @@ export default class HomeDashboard extends Component{
         const fetchPageMatchIdInfo = async () => {
             const path = `http://mock.be.mi.com/mock/2532/home/dashboard/info?id=${id}`
             // 根据id获取页面信息
-            const { data: {data : {indicatorInfos = []}} } = await Axios.get(path)
-            this.setState({indicatorInfos})
+            const { data: {data : {indicatorInfos = [], expressTypeInfos=[], activityExpectInfos=[],
+                        efficiencyRate = 0}} } = await Axios.get(path)
+            this.setState({indicatorInfos,expressTypeInfos,activityExpectInfos, efficiencyRate})
         }
         // 由于整个页面数据从三个接口获取，使用promise.all，三个数据获取同时进行 
         Promise.all([
@@ -423,6 +439,309 @@ export default class HomeDashboard extends Component{
         )
     }
 
+    // 绘制快递类别占比图表
+    renderExpressTypeChart(){
+
+        const { expressTypeInfos } = this.state
+        // 注意，此处数组的类型结构为{value:number,name:string}，如原数据不是此类型结构，请先转换
+        // 因为使用了MOCK数据，为了让数据看起来真一点所以才做了一些处理
+        const chartData = [...expressTypeInfos].map(item => (
+            {name: item.name + '快递',value: item.value})
+        )
+    
+        const chartOption = {
+            tooltip: {
+                trigger: 'item',
+                backgroundColor: 'rgba(56, 62, 71, 1)',
+                formatter: '{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                right: 20,
+                top: 5,
+                // 格式化计算百分比显示在右侧
+                formatter: name => {
+                    const data = chartData
+                    let total = 0
+                    let target = 0
+                    data.forEach(item => {
+                        total += item.value
+                        if (item.name === name) {
+                            target = item.value
+                        }
+                    })
+                    return name + ' ' + ((target / total) * 100).toFixed(2) + '%'
+                },
+                itemGap: 20,
+                textStyle: {
+                    color: '#333333'
+                },
+                data: chartData.map(item => item.name),
+                icon: 'circle',
+                itemWidth: 8,
+                itemHeight: 8,
+                borderRadius: 8
+            },
+            grid: {
+                containLabel: true
+            },
+            series: [
+                {
+                    type: 'pie',
+                    radius: [50, 68],
+                    center: ['25%', '50%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                        show: false,
+                        position: 'center'
+                        },
+                        emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '14',
+                            fontWeight: 'bold'
+                        }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                        show: false
+                        }
+                    },
+                    data: chartData
+                }
+            ]
+        }
+        return (
+            <Col span={12}>
+                <div className='card'>
+                    <div className='card__header'>
+                        <span className='card__title'>快递类别占比</span>
+                    </div>
+                    <div className='card__body'>
+                        <EChartsForReact
+                        ref={ref => this.eChartRefMap.set('expressType',ref)}
+                        option={chartOption}
+                        opts={{ renderer: 'svg' }}
+                        style={{ height: '164px', width: '100%' }}
+                        className='card__canvas'
+                        theme='hiui_theme'
+                        />
+                    </div>
+                </div>
+            </Col>
+        )
+    }
+
+    renderActivityExpectChart(){
+        const { activityExpectInfos } = this.state
+        // Y周分割数据点
+        const segmentation = [
+            {
+                value: 1000,
+                color: '#4caf60'
+            },
+            {
+                value: 2000,
+                color: '#03A9F4'
+            }
+        ]
+        // 生成Y周分割段
+        const pieces = segmentation.map(
+            (item, index) => {
+                const { value, color } = item
+                const lastValue = index === 0 ? 0 : segmentation[index - 1].value
+                return {
+                    gt: lastValue,
+                    lte: value,
+                    color: color
+                }
+            }
+        )
+        pieces.push({
+            gt: segmentation[segmentation.length - 1].value,
+            color: '#cc0033'
+        })
+    
+
+        const chartOption = {
+            tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false
+            }
+            ],
+            yAxis: [{
+                type: 'value',
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                }
+            }],
+            visualMap: {
+                top: 0,
+                right: 0,
+                pieces,
+                outOfRange: {
+                    color: '#999'
+                }
+            },    
+            series: [{
+                type: 'line',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                // 标记线
+                markLine: {
+                    silent: true,
+                    data: segmentation.map((item) => ({ yAxis: item.value }))
+                },        
+                showSymbol: false,
+                smooth: 0.2,
+                areaStyle: { color: 'rgba(103, 157, 246, 0.16)' },
+                data: activityExpectInfos
+            }]
+        }
+
+        return (
+            <Col span={24}>
+                <div className='card'>
+                    <div className='card__header'>
+                        <span className='card__title'>活动预期情况预算</span>
+                    </div>
+                    <div className='card__body'>
+                        <EChartsForReact
+                        ref={ref => this.eChartRefMap.set('activityExpect',ref)}
+                        option={chartOption}
+                        opts={{ renderer: 'svg' }}
+                        style={{ height: '300px', width: '100%' }}
+                        className='card__canvas'
+                        theme='hiui_theme'
+                        />
+                    </div>
+                </div>
+            </Col>
+        )
+    }
+
+    renderEfficiencyChart(){
+        const { efficiencyRate } = this.state
+        const safeEfficiencyRate = Number(efficiencyRate).toFixed(1)
+
+        const chartOption = {
+            tooltip: {
+                formatter: '{a} <br/>{b} : {c}%',
+                backgroundColor: 'rgba(56, 62, 71, 1)'
+            },
+            toolbox: {},
+            series: [
+            {
+                name: '跳出率',
+                type: 'gauge',
+                radius: '80%',
+                min: 0,
+                max: 100,
+                splitNumber: 20,
+                data: [{ value: safeEfficiencyRate, name: '跳出率' }],
+                axisLine: {
+                    lineStyle: {
+                        width: 0,
+                        color: [[0, '#4387f4'],[safeEfficiencyRate/100,'#4387f4'], [safeEfficiencyRate/100,'#aaa'], [1, '#aaa']]
+                    }
+                },
+                axisLabel: {
+                    color: '#333',
+                    formatter: (value) => {
+                        // const valueMap = {
+                        //     20: '差',
+                        //     40: '中',
+                        //     60: '良',
+                        //     80: '优'
+                        // }
+
+                        // return valueMap[String(value)] || ''
+                        const allowShowValues = [0,20,40,60,80,100]
+                        return allowShowValues.includes(Number(value))?value:''
+                    }
+                },
+                splitLine: {
+                    length: 15,
+                    lineStyle: {
+                        color: 'auto',
+                        width: 2
+                    }
+                },
+                itemStyle: {
+                    color: '#4387f4'
+                },
+                pointer: {
+                    width: 2
+                },
+                axisTick: {
+                    show: true,
+                    length: 15,
+                    lineStyle: {
+                        color: 'auto',
+                        opacity: 0.6
+                    }
+                },
+                title:{
+                    fontSize: 12,
+                    offsetCenter: [0, '50%%']
+                },
+                detail: {
+                    offsetCenter: [0, '90%'],
+                    fontSize: 26,
+                    formatter: '{value}%',
+                    color: '#333',
+                    fontWeight: 'bolder'
+                }
+            }]
+        }
+
+        return (
+            <Col span={12}>
+                <div className='card'>
+                    <div className='card__header'>
+                        <span className='card__title'>合券效率</span>
+                    </div>
+                    <div className='card__body'>
+                        <EChartsForReact
+                            ref={ref => this.eChartRefMap.set('efficiency',ref)}
+                            option={chartOption}
+                            opts={{ renderer: 'svg' }}
+                            style={{ height: '240px', width: '100%' }}
+                            className='card__canvas'
+                            theme='hiui_theme'
+                        />
+                    </div>
+                </div>
+            </Col>
+        )
+    }
+
     render (){
         const { isLoadingData } = this.state
         return (
@@ -437,6 +756,13 @@ export default class HomeDashboard extends Component{
                 <Row gutter>
                     {this.renderLogisticsChart()}
                     {this.renderOrderInfoChart()}
+                </Row>
+                <Row>
+                    {this.renderActivityExpectChart()}
+                </Row>
+                <Row gutter>
+                    {this.renderExpressTypeChart()}
+                    {this.renderEfficiencyChart()}
                 </Row>
                 {/* loading状态遮罩，通过css修改为了透明背景，在Loading时页面无法操作 */}
                 {isLoadingData && (

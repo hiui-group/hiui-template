@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import Cls from 'classnames'
 import Debounce from 'lodash/debounce'
-import {  Grid, Loading, DatePicker, Dropdown } from '@hi-ui/hiui'
+import {  Grid, Loading, DatePicker, Dropdown, Table } from '@hi-ui/hiui'
 import Axios from 'axios'
 import EChartsForReact from 'echarts-for-react'
 import ECharts from 'echarts'
@@ -44,7 +44,8 @@ export default class HomeDashboard extends Component{
         },
         expressTypeInfos: [],
         activityExpectInfos: [],
-        efficiencyRate: 0
+        efficiencyRate: 0,
+        inventoryDetailInfos: []
     }
 
     // 所有表格引用对象Map
@@ -84,8 +85,8 @@ export default class HomeDashboard extends Component{
             const path = `http://mock.be.mi.com/mock/2532/home/dashboard/info?id=${id}`
             // 根据id获取页面信息
             const { data: {data : {indicatorInfos = [], expressTypeInfos=[], activityExpectInfos=[],
-                        efficiencyRate = 0}} } = await Axios.get(path)
-            this.setState({indicatorInfos,expressTypeInfos,activityExpectInfos, efficiencyRate})
+                        efficiencyRate = 0, inventoryDetailInfos = []}} } = await Axios.get(path)
+            this.setState({indicatorInfos,expressTypeInfos,activityExpectInfos, efficiencyRate, inventoryDetailInfos})
         }
         // 由于整个页面数据从三个接口获取，使用promise.all，三个数据获取同时进行 
         Promise.all([
@@ -742,6 +743,58 @@ export default class HomeDashboard extends Component{
         )
     }
 
+    renderInventoryDetail(){
+        const { inventoryDetailInfos } = this.state
+        const tableData = inventoryDetailInfos.map(item => ({...item,key: item.id}))
+
+        const tableColumns = [
+            {
+                title: '商品名',
+                dataKey: 'name'
+            },
+            {
+                title: '品类',
+                dataKey: 'category'
+            },
+            {
+                title: '规格',
+                dataKey: 'specification'
+            },
+            {
+                title: '单价',
+                dataKey: 'price',
+                align: 'right'
+            },
+            {
+                title: '门店',
+                dataKey: 'shop',
+                align: 'right'
+            },
+            {
+                title: '库存',
+                dataKey: 'inventory',
+                align: 'right'
+            }
+        ]
+        return (
+            <Row>
+                <Col span={24}>
+                    <div className='card'>
+                    <div className='card__header'>
+                        <span className='card__title'>库存详情</span>
+                    </div>
+                    <div className='card__body'>
+                        <Table
+                            columns={tableColumns}
+                            data={tableData}
+                        />
+                    </div>
+                    </div>
+                </Col>
+            </Row>
+        )
+    }
+
     render (){
         const { isLoadingData } = this.state
         return (
@@ -764,6 +817,7 @@ export default class HomeDashboard extends Component{
                     {this.renderExpressTypeChart()}
                     {this.renderEfficiencyChart()}
                 </Row>
+                {this.renderInventoryDetail()}
                 {/* loading状态遮罩，通过css修改为了透明背景，在Loading时页面无法操作 */}
                 {isLoadingData && (
                     <div className="loading-container">

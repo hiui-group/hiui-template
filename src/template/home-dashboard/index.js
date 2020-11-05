@@ -1,3 +1,10 @@
+/**
+ * 本页面涉及到大量ECharts表格的使用，如果存在疑惑的地方，请查询下方帮助文档（PS:我也是一个个去查的）
+ * 帮助文档链接：
+ * - ECharts example : https://echarts.apache.org/examples/zh/index.html
+ * - Loadsh debounce : https://lodash.com/docs/#debounce
+ * @author xuhuihuang@xiaomi.com
+ */
 import React,{Component} from 'react'
 import Cls from 'classnames'
 import Debounce from 'lodash/debounce'
@@ -9,12 +16,14 @@ import ECharts from 'echarts'
 import Theme from './echart-theme'
 import './index.scss'
 
-// 注册页面定制化图表📈主题
+// 注册页面定制化图表📈主题,用户可以自行替换成自己的主题
+// ECharts 主题在线可视化定制：https://echarts.apache.org/zh/theme-builder.html
 ECharts.registerTheme('hiui_theme', Theme)
+
 const { Row, Col } = Grid
 
 export default class HomeDashboard extends Component{
-    // state 的层级不建议太深，尽量拆分其层级
+    // state 的层级不建议太深，尽量拆分其层级，方便处理并且降低无效重复渲染
     state = {
         // tab栏信息
         tabInfos: [],
@@ -65,11 +74,9 @@ export default class HomeDashboard extends Component{
         this.setState({isLoadingData: true})
         // 获取面板分类信息
         const {data: {data = []} } = await Axios.get('http://mock.be.mi.com/mock/2532/home/dashboard/tabs')
-
         this.setState({tabInfos:data})
         // 做容错处理，以防止后端传回数据为空
         this.setState({nowActiveTabId:(data[0] || {}).id})
-
         this.setState({isLoadingData: false})
 
         // 容错校验
@@ -78,6 +85,7 @@ export default class HomeDashboard extends Component{
         }
     }
 
+    // 根据Id更新页面信息
     async updatePageInfos(id){
         this.setState({isLoadingData: true})
         const {logisticsStart,logisticsEnd, orderChartSelectLogisticCompanyId, orderChartSelectTimeRangeId} = this.state
@@ -99,6 +107,7 @@ export default class HomeDashboard extends Component{
 
     }
 
+    // 更新物流运单信息
     async updateLogisticsInfo(id,start,end){
         this.setState({isLoadingLogistics: true})
         const path = `http://mock.be.mi.com/mock/2532/home/dashboard/logistics?id=${id}&start=${start}&end=${end}`
@@ -107,6 +116,7 @@ export default class HomeDashboard extends Component{
         this.setState({logisticsInfo:{headOffice,eightOffice},isLoadingLogistics: false})
     }
 
+    // 更新询价下单量
     async updateEnquiryOrderInfo(id,logisticsId,timeId){
         this.setState({isLoadingEnquiryOrder: true})
         const path = `http://mock.be.mi.com/mock/2532/home/dashboard/order?id=${id}&logisticsId=${logisticsId}&timeId=${timeId}`
@@ -115,9 +125,7 @@ export default class HomeDashboard extends Component{
         this.setState({enquiryAndOrderInfo:{enquiry,order},isLoadingEnquiryOrder: false})
     }
 
-    /**
-     * 渲染右上角，tab切换信息部分
-     */
+    // 渲染右上角，tab切换信息部分
     renderTabInfos(){
         const { tabInfos, nowActiveTabId } = this.state
         const changeActiveTabDel = (newActiveId) => {
@@ -535,6 +543,7 @@ export default class HomeDashboard extends Component{
         )
     }
 
+    // 渲染活动预期表格
     renderActivityExpectChart(){
         const { activityExpectInfos } = this.state
         // Y周分割数据点
@@ -647,6 +656,7 @@ export default class HomeDashboard extends Component{
         )
     }
 
+    // 渲染效率表格
     renderEfficiencyChart(){
         const { efficiencyRate } = this.state
         const safeEfficiencyRate = Number(efficiencyRate).toFixed(1)
@@ -743,10 +753,12 @@ export default class HomeDashboard extends Component{
         )
     }
 
+    // 渲染商品库存细节
     renderInventoryDetail(){
         const { inventoryDetailInfos } = this.state
+        // 处理数据，以适配 hiui table 数据格式
         const tableData = inventoryDetailInfos.map(item => ({...item,key: item.id}))
-
+        // dataKey 一定要和 传输给table的data key一样才可以正常显示
         const tableColumns = [
             {
                 title: '商品名',

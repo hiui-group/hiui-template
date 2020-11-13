@@ -15,7 +15,7 @@ const config = [
     name: '首页',
     children: [
       { name: '仪表盘', path: '/home-dashboard' },
-      { name: '门户', path: '/home-portal' },
+      { name: '工作台', path: '/home-workbench' },
       { name: '搜索', path: '/home-search' }
     ]
   },

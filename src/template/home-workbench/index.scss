@@ -1,75 +1,58 @@
 @import '@hi-ui/core-css/index.scss';
 
 .page--workbench {
-  padding: $spacer-4 $spacer-6;
-  min-height: calc(100vh - 64px);
-  box-sizing: border-box;
+    min-height: calc(100vh - 64px);
+    box-sizing: border-box;
+    position: relative;
 
-  .workbench--container {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-
-  .user {
-    line-height: 36px;
-    color: $black;
-
-    &__icon {
-      display: inline-block;
-      width: 36px;
-      height: 36px;
-      margin-right: $spacer-3;
-      background: $white;
-      border: 1px solid $gray-lighter;
-      border-radius: 50%;
-      text-align: center;
+    .top_part_col{
+        display: flex;
+        align-items: center;
+        color: $black;
     }
-  }
 
-  .hi-grid__col-8 .card {
-    height: 377px;
-
-    .card__body {
-      flex-basis: 377px;
-      padding: $spacer-3 $spacer-6 $spacer-6 $spacer-6;
+    .user_icon{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        box-shadow: 0px 0px 5px rgba($color: $black, $alpha: 0.6);
+        margin-right: 12px;
     }
-  }
 
-  .hi-grid__col-16 .card {
-    height: 377px;
+    $carouselAndWaitToBeHeight: 380px;
 
-    .card__body {
-      flex-basis: 377px;
-
-      .hi-grid__row {
+    .carousel_image_container{
+        height: $carouselAndWaitToBeHeight;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        justify-content: center;
+    }
+    .carousel_image{
         width: 100%;
-      }
-
-      .hi-timeline {
-        margin-top: 14px;
-        width: 100%;
-      }
     }
-  }
 
-  .todo {
-    width: 100%;
-    color: $black;
-
-    &__item {
-      padding: 9px 0;
-
-      .approval-btn {
-        color: get-color($palette-hiui, '50');
-      }
+    .wait_to_be{
+        &__container{
+            height: $carouselAndWaitToBeHeight;
+            background-color: $white;
+            border-radius: 4px;
+        }
+        
+        &__title{
+            font-weight: bold;
+            line-height: 48px;
+            border-bottom: 1px solid #E7E7E7;
+            font-size: 16px;
+            padding-left: 24px;
+        }
     }
-  }
 
-  .hi-dropdown__title-text {
-    padding-right: $spacer-1;
-  }
-
-  .hi-stepper {
-    padding: $spacer-6 0 $spacer-5 0;
-  }
-}
+    .quick-link{
+        &__title{
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+}  

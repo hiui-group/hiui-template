@@ -1,5 +1,5 @@
 /**
- * 本页面涉及到大量ECharts表格的使用，如果存在疑惑的地方，请查询下方帮助文档（PS:我也是一个个去查的）
+ * 本页面涉及到大量ECharts表格的使用，如果存在疑惑的地方，请查询下方帮助文档
  * 帮助文档链接：
  * - ECharts example : https://echarts.apache.org/examples/zh/index.html
  * - Loadsh debounce : https://lodash.com/docs/#debounce
@@ -12,7 +12,6 @@ import {  Grid, Loading, DatePicker, Dropdown, Table } from '@hi-ui/hiui'
 import Axios from 'axios'
 import EChartsForReact from 'echarts-for-react'
 import ECharts from 'echarts'
-// 此为页面定制化图表📈主题，用户可以拷贝下来自行修改
 import Theme from './echart-theme'
 import './index.scss'
 

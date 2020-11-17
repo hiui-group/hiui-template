@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react'
 import Axios from 'axios'
-import {  Grid,Input,Button, Carousel } from '@hi-ui/hiui'
+import {  Grid,Input,Button, Carousel, Card } from '@hi-ui/hiui'
 import { demoGlobalData } from '../../index'
 import './index.scss'
 
@@ -16,12 +16,13 @@ export default class Workbench extends Component{
         carouselUrls: [],
         waitToBeDoneTotal: 0,
         waitToBeDoneInfos: [],
-        waitToBeDoneNowPage: 1
+        waitToBeDoneNowPage: 1,
+        quickLinkInfos: []
     }
 
     async componentDidMount(){
-        const { data : { data: {carouselUrls = [], waitToBeDoneTotal = 0}}} = await Axios.get('http://mock.be.mi.com/mock/2532/home/workbench/info')
-        this.setState({carouselUrls,waitToBeDoneTotal})
+        const { data : { data: {carouselUrls = [], waitToBeDoneTotal = 0, quickLinkInfos = []}}} = await Axios.get('http://mock.be.mi.com/mock/2532/home/workbench/info')
+        this.setState({carouselUrls,waitToBeDoneTotal,quickLinkInfos})
         this.updateWaitToBeDoneInfos(this.state.waitToBeDoneNowPage)
     }
 
@@ -131,7 +132,7 @@ export default class Workbench extends Component{
     }
 
     renderQuickLinks = () => {
-
+        const { quickLinkInfos } = this.state
         return (
             <>
                 <Row>
@@ -139,8 +140,26 @@ export default class Workbench extends Component{
                         快捷访问
                     </Col>
                 </Row>
-                <Row>
-                    
+                <Row gutter className="quick-link__list">
+                    {
+                        quickLinkInfos.map(({id,title,detail,color, link}) => {
+                            return (
+                                <Col key={id} span={6} className="quick-link__item">
+                                    <div  onClick={() => window.open(link)}>
+                                        <Card
+                                            hoverable
+                                            style={{
+                                                borderLeft: `2px solid ${color}`
+                                            }}
+                                        >
+                                            <p className="quick-link__item__title">{title}</p>
+                                            <p className="quick-link__item__detail">{detail}</p>
+                                        </Card>
+                                    </div>
+                                </Col>
+                            )
+                        })
+                    }
                 </Row>
             </>
         )

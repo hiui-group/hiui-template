@@ -1,102 +1,68 @@
 @import '@hi-ui/core-css/index.scss';
 
 .page--portal {
-  padding: $spacer-9 $spacer-6;
-  min-height: calc(100vh - 64px);
-  box-sizing: border-box;
-  background-color: $gray-lighter;
-}
+    margin: -$spacer-6;
+    color: $white;
+    min-height: calc(100vh - 64px);
+    box-sizing: border-box;
+    background-color: $black;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 
-.portal {
-  &__container {
-    max-width: 1300px;
-    margin: 0 auto;
-
-    .icon-search {
-      color: get-color($palette-hiui, '50');
-      font-size: $font-size-h3;
+    .search-container{
+        padding-top: 100px;
     }
-  }
 
-  &__header {
-    display: flex;
-    align-items: center;
-
-    h3 {
-      margin-top: 0;
-      margin-bottom: $spacer-3;
-      font-size: $font-size-large;
-      font-weight: $font-weight-normal;
+    .search-guide{
+        font-size: 24px;
     }
-  }
 
-  &__shortcut-list {
-    flex-wrap: wrap;
-    justify-content: space-between;
+    $searchInputHeight: 42px;
+    $searchInputRadius: 4px;
 
-    .hi-grid__col-8 {
-      &:nth-child(n+4) {
-        margin-top: $spacer-6;
-      }
+    .search-input{
+        width: 524px;
+        height: $searchInputHeight;
+        border-radius: $searchInputRadius;
+        overflow: hidden;
+        
+        // 去除input框的border
+        .hi-input__inner {
+            border: none;
+        }
     }
-  }
 
-  &__shortcut-item {
-    .hi-card {
-      height: 120px;
-      box-sizing: border-box;
-      background-color: $white;
-      color: $gray-darker;
+    .search-button{
+        width: $searchInputHeight;
+        height: $searchInputHeight;
+        border: none;
+        position: relative;
+        color: get-color($palette-hiui, '50');
+        font-size: $font-size-h3;
 
-      h4 {
-        margin-top: 0;
-        margin-bottom: $spacer-3;
-        font-size: $font-size-large;
-        font-weight: $font-weight-normal;
-        color: $black;
-      }
-
-      p {
-        margin: 0;
-        font-size: $font-size-normal;
-      }
+        // 添加分割线
+        &::after {
+            position: absolute;
+            content: '';
+            display: block;
+            width: 1px;
+            height: 20px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: $gray-light;
+        }
     }
-  }
 
-  &__todo-item {
-    margin-bottom: $spacer-3;
+    .search-hot-word{
+        margin-right: 12px;
+        opacity: 0.6;
+        cursor: pointer;
 
-    & + & {
-      margin-top: 0;
+        &:hover{
+            color: get-color($palette-hiui, '50');
+            opacity: 1;
+        }
     }
-  }
-}
-
-.portal-todo-item {
-  justify-content: space-between;
-  font-size: $font-size-normal;
-  line-height: $line-height-size-normal;
-
-  &__title {
-    margin: 0;
-    font-size: $font-size-normal;
-    font-weight: $font-weight-normal;
-    line-height: $line-height-size-normal;
-
-    &,
-    a {
-      color: $black;
-    }
-  }
-
-  &__desc,
-  &__date {
-    font-size: $font-size-small;
-    line-height: $line-height-size-small;
-    color: $gray-dark;
-  }
-
-  &__action {
-    cursor: pointer;
-  }
 }

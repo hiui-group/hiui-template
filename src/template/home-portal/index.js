@@ -1,21 +1,30 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import { Grid, Input, Button, Icon } from '@hi-ui/hiui'
+import { Grid, Input, Button, Icon, Menu, Card } from '@hi-ui/hiui'
 import './index.scss'
 
-const { Row } = Grid
+const { Row, Col } = Grid
 
 export default class HomePortal extends Component{
+
+    navMenuId = {
+        commonUse: 1,
+        mine: 2
+    }
 
     state = {
         backgroundUrl: '',
         hotWords: [],
-        searchKeyWord: ''
+        searchKeyWord: '',
+        nowActiveNavId: this.navMenuId.commonUse,
+        commonNavInfos: [],
+        mineNavInfos: []
     }
 
+
     async componentDidMount(){
-        const { data:{data : { backgroundUrl, hotWords = [] } = {}} = {} } = await Axios.get('http://mock.be.mi.com/mock/2532/home/portal/info')
-        this.setState({backgroundUrl,hotWords})
+        const { data:{data : { backgroundUrl, hotWords = [], commonNavInfos = [], mineNavInfos = [] } = {}} = {} } = await Axios.get('http://mock.be.mi.com/mock/2532/home/portal/info')
+        this.setState({backgroundUrl,hotWords,commonNavInfos,mineNavInfos})
     }
 
     /**
@@ -65,11 +74,63 @@ export default class HomePortal extends Component{
             </div>
         )
     }
+
+    renderNav = () => {
+        const { nowActiveNavId, commonNavInfos, mineNavInfos } = this.state
+        const navData = nowActiveNavId === this.navMenuId.commonUse?commonNavInfos:mineNavInfos
+    
+        const navMenuData = [
+            {
+                content:'常用',
+                id: this.navMenuId.commonUse,
+                icon: 'fire'
+            },
+            {
+                content: '我的',
+                id: this.navMenuId.mine,
+                icon: 'user'
+            }
+        ]
+
+        return (
+            <div className="nav-container">
+                <Menu 
+                    placement='horizontal'
+                    data={navMenuData}
+                    activeId={nowActiveNavId}
+                    onClick={id => this.setState({nowActiveNavId:id})}
+                />
+                <div>
+                    <Row gutter justify='space-between' className="nav-link__list">
+                        {navData.map(({id,link,title,detail,icon}) => (
+                            <Col key={id} span={8} className="nav-link__item">
+                                <div  onClick={() => window.open(link)}>
+                                    <Card
+                                        hoverable
+                                    >
+                                        <div className="nav-link__content">
+                                            <img className="nav-link__icon" src={icon} alt=''/>
+                                            <div>
+                                                <p className="nav-link__item__title">{title}</p>
+                                                <p className="nav-link__item__detail">{detail}</p>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </div>
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
+            </div>
+        )
+    }
     render(){
         const { backgroundUrl } = this.state
         return (
-            <div className="page page--portal" style={{ backgroundImage: `url(${backgroundUrl})` }}>
+            <div className="page page--portal" >
+                <div className="back-image" style={{ backgroundImage: `url(${backgroundUrl})` }}/>
                 {this.renderSearchPart()}
+                {this.renderNav()}
             </div>
         )
     }

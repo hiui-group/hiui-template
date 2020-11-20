@@ -1,17 +1,27 @@
 @import '@hi-ui/core-css/index.scss';
 
 .page--portal {
-    margin: -$spacer-6;
+    padding: $spacer-6;
     color: $white;
     min-height: calc(100vh - 64px);
     box-sizing: border-box;
-    background-color: $black;
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    position: relative;
 
+    .back-image{
+        position: absolute;
+        // 为了去除主题带来的padding影响，覆盖全部页面
+        left: -$spacer-6;
+        top: -$spacer-6;
+        right: -$spacer-6;
+        bottom: -$spacer-6;
+
+        background-color: $black;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
     .search-container{
-        padding-top: 100px;
+        padding-top: 60px;
     }
 
     .search-guide{
@@ -63,6 +73,89 @@
         &:hover{
             color: get-color($palette-hiui, '50');
             opacity: 1;
+        }
+    }
+
+    .nav-container{
+        margin: 60px 80px ;
+
+        // 对menu组件做定制化样式处理
+        .hi-menu{
+            border: none;
+        }
+
+        .hi-menu-item{
+            opacity: 0.6;
+
+            .hi-menu__title-icon,.hi-menu__title-content{
+                color: $white;
+            }
+
+            &--active{
+                opacity: 1;
+            }
+
+        }
+    }
+
+    .nav-link{
+        &__title{
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        &__list{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        &__content{
+            display: flex;
+            align-items: center;
+        }
+
+        &__icon{
+            width: 48px;
+            height: 48px;
+            margin-right: 12px;
+        }
+
+        &__item{
+            margin-bottom:24px;
+            cursor: pointer;
+
+            .hi-card {
+                height: 120px;
+                box-sizing: border-box;
+                background-color: $white;
+                color: $gray-darker;
+                border-radius: 4px;
+                border: none;
+
+                &:hover{
+                    box-shadow: 2px 2px 10px rgba($color: $white, $alpha: 0.6);
+                }
+            }
+
+            &__title {
+                margin-top: 0;
+                margin-bottom: $spacer-3;
+                font-size: $font-size-large;
+                font-weight: $font-weight-normal;
+                color: $black;
+                font-weight: bold;
+            }
+        
+            &__detail {
+                margin: 0;
+                font-size: $font-size-normal;
+                overflow : hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
         }
     }
 }

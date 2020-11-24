@@ -33,4 +33,13 @@ $borderRadius: 4px;
         color: #383E47;
         font-weight: bold;
     }
+
+    .stepper-container{
+        margin: 24px 60px;
+
+        // 覆盖stepper默认样式
+        .hi-stepper__icon{
+            background-color: rgb(246, 246, 246);;
+        }
+    }
 }

@@ -111,6 +111,10 @@ const config = [
     name: '列表',
     children: [
       {
+        name:'流程卡片',
+        path: '/list-flow-card'
+      },
+      {
         name: '嵌入式',
         path: '/list-embeded'
       },

@@ -35,11 +35,46 @@ $borderRadius: 4px;
     }
 
     .stepper-container{
-        margin: 24px 60px;
+        margin: 24px 80px;
 
         // 覆盖stepper默认样式
         .hi-stepper__icon{
             background-color: rgb(246, 246, 246);;
+        }
+    }
+
+    .card-container{
+        margin: 8px 0px;
+
+        .hi-card{
+            border:none;
+            border-radius: $borderRadius;
+            height: 144px;
+            box-sizing: border-box;
+        }
+
+        .card-detail{
+            font-size: $font-size-normal;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        &:hover{
+            .card-function-button{
+                opacity: 1;
+            }
+        }
+    }
+
+    .card-function-button{
+        cursor: pointer;
+        opacity: 0;
+
+        &:hover{
+            color: get-color($palette-hiui, '50');
         }
     }
 }

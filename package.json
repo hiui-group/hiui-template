@@ -1,6 +1,6 @@
 {
   "name": "hi-request",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.1",
   "description": "Promise based HTTP client for the browser",
   "main": "index.js",
   "scripts": {

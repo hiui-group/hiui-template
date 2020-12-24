@@ -4,8 +4,7 @@ const callBackInter = new Map()
 
 const axiosInstance = axios.create({
   type: 'basics',
-  url: '',
-  responseType: 'json'
+  url: ''
 })
 
 axiosInstance.interceptors.request.use(
@@ -41,8 +40,7 @@ axiosInstance.interceptors.response.use(
 )
 
 const axiosIns = (options) => {
-  const { beforeResponse, errorResponse, beforeRequest, errorRequest, errorCallback } = options
-  
+  const { beforeResponse, errorResponse, beforeRequest, errorRequest, data, errorCallback } = options
   beforeRequest && callBackInter.set('beforeRequest', beforeRequest)
   errorResponse && callBackInter.set('errorResponse', errorResponse)
   beforeResponse && callBackInter.set('beforeResponse', beforeResponse)

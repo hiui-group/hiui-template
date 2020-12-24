@@ -2,23 +2,12 @@
 
 为了方便以及统一大家对于数据请求的方式，HiUI 特封装请求工具 HiRequest
 
-### 快速使用
-
-```javascript
-import HiRequest from '@hi-ui/hiui/es/hi-request'
-
-HiRequest.get('/user?ID=12345').then((response) => {
-  // handle success
-  console.log(response)
-})
-```
-
 ### 支持 AMD/CJS/ESM 模块引入
 
 ```js
 
 // ESM
-import HiRequest Tool from 'hi-request';
+import HiRequest from 'hi-request';
 
 //cjs
 const HiRequest = require('hi-request');
@@ -156,7 +145,8 @@ HiRequest.upload(({
 ```js
 HiRequest.download({
   url: 'https://download', // 上传地址
-  filename: '下载文件名', // 文件
+  filename: '下载文件名.txt', // 文件名称，需要携带文件后缀以便判断格式, 如果不传的话会默认取 content-disposition 中的filename 字段；
+  fileType: '', // 传入一个合适的 MIME https://www.w3school.com.cn/media/media_mimeref.asp 类型
   params: {
     id: 1
   }, // 其他参数

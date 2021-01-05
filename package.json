@@ -18,7 +18,7 @@
     "@hi-ui/component-kit": "^1.0.0-rc.1",
     "@hi-ui/core-css": "^2.0.0",
     "@hi-ui/hiui": "^2.0.4",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "classnames": "^2.2.5",
     "echarts": "^4.2.1",
     "echarts-for-react": "^2.0.15-beta.0",

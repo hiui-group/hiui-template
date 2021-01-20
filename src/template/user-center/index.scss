@@ -3,7 +3,11 @@
 .page--user-center {
   background: $white;
   height: calc(100vh - 72px);
-  margin: $spacer-6;
+  padding: $spacer-5 $spacer-6;
+
+  &_title {
+    margin: 0 0 $spacer-5;
+  }
 
   .hi-navmenu__list {
     padding: 0 $spacer-4 !important;

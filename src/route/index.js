@@ -200,6 +200,10 @@ const config = [
       {
         name: '失败',
         path: '/result-failed'
+      },
+      {
+        name: '加载中',
+        path: '/normal-loading'
       }
     ]
   }

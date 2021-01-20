@@ -57,9 +57,9 @@ export default class HomePortal extends Component{
                     />
                 </Row>
                 <Row justify='center'>
-                    <p>
+                    <span>
                         热搜词 ：&nbsp;
-                    </p>
+                    </span>
                     {
                         hotWords.map((word,index) => (
                             <span

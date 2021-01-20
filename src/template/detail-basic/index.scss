@@ -1,7 +1,6 @@
 @import '@hi-ui/core-css/index.scss';
 
 .page--detail-basic {
-  padding: 0 $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
@@ -9,8 +8,8 @@
     .row {
       &-01 {
         color: $gray-dark;
-        height: 32px;
         align-items: center;
+        line-height: 1;
       }
 
       .spacer {
@@ -19,9 +18,10 @@
 
       &-02 {
         color: #383e47;
-        padding: 0 0 18px;
-        margin-top: 0;
+        padding: $spacer-6;
+        margin-top: $spacer-5;
         align-items: center;
+        background-color: $white;
       }
 
       &-02 h2 {
@@ -46,17 +46,19 @@
   }
 
   .detail-basic__body {
-    background: $white;
-    padding: $spacer-3 $spacer-6;
-
-    .title {
-      font-size: $font-size-large;
-      height: 48px;
-      line-height: 48px;
+    margin-top: $spacer-6;
+    // padding: $spacer-3 $spacer-6;
+    .hi-card {
+      width: 100%;
     }
 
-    .title:not(:first-child) {
-      margin-top: 12px;
+    .detail-basic__row {
+      background: $white;
+      font-size: $font-size-large;
+
+      &:not(:first-child) {
+        margin-top: $spacer-6;
+      }
     }
 
     ul {

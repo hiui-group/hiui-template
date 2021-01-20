@@ -29,7 +29,9 @@
 }
 
 .code-modal {
-  z-index: 99999;
+  &.hi-modal {
+    z-index: 99999;
+  }
 
   i {
     cursor: pointer;
@@ -63,4 +65,3 @@
     padding: 0 16px !important;
   }
 }
-

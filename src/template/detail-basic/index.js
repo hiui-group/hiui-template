@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import { Button, Icon, Grid, Loading } from '@hi-ui/hiui'
+import { Button, Icon, Grid, Loading, Card, Breadcrumb } from '@hi-ui/hiui'
 import './index.scss'
 import axios from 'axios'
 
@@ -39,8 +39,7 @@ export default class Template extends Component {
   async componentDidMount () {
     Loading.open(null, { key: 'lk' })
     try {
-      await this.fetchOtherInfo()
-      await this.fetchDetailInfo()
+      await Promise.all([this.fetchOtherInfo(), this.fetchDetailInfo()])
     } finally {
       Loading.close('lk')
     }
@@ -55,13 +54,22 @@ export default class Template extends Component {
       <div className='page--detail-basic'>
         <Col className='detail-basic detail-basic__header'>
           <Row className='row row-01' align='center'>
-            <span onClick={this.handleBackClick}>
-              <Icon name='left' />
-              <span>返回</span>
-            </span>
-
-            <span className='spacer'>|</span>
-            <span>详情</span>
+            <Breadcrumb
+              separator="|"
+              onClick={this.handleBackClick}
+              data={[{
+                content: (
+                  <span >
+                    <Icon name='left' />
+                    <span>返回</span>
+                  </span>
+                ),
+                path: '/'
+              }, {
+                content: <span>详情</span>,
+                path: '/detail-basic'
+              }]}
+            />
           </Row>
           <Row className='row row-02' justify='space-between'>
             <Col>
@@ -88,25 +96,33 @@ export default class Template extends Component {
             </Col>
           </Row>
         </Col>
-        <Col className='detail-basic detail-basic__body page page--gutter'>
-          <Row className='title'>详细信息</Row>
-          <ul>
-            {Object.values(detailInfo).map(({ key, value }, idx) => (
-              <li key={idx}>
-                <div>{key}</div>
-                <div>{value}</div>
-              </li>
-            ))}
-          </ul>
-          <Row className='title'>其它信息</Row>
-          <ul>
-            {Object.values(otherInfo).map(({ key, value }, idx) => (
-              <li key={idx}>
-                <div>{key}</div>
-                <div>{value}</div>
-              </li>
-            ))}
-          </ul>
+        <Col className='detail-basic detail-basic__body'>
+          <Row className='detail-basic__row'>
+            <Card title='详细信息' bordered={false} hoverable>
+              <ul>
+                {Object.values(detailInfo).map(({ key, value }, idx) => (
+                  <li key={idx}>
+                    <div>{key}</div>
+                    <div>{value}</div>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </Row>
+
+          <Row className='detail-basic__row'>
+            <Card title='其它信息' bordered={false} hoverable>
+              <ul>
+                {Object.values(otherInfo).map(({ key, value }, idx) => (
+                  <li key={idx}>
+                    <div>{key}</div>
+                    <div>{value}</div>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+            </Row>
+
         </Col>
       </div>
     )

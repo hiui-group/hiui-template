@@ -10,9 +10,10 @@
     font-size: $font-size-x-large;
     align-items: center;
     font-weight: $font-weight-semibold;
-    padding: $spacer-6;
+    padding: $spacer-5 $spacer-6;
     box-sizing: border-box;
     margin-bottom: $spacer-4;
+    background: $white;
 
     .search-btn {
       padding: 0 5px;
@@ -44,10 +45,14 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1 0 25%;
+
+    .hi-grid__col-6:nth-of-type(4n) .tasks--card-item {
+      margin-right: 0;
+    }
   }
 
   .tasks__container {
-    padding: 0 24px 24px 24px;
+    margin-bottom: $spacer-6;
   }
 
   .icon-plus {

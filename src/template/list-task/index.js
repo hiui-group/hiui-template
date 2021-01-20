@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Icon, Button, Card, Pagination, Input } from '@hi-ui/hiui'
+import { Icon, Button, Card, Pagination, Input, Grid } from '@hi-ui/hiui'
 import './index.scss'
+
+const { Row, Col } = Grid
 
 const generateTaskData = (sample, num) => {
   let dataList = []
@@ -24,7 +26,35 @@ export default class ListTask extends Component {
     pageNum: 1,
     pageSize: 15
   }
-  render () {
+
+  renderCardList = tasks => {
+    const taskRowLength = Math.ceil(tasks.length / 4)
+    const content = []
+    let i = 0
+    while (i < taskRowLength) {
+      content.push(this.getCardsRow(tasks, i))
+      i++
+    }
+    return content
+  }
+
+  getCardsRow = (tasks, i) => {
+    const currentRowData = tasks.slice(i * 4, (i + 1) * 4)
+    console.log('currentRowData', currentRowData)
+    return currentRowData.map((t, idx) => {
+      return (
+        <Col span={6} key={idx}>
+          <div className='tasks--card-item'>
+            <Card hoverable title={t.title} style={{ width: '100%' }}>
+              <p>{t.content}</p>
+            </Card>
+          </div>
+        </Col>
+      )
+    })
+  }
+
+  render() {
     const { taskList, pageNum, pageSize } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
 
@@ -46,36 +76,16 @@ export default class ListTask extends Component {
         </div>
 
         <div className='tasks__container'>
-          <div className='tasks--card-container'>
-            {tasks
-              .map((t, index) => (
-                <div className='tasks--card-item' key={index}>
-                  <Card
-                    title={t.title}
-                    hoverable
-                    extra={[<Icon name='delete' key={1} />, <Icon name='more' key={2} />]}
-                  >
-                    <p>{t.content}</p>
-                  </Card>
-                </div>
-              ))
-              .concat(
-                <div className='tasks--card-item' key='btn'>
-                  <Card
-                    hoverable
-                    style={{
-                      alignItems: 'center',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <Icon name='plus' />
-                  </Card>
-                </div>
-              )}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 14 }}>
+          <Row>
+            <div className='tasks--card-container'>
+              {this.renderCardList(tasks)}
+            </div>
+          </Row>
+          <div
+            style={{
+              marginTop: 4
+            }}
+          >
             <Pagination
               defaultCurrent={pageNum}
               total={taskList.length}

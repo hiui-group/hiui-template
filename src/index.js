@@ -14,9 +14,9 @@ export const demoGlobalData = {
 
 // 在获取到用户信息之后才开始渲染
 Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
-  const {data:{code = 0, data: userInfo} = {} } = response
+  const { data: { code = 0, data: userInfo } = {} } = response
 
-  if(code !== 200){
+  if (code !== 200) {
     return
   }
 
@@ -36,20 +36,25 @@ Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
       </div>
     ]
   }
-  
+
   const logoConfig = {
     url: 'https://hiui-group.github.io/hiui-template/',
-    logoUrl: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
+    logoUrl:
+      'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
     name: 'HIUI Templates'
   }
-  
+
   render(
     <React.Fragment>
-      <Theme logo={logoConfig} login={loginConfig} routes={rootRoute}/>
+      <Theme
+        logo={logoConfig}
+        apperance={{ contentBackground: '#f6f6f6' }}
+        login={loginConfig}
+        routes={rootRoute}
+      />
       <Copy />
       <DataTip />
     </React.Fragment>,
     document.getElementById('app')
   )
-  
 })

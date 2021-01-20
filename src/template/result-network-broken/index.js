@@ -6,7 +6,7 @@ const NetworkBroken = () => {
   return (
     <div className='page page--result-network-broken'>
       <div className='result--container'>
-        <img src='/hiui-template/static/结果页-网络连接中断.png' alt='network-broken' />
+        <img src='/hiui-template/static/result/1/网络连接中断.png' alt='network-broken' />
         <div style={{ fontSize: 18, marginBottom: 24, marginTop: 10 }}>
           抱歉，网络连接中断，请稍后重试！
         </div>

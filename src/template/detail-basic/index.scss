@@ -39,7 +39,7 @@
         color: $gray-light;
       }
 
-      &-03 .spacer:last-child {
+      &-03 div:last-child .spacer {
         display: none;
       }
     }
@@ -47,7 +47,7 @@
 
   .detail-basic__body {
     margin-top: $spacer-6;
-    // padding: $spacer-3 $spacer-6;
+
     .hi-card {
       width: 100%;
     }

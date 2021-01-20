@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import '@hi-ui/hiui/es/table/style/index.css'
 import { Link } from 'react-router-dom'
 import {
   Input,
   DatePicker,
   Select,
   Button,
-  NavMenu,
+  Tabs,
   Stepper,
   Timeline,
   Icon,
@@ -172,17 +171,18 @@ export default class Template extends Component {
           </Col>
 
           <Col className='detail-group__card page page--gutter'>
-            <NavMenu
-              data={[{ title: '车辆信息' }, { title: '商品信息' }]}
-              onClick={(_, idx) => {
+            <Tabs
+              className="detail-group__table-container"
+              type="line"
+              onTabClick={(_, idx) => {
                 this.setState({
                   activeNavMenuIndex: idx
                 })
               }}
-            />
-            {ani === 0 && <QueryBasic />}
-            {ani === 1 && <QueryBasic />}
-            <ul />
+            >
+              <Tabs.Pane tabTitle='车辆信息' tabId={0}><QueryBasic /></Tabs.Pane>
+              <Tabs.Pane tabTitle='商品信息' tabId={1}><QueryBasic /></Tabs.Pane>
+            </Tabs>
           </Col>
         </Col>
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import { Input, DatePicker, Select, Button, Stepper, Form, Icon, Grid, Loading } from '@hi-ui/hiui'
+import { Breadcrumb, Input, DatePicker, Select, Button, Stepper, Form, Icon, Grid, Loading } from '@hi-ui/hiui'
 import './index.scss'
 import axios from 'axios'
 
@@ -56,12 +56,22 @@ export default class Template extends Component {
         <Col className='detail-stepper'>
           <Col className='detail-stepper__header'>
             <Row className='row row-01' align='center'>
-              <span onClick={this.handleBackClick}>
-                <Icon name='left' />
-                <span>返回</span>
-              </span>
-              <span className='spacer'>|</span>
-              <span>详情</span>
+              <Breadcrumb
+                separator="|"
+                onClick={this.handleBackClick}
+                data={[{
+                  content: (
+                    <span >
+                      <Icon name='left' />
+                      <span>返回</span>
+                    </span>
+                  ),
+                  path: '/'
+                }, {
+                  content: <span>详情</span>,
+                  path: '/detail-stepper'
+                }]}
+              />
             </Row>
             <Row className='row row-02' justify='space-between'>
               <Col>

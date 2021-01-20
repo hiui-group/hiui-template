@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '@hi-ui/hiui/es/table/style/index.css'
 import { Button, Icon, Grid, Loading, Card, Breadcrumb } from '@hi-ui/hiui'
 import './index.scss'
 import axios from 'axios'
@@ -121,8 +120,7 @@ export default class Template extends Component {
                 ))}
               </ul>
             </Card>
-            </Row>
-
+          </Row>
         </Col>
       </div>
     )

@@ -15,7 +15,10 @@ module.exports = {
   },
   plugins: ['react', 'prettier'],
   rules: {
-    'prettier/prettier': ['off', { singleQuote: true, semi: false, printWidth: 120, trailingComma: 'none' }],
+    'prettier/prettier': [
+      'error',
+      { singleQuote: true, semi: false, printWidth: 120, trailingComma: 'none', arrowParens: 'avoid' }
+    ],
     'react/prop-types': 0,
     'react/no-children-prop': 0,
     'react/display-name': 0,

@@ -14,9 +14,9 @@ export const demoGlobalData = {
 
 // 在获取到用户信息之后才开始渲染
 Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
-  const {data:{code = 0, data: userInfo} = {} } = response
+  const { data: { code = 0, data: userInfo } = {} } = response
 
-  if(code !== 200){
+  if (code !== 200) {
     return
   }
 
@@ -28,28 +28,27 @@ Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
     name: userInfo.name,
     icon: 'user',
     children: [
-      <div key='1' style={{ textAlign: 'center', margin: 4, width: '100px' }}>
-        <a href='#info'>个人信息</a>
+      <div key="1" style={{ textAlign: 'center', margin: 4, width: '100px' }}>
+        <a href="#info">个人信息</a>
       </div>,
-      <div key='2' style={{ textAlign: 'center', margin: 4, width: 100 }}>
-        <a href='#logout'>注销</a>
+      <div key="2" style={{ textAlign: 'center', margin: 4, width: 100 }}>
+        <a href="#logout">注销</a>
       </div>
     ]
   }
-  
+
   const logoConfig = {
     url: 'https://hiui-group.github.io/hiui-template/',
     logoUrl: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
     name: 'HIUI Templates'
   }
-  
+
   render(
     <React.Fragment>
-      <Theme logo={logoConfig} login={loginConfig} routes={rootRoute}/>
+      <Theme logo={logoConfig} login={loginConfig} routes={rootRoute} />
       <Copy />
       <DataTip />
     </React.Fragment>,
     document.getElementById('app')
   )
-  
 })

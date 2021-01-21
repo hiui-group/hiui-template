@@ -9,19 +9,20 @@ export default class Template extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      forms: this.initForms(),
+      forms: {
+        name: '',
+        date: null,
+        num: 0,
+        time: new Date(),
+        select: '4',
+        radio: '重庆',
+        longText: ''
+      },
       rules: {
-        text: [
+        name: [
           {
             required: true,
-            message: <span style={{ color: '#ccc' }}>请输入姓名</span>,
-            trigger: 'onBlur,onChange'
-          }
-        ],
-        date: [
-          {
-            required: true,
-            message: <span style={{ color: '#ccc' }}>请选择时间</span>,
+            message: '请输入姓名',
             trigger: 'onBlur,onChange'
           }
         ]
@@ -40,7 +41,7 @@ export default class Template extends Component {
     return Object.assign(
       {},
       {
-        text: '',
+        name: '',
         date: null,
         num: 0,
         time: new Date(),
@@ -50,8 +51,6 @@ export default class Template extends Component {
       }
     )
   }
-
-  handleChange() {}
 
   handleSubmit() {}
 
@@ -63,38 +62,18 @@ export default class Template extends Component {
     const { forms, rules } = this.state
     return (
       <div className="page--form-basic">
-        <Form model={forms} rules={rules} labelWidth="120">
+        <Form model={forms} rules={rules} labelWidth="70" labelPlacement="right">
           <h2 className="hi-form__title">表单</h2>
-
           <Row>
             <Col span={24}>
-              <FormItem label="姓名" field="text">
-                <Input
-                  value={forms.text}
-                  placeholder={'请输入'}
-                  onChange={this.handleChange.bind(this, 'column1')}
-                  style={{ width: '250px' }}
-                />
+              <FormItem label="姓名" field="name">
+                <Input placeholder={'请输入'} style={{ width: '320px' }} />
               </FormItem>
               <FormItem label="时间" field="date">
-                <DatePicker
-                  type="daterange"
-                  value={forms.date}
-                  onChange={d => {
-                    this.setState({
-                      forms: Object.assign({}, this.state.forms, { date: d })
-                    })
-                  }}
-                />
+                <DatePicker type="daterange" width={320} placeholder={['']} />
               </FormItem>
               <FormItem label="数量" field="num">
-                <Counter
-                  defaultValue={forms.num}
-                  step={1}
-                  min={0}
-                  max={8}
-                  onChange={(e, val) => console.log('变化后的值：', val)}
-                />
+                <Counter step={1} min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
               </FormItem>
               <FormItem label="时间" field="time">
                 <TimePicker
@@ -116,11 +95,7 @@ export default class Template extends Component {
                 />
               </FormItem>
               <FormItem label="地点" field="radio">
-                <Radio.Group
-                  data={['北京', '上海', '重庆']}
-                  defaultValue={forms.radio}
-                  onChange={this.handleChange.bind(this, 'region', '')}
-                />
+                <Radio.Group data={['北京', '上海', '重庆']} defaultValue={forms.radio} />
               </FormItem>
 
               <FormItem label="照片" field="radio">
@@ -136,7 +111,6 @@ export default class Template extends Component {
                 <Input
                   value={forms.longText}
                   placeholder={'多行文本'}
-                  onChange={this.handleChange.bind(this, 'column1')}
                   style={{ width: '320px', height: '160px', resize: 'none' }}
                   type="textarea"
                 />

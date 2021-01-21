@@ -15,10 +15,10 @@ export default class ListHeader extends React.Component {
   }
 
   render () {
-    const { onChange = () => {} } = this.props
+    const { style, onChange = () => {} } = this.props
     const { value } = this.state
     return (
-      <div className='page--list-header'>
+      <div className='page--list-header'  style={style}>
           指标管理
           <div>
             <Input

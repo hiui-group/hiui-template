@@ -42,7 +42,7 @@ export default class ListIndicator extends Component {
     console.log(tasks)
     return (
       <div className='page--list-indicator'>
-        <ListHeader />
+        <ListHeader style={{ marginBottom: 0 }} />
         <div className='indicator——type_container'>
           {TABS_LIST.map((tag, index) => (
             <span key={index} className='indicator——type_item'>

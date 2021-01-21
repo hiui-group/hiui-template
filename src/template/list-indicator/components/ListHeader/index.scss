@@ -8,11 +8,10 @@
   font-weight: $font-weight-semibold;
   padding: $spacer-5 $spacer-6;
   box-sizing: border-box;
-  margin-bottom: 0 !important;
   background: $white;
 
   .icon-search {
     color: get-color($palette-hiui, '50');
-    font-size: $font-size-h3;
+    font-size: $font-size-h4;
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import { Form, Input, Button, DatePicker, Counter, TimePicker, Select, Radio, Upload, Grid } from '@hi-ui/hiui'
+import { Form, Input, Select, Button, DatePicker, Counter, TimePicker, Radio, Upload, Grid, Message } from '@hi-ui/hiui'
 import './index.scss'
 
 const FormItem = Form.Item
@@ -8,14 +8,15 @@ const FormItem = Form.Item
 export default class Template extends Component {
   constructor(props) {
     super(props)
+    this.form = React.createRef()
     this.state = {
       forms: {
         name: '',
-        date: null,
+        orderNumber: '',
+        date: { start: new Date(), end: new Date() },
+        select: [],
         num: 0,
-        time: new Date(),
-        select: '4',
-        radio: '重庆',
+        radio: '选项一',
         longText: ''
       },
       rules: {
@@ -37,6 +38,35 @@ export default class Template extends Component {
     ]
   }
 
+  inputPrepend = () => {
+    return (
+      <Select
+        type="single"
+        clearable={false}
+        style={{ width: 80 }}
+        data={[
+          { title: '+86', id: '86' },
+          { title: '+1', id: '1' },
+          { title: '+33', id: '33' },
+          { title: '+91', id: '91' }
+        ]}
+        defaultValue="86"
+      />
+    )
+  }
+
+  inputAppend = () => {
+    return (
+      <Button
+        type="default"
+        icon="search"
+        onClick={() => {
+          Message.open({ type: 'success', title: '查询成功', duration: 2000 })
+        }}
+      />
+    )
+  }
+
   initForms() {
     return Object.assign(
       {},
@@ -52,9 +82,22 @@ export default class Template extends Component {
     )
   }
 
-  handleSubmit() {}
+  handleSubmit() {
+    this.form.current.validate((valid, error) => {
+      console.log(valid, error)
+      if (!error) {
+        console.log(valid)
+        Message.open({ type: 'success', title: '提交成功', duration: 2000 })
+      } else {
+        console.log('error', error)
+        Message.open({ type: 'error', title: '数据校验异常', duration: 2000 })
+      }
+    })
+  }
 
-  reset() {}
+  cancelSubmit() {
+    this.form.current.resetValidates()
+  }
 
   render() {
     const Row = Grid.Row
@@ -62,7 +105,7 @@ export default class Template extends Component {
     const { forms, rules } = this.state
     return (
       <div className="page--form-basic">
-        <Form model={forms} rules={rules} labelWidth="70" labelPlacement="right">
+        <Form ref={this.form} rules={rules} labelWidth="70" initialValues={this.state.forms} labelPlacement="right">
           <h2 className="hi-form__title">表单</h2>
           <Row>
             <Col span={24}>
@@ -70,35 +113,43 @@ export default class Template extends Component {
                 <Input placeholder={'请输入'} style={{ width: '320px' }} />
               </FormItem>
               <FormItem label="时间" field="date">
-                <DatePicker type="daterange" width={320} placeholder={['']} />
+                <DatePicker type="daterange" width={320} placeholder={['选择开始日期', '选择结束日期']} />
               </FormItem>
-              <FormItem label="数量" field="num">
-                <Counter step={1} min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
-              </FormItem>
-              <FormItem label="时间" field="time">
-                <TimePicker
-                  value={forms.time}
-                  onChange={d => {
-                    console.log(d)
-                  }}
+              <FormItem label="订单" field="orderNumber">
+                <Input
+                  id="customId"
+                  placeholder="请输入"
+                  prepend={this.inputPrepend()}
+                  append={this.inputAppend()}
+                  style={{ width: 320 }}
                 />
               </FormItem>
               <FormItem label="类别" field="select">
                 <Select
                   data={this.singleList}
                   placeholder="请选择种类"
-                  style={{ width: '200px' }}
-                  value={forms.select}
+                  style={{ width: '320px' }}
                   onChange={item => {
                     console.log('单选结果', item)
                   }}
                 />
               </FormItem>
-              <FormItem label="地点" field="radio">
-                <Radio.Group data={['北京', '上海', '重庆']} defaultValue={forms.radio} />
+              <FormItem label="数量" field="num">
+                <Counter min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
+              </FormItem>
+              <FormItem label="单选" field="radio">
+                <Radio.Group data={['选项一', '选项二', '选项三', '选项四']} />
+              </FormItem>
+              <FormItem label="时间" field="time">
+                <TimePicker
+                  value={forms.time}
+                  onChange={time => {
+                    console.log('时间选择', time)
+                  }}
+                />
               </FormItem>
 
-              <FormItem label="照片" field="radio">
+              <FormItem label="照片" field="photo">
                 <Upload
                   type="photo"
                   uploadAction="http://127.0.0.1:8000"
@@ -109,7 +160,6 @@ export default class Template extends Component {
 
               <FormItem label="备注" field="longText">
                 <Input
-                  value={forms.longText}
                   placeholder={'多行文本'}
                   style={{ width: '320px', height: '160px', resize: 'none' }}
                   type="textarea"
@@ -120,7 +170,7 @@ export default class Template extends Component {
                 <Button type="primary" onClick={this.handleSubmit.bind(this)}>
                   提交
                 </Button>
-                <Button type="line" onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
+                <Button type="line" onClick={this.cancelSubmit.bind(this)}>
                   重置
                 </Button>
               </FormItem>

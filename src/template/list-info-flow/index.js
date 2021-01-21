@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import ListItem from './components/ListItem'
 import { Input, Icon, Button } from '@hi-ui/hiui'
+
+import ListHeader from './components/ListHeader/index'
+
 import './index.scss'
 
 const listData = [
@@ -63,30 +66,11 @@ export default class ListInfoFlow extends Component {
   state = {
     value: '下单'
   }
-  render () {
+  render() {
     const { value } = this.state
     return (
       <div className='page--list-flow'>
-        <div className='page--list-header'>
-          搜索中心
-          <div>
-            <Input
-              style={{ width: '259px' }}
-              value={value}
-              append={
-                <Button className='search-btn'>
-                  <Icon name='search' />
-                </Button>
-              }
-              onChange={event => {
-                this.setState({
-                  value: event.target.value
-                })
-              }}
-              placeholder='搜索'
-            />
-          </div>
-        </div>
+        <ListHeader />
         <div className='page--list-container'>
           {listData.map((item, index) => (
             <ListItem item={item} key={index} highlightValue={value} />

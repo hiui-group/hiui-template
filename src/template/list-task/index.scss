@@ -3,23 +3,6 @@
 .page--list-task {
   box-sizing: border-box;
 
-  .page--list-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: $font-size-x-large;
-    align-items: center;
-    font-weight: $font-weight-semibold;
-    padding: $spacer-5 $spacer-6;
-    box-sizing: border-box;
-    margin-bottom: $spacer-6;
-    background: $white;
-
-    .icon-search {
-      color: get-color($palette-hiui, '50');
-      font-size: $font-size-h3;
-    }
-  }
-
   .hi-card {
     width: 276px;
     height: 144px;

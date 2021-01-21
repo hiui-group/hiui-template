@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Icon, Button, Card, Pagination, Input, Grid } from '@hi-ui/hiui'
+import { Icon, Card, Pagination, Grid } from '@hi-ui/hiui'
 
-import colors from '../../commons/colors'
+import ListHeader from './components/ListHeader/index'
+
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -80,29 +81,7 @@ export default class ListTask extends Component {
 
     return (
       <div className='page--list-task'>
-        <div className='page--list-header'>
-          任务清单
-          <div>
-            <Input
-              style={{ width: '259px' }}
-              append={
-                <Button
-                  className='search-btn'
-                  icon='search'
-                  style={{
-                    color: colors.primary,
-                    borderLeft: '1px solid ' + colors.border
-                  }}
-                />
-              }
-              placeholder='请输入搜索关键词'
-            />
-            <Button type='primary' icon='plus' style={{ marginLeft: '16px' }}>
-              新增
-            </Button>
-          </div>
-        </div>
-
+        <ListHeader />
         <div className='tasks__container'>
           <Row>
             <div className='tasks--card-container'>

@@ -6,13 +6,25 @@ import colors from '../../../../commons/colors'
 import './index.scss'
 
 export default class ListHeader extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: props.value
+    }
+  }
+
   render () {
+    const { onChange } = this.props
+    const { value } = this.state
     return (
       <div className='page--list-header'>
-          任务管理
+          搜索中心
           <div>
             <Input
               style={{ width: '259px' }}
+              value={value}
+              onChange={(e) => this.setState({ value: e.target.value })}
               append={
                 <Button
                   className='search-btn'
@@ -21,13 +33,13 @@ export default class ListHeader extends React.Component {
                     color: colors.primary,
                     borderLeft: '1px solid ' + colors.border
                   }}
+                  onClick={() => {
+                    onChange(value)
+                  }}
                 />
               }
               placeholder='请输入搜索关键词'
             />
-            <Button type='primary' icon='plus' style={{ marginLeft: '16px' }}>
-              新增
-            </Button>
           </div>
         </div>
     )

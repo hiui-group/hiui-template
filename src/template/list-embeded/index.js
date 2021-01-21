@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import List from './components/List'
-import { Input, Button, Icon, Dropdown } from '@hi-ui/hiui'
+import { Pagination } from '@hi-ui/hiui'
+
+import ListHeader from './components/ListHeader/index.jsx'
 import './index.scss'
+
 const listData = [
   {
     title: '设备采购申请',
-    status: '',
+    status: 'pendding',
     statusDesc: '审批中',
     info: [
       { label: '申请编号', value: 'YH7290121' },
@@ -86,7 +89,7 @@ const listData = [
   },
   {
     title: '设备采购申请',
-    status: '',
+    status: 'pendding',
     statusDesc: '审批中',
     info: [
       { label: '申请编号', value: 'YH7290121' },
@@ -167,7 +170,7 @@ const listData = [
   },
   {
     title: '正版办公软件自购申请',
-    status: '',
+    status: 'pendding',
     statusDesc: '审批中',
     info: [
       { label: '申请编号', value: 'YH7290121' },
@@ -194,44 +197,44 @@ const listData = [
   }
 ]
 export default class ListEmbeded extends Component {
-  render () {
+  constructor(props) {
+    super(props)
+    this.state = {
+      pageNum: 0,
+      pageSize: 10
+    }
+  }
+
+  renderPage = () => {
+    const { pageNum, pageSize } = this.state
+    return (
+      <div
+        style={{
+          display: 'flex',
+          marginTop: 24,
+          justifyContent: 'flex-end'
+        }}
+      >
+        <Pagination
+          defaultCurrent={pageNum}
+          total={listData.length * 4}
+          pageSize={pageSize}
+          onChange={(page, prevPage, pageSize) => {
+            this.setState({
+              pageNum: page,
+              pageSize
+            })
+          }}
+        />
+      </div>
+    )
+  }
+
+  render() {
     return (
       <div className='page--list-embeded'>
-        <div className='page--list-header'>
-          任务清单
-          <div>
-            <Input
-              style={{ width: '259px' }}
-              append={
-                <Button className='search-btn'>
-                  <Icon name='search' />
-                </Button>
-              }
-              placeholder='待审批'
-            />
-            <Button type='primary' icon='plus' className='creat-btn'>
-              创建
-            </Button>
-          </div>
-        </div>
-
-        <Dropdown
-          data={[
-            {
-              title: '全部'
-            },
-            {
-              title: '待审批'
-            },
-            {
-              title: '已通过'
-            }
-          ]}
-          title='全部'
-          onClick={val => console.log(val)}
-        />
-
-        <List data={listData} />
+        <ListHeader />
+        <List data={listData} footer={this.renderPage} />
       </div>
     )
   }

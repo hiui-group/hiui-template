@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Button, Card, Pagination, Input, Grid } from '@hi-ui/hiui'
+
+import colors from '../../commons/colors'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -35,12 +37,30 @@ export default class ListTask extends Component {
       content.push(this.getCardsRow(tasks, i))
       i++
     }
+    content.push(
+      <Col span={6}>
+        <div className='tasks--card-item' key='btn'>
+          <Card
+            hoverable
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+              flex: 1,
+              justifyContent: 'center',
+              cursor: 'pointer',
+              width: '100%'
+            }}
+          >
+            <Icon name='plus' />
+          </Card>
+        </div>
+      </Col>
+    )
     return content
   }
 
   getCardsRow = (tasks, i) => {
     const currentRowData = tasks.slice(i * 4, (i + 1) * 4)
-    console.log('currentRowData', currentRowData)
     return currentRowData.map((t, idx) => {
       return (
         <Col span={6} key={idx}>
@@ -56,7 +76,7 @@ export default class ListTask extends Component {
 
   render() {
     const { taskList, pageNum, pageSize } = this.state
-    const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
+    const tasks = taskList.slice((pageNum - 1) * pageSize, pageNum * pageSize)
 
     return (
       <div className='page--list-task'>
@@ -66,12 +86,20 @@ export default class ListTask extends Component {
             <Input
               style={{ width: '259px' }}
               append={
-                <Button className='search-btn'>
-                  <Icon name='search' />
-                </Button>
+                <Button
+                  className='search-btn'
+                  icon='search'
+                  style={{
+                    color: colors.primary,
+                    borderLeft: '1px solid ' + colors.border
+                  }}
+                />
               }
-              placeholder='搜索'
+              placeholder='请输入搜索关键词'
             />
+            <Button type='primary' icon='plus' style={{ marginLeft: '16px' }}>
+              新增
+            </Button>
           </div>
         </div>
 

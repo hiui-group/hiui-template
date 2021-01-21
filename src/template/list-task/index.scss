@@ -4,7 +4,6 @@
   box-sizing: border-box;
 
   .page--list-header {
-    height: 56px;
     display: flex;
     justify-content: space-between;
     font-size: $font-size-x-large;
@@ -12,12 +11,8 @@
     font-weight: $font-weight-semibold;
     padding: $spacer-5 $spacer-6;
     box-sizing: border-box;
-    margin-bottom: $spacer-4;
+    margin-bottom: $spacer-6;
     background: $white;
-
-    .search-btn {
-      padding: 0 5px;
-    }
 
     .icon-search {
       color: get-color($palette-hiui, '50');
@@ -39,6 +34,11 @@
   .tasks--card-item {
     margin-bottom: $spacer-6;
     margin-right: $spacer-6;
+
+    .icon-plus {
+      font-size: 32px;
+      color: $gray-dark;
+    }
   }
 
   .tasks--card-container {
@@ -53,11 +53,6 @@
 
   .tasks__container {
     margin-bottom: $spacer-6;
-  }
-
-  .icon-plus {
-    font-size: 32px;
-    color: $gray-dark;
   }
 
   .hi-pagination__item {

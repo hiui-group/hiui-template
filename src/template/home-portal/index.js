@@ -57,7 +57,7 @@ export default class HomePortal extends Component {
           />
         </Row>
         <Row justify="center">
-          <p>热搜词 ：&nbsp;</p>
+          <span>热搜词 ：&nbsp;</span>
           {hotWords.map((word, index) => (
             <span key={index} className="search-hot-word" onClick={() => this.searchKeyWordAction(word)}>
               {word}

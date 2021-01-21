@@ -66,7 +66,7 @@ export default class Template extends Component {
 
   fetchData(page = 1) {
     axios
-      .get(`http://yapi.demo.qunar.com/mock/26534/hiui/group-table`, {
+      .get('http://yapi.demo.qunar.com/mock/26534/hiui/group-table', {
         params: {
           page,
           status: this.menus[this.state.activeMenu].title

@@ -10,6 +10,7 @@ es/
 .settings/
 .vscode/
 .tmp/
+.eslintcache
 
 # Dev dependencies and cache files
 node_modules/

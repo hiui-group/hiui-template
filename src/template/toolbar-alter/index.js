@@ -5,7 +5,7 @@ import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filt
 import './index.scss'
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.orderPlatformOptions = [
@@ -43,16 +43,16 @@ export default class Template extends Component {
     ]
     this.columnMixins = {
       id: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.id - next.id
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
+            <Icon name="edit" />
+            <Icon name="close" />
+            <Icon name="more" />
           </React.Fragment>
         )
       }
@@ -68,7 +68,7 @@ export default class Template extends Component {
     }
   }
 
-  updateForm (data, callback = undefined) {
+  updateForm(data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState(
@@ -81,7 +81,7 @@ export default class Template extends Component {
     )
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
@@ -94,11 +94,11 @@ export default class Template extends Component {
     )
   }
 
-  beforeSubmit () {
+  beforeSubmit() {
     return true
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms, pageSize } = this.state
@@ -107,7 +107,7 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page--toolbar-alter '>
+      <div className="page--toolbar-alter ">
         <Row>
           <Col span={24}>
             <DataFilter
@@ -116,26 +116,26 @@ export default class Template extends Component {
               columnMixins={this.columnMixins}
               actions={[
                 'search',
-                <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary' icon='plus' />
+                <Link to="/form-unfold-group" className="hi-tpl__add">
+                  <Button type="primary" icon="plus" />
                 </Link>,
                 <Button
-                  type='line'
-                  icon='download'
+                  type="line"
+                  icon="download"
                   onClick={() => {
                     console.log('------------click download')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='mark'
+                  type="line"
+                  icon="mark"
                   onClick={() => {
                     console.log('------------click share')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='more'
+                  type="line"
+                  icon="more"
                   onClick={() => {
                     console.log('------------click more')
                   }}
@@ -161,16 +161,16 @@ export default class Template extends Component {
               ]}
             >
               <FieldGroup main onCancel={() => this.updateForm(this.initForms())}>
-                <Field label='订单号' width='220'>
+                <Field label="订单号" width="220">
                   <Input
-                    placeholder='请输入'
+                    placeholder="请输入"
                     value={forms.order_id}
                     onChange={(e, value) => {
                       this.updateForm({ order_id: value })
                     }}
                   />
                 </Field>
-                <Field label='订单日期' width='200'>
+                <Field label="订单日期" width="200">
                   <DatePicker
                     value={forms.order_date}
                     onChange={d => {
@@ -178,44 +178,36 @@ export default class Template extends Component {
                     }}
                   />
                 </Field>
-                <Field label='业务来源' width='200'>
+                <Field label="业务来源" width="200">
                   <Select
                     data={this.orderPlatformOptions}
-                    placeholder='请选择业务来源'
+                    placeholder="请选择业务来源"
                     value={forms.order_platform}
-                    onChange={value =>
-                      this.updateForm({ order_platform: (value[0] && value[0].id) || '全部' })
-                    }
+                    onChange={value => this.updateForm({ order_platform: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
-                <Field label='运输方式' width='200'>
+                <Field label="运输方式" width="200">
                   <Select
                     data={this.orderDeliveryOptions}
-                    placeholder='请选择运输方式'
+                    placeholder="请选择运输方式"
                     value={forms.order_delivery}
-                    onChange={value =>
-                      this.updateForm({ order_delivery: (value[0] && value[0].id) || '全部' })
-                    }
+                    onChange={value => this.updateForm({ order_delivery: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
-                <Field label='支付方式' width='200' advanced>
+                <Field label="支付方式" width="200" advanced>
                   <Select
                     data={this.orderPaymentOptions}
-                    placeholder='请选择支付方式'
+                    placeholder="请选择支付方式"
                     value={forms.order_payment}
-                    onChange={value =>
-                      this.updateForm({ order_payment: (value[0] && value[0].id) || '全部' })
-                    }
+                    onChange={value => this.updateForm({ order_payment: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
-                <Field label='订单状态' width='200' advanced>
+                <Field label="订单状态" width="200" advanced>
                   <Select
                     data={this.orderStatusOptions}
-                    placeholder='请选择订单状态'
+                    placeholder="请选择订单状态"
                     value={forms.order_status}
-                    onChange={value =>
-                      this.updateForm({ order_status: (value[0] && value[0].id) || '全部' })
-                    }
+                    onChange={value => this.updateForm({ order_status: (value[0] && value[0].id) || '全部' })}
                   />
                 </Field>
               </FieldGroup>

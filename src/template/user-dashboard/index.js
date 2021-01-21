@@ -109,16 +109,14 @@ const mySubscribe = [
   }
 ]
 class UserDashboard extends Component {
-  render () {
+  render() {
     return (
-      <div className='page page--user-dashboard'>
-        <div className='user-dashboard__aside'>
-          <div className='aside__avator'>
+      <div className="page page--user-dashboard">
+        <div className="user-dashboard__aside">
+          <div className="aside__avator">
             <img
-              alt='avator'
-              src={
-                'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
-              }
+              alt="avator"
+              src={'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'}
               style={{
                 width: 80,
                 height: 80,
@@ -127,15 +125,15 @@ class UserDashboard extends Component {
               }}
             />
             <div>王成</div>
-            <Icon name='edit' />
+            <Icon name="edit" />
           </div>
           {asideInfo.map((info, index) => (
-            <div className='aside__section' key={index}>
-              <div className='title'>{info.title}</div>
+            <div className="aside__section" key={index}>
+              <div className="title">{info.title}</div>
               {info.content.map((c, index) => (
-                <div className='content-item' key={index}>
-                  <div className='content-item--left'>{c.label}</div>
-                  <div className='content-item--right'>{c.value}</div>
+                <div className="content-item" key={index}>
+                  <div className="content-item--left">{c.label}</div>
+                  <div className="content-item--right">{c.value}</div>
                 </div>
               ))}
             </div>
@@ -144,9 +142,9 @@ class UserDashboard extends Component {
         <div style={{ flex: 1 }}>
           <Row gutter>
             <Col span={12}>
-              <div className='card'>
-                <div className='card__header'>我的资产</div>
-                <div className='card__content'>
+              <div className="card">
+                <div className="card__header">我的资产</div>
+                <div className="card__content">
                   <div style={{ flex: 1 }}>
                     {myAsset.map((assert, index) => (
                       <div style={{ marginBottom: 8 }} key={index}>
@@ -165,16 +163,16 @@ class UserDashboard extends Component {
                   </div>
 
                   <div style={{ marginTop: 24 }}>
-                    <Button icon='left' />
-                    <Button icon='right' />
+                    <Button icon="left" />
+                    <Button icon="right" />
                   </div>
                 </div>
               </div>
             </Col>
             <Col span={12}>
-              <div className='card'>
-                <div className='card__header'>我提交的申请</div>
-                <div className='card__content'>
+              <div className="card">
+                <div className="card__header">我提交的申请</div>
+                <div className="card__content">
                   <div style={{ flex: 1 }}>
                     {myApply.map((apply, index) => (
                       <div style={{ marginBottom: 8 }} key={index}>
@@ -205,8 +203,8 @@ class UserDashboard extends Component {
                   </div>
 
                   <div style={{ marginTop: 24 }}>
-                    <Button icon='left' />
-                    <Button icon='right' />
+                    <Button icon="left" />
+                    <Button icon="right" />
                   </div>
                 </div>
               </div>
@@ -214,15 +212,15 @@ class UserDashboard extends Component {
           </Row>
           <Row gutter>
             <Col span={12}>
-              <div className='card'>
-                <div className='card__header'>我的收藏</div>
-                <div className='card__content'>
+              <div className="card">
+                <div className="card__header">我的收藏</div>
+                <div className="card__content">
                   <div style={{ flex: 1 }}>
                     {myCollect.map((collect, index) => (
                       <div key={index} style={{ marginBottom: 8, display: 'flex' }}>
                         {collect.image && (
                           <img
-                            alt=''
+                            alt=""
                             src={collect.image}
                             style={{
                               width: 80,
@@ -240,7 +238,7 @@ class UserDashboard extends Component {
                             }}
                           >
                             <div>{collect.title}</div>
-                            <a href='/'>{collect.operation}</a>
+                            <a href="/">{collect.operation}</a>
                           </div>
                           <div
                             style={{
@@ -261,9 +259,9 @@ class UserDashboard extends Component {
               </div>
             </Col>
             <Col span={12}>
-              <div className='card'>
-                <div className='card__header'>我的资产</div>
-                <div className='card__content'>
+              <div className="card">
+                <div className="card__header">我的资产</div>
+                <div className="card__content">
                   <div style={{ flex: 1 }}>
                     {mySubscribe.map((subscribe, index) => (
                       <div
@@ -275,7 +273,7 @@ class UserDashboard extends Component {
                         }}
                       >
                         <div>{subscribe.title}</div>
-                        <a href='/'>{subscribe.operation}</a>
+                        <a href="/">{subscribe.operation}</a>
                       </div>
                     ))}
                   </div>

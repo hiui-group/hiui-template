@@ -1,10 +1,10 @@
 const components = {}
 const files = require.context('../template', true, /.js$/)
 files.keys().forEach(key => {
-  let componentName = key.split('/')[1]
-  let fileName = key.split('/')[2]
+  const componentName = key.split('/')[1]
+  const fileName = key.split('/')[2]
   // 引入对应模板的index.js页面文件，排除其他文件
-  if(fileName === 'index.js'){
+  if (fileName === 'index.js') {
     // console.log(componentName)
     components[componentName] = files(key).default
   }
@@ -111,7 +111,7 @@ const config = [
     name: '列表',
     children: [
       {
-        name:'流程卡片',
+        name: '流程卡片',
         path: '/list-flow-card'
       },
       {
@@ -205,8 +205,8 @@ const config = [
   }
 ]
 
-const transformConfig = (config) => {
-  config.forEach((c) => {
+const transformConfig = config => {
+  config.forEach(c => {
     if (c.path) {
       c.component = components[c.path.split('/')[1]]
     }

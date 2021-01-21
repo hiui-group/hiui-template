@@ -5,7 +5,7 @@ import axios from 'axios'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.columnMixins = {}
 
@@ -21,11 +21,11 @@ export default class Template extends Component {
     }
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.fetchData()
   }
 
-  fetchData (page = 1) {
+  fetchData(page = 1) {
     axios
       .get(`http://yapi.demo.qunar.com/mock/26534/hiui/tree-table`, {
         params: {
@@ -56,7 +56,7 @@ export default class Template extends Component {
       })
   }
 
-  setTableColumns (columns) {
+  setTableColumns(columns) {
     const _columns = []
 
     columns.forEach(column => {
@@ -70,8 +70,9 @@ export default class Template extends Component {
 
     return _columns
   }
-  setId (item) {
-    let itemName = []
+
+  setId(item) {
+    const itemName = []
 
     const mapToGet = (list, parent = {}) => {
       list.forEach(item => {
@@ -89,7 +90,7 @@ export default class Template extends Component {
     let activeId = ''
 
     if (itemName.length) {
-      let itemId = []
+      const itemId = []
       itemName.forEach(item => {
         itemId.push(item.id)
       })
@@ -110,7 +111,7 @@ export default class Template extends Component {
     )
   }
 
-  renderMenuContent () {
+  renderMenuContent() {
     const { tableDatas, columns, pageSize, total, page } = this.state
     return (
       <Table
@@ -128,7 +129,7 @@ export default class Template extends Component {
     )
   }
 
-  renderTree () {
+  renderTree() {
     return (
       <Tree
         defaultExpandAll
@@ -146,12 +147,12 @@ export default class Template extends Component {
     )
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
 
     return (
-      <div className='page--tree-single'>
+      <div className="page--tree-single">
         <Row gutter>
           <Col span={4}>{this.renderTree()}</Col>
           <Col span={19}>{this.renderMenuContent()}</Col>

@@ -218,5 +218,5 @@ const transformConfig = config => {
   })
   return config
 }
-
+console.log('transformConfig(config)', transformConfig(config))
 export default transformConfig(config)

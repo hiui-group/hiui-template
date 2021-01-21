@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Card, Pagination, Grid } from '@hi-ui/hiui'
 
-import ListHeader from './components/ListHeader/index'
+import ListHeader from './components/ListHeader/index.jsx'
 
 import './index.scss'
 

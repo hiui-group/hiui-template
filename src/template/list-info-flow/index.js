@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ListItem from './components/ListItem'
-import { Input, Icon, Button } from '@hi-ui/hiui'
 
 import ListHeader from './components/ListHeader/index'
 

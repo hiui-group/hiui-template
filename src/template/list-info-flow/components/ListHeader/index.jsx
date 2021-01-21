@@ -3,6 +3,8 @@ import { Button, Input } from '@hi-ui/hiui'
 
 import colors from '../../../../commons/colors'
 
+import './index.scss'
+
 export default class ListHeader extends React.Component {
   render () {
     return (

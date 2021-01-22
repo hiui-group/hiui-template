@@ -68,12 +68,12 @@ export default class Copy extends Component {
         <Modal
           className="code-modal"
           title={
-            <React.Fragment>
+            <div>
               <span>复制代码&nbsp;&nbsp;</span>
               <Tooltip title="点击复制按钮复制代码至你现有的项目中">
                 <Icon name="problem-circle-o" />
               </Tooltip>
-            </React.Fragment>
+            </div>
           }
           size="large"
           visible={showModal}

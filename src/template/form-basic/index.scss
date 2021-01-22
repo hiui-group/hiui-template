@@ -1,9 +1,8 @@
-@import '@hi-ui/core-css/index.scss';
+@import "@hi-ui/core-css/index.scss";
 
 .page--form-basic {
   background: $white;
-  margin: $spacer-6;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 112px);
   box-sizing: border-box;
 
   .hi-form-item {

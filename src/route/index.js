@@ -23,12 +23,16 @@ const config = [
     name: '表单',
     children: [
       {
-        name: '单列',
+        name: '单列表单',
         path: '/form-basic'
       },
       {
-        name: '双列',
+        name: '双列表单',
         path: '/form-double-column'
+      },
+      {
+        name: '分步表单',
+        path: '/form-with-stepper'
       },
       {
         name: '分组-标签',
@@ -42,10 +46,7 @@ const config = [
         name: '分组-组合',
         path: '/form-unfold-group'
       },
-      {
-        name: '分步骤',
-        path: '/form-with-stepper'
-      },
+
       {
         name: '弹窗表格',
         path: '/form-modal'

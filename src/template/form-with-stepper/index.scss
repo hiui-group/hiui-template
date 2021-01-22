@@ -1,18 +1,20 @@
-@import '@hi-ui/core-css/index.scss';
+@import "@hi-ui/core-css/index.scss";
 
-.page--form-with-stepper {
+.page-form-with-stepper {
   background: $white;
   padding: $spacer-6;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 112px);
   box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .page-form-stepper {
+    width: 480px;
+    margin: 30px 0;
+  }
 
   .hi-form-item {
     padding: 0 $spacer-6;
-  }
-
-  .hi-form__title {
-    display: flex;
-    justify-content: space-between;
   }
 
   .stepper-container {
@@ -23,8 +25,10 @@
     padding: 0;
   }
 
-  legend {
-    color: $black;
-    font-size: $font-size-large;
+  &__footer {
+    height: 64px;
+    text-align: center;
+    line-height: 64px;
+    border-top: 1px solid #d8d8d8;
   }
 }

@@ -1,9 +1,11 @@
-@import '@hi-ui/core-css/index.scss';
+@import "@hi-ui/core-css/index.scss";
 
 .page--form-double-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: $white;
-  margin: $spacer-6;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 112px);
   box-sizing: border-box;
 
   .hi-form-item {
@@ -21,5 +23,12 @@
 
   .photo-display {
     padding: 0;
+  }
+
+  &__footer {
+    height: 64px;
+    text-align: center;
+    line-height: 64px;
+    border-top: 1px solid #d8d8d8;
   }
 }

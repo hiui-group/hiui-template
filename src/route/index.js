@@ -1,7 +1,6 @@
 const components = {}
 const files = require.context('../template', true, /.js$/)
-console.log('files', files)
-console.log('files.keys()', files.keys())
+
 files.keys().forEach(key => {
   let componentName = key.split('/')[1]
   let fileName = key.split('/')[2]
@@ -218,5 +217,4 @@ const transformConfig = config => {
   })
   return config
 }
-console.log('transformConfig(config)', transformConfig(config))
 export default transformConfig(config)

@@ -1,22 +1,10 @@
 import React, { Component } from 'react'
-import {
-  Form,
-  Input,
-  Button,
-  DatePicker,
-  Counter,
-  TimePicker,
-  Select,
-  Radio,
-  Upload,
-  Stepper,
-  Grid
-} from '@hi-ui/hiui'
+import { Form, Input, Button, DatePicker, Counter, TimePicker, Select, Radio, Upload, Stepper, Grid } from '@hi-ui/hiui'
 import './index.scss'
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       forms: this.initForms(),
@@ -58,7 +46,7 @@ export default class Template extends Component {
     ]
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
@@ -73,23 +61,23 @@ export default class Template extends Component {
     )
   }
 
-  handleChange () {}
+  handleChange() {}
 
-  handleSubmit () {}
+  handleSubmit() {}
 
-  reset () {}
+  reset() {}
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms } = this.state
 
     return (
-      <div className='page--form-with-stepper'>
-        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='120'>
-          <h2 className='hi-form__title'>
+      <div className="page--form-with-stepper">
+        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth="120">
+          <h2 className="hi-form__title">
             表单
-            <div className='stepper-container'>
+            <div className="stepper-container">
               <Stepper data={this.list} current={0} />
             </div>
           </h2>
@@ -99,7 +87,7 @@ export default class Template extends Component {
               <fieldset>
                 <legend>基础信息</legend>
 
-                <FormItem label='姓名' field='text'>
+                <FormItem label="姓名" field="text">
                   <Input
                     value={forms.text}
                     placeholder={'请输入'}
@@ -107,16 +95,16 @@ export default class Template extends Component {
                     style={{ width: '250px' }}
                   />
                 </FormItem>
-                <FormItem label='时间' field='date'>
+                <FormItem label="时间" field="date">
                   <DatePicker
-                    type='daterange'
+                    type="daterange"
                     value={forms.date}
                     onChange={d => {
                       console.log(d)
                     }}
                   />
                 </FormItem>
-                <FormItem label='数量' field='num'>
+                <FormItem label="数量" field="num">
                   <Counter
                     defaultValue={forms.num}
                     step={1}
@@ -129,7 +117,7 @@ export default class Template extends Component {
               <fieldset>
                 <legend>附加信息</legend>
 
-                <FormItem label='时间' field='time'>
+                <FormItem label="时间" field="time">
                   <TimePicker
                     value={forms.time}
                     onChange={d => {
@@ -137,10 +125,10 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-                <FormItem label='种类' field='select'>
+                <FormItem label="种类" field="select">
                   <Select
                     data={this.singleList}
-                    placeholder='请选择种类'
+                    placeholder="请选择种类"
                     style={{ width: '200px' }}
                     value={forms.select}
                     onChange={item => {
@@ -148,7 +136,7 @@ export default class Template extends Component {
                     }}
                   />
                 </FormItem>
-                <FormItem label='单选' field='radio'>
+                <FormItem label="单选" field="radio">
                   <Radio.Group
                     data={['北京', '上海', '重庆']}
                     value={forms.radio}
@@ -156,31 +144,31 @@ export default class Template extends Component {
                   />
                 </FormItem>
 
-                <FormItem label='照片' field='radio'>
+                <FormItem label="照片" field="radio">
                   <Upload
-                    type='photo'
-                    uploadAction='http://127.0.0.1:8000'
+                    type="photo"
+                    uploadAction="http://127.0.0.1:8000"
                     params={{ id: 'uid', channel: 'youpin' }}
                     name={'files[]'}
                   />
                 </FormItem>
 
-                <FormItem label='文本框' field='longText'>
+                <FormItem label="文本框" field="longText">
                   <Input
                     value={forms.longText}
                     placeholder={'多行文本'}
                     onChange={this.handleChange.bind(this, 'column1')}
                     style={{ width: '320px', height: '100px' }}
-                    type='textarea'
+                    type="textarea"
                   />
                 </FormItem>
               </fieldset>
 
               <FormItem>
-                <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+                <Button type="primary" onClick={this.handleSubmit.bind(this)}>
                   下一步
                 </Button>
-                <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
+                <Button type="line" onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
                   重置
                 </Button>
               </FormItem>

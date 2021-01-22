@@ -7,19 +7,20 @@ class ListItem extends React.Component {
   state = {
     open: false
   }
-  render () {
+
+  render() {
     const { title, status, statusDesc, info, detail } = this.props.item
     const { open } = this.state
 
     return (
-      <div className='list-item'>
-        <div className='list-item__content'>
+      <div className="list-item">
+        <div className="list-item__content">
           <div style={{ flex: 1 }}>
-            <div className='list-item__header'>
+            <div className="list-item__header">
               {title}
               <Tag type={status || 'primary'} className='tag' appearance="line">{statusDesc}</Tag>
             </div>
-            <div className='list-item__info'>
+            <div className="list-item__info">
               {info.map((i, index) => [
                 <div
                   key={index}
@@ -31,7 +32,11 @@ class ListItem extends React.Component {
                   <span>{i.label + '：'}</span>
                   <span>{i.value}</span>
                 </div>,
-                index !== info.length - 1 && <span key={index + 'span'} className='list-item__separation'>|</span>
+                index !== info.length - 1 && (
+                  <span key={index + 'span'} className="list-item__separation">
+                    |
+                  </span>
+                )
               ])}
               <div
                 style={{
@@ -44,8 +49,7 @@ class ListItem extends React.Component {
                   })
                 }}
               >
-                {open ? '收起' : '展开'}{' '}
-                <Icon name={open ? 'up' : 'down'} style={{ color: '#666' }} />
+                {open ? '收起' : '展开'} <Icon name={open ? 'up' : 'down'} style={{ color: '#666' }} />
               </div>
             </div>
           </div>
@@ -88,9 +92,9 @@ class ListItem extends React.Component {
 }
 
 export default class List extends React.Component {
-  render () {
+  render() {
     return (
-      <div className='list'>
+      <div className="list">
         {this.props.data.map((item, index) => (
           <ListItem item={item} key={index} />
         ))}

@@ -8,7 +8,7 @@ import './index.scss'
 const { Row, Col } = Grid
 
 const generateTaskData = (sample, num) => {
-  let dataList = []
+  const dataList = []
   for (let i = 0; i < num; i++) {
     dataList.push(sample)
   }

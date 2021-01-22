@@ -78,7 +78,7 @@ const countrys = [
   { title: '英国', id: '6' }
 ]
 export default class UserCenter extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       photo: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
@@ -112,41 +112,23 @@ export default class UserCenter extends Component {
       [field]: value
     })
   }
+
   submitData = () => {
-    const {
-      photo,
-      username,
-      nickname,
-      cardNum,
-      group,
-      tel,
-      country,
-      province,
-      address
-    } = this.state
+    const { photo, username, nickname, cardNum, group, tel, country, province, address } = this.state
     console.log(photo, username, nickname, cardNum, group, tel, country, province, address)
     // 请求以上数据
   }
-  render () {
-    const {
-      photo,
-      username,
-      nickname,
-      cardNum,
-      group,
-      tel,
-      country,
-      province,
-      address
-    } = this.state
+
+  render() {
+    const { photo, username, nickname, cardNum, group, tel, country, province, address } = this.state
     return (
-      <div className='page--user-center'>
-        <Form labelWidth='144'>
+      <div className="page--user-center">
+        <Form labelWidth="144">
           <NavMenu onClick={this.handleClick} data={menuList}>
             <div style={{ width: 592, marginTop: 14, marginLeft: 14 }}>
-              <FormItem label='头像'>
+              <FormItem label="头像">
                 <img
-                  alt='头像'
+                  alt="头像"
                   src={photo}
                   style={{
                     width: 80,
@@ -154,28 +136,28 @@ export default class UserCenter extends Component {
                   }}
                 />
               </FormItem>
-              <FormItem label='用户名'>
+              <FormItem label="用户名">
                 <Input
                   value={username}
                   placeholder={'请输入'}
                   onChange={e => this.onValueChange('username', e.target.value)}
                 />
               </FormItem>
-              <FormItem label='昵称'>
+              <FormItem label="昵称">
                 <Input
                   value={nickname}
                   placeholder={'请输入'}
                   onChange={e => this.onValueChange('nickname', e.target.value)}
                 />
               </FormItem>
-              <FormItem label='工卡号'>
+              <FormItem label="工卡号">
                 <Input
                   value={cardNum}
                   placeholder={'请输入'}
                   onChange={e => this.onValueChange('cardNum', e.target.value)}
                 />
               </FormItem>
-              <FormItem label='所在部门'>
+              <FormItem label="所在部门">
                 <Cascader
                   value={group}
                   onChange={value => {
@@ -184,17 +166,13 @@ export default class UserCenter extends Component {
                   data={groups}
                 />
               </FormItem>
-              <FormItem label='联系方式'>
-                <Input
-                  value={tel}
-                  placeholder={'请输入'}
-                  onChange={e => this.onValueChange('tel', e.target.value)}
-                />
+              <FormItem label="联系方式">
+                <Input value={tel} placeholder={'请输入'} onChange={e => this.onValueChange('tel', e.target.value)} />
               </FormItem>
 
-              <FormItem label='国家'>
+              <FormItem label="国家">
                 <Select
-                  type='single'
+                  type="single"
                   data={countrys}
                   value={country}
                   onChange={value => {
@@ -202,7 +180,7 @@ export default class UserCenter extends Component {
                   }}
                 />
               </FormItem>
-              <FormItem label='所在省市'>
+              <FormItem label="所在省市">
                 <Cascader
                   value={province}
                   onChange={value => {
@@ -211,18 +189,14 @@ export default class UserCenter extends Component {
                   data={provinces}
                 />
               </FormItem>
-              <FormItem label='详细地址'>
+              <FormItem label="详细地址">
                 <Input
                   value={address}
                   placeholder={'请输入'}
                   onChange={e => this.onValueChange('address', e.target.value)}
                 />
               </FormItem>
-              <Button
-                type='primary'
-                style={{ marginLeft: '142px', marginTop: '8px' }}
-                onClick={this.submitData}
-              >
+              <Button type="primary" style={{ marginLeft: '142px', marginTop: '8px' }} onClick={this.submitData}>
                 保存
               </Button>
             </div>

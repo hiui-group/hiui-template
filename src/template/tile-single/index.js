@@ -6,30 +6,26 @@ import { Radio, Icon, Modal, Button, Dropdown, Notification } from '@hi-ui/hiui'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.columnMixins = {
       column1: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.column1 - next.column1
         }
       },
       action: {
         render: (key, row) => (
           <React.Fragment>
-            <Link to='/form/form-basic' className='hi-tpl__add'>
-              <Icon name='edit' />
+            <Link to="/form/form-basic" className="hi-tpl__add">
+              <Icon name="edit" />
             </Link>
-            <span onClick={this.showDelModal.bind(this, row)} className='action-del'>
-              <Icon name='close' />
+            <span onClick={this.showDelModal.bind(this, row)} className="action-del">
+              <Icon name="close" />
             </span>
-            <span className='action-more'>
-              <Dropdown
-                data={[{ title: '打印小票' }]}
-                title='更多'
-                onClick={val => console.log(val)}
-              />
+            <span className="action-more">
+              <Dropdown data={[{ title: '打印小票' }]} title="更多" onClick={val => console.log(val)} />
             </span>
           </React.Fragment>
         )
@@ -59,19 +55,19 @@ export default class Template extends Component {
     }
   }
 
-  showDelModal (row) {
+  showDelModal(row) {
     this.setState({
       delModal: row
     })
   }
 
-  cancelEvent () {
+  cancelEvent() {
     this.setState({
       delModal: false
     })
   }
 
-  delEvent () {
+  delEvent() {
     Notification.open({
       type: 'success',
       title: '订单号为' + this.state.delModal.order_id + '已删除'
@@ -81,7 +77,7 @@ export default class Template extends Component {
     })
   }
 
-  updateForm (data) {
+  updateForm(data) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState(
@@ -94,7 +90,7 @@ export default class Template extends Component {
     )
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
@@ -106,7 +102,7 @@ export default class Template extends Component {
     )
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
 
@@ -116,7 +112,7 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page--tile-single page'>
+      <div className="page--tile-single page">
         <Row>
           <Col span={24}>
             <DataFilter
@@ -126,26 +122,26 @@ export default class Template extends Component {
               columnMixins={this.columnMixins}
               actions={[
                 'search',
-                <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary' icon='plus' />
+                <Link to="/form-unfold-group" className="hi-tpl__add">
+                  <Button type="primary" icon="plus" />
                 </Link>,
                 <Button
-                  type='line'
-                  icon='download'
+                  type="line"
+                  icon="download"
                   onClick={() => {
                     console.log('------------click download')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='mark'
+                  type="line"
+                  icon="mark"
                   onClick={() => {
                     console.log('------------click share')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='more'
+                  type="line"
+                  icon="more"
                   onClick={() => {
                     console.log('------------click more')
                   }}
@@ -162,7 +158,7 @@ export default class Template extends Component {
               ]}
             >
               <Row gutter>
-                <div className='block-filter__label block-filter__label--radio'>订单状态</div>
+                <div className="block-filter__label block-filter__label--radio">订单状态</div>
                 <Radio.Group
                   data={field1.list}
                   value={field1.checkValue}
@@ -180,7 +176,7 @@ export default class Template extends Component {
                 />
               </Row>
               <Row gutter>
-                <div className='block-filter__label block-filter__label--radio'>业务来源</div>
+                <div className="block-filter__label block-filter__label--radio">业务来源</div>
                 <Radio.Group
                   data={field2.list}
                   value={field2.checkValue}
@@ -198,7 +194,7 @@ export default class Template extends Component {
                 />
               </Row>
               <Row gutter>
-                <div className='block-filter__label block-filter__label--radio'>运输方式</div>
+                <div className="block-filter__label block-filter__label--radio">运输方式</div>
                 <Radio.Group
                   data={field3.list}
                   value={field3.checkValue}
@@ -216,7 +212,7 @@ export default class Template extends Component {
                 />
               </Row>
               <Row gutter>
-                <div className='block-filter__label block-filter__label--radio'>支付方式</div>
+                <div className="block-filter__label block-filter__label--radio">支付方式</div>
                 <Radio.Group
                   data={field4.list}
                   value={field4.checkValue}
@@ -237,22 +233,20 @@ export default class Template extends Component {
           </Col>
         </Row>
         <Modal
-          title='确认'
-          size='small'
+          title="确认"
+          size="small"
           visible={!!this.state.delModal}
           onCancel={this.cancelEvent.bind(this)}
           footer={[
-            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>
+            <Button type="default" key={'cancel'} onClick={this.cancelEvent.bind(this)}>
               取消
             </Button>,
-            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>
+            <Button type="danger" key={'sure'} onClick={this.delEvent.bind(this)}>
               确认
             </Button>
           ]}
         >
-          <span>
-            确认要删除订单号为{this.state.delModal && this.state.delModal.order_id}的订单么？
-          </span>
+          <span>确认要删除订单号为{this.state.delModal && this.state.delModal.order_id}的订单么？</span>
         </Modal>
       </div>
     )

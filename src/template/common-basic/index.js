@@ -5,25 +5,25 @@ import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
 import './index.scss'
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.columnMixins = {
       id: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.id - next.id
         }
       },
       action: {
         render: () => (
           <React.Fragment>
-            <Link to='/form-unfold-group'>
-              <Button type='default' appearance='link' icon='edit' />
+            <Link to="/form-unfold-group">
+              <Button type="default" appearance="link" icon="edit" />
             </Link>
             <Button
-              type='default'
-              appearance='link'
-              icon='delete'
+              type="default"
+              appearance="link"
+              icon="delete"
               onClick={() => {
                 Notification.open({
                   type: 'success',
@@ -32,7 +32,7 @@ export default class Template extends Component {
                 })
               }}
             />
-            <Button type='default' appearance='link' icon='more' onClick={() => {}} />
+            <Button type="default" appearance="link" icon="more" onClick={() => {}} />
           </React.Fragment>
         )
       }
@@ -47,7 +47,7 @@ export default class Template extends Component {
     }
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { pageSize } = this.state
@@ -56,7 +56,7 @@ export default class Template extends Component {
     }
 
     return (
-      <div className='page--common-basic'>
+      <div className="page--common-basic">
         <Row>
           <Col span={24}>
             <DataFilter
@@ -65,26 +65,26 @@ export default class Template extends Component {
               columnMixins={this.columnMixins}
               actions={[
                 'search',
-                <Link to='/form-unfold-group' className='hi-tpl__add'>
-                  <Button type='primary' icon='plus' />
+                <Link to="/form-unfold-group" className="hi-tpl__add">
+                  <Button type="primary" icon="plus" />
                 </Link>,
                 <Button
-                  type='line'
-                  icon='download'
+                  type="line"
+                  icon="download"
                   onClick={() => {
                     console.log('------------click download')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='mark'
+                  type="line"
+                  icon="mark"
                   onClick={() => {
                     console.log('------------click share')
                   }}
                 />,
                 <Button
-                  type='line'
-                  icon='more'
+                  type="line"
+                  icon="more"
                   onClick={() => {
                     console.log('------------click more')
                   }}

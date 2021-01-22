@@ -7,7 +7,7 @@ import { Modal, Menu, Button, Icon, Tooltip, Notification } from '@hi-ui/hiui'
 import './style/index.scss'
 
 export default class Copy extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -29,16 +29,12 @@ export default class Copy extends Component {
     }
 
     axios
-      .get(
-        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.js`
-      )
+      .get(`https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.js`)
       .then(ret => {
         this.setState({ jsCode: ret.data })
       })
     axios
-      .get(
-        `https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.scss`
-      )
+      .get(`https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.scss`)
       .then(ret => {
         this.setState({ cssCode: ret.data })
       })
@@ -47,38 +43,43 @@ export default class Copy extends Component {
       })
   }
 
-  getTabs (cssCode) {
-    return cssCode ? [{ id: '0', content: 'js 代码' }, { id: '1', content: 'scss 代码' }] : [{ id: '0', content: 'js 代码' }]
+  getTabs(cssCode) {
+    return cssCode
+      ? [
+          { id: '0', content: 'js 代码' },
+          { id: '1', content: 'scss 代码' }
+        ]
+      : [{ id: '0', content: 'js 代码' }]
   }
 
-  closeModal () {
+  closeModal() {
     this.setState({ showModal: false, jsCode: '', cssCode: '', selectedKey: '0' })
   }
 
-  render () {
+  render() {
     const { showModal, jsCode, cssCode, selectedKey } = this.state
     return (
       <React.Fragment>
-        <div className='copy-container'>
-          <div className='copy' onClick={this.showModal}>
-            <Icon name='tool' />
+        <div className="copy-container">
+          <div className="copy" onClick={this.showModal}>
+            <Icon name="tool" />
           </div>
         </div>
         <Modal
-          className='code-modal'
+          className="code-modal"
           title={
-            <React.Fragment>
+            <div>
               <span>复制代码&nbsp;&nbsp;</span>
-              <Tooltip title='点击复制按钮复制代码至你现有的项目中'>
-                <Icon name='problem-circle-o' />
+              <Tooltip title="点击复制按钮复制代码至你现有的项目中">
+                <Icon name="problem-circle-o" />
               </Tooltip>
-            </React.Fragment>
+            </div>
           }
-          size='large'
+          size="large"
           visible={showModal}
           onCancel={this.closeModal.bind(this)}
           footer={[
-            <Button type='default' onClick={this.closeModal.bind(this)} key='close'>
+            <Button type="default" onClick={this.closeModal.bind(this)} key="close">
               关闭
             </Button>,
             <CopyToClipboard
@@ -89,28 +90,28 @@ export default class Copy extends Component {
                   title: '复制成功'
                 })
               }}
-              key='copy'
+              key="copy"
             >
-              <Button type='primary'>复制</Button>
+              <Button type="primary">复制</Button>
             </CopyToClipboard>
           ]}
         >
           <Menu
             data={this.getTabs(cssCode)}
-            placement='horizontal'
-            className='menus'
+            placement="horizontal"
+            className="menus"
             activeId={selectedKey}
-            onClick={(id, prevId) => this.setState({selectedKey: id.toString()})}
+            onClick={(id, prevId) => this.setState({ selectedKey: id.toString() })}
             onClickSubMenu={index => console.log('-----onClickSubMenu', index)}
           />
-          <div className='code-container'>
+          <div className="code-container">
             {selectedKey === '0' && (
-              <SyntaxHighlighter language='jsx' style={docco}>
+              <SyntaxHighlighter language="jsx" style={docco}>
                 {jsCode}
               </SyntaxHighlighter>
             )}
             {selectedKey === '1' && (
-              <SyntaxHighlighter language='scss' style={docco}>
+              <SyntaxHighlighter language="scss" style={docco}>
                 {cssCode}
               </SyntaxHighlighter>
             )}

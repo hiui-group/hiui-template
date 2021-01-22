@@ -63,19 +63,20 @@ export default class ListInfoFlow extends Component {
   state = {
     value: '下单'
   }
-  render () {
+
+  render() {
     const { value } = this.state
     return (
-      <div className='page--list-flow'>
-        <div className='page--list-header'>
+      <div className="page--list-flow">
+        <div className="page--list-header">
           搜索中心
           <div>
             <Input
               style={{ width: '259px' }}
               value={value}
               append={
-                <Button className='search-btn'>
-                  <Icon name='search' />
+                <Button className="search-btn">
+                  <Icon name="search" />
                 </Button>
               }
               onChange={event => {
@@ -83,11 +84,11 @@ export default class ListInfoFlow extends Component {
                   value: event.target.value
                 })
               }}
-              placeholder='搜索'
+              placeholder="搜索"
             />
           </div>
         </div>
-        <div className='page--list-container'>
+        <div className="page--list-container">
           {listData.map((item, index) => (
             <ListItem item={item} key={index} highlightValue={value} />
           ))}

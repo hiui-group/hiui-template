@@ -1,38 +1,28 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import {
-  Form,
-  Input,
-  Button,
-  DatePicker,
-  Counter,
-  TimePicker,
-  Select,
-  Radio,
-  Upload,
-  Grid
-} from '@hi-ui/hiui'
+import { Form, Input, Button, DatePicker, Counter, TimePicker, Select, Radio, Upload, Grid } from '@hi-ui/hiui'
 import './index.scss'
 
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      forms: this.initForms(),
+      forms: {
+        name: '',
+        date: null,
+        num: 0,
+        time: new Date(),
+        select: '4',
+        radio: '重庆',
+        longText: ''
+      },
       rules: {
-        text: [
+        name: [
           {
             required: true,
-            message: <span style={{ color: '#ccc' }}>请输入姓名</span>,
-            trigger: 'onBlur,onChange'
-          }
-        ],
-        date: [
-          {
-            required: true,
-            message: <span style={{ color: '#ccc' }}>请选择时间</span>,
+            message: '请输入姓名',
             trigger: 'onBlur,onChange'
           }
         ]
@@ -47,11 +37,11 @@ export default class Template extends Component {
     ]
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
-        text: '',
+        name: '',
         date: null,
         num: 0,
         time: new Date(),
@@ -62,52 +52,30 @@ export default class Template extends Component {
     )
   }
 
-  handleChange () {}
+  handleSubmit() {}
 
-  handleSubmit () {}
+  reset() {}
 
-  reset () {}
-
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms, rules } = this.state
     return (
-      <div className='page--form-basic'>
-        <Form model={forms} rules={rules} labelWidth='120'>
-          <h2 className='hi-form__title'>表单</h2>
-
+      <div className="page--form-basic">
+        <Form model={forms} rules={rules} labelWidth="70" labelPlacement="right">
+          <h2 className="hi-form__title">表单</h2>
           <Row>
             <Col span={24}>
-              <FormItem label='姓名' field='text'>
-                <Input
-                  value={forms.text}
-                  placeholder={'请输入'}
-                  onChange={this.handleChange.bind(this, 'column1')}
-                  style={{ width: '250px' }}
-                />
+              <FormItem label="姓名" field="name">
+                <Input placeholder={'请输入'} style={{ width: '320px' }} />
               </FormItem>
-              <FormItem label='时间' field='date'>
-                <DatePicker
-                  type='daterange'
-                  value={forms.date}
-                  onChange={d => {
-                    this.setState({
-                      forms: Object.assign({}, this.state.forms, { date: d })
-                    })
-                  }}
-                />
+              <FormItem label="时间" field="date">
+                <DatePicker type="daterange" width={320} placeholder={['']} />
               </FormItem>
-              <FormItem label='数量' field='num'>
-                <Counter
-                  defaultValue={forms.num}
-                  step={1}
-                  min={0}
-                  max={8}
-                  onChange={(e, val) => console.log('变化后的值：', val)}
-                />
+              <FormItem label="数量" field="num">
+                <Counter step={1} min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
               </FormItem>
-              <FormItem label='时间' field='time'>
+              <FormItem label="时间" field="time">
                 <TimePicker
                   value={forms.time}
                   onChange={d => {
@@ -115,10 +83,10 @@ export default class Template extends Component {
                   }}
                 />
               </FormItem>
-              <FormItem label='类别' field='select'>
+              <FormItem label="类别" field="select">
                 <Select
                   data={this.singleList}
-                  placeholder='请选择种类'
+                  placeholder="请选择种类"
                   style={{ width: '200px' }}
                   value={forms.select}
                   onChange={item => {
@@ -126,38 +94,33 @@ export default class Template extends Component {
                   }}
                 />
               </FormItem>
-              <FormItem label='地点' field='radio'>
-                <Radio.Group
-                  data={['北京', '上海', '重庆']}
-                  defaultValue={forms.radio}
-                  onChange={this.handleChange.bind(this, 'region', '')}
-                />
+              <FormItem label="地点" field="radio">
+                <Radio.Group data={['北京', '上海', '重庆']} defaultValue={forms.radio} />
               </FormItem>
 
-              <FormItem label='照片' field='radio'>
+              <FormItem label="照片" field="radio">
                 <Upload
-                  type='photo'
-                  uploadAction='http://127.0.0.1:8000'
+                  type="photo"
+                  uploadAction="http://127.0.0.1:8000"
                   param={{ id: 'uid', channel: 'youpin' }}
                   name={'files[]'}
                 />
               </FormItem>
 
-              <FormItem label='备注' field='longText'>
+              <FormItem label="备注" field="longText">
                 <Input
                   value={forms.longText}
                   placeholder={'多行文本'}
-                  onChange={this.handleChange.bind(this, 'column1')}
                   style={{ width: '320px', height: '160px', resize: 'none' }}
-                  type='textarea'
+                  type="textarea"
                 />
               </FormItem>
 
               <FormItem>
-                <Button type='primary' onClick={this.handleSubmit.bind(this)}>
+                <Button type="primary" onClick={this.handleSubmit.bind(this)}>
                   提交
                 </Button>
-                <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
+                <Button type="line" onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
                   重置
                 </Button>
               </FormItem>

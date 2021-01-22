@@ -113,7 +113,7 @@ export default class Template extends Component {
   handleEditClick = () => {}
   handleMoreClick = () => {}
 
-  async componentDidMount () {
+  async componentDidMount() {
     Loading.open(null, { key: 'lk' })
     try {
       await Promise.all([this.fetchOtherInfo(), this.fetchDetailInfo()])
@@ -122,7 +122,7 @@ export default class Template extends Component {
     }
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { title, desc, detailInfo, otherInfo } = this.state
@@ -148,28 +148,28 @@ export default class Template extends Component {
               }]}
             />
           </Row>
-          <Row className='row row-02' justify='space-between'>
+          <Row className="row row-02" justify="space-between">
             <Col>
               <h2>{title}</h2>
-              <Row className='row row-03'>
+              <Row className="row row-03">
                 {desc.map(({ key, value }, idx) => (
                   <div key={idx}>
                     <span>
                       {key}：{value}
                     </span>
-                    <span className='spacer'>|</span>
+                    <span className="spacer">|</span>
                   </div>
                 ))}
               </Row>
             </Col>
             <Col>
-              <Button icon='edit' type='primary' onClick={this.handleEditClick}>
+              <Button icon="edit" type="primary" onClick={this.handleEditClick}>
                 编辑
               </Button>
-              <Button icon='delete' type='danger' onClick={this.handleDeleteClick}>
+              <Button icon="delete" type="danger" onClick={this.handleDeleteClick}>
                 删除
               </Button>
-              <Button icon='more' type='line' onClick={this.handleMoreClick} />
+              <Button icon="more" type="line" onClick={this.handleMoreClick} />
             </Col>
           </Row>
         </Col>

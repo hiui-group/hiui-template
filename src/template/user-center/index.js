@@ -83,7 +83,7 @@ const countrys = [
 ];
 export default class UserCenter extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       photo:
         "https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05",
@@ -103,6 +103,7 @@ export default class UserCenter extends Component {
       [field]: value
     });
   };
+
   submitData = () => {
     const {
       photo,
@@ -128,6 +129,7 @@ export default class UserCenter extends Component {
     );
     // 请求以上数据
   };
+
   render() {
     return (
       <div className="page--user-center">

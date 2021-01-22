@@ -6,14 +6,14 @@ import './index.scss'
 const { Row, Col } = Grid
 
 class HomePortal extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       showTodoModal: false
     }
   }
 
-  renderShortcut () {
+  renderShortcut() {
     let shortcutList = [
       {
         title: '福利介绍',
@@ -50,7 +50,7 @@ class HomePortal extends Component {
     // shortcutList
     shortcutList = shortcutList.map((item, i) => {
       return (
-        <Col key={i} span={8} className='portal__shortcut-item'>
+        <Col key={i} span={8} className="portal__shortcut-item">
           <Card
             hoverable
             style={{
@@ -67,7 +67,7 @@ class HomePortal extends Component {
     return shortcutList
   }
 
-  renderTodo () {
+  renderTodo() {
     let businessList = [
       {
         title: '项目评审',
@@ -92,20 +92,22 @@ class HomePortal extends Component {
     ]
     businessList = businessList.map((item, index) => {
       return (
-        <Row className='portal__todo-item portal-todo-item' key={index}>
+        <Row className="portal__todo-item portal-todo-item" key={index}>
           <Col>
-            <h4 className='portal-todo-item__title'>{item.title}</h4>
-            <div className='portal-todo-item__desc'>{item.desc}</div>
+            <h4 className="portal-todo-item__title">{item.title}</h4>
+            <div className="portal-todo-item__desc">{item.desc}</div>
           </Col>
 
           <Col style={{ textAlign: 'right' }}>
             <span
-              className='portal-todo-item__action'
+              className="portal-todo-item__action"
               onClick={() => {
                 this.setState({ showTodoModal: true })
               }}
-            >办理</span>
-            <div className='portal-todo-item__date'>{new Date().toLocaleDateString()}</div>
+            >
+              办理
+            </span>
+            <div className="portal-todo-item__date">{new Date().toLocaleDateString()}</div>
           </Col>
         </Row>
       )
@@ -113,29 +115,23 @@ class HomePortal extends Component {
     return businessList
   }
 
-  render () {
+  render() {
     return (
-      <div className='page page--portal portal'>
-        <div className='portal__container'>
-          <Row justify='space-between'>
+      <div className="page page--portal portal">
+        <div className="portal__container">
+          <Row justify="space-between">
             <Col span={8}>
-              <Input
-                style={{ width: '304px' }}
-                append={
-                  <Button icon='search' />
-                }
-                placeholder='关键词搜索'
-              />
+              <Input style={{ width: '304px' }} append={<Button icon="search" />} placeholder="关键词搜索" />
             </Col>
           </Row>
 
           <Row>
             <Col span={24}>
-              <div className='portal__header'>
+              <div className="portal__header">
                 <h3>快捷访问</h3>
               </div>
 
-              <Row gutter className='portal__shortcut-list'>
+              <Row gutter className="portal__shortcut-list">
                 {this.renderShortcut()}
               </Row>
             </Col>
@@ -143,25 +139,24 @@ class HomePortal extends Component {
 
           <Row>
             <Col span={24}>
-              <div className='portal__header'>
+              <div className="portal__header">
                 <h3>待办事务</h3>
               </div>
 
               <Card>
-                <div className='portal__todo-list'>
-                  {this.renderTodo()}
-                </div>
+                <div className="portal__todo-list">{this.renderTodo()}</div>
                 <div style={{ textAlign: 'right' }}>
-                  <Link to='/list-task'>查看全部 <Icon name='right' /></Link>
+                  <Link to="/list-task">
+                    查看全部 <Icon name="right" />
+                  </Link>
                 </div>
               </Card>
-
             </Col>
           </Row>
 
           <Modal
-            size='small'
-            title='待办事务标题'
+            size="small"
+            title="待办事务标题"
             visible={this.state.showTodoModal}
             onConfirm={() => {
               this.setState({ showTodoModal: false })

@@ -194,22 +194,22 @@ const listData = [
   }
 ]
 export default class ListEmbeded extends Component {
-  render () {
+  render() {
     return (
-      <div className='page--list-embeded'>
-        <div className='page--list-header'>
+      <div className="page--list-embeded">
+        <div className="page--list-header">
           任务清单
           <div>
             <Input
               style={{ width: '259px' }}
               append={
-                <Button className='search-btn'>
-                  <Icon name='search' />
+                <Button className="search-btn">
+                  <Icon name="search" />
                 </Button>
               }
-              placeholder='待审批'
+              placeholder="待审批"
             />
-            <Button type='primary' icon='plus' className='creat-btn'>
+            <Button type="primary" icon="plus" className="creat-btn">
               创建
             </Button>
           </div>
@@ -227,7 +227,7 @@ export default class ListEmbeded extends Component {
               title: '已通过'
             }
           ]}
-          title='全部'
+          title="全部"
           onClick={val => console.log(val)}
         />
 

@@ -24,11 +24,9 @@ export default class Template extends Component {
   }
 
   fetchBaseInfo = () => {
-    return axios
-      .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail')
-      .then(({ data: { data: baseInfo } }) => {
-        this.setState({ baseInfo })
-      })
+    return axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail').then(({ data: { data: baseInfo } }) => {
+      this.setState({ baseInfo })
+    })
   }
 
   handleBackClick = () => {}
@@ -37,7 +35,7 @@ export default class Template extends Component {
   handleMoreClick = () => {}
   handleSaveClick = () => {}
 
-  async componentDidMount () {
+  async componentDidMount() {
     Loading.open(null, { key: 'lk' })
     try {
       await this.fetchBaseInfo()
@@ -46,7 +44,7 @@ export default class Template extends Component {
     }
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { title, baseInfo, stepper } = this.state
@@ -73,23 +71,23 @@ export default class Template extends Component {
                 }]}
               />
             </Row>
-            <Row className='row row-02' justify='space-between'>
+            <Row className="row row-02" justify="space-between">
               <Col>
                 <h3>{title}</h3>
               </Col>
               <Col>
-                <Button icon='edit' type='primary' onClick={this.handleEditClick}>
+                <Button icon="edit" type="primary" onClick={this.handleEditClick}>
                   编辑
                 </Button>
-                <Button icon='collection' type='line' onClick={this.handleDeleteClick}>
+                <Button icon="collection" type="line" onClick={this.handleDeleteClick}>
                   收藏
                 </Button>
-                <Button icon='more' type='line' onClick={this.handleMoreClick} />
+                <Button icon="more" type="line" onClick={this.handleMoreClick} />
               </Col>
             </Row>
           </Col>
-          <Col className='detail-stepper__card detail-stepper__card--base page page--gutter'>
-            <Row className='title'>基础信息</Row>
+          <Col className="detail-stepper__card detail-stepper__card--base page page--gutter">
+            <Row className="title">基础信息</Row>
             <ul>
               {Object.values(baseInfo).map(({ key, value }, idx) => (
                 <li key={idx}>
@@ -99,36 +97,36 @@ export default class Template extends Component {
               ))}
             </ul>
           </Col>
-          <Col className='detail-stepper__card detail-stepper__card--stepper page page--gutter'>
-            <Row className='title'>项目流程</Row>
-            <Row className='stepper'>
+          <Col className="detail-stepper__card detail-stepper__card--stepper page page--gutter">
+            <Row className="title">项目流程</Row>
+            <Row className="stepper">
               <Stepper {...{ ...stepper, itemLayout: 'vertical' }} />
             </Row>
-            <Row className='form-title'>
+            <Row className="form-title">
               {formTitle}
-              <Button onClick={this.handleSaveClick} type='line'>
+              <Button onClick={this.handleSaveClick} type="line">
                 保存
               </Button>
             </Row>
-            <Form labelPlacement='left' labelWidth='96'>
+            <Form labelPlacement="left" labelWidth="96">
               <Row>
                 <Col span={12}>
-                  <FormItem label='项目名称'>
+                  <FormItem label="项目名称">
                     <Input style={{ width: '320px' }} />
                   </FormItem>
-                  <FormItem label='项目类型'>
+                  <FormItem label="项目类型">
                     <Select style={{ width: '320px' }} />
                   </FormItem>
-                  <FormItem label='项目周期'>
-                    <DatePicker type='daterange' style={{ width: '320px' }} />
+                  <FormItem label="项目周期">
+                    <DatePicker type="daterange" style={{ width: '320px' }} />
                   </FormItem>
                 </Col>
                 <Col span={12}>
-                  <FormItem label='项目执行人'>
+                  <FormItem label="项目执行人">
                     <Input style={{ width: '320px' }} />
                   </FormItem>
-                  <FormItem label='备注'>
-                    <Input type='textarea' style={{ width: '320px', resize: 'none' }} />
+                  <FormItem label="备注">
+                    <Input type="textarea" style={{ width: '320px', resize: 'none' }} />
                   </FormItem>
                 </Col>
               </Row>

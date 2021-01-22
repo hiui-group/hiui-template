@@ -13,38 +13,39 @@ export default class ListIndicator extends Component {
     pageNum: 1,
     pageSize: 15
   }
-  render () {
+
+  render() {
     const { taskList, pageNum } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
     console.log(tasks)
     return (
-      <div className='page--list-indicator'>
-        <div className='page--list-header'>
+      <div className="page--list-indicator">
+        <div className="page--list-header">
           指标百科
           <div>
             <Input
               style={{ width: '259px' }}
               append={
-                <Button className='search-btn'>
-                  <Icon name='search' />
+                <Button className="search-btn">
+                  <Icon name="search" />
                 </Button>
               }
-              placeholder='搜索'
+              placeholder="搜索"
             />
           </div>
         </div>
 
-        <div className='indicator__container'>
-          <div className='indicator——type_container'>
+        <div className="indicator__container">
+          <div className="indicator——type_container">
             {['部门订单', '个人订单', '历史订单', '消息进度'].map((tag, index) => (
-              <span key={index} className='indicator——type_item'>
+              <span key={index} className="indicator——type_item">
                 {tag}
               </span>
             ))}
           </div>
           {['财务部订单', '人力部订单', '开发部订单', '信息部订单'].map((category, index) => (
             <div key={index}>
-              <div className='indicator——item_header'>{category}</div>
+              <div className="indicator——item_header">{category}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {[
                   '笔记本出库数量',
@@ -65,8 +66,8 @@ export default class ListIndicator extends Component {
                   <Card
                     key={index}
                     hoverable
-                    type='simple'
-                    size='small'
+                    type="simple"
+                    size="small"
                     style={{ marginRight: 36, marginBottom: 24, background: '#fff' }}
                   >
                     简易卡片

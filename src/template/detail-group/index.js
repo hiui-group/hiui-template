@@ -20,22 +20,32 @@ export default class Template extends Component {
   }
 
   fetchBaseInfo = () => {
-    return axios
-      .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail')
-      .then(({ data: { data: baseInfo } }) => {
-        this.setState({ baseInfo })
-      })
+    return axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail').then(({ data: { data: baseInfo } }) => {
+      this.setState({ baseInfo })
+    })
   }
 
   fetchExpressInfo = () => {
     return Promise.all([
       axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/info'),
       axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/info')
-    ]).then(([{ data: { data: data1 } }, { data: { data: data2 } }]) => {
-      this.setState({
-        expressInfo: [{ ...data1, title: '发件人信息' }, { ...data2, title: '收件人信息' }]
-      })
-    })
+    ]).then(
+      ([
+        {
+          data: { data: data1 }
+        },
+        {
+          data: { data: data2 }
+        }
+      ]) => {
+        this.setState({
+          expressInfo: [
+            { ...data1, title: '发件人信息' },
+            { ...data2, title: '收件人信息' }
+          ]
+        })
+      }
+    )
   }
 
   handleBackClick = () => {}
@@ -43,7 +53,7 @@ export default class Template extends Component {
   handleEditClick = () => {}
   handleMoreClick = () => {}
 
-  async componentDidMount () {
+  async componentDidMount() {
     Loading.open(null, { key: 'lk' })
     try {
       await this.fetchBaseInfo()
@@ -54,7 +64,7 @@ export default class Template extends Component {
     }
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { title, baseInfo, expressInfo } = this.state
@@ -82,18 +92,18 @@ export default class Template extends Component {
                 }]}
               />
             </Row>
-            <Row className='row row-02' justify='space-between'>
+            <Row className="row row-02" justify="space-between">
               <Col>
                 <h2>{title}</h2>
               </Col>
               <Col>
-                <Button icon='edit' type='primary' onClick={this.handleEditClick}>
+                <Button icon="edit" type="primary" onClick={this.handleEditClick}>
                   编辑
                 </Button>
-                <Button icon='collection' type='line' onClick={this.handleDeleteClick}>
+                <Button icon="collection" type="line" onClick={this.handleDeleteClick}>
                   收藏
                 </Button>
-                <Button icon='more' type='line' onClick={this.handleMoreClick} />
+                <Button icon="more" type="line" onClick={this.handleMoreClick} />
               </Col>
             </Row>
           </Col>
@@ -158,7 +168,7 @@ export default class Template extends Component {
 }
 
 class QueryBasic extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.transportOptions = [
@@ -170,7 +180,7 @@ class QueryBasic extends Component {
 
     this.columnMixins = {
       column1: {
-        sorter (pre, next) {
+        sorter(pre, next) {
           return pre.column1 - next.column1
         }
       },
@@ -180,9 +190,9 @@ class QueryBasic extends Component {
       action: {
         render: () => (
           <React.Fragment>
-            <Icon name='edit' />
-            <Icon name='close' />
-            <Icon name='more' />
+            <Icon name="edit" />
+            <Icon name="close" />
+            <Icon name="more" />
           </React.Fragment>
         )
       }
@@ -199,7 +209,7 @@ class QueryBasic extends Component {
     }
   }
 
-  updateForm (data, callback = undefined) {
+  updateForm(data, callback = undefined) {
     const forms = Object.assign({}, this.state.forms, data)
 
     this.setState(
@@ -212,7 +222,7 @@ class QueryBasic extends Component {
     )
   }
 
-  initForms () {
+  initForms() {
     return Object.assign(
       {},
       {
@@ -223,11 +233,11 @@ class QueryBasic extends Component {
     )
   }
 
-  beforeSubmit () {
+  beforeSubmit() {
     return true
   }
 
-  render () {
+  render() {
     const Row = Grid.Row
     const Col = Grid.Col
     const { forms, pageSize } = this.state

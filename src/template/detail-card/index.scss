@@ -5,11 +5,21 @@
   box-sizing: border-box;
 
   .detail-card__header {
+    margin-top: -$spacer-6;
+    margin-left: -$spacer-6;
+    margin-right: -$spacer-6;
+    padding: $spacer-6;
+    background-color: $white;
+
+    .hi-breadcrumb {
+      margin-left: -4px;
+    }
+
     .row {
       &-01 {
         color: $gray-dark;
-        height: 32px;
         align-items: center;
+        line-height: 1;
       }
 
       .spacer {
@@ -18,38 +28,21 @@
 
       &-02 {
         color: #383e47;
-        margin-top: 0;
+        margin-top: $spacer-5;
         align-items: center;
-        height: 52px;
-        padding: 0;
-        margin-bottom: $spacer-3;
+        background-color: $white;
       }
 
-      &-02 h3 {
-        margin: 0 0 $spacer-1 0;
-      }
-
-      &-03 {
-        padding-top: $spacer-1;
-        font-size: $font-size-small;
-        color: #999;
-        margin-bottom: 18px;
-      }
-
-      &-03 .spacer {
-        margin: 0 20px;
-        color: $gray-light;
-      }
-
-      &-03 .spacer:last-child {
-        display: none;
+      &-02 h2 {
+        margin: $spacer-1 0;
       }
     }
   }
 
   .detail-card__card {
     box-sizing: border-box;
-    background: #fff;
+    margin-top: $spacer-6;
+    background: $white;
 
     .title {
       font-size: 16px;
@@ -67,6 +60,7 @@
       padding: 0;
       display: flex;
       flex-wrap: wrap;
+      margin-top: $spacer-4;
     }
 
     li {
@@ -106,7 +100,7 @@
       margin-left: 24px;
 
       .hi-timeline {
-        margin-top: 24px;
+        margin-top: $spacer-4;
       }
     }
 
@@ -126,13 +120,7 @@
     }
   }
 
-  .detail-group__card {
-    margin-top: $spacer-6;
-    background: $white;
-    padding: 0;
-
-    .hi-navmenu__list {
-      padding: 0 $spacer-6 !important;
-    }
+  .detail-card__table-container {
+    padding: $spacer-4 $spacer-6;
   }
 }

@@ -1,5 +1,6 @@
 const components = {}
 const files = require.context('../template', true, /.js$/)
+
 files.keys().forEach(key => {
   const componentName = key.split('/')[1]
   const fileName = key.split('/')[2]
@@ -123,11 +124,11 @@ const config = [
         path: '/list-info-flow'
       },
       {
-        name: '任务清单',
+        name: '卡片列表',
         path: '/list-task'
       },
       {
-        name: '指标百科',
+        name: '小卡片',
         path: '/list-indicator'
       }
     ]
@@ -216,5 +217,4 @@ const transformConfig = config => {
   })
   return config
 }
-
 export default transformConfig(config)

@@ -18,9 +18,7 @@ class ListItem extends React.Component {
           <div style={{ flex: 1 }}>
             <div className="list-item__header">
               {title}
-              <Tag type={status || 'primary'} className="tag">
-                {statusDesc}
-              </Tag>
+              <Tag type={status || 'primary'} className='tag' appearance="line">{statusDesc}</Tag>
             </div>
             <div className="list-item__info">
               {info.map((i, index) => [
@@ -56,15 +54,15 @@ class ListItem extends React.Component {
             </div>
           </div>
           <div style={{ flex: '0 0 auto' }}>
-            {status === '待审批' && <Button type="line">审批</Button>}
-            <Button type="line" icon="more" />
+            {status === 'pendding' && <Button type='line' >审批</Button>}
+            <Button icon='more' />
           </div>
         </div>
 
         {detail && open && (
           <div
             style={{
-              background: '#F7FAFE',
+              background: '#FBFBFB',
               flexWrap: 'wrap',
               display: 'flex',
               padding: '12px 24px 8px 24px',
@@ -100,6 +98,7 @@ export default class List extends React.Component {
         {this.props.data.map((item, index) => (
           <ListItem item={item} key={index} />
         ))}
+        {this.props.footer()}
       </div>
     )
   }

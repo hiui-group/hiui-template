@@ -39,13 +39,19 @@ Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
 
   const logoConfig = {
     url: 'https://hiui-group.github.io/hiui-template/',
-    logoUrl: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
+    logoUrl:
+      'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
     name: 'HIUI Templates'
   }
 
   render(
     <React.Fragment>
-      <Theme logo={logoConfig} login={loginConfig} routes={rootRoute} />
+      <Theme
+        logo={logoConfig}
+        apperance={{ contentBackground: '#f6f6f6' }}
+        login={loginConfig}
+        routes={rootRoute}
+      />
       <Copy />
       <DataTip />
     </React.Fragment>,

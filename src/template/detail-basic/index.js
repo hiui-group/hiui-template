@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Icon, Grid, Loading, Card, Breadcrumb } from '@hi-ui/hiui'
 import './index.scss'
-import axios from 'axios'
+// import axios from 'axios'
 
 const data = {
   title: '小米8屏幕指纹版',
@@ -75,7 +75,7 @@ const data = {
     }
   }
 }
-const delay = (timeout = 3000) => new Promise((resolve) => setTimeout(() => resolve(), timeout))
+const delay = (timeout = 1000) => new Promise((resolve) => setTimeout(() => resolve(), timeout))
 
 export default class Template extends Component {
   state = {

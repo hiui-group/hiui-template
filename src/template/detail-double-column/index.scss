@@ -5,6 +5,16 @@
   box-sizing: border-box;
 
   .detail-double-column__header {
+    margin-top: -$spacer-6;
+    margin-left: -$spacer-6;
+    margin-right: -$spacer-6;
+    padding: $spacer-6;
+    background-color: $white;
+
+    .hi-breadcrumb {
+      margin-left: -4px;
+    }
+
     .row {
       &-01 {
         color: $gray-dark;
@@ -18,7 +28,6 @@
 
       &-02 {
         color: #383e47;
-        padding: $spacer-6;
         margin-top: $spacer-5;
         align-items: center;
         background-color: $white;

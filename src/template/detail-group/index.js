@@ -68,8 +68,8 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     const { title, baseInfo, expressInfo } = this.state
-    const { activeNavMenuIndex } = this.state
-    const ani = Number.parseInt(activeNavMenuIndex)
+    // const { activeNavMenuIndex } = this.state
+    // const ani = Number.parseInt(activeNavMenuIndex)
     return (
       <div className='page--detail-group'>
         <Col className='detail-group'>

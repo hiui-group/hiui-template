@@ -41,8 +41,8 @@ export default class Template extends Component {
   render() {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, activeNavMenuIndex, desc } = this.state
-    const ani = Number.parseInt(activeNavMenuIndex)
+    const { title, baseInfo, desc } = this.state
+    // const ani = Number.parseInt(activeNavMenuIndex)
     return (
       <div className="page--detail-relevance">
         <Col className="detail-relevance">

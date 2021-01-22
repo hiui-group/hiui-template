@@ -108,8 +108,8 @@ export default class Template extends Component {
   render() {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, stepper, timelineList, activeNavMenuIndex } = this.state
-    const ani = Number.parseInt(activeNavMenuIndex)
+    const { title, baseInfo, stepper, timelineList } = this.state
+    // const ani = Number.parseInt(activeNavMenuIndex)
     return (
       <div className="page--detail-card">
         <Col className="detail-card">

@@ -1,8 +1,6 @@
 import React from 'react'
 import { Button, Input } from '@hi-ui/hiui'
 
-import colors from '../../../../commons/colors'
-
 import './index.scss'
 
 export default class ListHeader extends React.Component {
@@ -18,8 +16,8 @@ export default class ListHeader extends React.Component {
                   className='search-btn'
                   icon='search'
                   style={{
-                    color: colors.primary,
-                    borderLeft: '1px solid ' + colors.border
+                    color: '#4284F5',
+                    borderLeft: '1px solid #d8d8d8'
                   }}
                 />
               }

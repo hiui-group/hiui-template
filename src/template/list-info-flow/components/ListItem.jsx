@@ -1,7 +1,5 @@
 import React from 'react'
 
-import colors from '../../../commons/colors'
-
 export default class ListItem extends React.Component {
 
   renderHighlight = (title, highlightValue) => {
@@ -12,7 +10,7 @@ export default class ListItem extends React.Component {
       return (
         <span>
           {beforeStr}
-          <span style={{ color: colors.red }}>{highlightValue}</span>
+          <span style={{ color: '#EB5252' }}>{highlightValue}</span>
           {afterStr}
         </span>
       )

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Card } from '@hi-ui/hiui'
 
 import ListHeader from './components/ListHeader/index.jsx'
-import colors from '../../commons/colors'
 
 import './index.scss'
 
@@ -64,7 +63,7 @@ export default class ListIndicator extends Component {
                     style={{
                       marginRight: 24,
                       marginBottom: 20,
-                      background: colors.lightBackground
+                      background: '#FBFBFB'
                     }}
                   >
                     {item}

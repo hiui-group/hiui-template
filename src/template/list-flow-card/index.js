@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import { Input, Icon, Button, Stepper, Grid, Card } from '@hi-ui/hiui'
 
-import colors from '../../commons/colors'
-
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -34,7 +32,7 @@ export default class ListFlowCard extends Component {
             value={searchValue}
             append={
               /* 搜索功能可以前端实现也可以后端实现，根据实际场景而定 */
-              <Button style={{ borderLeft: '1px solid ' + colors.border }}>
+              <Button style={{ borderLeft: '1px solid #d8d8d8' }}>
                 <Icon name='search' style={{ fontSize: 16 }} />
               </Button>
             }

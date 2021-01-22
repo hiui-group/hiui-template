@@ -5,6 +5,16 @@
   box-sizing: border-box;
 
   .detail-group__header {
+    margin-top: -$spacer-6;
+    margin-left: -$spacer-6;
+    margin-right: -$spacer-6;
+    padding: $spacer-6;
+    background-color: $white;
+
+    .hi-breadcrumb {
+      margin-left: -4px;
+    }
+
     .row {
       &-01 {
         color: $gray-dark;
@@ -18,7 +28,6 @@
 
       &-02 {
         color: #383e47;
-        padding: $spacer-6;
         margin-top: $spacer-5;
         align-items: center;
         background-color: $white;
@@ -29,10 +38,6 @@
       }
     }
   }
-
-  // .page--gutter {
-  //   padding: $spacer-6 $spacer-6 0 $spacer-6;
-  // }
 
   .detail-group {
     &__card {
@@ -51,12 +56,16 @@
         }
       }
 
+      .hi-card {
+        width: 100%;
+      }
+
       ul {
         list-style: none;
         display: flex;
         flex-wrap: wrap;
         margin: 0;
-        padding: $spacer-6 0;
+        padding: 0;
       }
 
       li {
@@ -66,68 +75,75 @@
 
     .detail-group__card--base {
       margin-top: $spacer-6;
-    }
 
-    .detail-group__card--base li {
-      width: 33%;
-    }
+      li {
+        width: 33%;
+        margin-top: $spacer-2;
 
-    .detail-group__card--base li div:first-child {
-      width: 110px;
-      height: 100%;
-      flex-shrink: 0;
-      color: #999;
-    }
+        div:first-child {
+          width: 110px;
+          height: 100%;
+          flex-shrink: 0;
+          color: #999;
+        }
 
-    .detail-group__card--base li div:last-child {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      word-break: keep-all;
-      width: calc(100% - 150px);
-      line-height: 22px;
+        div:last-child {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          word-break: keep-all;
+          width: calc(100% - 150px);
+          line-height: 22px;
+        }
+      }
     }
 
     .detail-group__card--express {
       .card-list {
         display: flex;
+        padding: 0;
       }
 
       .card-item {
-        border: 1px solid $gray-light;
-        padding: $spacer-6;
         width: 376px;
-        flex-direction: column;
       }
 
       .card-item:not(:first-child) {
         margin-left: $spacer-6;
       }
 
-      img {
-        width: 80px;
-        height: 80px;
-        margin-right: $spacer-6;
-        flex-shrink: 0;
-      }
+      .card-item__content {
+        display: flex;
+        padding-top: $spacer-3;
 
-      .row-01 {
-        font-size: $font-size-large;
-      }
+        img {
+          margin-right: $spacer-6;
+          width: 80px;
+          height: 80px;
+          border-radius: 100%;
+          flex-shrink: 0;
+        }
 
-      .row-02 ul {
-        flex-direction: column;
-      }
+        ul {
+          width: 100%;
+          flex-direction: column;
+          flex: 1;
 
-      .row-02 li {
-        width: 100%;
-      }
+          li:not(:first-child) {
+            margin-top: $spacer-2;
+          }
 
-      .row-02 div:first-child {
-        width: 60px;
-        margin-right: 16px;
-        color: $spacer-4;
-        flex-shrink: 0;
+          span {
+            word-break: break-word;
+            white-space: pre-wrap;
+          }
+
+          span:first-child {
+            margin-right: 16px;
+            color: #999;
+            flex-shrink: 0;
+          }
+        }
       }
     }
 

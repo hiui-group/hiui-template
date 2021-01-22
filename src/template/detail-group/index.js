@@ -3,11 +3,76 @@ import { Link } from 'react-router-dom'
 import { Input, DatePicker, Select, Button, Breadcrumb, Tabs, Icon, Grid, Loading, Card } from '@hi-ui/hiui'
 import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
 import './index.scss'
-import axios from 'axios'
+// import axios from 'axios'
+
+const data = {
+  title: '小米8屏幕指纹版',
+  desc: Array(3).fill({
+    key: '状态',
+    value: '已借出'
+  }),
+  baseInfo: {
+    '设备名称': {
+      key: '设备名称',
+      value: '全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作，手持超级夜景全球首款压感屏幕指纹，快速解锁，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作 ，手持超级夜景，全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面…'
+    },
+    '容量颜色': {
+      key: '容量颜色',
+      value: '64+64G 白色'
+    },
+    '系统版本': {
+      key: '系统版本',
+      value: '2.0'
+    },
+    '设备别名': {
+      key: '设备别名',
+      value: 'Mix2S'
+    },
+    '操作系统': {
+      key: '操作系统',
+      value: '9.5'
+    },
+    '设备挂靠人': {
+      key: '设备挂靠人',
+      value: '测试组'
+    },
+    '设备识别码': {
+      key: '设备识别码',
+      value: '86814403004345686814403004345686814403004345686814403004345686814403004345686814403004345681440300434568681440300434568144030043456868144030043456'
+    },
+    '分辨率': {
+      key: '分辨率',
+      value: '1136*640'
+    },
+    '当前责任人': {
+      key: '当前责任人',
+      value: 'QuoqiangW 王国强'
+    },
+  },
+  expressInfo: {
+    avatar: {
+      key: '头像',
+      value: 'https://images.unsplash.com/photo-1580901066059-159ccd258d77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+    },
+    name: {
+      key: '姓名',
+      value: '王贝'
+    },
+    phone: {
+      key: '电话',
+      value: '13545360987'
+    },
+    adress: {
+      key: '地址',
+      value: '武汉市江夏区江夏大道普洛斯物流园B6区小米仓库'
+    }
+  }
+}
+const delay = (timeout = 1000) => new Promise((resolve) => setTimeout(() => resolve(), timeout))
 
 export default class Template extends Component {
   state = {
-    activeNavMenuIndex: 0,
+    activeTabIndex: 0,
     title: '小米8屏幕指纹版',
     desc: Array(3).fill({
       key: '状态',
@@ -19,33 +84,43 @@ export default class Template extends Component {
     productInfo: {}
   }
 
-  fetchBaseInfo = () => {
-    return axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail').then(({ data: { data: baseInfo } }) => {
-      this.setState({ baseInfo })
-    })
+  fetchBaseInfo = async () => {
+    await delay()
+    this.setState({ baseInfo: data.baseInfo })
+    // return axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail').then(({ data: { data: baseInfo } }) => {
+    //   this.setState({ baseInfo })
+    // })
   }
 
-  fetchExpressInfo = () => {
-    return Promise.all([
-      axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/info'),
-      axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/info')
-    ]).then(
-      ([
-        {
-          data: { data: data1 }
-        },
-        {
-          data: { data: data2 }
-        }
-      ]) => {
-        this.setState({
-          expressInfo: [
-            { ...data1, title: '发件人信息' },
-            { ...data2, title: '收件人信息' }
-          ]
-        })
-      }
-    )
+  fetchExpressInfo = async () => {
+    await delay()
+    this.setState({
+      expressInfo: [
+        { ...data.expressInfo, title: '发件人信息' },
+        { ...data.expressInfo, title: '收件人信息' }
+      ]
+    })
+
+    // return Promise.all([
+    //   axios.get('http://mock.be.mi.com/mock/2532/user/info'),
+    //   axios.get('http://mock.be.mi.com/mock/2532/user/info')
+    // ]).then(
+    //   ([
+    //     {
+    //       data: { data: data1 }
+    //     },
+    //     {
+    //       data: { data: data2 }
+    //     }
+    //   ]) => {
+    //     this.setState({
+    //       expressInfo: [
+    //         { ...data1, title: '发件人信息' },
+    //         { ...data2, title: '收件人信息' }
+    //       ]
+    //     })
+    //   }
+    // )
   }
 
   handleBackClick = () => {}
@@ -67,9 +142,8 @@ export default class Template extends Component {
   render() {
     const Row = Grid.Row
     const Col = Grid.Col
-    const { title, baseInfo, expressInfo } = this.state
-    // const { activeNavMenuIndex } = this.state
-    // const ani = Number.parseInt(activeNavMenuIndex)
+    const { title, baseInfo, expressInfo, activeTabIndex } = this.state
+
     return (
       <div className='page--detail-group'>
         <Col className='detail-group'>
@@ -88,7 +162,7 @@ export default class Template extends Component {
                   path: '/'
                 }, {
                   content: <span>详情</span>,
-                  path: '/detail-basic'
+                  path: '/detail-group'
                 }]}
               />
             </Row>
@@ -107,7 +181,7 @@ export default class Template extends Component {
               </Col>
             </Row>
           </Col>
-          <Col className='detail-group__card detail-group__card--base page page--gutter'>
+          <Col className='detail-group__card detail-group__card--base'>
             <Row className='detail-basic__row'>
               <Card title='基础信息' bordered={false} hoverable>
                 <ul>
@@ -121,26 +195,27 @@ export default class Template extends Component {
               </Card>
             </Row>
           </Col>
-          <Col className='detail-group__card detail-group__card--express page page--gutter'>
+          <Col className='detail-group__card detail-group__card--express'>
             <Row className='detail-basic__row'>
               <Card title='收发信息' bordered={false} hoverable>
                 <ul className='card-list'>
                   {expressInfo.map(({ title, avatar, ...info }, idx) => (
                     <li className='card-item' key={idx}>
-                      <Row className='row row-01'>{title}</Row>
-                      <Row className='row row-02'>
-                        <img src={avatar.value} alt='' />
-                        <ul>
-                          {Object.values(info).filter(item => ['姓名', '地址', '性别'].includes(item.key)).map(({ key, value }, idx) => {
-                            return (
-                              <li key={idx}>
-                                <div>{key}</div>
-                                <div>{value}</div>
-                              </li>
-                            )
-                          })}
-                        </ul>
-                      </Row>
+                      <Card title={title} hoverable style={{ backgroundColor: '#fbfbfb' }}>
+                        <div className="card-item__content">
+                          <img src={avatar.value} alt='' />
+                          <ul>
+                            {Object.values(info).filter(item => ['姓名', '地址', '电话'].includes(item.key)).map(({ key, value }, idx) => {
+                              return (
+                                <li key={idx}>
+                                  <span>{key}</span>
+                                  <span>{value}</span>
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      </Card>
                     </li>
                   ))}
                 </ul>
@@ -151,14 +226,15 @@ export default class Template extends Component {
             <Tabs
               className="detail-group__table-container"
               type="line"
-              onTabClick={(_, idx) => {
+              activeId={activeTabIndex}
+              onTabClick={(tabId) => {
                 this.setState({
-                  activeNavMenuIndex: idx
+                  activeTabIndex: tabId
                 })
               }}
             >
-              <Tabs.Pane tabTitle='车辆信息' tabId={0}><QueryBasic /></Tabs.Pane>
-              <Tabs.Pane tabTitle='商品信息' tabId={1}><QueryBasic /></Tabs.Pane>
+              <Tabs.Pane tabTitle='商品信息' tabId={0}><QueryBasic /></Tabs.Pane>
+              <Tabs.Pane tabTitle='车辆信息' tabId={1}><QueryBasic /></Tabs.Pane>
             </Tabs>
           </Col>
         </Col>

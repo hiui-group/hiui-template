@@ -35,7 +35,19 @@ const config = [
         path: '/form-with-stepper'
       },
       {
-        name: '分组-标签',
+        name: '分组表单 + 标签',
+        path: '/form-with-taps'
+      },
+      {
+        name: '分组表单',
+        path: '/form-with-group'
+      },
+      {
+        name: '内嵌表格表单',
+        path: '/form-with-table'
+      },
+      {
+        name: '分组表单',
         path: '/form-vertical-group'
       },
       {

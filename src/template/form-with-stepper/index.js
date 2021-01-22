@@ -10,6 +10,7 @@ export default class Template extends Component {
     super(props)
     this.form = React.createRef()
     this.state = {
+      currentSteper: 0,
       forms: {
         name: '',
         orderNumber: '',
@@ -35,6 +36,17 @@ export default class Template extends Component {
       { title: '中国区', id: '4', disabled: true },
       { title: '国籍部', id: '5' },
       { title: '生态链', id: '6' }
+    ]
+    this.stepperData = [
+      {
+        title: '账号信息'
+      },
+      {
+        title: '邮箱激活'
+      },
+      {
+        title: '信息登记'
+      }
     ]
   }
 
@@ -67,12 +79,18 @@ export default class Template extends Component {
     )
   }
 
-  handleSubmit() {
+  next() {
     this.form.current.validate((valid, error) => {
       console.log(valid, error)
       if (!error) {
         console.log(valid)
-        Message.open({ type: 'success', title: '提交成功', duration: 2000 })
+        const {
+          stepperData,
+          state: { currentSteper }
+        } = this
+        this.setState({
+          currentSteper: (currentSteper + 1) % stepperData.length
+        })
       } else {
         console.log('error', error)
         Message.open({ type: 'error', title: '数据校验异常', duration: 2000 })
@@ -85,70 +103,58 @@ export default class Template extends Component {
   }
 
   render() {
-    const { forms, rules } = this.state
+    const { forms, rules, currentSteper } = this.state
     return (
       <div className="page-form-with-stepper">
-        <h2>分步表单</h2>
+        <div className="page-form-with-stepper-content">
+          <h2 className="page-form-with-stepper-title">分步表单</h2>
+          <div className="page-form-stepper">
+            <Stepper data={this.stepperData} current={currentSteper} />
+          </div>
+          <Form ref={this.form} rules={rules} labelWidth="70" initialValues={forms} labelPlacement="right">
+            <FormItem label="姓名" field="name">
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
+            </FormItem>
+            <FormItem label="昵称" field="nickname">
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
+            </FormItem>
+            <FormItem label="部门" field="select">
+              <Select
+                data={this.singleList}
+                placeholder="请选择种类"
+                style={{ width: '320px' }}
+                onChange={item => {
+                  console.log('单选结果', item)
+                }}
+              />
+            </FormItem>
+            <FormItem label="照片" field="photo">
+              <Upload
+                type="photo"
+                uploadAction="http://127.0.0.1:8000"
+                param={{ id: 'uid', channel: 'youpin' }}
+                name={'files[]'}
+              />
+            </FormItem>
 
-        <div className="page-form-stepper">
-          <Stepper
-            data={[
-              {
-                title: '账号信息'
-              },
-              {
-                title: '邮箱激活'
-              },
-              {
-                title: '信息登记'
-              }
-            ]}
-            current={0}
-          />
+            <FormItem label="备注" field="longText">
+              <Input
+                placeholder={'多行文本'}
+                style={{ width: '320px', height: '160px', resize: 'none' }}
+                type="textarea"
+              />
+            </FormItem>
+          </Form>
         </div>
-        <Form ref={this.form} rules={rules} labelWidth="70" initialValues={forms} labelPlacement="right">
-          <FormItem label="姓名" field="name">
-            <Input placeholder={'请输入'} style={{ width: '320px' }} />
-          </FormItem>
-          <FormItem label="昵称" field="nickname">
-            <Input placeholder={'请输入'} style={{ width: '320px' }} />
-          </FormItem>
-          <FormItem label="部门" field="select">
-            <Select
-              data={this.singleList}
-              placeholder="请选择种类"
-              style={{ width: '320px' }}
-              onChange={item => {
-                console.log('单选结果', item)
-              }}
-            />
-          </FormItem>
-          <FormItem label="照片" field="photo">
-            <Upload
-              type="photo"
-              uploadAction="http://127.0.0.1:8000"
-              param={{ id: 'uid', channel: 'youpin' }}
-              name={'files[]'}
-            />
-          </FormItem>
 
-          <FormItem label="备注" field="longText">
-            <Input
-              placeholder={'多行文本'}
-              style={{ width: '320px', height: '160px', resize: 'none' }}
-              type="textarea"
-            />
-          </FormItem>
-
-          <FormItem>
-            <Button type="primary" onClick={this.handleSubmit.bind(this)}>
-              提交
-            </Button>
-            <Button type="line" onClick={this.cancelSubmit.bind(this)}>
-              重置
-            </Button>
-          </FormItem>
-        </Form>
+        <div className="page--form-double-column--footer">
+          <Button type="primary" onClick={this.cancelSubmit.bind(this)}>
+            取消
+          </Button>
+          <Button type="line" onClick={this.next.bind(this)}>
+            下一步
+          </Button>
+        </div>
       </div>
     )
   }

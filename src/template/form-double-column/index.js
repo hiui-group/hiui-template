@@ -166,7 +166,7 @@ export default class Template extends Component {
             </Col>
           </Row>
         </Form>
-        <div className="page--form-double-column__footer">
+        <div className="page--form-double-column--footer">
           <Button type="primary" onClick={this.handleSubmit.bind(this)}>
             提交
           </Button>

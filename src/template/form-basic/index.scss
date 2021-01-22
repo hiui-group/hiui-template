@@ -4,9 +4,9 @@
   background: $white;
   min-height: calc(100vh - 112px);
   box-sizing: border-box;
-
-  .hi-form-item {
-    padding: 0 $spacer-6;
+  &-form {
+    padding-bottom: 2px;
+    padding-left: 24px;
   }
 
   .hi-form__title {

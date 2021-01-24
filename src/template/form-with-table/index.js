@@ -4,7 +4,20 @@ import { Form, Input, Select, Button, DatePicker, Counter, Radio, Message, Table
 import './index.scss'
 
 const FormItem = Form.Item
-
+const TableHandle = ({ row, text }) => {
+  return (
+    <div>
+      <Button
+        type="line"
+        icon="edit"
+        onClick={() => {
+          console.log('列信息', row, text)
+        }}
+      />
+      <Button type="danger" icon="delete" />
+    </div>
+  )
+}
 export default class Template extends Component {
   constructor(props) {
     super(props)
@@ -58,8 +71,11 @@ export default class Template extends Component {
         dataKey: 'address'
       },
       {
-        title: '库存',
-        dataKey: 'stock'
+        title: '操作',
+        dataKey: 'stock',
+        render: (text, row) => {
+          return <TableHandle row={row} text={text} />
+        }
       }
     ]
 

@@ -45,23 +45,6 @@ const config = [
       {
         name: '内嵌表格表单',
         path: '/form-with-table'
-      },
-      {
-        name: '分组表单',
-        path: '/form-vertical-group'
-      },
-      {
-        name: '分组-区块',
-        path: '/form-group'
-      },
-      {
-        name: '分组-组合',
-        path: '/form-unfold-group'
-      },
-
-      {
-        name: '弹窗表格',
-        path: '/form-modal'
       }
     ]
   },

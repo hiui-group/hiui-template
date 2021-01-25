@@ -57,6 +57,10 @@ const config = [
     name: '表格',
     children: [
       {
+        name:'表格-分组(横向)',
+        path:'/table-group-horizontal'
+      },
+      {
         name: '通用-搜索',
         path: '/common-search'
       },

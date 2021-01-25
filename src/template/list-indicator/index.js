@@ -35,6 +35,7 @@ export default class ListIndicator extends Component {
     pageNum: 1,
     pageSize: 15
   }
+
   render() {
     const { taskList, pageNum } = this.state
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)

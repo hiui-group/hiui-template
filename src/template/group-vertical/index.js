@@ -153,7 +153,7 @@ export default class Template extends Component {
       <div className="page--group-vertical">
         <Row gutter>
           <Col span={3}>
-            <NavMenu
+            <NavMenu 
               vertical
               selectedKey={activeMenu}
               data={this.menus}

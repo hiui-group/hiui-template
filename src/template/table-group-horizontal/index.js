@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Button, Grid, Icon, Tabs, Input } from '@hi-ui/hiui'
+import { Table, Button, Grid, Tabs, Input } from '@hi-ui/hiui'
 import axios from 'axios'
 import './index.scss'
 
@@ -54,9 +54,9 @@ export default class Template extends Component {
         dataKey: 'stock',
         render: () => (
           <React.Fragment>
-            <Icon name="edit" />
-            <Icon name="close" />
-            <Icon name="more" />
+            <Button icon="edit" />
+            <Button icon="close" />
+            <Button icon="more" />
           </React.Fragment>
         )
       }

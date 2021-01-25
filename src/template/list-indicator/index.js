@@ -65,8 +65,7 @@ export default class ListIndicator extends Component {
                       marginRight: 24,
                       marginBottom: 20,
                       background: '#FBFBFB'
-                    }}
-                  >
+                    }}>
                     {item}
                   </Card>
                 ))}

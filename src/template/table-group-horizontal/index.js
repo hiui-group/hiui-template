@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Table, Button, Grid, Tabs, Input, Loading, Modal } from '@hi-ui/hiui'
+import { Table, Button, Grid, Tabs, Input, Loading, Modal, Form, DatePicker, Counter, Message } from '@hi-ui/hiui'
 import axios from 'axios'
 import './index.scss'
+
+const FormItem = Form.Item
+
 const TabPaneContent = props => {
   const { tabTitle, tabId } = props
   return (
@@ -9,6 +12,53 @@ const TabPaneContent = props => {
       {tabTitle} - {tabId}
       <p>建议大家根据tabId封装成不同的组件</p>
     </div>
+  )
+}
+const TableHandler = ({ text, row, index, scope }) => {
+  return (
+    <React.Fragment>
+      <Button
+        icon="edit"
+        type="success"
+        onClick={() => {
+          console.log(text, row, index, scope)
+          const { name, sku, stock, updateTime } = row
+          scope.setState({
+            modalVisiable: true,
+            modalTitle: '编辑'
+          })
+          scope.form.current.setFieldsValue({
+            projectName: name,
+            sku,
+            num: stock,
+            date: updateTime
+          })
+        }}
+      />
+      <Button
+        icon="delete"
+        type="danger"
+        onClick={() => {
+          Modal.confirm({
+            onConfirm: () => {
+              scope.setState({
+                modalVisiable: false
+              })
+              scope.delTableRow(row.id)
+            },
+            onCancel: () => {
+              scope.setState({
+                modalVisiable: false
+              })
+            },
+            title: '删除',
+            content: '确定要删除本行数据吗',
+            type: 'warning'
+          })
+        }}
+      />
+      <Button icon="more" type="line" />
+    </React.Fragment>
   )
 }
 export default class Template extends Component {
@@ -60,34 +110,43 @@ export default class Template extends Component {
       {
         title: '操作',
         dataKey: 'stock',
-        render: () => (
-          <React.Fragment>
-            <Button icon='edit' />
-            <Button icon='close' />
-            <Button icon='more' />
-          </React.Fragment>
-        )
+        render: (text, row, index) => {
+          const scope = this
+          return <TableHandler text={text} row={row} index={index} scope={scope} />
+        }
       }
     ]
+
+    this.form = React.createRef()
     this.state = {
       pageSize: 10, // 每页条数
       total: 0, // 总条数，分页使用
       currentPage: 1, // 当前页数
       tableDatas: [], // 表格数据
+      modalTitle: '新增',
       keyWord: '',
-      visible: false,
-      modalVisiable: false
+      visibleLoading: false,
+      modalVisiable: false,
+      rules: {
+        projectName: [
+          {
+            required: true,
+            message: '请输入商品名称',
+            trigger: 'onBlur,onChange'
+          }
+        ]
+      }
     }
   }
 
   componentDidMount() {
-    this.fetchData({ page: 1 })
+    this.getTableData({ page: 1 })
   }
 
   // 获取商品信息
-  fetchData(params = { id: '' }) {
+  getTableData(params = { id: '' }) {
     this.setState({
-      visible: true
+      visibleLoading: true
     })
     axios
       .get(`https://mife-gallery.test.mi.com/hiui/products`, {
@@ -106,8 +165,30 @@ export default class Template extends Component {
             tableDatas: datas,
             total: data.length,
             currentPage: params.currentPage || 1,
-            visible: false
+            visibleLoading: false
           })
+        }
+      })
+  }
+
+  // 添加商品
+  putTanleRow = data => {
+    this.setState({
+      visibleLoading: true
+    })
+    // 请自行替换自己的url和请求函数
+    axios
+      .post(`https://mife-gallery.test.mi.com/hiui/upload`, {
+        data
+      })
+      .then(res => {
+        if (res && res.data.code === 0) {
+          this.setState({
+            modalVisiable: false
+          })
+          this.getTableData({ page: 1 })
+        } else {
+          Message.open({ type: 'error', title: '数据校验异常', duration: 2000 })
         }
       })
   }
@@ -115,35 +196,75 @@ export default class Template extends Component {
   // 添加一条新的商品
   addNewProduct = () => {
     this.setState({
-      modalVisiable: true
+      modalVisiable: true,
+      modalTitle: '新增'
     })
   }
 
+  // 删除数据
+  delTableRow = id => {
+    this.setState({
+      visibleLoading: true
+    })
+    // 请自行替换自己的url和请求函数
+    axios
+      .post(`https://mife-gallery.test.mi.com/hiui/upload`, {
+        data: { id }
+      })
+      .then(res => {
+        if (res && res.data.code === 0) {
+          this.setState({
+            modalVisiable: false
+          })
+          this.getTableData({ page: 1 })
+        } else {
+          Message.open({ type: 'error', title: '删除失败', duration: 2000 })
+        }
+      })
+  }
+
+  // modal确定
+  confirmEvent = () => {
+    this.form.current.validate((values, error) => {
+      console.log(values, error)
+      if (!error) {
+        this.putTanleRow(values)
+      }
+    })
+  }
+
+  // modal 取消
+  cancelEvent = () => {
+    this.form.current.resetValidates()
+    this.setState({ modalVisiable: false })
+  }
+
   render() {
-    const { tableDatas, pageSize, total, currentPage, visible } = this.state
+    const { tableDatas, pageSize, total, currentPage, visibleLoading, rules, modalVisiable, modalTitle } = this.state
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className='table-group-horizontal'>
+      <div className="table-group-horizontal">
         <Row>
           <Col span={18}>
-            <h2 className='table-group-horizontal_head-title'>商品管理</h2>
+            <h2 className="table-group-horizontal_head-title">商品管理</h2>
           </Col>
           <Col span={6} style={{ textAlign: 'right' }}>
-            <Button type='line' icon='download' />
-            <Button type='line' icon='document' />
-            <Button type='line' icon='ellipsis' />
+            <Button type="line" icon="download" />
+            <Button type="line" icon="document" />
+            <Button type="line" icon="ellipsis" />
           </Col>
         </Row>
         <Row>
           <Col span={24}>
             <Tabs
-              type='line'
+              type="line"
               onTabClick={tab => {
                 this.setState({
                   activeId: tab
                 })
-              }}>
+              }}
+            >
               {this.panes.map((pane, index) => {
                 return (
                   <Tabs.Pane
@@ -151,12 +272,13 @@ export default class Template extends Component {
                     tabId={pane.tabId}
                     closeable={pane.closeable}
                     key={index}
-                    disabled={pane.disabled}>
-                    <div className='table-group-horizontal_pane-content'>
+                    disabled={pane.disabled}
+                  >
+                    <div className="table-group-horizontal_pane-content">
                       <Row>
                         <Col span={18}>
                           <Input
-                            placeholder='请输入商品ID'
+                            placeholder="请输入商品ID"
                             style={{ width: '304px' }}
                             onChange={e => {
                               this.setState({
@@ -165,24 +287,24 @@ export default class Template extends Component {
                             }}
                             append={
                               <Button
-                                type='default'
-                                icon='search'
+                                type="default"
+                                icon="search"
                                 onClick={() => {
-                                  this.fetchData({ id: this.state.keyWord })
+                                  this.getTableData({ id: this.state.keyWord })
                                 }}
                               />
                             }
                           />
                         </Col>
                         <Col span={6} style={{ textAlign: 'right' }}>
-                          <Button type='primary' icon='plus' onClick={this.addNewProduct.bind(this)}>
+                          <Button type="primary" icon="plus" onClick={this.addNewProduct}>
                             新建
                           </Button>
                         </Col>
                       </Row>
                       {pane.tabId === '1' ? (
                         <div style={{ marginTop: '20px' }}>
-                          <Loading visible={visible}>
+                          <Loading visible={visibleLoading}>
                             <Table
                               columns={this.columns}
                               data={tableDatas}
@@ -192,7 +314,7 @@ export default class Template extends Component {
                                 current: currentPage,
                                 onChange: (currentPage, pre, size) => {
                                   console.log(currentPage, pre, size)
-                                  this.fetchData({ page: currentPage })
+                                  this.getTableData({ page: currentPage })
                                 }
                               }}
                             />
@@ -208,16 +330,21 @@ export default class Template extends Component {
             </Tabs>
           </Col>
         </Row>
-        <Modal
-          title='新增'
-          visible={this.state.visible}
-          onConfirm={this.cancelEvent.bind(this)}
-          onCancel={this.cancelEvent.bind(this)}>
-          <span>一些消息....</span>
-          <br />
-          <span>一些消息...</span>
-          <br />
-          <span>一些消息...</span>
+        <Modal title={modalTitle} visible={modalVisiable} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
+          <Form ref={this.form} className="page--form-basic-form" rules={rules} labelWidth="90" labelPlacement="right">
+            <FormItem label="商品名称" field="projectName">
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
+            </FormItem>
+            <FormItem label="sku" field="sku">
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
+            </FormItem>
+            <FormItem label="数量" field="num">
+              <Counter min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
+            </FormItem>
+            <FormItem label="上市时间" field="date">
+              <DatePicker width={320} placeholder={['选择开始日期', '选择结束日期']} />
+            </FormItem>
+          </Form>
         </Modal>
       </div>
     )

@@ -67,7 +67,7 @@ export default class Template extends Component {
     )
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     this.form.current.validate((valid, error) => {
       console.log(valid, error)
       if (!error) {
@@ -80,7 +80,7 @@ export default class Template extends Component {
     })
   }
 
-  cancelSubmit() {
+  cancelSubmit = () => {
     this.form.current.resetValidates()
   }
 
@@ -94,7 +94,7 @@ export default class Template extends Component {
           className="page--form-basic-form"
           rules={rules}
           labelWidth="70"
-          initialValues={this.state.forms}
+          initialValues={forms}
           labelPlacement="right"
         >
           <FormItem label="姓名" field="name">
@@ -130,7 +130,6 @@ export default class Template extends Component {
           </FormItem>
           <FormItem label="时间" field="time">
             <TimePicker
-              value={forms.time}
               onChange={time => {
                 console.log('时间选择', time)
               }}
@@ -155,10 +154,10 @@ export default class Template extends Component {
           </FormItem>
 
           <FormItem>
-            <Button type="primary" onClick={this.handleSubmit.bind(this)}>
+            <Button type="primary" onClick={this.handleSubmit}>
               提交
             </Button>
-            <Button type="line" onClick={this.cancelSubmit.bind(this)}>
+            <Button type="line" onClick={this.cancelSubmit}>
               重置
             </Button>
           </FormItem>

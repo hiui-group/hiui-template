@@ -72,7 +72,7 @@ const TableHandler = ({ text, row, index, scope }) => {
         }}
       />
       <Dropdown
-        className="table-group-horizontal-morehandle"
+        className="table-advan-group-horizontal-morehandle"
         data={[
           {
             title: "操作1"
@@ -271,12 +271,13 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className="table-group-horizontal">
-        <Row>
-          <Col span={18}>
-            <h2 className="table-group-horizontal_head-title">商品管理</h2>
+      <div className="table-advan-group-horizontal">
+        <Row className="table-advan-group-horizontal_header-handle">
+          <Col span={16}>
+            <h2 className="table-advan-group-horizontal_head-title">商品管理</h2>
           </Col>
-          <Col span={6} style={{ textAlign: "right" }}>
+          <Col span={8} style={{ textAlign: "right" }}>
+            <Button type="primary" icon="plus" onClick={this.addNewProduct} />
             <Button
               type="line"
               icon="download"
@@ -292,7 +293,7 @@ export default class Template extends Component {
               }}
             />
             <Dropdown
-              className="table-group-horizontal-morehandle"
+              className="table-advan-group-horizontal-morehandle"
               data={[
                 {
                   title: "操作1"
@@ -305,6 +306,29 @@ export default class Template extends Component {
               placement="bottom-end"
               title={<Icon name="ellipsis" />}
             />
+          </Col>
+        </Row>
+        <Row className="table-advan-group-horizontal_search">
+          <Col span={16}>
+            <h2 className="table-advan-group-horizontal_head-title">商品管理</h2>
+          </Col>
+          <Col span={8} style={{ textAlign: "right" }}>
+            <Button
+              type="primary"
+              onClick={() => {
+                Message.open({ type: "success", title: "导出成功", duration: 2000 })
+              }}
+            >
+              查询
+            </Button>
+            <Button
+              type="line"
+              onClick={() => {
+                this.props.history.push("/detail-basic")
+              }}
+            >
+              重置
+            </Button>
           </Col>
         </Row>
         <Row>
@@ -326,7 +350,7 @@ export default class Template extends Component {
                     key={index}
                     disabled={pane.disabled}
                   >
-                    <div className="table-group-horizontal_pane-content">
+                    <div className="table-advan-group-horizontal_pane-content">
                       <Row>
                         <Col span={18}>
                           <Input
@@ -348,11 +372,7 @@ export default class Template extends Component {
                             }
                           />
                         </Col>
-                        <Col span={6} style={{ textAlign: "right" }}>
-                          <Button type="primary" icon="plus" onClick={this.addNewProduct}>
-                            新建
-                          </Button>
-                        </Col>
+                        <Col span={6} style={{ textAlign: "right" }}></Col>
                       </Row>
                       {pane.tabId === "1" ? (
                         <div style={{ marginTop: "20px" }}>

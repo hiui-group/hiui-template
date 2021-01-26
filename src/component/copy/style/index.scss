@@ -2,7 +2,7 @@
   position: fixed;
   right: 0;
   bottom: 120px;
-  z-index: 999;
+  z-index: 99999;
 
   .copy {
     display: flex;
@@ -29,6 +29,10 @@
 }
 
 .code-modal {
+  &.hi-modal {
+    z-index: 99999;
+  }
+
   i {
     cursor: pointer;
   }
@@ -61,4 +65,3 @@
     padding: 0 16px !important;
   }
 }
-

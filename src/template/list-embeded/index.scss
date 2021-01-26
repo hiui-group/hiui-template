@@ -3,32 +3,6 @@
 .page--list-embeded {
   box-sizing: border-box;
 
-  .page--list-header {
-    height: 56px;
-    display: flex;
-    justify-content: space-between;
-    font-size: $font-size-x-large;
-    align-items: center;
-    font-weight: $font-weight-semibold;
-    padding: $spacer-6;
-    box-sizing: border-box;
-    margin-bottom: 8px;
-
-    .search-btn {
-      padding: 0 5px;
-    }
-
-    .icon-search {
-      color: get-color($palette-hiui, '50');
-      font-size: $font-size-h3;
-    }
-
-    .creat-btn {
-      margin-left: $spacer-4;
-      height: 30px;
-    }
-  }
-
   .hi-dropdown {
     width: 100px;
     padding: $spacer-2;
@@ -38,9 +12,8 @@
 
   .list {
     box-sizing: border-box;
-    padding: $spacer-4 $spacer-6;
+    padding: $spacer-5 $spacer-6;
     background: $white;
-    margin: 0 $spacer-6;
 
     .list-item__header {
       display: flex;
@@ -52,11 +25,11 @@
       color: $gray-darker;
       display: flex;
       padding-top: 2px;
+      font-size: 12px;
     }
 
     .tag {
-      margin-left: $spacer-4;
-      font-size: $font-size-small;
+      margin-left: $spacer-2;
     }
   }
 

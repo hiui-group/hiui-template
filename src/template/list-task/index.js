@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-import { Icon, Button, Card, Pagination, Input } from '@hi-ui/hiui'
+import { Icon, Card, Pagination, Grid } from '@hi-ui/hiui'
+
+import ListHeader from './components/ListHeader/index.jsx'
+
 import './index.scss'
+
+const { Row, Col } = Grid
 
 const generateTaskData = (sample, num) => {
   const dataList = []
@@ -25,58 +30,69 @@ export default class ListTask extends Component {
     pageSize: 15
   }
 
+  renderCardList = tasks => {
+    const taskRowLength = Math.ceil(tasks.length / 4)
+    const content = []
+    let i = 0
+    while (i < taskRowLength) {
+      content.push(this.getCardsRow(tasks, i))
+      i++
+    }
+    content.push(
+      <Col span={6}>
+        <div className='tasks--card-item' key='btn'>
+          <Card
+            hoverable
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+              flex: 1,
+              justifyContent: 'center',
+              cursor: 'pointer',
+              width: '100%'
+            }}
+          >
+            <Icon name='plus' />
+          </Card>
+        </div>
+      </Col>
+    )
+    return content
+  }
+
+  getCardsRow = (tasks, i) => {
+    const currentRowData = tasks.slice(i * 4, (i + 1) * 4)
+    return currentRowData.map((t, idx) => {
+      return (
+        <Col span={6} key={idx}>
+          <div className='tasks--card-item'>
+            <Card hoverable title={t.title} style={{ width: '100%' }}>
+              <p>{t.content}</p>
+            </Card>
+          </div>
+        </Col>
+      )
+    })
+  }
+
   render() {
     const { taskList, pageNum, pageSize } = this.state
-    const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
+    const tasks = taskList.slice((pageNum - 1) * pageSize, pageNum * pageSize)
 
     return (
-      <div className="page--list-task">
-        <div className="page--list-header">
-          任务清单
-          <div>
-            <Input
-              style={{ width: '259px' }}
-              append={
-                <Button className="search-btn">
-                  <Icon name="search" />
-                </Button>
-              }
-              placeholder="搜索"
-            />
-          </div>
-        </div>
-
-        <div className="tasks__container">
-          <div className="tasks--card-container">
-            {tasks
-              .map((t, index) => (
-                <div className="tasks--card-item" key={index}>
-                  <Card
-                    title={t.title}
-                    hoverable
-                    extra={[<Icon name="delete" key={1} />, <Icon name="more" key={2} />]}
-                  >
-                    <p>{t.content}</p>
-                  </Card>
-                </div>
-              ))
-              .concat(
-                <div className="tasks--card-item" key="btn">
-                  <Card
-                    hoverable
-                    style={{
-                      alignItems: 'center',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <Icon name="plus" />
-                  </Card>
-                </div>
-              )}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 14 }}>
+      <div className='page--list-task'>
+        <ListHeader />
+        <div className='tasks__container'>
+          <Row>
+            <div className='tasks--card-container'>
+              {this.renderCardList(tasks)}
+            </div>
+          </Row>
+          <div
+            style={{
+              marginTop: 4
+            }}
+          >
             <Pagination
               defaultCurrent={pageNum}
               total={taskList.length}

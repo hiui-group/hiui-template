@@ -10,6 +10,7 @@ es/
 .settings/
 .vscode/
 .tmp/
+.eslintcache
 
 # Dev dependencies and cache files
 node_modules/
@@ -23,5 +24,4 @@ Desktop.ini
 Thumbs.db
 .Spotlight-V100
 .Trashes
-.eslintcache 
 yarn.lock

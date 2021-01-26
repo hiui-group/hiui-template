@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { Pagination } from '@hi-ui/hiui'
+
 import ListItem from './components/ListItem'
-import { Input, Icon, Button } from '@hi-ui/hiui'
+import ListHeader from './components/ListHeader/index'
+
 import './index.scss'
 
 const listData = [
@@ -64,34 +67,45 @@ export default class ListInfoFlow extends Component {
     value: '下单'
   }
 
+  handleChange = value => {
+    this.setState({
+      value
+    })
+  }
+
+  renderPage = () => {
+    const { pageNum, pageSize } = this.state
+    return (
+      <div
+        style={{
+          marginTop: 20
+        }}
+      >
+        <Pagination
+          defaultCurrent={pageNum}
+          total={listData.length * 4}
+          pageSize={pageSize}
+          onChange={(page, prevPage, pageSize) => {
+            this.setState({
+              pageNum: page,
+              pageSize
+            })
+          }}
+        />
+      </div>
+    )
+  }
+
   render() {
     const { value } = this.state
     return (
-      <div className="page--list-flow">
-        <div className="page--list-header">
-          搜索中心
-          <div>
-            <Input
-              style={{ width: '259px' }}
-              value={value}
-              append={
-                <Button className="search-btn">
-                  <Icon name="search" />
-                </Button>
-              }
-              onChange={event => {
-                this.setState({
-                  value: event.target.value
-                })
-              }}
-              placeholder="搜索"
-            />
-          </div>
-        </div>
-        <div className="page--list-container">
+      <div className='page--list-flow'>
+        <ListHeader value={value} onChange={this.handleChange} />
+        <div className='page--list-container'>
           {listData.map((item, index) => (
             <ListItem item={item} key={index} highlightValue={value} />
           ))}
+          {this.renderPage()}
         </div>
       </div>
     )

@@ -54,9 +54,9 @@ export default class Template extends Component {
         dataKey: 'stock',
         render: () => (
           <React.Fragment>
-            <Button icon="edit" />
-            <Button icon="close" />
-            <Button icon="more" />
+            <Button icon='edit' />
+            <Button icon='close' />
+            <Button icon='more' />
           </React.Fragment>
         )
       }
@@ -133,28 +133,27 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className="table-group-horizontal">
+      <div className='table-group-horizontal'>
         <Row>
           <Col span={18}>
-            <h2 className="table-group-horizontal_head-title">商品管理</h2>
+            <h2 className='table-group-horizontal_head-title'>商品管理</h2>
           </Col>
           <Col span={6} style={{ textAlign: 'right' }}>
-            <Button type="line" icon="download" />
-            <Button type="line" icon="document" />
-            <Button type="line" icon="ellipsis" />
+            <Button type='line' icon='download' />
+            <Button type='line' icon='document' />
+            <Button type='line' icon='ellipsis' />
           </Col>
         </Row>
         <Row>
           <Col span={24}>
             <Tabs
-              type="line"
+              type='line'
               onTabClick={tab => {
                 console.log(tab)
                 this.setState({
                   activeId: tab
                 })
-              }}
-            >
+              }}>
               {this.panes.map((pane, index) => {
                 return (
                   <Tabs.Pane
@@ -162,18 +161,17 @@ export default class Template extends Component {
                     tabId={pane.tabId}
                     closeable={pane.closeable}
                     key={index}
-                    disabled={pane.disabled}
-                  >
-                    <div className="table-group-horizontal_pane-content">
+                    disabled={pane.disabled}>
+                    <div className='table-group-horizontal_pane-content'>
                       <Row>
                         <Col span={18}>
                           <Input
-                            placeholder="请输入"
+                            placeholder='请输入'
                             style={{ width: '304px' }}
                             append={
                               <Button
-                                type="default"
-                                icon="search"
+                                type='default'
+                                icon='search'
                                 onClick={() => {
                                   console.log('search')
                                 }}
@@ -182,7 +180,7 @@ export default class Template extends Component {
                           />
                         </Col>
                         <Col span={6} style={{ textAlign: 'right' }}>
-                          <Button type="primary" icon="plus">
+                          <Button type='primary' icon='plus'>
                             新建
                           </Button>
                         </Col>

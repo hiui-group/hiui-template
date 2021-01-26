@@ -21,7 +21,7 @@ export default class ListHeader extends React.Component {
           <Input
             style={{ width: '259px' }}
             value={value}
-            onChange={(e) => this.setState({ value: e.target.value })}
+            onChange={e => this.setState({ value: e.target.value })}
             append={
               <Button
                 className='search-btn'

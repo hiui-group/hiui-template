@@ -1,6 +1,7 @@
 .page--query-basic {
-  background: #fff;
-  padding: 24px;
-  min-height: calc(100vh - 64px);
-  box-sizing: border-box;
+  &__query-card {
+    .hi-card__title {
+      height: 64px;
+    }
+  }
 }

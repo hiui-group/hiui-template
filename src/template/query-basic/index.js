@@ -1,217 +1,285 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Button, Input, DatePicker, Select, Icon, Grid } from '@hi-ui/hiui'
-import { DataFilter, FieldGroup, Field } from '@hi-ui/component-kit/es/data-filter'
+import { Icon, Grid, Table, Card, Button, Form, Input, Select, DatePicker, TimePicker } from '@hi-ui/hiui'
 import './index.scss'
+// import axios from 'axios'
+
+const delay = (timeout = 1000) => new Promise(resolve => setTimeout(() => resolve(), timeout))
+
+const { Row, Col } = Grid
+const FormItem = Form.Item
+const FormSubmit = Form.Submit
+const FormReset = Form.Reset
+
+const prefix = 'page--query-basic'
+
+const queryData = {
+  selectedRowKey: 'id',
+  total: 20,
+  current: 1,
+  pageSize: 5,
+  tableData: [
+    {
+      id: 3249,
+      name: '小米9',
+      sku: '8+64',
+      phone: '11225568',
+      channel: '小米商城',
+      dealer: '线下KA',
+      shareCount: '12,139,987',
+      activeCount: '0'
+    },
+    {
+      id: 3299,
+      name: '小米9 SE',
+      sku: '6+64',
+      phone: '11225568',
+      channel: '清河店',
+      dealer: '线下KA',
+      shareCount: '19.000',
+      activeCount: '10,000'
+    },
+    {
+      id: 4299,
+      name: '小米8',
+      sku: '6+64',
+      phone: '11225568',
+      channel: '双安店',
+      dealer: '线下KA',
+      shareCount: '25.000',
+      activeCount: '10,000'
+    },
+    {
+      id: 4219,
+      name: 'Redmi Note7',
+      sku: '4+64',
+      phone: '11225568',
+      channel: '华润五彩城店',
+      dealer: '线下KA',
+      shareCount: '9.000',
+      activeCount: '100'
+    }
+  ]
+}
 
 export default class Template extends Component {
-  constructor(props) {
-    super(props)
-
-    this.orderPlatformOptions = [
-      { title: '全部', id: '全部' },
-      { title: '小米商城', id: '小米商城' },
-      { title: '小米之家', id: '小米之家' },
-      { title: '天猫旗舰店', id: '天猫旗舰店' },
-      { title: '京东旗舰店', id: '京东旗舰店' }
-    ]
-    this.orderDeliveryOptions = [
-      { title: '全部', id: '全部' },
-      { title: '顺丰', id: '顺丰' },
-      { title: 'EMS', id: 'EMS' },
-      { title: '如风达', id: '如风达' },
-      { title: '百世汇通', id: '百世汇通' },
-      { title: '自取', id: '自取' }
-    ]
-    this.orderPaymentOptions = [
-      { title: '全部', id: '全部' },
-      { title: '微信支付', id: '微信支付' },
-      { title: '支付宝', id: '支付宝' },
-      { title: '银联', id: '银联' },
-      { title: '信用卡', id: '信用卡' },
-      { title: '现金', id: '现金' }
-    ]
-    this.orderStatusOptions = [
-      { title: '全部', id: '全部' },
-      { title: '待支付', id: '待支付' },
-      { title: '已支付', id: '已支付' },
-      { title: '配货中', id: '配货中' },
-      { title: '配送中', id: '配送中' },
-      { title: '已收货', id: '已收货' },
-      { title: '已取消', id: '已取消' },
-      { title: '已关闭', id: '已关闭' }
-    ]
-    this.columnMixins = {
-      id: {
+  columnMixins = {
+    columns: [
+      {
+        title: 'SKU',
+        dataKey: 'sku'
+      },
+      {
+        title: '商品ID',
+        dataKey: 'id'
+      },
+      {
+        title: '商品名',
+        dataKey: 'name'
+      },
+      {
+        title: '电话',
+        dataKey: 'phone'
+      },
+      {
+        title: '渠道',
+        dataKey: 'channel'
+      },
+      {
+        title: '经销商',
+        dataKey: 'dealer'
+      },
+      {
+        title: '分货量',
+        dataKey: 'shareCount',
         sorter(pre, next) {
-          return pre.id - next.id
+          return pre - next
         }
       },
-      action: {
-        render: () => (
-          <React.Fragment>
-            <Icon name="edit" />
-            <Icon name="close" />
-            <Icon name="more" />
-          </React.Fragment>
-        )
-      }
-    }
-
-    this.state = {
-      pageSize: 10,
-      total: 0,
-      page: 1,
-      tableDatas: [],
-      columns: [],
-      forms: this.initForms(),
-      _date: new Date()
-    }
-  }
-
-  updateForm(data, callback = undefined) {
-    const forms = Object.assign({}, this.state.forms, data)
-
-    this.setState(
       {
-        forms
+        title: '激活量',
+        dataKey: 'activeCount',
+        sorter(pre, next) {
+          return pre - next
+        }
       },
-      () => {
-        callback && callback()
-      }
-    )
-  }
-
-  initForms() {
-    return Object.assign(
-      {},
       {
-        order_id: '',
-        order_platform: '全部',
-        order_delivery: '全部',
-        order_payment: '全部',
-        order_date: new Date()
+        title: '操作',
+        dataKey: 'id',
+        render: (value, item) => {
+          return (
+            <React.Fragment>
+              <Icon name="edit" onClick={() => this.tableUpdateControlor('edit', value)} />
+              <Icon name="delete" onClick={() => this.tableUpdateControlor('delete', value)} />
+              <Icon name="more" onClick={() => this.tableUpdateControlor('more', value)} />
+            </React.Fragment>
+          )
+        }
       }
-    )
+    ],
+    sorter(pre, next) {
+      return pre.column1 - next.column1
+    }
   }
 
-  beforeSubmit() {
-    return true
+  state = {
+    total: 0,
+    current: 1,
+    pageSize: 10,
+    tableData: [],
+    selectedRowKey: '',
+    queryData: {}
+  }
+
+  fetchQueryBasic = async () => {
+    await delay()
+    const { tableData, ...rest } = queryData
+    const _tableData = tableData.map(item => ({ ...item, key: item.id }))
+    this.setState({ ...rest, tableData: _tableData })
+  }
+
+  async componentDidMount() {
+    await this.fetchQueryBasic()
+  }
+
+  tableUpdateControlor = (name, value) => {
+    console.log(name, value)
+  }
+
+  queryButtonClickControlor = (name, value) => {
+    console.log(name, value)
+  }
+
+  queryChangeControlor = (name, value) => {
+    console.log(name, value)
+  }
+
+  onQueryConfirm = () => {
+    console.log('onQueryConfirm')
+  }
+
+  onQueryReset = () => {
+    console.log('onQueryReset')
   }
 
   render() {
-    const Row = Grid.Row
-    const Col = Grid.Col
-    const { forms, pageSize } = this.state
-    const params = {
-      pageSize
-    }
+    const { columnMixins, queryChangeControlor, queryButtonClickControlor, onQueryConfirm, onQueryReset } = this
+    const { total, current, pageSize, tableData, selectedRowKey, queryData } = this.state
 
     return (
-      <div className="page--query-basic">
+      <>
         <Row>
           <Col span={24}>
-            <DataFilter
-              url={`http://yapi.demo.qunar.com/mock/26534/hiui/base-table`}
-              onFetched={ret => {
-                console.log('fetchData', ret)
-              }}
-              params={params}
-              columnMixins={this.columnMixins}
-              actions={[
-                'search',
-                <Link to="/form-unfold-group" className="hi-tpl__add">
-                  <Button type="primary" icon="plus" />
-                </Link>,
-                <Button
-                  type="line"
-                  icon="download"
-                  onClick={() => {
-                    console.log('click download')
-                  }}
-                />,
-                <Button
-                  type="line"
-                  icon="mark"
-                  onClick={() => {
-                    console.log('click share')
-                  }}
-                />,
-                <Button
-                  type="line"
-                  icon="more"
-                  onClick={() => {
-                    console.log('click more')
-                  }}
-                />
-              ]}
-              activeTools={['query']}
-              tools={[
-                {
-                  type: 'query',
-                  forms,
-                  beforeSubmit: this.beforeSubmit.bind(this),
-                  onCancel: () => {
-                    this.updateForm(this.initForms())
-                  }
-                }
-              ]}
-            >
-              <FieldGroup main>
-                <Field label="订单号" width="220">
-                  <Input
-                    placeholder="请输入"
-                    value={forms.order_id}
-                    onChange={(e, value) => {
-                      this.updateForm({ order_id: value })
-                    }}
-                  />
-                </Field>
-                <Field label="订单日期" width="200">
-                  <DatePicker
-                    value={forms.order_date}
-                    onChange={d => {
-                      this.updateForm({ order_date: DatePicker.format(d, 'YYYY-MM-DD') })
-                    }}
-                  />
-                </Field>
-                <Field label="业务来源" width="200">
-                  <Select
-                    data={this.orderPlatformOptions}
-                    placeholder="请选择业务来源"
-                    value={forms.order_platform}
-                    onChange={value => this.updateForm({ order_platform: (value[0] && value[0].id) || '全部' })}
-                  />
-                </Field>
-                <Field label="运输方式" width="200">
-                  <Select
-                    data={this.orderDeliveryOptions}
-                    placeholder="请选择运输方式"
-                    value={forms.order_delivery}
-                    onChange={value => this.updateForm({ order_delivery: (value[0] && value[0].id) || '全部' })}
-                  />
-                </Field>
-                <Field label="支付方式" width="200" advanced>
-                  <Select
-                    data={this.orderPaymentOptions}
-                    placeholder="请选择支付方式"
-                    value={forms.order_payment}
-                    onChange={value => this.updateForm({ order_payment: (value[0] && value[0].id) || '全部' })}
-                  />
-                </Field>
-                <Field label="订单状态" width="200" advanced>
-                  <Select
-                    data={this.orderStatusOptions}
-                    placeholder="请选择订单状态"
-                    value={forms.order_status}
-                    onChange={value => this.updateForm({ order_status: (value[0] && value[0].id) || '全部' })}
-                  />
-                </Field>
-              </FieldGroup>
-            </DataFilter>
+            <BasicTableQueryCard
+              queryData={queryData}
+              onValuesChange={queryChangeControlor}
+              onButtonsClick={queryButtonClickControlor}
+              onConfirm={onQueryConfirm}
+              onReset={onQueryReset}
+            />
           </Col>
         </Row>
-      </div>
+        <Row>
+          <Col span={24}>
+            <Row className="row">
+              <Card bordered={false} hoverable>
+                <Table
+                  columns={columnMixins.columns}
+                  data={tableData}
+                  rowSelection={{
+                    selectedRowKeys: selectedRowKey,
+                    onChange: selectedRowKey => {
+                      this.setState({ selectedRowKey })
+                    }
+                  }}
+                  pagination={{
+                    total,
+                    current,
+                    pageSize,
+                    onChange: current => {
+                      this.setState({ current: current })
+                    }
+                  }}
+                />
+              </Card>
+            </Row>
+          </Col>
+        </Row>
+      </>
     )
   }
+}
+
+function BasicTableQueryCard({ queryData, onValuesChange, onButtonsClick, onConfirm, onReset }) {
+  const { id, model, startEndDate, time } = queryData || {}
+  return (
+    <Card
+      className={`${prefix}__query-card`}
+      title="商品管理"
+      bordered={false}
+      showHeaderDivider
+      hoverable
+      extra={
+        <span>
+          {/* 功能按钮需用户自己去定制，调用后端接口和后续前端操作 */}
+          <Button icon="search" type="line" onClick={() => onButtonsClick('search')} />
+          <Button icon="plus" type="primary" onClick={() => onButtonsClick('plus')} />
+          <Button icon="download" type="line" onClick={() => onButtonsClick('download')} />
+          <Button icon="import" type="line" onClick={() => onButtonsClick('import')} />
+          <Button icon="more" type="line" onClick={() => onButtonsClick('more')} />
+        </span>
+      }
+    >
+      <Form labelPlacement="top" showColon={false}>
+        <Row gutter>
+          <Col span={6}>
+            <FormItem label={'商品ID：'}>
+              <Input
+                value={id}
+                placeholder={'请输入'}
+                onChange={(...args) => onValuesChange('id', args)}
+                maxLength={50}
+                clearable
+              />
+            </FormItem>
+          </Col>
+          <Col span={6}>
+            <FormItem label={'机型：'}>
+              <Select
+                type="multiple"
+                placeholder={'请输入机型'}
+                data={model}
+                onChange={(...args) => onValuesChange('model', args)}
+              />
+            </FormItem>
+          </Col>
+          <Col span={6}>
+            <FormItem label={'日期：'}>
+              <DatePicker
+                type="daterange"
+                format="YYYY-MM-DD"
+                value={startEndDate}
+                onChange={(...args) => onValuesChange('startEndDate', args)}
+                width="100%"
+              />
+            </FormItem>
+          </Col>
+          <Col span={6}>
+            <FormItem label={'时间：'}>
+              <TimePicker value={time} format="HH:mm:ss" onChange={(...args) => onValuesChange('time', args)} />
+            </FormItem>
+          </Col>
+        </Row>
+        <Row style={{ marginTop: 0 }}>
+          <Col span={6}>
+            <FormSubmit type="primary" onClick={onConfirm}>
+              查询
+            </FormSubmit>
+            <FormReset type="line" onClick={onReset}>
+              重置
+            </FormReset>
+          </Col>
+        </Row>
+      </Form>
+    </Card>
+  )
 }

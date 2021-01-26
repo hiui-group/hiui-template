@@ -57,6 +57,14 @@ const config = [
         path: '/table-group-horizontal'
       },
       {
+        name: '表格-分组(纵向)',
+        path: '/table-group-vertical'
+      },
+      {
+        name: '表格-分组(纵向2)',
+        path: '/table-group-horizontal-group'
+      },
+      {
         name: '通用-搜索',
         path: '/common-search'
       },

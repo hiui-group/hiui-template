@@ -72,7 +72,7 @@ const TableHandler = ({ text, row, index, scope }) => {
         }}
       />
       <Dropdown
-        className="table-group-horizontal-morehandle"
+        className="table-group-vertical-morehandle"
         data={[
           {
             title: '操作1'
@@ -271,46 +271,12 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className="table-group-horizontal">
-        <Row>
-          <Col span={18}>
-            <h2 className="table-group-horizontal_head-title">商品管理</h2>
-          </Col>
-          <Col span={6} style={{ textAlign: 'right' }}>
-            <Button
-              type="line"
-              icon="download"
-              onClick={() => {
-                Message.open({ type: 'success', title: '导出成功', duration: 2000 })
-              }}
-            />
-            <Button
-              type="line"
-              icon="document"
-              onClick={() => {
-                Message.open({ type: 'success', title: '查看更多', duration: 2000 })
-              }}
-            />
-            <Dropdown
-              className="table-group-horizontal-morehandle"
-              data={[
-                {
-                  title: '操作1'
-                },
-                {
-                  title: '操作2'
-                }
-              ]}
-              type="button"
-              placement="bottom-end"
-              title={<Icon name="ellipsis" />}
-            />
-          </Col>
-        </Row>
+      <div className="table-group-vertical">
         <Row>
           <Col span={24}>
             <Tabs
               type="line"
+              placement="vertical"
               onTabClick={tab => {
                 this.setState({
                   activeId: tab
@@ -326,7 +292,7 @@ export default class Template extends Component {
                     key={index}
                     disabled={pane.disabled}
                   >
-                    <div className="table-group-horizontal_pane-content">
+                    <div className="table-group-vertical_pane-content">
                       <Row>
                         <Col span={18}>
                           <Input
@@ -349,9 +315,28 @@ export default class Template extends Component {
                           />
                         </Col>
                         <Col span={6} style={{ textAlign: 'right' }}>
-                          <Button type="primary" icon="plus" onClick={this.addNewProduct}>
-                            新建
-                          </Button>
+                          <Button type="primary" icon="plus" onClick={this.addNewProduct}></Button>
+                          <Button
+                            type="primary"
+                            icon="download"
+                            onClick={() => {
+                              Message.open({ type: 'success', title: '导出成功', duration: 2000 })
+                            }}
+                          />
+                          <Dropdown
+                            className="table-group-vertical-morehandle"
+                            data={[
+                              {
+                                title: '操作1'
+                              },
+                              {
+                                title: '操作2'
+                              }
+                            ]}
+                            type="button"
+                            placement="bottom-end"
+                            title={<Icon name="ellipsis" />}
+                          />
                         </Col>
                       </Row>
                       {pane.tabId === '1' ? (

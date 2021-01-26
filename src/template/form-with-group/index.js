@@ -87,16 +87,9 @@ export default class Template extends Component {
   render() {
     const { forms, rules } = this.state
     return (
-      <div className="page--form-basic">
-        <h2 className="hi-form__title">表单</h2>
-        <Form
-          ref={this.form}
-          className="page--form-basic-form"
-          rules={rules}
-          labelWidth="70"
-          initialValues={this.state.forms}
-          labelPlacement="right"
-        >
+      <div className="page--form-gruop">
+        <Form ref={this.form} rules={rules} labelWidth="70" initialValues={this.state.forms} labelPlacement="left">
+          <h2 className="page--form-gruop-form__title">基本信息</h2>
           <FormItem label="姓名" field="name">
             <Input placeholder={'请输入'} style={{ width: '320px' }} />
           </FormItem>
@@ -125,6 +118,7 @@ export default class Template extends Component {
           <FormItem label="数量" field="num">
             <Counter min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
           </FormItem>
+          <h2 className="page--form-gruop-form__title">详细信息</h2>
           <FormItem label="单选" field="radio">
             <Radio.Group data={['选项一', '选项二', '选项三', '选项四']} />
           </FormItem>

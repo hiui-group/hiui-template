@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Button, Icon, Tag } from '@hi-ui/hiui'
+import { Grid, Button, Icon, Tag, Card } from '@hi-ui/hiui'
 import './index.scss'
 
 const { Row, Col } = Grid
@@ -109,176 +109,140 @@ const mySubscribe = [
   }
 ]
 class UserDashboard extends Component {
+  userInfo = {
+    avatar: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
+    username: '王成'
+  }
+
   render() {
     return (
-      <div className="page page--user-dashboard">
-        <div className="user-dashboard__aside">
-          <div className="aside__avator">
-            <img
-              alt="avator"
-              src={'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'}
-              style={{
-                width: 80,
-                height: 80,
-                borderRadius: '50%',
-                marginBottom: 8
-              }}
-            />
-            <div>王成</div>
-            <Icon name="edit" />
-          </div>
-          {asideInfo.map((info, index) => (
-            <div className="aside__section" key={index}>
-              <div className="title">{info.title}</div>
-              {info.content.map((c, index) => (
-                <div className="content-item" key={index}>
-                  <div className="content-item--left">{c.label}</div>
-                  <div className="content-item--right">{c.value}</div>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+      <div className="page--user-dashboard">
+        <UserdashBoardAside userInfo={this.userInfo} asideInfo={asideInfo} />
         <div style={{ flex: 1 }}>
           <Row gutter>
             <Col span={12}>
-              <div className="card">
-                <div className="card__header">我的资产</div>
-                <div className="card__content">
-                  <div style={{ flex: 1 }}>
-                    {myAsset.map((assert, index) => (
-                      <div style={{ marginBottom: 8 }} key={index}>
-                        <div style={{ marginBottom: 2 }}>{assert.title}</div>
-                        <div
-                          style={{
-                            fontSize: '12px',
-                            lineHeight: '20px',
-                            color: '#999'
-                          }}
-                        >
-                          {assert.desc}
-                        </div>
+              <Card
+                title="我的资产"
+                bordered={false}
+                hoverable
+                extra={
+                  <Button type="default" appearance="link" style={{ padding: 0 }}>
+                    更多
+                  </Button>
+                }
+              >
+                <ul>
+                  {myAsset.map((assert, index) => (
+                    <div style={{ marginBottom: 8 }} key={index}>
+                      <div style={{ marginBottom: 2 }}>{assert.title}</div>
+                      <div
+                        style={{
+                          fontSize: '12px',
+                          lineHeight: '20px',
+                          color: '#999'
+                        }}
+                      >
+                        {assert.desc}
                       </div>
-                    ))}
-                  </div>
-
-                  <div style={{ marginTop: 24 }}>
-                    <Button icon="left" />
-                    <Button icon="right" />
-                  </div>
-                </div>
-              </div>
+                    </div>
+                  ))}
+                </ul>
+              </Card>
             </Col>
             <Col span={12}>
-              <div className="card">
-                <div className="card__header">我提交的申请</div>
-                <div className="card__content">
-                  <div style={{ flex: 1 }}>
-                    {myApply.map((apply, index) => (
-                      <div style={{ marginBottom: 8 }} key={index}>
-                        <div
-                          style={{
-                            marginBottom: 2,
-                            display: 'flex',
-                            justifyContent: 'space-between'
-                          }}
-                        >
-                          <div>{apply.title}</div>
-                          <Tag type={apply.status || 'primary'}>{apply.statusDesc}</Tag>
-                        </div>
-                        <div
-                          style={{
-                            fontSize: '12px',
-                            lineHeight: '20px',
-                            color: '#999',
-                            display: 'flex',
-                            justifyContent: 'space-between'
-                          }}
-                        >
-                          <div>{apply.desc}</div>
-                          <div>{apply.time}</div>
-                        </div>
-                      </div>
-                    ))}
+              <Card title="我提交的申请" bordered={false} hoverable>
+                {myApply.map((apply, index) => (
+                  <div style={{ marginBottom: 8 }} key={index}>
+                    <div
+                      style={{
+                        marginBottom: 2,
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <div>{apply.title}</div>
+                      <Tag type={apply.status || 'primary'}>{apply.statusDesc}</Tag>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: '12px',
+                        lineHeight: '20px',
+                        color: '#999',
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <div>{apply.desc}</div>
+                      <div>{apply.time}</div>
+                    </div>
                   </div>
-
-                  <div style={{ marginTop: 24 }}>
-                    <Button icon="left" />
-                    <Button icon="right" />
-                  </div>
+                ))}
+                <div style={{ marginTop: 24 }}>
+                  <Button icon="left" />
+                  <Button icon="right" />
                 </div>
-              </div>
+              </Card>
             </Col>
           </Row>
           <Row gutter>
             <Col span={12}>
-              <div className="card">
-                <div className="card__header">我的收藏</div>
-                <div className="card__content">
-                  <div style={{ flex: 1 }}>
-                    {myCollect.map((collect, index) => (
-                      <div key={index} style={{ marginBottom: 8, display: 'flex' }}>
-                        {collect.image && (
-                          <img
-                            alt=""
-                            src={collect.image}
-                            style={{
-                              width: 80,
-                              height: 80,
-                              marginRight: 8
-                            }}
-                          />
-                        )}
-                        <div style={{ flex: 1 }}>
-                          <div
-                            style={{
-                              marginBottom: 2,
-                              display: 'flex',
-                              justifyContent: 'space-between '
-                            }}
-                          >
-                            <div>{collect.title}</div>
-                            <a href="/">{collect.operation}</a>
-                          </div>
-                          <div
-                            style={{
-                              fontSize: '12px',
-                              lineHeight: '20px',
-                              color: '#999',
-                              display: 'flex'
-                            }}
-                          >
-                            <div>{collect.desc}</div>
-                            <div>{collect.time}</div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col span={12}>
-              <div className="card">
-                <div className="card__header">我的资产</div>
-                <div className="card__content">
-                  <div style={{ flex: 1 }}>
-                    {mySubscribe.map((subscribe, index) => (
-                      <div
-                        key={index}
+              <Card title="我的收藏" bordered={false} hoverable>
+                {myCollect.map((collect, index) => (
+                  <div key={index} style={{ marginBottom: 8, display: 'flex' }}>
+                    {collect.image && (
+                      <img
+                        alt=""
+                        src={collect.image}
                         style={{
-                          marginBottom: 18,
+                          width: 80,
+                          height: 80,
+                          marginRight: 8
+                        }}
+                      />
+                    )}
+                    <div style={{ flex: 1 }}>
+                      <div
+                        style={{
+                          marginBottom: 2,
                           display: 'flex',
                           justifyContent: 'space-between '
                         }}
                       >
-                        <div>{subscribe.title}</div>
-                        <a href="/">{subscribe.operation}</a>
+                        <div>{collect.title}</div>
+                        <a href="/">{collect.operation}</a>
                       </div>
-                    ))}
+                      <div
+                        style={{
+                          fontSize: '12px',
+                          lineHeight: '20px',
+                          color: '#999',
+                          display: 'flex'
+                        }}
+                      >
+                        <div>{collect.desc}</div>
+                        <div>{collect.time}</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                ))}
+              </Card>
+            </Col>
+            <Col span={12}>
+              <Card title="我的资产" bordered={false} hoverable>
+                {mySubscribe.map((subscribe, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      marginBottom: 18,
+                      display: 'flex',
+                      justifyContent: 'space-between '
+                    }}
+                  >
+                    <div>{subscribe.title}</div>
+                    <a href="/">{subscribe.operation}</a>
+                  </div>
+                ))}
+              </Card>
             </Col>
           </Row>
         </div>
@@ -288,3 +252,35 @@ class UserDashboard extends Component {
 }
 
 export default UserDashboard
+
+function UserdashBoardAside({ userInfo, asideInfo }) {
+  return (
+    <div className="user-dashboard__aside">
+      <div className="aside__avator">
+        <img
+          alt="avator"
+          src={userInfo.avatar}
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: '50%',
+            marginBottom: 8
+          }}
+        />
+        <div>{userInfo.username}</div>
+        <Icon name="edit" />
+      </div>
+      {asideInfo.map((info, index) => (
+        <div className="aside__section" key={index}>
+          <div className="title">{info.title}</div>
+          {info.content.map((c, index) => (
+            <div className="content-item" key={index}>
+              <div className="content-item--left">{c.label}</div>
+              <div className="content-item--right">{c.value}</div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+}

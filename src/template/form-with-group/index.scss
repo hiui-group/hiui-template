@@ -1,15 +1,16 @@
 @import '@hi-ui/core-css/index.scss';
 
-.page--form-group {
+.page--form-gruop {
   background: $white;
-  padding: $spacer-6;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 112px);
   box-sizing: border-box;
-  color: $black;
+  padding: $spacer-5 $spacer-6;
 
-  legend {
-    color: $black;
+  &-form__title {
+    margin-top: 0;
     font-size: $font-size-large;
+    line-height: 24px;
+    color: #333;
   }
 
   .photo-display {

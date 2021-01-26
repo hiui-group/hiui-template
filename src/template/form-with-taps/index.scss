@@ -1,39 +1,26 @@
 @import '@hi-ui/core-css/index.scss';
 
-.page-form-with-stepper {
+.page--form-with-taps {
   background: $white;
   min-height: calc(100vh - 112px);
   box-sizing: border-box;
   flex-direction: column;
   justify-content: space-between;
 
-  &-content {
-    padding: $spacer-5 $spacer-6;
-  }
-
-  .page-form-stepper {
-    width: 480px;
-    margin-bottom: 20px;
-  }
-
-  &-item {
+  .hi-form__title {
+    font-size: $font-size-large;
+    height: 47px;
+    line-height: 47px;
     padding: 0 $spacer-6;
-  }
-
-  .stepper-container {
-    width: 400px;
+    width: 100%;
   }
 
   .photo-display {
     padding: 0;
   }
 
-  .hi-form__title {
-    margin-top: 0;
-    font-size: $font-size-large;
-    height: 47px;
-    line-height: 47px;
-    width: 100%;
+  &-content {
+    padding: $spacer-6;
   }
 
   &--footer {

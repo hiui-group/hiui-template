@@ -32,8 +32,8 @@ const TableHandler = ({ text, row, index, scope }) => {
   return (
     <React.Fragment>
       <Button
-        icon="edit"
-        type="success"
+        icon='edit'
+        type='success'
         onClick={() => {
           console.log(text, row, index, scope)
           const { name, sku, stock, updateTime } = row
@@ -50,8 +50,8 @@ const TableHandler = ({ text, row, index, scope }) => {
         }}
       />
       <Button
-        icon="delete"
-        type="danger"
+        icon='delete'
+        type='danger'
         onClick={() => {
           Modal.confirm({
             onConfirm: () => {
@@ -72,7 +72,7 @@ const TableHandler = ({ text, row, index, scope }) => {
         }}
       />
       <Dropdown
-        className="table-group-vertical-morehandle"
+        className='table-group-vertical-morehandle'
         data={[
           {
             title: '操作1'
@@ -81,9 +81,9 @@ const TableHandler = ({ text, row, index, scope }) => {
             title: '操作2'
           }
         ]}
-        type="button"
-        placement="bottom-end"
-        title={<Icon name="ellipsis" />}
+        type='button'
+        placement='bottom-end'
+        title={<Icon name='ellipsis' />}
       />
     </React.Fragment>
   )
@@ -271,18 +271,17 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className="table-group-vertical">
+      <div className='table-group-vertical'>
         <Row>
           <Col span={24}>
             <Tabs
-              type="line"
-              placement="vertical"
+              type='line'
+              placement='vertical'
               onTabClick={tab => {
                 this.setState({
                   activeId: tab
                 })
-              }}
-            >
+              }}>
               {this.panes.map((pane, index) => {
                 return (
                   <Tabs.Pane
@@ -290,13 +289,12 @@ export default class Template extends Component {
                     tabId={pane.tabId}
                     closeable={pane.closeable}
                     key={index}
-                    disabled={pane.disabled}
-                  >
-                    <div className="table-group-vertical_pane-content">
+                    disabled={pane.disabled}>
+                    <div className='table-group-vertical_pane-content'>
                       <Row>
                         <Col span={18}>
                           <Input
-                            placeholder="请输入商品ID"
+                            placeholder='请输入商品ID'
                             style={{ width: '304px' }}
                             onChange={e => {
                               this.setState({
@@ -305,8 +303,8 @@ export default class Template extends Component {
                             }}
                             append={
                               <Button
-                                type="default"
-                                icon="search"
+                                type='default'
+                                icon='search'
                                 onClick={() => {
                                   this.getTableData({ id: this.state.keyWord })
                                 }}
@@ -315,16 +313,16 @@ export default class Template extends Component {
                           />
                         </Col>
                         <Col span={6} style={{ textAlign: 'right' }}>
-                          <Button type="primary" icon="plus" onClick={this.addNewProduct}></Button>
+                          <Button type='primary' icon='plus' onClick={this.addNewProduct}></Button>
                           <Button
-                            type="primary"
-                            icon="download"
+                            type='primary'
+                            icon='download'
                             onClick={() => {
                               Message.open({ type: 'success', title: '导出成功', duration: 2000 })
                             }}
                           />
                           <Dropdown
-                            className="table-group-vertical-morehandle"
+                            className='table-group-vertical-morehandle'
                             data={[
                               {
                                 title: '操作1'
@@ -333,9 +331,9 @@ export default class Template extends Component {
                                 title: '操作2'
                               }
                             ]}
-                            type="button"
-                            placement="bottom-end"
-                            title={<Icon name="ellipsis" />}
+                            type='button'
+                            placement='bottom-end'
+                            title={<Icon name='ellipsis' />}
                           />
                         </Col>
                       </Row>
@@ -368,17 +366,17 @@ export default class Template extends Component {
           </Col>
         </Row>
         <Modal title={modalTitle} visible={modalVisiable} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
-          <Form ref={this.form} className="page--form-basic-form" rules={rules} labelWidth="90" labelPlacement="right">
-            <FormItem label="商品名称" field="projectName">
+          <Form ref={this.form} className='page--form-basic-form' rules={rules} labelWidth='90' labelPlacement='right'>
+            <FormItem label='商品名称' field='projectName'>
               <Input placeholder={'请输入'} style={{ width: '320px' }} />
             </FormItem>
-            <FormItem label="sku" field="sku">
+            <FormItem label='sku' field='sku'>
               <Input placeholder={'请输入'} style={{ width: '320px' }} />
             </FormItem>
-            <FormItem label="数量" field="num">
+            <FormItem label='数量' field='num'>
               <Counter min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
             </FormItem>
-            <FormItem label="上市时间" field="date">
+            <FormItem label='上市时间' field='date'>
               <DatePicker width={320} placeholder={['选择开始日期', '选择结束日期']} />
             </FormItem>
           </Form>

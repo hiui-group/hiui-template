@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-import { Table, Button, Grid, Tabs, Input } from '@hi-ui/hiui'
+import { Table, Button, Grid, Tabs, Input, Loading, Modal } from '@hi-ui/hiui'
 import axios from 'axios'
 import './index.scss'
-
+const TabPaneContent = props => {
+  const { tabTitle, tabId } = props
+  return (
+    <div style={{ marginTop: '20px' }}>
+      {tabTitle} - {tabId}
+      <p>建议大家根据tabId封装成不同的组件</p>
+    </div>
+  )
+}
 export default class Template extends Component {
   constructor(props) {
     super(props)
@@ -34,126 +42,109 @@ export default class Template extends Component {
         dataKey: 'name'
       },
       {
-        title: '品类',
-        dataKey: 'type'
+        title: 'sku',
+        dataKey: 'sku'
       },
       {
-        title: '规格',
-        dataKey: 'size'
+        title: '库存量（个）',
+        dataKey: 'stock'
       },
       {
-        title: '单价',
+        title: '单价（元）',
         dataKey: 'price'
       },
       {
-        title: '门店',
-        dataKey: 'address'
+        title: '上市时间',
+        dataKey: 'updateTime'
       },
       {
         title: '操作',
         dataKey: 'stock',
         render: () => (
           <React.Fragment>
-            <Button icon='edit' />
-            <Button icon='close' />
-            <Button icon='more' />
+            <Button icon="edit" />
+            <Button icon="close" />
+            <Button icon="more" />
           </React.Fragment>
         )
       }
     ]
     this.state = {
-      pageSize: 10,
-      total: 0,
-      page: 1,
-      tableDatas: [],
-      columns: []
+      pageSize: 10, // 每页条数
+      total: 0, // 总条数，分页使用
+      currentPage: 1, // 当前页数
+      tableDatas: [], // 表格数据
+      keyWord: '',
+      visible: false,
+      modalVisiable: false
     }
   }
 
   componentDidMount() {
-    this.fetchData(1)
+    this.fetchData({ page: 1 })
   }
 
-  fetchData(page) {
+  // 获取商品信息
+  fetchData(params = { id: '' }) {
+    this.setState({
+      visible: true
+    })
     axios
       .get(`https://mife-gallery.test.mi.com/hiui/products`, {
-        params: { page }
+        params
       })
       .then(res => {
         const datas = []
-        console.log('res', res)
-
         if (res && res.data.code === 200) {
           const data = res.data.data
-          for (let index = 0; index < 10; index++) {
+          const len = data.length % 10
+          for (let index = 0; index < len; index++) {
             datas.push({ ...data[index], key: index })
           }
 
           this.setState({
-            tableDatas: datas.splice(0, 10)
+            tableDatas: datas,
+            total: data.length,
+            currentPage: params.currentPage || 1,
+            visible: false
           })
         }
       })
   }
 
-  setTableColumns(columns) {
-    const _columns = []
-
-    columns.forEach(column => {
-      const key = column.key
-
-      _columns.push({
-        ...column,
-        ...this.columnMixins[key]
-      })
+  // 添加一条新的商品
+  addNewProduct = () => {
+    this.setState({
+      modalVisiable: true
     })
-
-    return _columns
-  }
-
-  search() {
-    const { s } = this.state
-
-    if (!s) {
-      return
-    }
-
-    this.setState(
-      {
-        page: 1
-      },
-      () => {
-        this.fetchData()
-      }
-    )
   }
 
   render() {
-    const { tableDatas, pageSize, total, page } = this.state
+    const { tableDatas, pageSize, total, currentPage, visible } = this.state
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className='table-group-horizontal'>
+      <div className="table-group-horizontal">
         <Row>
           <Col span={18}>
-            <h2 className='table-group-horizontal_head-title'>商品管理</h2>
+            <h2 className="table-group-horizontal_head-title">商品管理</h2>
           </Col>
           <Col span={6} style={{ textAlign: 'right' }}>
-            <Button type='line' icon='download' />
-            <Button type='line' icon='document' />
-            <Button type='line' icon='ellipsis' />
+            <Button type="line" icon="download" />
+            <Button type="line" icon="document" />
+            <Button type="line" icon="ellipsis" />
           </Col>
         </Row>
         <Row>
           <Col span={24}>
             <Tabs
-              type='line'
+              type="line"
               onTabClick={tab => {
-                console.log(tab)
                 this.setState({
                   activeId: tab
                 })
-              }}>
+              }}
+            >
               {this.panes.map((pane, index) => {
                 return (
                   <Tabs.Pane
@@ -161,44 +152,57 @@ export default class Template extends Component {
                     tabId={pane.tabId}
                     closeable={pane.closeable}
                     key={index}
-                    disabled={pane.disabled}>
-                    <div className='table-group-horizontal_pane-content'>
+                    disabled={pane.disabled}
+                  >
+                    <div className="table-group-horizontal_pane-content">
                       <Row>
                         <Col span={18}>
                           <Input
-                            placeholder='请输入'
+                            placeholder="请输入商品ID"
                             style={{ width: '304px' }}
+                            onChange={e => {
+                              this.setState({
+                                keyWord: e.target.value
+                              })
+                            }}
                             append={
                               <Button
-                                type='default'
-                                icon='search'
+                                type="default"
+                                icon="search"
                                 onClick={() => {
-                                  console.log('search')
+                                  this.fetchData({ id: this.state.keyWord })
                                 }}
                               />
                             }
                           />
                         </Col>
                         <Col span={6} style={{ textAlign: 'right' }}>
-                          <Button type='primary' icon='plus'>
+                          <Button type="primary" icon="plus" onClick={this.addNewProduct.bind(this)}>
                             新建
                           </Button>
                         </Col>
                       </Row>
-                      <div style={{ marginTop: '20px' }}>
-                        <Table
-                          columns={this.columns}
-                          data={tableDatas}
-                          pagination={{
-                            pageSize: pageSize,
-                            total: total,
-                            current: page,
-                            onChange: page => {
-                              this.fetchData(page)
-                            }
-                          }}
-                        />
-                      </div>
+                      {pane.tabId === '1' ? (
+                        <div style={{ marginTop: '20px' }}>
+                          <Loading visible={visible}>
+                            <Table
+                              columns={this.columns}
+                              data={tableDatas}
+                              pagination={{
+                                pageSize: pageSize,
+                                total: total,
+                                current: currentPage,
+                                onChange: (currentPage, pre, size) => {
+                                  console.log(currentPage, pre, size)
+                                  this.fetchData({ page: currentPage })
+                                }
+                              }}
+                            />
+                          </Loading>
+                        </div>
+                      ) : (
+                        <TabPaneContent {...pane} />
+                      )}
                     </div>
                   </Tabs.Pane>
                 )
@@ -206,6 +210,18 @@ export default class Template extends Component {
             </Tabs>
           </Col>
         </Row>
+        <Modal
+          title="新增"
+          visible={this.state.visible}
+          onConfirm={this.cancelEvent.bind(this)}
+          onCancel={this.cancelEvent.bind(this)}
+        >
+          <span>一些消息....</span>
+          <br />
+          <span>一些消息...</span>
+          <br />
+          <span>一些消息...</span>
+        </Modal>
       </div>
     )
   }

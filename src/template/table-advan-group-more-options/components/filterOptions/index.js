@@ -98,12 +98,14 @@ export default class FilterOptions extends Component {
   render() {
     const { colorList, transfertargetIds, moreSettingModel, cacheTargetIds, moreOptions } = this.state
     return (
-      <div className="table-advan_search">
+      <div className="table-advan_search-filter">
         <Form
           ref={this.searchForm}
-          className={classNames("table-advan_search-form", { "table-advan_search-form-hidden": moreOptions })}
+          className={classNames("table-advan_search-filter-form", {
+            "table-advan_search-filter-form-hidden": moreOptions
+          })}
         >
-          <div className="table-advan_search-content">
+          <div className="table-advan_search-filter-content">
             {!cacheTargetIds.includes("goodsName") && (
               <FormItem field="goodsName">
                 <Select
@@ -204,7 +206,7 @@ export default class FilterOptions extends Component {
               更多选型
             </Button>
           </div>
-          <div className={"table-advan_search-botton"}>
+          <div className={"table-advan_search-filter-botton"}>
             <Button
               type="default"
               icon={moreOptions ? "down" : "up"}

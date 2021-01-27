@@ -4,8 +4,8 @@ const TableHandler = ({ text, row, index, scope }) => {
   return (
     <React.Fragment>
       <Button
-        icon="edit"
-        type="success"
+        icon='edit'
+        type='success'
         onClick={() => {
           console.log(text, row, index, scope)
           const { name, sku, stock, updateTime } = row
@@ -22,8 +22,8 @@ const TableHandler = ({ text, row, index, scope }) => {
         }}
       />
       <Button
-        icon="delete"
-        type="danger"
+        icon='delete'
+        type='danger'
         onClick={() => {
           Modal.confirm({
             onConfirm: () => {
@@ -44,7 +44,7 @@ const TableHandler = ({ text, row, index, scope }) => {
         }}
       />
       <Dropdown
-        className="table-advan-group-horizontal-morehandle"
+        className='table-advan-group-horizontal-morehandle'
         data={[
           {
             title: "操作1"
@@ -53,9 +53,9 @@ const TableHandler = ({ text, row, index, scope }) => {
             title: "操作2"
           }
         ]}
-        type="button"
-        placement="bottom-end"
-        title={<Icon name="ellipsis" />}
+        type='button'
+        placement='bottom-end'
+        title={<Icon name='ellipsis' />}
       />
     </React.Fragment>
   )

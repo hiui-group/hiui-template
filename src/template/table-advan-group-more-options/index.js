@@ -182,29 +182,29 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className="table-advan-group-more-options">
-        <Row className="table-advan-group-more-options_header-handle">
+      <div className='table-advan-group-more-options'>
+        <Row className='table-advan-group-more-options_header-handle'>
           <Col span={16}>
-            <h2 className="table-advan-group-more-options_head-title">商品管理</h2>
+            <h2 className='table-advan-group-more-options_head-title'>商品管理</h2>
           </Col>
           <Col span={8} style={{ textAlign: "right" }}>
-            <Button type="primary" icon="plus" onClick={this.addNewProduct} />
+            <Button type='primary' icon='plus' onClick={this.addNewProduct} />
             <Button
-              type="line"
-              icon="download"
+              type='line'
+              icon='download'
               onClick={() => {
                 Message.open({ type: "success", title: "导出成功", duration: 2000 })
               }}
             />
             <Button
-              type="line"
-              icon="document"
+              type='line'
+              icon='document'
               onClick={() => {
                 this.props.history.push("/detail-basic")
               }}
             />
             <Dropdown
-              className="table-advan-group-more-options-morehandle"
+              className='table-advan-group-more-options-morehandle'
               data={[
                 {
                   title: "操作1"
@@ -213,16 +213,16 @@ export default class Template extends Component {
                   title: "操作2"
                 }
               ]}
-              type="button"
-              placement="bottom-end"
-              title={<Icon name="ellipsis" />}
+              type='button'
+              placement='bottom-end'
+              title={<Icon name='ellipsis' />}
             />
           </Col>
         </Row>
         <FilterOptions getTableData={this.getTableData} />
         <Row>
           <Col span={24}>
-            <div className="table-advan-group-more-options_pane-content">
+            <div className='table-advan-group-more-options_pane-content'>
               <div>
                 <Loading visible={visibleLoading}>
                   <Table
@@ -246,21 +246,20 @@ export default class Template extends Component {
         <Modal title={modalTitle} visible={modalVisiable} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
           <Form
             ref={this.modalForm}
-            className="page--form-basic-form"
+            className='page--form-basic-form'
             rules={rules}
-            labelWidth="90"
-            labelPlacement="right"
-          >
-            <FormItem label="商品名称" field="projectName">
+            labelWidth='90'
+            labelPlacement='right'>
+            <FormItem label='商品名称' field='projectName'>
               <Input placeholder={"请输入"} style={{ width: "320px" }} />
             </FormItem>
-            <FormItem label="sku" field="sku">
+            <FormItem label='sku' field='sku'>
               <Input placeholder={"请输入"} style={{ width: "320px" }} />
             </FormItem>
-            <FormItem label="数量" field="num">
+            <FormItem label='数量' field='num'>
               <Counter min={0} max={8} onChange={(e, val) => console.log("变化后的值：", val)} />
             </FormItem>
-            <FormItem label="上市时间" field="date">
+            <FormItem label='上市时间' field='date'>
               <DatePicker width={320} placeholder={["选择开始日期", "选择结束日期"]} />
             </FormItem>
           </Form>

@@ -90,14 +90,14 @@ export default class FilterOptions extends Component {
   render() {
     const { colorList, transferData, transfertargetIds, moreSettingModel, cacheTargetIds } = this.state
     return (
-      <div className="table-advan_search">
-        <Form ref={this.searchForm} className="table-advan_search-form">
-          <div className="table-advan_search-content">
+      <div className='table-advan_search'>
+        <Form ref={this.searchForm} className='table-advan_search-form'>
+          <div className='table-advan_search-content'>
             {!cacheTargetIds.includes("goodsName") && (
-              <FormItem field="goodsName">
+              <FormItem field='goodsName'>
                 <Select
                   style={{ width: 120 }}
-                  placeholder="请选择商品名称"
+                  placeholder='请选择商品名称'
                   data={[
                     {
                       groupId: "redmi",
@@ -112,11 +112,11 @@ export default class FilterOptions extends Component {
               </FormItem>
             )}
             {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field="categorieName">
+              <FormItem field='categorieName'>
                 <Select
                   autoload
                   style={{ width: 120 }}
-                  placeholder="请选择品类"
+                  placeholder='请选择品类'
                   dataSource={keyword => {
                     return {
                       type: "GET",
@@ -140,11 +140,11 @@ export default class FilterOptions extends Component {
               </FormItem>
             )}
             {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field="specName">
+              <FormItem field='specName'>
                 <Select
                   autoload
                   style={{ width: 120 }}
-                  placeholder="请选择规格"
+                  placeholder='请选择规格'
                   dataSource={keyword => {
                     return {
                       type: "GET",
@@ -168,36 +168,35 @@ export default class FilterOptions extends Component {
               </FormItem>
             )}
             {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field="colorName">
-                <Select style={{ width: 120 }} placeholder="请选择颜色" data={colorList} />
+              <FormItem field='colorName'>
+                <Select style={{ width: 120 }} placeholder='请选择颜色' data={colorList} />
               </FormItem>
             )}
             <Button
-              type="primary"
-              appearance="link"
-              icon="setting"
+              type='primary'
+              appearance='link'
+              icon='setting'
               onClick={() => {
                 this.setState({
                   moreSettingModel: true,
                   cacheTargetIds: this.state.transfertargetIds
                 })
-              }}
-            >
+              }}>
               更多选型
             </Button>
           </div>
-          <div className="table-advan_search-botton">
-            <Button type="primary" onClick={this.queryTableData}>
+          <div className='table-advan_search-botton'>
+            <Button type='primary' onClick={this.queryTableData}>
               查询
             </Button>
-            <Button type="line" onClick={this.resetFormData}>
+            <Button type='line' onClick={this.resetFormData}>
               重置
             </Button>
           </div>
         </Form>
-        <Modal title="自定义筛选" visible={moreSettingModel} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
+        <Modal title='自定义筛选' visible={moreSettingModel} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
           <Transfer
-            type="multiple"
+            type='multiple'
             emptyContent={["无数据", "无数据"]}
             title={["显示条件", "隐藏条件"]}
             targetIds={transfertargetIds}

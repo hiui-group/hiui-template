@@ -182,10 +182,10 @@ export default class Template extends Component {
     const Row = Grid.Row
     const Col = Grid.Col
     return (
-      <div className="table-advan-group-horizontal">
-        <Row className="table-advan-group-horizontal_header-handle">
+      <div className="table-advan-group-more-options">
+        <Row className="table-advan-group-more-options_header-handle">
           <Col span={16}>
-            <h2 className="table-advan-group-horizontal_head-title">商品管理</h2>
+            <h2 className="table-advan-group-more-options_head-title">商品管理</h2>
           </Col>
           <Col span={8} style={{ textAlign: "right" }}>
             <Button type="primary" icon="plus" onClick={this.addNewProduct} />
@@ -204,7 +204,7 @@ export default class Template extends Component {
               }}
             />
             <Dropdown
-              className="table-advan-group-horizontal-morehandle"
+              className="table-advan-group-more-options-morehandle"
               data={[
                 {
                   title: "操作1"
@@ -222,7 +222,7 @@ export default class Template extends Component {
         <FilterOptions getTableData={this.getTableData} />
         <Row>
           <Col span={24}>
-            <div className="table-advan-group-horizontal_pane-content">
+            <div className="table-advan-group-more-options_pane-content">
               <div>
                 <Loading visible={visibleLoading}>
                   <Table

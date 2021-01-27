@@ -28,11 +28,11 @@ Axios.get("http://mock.be.mi.com/mock/2532/user/info").then(response => {
     name: userInfo.name,
     icon: "user",
     children: [
-      <div key="1" style={{ textAlign: "center", margin: 4, width: "100px" }}>
-        <a href="#info">个人信息</a>
+      <div key='1' style={{ textAlign: "center", margin: 4, width: "100px" }}>
+        <a href='#info'>个人信息</a>
       </div>,
-      <div key="2" style={{ textAlign: "center", margin: 4, width: 100 }}>
-        <a href="#logout">注销</a>
+      <div key='2' style={{ textAlign: "center", margin: 4, width: 100 }}>
+        <a href='#logout'>注销</a>
       </div>
     ]
   }

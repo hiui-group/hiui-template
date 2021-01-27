@@ -69,6 +69,10 @@ const config = [
         path: "/table-advan-group-horizontal"
       },
       {
+        name: "表格-高级查询（多行选项）",
+        path: "/table-advan-group-more-options"
+      },
+      {
         name: "通用-搜索",
         path: "/common-search"
       },

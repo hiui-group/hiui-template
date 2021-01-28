@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Grid, Table, Card, Button, Radio, Modal, Notification } from '@hi-ui/hiui'
+import { Icon, Grid, Table, Card, Button, Radio, Modal, Notification, Loading } from '@hi-ui/hiui'
 import './index.scss'
 // import axios from 'axios'
 
@@ -158,7 +158,13 @@ export default class Template extends Component {
   }
 
   async componentDidMount() {
-    await this.fetchQueryBasic()
+    Loading.open(null, { key: 'lk' })
+    try {
+      await this.fetchQueryBasic()
+      Loading.close('lk')
+    } finally {
+      Loading.close('lk')
+    }
   }
 
   tableUpdateControlor = (name, value) => {
@@ -202,6 +208,8 @@ export default class Template extends Component {
         ...this.state.queryForm,
         [name]: value
       }
+    }, () => {
+      // request filtered table data here
     })
   }
 

@@ -1,375 +1,456 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { DataFilter } from '@hi-ui/component-kit/es/data-filter'
-import { Icon, Modal, Dropdown, Notification, Checkbox, Button, Grid } from '@hi-ui/hiui'
+import { Icon, Grid, Table, Card, Button, Modal, Notification, Checkbox, Loading } from '@hi-ui/hiui'
 import './index.scss'
+// import axios from 'axios'
 
-const orderPlatformList = ['小米商城', '小米之家', '天猫旗舰店', '京东旗舰店']
-const orderDeliveryList = ['顺丰', 'EMS', '如风达', '百世汇通', '自取']
-const orderPaymentList = ['微信支付', '支付宝', '银联', '信用卡', '现金']
-const orderStatusList = ['待支付', '已支付', '配货中', '配送中', '已收货', '已取消', '已关闭']
+const isIndeterminate = (list, expect) => list.length > 0 && list.length < expect.length
+const delay = (timeout = 1000) => new Promise(resolve => setTimeout(() => resolve(), timeout))
+
+const { Row, Col } = Grid
+
+const prefix = 'page--tile-multiple'
+
+const queryData = {
+  selectedRowKey: 'id',
+  total: 20,
+  current: 1,
+  pageSize: 5,
+  tableData: [
+    {
+      id: 3249,
+      name: '小米9',
+      sku: '8+64',
+      phone: '11225568',
+      channel: '小米商城',
+      dealer: '线下KA',
+      shareCount: '12,139,987',
+      activeCount: '0'
+    },
+    {
+      id: 3299,
+      name: '小米9 SE',
+      sku: '6+64',
+      phone: '11225568',
+      channel: '清河店',
+      dealer: '线下KA',
+      shareCount: '19.000',
+      activeCount: '10,000'
+    },
+    {
+      id: 4299,
+      name: '小米8',
+      sku: '6+64',
+      phone: '11225568',
+      channel: '双安店',
+      dealer: '线下KA',
+      shareCount: '25.000',
+      activeCount: '10,000'
+    },
+    {
+      id: 4219,
+      name: 'Redmi Note7',
+      sku: '4+64',
+      phone: '11225568',
+      channel: '华润五彩城店',
+      dealer: '线下KA',
+      shareCount: '9.000',
+      activeCount: '100'
+    }
+  ]
+}
+
 export default class Template extends Component {
-  constructor(props) {
-    super(props)
-
-    this.columnMixins = {
-      column1: {
+  columnMixins = {
+    columns: [
+      {
+        title: 'SKU',
+        dataKey: 'sku'
+      },
+      {
+        title: '商品ID',
+        dataKey: 'id'
+      },
+      {
+        title: '商品名',
+        dataKey: 'name'
+      },
+      {
+        title: '电话',
+        dataKey: 'phone'
+      },
+      {
+        title: '渠道',
+        dataKey: 'channel'
+      },
+      {
+        title: '经销商',
+        dataKey: 'dealer'
+      },
+      {
+        title: '分货量',
+        dataKey: 'shareCount',
         sorter(pre, next) {
-          return pre.column1 - next.column1
+          return pre - next
         }
       },
-      action: {
-        render: (key, row) => (
-          <React.Fragment>
-            <Link to="/form/form-basic" className="hi-tpl__add">
-              <Icon name="edit" />
-            </Link>
-            <span onClick={this.showDelModal.bind(this, row)} className="action-del">
-              <Icon name="close" />
-            </span>
-            <span className="action-more">
-              <Dropdown data={[{ title: '打印小票' }]} title="更多" onClick={val => console.log(val)} />
-            </span>
-          </React.Fragment>
-        )
+      {
+        title: '激活量',
+        dataKey: 'activeCount',
+        sorter(pre, next) {
+          return pre - next
+        }
+      },
+      {
+        title: '操作',
+        dataKey: 'id',
+        render: (value, item) => {
+          return (
+            <>
+              <Icon name="edit" onClick={() => this.tableUpdateControlor('edit', value)} />
+              <Icon name="delete" onClick={() => this.tableUpdateControlor('delete', item)} />
+              <Icon name="more" onClick={() => this.tableUpdateControlor('more', value)} />
+            </>
+          )
+        }
       }
-    }
-
-    this.state = {
-      field1: [],
-      field2: [],
-      field3: [],
-      field4: [],
-      value1: [],
-      value2: [],
-      value3: [],
-      value4: [],
-      value: [],
-      pageSize: 10,
-      forms: this.initForms()
+    ],
+    sorter(pre, next) {
+      return pre.column1 - next.column1
     }
   }
 
-  componentDidMount() {
-    const orderPlatformState = orderPlatformList.map(item => ({
-      id: item,
-      content: item
-    }))
-    const orderDeliveryState = orderDeliveryList.map(item => ({
-      id: item,
-      content: item
-    }))
-    const orderPaymentState = orderPaymentList.map(item => ({
-      id: item,
-      content: item
-    }))
-    const orderStatusState = orderStatusList.map(item => ({
-      id: item,
-      content: item
-    }))
+  state = {
+    total: 0,
+    current: 1,
+    pageSize: 10,
+    tableData: [],
+    delModal: false,
+    selectedRowKey: '',
+    orderStatus: {
+      list: ['待支付', '已支付', '配货中', '配送中', '已收货', '已取消', '已关闭'],
+      checkedList: []
+    },
+    orderPlatform: {
+      list: [
+        '小米商城',
+        '小米之家',
+        '天猫旗舰店',
+        '京东旗舰店',
+        '有品',
+        '京东商城',
+        '天猫淘宝'
+        // TODO: 存在展示问题
+        // '创新渠道',
+        // '拼多多',
+        // '线下KA',
+        // '小米旗舰店'
+      ],
+      checkedList: []
+    },
+    orderDelivery: {
+      list: ['顺丰', 'EMS', '如风达', '百世汇通', '自取'],
+      checkedList: []
+    },
+    orderPayment: {
+      list: ['微信支付', '支付宝', '银联', '信用卡', '现金'],
+      checkedList: []
+    },
+    queryForm: {
+      orderStatus: [],
+      orderPlatform: [],
+      orderDelivery: [],
+      orderPayment: []
+    }
+  }
+
+  fetchQueryBasic = async () => {
+    await delay()
+    const { tableData, ...rest } = queryData
+    const _tableData = tableData.map(item => ({ ...item, key: item.id }))
+    this.setState({ ...rest, tableData: _tableData })
+  }
+
+  async componentDidMount() {
+    Loading.open(null, { key: 'lk' })
+    try {
+      await this.fetchQueryBasic()
+      Loading.close('lk')
+    } finally {
+      Loading.close('lk')
+    }
+  }
+
+  tableUpdateControlor = (name, value) => {
+    console.log('-----tableUpdateControlor------', name, value)
+
+    switch (name) {
+      case 'edit':
+        // do some things here
+        break
+      case 'delete':
+        this.showDelModal(value)
+        break
+      default:
+        // do some things here
+        break
+    }
+  }
+
+  showDelModal = value => {
     this.setState({
-      field1: orderPlatformState,
-      field2: orderDeliveryState,
-      field3: orderPaymentState,
-      field4: orderStatusState
+      delModal: value
     })
   }
 
-  initForms() {
-    return Object.assign(
-      {},
+  queryButtonClickControllor = (name, value) => {
+    console.log(name, value)
+  }
+
+  queryChangeControllor = (name, value) => {
+    console.log('-----queryChangeControllor------', name, value)
+    const fieldData = this.state[name]
+
+    if (!fieldData) return
+
+    this.setState(
       {
-        order_platform: '全部',
-        order_delivery: '全部',
-        order_payment: '全部',
-        order_status: '全部'
+        [name]: {
+          ...fieldData,
+          checkedList: value
+        },
+        queryForm: {
+          ...this.state.queryForm,
+          [name]: value
+        }
+      },
+      () => {
+        // request filtered table data here
       }
     )
   }
 
-  showDelModal(row) {
-    this.setState({
-      delModal: row
-    })
+  queryCheckAllChangeController = name => {
+    console.log('-----queryCheckAllChangeController------', name)
+    const fieldData = this.state[name]
+    if (!fieldData) return
+
+    const { checkedList, list } = fieldData
+    const isAllChecked = checkedList.length === list.length
+    const newCheckedList = isAllChecked ? [] : [...fieldData.list]
+    this.setState(
+      {
+        [name]: {
+          ...fieldData,
+          checkedList: newCheckedList
+        },
+        queryForm: {
+          ...this.state.queryForm,
+          [name]: newCheckedList
+        }
+      },
+      () => {
+        // request filtered table data here
+      }
+    )
   }
 
-  cancelEvent() {
+  closeModal = () => {
     this.setState({
       delModal: false
     })
   }
 
-  delEvent() {
+  delEvent = () => {
     Notification.open({
       type: 'success',
-      title: '订单号为' + this.state.delModal.order_id + '已删除'
+      title: '订单号为' + this.state.delModal.id + '已删除'
     })
-    this.setState({
-      delModal: false
-    })
+    this.closeModal()
   }
 
-  updateForm(data, callback) {
-    const forms = Object.assign({}, this.state.forms, data)
-
-    this.setState(
-      {
-        forms
-      },
-      () => {
-        callback && callback()
-      }
-    )
+  onQueryConfirm = () => {
+    console.log('onQueryConfirm')
   }
 
-  reset(callback) {
-    this.updateForm(this.initForms(), callback)
-  }
-
-  getParam(list) {
-    return list
-      .filter(item => item.checked)
-      .map(item => item.value)
-      .join(',')
-  }
-
-  setForm() {
-    const forms = {
-      order_platform: this.getParam(this.state.field1),
-      order_delivery: this.getParam(this.state.field2),
-      order_payment: this.getParam(this.state.field3),
-      order_status: this.getParam(this.state.field4)
-    }
-
-    this.updateForm(forms)
-  }
-
-  handleResetClick() {
-    console.log('-------handleResetClick')
-    const { field1, field2, field3, field4 } = this.state
-
-    field1.forEach(item => (item.checked = false))
-    field2.forEach(item => (item.checked = false))
-    field3.forEach(item => (item.checked = false))
-    field4.forEach(item => (item.checked = false))
-
-    this.setState(
-      {
-        field1,
-        field2,
-        field3,
-        field4
-      },
-      () => {
-        this.reset(this.dataFilter.submit(this.initForms()))
-      }
-    )
-  }
-
-  dataFilter = null
-  getIndeterminate1() {
-    return this.state.value1.length > 0 && this.state.value1.length < 4
-  }
-
-  handleCheckAllClick1 = () => {
-    this.setState(({ value1, field1 }) => {
-      return {
-        value1: value1.length < 4 ? field1.map(({ id }) => id) : []
-      }
-    })
-  }
-
-  getIndeterminate2() {
-    return this.state.value2.length > 0 && this.state.value2.length < 4
-  }
-
-  handleCheckAllClick2 = () => {
-    this.setState(({ value2, field2 }) => {
-      return {
-        value2: value2.length < 4 ? field2.map(({ id }) => id) : []
-      }
-    })
-  }
-
-  getIndeterminate3() {
-    return this.state.value3.length > 0 && this.state.value3.length < 4
-  }
-
-  handleCheckAllClick3 = () => {
-    this.setState(({ value3, field3 }) => {
-      return {
-        value3: value3.length < 4 ? field3.map(({ id }) => id) : []
-      }
-    })
-  }
-
-  getIndeterminate4() {
-    return this.state.value4.length > 0 && this.state.value4.length < 4
-  }
-
-  handleCheckAllClick4 = () => {
-    this.setState(({ value4, field4 }) => {
-      return {
-        value4: value4.length < 4 ? field4.map(({ id }) => id) : []
-      }
-    })
+  onQueryReset = () => {
+    console.log('onQueryReset')
   }
 
   render() {
-    const Row = Grid.Row
-    const Col = Grid.Col
+    const {
+      columnMixins,
+      queryChangeControllor,
+      queryButtonClickControllor,
+      queryCheckAllChangeController,
+      onQueryConfirm,
+      onQueryReset
+    } = this
+    const { total, current, pageSize, tableData, selectedRowKey, queryForm, ...queryData } = this.state
 
-    const { forms, pageSize } = this.state
-    const params = {
-      pageSize
-    }
-    console.log(1, this.state.value1)
     return (
-      <div className="page page--tile-multiple">
+      <>
         <Row>
           <Col span={24}>
-            <DataFilter
-              ref={node => (this.dataFilter = node)}
-              url={`http://yapi.demo.qunar.com/mock/26534/hiui/tile-table`}
-              params={params}
-              columnMixins={this.columnMixins}
-              actions={[
-                'search',
-                <Link to="/form-unfold-group" className="hi-tpl__add">
-                  <Button type="primary" icon="plus" />
-                </Link>,
-                <Button
-                  type="line"
-                  icon="download"
-                  onClick={() => {
-                    console.log('------------click download')
-                  }}
-                />,
-                <Button
-                  type="line"
-                  icon="mark"
-                  onClick={() => {
-                    console.log('------------click share')
-                  }}
-                />,
-                <Button
-                  type="line"
-                  icon="more"
-                  onClick={() => {
-                    console.log('------------click more')
-                  }}
-                />
-              ]}
-              activeTools={['query']}
-              tools={[
-                {
-                  type: 'query',
-                  title: '查询',
-                  forms,
-                  onCancel: () => {
-                    this.handleResetClick()
-                  }
-                }
-              ]}
-            >
-              <Row gutter>
-                <div className="block-filter__label block-filter__label--checkbox">业务来源</div>
-                <Col className="checkboxs-group">
-                  <Checkbox
-                    indeterminate={this.getIndeterminate1()}
-                    checked={this.state.value1.length === this.state.field1.length}
-                    onChange={this.handleCheckAllClick1}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox.Group
-                    value={this.state.value1}
-                    data={this.state.field1}
-                    onChange={value1 => {
-                      this.setState({ value1 })
-                    }}
-                  />
-                </Col>
-              </Row>
-              <Row gutter>
-                <div className="block-filter__label block-filter__label--checkbox">运输方式</div>
-                <Col className="checkboxs-group">
-                  <Checkbox
-                    indeterminate={this.getIndeterminate2()}
-                    checked={this.state.value2.length === this.state.field2.length}
-                    onChange={this.handleCheckAllClick2}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox.Group
-                    value={this.state.value2}
-                    data={this.state.field2}
-                    onChange={value2 => {
-                      this.setState({ value2 })
-                    }}
-                  />
-                </Col>
-              </Row>
-              <Row gutter>
-                <div className="block-filter__label block-filter__label--checkbox">支付方式</div>
-                <Col className="checkboxs-group">
-                  <Checkbox
-                    indeterminate={this.getIndeterminate3()}
-                    checked={this.state.value3.length === this.state.field3.length}
-                    onChange={this.handleCheckAllClick3}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox.Group
-                    value={this.state.value3}
-                    data={this.state.field3}
-                    onChange={value3 => {
-                      this.setState({ value3 })
-                    }}
-                  />
-                </Col>
-              </Row>
-
-              <Row gutter>
-                <div className="block-filter__label block-filter__label--checkbox">订单状态</div>
-                <Col className="checkboxs-group">
-                  <Checkbox
-                    indeterminate={this.getIndeterminate4()}
-                    checked={this.state.value4.length === this.state.field4.length}
-                    onChange={this.handleCheckAllClick4}
-                  >
-                    全选
-                  </Checkbox>
-                  <Checkbox.Group
-                    value={this.state.value4}
-                    data={this.state.field4}
-                    onChange={value4 => {
-                      this.setState({ value4 })
-                    }}
-                  />
-                </Col>
-              </Row>
-            </DataFilter>
+            <BasicTableQueryCard
+              queryData={queryData}
+              onCheckAllChange={queryCheckAllChangeController}
+              onValuesChange={queryChangeControllor}
+              onButtonsClick={queryButtonClickControllor}
+              onConfirm={onQueryConfirm}
+              onReset={onQueryReset}
+            />
           </Col>
         </Row>
-
+        <Row>
+          <Col span={24}>
+            <Row className="row">
+              <Card bordered={false} hoverable>
+                <Table
+                  columns={columnMixins.columns}
+                  data={tableData}
+                  rowSelection={{
+                    selectedRowKeys: selectedRowKey,
+                    onChange: selectedRowKey => {
+                      this.setState({ selectedRowKey })
+                    }
+                  }}
+                  pagination={{
+                    total,
+                    current,
+                    pageSize,
+                    onChange: current => {
+                      this.setState({ current: current })
+                    }
+                  }}
+                />
+              </Card>
+            </Row>
+          </Col>
+        </Row>
         <Modal
           title="确认"
           size="small"
           visible={!!this.state.delModal}
-          onCancel={this.cancelEvent.bind(this)}
+          onCancel={this.closeModal}
           footer={[
-            <Button type="default" key={'cancel'} onClick={this.cancelEvent.bind(this)}>
+            <Button type="default" key={'cancel'} onClick={this.closeModal}>
               取消
             </Button>,
-            <Button type="danger" key={'sure'} onClick={this.delEvent.bind(this)}>
+            <Button type="danger" key={'sure'} onClick={this.delEvent}>
               确认
             </Button>
           ]}
         >
-          <span>确认要删除订单号为{this.state.delModal && this.state.delModal.order_id}的订单么？</span>
+          <span>确认要删除订单号为{this.state.delModal && this.state.delModal.id}的订单么？</span>
         </Modal>
-      </div>
+      </>
     )
   }
+}
+
+function BasicTableQueryCard({ queryData, onCheckAllChange, onValuesChange, onButtonsClick, onConfirm, onReset }) {
+  const { orderStatus, orderPlatform, orderDelivery, orderPayment } = queryData || {}
+
+  return (
+    <Card
+      className={`${prefix}__query-card`}
+      title="商品管理"
+      bordered={false}
+      showHeaderDivider
+      hoverable
+      extra={
+        <span>
+          {/* 功能按钮需用户自己去定制，调用后端接口和后续前端操作 */}
+          <Button icon="search" type="line" onClick={() => onButtonsClick('search')} />
+          <Button icon="plus" type="primary" onClick={() => onButtonsClick('plus')} />
+          <Button icon="download" type="line" onClick={() => onButtonsClick('download')} />
+          <Button icon="import" type="line" onClick={() => onButtonsClick('import')} />
+          <Button icon="more" type="line" onClick={() => onButtonsClick('more')} />
+        </span>
+      }
+    >
+      <Row style={{ alignItems: 'flex-start' }}>
+        <span className={`${prefix}__filter-label`}>订单状态</span>
+        <div className={`${prefix}__filter-checkgroup`}>
+          <Checkbox
+            indeterminate={isIndeterminate(orderStatus.checkedList, orderStatus.list)}
+            checked={orderStatus.list.length === orderStatus.checkedList.length}
+            onChange={() => onCheckAllChange('orderStatus')}
+          >
+            全部
+          </Checkbox>
+          <Checkbox.Group
+            className={`${prefix}__filter-checkbox`}
+            data={orderStatus.list}
+            value={orderStatus.checkedList}
+            onChange={data => onValuesChange('orderStatus', data)}
+          />
+        </div>
+      </Row>
+      <Row style={{ alignItems: 'flex-start', marginTop: '16px' }}>
+        <span className={`${prefix}__filter-label`}>渠道</span>
+        <div className={`${prefix}__filter-checkgroup`}>
+          <Checkbox
+            indeterminate={isIndeterminate(orderPlatform.checkedList, orderPlatform.list)}
+            checked={orderPlatform.list.length === orderPlatform.checkedList.length}
+            onChange={() => onCheckAllChange('orderPlatform')}
+          >
+            全部
+          </Checkbox>
+          <Checkbox.Group
+            className={`${prefix}__filter-checkbox`}
+            data={orderPlatform.list}
+            value={orderPlatform.checkedList}
+            onChange={data => onValuesChange('orderPlatform', data)}
+          />
+        </div>
+      </Row>
+      <Row style={{ alignItems: 'flex-start', marginTop: '16px' }}>
+        <span className={`${prefix}__filter-label`}>快递</span>
+        <div className={`${prefix}__filter-checkgroup`}>
+          <Checkbox
+            indeterminate={isIndeterminate(orderDelivery.checkedList, orderDelivery.list)}
+            checked={orderDelivery.list.length === orderDelivery.checkedList.length}
+            onChange={() => onCheckAllChange('orderDelivery')}
+          >
+            全部
+          </Checkbox>
+          <Checkbox.Group
+            className={`${prefix}__filter-checkbox`}
+            data={orderDelivery.list}
+            value={orderDelivery.checkedList}
+            onChange={data => onValuesChange('orderDelivery', data)}
+          />
+        </div>
+      </Row>
+      <Row style={{ alignItems: 'center', marginTop: '16px' }}>
+        <span className={`${prefix}__filter-label`}>支付方式</span>
+        <div className={`${prefix}__filter-checkgroup`}>
+          <Checkbox
+            indeterminate={isIndeterminate(orderPayment.checkedList, orderPayment.list)}
+            checked={orderPayment.list.length === orderPayment.checkedList.length}
+            onChange={() => onCheckAllChange('orderPayment')}
+          >
+            全部
+          </Checkbox>
+          <Checkbox.Group
+            className={`${prefix}__filter-checkbox`}
+            data={orderPayment.list}
+            value={orderPayment.checkedList}
+            onChange={data => onValuesChange('orderPayment', data)}
+          />
+        </div>
+      </Row>
+      <Row className={`${prefix}__filter-submit`}>
+        <Col span={6} style={{ paddingLeft: '92px' }}>
+          <Button type="primary" onClick={onConfirm}>
+            查询
+          </Button>
+          <Button type="line" onClick={onReset}>
+            重置
+          </Button>
+        </Col>
+      </Row>
+    </Card>
+  )
 }

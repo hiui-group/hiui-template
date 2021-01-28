@@ -1,21 +1,37 @@
-.page--tile-multiple {
-  background: #fff;
-  padding: 24px;
-  min-height: calc(100vh - 64px);
-  box-sizing: border-box;
+@import '@hi-ui/core-css/index.scss';
 
-  .action-del {
-    margin: 0 3px;
-    color: #eb5252;
-    cursor: pointer;
+.page--tile-multiple {
+  &__filter-label {
+    color: var(--color-gray-70);
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    width: 92px;
+    position: relative;
+
+    &::after {
+      content: '';
+      color: #d8d8d8;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      margin: 0 $spacer-3;
+      width: 1px;
+      box-sizing: border-box;
+      height: 14px;
+      background-color: currentColor;
+    }
   }
 
-  .action-more {
-    display: inline-block;
-    width: 55px;
+  &__filter-submit {
+    margin-top: 28px;
 
-    .hi-dropdown__title {
-      padding: 0 5px;
+    .hi-btn + .hi-btn {
+      margin-left: $spacer-4;
     }
+  }
+
+  &__filter-checkbox {
+    display: inline;
   }
 }

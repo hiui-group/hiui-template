@@ -136,7 +136,7 @@ export default class Template extends Component {
         <br />
         <div className="hi-tree__confirm">
           <Button type="primary" onClick={this.markSure.bind(this)}>
-            确认
+            确认1
           </Button>
           <Button type="default" onClick={this.reset.bind(this)}>
             重置

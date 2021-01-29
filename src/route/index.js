@@ -53,6 +53,26 @@ const config = [
     name: '表格',
     children: [
       {
+        name: '表格-分组(横向)',
+        path: '/table-group-horizontal'
+      },
+      {
+        name: '表格-分组(纵向)',
+        path: '/table-group-vertical'
+      },
+      {
+        name: '表格-分组(纵向2)',
+        path: '/table-group-horizontal-group'
+      },
+      {
+        name: '表格-高级查询',
+        path: '/table-advan-group-horizontal'
+      },
+      {
+        name: '表格-高级查询（多行选项）',
+        path: '/table-advan-group-more-options'
+      },
+      {
         name: '通用-搜索',
         path: '/common-search'
       },
@@ -66,6 +86,14 @@ const config = [
         path: '/query-basic'
       },
       { name: '工具条-标准', path: '/toolbar' },
+      {
+        name: '树形-多选',
+        path: '/tree-multiple-query'
+      },
+      {
+        name: '树形-单选',
+        path: '/tree-single-query'
+      },
       {
         name: '工具条-固定',
         path: '/toolbar-alter'
@@ -87,12 +115,12 @@ const config = [
         path: '/tree-single'
       },
       {
-        name: '树形-多选',
+        name: '树形-多选-查询',
         path: '/tree-multiple-query'
       },
       {
-        name: '树形-单选',
-        path: '/tree-single-query'
+        name: '树形-多选',
+        path: '/tree-multiple'
       },
       {
         name: '平铺-单选',

@@ -16,7 +16,7 @@ module.exports = {
   plugins: ["react", "prettier"],
   rules: {
     "prettier/prettier": [
-      "off",
+      "warn",
       {
         singleQuote: true,
         semi: false,
@@ -30,4 +30,4 @@ module.exports = {
     "react/display-name": 0,
     "react/jsx-key": 0
   }
-};
+}

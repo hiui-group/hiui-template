@@ -13,14 +13,14 @@ export default class Template extends Component {
       action: {
         render: (key, row) => (
           <React.Fragment>
-            <Link to='/form/form-basic' className='hi-tpl__add'>
-              <Icon name='edit' />
+            <Link to="/form/form-basic" className="hi-tpl__add">
+              <Icon name="edit" />
             </Link>
-            <span onClick={this.showDelModal.bind(this, row)} className='action-del'>
-              <Icon name='close' />
+            <span onClick={this.showDelModal.bind(this, row)} className="action-del">
+              <Icon name="close" />
             </span>
-            <span className='action-more'>
-              <Dropdown data={[{ title: '打印小票' }]} title='更多' onClick={val => console.log(val)} />
+            <span className="action-more">
+              <Dropdown data={[{ title: '打印小票' }]} title="更多" onClick={val => console.log(val)} />
             </span>
           </React.Fragment>
         )
@@ -150,7 +150,7 @@ export default class Template extends Component {
     const { activeMenu } = this.state
 
     return (
-      <div className='page--group-vertical'>
+      <div className="page--group-vertical">
         <Row gutter>
           <Col span={3}>
             <NavMenu
@@ -163,18 +163,19 @@ export default class Template extends Component {
           <Col span={21}>{this.renderMenuContent()}</Col>
         </Row>
         <Modal
-          title='确认'
-          size='small'
+          title="确认"
+          size="small"
           visible={!!this.state.delModal}
           onCancel={this.cancelEvent.bind(this)}
           footer={[
-            <Button type='default' key={'cancel'} onClick={this.cancelEvent.bind(this)}>
+            <Button type="default" key={'cancel'} onClick={this.cancelEvent.bind(this)}>
               取消
             </Button>,
-            <Button type='danger' key={'sure'} onClick={this.delEvent.bind(this)}>
+            <Button type="danger" key={'sure'} onClick={this.delEvent.bind(this)}>
               确认
             </Button>
-          ]}>
+          ]}
+        >
           <span>确认要删除订单号为{this.state.delModal.order_id}的订单么？</span>
         </Modal>
       </div>

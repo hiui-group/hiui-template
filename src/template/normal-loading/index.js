@@ -4,8 +4,8 @@ import './index.scss'
 
 const NormalLoading = () => {
   return (
-    <div className='page page--loading'>
-      <Loading content='正在努力加载中...' />
+    <div className="page page--loading">
+      <Loading content="正在努力加载中..." />
     </div>
   )
 }

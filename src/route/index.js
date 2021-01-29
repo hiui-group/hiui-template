@@ -87,12 +87,12 @@ const config = [
         path: '/tree-single'
       },
       {
-        name: '树形-多选-查询',
+        name: '树形-多选',
         path: '/tree-multiple-query'
       },
       {
-        name: '树形-多选',
-        path: '/tree-multiple'
+        name: '树形-单选',
+        path: '/tree-single-query'
       },
       {
         name: '平铺-单选',

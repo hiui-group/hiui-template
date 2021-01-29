@@ -1,0 +1,14 @@
+.table-advan_search {
+  margin-top: 0;
+  background: #fff;
+  padding: 20px 20px 0 20px;
+
+  &-form {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-content {
+    display: flex;
+  }
+}

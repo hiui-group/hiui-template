@@ -1,0 +1,62 @@
+$kitPrefix: 'hiui-componentkit' !default;
+
+.#{hiui-componentkit}-filter-ctrl {
+  margin-right: 10px;
+
+  &-attachele {
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    color: #383e47;
+    cursor: pointer;
+
+    &:hover {
+      color: #4284f5;
+    }
+
+    &-text {
+      display: inline-block;
+      margin: 0 4px;
+    }
+  }
+}
+
+.#{hiui-componentkit}-filter-ctrl-popper {
+  &-content {
+    width: 456px;
+    height: 231px;
+    background: #fff;
+    box-shadow: 0 2px 8px 0 rgba(56, 62, 71, 0.1);
+    border-radius: 2px;
+    border: 1px solid #e6e7e8;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 16px;
+
+      .titlt {
+        margin: 0;
+        padding: 0;
+
+        &-text {
+          font-weight: 500;
+          color: #383e47;
+          font-size: 14px;
+        }
+
+        &_sub-text {
+          font-size: 12px;
+          font-weight: 400;
+          color: #82868c;
+        }
+      }
+
+      .close {
+        font-size: 16px;
+        color: #333;
+        cursor: pointer;
+      }
+    }
+  }
+}

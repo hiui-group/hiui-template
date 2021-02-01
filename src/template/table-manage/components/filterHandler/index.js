@@ -1,6 +1,9 @@
 import React, { Component, useState } from "react"
 import { Input, Icon, Form, Select, DatePicker, TimePicker, Button } from "@hi-ui/hiui"
 import classNames from "classnames"
+
+import FilterControl from "../filterControl"
+
 import "./index.scss"
 const kitPrefix = "hiui-componentkit"
 const FormItem = Form.Item
@@ -14,16 +17,19 @@ const OptionsForButtonkit = () => {
   }
   return (
     <div className={`${kitPrefix}-options`}>
-      <div
-        className={`${kitPrefix}-options-attachelement`}
-        onClick={() => {
-          setShowFormItem(!showformItem)
-        }}>
-        <Icon name='document-search' />
-        <span className={`${kitPrefix}-options-attachelement-text`}>查询</span>
-        <Icon name={"down"} className={classNames({ "icon-down-rotate180": showformItem })} />
+      <div className={`${kitPrefix}-options-other-slot`}>
+        <div
+          className={`${kitPrefix}-options-attachelement`}
+          onClick={() => {
+            setShowFormItem(!showformItem)
+          }}>
+          <Icon name='document-search' />
+          <span className={`${kitPrefix}-options-attachelement-text`}>查询</span>
+          <Icon name={"down"} className={classNames({ "icon-down-rotate180": showformItem })} />
+        </div>
+        <FilterControl />
       </div>
-      {/* otherOptions sort */}
+
       <div className={classNames(`${kitPrefix}-options-content`, { hidden: !showformItem })}>
         <Form labelWidth='70' labelPlacement='top' placement='horizontal'>
           <FormItem label='商品ID' field='phone'>

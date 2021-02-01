@@ -4,6 +4,11 @@ $kitPrefix: 'hiui-componentkit' !default;
   &-options {
     padding: 10px 24px;
     background-color: #fff;
+
+    &-other-slot {
+      display: flex;
+      align-items: center;
+    }
   }
 
   &-options-attachelement {
@@ -12,6 +17,7 @@ $kitPrefix: 'hiui-componentkit' !default;
     height: 16px;
     color: #383e47;
     cursor: pointer;
+    margin-right: 10px;
 
     &:hover {
       color: #4284f5;

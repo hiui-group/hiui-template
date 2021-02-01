@@ -167,6 +167,7 @@ export default class Template extends Component {
   }
 
   closeModal = () => {
+    console.log(11)
     this.setState({
       showModal: false
     })
@@ -383,6 +384,9 @@ function AdvancedFilterPopper({
   data = _data,
   defaultFilters,
   filterData = builtInConditions,
+  onChange,
+  onAdd,
+  onDelete,
   doFilter,
   ...rest
 }) {
@@ -392,36 +396,52 @@ function AdvancedFilterPopper({
 
   // field, filter, value, doFilter
   const [values, setValues] = useState([])
-  const filterRef = React.useRef(null)
-  const handleClose = () => {
-    // onClose?.()
+  const handleAddFilter = () => {
+    const newFilter = {
+      fieldKey: '',
+      filterKey: '',
+      filterValue: ''
+    }
+    setValues([...values, newFilter])
   }
-  console.log(visible, filterRef, Popper)
+
+  const handleDoFilter = () => {
+    doFilter?.()
+  }
+
+  const handleClose = () => {
+    onClose?.()
+  }
+
+  const handleValuesChange = (idx, val) => {
+    const newValues = [...values]
+    newValues.splice(idx, 1, val)
+    setValues(newValues)
+  }
 
   return (
     <div>
-      <Popper show={visible} className={`${prefixCls}__popper`} onClickOutside={handleClose} zIndex={1049} {...rest}>
-        <AdvancedFilterHeader />
-        <AdvancedFilterBody data={data} values={values} />
-        <AdvancedFilterFooter />
+      <Popper show={visible} className={`${prefixCls}__popper`} zIndex={1049} {...rest}>
+        <AdvancedFilterHeader onClose={handleClose} />
+        <AdvancedFilterBody data={data} values={values} onValuesChange={handleValuesChange} />
+        <AdvancedFilterFooter addFilter={handleAddFilter} doFilter={handleDoFilter} />
       </Popper>
     </div>
   )
 }
 
-function AdvancedFilterHeader({ prefixCls = _prefixCls }) {
+function AdvancedFilterHeader({ prefixCls = _prefixCls, onClose }) {
   return (
     <div className={`${prefixCls}__popper-header`}>
       <h4>
         筛选条件 <span>（逻辑为且）</span>
       </h4>
-      <Button className={`${prefixCls}__popper-close`} icon="close" appearance="link" />
+      <Button className={`${prefixCls}__popper-close`} icon="close" appearance="link" onClick={onClose} />
     </div>
   )
 }
 
 function AdvancedFilterFooter({ prefixCls = _prefixCls, addFilter, doFilter }) {
-
   return (
     <div className={`${prefixCls}__popper-footer`}>
       <Button icon="filter" type="default" onClick={addFilter}>
@@ -434,41 +454,48 @@ function AdvancedFilterFooter({ prefixCls = _prefixCls, addFilter, doFilter }) {
   )
 }
 
-function AdvancedFilterBody({ prefixCls = _prefixCls, data, values = [] }) {
+function AdvancedFilterBody({ prefixCls = _prefixCls, data, values = [], onValuesChange }) {
   return (
     <div className={`${prefixCls}__popper-body`}>
       <ul className={`${prefixCls}__conditions`}>
-        {
-          values.map((item, idx) => {
-            return <AdvancedFilterItem idx={idx} data={data} value={item} />
-          })
-        }
+        {values.map((item, idx) => {
+          return <AdvancedFilterItem idx={idx} data={data} value={item} onChange={val => onValuesChange?.(idx, val)} />
+        })}
       </ul>
     </div>
   )
 }
 
-function AdvancedFilterItem({ prefixCls = _prefixCls, data = [], conditions = builtInConditions }) {
+function AdvancedFilterItem({ prefixCls = _prefixCls, value, data = [], onChange, conditions = builtInConditions }) {
+  console.log(data, value)
+  const { fieldKey, filterKey, filterValue } = value
+  const handleChange = (key, val) => {
+    console.log(key, val)
+    onChange?.({ ...value, [key]: val })
+  }
+
   return (
     <li className={`${prefixCls}__item`}>
       <Button className={`${prefixCls}__item-delete`} icon="delete" appearance="link" />
       <Select
         type="single"
         style={{ width: 100 }}
-        // defaultValue={['2']}
         bordered={false}
         data={data}
+        value={fieldKey}
+        onChange={val => handleChange('fieldKey', val[0])}
         clearable={false}
       />
       <Select
         type="single"
         style={{ width: 100 }}
-        // defaultValue={['2']}
         bordered={false}
         data={conditions}
+        value={filterKey}
+        onChange={val => handleChange('filterKey', val[0])}
         clearable={false}
       />
-      <Input placeholder="请输入" />
+      <Input placeholder="请输入" value={filterValue} onChange={evt => handleChange('filterValue', evt.target.value)} />
     </li>
   )
 }

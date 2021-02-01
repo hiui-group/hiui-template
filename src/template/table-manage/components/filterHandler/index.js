@@ -1,49 +1,23 @@
 import React, { Component } from "react"
-import { Button, Form, Select, Transfer, Modal } from "@hi-ui/hiui"
+import { Button, Form, Select } from "@hi-ui/hiui"
 import axios from "axios"
 import classNames from "classnames"
 
 import "./index.scss"
 
 const FormItem = Form.Item
-export default class FilterOptions extends Component {
+export default class FilterHandler extends Component {
   constructor(props) {
     super(props)
     this.searchForm = React.createRef() // 查询使用
     this.state = {
-      moreSettingModel: false,
-      colorList: [],
-
-      transfertargetIds: [],
-      cacheTargetIds: []
+      colorList: []
     }
-    this.transferData = [
-      {
-        id: "goodsName",
-        content: "商品名称"
-      },
-      {
-        id: "categorieName",
-        content: "品类"
-      },
-      {
-        id: "specName",
-        content: "规格"
-      },
-      {
-        id: "colorName",
-        content: "颜色"
-      }
-    ]
     this.options = []
     for (let index = 0; index < 15; index++) {
       this.options.push({
         field: "index" + index,
         placeholder: "选项" + index
-      })
-      this.transferData.push({
-        id: index,
-        content: "选项" + index
       })
     }
   }
@@ -63,27 +37,6 @@ export default class FilterOptions extends Component {
     })
   }
 
-  // 点击穿梭框回调
-  transferChange = targetIds => {
-    this.setState({
-      transfertargetIds: targetIds
-    })
-  }
-
-  confirmEvent = () => {
-    this.setState({
-      cacheTargetIds: this.state.transfertargetIds,
-      moreSettingModel: false
-    })
-  }
-
-  cancelEvent = () => {
-    this.setState({
-      transfertargetIds: this.state.cacheTargetIds,
-      moreSettingModel: false
-    })
-  }
-
   queryTableData = () => {
     this.searchForm.current.validate((values, errors) => {
       console.log("values", values)
@@ -96,15 +49,16 @@ export default class FilterOptions extends Component {
   }
 
   render() {
-    const { colorList, transfertargetIds, moreSettingModel, cacheTargetIds, moreOptions } = this.state
+    const { colorList, cacheTargetIds, moreOptions } = this.state
     return (
-      <div className='table-advan_search-filter'>
+      <div className='table-manage-handler-filter'>
+        <div className='table-manage-handler-filter-btngroup'></div>
         <Form
           ref={this.searchForm}
-          className={classNames("table-advan_search-filter-form", {
-            "table-advan_search-filter-form-hidden": moreOptions
+          className={classNames("table-manage-handler-filter-form", {
+            "table-manage-handler-filter-form-hidden": moreOptions
           })}>
-          <div className='table-advan_search-filter-content'>
+          <div className='table-manage-handler-filter-content'>
             {!cacheTargetIds.includes("goodsName") && (
               <FormItem field='goodsName'>
                 <Select
@@ -184,27 +138,8 @@ export default class FilterOptions extends Component {
                 <Select style={{ width: 120 }} placeholder='请选择颜色' data={colorList} />
               </FormItem>
             )}
-            {this.options.map(item => {
-              return (
-                <FormItem field={item.field}>
-                  <Select style={{ width: 120 }} placeholder={item.placeholder} data={colorList} />
-                </FormItem>
-              )
-            })}
-            <Button
-              type='primary'
-              appearance='link'
-              icon='setting'
-              onClick={() => {
-                this.setState({
-                  moreSettingModel: true,
-                  cacheTargetIds: this.state.transfertargetIds
-                })
-              }}>
-              更多选型
-            </Button>
           </div>
-          <div className={"table-advan_search-filter-botton"}>
+          <div className={"table-manage-handler-filter-botton"}>
             <Button
               type='default'
               icon={moreOptions ? "down" : "up"}
@@ -221,16 +156,6 @@ export default class FilterOptions extends Component {
             </div>
           </div>
         </Form>
-        <Modal title='自定义筛选' visible={moreSettingModel} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
-          <Transfer
-            type='multiple'
-            emptyContent={["无数据", "无数据"]}
-            title={["显示条件", "隐藏条件"]}
-            targetIds={transfertargetIds}
-            data={this.transferData}
-            onChange={this.transferChange}
-          />
-        </Modal>
       </div>
     )
   }

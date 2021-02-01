@@ -165,6 +165,10 @@ const config = [
     name: '结果页',
     children: [
       {
+        name: '加载中',
+        path: '/normal-loading'
+      },
+      {
         name: '服务器出错',
         path: '/result-server-error'
       },
@@ -189,8 +193,28 @@ const config = [
         path: '/result-failed'
       },
       {
-        name: '加载中',
-        path: '/normal-loading'
+        name: '服务器出错（米兔版）',
+        path: '/result-server-error-mirabbit'
+      },
+      {
+        name: '暂无数据（米兔版）',
+        path: '/result-no-data-mirabbit'
+      },
+      {
+        name: '暂无权限（米兔版）',
+        path: '/result-no-auth-mirabbit'
+      },
+      {
+        name: '网络中断（米兔版）',
+        path: '/result-network-broken-mirabbit'
+      },
+      {
+        name: '成功（米兔版）',
+        path: '/result-success-mirabbit'
+      },
+      {
+        name: '失败（米兔版）',
+        path: '/result-failed-mirabbit'
       }
     ]
   }

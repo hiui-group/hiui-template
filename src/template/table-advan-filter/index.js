@@ -1,4 +1,5 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
+import cx from 'classnames'
 import { Icon, Grid, Table, Card, Button, Form, Input, Select, DatePicker, TimePicker, Popper } from '@hi-ui/hiui'
 import './index.scss'
 // import axios from 'axios'
@@ -66,7 +67,8 @@ export default class Template extends Component {
     columns: [
       {
         title: 'SKU',
-        dataKey: 'sku'
+        dataKey: 'sku',
+        filterIds: ['greater', 'noIncludes', 'includes']
       },
       {
         title: '商品ID',
@@ -74,7 +76,8 @@ export default class Template extends Component {
       },
       {
         title: '商品名',
-        dataKey: 'name'
+        dataKey: 'name',
+        filterIds: ['equal', 'noEqual']
       },
       {
         title: '电话',
@@ -128,7 +131,6 @@ export default class Template extends Component {
     tableData: [],
     selectedRowKey: '',
     queryData: {},
-    showModal: false
   }
 
   fetchQueryBasic = async () => {
@@ -148,10 +150,6 @@ export default class Template extends Component {
 
   queryButtonClickControlor = (name, value) => {
     console.log(name, value)
-
-    this.setState({
-      showModal: name
-    })
   }
 
   queryChangeControlor = (name, value) => {
@@ -166,13 +164,6 @@ export default class Template extends Component {
     console.log('onQueryReset')
   }
 
-  closeModal = () => {
-    console.log(11)
-    this.setState({
-      showModal: false
-    })
-  }
-
   render() {
     const {
       columnMixins,
@@ -180,18 +171,16 @@ export default class Template extends Component {
       queryButtonClickControlor,
       onQueryConfirm,
       onQueryReset,
-      closeModal
     } = this
-    const { total, current, pageSize, tableData, selectedRowKey, queryData, showModal } = this.state
+    const { total, current, pageSize, tableData, selectedRowKey, queryData } = this.state
 
     return (
       <>
         <Row>
           <Col span={24}>
             <BasicTableQueryCard
-              showModal={showModal}
-              onClose={closeModal}
               queryData={queryData}
+              columns={columnMixins.columns}
               onValuesChange={queryChangeControlor}
               onButtonsClick={queryButtonClickControlor}
               onConfirm={onQueryConfirm}
@@ -230,12 +219,8 @@ export default class Template extends Component {
   }
 }
 
-const _prefixCls = 'advanced-filter'
-
-function BasicTableQueryCard({ queryData, onValuesChange, onButtonsClick, onConfirm, onReset, showModal, onClose }) {
+function BasicTableQueryCard({ queryData, columns, onValuesChange, onButtonsClick, onConfirm, onReset }) {
   const { id, model, startEndDate, time } = queryData || {}
-  const filterRef = React.useRef(null)
-
   return (
     <Card
       className={`${prefix}__query-card`}
@@ -255,12 +240,7 @@ function BasicTableQueryCard({ queryData, onValuesChange, onButtonsClick, onConf
       }
     >
       <Row>
-        <Button icon="filter" appearance="link" onClick={() => onButtonsClick('filter')}>
-          <span ref={filterRef}>筛选</span>
-        </Button>
-        <div>
-          <AdvancedFilterPopper attachEle={filterRef.current} visible={showModal !== 'filter'} onClose={onClose} />
-        </div>
+        <AdvancedFilterKit columns={columns}>筛选</AdvancedFilterKit>
       </Row>
       <Form labelPlacement="top" showColon={false}>
         <Row gutter>
@@ -317,133 +297,145 @@ function BasicTableQueryCard({ queryData, onValuesChange, onButtonsClick, onConf
   )
 }
 
+/** ****************************** advanced filter component for table ****************************** */
+
+const _prefixCls = 'advanced-filter'
+
+function AdvancedFilterKit({prefixCls = _prefixCls, className, columns, filterColumns, defaultFilterIds, icon = "filter", children, ...rest }) {
+  const filterRef = React.useRef(null)
+  const [visible, setVisible] = React.useState(false)
+
+  return (
+    <div ref={filterRef} {...rest}>
+      <Button className={`${prefixCls}__trigger`} type={visible ? 'primary' : 'default'} icon={icon} appearance="link" onClick={() => setVisible(true)}>
+        {children}
+      </Button>
+      <AdvancedFilterPopper columns={columns} filterColumns={filterColumns} defaultFilterIds attachEle={filterRef.current} visible={visible} onClose={() => setVisible(false)} />
+    </div>
+  )
+}
+
 const builtInConditions = [
   {
     id: 'equal',
     title: '等于',
-    validate: v => {}
   },
   {
     id: 'noEqual',
     title: '不等于',
-    validate: v => {}
   },
   {
     id: 'greater',
     title: '大于',
-    validate: v => {}
   },
   {
     id: 'greaterOrEqual',
     title: '大于等于',
-    validate: v => {}
   },
   {
     id: 'less',
     title: '小于等于',
-    validate: v => {}
   },
   {
     id: 'lessOrEqual',
     title: '小于等于',
-    validate: v => {}
   },
   {
     id: 'includes',
     title: '包含',
-    validate: v => {}
   },
   {
     id: 'noIncludes',
     title: '不包含',
-    validate: v => {}
-  }
-]
-const _data = [
-  {
-    id: 'id',
-    title: '商品id',
-    filterIds: ['equal', 'noEqual']
-  },
-  {
-    id: 'name',
-    title: '商品名称',
-    filterIds: ['greater', 'noIncludes', 'includes']
-  },
-  {
-    id: 'name',
-    title: '商品名称',
-    filterIds: []
   }
 ]
 
 function AdvancedFilterPopper({
   prefixCls = _prefixCls,
+  className,
   visible,
   onClose,
-  data = _data,
-  defaultFilters,
-  filterData = builtInConditions,
-  onChange,
+  columns = [],
+  defaultFilterIds,
+  filterColumns = builtInConditions,
+  value,
+  defaultValue,
   onAdd,
+  onEdit,
   onDelete,
   doFilter,
   ...rest
 }) {
-  if (typeof defaultFilters === 'undefined') {
-    defaultFilters = filterData.map(item => item.id)
+  if (typeof defaultFilterIds === 'undefined') {
+    defaultFilterIds = filterColumns.map(item => item.id)
   }
 
   // field, filter, value, doFilter
-  const [values, setValues] = useState([])
-  const handleAddFilter = () => {
-    const newFilter = {
-      fieldKey: '',
-      filterKey: '',
-      filterValue: ''
-    }
-    setValues([...values, newFilter])
-  }
-
-  const handleDoFilter = () => {
-    doFilter?.()
-  }
-
-  const handleClose = () => {
+  const [internalValue, setInternalValue] = React.useState([])
+  const uncontrolled = value === undefined
+  const values = uncontrolled ? internalValue : value
+  const tryEdit = React.useCallback(
+    (item, index) => {
+      if (uncontrolled) {
+        const newValue = [...values]
+        newValue.splice(index, 1, item)
+        setInternalValue(newValue)
+      }
+      onEdit?.(item, index)
+    },
+    [uncontrolled, onEdit, values]
+  )
+  const tryAdd = React.useCallback(
+    () => {
+      if (uncontrolled) {
+        const newValue = [...values, {
+          fieldKey: '',
+          filterKey: '',
+          filterValue: ''
+        }]
+        setInternalValue(newValue)
+      }
+      onAdd?.()
+    },
+    [uncontrolled, onAdd, values]
+  )
+  const tryDelete = React.useCallback(
+    (index) => {
+      if (uncontrolled) {
+        const newValue = [...values]
+        newValue.splice(index, 1)
+        setInternalValue(newValue)
+      }
+      onDelete?.(index)
+    },
+    [uncontrolled, onDelete, values]
+  )
+  const tryClose = () => {
     onClose?.()
   }
-
-  const handleValuesChange = (idx, val) => {
-    const newValues = [...values]
-    newValues.splice(idx, 1, val)
-    setValues(newValues)
-  }
-
-  const handleValueDelete = idx => {
-    const newValues = [...values]
-    newValues.splice(idx, 1)
-    setValues(newValues)
+  const tryDoFilter = () => {
+    doFilter?.()
   }
 
   return (
     <div>
-      <Popper show={visible} className={`${prefixCls}__popper`} zIndex={1049} {...rest}>
-        <AdvancedFilterHeader onClose={handleClose} />
+      <Popper show={visible} className={cx(`${prefixCls}__popper`, className)} zIndex={1049} {...rest}>
+        <AdvancedFilterHeader onClose={tryClose} />
         <AdvancedFilterBody
-          data={data}
+          columns={columns}
           values={values}
-          onValuesChange={handleValuesChange}
-          onDelete={handleValueDelete}
+          onEdit={tryEdit}
+          onDelete={tryDelete}
         />
-        <AdvancedFilterFooter addFilter={handleAddFilter} doFilter={handleDoFilter} />
+        <AdvancedFilterFooter addFilter={tryAdd} doFilter={tryDoFilter} />
       </Popper>
     </div>
   )
 }
 
-function AdvancedFilterHeader({ prefixCls = _prefixCls, onClose }) {
+function AdvancedFilterHeader({ prefixCls = _prefixCls, className, onClose }) {
   return (
-    <div className={`${prefixCls}__popper-header`}>
+    <div className={cx(`${prefixCls}__popper-header`, className)}>
       <h4>
         筛选条件 <span>（逻辑为且）</span>
       </h4>
@@ -452,31 +444,31 @@ function AdvancedFilterHeader({ prefixCls = _prefixCls, onClose }) {
   )
 }
 
-function AdvancedFilterFooter({ prefixCls = _prefixCls, addFilter, doFilter }) {
+function AdvancedFilterFooter({ prefixCls = _prefixCls, className, addFilter, doFilter }) {
   return (
-    <div className={`${prefixCls}__popper-footer`}>
-      <Button icon="filter" type="default" onClick={addFilter}>
+    <div className={cx(`${prefixCls}__popper-footer`, className)}>
+      <Button icon="plus" type="default" onClick={addFilter}>
         增加条件
       </Button>
-      <Button type="danger" onClick={doFilter}>
+      <Button type="line" onClick={doFilter}>
         筛选
       </Button>
     </div>
   )
 }
 
-function AdvancedFilterBody({ prefixCls = _prefixCls, data, values = [], onValuesChange, onDelete }) {
+function AdvancedFilterBody({ prefixCls = _prefixCls, className, columns, values = [], onEdit, onDelete }) {
   return (
-    <div className={`${prefixCls}__popper-body`}>
+    <div className={cx(`${prefixCls}__popper-body`, className)}>
       <ul className={`${prefixCls}__conditions`}>
         {values.map((item, idx) => {
           return (
             <AdvancedFilterItem
               key={idx}
-              data={data}
+              data={columns}
               value={item}
-              onChange={val => onValuesChange?.(idx, val)}
-              onDelete={() => onDelete?.(idx)}
+              onChange={val => onEdit(val, idx)}
+              onDelete={() => onDelete(idx)}
             />
           )
         })}
@@ -487,33 +479,35 @@ function AdvancedFilterBody({ prefixCls = _prefixCls, data, values = [], onValue
 
 function AdvancedFilterItem({
   prefixCls = _prefixCls,
+  className,
   value,
-  data = [],
+  columns = [],
   onChange,
   conditions = builtInConditions,
   onDelete,
   ...rest
 }) {
-  console.log(data, value)
   const { fieldKey, filterKey, filterValue } = value
   const handleChange = (key, val) => {
-    console.log(key, val)
-    onChange?.({ ...value, [key]: val })
+    const newValue = { ...value, [key]: val }
+    onChange?.(newValue)
   }
 
   return (
-    <li className={`${prefixCls}__item`} {...rest}>
+    <li className={cx(`${prefixCls}__item`, className)} {...rest}>
       <Button className={`${prefixCls}__item-delete`} icon="delete" appearance="link" onClick={onDelete} />
       <Select
+        className={`${prefixCls}__item-fieldkey`}
         type="single"
         style={{ width: 100 }}
         bordered={false}
-        data={data}
+        data={columns}
         value={fieldKey}
         onChange={val => handleChange('fieldKey', val[0])}
         clearable={false}
       />
       <Select
+        className={`${prefixCls}__item-filterkey`}
         type="single"
         style={{ width: 100 }}
         bordered={false}
@@ -522,7 +516,7 @@ function AdvancedFilterItem({
         onChange={val => handleChange('filterKey', val[0])}
         clearable={false}
       />
-      <Input placeholder="请输入" value={filterValue} onChange={evt => handleChange('filterValue', evt.target.value)} />
+      <Input className={`${prefixCls}__item-filtervalue`} value={filterValue} onChange={event => handleChange('filterValue', event.target.value)} />
     </li>
   )
 }

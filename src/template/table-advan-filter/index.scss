@@ -9,6 +9,10 @@
 }
 
 .advanced-filter {
+  &__trigger {
+    padding: 0;
+  }
+
   &__popper {
     width: 456px !important;
     height: 231px;
@@ -70,6 +74,10 @@
   &__item {
     &-delete {
       padding: 0 2px;
+    }
+
+    &-filtervalue {
+      width: 180px;
     }
   }
 }

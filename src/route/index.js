@@ -73,6 +73,10 @@ const config = [
         path: "/table-advan-group-more-options"
       },
       {
+        name: "表格-高级管理",
+        path: "/table-manage"
+      },
+      {
         name: "通用-搜索",
         path: "/common-search"
       },

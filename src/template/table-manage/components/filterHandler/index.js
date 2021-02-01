@@ -1,161 +1,84 @@
-import React, { Component } from "react"
-import { Button, Form, Select } from "@hi-ui/hiui"
-import axios from "axios"
+import React, { Component, useState } from "react"
+import { Input, Icon, Form, Select, DatePicker, TimePicker, Button } from "@hi-ui/hiui"
 import classNames from "classnames"
-
 import "./index.scss"
-
+const kitPrefix = "hiui-componentkit"
 const FormItem = Form.Item
+const OptionsForButtonkit = () => {
+  const [showformItem, setShowFormItem] = useState(false)
+  const handleSubmit = () => {
+    console.log("ss")
+  }
+  const cancelSubmit = () => {
+    console.log("sscancelSubmit")
+  }
+  return (
+    <div className={`${kitPrefix}-options`}>
+      <div
+        className={`${kitPrefix}-options-attachelement`}
+        onClick={() => {
+          setShowFormItem(!showformItem)
+        }}>
+        <Icon name='document-search' />
+        <span className={`${kitPrefix}-options-attachelement-text`}>查询</span>
+        <Icon name={"down"} className={classNames({ "icon-down-rotate180": showformItem })} />
+      </div>
+      {/* otherOptions sort */}
+      <div className={classNames(`${kitPrefix}-options-content`, { hidden: !showformItem })}>
+        <Form labelWidth='70' labelPlacement='top' placement='horizontal'>
+          <FormItem label='商品ID' field='phone'>
+            <Input placeholder={"请输入"} />
+          </FormItem>
+          <FormItem label='商品名称'>
+            <Select
+              data={[
+                { title: "电视", id: "3" },
+                { title: "手机", id: "2" },
+                { title: "笔记本", id: "4" },
+                { title: "生活周边", id: "5" },
+                { title: "办公", id: "6" }
+              ]}
+              placeholder='请选择机型'
+              emptyContent='无匹配数据'
+              onChange={item => {
+                console.log("多选结果", item)
+              }}
+            />
+          </FormItem>
+          <FormItem label='日期'>
+            <DatePicker
+              type='daterange'
+              onChange={(date, dateStr) => {
+                console.log("onChange", date, dateStr)
+              }}
+            />
+          </FormItem>
+          <FormItem label='日期'>
+            <TimePicker defaultValue={new Date()} onChange={(date, dateString) => console.log(date, dateString)} />
+          </FormItem>
+        </Form>
+        <div className={`${kitPrefix}-options-btns`}>
+          <Button type='primary' onClick={handleSubmit}>
+            提交
+          </Button>
+          <Button type='line' onClick={cancelSubmit}>
+            重置
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
 export default class FilterHandler extends Component {
   constructor(props) {
     super(props)
-    this.searchForm = React.createRef() // 查询使用
-    this.state = {
-      colorList: []
-    }
-    this.options = []
-    for (let index = 0; index < 15; index++) {
-      this.options.push({
-        field: "index" + index,
-        placeholder: "选项" + index
-      })
-    }
-  }
-
-  componentDidMount() {
-    this.getColor()
-  }
-
-  // 获取获取下拉框数据
-  getColor = () => {
-    axios.get(`https://mife-gallery.test.mi.com/hiui/colors`).then(res => {
-      if (res && res.data.code === 200) {
-        this.setState({
-          colorList: res.data.data
-        })
-      }
-    })
-  }
-
-  queryTableData = () => {
-    this.searchForm.current.validate((values, errors) => {
-      console.log("values", values)
-      this.props.getTableData()
-    })
-  }
-
-  resetFormData = () => {
-    this.searchForm.current.resetValidates()
+    console.log(props)
   }
 
   render() {
-    const { colorList, cacheTargetIds, moreOptions } = this.state
     return (
       <div className='table-manage-handler-filter'>
-        <div className='table-manage-handler-filter-btngroup'></div>
-        <Form
-          ref={this.searchForm}
-          className={classNames("table-manage-handler-filter-form", {
-            "table-manage-handler-filter-form-hidden": moreOptions
-          })}>
-          <div className='table-manage-handler-filter-content'>
-            {!cacheTargetIds.includes("goodsName") && (
-              <FormItem field='goodsName'>
-                <Select
-                  style={{ width: 120 }}
-                  placeholder='请选择商品名称'
-                  data={[
-                    {
-                      groupId: "redmi",
-                      groupTitle: "商品名称",
-                      children: [
-                        { id: "1", title: "小米11" },
-                        { id: "2", title: "小米10" }
-                      ]
-                    }
-                  ]}
-                />
-              </FormItem>
-            )}
-            {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field='categorieName'>
-                <Select
-                  autoload
-                  style={{ width: 120 }}
-                  placeholder='请选择品类'
-                  dataSource={keyword => {
-                    return {
-                      type: "GET",
-                      url: "https://mife-gallery.test.mi.com/hiui/categories",
-                      params: { title: keyword },
-                      transformResponse: res => {
-                        if (res && res.code === 200) {
-                          return [
-                            {
-                              groupId: "categories",
-                              groupTitle: "品类",
-                              children: res.data
-                            }
-                          ]
-                        }
-                        return []
-                      }
-                    }
-                  }}
-                />
-              </FormItem>
-            )}
-            {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field='specName'>
-                <Select
-                  autoload
-                  style={{ width: 120 }}
-                  placeholder='请选择规格'
-                  dataSource={keyword => {
-                    return {
-                      type: "GET",
-                      url: "https://mife-gallery.test.mi.com/hiui/specs",
-                      params: { title: keyword },
-                      transformResponse: res => {
-                        if (res && res.code === 200) {
-                          return [
-                            {
-                              groupId: "specs",
-                              groupTitle: "规格",
-                              children: res.data
-                            }
-                          ]
-                        }
-                        return []
-                      }
-                    }
-                  }}
-                />
-              </FormItem>
-            )}
-            {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field='colorName'>
-                <Select style={{ width: 120 }} placeholder='请选择颜色' data={colorList} />
-              </FormItem>
-            )}
-          </div>
-          <div className={"table-manage-handler-filter-botton"}>
-            <Button
-              type='default'
-              icon={moreOptions ? "down" : "up"}
-              onClick={() => {
-                this.setState({
-                  moreOptions: !moreOptions
-                })
-              }}
-            />
-            <div style={{ marginTop: "24px" }}>
-              <Button type='primary' onClick={this.queryTableData}>
-                查询
-              </Button>
-            </div>
-          </div>
-        </Form>
+        <OptionsForButtonkit />
       </div>
     )
   }

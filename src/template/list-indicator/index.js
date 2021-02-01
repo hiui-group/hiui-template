@@ -41,31 +41,32 @@ export default class ListIndicator extends Component {
     const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
     console.log(tasks)
     return (
-      <div className='page--list-indicator'>
+      <div className="page--list-indicator">
         <ListHeader style={{ marginBottom: 0 }} />
-        <div className='indicator——type_container'>
+        <div className="indicator——type_container">
           {TABS_LIST.map((tag, index) => (
-            <span key={index} className='indicator——type_item'>
+            <span key={index} className="indicator——type_item">
               {tag}
             </span>
           ))}
         </div>
-        <div className='indicator__container'>
+        <div className="indicator__container">
           {TABS_SUB_LIST.map((category, index) => (
-            <div className='indicator——item' key={index}>
-              <div className='indicator——item_header'>{category}</div>
+            <div className="indicator——item" key={index}>
+              <div className="indicator——item_header">{category}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {TAB_CARD_LIST.map((item, index) => (
                   <Card
                     key={index}
                     hoverable
-                    type='simple'
-                    size='small'
+                    type="simple"
+                    size="small"
                     style={{
                       marginRight: 24,
                       marginBottom: 20,
                       background: '#FBFBFB'
-                    }}>
+                    }}
+                  >
                     {item}
                   </Card>
                 ))}

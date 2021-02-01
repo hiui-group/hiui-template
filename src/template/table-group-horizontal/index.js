@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import {
   Table,
   Button,
@@ -13,16 +13,16 @@ import {
   Message,
   Dropdown,
   Icon
-} from "@hi-ui/hiui"
-import axios from "axios"
-import "./index.scss"
+} from '@hi-ui/hiui'
+import axios from 'axios'
+import './index.scss'
 
 const FormItem = Form.Item
 
 const TabPaneContent = props => {
   const { tabTitle, tabId } = props
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div style={{ marginTop: '20px' }}>
       {tabTitle} - {tabId}
       <p>建议大家根据tabId封装成不同的组件</p>
     </div>
@@ -39,7 +39,7 @@ const TableHandler = ({ text, row, index, scope }) => {
           const { name, sku, stock, updateTime } = row
           scope.setState({
             modalVisiable: true,
-            modalTitle: "编辑"
+            modalTitle: '编辑'
           })
           scope.form.current.setFieldsValue({
             projectName: name,
@@ -65,9 +65,9 @@ const TableHandler = ({ text, row, index, scope }) => {
                 modalVisiable: false
               })
             },
-            title: "删除",
-            content: "确定要删除本行数据吗",
-            type: "warning"
+            title: '删除',
+            content: '确定要删除本行数据吗',
+            type: 'warning'
           })
         }}
       />
@@ -75,10 +75,10 @@ const TableHandler = ({ text, row, index, scope }) => {
         className="table-group-horizontal-morehandle"
         data={[
           {
-            title: "操作1"
+            title: '操作1'
           },
           {
-            title: "操作2"
+            title: '操作2'
           }
         ]}
         type="button"
@@ -93,50 +93,50 @@ export default class Template extends Component {
     super(props)
     this.panes = [
       {
-        tabTitle: "我的订单",
-        tabId: "1"
+        tabTitle: '我的订单',
+        tabId: '1'
       },
       {
-        tabTitle: "团购订单",
-        tabId: "2"
+        tabTitle: '团购订单',
+        tabId: '2'
       },
       {
-        tabTitle: "依旧换新",
-        tabId: "3"
+        tabTitle: '依旧换新',
+        tabId: '3'
       },
       {
-        tabTitle: "消息通知",
-        tabId: "4"
+        tabTitle: '消息通知',
+        tabId: '4'
       },
       {
-        tabTitle: "购买资格",
-        tabId: "5"
+        tabTitle: '购买资格',
+        tabId: '5'
       }
     ]
     this.columns = [
       {
-        title: "商品名",
-        dataKey: "name"
+        title: '商品名',
+        dataKey: 'name'
       },
       {
-        title: "sku",
-        dataKey: "sku"
+        title: 'sku',
+        dataKey: 'sku'
       },
       {
-        title: "库存量（个）",
-        dataKey: "stock"
+        title: '库存量（个）',
+        dataKey: 'stock'
       },
       {
-        title: "单价（元）",
-        dataKey: "price"
+        title: '单价（元）',
+        dataKey: 'price'
       },
       {
-        title: "上市时间",
-        dataKey: "updateTime"
+        title: '上市时间',
+        dataKey: 'updateTime'
       },
       {
-        title: "操作",
-        dataKey: "stock",
+        title: '操作',
+        dataKey: 'stock',
         render: (text, row, index) => {
           const scope = this
           return <TableHandler text={text} row={row} index={index} scope={scope} />
@@ -150,16 +150,16 @@ export default class Template extends Component {
       total: 0, // 总条数，分页使用
       currentPage: 1, // 当前页数
       tableDatas: [], // 表格数据
-      modalTitle: "新增",
-      keyWord: "",
+      modalTitle: '新增',
+      keyWord: '',
       visibleLoading: false,
       modalVisiable: false,
       rules: {
         projectName: [
           {
             required: true,
-            message: "请输入商品名称",
-            trigger: "onBlur,onChange"
+            message: '请输入商品名称',
+            trigger: 'onBlur,onChange'
           }
         ]
       }
@@ -171,7 +171,7 @@ export default class Template extends Component {
   }
 
   // 获取商品信息
-  getTableData(params = { id: "" }) {
+  getTableData(params = { id: '' }) {
     this.setState({
       visibleLoading: true
     })
@@ -215,7 +215,7 @@ export default class Template extends Component {
           })
           this.getTableData({ page: 1 })
         } else {
-          Message.open({ type: "error", title: "数据校验异常", duration: 2000 })
+          Message.open({ type: 'error', title: '数据校验异常', duration: 2000 })
         }
       })
   }
@@ -224,7 +224,7 @@ export default class Template extends Component {
   addNewProduct = () => {
     this.setState({
       modalVisiable: true,
-      modalTitle: "新增"
+      modalTitle: '新增'
     })
   }
 
@@ -245,7 +245,7 @@ export default class Template extends Component {
           })
           this.getTableData({ page: 1 })
         } else {
-          Message.open({ type: "error", title: "删除失败", duration: 2000 })
+          Message.open({ type: 'error', title: '删除失败', duration: 2000 })
         }
       })
   }
@@ -276,29 +276,29 @@ export default class Template extends Component {
           <Col span={18}>
             <h2 className="table-group-horizontal_head-title">商品管理</h2>
           </Col>
-          <Col span={6} style={{ textAlign: "right" }}>
+          <Col span={6} style={{ textAlign: 'right' }}>
             <Button
               type="line"
               icon="download"
               onClick={() => {
-                Message.open({ type: "success", title: "导出成功", duration: 2000 })
+                Message.open({ type: 'success', title: '导出成功', duration: 2000 })
               }}
             />
             <Button
               type="line"
               icon="document"
               onClick={() => {
-                this.props.history.push("/detail-basic")
+                this.props.history.push('/detail-basic')
               }}
             />
             <Dropdown
               className="table-group-horizontal-morehandle"
               data={[
                 {
-                  title: "操作1"
+                  title: '操作1'
                 },
                 {
-                  title: "操作2"
+                  title: '操作2'
                 }
               ]}
               type="button"
@@ -331,7 +331,7 @@ export default class Template extends Component {
                         <Col span={18}>
                           <Input
                             placeholder="请输入商品ID"
-                            style={{ width: "304px" }}
+                            style={{ width: '304px' }}
                             onChange={e => {
                               this.setState({
                                 keyWord: e.target.value
@@ -348,14 +348,14 @@ export default class Template extends Component {
                             }
                           />
                         </Col>
-                        <Col span={6} style={{ textAlign: "right" }}>
+                        <Col span={6} style={{ textAlign: 'right' }}>
                           <Button type="primary" icon="plus" onClick={this.addNewProduct}>
                             新建
                           </Button>
                         </Col>
                       </Row>
-                      {pane.tabId === "1" ? (
-                        <div style={{ marginTop: "20px" }}>
+                      {pane.tabId === '1' ? (
+                        <div style={{ marginTop: '20px' }}>
                           <Loading visible={visibleLoading}>
                             <Table
                               columns={this.columns}
@@ -385,16 +385,16 @@ export default class Template extends Component {
         <Modal title={modalTitle} visible={modalVisiable} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
           <Form ref={this.form} className="page--form-basic-form" rules={rules} labelWidth="90" labelPlacement="right">
             <FormItem label="商品名称" field="projectName">
-              <Input placeholder={"请输入"} style={{ width: "320px" }} />
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
             </FormItem>
             <FormItem label="sku" field="sku">
-              <Input placeholder={"请输入"} style={{ width: "320px" }} />
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
             </FormItem>
             <FormItem label="数量" field="num">
-              <Counter min={0} max={8} onChange={(e, val) => console.log("变化后的值：", val)} />
+              <Counter min={0} max={8} onChange={(e, val) => console.log('变化后的值：', val)} />
             </FormItem>
             <FormItem label="上市时间" field="date">
-              <DatePicker width={320} placeholder={["选择开始日期", "选择结束日期"]} />
+              <DatePicker width={320} placeholder={['选择开始日期', '选择结束日期']} />
             </FormItem>
           </Form>
         </Modal>

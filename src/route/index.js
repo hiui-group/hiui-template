@@ -65,62 +65,32 @@ const config = [
         path: '/table-group-horizontal-group'
       },
       {
+        name: '表格-基础查询',
+        path: '/table-query-basic'
+      },
+      {
+        name: '表格-平铺查询（单选）',
+        path: '/table-tile-single'
+      },
+      {
+        name: '表格-平铺查询（多选）',
+        path: '/table-tile-multiple'
+      },
+      {
+        name: '表格-树查询（单选）',
+        path: '/table-tree-single-query'
+      },
+      {
+        name: '表格-树查询（多选）',
+        path: '/table-tree-multiple-query'
+      },
+      {
         name: '表格-高级查询',
         path: '/table-advan-group-horizontal'
       },
       {
         name: '表格-高级查询（多行选项）',
         path: '/table-advan-group-more-options'
-      },
-      {
-        name: '通用-搜索',
-        path: '/common-search'
-      },
-      {
-        name: '通用-基础',
-        path: '/common-basic'
-      },
-      { name: '查询-标准', path: '/query' },
-      {
-        name: '查询-基础',
-        path: '/query-basic'
-      },
-      { name: '工具条-标准', path: '/toolbar' },
-      {
-        name: '工具条-固定',
-        path: '/toolbar-alter'
-      },
-      {
-        name: '分组-横向',
-        path: '/group-horizontal'
-      },
-      {
-        name: '分组-纵向',
-        path: '/group-vertical'
-      },
-      {
-        name: '分组-横向',
-        path: '/tree-single-query'
-      },
-      {
-        name: '分组-纵向',
-        path: '/tree-single'
-      },
-      {
-        name: '树形-多选-查询',
-        path: '/tree-multiple-query'
-      },
-      {
-        name: '树形-多选',
-        path: '/tree-multiple'
-      },
-      {
-        name: '平铺-单选',
-        path: '/tile-single'
-      },
-      {
-        name: '平铺-多选',
-        path: '/tile-multiple'
       }
     ]
   },

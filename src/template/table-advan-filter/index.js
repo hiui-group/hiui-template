@@ -419,11 +419,22 @@ function AdvancedFilterPopper({
     setValues(newValues)
   }
 
+  const handleValueDelete = idx => {
+    const newValues = [...values]
+    newValues.splice(idx, 1)
+    setValues(newValues)
+  }
+
   return (
     <div>
       <Popper show={visible} className={`${prefixCls}__popper`} zIndex={1049} {...rest}>
         <AdvancedFilterHeader onClose={handleClose} />
-        <AdvancedFilterBody data={data} values={values} onValuesChange={handleValuesChange} />
+        <AdvancedFilterBody
+          data={data}
+          values={values}
+          onValuesChange={handleValuesChange}
+          onDelete={handleValueDelete}
+        />
         <AdvancedFilterFooter addFilter={handleAddFilter} doFilter={handleDoFilter} />
       </Popper>
     </div>
@@ -454,19 +465,35 @@ function AdvancedFilterFooter({ prefixCls = _prefixCls, addFilter, doFilter }) {
   )
 }
 
-function AdvancedFilterBody({ prefixCls = _prefixCls, data, values = [], onValuesChange }) {
+function AdvancedFilterBody({ prefixCls = _prefixCls, data, values = [], onValuesChange, onDelete }) {
   return (
     <div className={`${prefixCls}__popper-body`}>
       <ul className={`${prefixCls}__conditions`}>
         {values.map((item, idx) => {
-          return <AdvancedFilterItem idx={idx} data={data} value={item} onChange={val => onValuesChange?.(idx, val)} />
+          return (
+            <AdvancedFilterItem
+              key={idx}
+              data={data}
+              value={item}
+              onChange={val => onValuesChange?.(idx, val)}
+              onDelete={() => onDelete?.(idx)}
+            />
+          )
         })}
       </ul>
     </div>
   )
 }
 
-function AdvancedFilterItem({ prefixCls = _prefixCls, value, data = [], onChange, conditions = builtInConditions }) {
+function AdvancedFilterItem({
+  prefixCls = _prefixCls,
+  value,
+  data = [],
+  onChange,
+  conditions = builtInConditions,
+  onDelete,
+  ...rest
+}) {
   console.log(data, value)
   const { fieldKey, filterKey, filterValue } = value
   const handleChange = (key, val) => {
@@ -475,8 +502,8 @@ function AdvancedFilterItem({ prefixCls = _prefixCls, value, data = [], onChange
   }
 
   return (
-    <li className={`${prefixCls}__item`}>
-      <Button className={`${prefixCls}__item-delete`} icon="delete" appearance="link" />
+    <li className={`${prefixCls}__item`} {...rest}>
+      <Button className={`${prefixCls}__item-delete`} icon="delete" appearance="link" onClick={onDelete} />
       <Select
         type="single"
         style={{ width: 100 }}

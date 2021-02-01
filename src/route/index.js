@@ -91,6 +91,10 @@ const config = [
       {
         name: '表格-高级查询（多行选项）',
         path: '/table-advan-group-more-options'
+      },
+      {
+        name: '表格-高级筛选',
+        path: '/table-advan-filter'
       }
     ]
   },

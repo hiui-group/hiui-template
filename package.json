@@ -18,7 +18,7 @@
     "@hi-ui/classic-theme": "^3.2.3",
     "@hi-ui/component-kit": "^0.5.5",
     "@hi-ui/core-css": "^2.0.1",
-    "@hi-ui/hiui": "^3.3.0",
+    "@hi-ui/hiui": "^3.4.0",
     "axios": "^0.18.1",
     "classnames": "^2.2.5",
     "echarts": "^4.2.1",

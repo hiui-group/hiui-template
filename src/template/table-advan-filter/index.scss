@@ -72,6 +72,8 @@
   }
 
   &__item {
+    margin-bottom: $spacer-3;
+
     &-delete {
       padding: 0 2px;
     }

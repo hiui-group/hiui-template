@@ -366,11 +366,11 @@ const genFilterColumns = (dataKeys, columnsMap) => dataKeys.map(key => columnsMa
 /**
  *
  * @param {{
- *   visible,
- *   onClose, 当点击关闭按钮触发回调，可控制该弹窗显隐
+ *   visible: boolean,
+ *   onClose: () => void, 当点击关闭按钮触发回调，可控制该弹窗显隐
  *   columns: [] = [], 同 table columns，标识筛选项字段及展示
- *   filterColumns = builtInConditions,
- *   defaultFilterIds, 默认要展示的条件 id 数组
+ *   filterColumns: [] = builtInConditions, 标识筛条件关系字段及展示
+ *   defaultFilterIds: [], 默认要展示的条件 id 数组
  *   value: [], 传入当前的筛选条件项列表，传入即开启受控模式
  *   defaultValue: [] = [], 非受控时，传入的默认筛选条件项列表
  *   onAdd: () => void, 当点击添加条件时触发回调，可自定义控制添加条件项

@@ -3,6 +3,8 @@ import { Button, Icon, Grid, Loading, Card, Breadcrumb, Notification, Dropdown }
 import './index.scss'
 import axios from 'axios'
 
+const { Row, Col } = Grid
+
 export default class Template extends Component {
   state = {
     title: '',
@@ -82,8 +84,6 @@ export default class Template extends Component {
   }
 
   render() {
-    const Row = Grid.Row
-    const Col = Grid.Col
     const { title, desc, detailInfo, otherInfo } = this.state
 
     return (
@@ -135,18 +135,16 @@ export default class Template extends Component {
                 className="usual-dropdown-button"
                 data={[
                   {
-                    title: '菜单一'
+                    title: '操作1'
                   },
                   {
-                    title: '菜单二'
-                  },
-                  {
-                    title: '菜单三'
+                    title: '操作2'
                   }
                 ]}
                 trigger="click"
-                placement="bottom"
-                title={<Button icon="more" type="line" />}
+                type="button"
+                placement="bottom-end"
+                title={<Icon name="more" />}
               />
             </Col>
           </Row>

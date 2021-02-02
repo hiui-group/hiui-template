@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
-import { Button, Tabs, Stepper, Timeline, Icon, Grid, Loading, Breadcrumb, Table } from '@hi-ui/hiui'
+import {
+  Button,
+  Tabs,
+  Stepper,
+  Timeline,
+  Icon,
+  Grid,
+  Loading,
+  Breadcrumb,
+  Table,
+  Notification,
+  Dropdown
+} from '@hi-ui/hiui'
 import './index.scss'
 import axios from 'axios'
 
 const { Row, Col } = Grid
 
-const delay = (timeout = 1000) => new Promise(resolve => setTimeout(() => resolve(), timeout))
-
 export default class Template extends Component {
   state = {
-    title: '小米8屏幕指纹版',
+    title: '',
     activeTabIndex: 0,
-    desc: Array(3).fill({
-      key: '状态',
-      value: '已借出'
-    }),
+    desc: [],
     baseInfo: {},
     stepper: {
       data: Array(5).fill({
@@ -23,36 +30,7 @@ export default class Template extends Component {
       }),
       current: Math.round(Math.random() * 4)
     },
-    timelineList: [
-      {
-        groupTitle: '2月',
-        children: [
-          {
-            title: 'Title - 1',
-            content: 'Here are some descriptions',
-            timestamp: '10:00'
-          },
-          {
-            dot: 'circle',
-            title: 'Title 2',
-            content: 'Here are some descriptions',
-            timestamp: '10:00'
-          },
-          {
-            dot: 'circle',
-            title: 'Title 3',
-            content: 'Here are some descriptions',
-            timestamp: '12:00'
-          },
-          {
-            dot: 'circle',
-            title: 'Title 4',
-            content: 'Here are some descriptions',
-            timestamp: '11:00'
-          }
-        ]
-      }
-    ]
+    timelineList: []
   }
 
   fetchBaseInfo = async () => {
@@ -75,23 +53,57 @@ export default class Template extends Component {
       })
   }
 
-  handleBackClick = () => {}
-  handleSaveClick = () => {}
-  handleEditClick = () => {}
-  handleMoreClick = () => {}
+  fetchTimeline = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/timelines')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ timelineList: data })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
+  }
+
+  handleBackClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleBackClick'
+    })
+  }
+
+  handleSaveClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleSaveClick'
+    })
+  }
+
+  handleEditClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleEditClick'
+    })
+  }
 
   async componentDidMount() {
     Loading.open(null, { key: 'lk' })
     try {
-      await this.fetchBaseInfo()
+      await Promise.all([this.fetchBaseInfo(), this.fetchTimeline()])
     } finally {
       Loading.close('lk')
     }
   }
 
   render() {
-    const Row = Grid.Row
-    const Col = Grid.Col
     const { title, baseInfo, stepper, timelineList, activeTabIndex } = this.state
 
     return (
@@ -130,7 +142,21 @@ export default class Template extends Component {
                 <Button icon="collection" type="line" onClick={this.handleSaveClick}>
                   收藏
                 </Button>
-                <Button icon="more" type="line" onClick={this.handleMoreClick} />
+                <Dropdown
+                  className="usual-dropdown-button"
+                  data={[
+                    {
+                      title: '操作1'
+                    },
+                    {
+                      title: '操作2'
+                    }
+                  ]}
+                  trigger="click"
+                  type="button"
+                  placement="bottom-end"
+                  title={<Icon name="more" />}
+                />
               </Col>
             </Row>
           </Col>
@@ -176,10 +202,10 @@ export default class Template extends Component {
               }}
             >
               <Tabs.Pane tabTitle="商品信息" tabId={0}>
-                <QueryBasic />
+                <TableBasic />
               </Tabs.Pane>
               <Tabs.Pane tabTitle="车辆信息" tabId={1}>
-                <QueryBasic />
+                <TableBasic />
               </Tabs.Pane>
             </Tabs>
           </Col>
@@ -189,66 +215,7 @@ export default class Template extends Component {
   }
 }
 
-const queryData = {
-  selectedRowKey: 'id',
-  total: 20,
-  current: 1,
-  pageSize: 5,
-  tableData: [
-    {
-      id: 3249,
-      name: '小米9',
-      sku: '8+64',
-      phone: '11225568',
-      channel: '小米商城',
-      dealer: '线下KA',
-      shareCount: '12,345,678',
-      activeCount: '2'
-    },
-    {
-      id: 3299,
-      name: '小米9 SE',
-      sku: '6+64',
-      phone: '11225568',
-      channel: '清河店',
-      dealer: '线下KA',
-      shareCount: '19.000',
-      activeCount: '10,000'
-    },
-    {
-      id: 4299,
-      name: '小米8',
-      sku: '6+64',
-      phone: '11225568',
-      channel: '双安店',
-      dealer: '线下KA',
-      shareCount: '25.000',
-      activeCount: '10,000'
-    },
-    {
-      id: 4219,
-      name: 'Redmi Note7',
-      sku: '4+64',
-      phone: '11225568',
-      channel: '华润五彩城店',
-      dealer: '线下KA',
-      shareCount: '9.000',
-      activeCount: '100'
-    },
-    {
-      id: 4229,
-      name: 'Redmi k30',
-      sku: '8+64',
-      phone: '22225568',
-      channel: '华润五彩城店',
-      dealer: '线下KA',
-      shareCount: '9.000',
-      activeCount: '100'
-    }
-  ]
-}
-
-class QueryBasic extends Component {
+class TableBasic extends Component {
   columnMixins = {
     columns: [
       {
@@ -317,10 +284,25 @@ class QueryBasic extends Component {
   }
 
   fetchQueryBasic = async () => {
-    await delay()
-    const { tableData, ...rest } = queryData
-    const _tableData = tableData.map(item => ({ ...item, key: item.id }))
-    this.setState({ ...rest, tableData: _tableData })
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/table/basic')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          const { tableData, ...rest } = data
+          const _tableData = tableData.map(item => ({ ...item, key: item.id }))
+          this.setState({ ...rest, tableData: _tableData })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
   }
 
   async componentDidMount() {

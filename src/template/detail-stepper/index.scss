@@ -161,3 +161,15 @@
     }
   }
 }
+
+.usual-dropdown-button {
+  margin-left: $spacer-2;
+
+  .hi-btn {
+    padding: 4px 6px 4px 8px;
+  }
+
+  .icon-down {
+    display: none;
+  }
+}

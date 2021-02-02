@@ -1,112 +1,56 @@
 import React, { Component } from 'react'
-import { Button, Icon, Grid, Loading, Card, Breadcrumb } from '@hi-ui/hiui'
+import { Button, Icon, Grid, Loading, Card, Breadcrumb, Notification, Dropdown } from '@hi-ui/hiui'
 import './index.scss'
-// import axios from 'axios'
+import axios from 'axios'
 
-const data = {
-  title: '小米8屏幕指纹版',
-  desc: Array(3).fill({
-    key: '状态',
-    value: '已借出'
-  }),
-  detailInfo: {
-    设备名称: {
-      key: '设备名称',
-      value:
-        '全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作，手持超级夜景全球首款压感屏幕指纹，快速解锁，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作 ，手持超级夜景，全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面…'
-    },
-    容量颜色: {
-      key: '容量颜色',
-      value: '64+64G 白色'
-    },
-    是否新品: {
-      key: '是否新品',
-      value: '否'
-    },
-    分辨率: {
-      key: '分辨率',
-      value: '1136*640'
-    },
-    设备挂靠人: {
-      key: '设备挂靠人',
-      value: 'GuoQiang Wang 王国强'
-    },
-    操作系统: {
-      key: '操作系统',
-      value: '9.5'
-    },
-    是否ROOT: {
-      key: '是否ROOT',
-      value: '否'
-    },
-    设备识别码: {
-      key: '设备识别码',
-      value:
-        '86814403004345686814403004345686814403004345686814403004345686814403004345686814403004345681440300434568681440300434568144030043456868144030043456'
-    }
-  },
-  otherInfo: {
-    创建人: {
-      key: '创建人',
-      value: '王国强'
-    },
-    修改人: {
-      key: '修改人',
-      value: '张鑫'
-    },
-    创建时间: {
-      key: '创建时间',
-      value: '2019-01-11 12:12'
-    },
-    修改时间: {
-      key: '修改时间',
-      value: '2019-01-14 13:12'
-    },
-    设备挂靠组: {
-      key: '设备挂靠组',
-      value: '测试组'
-    },
-    经销商: {
-      key: '经销商',
-      value: '线下KA'
-    },
-    经销国家: {
-      key: '经销国家',
-      value: '中国'
-    }
-  }
-}
-const delay = (timeout = 1000) => new Promise(resolve => setTimeout(() => resolve(), timeout))
+const { Row, Col } = Grid
 
 export default class Template extends Component {
   state = {
-    title: '小米8屏幕指纹版',
-    desc: Array(3).fill({
-      key: '状态',
-      value: '已借出'
-    }),
+    title: '',
+    desc: [],
     detailInfo: {},
     otherInfo: {}
   }
 
   fetchOtherInfo = async () => {
-    await delay()
-    this.setState({ otherInfo: data.otherInfo })
-    // return axios
-    //   .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/info')
-    //   .then(({ data: { data: otherInfo } }) => {
-    //     this.setState({ otherInfo })
-    //   })
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/details')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ otherInfo: data.otherInfo })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
   }
 
   fetchDetailInfo = async () => {
-    await delay()
-    this.setState({ detailInfo: data.detailInfo })
-    // return axios
-    //   .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail')
-    //   .then(({ data: { data: detailInfo } }) => {
-    //     this.setState({ detailInfo })
-    //   })
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/details')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ detailInfo: data.detailInfo, title: data.title, desc: data.desc })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
   }
 
   async componentDidMount() {
@@ -120,14 +64,28 @@ export default class Template extends Component {
     }
   }
 
-  handleBackClick = () => {}
-  handleDeleteClick = () => {}
-  handleEditClick = () => {}
-  handleMoreClick = () => {}
+  handleBackClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleBackClick'
+    })
+  }
+
+  handleDeleteClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleDeleteClick'
+    })
+  }
+
+  handleEditClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleEditClick'
+    })
+  }
 
   render() {
-    const Row = Grid.Row
-    const Col = Grid.Col
     const { title, desc, detailInfo, otherInfo } = this.state
 
     return (
@@ -175,7 +133,21 @@ export default class Template extends Component {
               <Button icon="delete" type="danger" onClick={this.handleDeleteClick}>
                 删除
               </Button>
-              <Button icon="more" type="line" onClick={this.handleMoreClick} />
+              <Dropdown
+                className="usual-dropdown-button"
+                data={[
+                  {
+                    title: '操作1'
+                  },
+                  {
+                    title: '操作2'
+                  }
+                ]}
+                trigger="click"
+                type="button"
+                placement="bottom-end"
+                title={<Icon name="more" />}
+              />
             </Col>
           </Row>
         </Col>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Axios from 'axios'
-import { Input, Icon, Button, Stepper, Grid, Card } from '@hi-ui/hiui'
+import axios from 'axios'
+import { Input, Icon, Button, Stepper, Grid, Card, Loading, Notification } from '@hi-ui/hiui'
 
 import './index.scss'
 
@@ -8,16 +8,51 @@ const { Row, Col } = Grid
 export default class ListFlowCard extends Component {
   state = {
     searchValue: '',
-    flowInfos: []
+    flowInfos: [],
+    stepperCurrent: Math.round(Math.random() * 3)
+  }
+
+  fetchList = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/list/flowcard')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ flowInfos: data.flowInfos })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
+  }
+
+  handleNewClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleNewClick'
+    })
+  }
+
+  handleSearchClick = () => {
+    Notification.open({
+      type: 'success',
+      title: `handleSearchClick and keyword is ${this.state.searchValue}`
+    })
   }
 
   async componentDidMount() {
-    const {
-      data: {
-        data: { flowInfos = [] }
-      }
-    } = await Axios.get('http://mock.be.mi.com/mock/2532/list/flowCard/info')
-    this.setState({ flowInfos })
+    Loading.open(null, { key: 'lk' })
+    try {
+      await this.fetchList()
+    } finally {
+      Loading.close('lk')
+    }
   }
 
   // 渲染顶部搜索栏
@@ -32,7 +67,7 @@ export default class ListFlowCard extends Component {
             value={searchValue}
             append={
               /* 搜索功能可以前端实现也可以后端实现，根据实际场景而定 */
-              <Button style={{ borderLeft: '1px solid #d8d8d8' }}>
+              <Button style={{ borderLeft: '1px solid #d8d8d8' }} onClick={this.handleSearchClick}>
                 <Icon name="search" style={{ fontSize: 16 }} />
               </Button>
             }
@@ -44,7 +79,7 @@ export default class ListFlowCard extends Component {
             placeholder="请输入搜索关键词"
           />
           {/* 新建功能也需要自行拓展定义 */}
-          <Button type="primary" className="add-new-button">
+          <Button type="primary" className="add-new-button" onClick={this.handleNewClick}>
             <Icon name="plus" />
             新建
           </Button>
@@ -54,6 +89,7 @@ export default class ListFlowCard extends Component {
   }
 
   renderStepper = () => {
+    const { stepperCurrent } = this.state
     const data = [
       {
         title: '启动阶段',
@@ -74,8 +110,7 @@ export default class ListFlowCard extends Component {
     ]
     return (
       <div className="stepper-container">
-        {/* 此处只为展示用法，故而current固定住了，应用中应该是动态的，其为数组下标 */}
-        <Stepper data={data} current={0} itemLayout="vertical" />
+        <Stepper data={data} current={stepperCurrent} itemLayout="vertical" />
       </div>
     )
   }

@@ -1,15 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Button,
-  Tabs,
-  Stepper,
-  Timeline,
-  Icon,
-  Grid,
-  Loading,
-  Breadcrumb,
-  Table
-} from '@hi-ui/hiui'
+import { Button, Tabs, Stepper, Timeline, Icon, Grid, Loading, Breadcrumb, Table } from '@hi-ui/hiui'
 import './index.scss'
 // import axios from 'axios'
 

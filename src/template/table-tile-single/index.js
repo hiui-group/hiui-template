@@ -199,18 +199,21 @@ export default class Template extends Component {
 
     if (!fieldData) return
 
-    this.setState({
-      [name]: {
-        ...fieldData,
-        checkValue: value
+    this.setState(
+      {
+        [name]: {
+          ...fieldData,
+          checkValue: value
+        },
+        queryForm: {
+          ...this.state.queryForm,
+          [name]: value
+        }
       },
-      queryForm: {
-        ...this.state.queryForm,
-        [name]: value
+      () => {
+        // request filtered table data here
       }
-    }, () => {
-      // request filtered table data here
-    })
+    )
   }
 
   closeModal = () => {

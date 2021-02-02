@@ -73,6 +73,10 @@ const config = [
         path: '/table-tile-single'
       },
       {
+        name: '表格-高级管理',
+        path: '/table-manage'
+      },
+      {
         name: '表格-平铺查询（多选）',
         path: '/table-tile-multiple'
       },

@@ -85,11 +85,13 @@
     li {
       display: flex;
       margin-top: $spacer-2;
+      font-size: 14px;
     }
 
     &--base {
       li {
         width: 33%;
+        font-size: 14px;
       }
 
       li div:first-child {

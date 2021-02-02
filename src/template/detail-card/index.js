@@ -1,76 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Tabs, Stepper, Timeline, Icon, Grid, Loading, Breadcrumb, Table } from '@hi-ui/hiui'
 import './index.scss'
-// import axios from 'axios'
+import axios from 'axios'
 
 const { Row, Col } = Grid
 
-const data = {
-  title: '小米8屏幕指纹版',
-  desc: Array(3).fill({
-    key: '状态',
-    value: '已借出'
-  }),
-  baseInfo: {
-    设备名称: {
-      key: '设备名称',
-      value:
-        '全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作，手持超级夜景全球首款压感屏幕指纹，快速解锁，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作 ，手持超级夜景，全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面…'
-    },
-    容量颜色: {
-      key: '容量颜色',
-      value: '64+64G 白色'
-    },
-    系统版本: {
-      key: '系统版本',
-      value: '2.0'
-    },
-    设备别名: {
-      key: '设备别名',
-      value: 'Mix2S'
-    },
-    操作系统: {
-      key: '操作系统',
-      value: '9.5'
-    },
-    设备挂靠人: {
-      key: '设备挂靠人',
-      value: '测试组'
-    },
-    设备识别码: {
-      key: '设备识别码',
-      value:
-        '86814403004345686814403004345686814403004345686814403004345686814403004345686814403004345681440300434568681440300434568144030043456868144030043456'
-    },
-    分辨率: {
-      key: '分辨率',
-      value: '1136*640'
-    },
-    当前责任人: {
-      key: '当前责任人',
-      value: 'QuoqiangW 王国强'
-    }
-  },
-  expressInfo: {
-    avatar: {
-      key: '头像',
-      value:
-        'https://images.unsplash.com/photo-1580901066059-159ccd258d77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-    },
-    name: {
-      key: '姓名',
-      value: '王贝'
-    },
-    phone: {
-      key: '电话',
-      value: '13545360987'
-    },
-    adress: {
-      key: '地址',
-      value: '武汉市江夏区江夏大道普洛斯物流园B6区小米仓库'
-    }
-  }
-}
 const delay = (timeout = 1000) => new Promise(resolve => setTimeout(() => resolve(), timeout))
 
 export default class Template extends Component {
@@ -122,11 +56,23 @@ export default class Template extends Component {
   }
 
   fetchBaseInfo = async () => {
-    await delay()
-    this.setState({ baseInfo: data.baseInfo })
-    // return axios.get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail').then(({ data: { data: baseInfo } }) => {
-    //   this.setState({ baseInfo })
-    // })
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/details')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ baseInfo: data.baseInfo, title: data.title, desc: data.desc })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
   }
 
   handleBackClick = () => {}
@@ -256,8 +202,8 @@ const queryData = {
       phone: '11225568',
       channel: '小米商城',
       dealer: '线下KA',
-      shareCount: '12,139,987',
-      activeCount: '0'
+      shareCount: '12,345,678',
+      activeCount: '2'
     },
     {
       id: 3299,
@@ -284,6 +230,16 @@ const queryData = {
       name: 'Redmi Note7',
       sku: '4+64',
       phone: '11225568',
+      channel: '华润五彩城店',
+      dealer: '线下KA',
+      shareCount: '9.000',
+      activeCount: '100'
+    },
+    {
+      id: 4229,
+      name: 'Redmi k30',
+      sku: '8+64',
+      phone: '22225568',
       channel: '华润五彩城店',
       dealer: '线下KA',
       shareCount: '9.000',

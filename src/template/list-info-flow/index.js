@@ -99,9 +99,9 @@ export default class ListInfoFlow extends Component {
   render() {
     const { value } = this.state
     return (
-      <div className='page--list-flow'>
+      <div className="page--list-flow">
         <ListHeader value={value} onChange={this.handleChange} />
-        <div className='page--list-container'>
+        <div className="page--list-container">
           {listData.map((item, index) => (
             <ListItem item={item} key={index} highlightValue={value} />
           ))}

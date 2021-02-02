@@ -40,7 +40,7 @@ export default class ListTask extends Component {
     }
     content.push(
       <Col span={6}>
-        <div className='tasks--card-item' key='btn'>
+        <div className="tasks--card-item" key="btn">
           <Card
             hoverable
             style={{
@@ -52,7 +52,7 @@ export default class ListTask extends Component {
               width: '100%'
             }}
           >
-            <Icon name='plus' />
+            <Icon name="plus" />
           </Card>
         </div>
       </Col>
@@ -65,7 +65,7 @@ export default class ListTask extends Component {
     return currentRowData.map((t, idx) => {
       return (
         <Col span={6} key={idx}>
-          <div className='tasks--card-item'>
+          <div className="tasks--card-item">
             <Card hoverable title={t.title} style={{ width: '100%' }}>
               <p>{t.content}</p>
             </Card>
@@ -80,13 +80,11 @@ export default class ListTask extends Component {
     const tasks = taskList.slice((pageNum - 1) * pageSize, pageNum * pageSize)
 
     return (
-      <div className='page--list-task'>
+      <div className="page--list-task">
         <ListHeader />
-        <div className='tasks__container'>
+        <div className="tasks__container">
           <Row>
-            <div className='tasks--card-container'>
-              {this.renderCardList(tasks)}
-            </div>
+            <div className="tasks--card-container">{this.renderCardList(tasks)}</div>
           </Row>
           <div
             style={{

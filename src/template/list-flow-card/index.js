@@ -24,16 +24,16 @@ export default class ListFlowCard extends Component {
   renderTopPart = () => {
     const { searchValue } = this.state
     return (
-      <div className='top-part-container'>
-        <span className='top-part-title'>任务管理</span>
-        <div className='top-part-function-container'>
+      <div className="top-part-container">
+        <span className="top-part-title">任务管理</span>
+        <div className="top-part-function-container">
           <Input
             style={{ width: '259px' }}
             value={searchValue}
             append={
               /* 搜索功能可以前端实现也可以后端实现，根据实际场景而定 */
               <Button style={{ borderLeft: '1px solid #d8d8d8' }}>
-                <Icon name='search' style={{ fontSize: 16 }} />
+                <Icon name="search" style={{ fontSize: 16 }} />
               </Button>
             }
             onChange={event => {
@@ -41,11 +41,11 @@ export default class ListFlowCard extends Component {
                 searchValue: event.target.value
               })
             }}
-            placeholder='请输入搜索关键词'
+            placeholder="请输入搜索关键词"
           />
           {/* 新建功能也需要自行拓展定义 */}
-          <Button type='primary' className='add-new-button'>
-            <Icon name='plus' />
+          <Button type="primary" className="add-new-button">
+            <Icon name="plus" />
             新建
           </Button>
         </div>
@@ -73,9 +73,9 @@ export default class ListFlowCard extends Component {
       }
     ]
     return (
-      <div className='stepper-container'>
+      <div className="stepper-container">
         {/* 此处只为展示用法，故而current固定住了，应用中应该是动态的，其为数组下标 */}
-        <Stepper data={data} current={0} itemLayout='vertical' />
+        <Stepper data={data} current={0} itemLayout="vertical" />
       </div>
     )
   }
@@ -91,22 +91,19 @@ export default class ListFlowCard extends Component {
           <Col key={index} span={6} gutter>
             {lineInfo.map(({ id, title, detail }) => {
               return (
-                <div className='card-container'>
+                <div className="card-container">
                   <Card
                     title={title}
                     key={id}
                     extra={
                       <span>
                         {/* 功能按钮需用户自己去定制，调用后端接口和后续前端操作 */}
-                        <Icon className='card-function-button' name='delete' />
-                        <Icon
-                          className='card-function-button'
-                          name='ellipsis'
-                        />
+                        <Icon className="card-function-button" name="delete" />
+                        <Icon className="card-function-button" name="ellipsis" />
                       </span>
                     }
                   >
-                    <p className='card-detail'>{detail}</p>
+                    <p className="card-detail">{detail}</p>
                   </Card>
                 </div>
               )
@@ -123,7 +120,7 @@ export default class ListFlowCard extends Component {
 
   render() {
     return (
-      <div className='page page--list-flow-card'>
+      <div className="page page--list-flow-card">
         {this.renderTopPart()}
         {this.renderStepper()}
         {this.renderFlowCards()}

@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default class ListItem extends React.Component {
-
   renderHighlight = (title, highlightValue) => {
     if (typeof title === 'string' && title.includes(highlightValue)) {
       const index = title.indexOf(highlightValue)
@@ -17,12 +16,14 @@ export default class ListItem extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const { highlightValue, item } = this.props
     const { title, content, extraInfo } = item
     return (
       <div style={{ marginBottom: 16 }}>
-        <div style={{ fontSize: '16px', color: '#4284F5', marginBottom: 2 }}>{this.renderHighlight(title, highlightValue) || title}</div>
+        <div style={{ fontSize: '16px', color: '#4284F5', marginBottom: 2 }}>
+          {this.renderHighlight(title, highlightValue) || title}
+        </div>
         <div style={{ fontSize: '12px' }}>{this.renderHighlight(content, highlightValue) || content}</div>
         <div style={{ fontSize: '12px', color: '#999999' }}>{extraInfo}</div>
       </div>

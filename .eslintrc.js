@@ -16,7 +16,7 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': [
-      'off',
+      'warn',
       {
         singleQuote: true,
         semi: false,

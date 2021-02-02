@@ -13,45 +13,47 @@ const data = {
     value: '已借出'
   }),
   baseInfo: {
-    '设备名称': {
+    设备名称: {
       key: '设备名称',
-      value: '全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作，手持超级夜景全球首款压感屏幕指纹，快速解锁，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作 ，手持超级夜景，全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面…'
+      value:
+        '全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作，手持超级夜景全球首款压感屏幕指纹，快速解锁，骁龙845处理器，全面提升游戏性能表现 ，四曲面渐变镜面机身，轻薄圆润 ，960帧超慢动作 ，手持超级夜景，全球首款压感屏幕指纹，快速解锁 ，骁龙845处理器，全面提升游戏性能表现 ，四曲面…'
     },
-    '容量颜色': {
+    容量颜色: {
       key: '容量颜色',
       value: '64+64G 白色'
     },
-    '系统版本': {
+    系统版本: {
       key: '系统版本',
       value: '2.0'
     },
-    '设备别名': {
+    设备别名: {
       key: '设备别名',
       value: 'Mix2S'
     },
-    '操作系统': {
+    操作系统: {
       key: '操作系统',
       value: '9.5'
     },
-    '设备挂靠人': {
+    设备挂靠人: {
       key: '设备挂靠人',
       value: '测试组'
     },
-    '设备识别码': {
+    设备识别码: {
       key: '设备识别码',
-      value: '86814403004345686814403004345686814403004345686814403004345686814403004345686814403004345681440300434568681440300434568144030043456868144030043456'
+      value:
+        '86814403004345686814403004345686814403004345686814403004345686814403004345686814403004345681440300434568681440300434568144030043456868144030043456'
     },
-    '分辨率': {
+    分辨率: {
       key: '分辨率',
       value: '1136*640'
     },
-    '当前责任人': {
+    当前责任人: {
       key: '当前责任人',
       value: 'QuoqiangW 王国强'
-    },
-  },
+    }
+  }
 }
-const delay = (timeout = 1000) => new Promise((resolve) => setTimeout(() => resolve(), timeout))
+const delay = (timeout = 1000) => new Promise(resolve => setTimeout(() => resolve(), timeout))
 
 export default class Template extends Component {
   state = {
@@ -65,7 +67,6 @@ export default class Template extends Component {
     tableInfo: {},
     activeNavMenuIndex: 0
   }
-
 
   fetchBaseInfo = async () => {
     await delay()
@@ -100,18 +101,21 @@ export default class Template extends Component {
               <Breadcrumb
                 separator="|"
                 onClick={this.handleBackClick}
-                data={[{
-                  content: (
-                    <span >
-                      <Icon name='left' />
-                      <span>返回</span>
-                    </span>
-                  ),
-                  path: '/'
-                }, {
-                  content: <span>详情</span>,
-                  path: '/detail-relevance'
-                }]}
+                data={[
+                  {
+                    content: (
+                      <span>
+                        <Icon name="left" />
+                        <span>返回</span>
+                      </span>
+                    ),
+                    path: '/'
+                  },
+                  {
+                    content: <span>详情</span>,
+                    path: '/detail-relevance'
+                  }
+                ]}
               />
             </Row>
             <Row className="row row-02" justify="space-between">
@@ -139,20 +143,24 @@ export default class Template extends Component {
               </Col>
             </Row>
           </Col>
-          <Col className='detail-relevance__card'>
+          <Col className="detail-relevance__card">
             <Card bordered={false} hoverable>
               <Tabs
                 className="detail-group__table-container"
                 type="line"
                 activeId={activeTabIndex}
-                onTabClick={(tabId) => {
+                onTabClick={tabId => {
                   this.setState({
                     activeTabIndex: tabId
                   })
                 }}
               >
-                <Tabs.Pane tabTitle='基础信息' tabId={0}><BaseInfo {...{ baseInfo }} /></Tabs.Pane>
-                <Tabs.Pane tabTitle='设备清单' tabId={1}><QueryBasic /></Tabs.Pane>
+                <Tabs.Pane tabTitle="基础信息" tabId={0}>
+                  <BaseInfo {...{ baseInfo }} />
+                </Tabs.Pane>
+                <Tabs.Pane tabTitle="设备清单" tabId={1}>
+                  <QueryBasic />
+                </Tabs.Pane>
               </Tabs>
             </Card>
           </Col>

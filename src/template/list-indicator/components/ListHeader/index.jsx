@@ -15,7 +15,7 @@ export default class ListHeader extends React.Component {
     const { style, onChange = () => {} } = this.props
     const { value } = this.state
     return (
-      <div className='page--list-header' style={style}>
+      <div className="page--list-header" style={style}>
         指标管理
         <div>
           <Input
@@ -24,8 +24,8 @@ export default class ListHeader extends React.Component {
             onChange={e => this.setState({ value: e.target.value })}
             append={
               <Button
-                className='search-btn'
-                icon='search'
+                className="search-btn"
+                icon="search"
                 style={{
                   color: '#4284F5',
                   borderLeft: '1px solid #d8d8d8'
@@ -35,7 +35,7 @@ export default class ListHeader extends React.Component {
                 }}
               />
             }
-            placeholder='请输入搜索关键词'
+            placeholder="请输入搜索关键词"
           />
         </div>
       </div>

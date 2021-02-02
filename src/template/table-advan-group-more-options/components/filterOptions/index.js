@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import { Button, Form, Select, Transfer, Modal } from "@hi-ui/hiui"
-import axios from "axios"
-import classNames from "classnames"
+import React, { Component } from 'react'
+import { Button, Form, Select, Transfer, Modal } from '@hi-ui/hiui'
+import axios from 'axios'
+import classNames from 'classnames'
 
-import "./index.scss"
+import './index.scss'
 
 const FormItem = Form.Item
 export default class FilterOptions extends Component {
@@ -19,31 +19,31 @@ export default class FilterOptions extends Component {
     }
     this.transferData = [
       {
-        id: "goodsName",
-        content: "商品名称"
+        id: 'goodsName',
+        content: '商品名称'
       },
       {
-        id: "categorieName",
-        content: "品类"
+        id: 'categorieName',
+        content: '品类'
       },
       {
-        id: "specName",
-        content: "规格"
+        id: 'specName',
+        content: '规格'
       },
       {
-        id: "colorName",
-        content: "颜色"
+        id: 'colorName',
+        content: '颜色'
       }
     ]
     this.options = []
     for (let index = 0; index < 15; index++) {
       this.options.push({
-        field: "index" + index,
-        placeholder: "选项" + index
+        field: 'index' + index,
+        placeholder: '选项' + index
       })
       this.transferData.push({
         id: index,
-        content: "选项" + index
+        content: '选项' + index
       })
     }
   }
@@ -86,7 +86,7 @@ export default class FilterOptions extends Component {
 
   queryTableData = () => {
     this.searchForm.current.validate((values, errors) => {
-      console.log("values", values)
+      console.log('values', values)
       this.props.getTableData()
     })
   }
@@ -98,48 +98,49 @@ export default class FilterOptions extends Component {
   render() {
     const { colorList, transfertargetIds, moreSettingModel, cacheTargetIds, moreOptions } = this.state
     return (
-      <div className='table-advan_search-filter'>
+      <div className="table-advan_search-filter">
         <Form
           ref={this.searchForm}
-          className={classNames("table-advan_search-filter-form", {
-            "table-advan_search-filter-form-hidden": moreOptions
-          })}>
-          <div className='table-advan_search-filter-content'>
-            {!cacheTargetIds.includes("goodsName") && (
-              <FormItem field='goodsName'>
+          className={classNames('table-advan_search-filter-form', {
+            'table-advan_search-filter-form-hidden': moreOptions
+          })}
+        >
+          <div className="table-advan_search-filter-content">
+            {!cacheTargetIds.includes('goodsName') && (
+              <FormItem field="goodsName">
                 <Select
                   style={{ width: 120 }}
-                  placeholder='请选择商品名称'
+                  placeholder="请选择商品名称"
                   data={[
                     {
-                      groupId: "redmi",
-                      groupTitle: "商品名称",
+                      groupId: 'redmi',
+                      groupTitle: '商品名称',
                       children: [
-                        { id: "1", title: "小米11" },
-                        { id: "2", title: "小米10" }
+                        { id: '1', title: '小米11' },
+                        { id: '2', title: '小米10' }
                       ]
                     }
                   ]}
                 />
               </FormItem>
             )}
-            {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field='categorieName'>
+            {!cacheTargetIds.includes('categorieName') && (
+              <FormItem field="categorieName">
                 <Select
                   autoload
                   style={{ width: 120 }}
-                  placeholder='请选择品类'
+                  placeholder="请选择品类"
                   dataSource={keyword => {
                     return {
-                      type: "GET",
-                      url: "https://mife-gallery.test.mi.com/hiui/categories",
+                      type: 'GET',
+                      url: 'https://mife-gallery.test.mi.com/hiui/categories',
                       params: { title: keyword },
                       transformResponse: res => {
                         if (res && res.code === 200) {
                           return [
                             {
-                              groupId: "categories",
-                              groupTitle: "品类",
+                              groupId: 'categories',
+                              groupTitle: '品类',
                               children: res.data
                             }
                           ]
@@ -151,23 +152,23 @@ export default class FilterOptions extends Component {
                 />
               </FormItem>
             )}
-            {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field='specName'>
+            {!cacheTargetIds.includes('categorieName') && (
+              <FormItem field="specName">
                 <Select
                   autoload
                   style={{ width: 120 }}
-                  placeholder='请选择规格'
+                  placeholder="请选择规格"
                   dataSource={keyword => {
                     return {
-                      type: "GET",
-                      url: "https://mife-gallery.test.mi.com/hiui/specs",
+                      type: 'GET',
+                      url: 'https://mife-gallery.test.mi.com/hiui/specs',
                       params: { title: keyword },
                       transformResponse: res => {
                         if (res && res.code === 200) {
                           return [
                             {
-                              groupId: "specs",
-                              groupTitle: "规格",
+                              groupId: 'specs',
+                              groupTitle: '规格',
                               children: res.data
                             }
                           ]
@@ -179,9 +180,9 @@ export default class FilterOptions extends Component {
                 />
               </FormItem>
             )}
-            {!cacheTargetIds.includes("categorieName") && (
-              <FormItem field='colorName'>
-                <Select style={{ width: 120 }} placeholder='请选择颜色' data={colorList} />
+            {!cacheTargetIds.includes('categorieName') && (
+              <FormItem field="colorName">
+                <Select style={{ width: 120 }} placeholder="请选择颜色" data={colorList} />
               </FormItem>
             )}
             {this.options.map(item => {
@@ -192,40 +193,41 @@ export default class FilterOptions extends Component {
               )
             })}
             <Button
-              type='primary'
-              appearance='link'
-              icon='setting'
+              type="primary"
+              appearance="link"
+              icon="setting"
               onClick={() => {
                 this.setState({
                   moreSettingModel: true,
                   cacheTargetIds: this.state.transfertargetIds
                 })
-              }}>
+              }}
+            >
               更多选型
             </Button>
           </div>
-          <div className={"table-advan_search-filter-botton"}>
+          <div className={'table-advan_search-filter-botton'}>
             <Button
-              type='default'
-              icon={moreOptions ? "down" : "up"}
+              type="default"
+              icon={moreOptions ? 'down' : 'up'}
               onClick={() => {
                 this.setState({
                   moreOptions: !moreOptions
                 })
               }}
             />
-            <div style={{ marginTop: "24px" }}>
-              <Button type='primary' onClick={this.queryTableData}>
+            <div style={{ marginTop: '24px' }}>
+              <Button type="primary" onClick={this.queryTableData}>
                 查询
               </Button>
             </div>
           </div>
         </Form>
-        <Modal title='自定义筛选' visible={moreSettingModel} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
+        <Modal title="自定义筛选" visible={moreSettingModel} onConfirm={this.confirmEvent} onCancel={this.cancelEvent}>
           <Transfer
-            type='multiple'
-            emptyContent={["无数据", "无数据"]}
-            title={["显示条件", "隐藏条件"]}
+            type="multiple"
+            emptyContent={['无数据', '无数据']}
+            title={['显示条件', '隐藏条件']}
             targetIds={transfertargetIds}
             data={this.transferData}
             onChange={this.transferChange}

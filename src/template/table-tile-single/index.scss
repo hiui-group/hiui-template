@@ -1,0 +1,37 @@
+@import '@hi-ui/core-css/index.scss';
+
+.page--tile-single {
+  &__filter-label {
+    color: var(--color-gray-70);
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    width: 92px;
+    position: relative;
+
+    &::after {
+      content: '';
+      color: #d8d8d8;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      margin: 0 $spacer-3;
+      width: 1px;
+      box-sizing: border-box;
+      height: 14px;
+      background-color: currentColor;
+    }
+  }
+
+  &__filter-radios {
+    .hi-radio__input {
+      display: none;
+
+      &--checked {
+        + .hi-radio__text {
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@import '@hi-ui/core-css/index.scss';
+
+.page--tree-single-query {
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+  position: relative;
+
+  &__table-card {
+    flex: 1;
+    margin-left: $spacer-6;
+
+    .hi-card__title {
+      margin-bottom: $spacer-5;
+    }
+  }
+
+  &__query-card {
+    box-sizing: border-box;
+    width: 232px;
+    flex-basis: 232px;
+    flex-grow: 0;
+    padding-bottom: 64px;
+
+    .hi-tree {
+      .title__text {
+        width: 60px;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

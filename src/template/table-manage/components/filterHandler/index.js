@@ -3,6 +3,7 @@ import { Input, Icon, Form, Select, DatePicker, TimePicker, Button } from '@hi-u
 import classNames from 'classnames'
 
 import FilterControl from '../filterControl'
+import ColumnsControl from '../columnsControl'
 
 import './index.scss'
 const kitPrefix = 'hiui-componentkit'
@@ -17,21 +18,22 @@ const OptionsForButtonkit = () => {
   }
   return (
     <div className={`${kitPrefix}-options`}>
-      <div className={`${kitPrefix}-options-other-slot`}>
+      <div className={`${kitPrefix}-options__other-slot`}>
         <div
-          className={`${kitPrefix}-options-attachelement`}
+          className={`${kitPrefix}-options__attachelement`}
           onClick={() => {
             setShowFormItem(!showformItem)
           }}
         >
           <Icon name="document-search" />
-          <span className={`${kitPrefix}-options-attachelement-text`}>查询</span>
+          <span className={`${kitPrefix}-options__attachelement-text`}>查询</span>
           <Icon name={'down'} className={classNames({ 'icon-down-rotate180': showformItem })} />
         </div>
         <FilterControl />
+        <ColumnsControl />
       </div>
 
-      <div className={classNames(`${kitPrefix}-options-content`, { hidden: !showformItem })}>
+      <div className={classNames(`${kitPrefix}-options__content`, { hidden: !showformItem })}>
         <Form labelWidth="70" labelPlacement="top" placement="horizontal">
           <FormItem label="商品ID" field="phone">
             <Input placeholder={'请输入'} />
@@ -64,7 +66,7 @@ const OptionsForButtonkit = () => {
             <TimePicker defaultValue={new Date()} onChange={(date, dateString) => console.log(date, dateString)} />
           </FormItem>
         </Form>
-        <div className={`${kitPrefix}-options-btns`}>
+        <div className={`${kitPrefix}-options__btns`}>
           <Button type="primary" onClick={handleSubmit}>
             提交
           </Button>

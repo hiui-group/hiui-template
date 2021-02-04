@@ -68,10 +68,12 @@ $kitPrefix: 'hiui-componentkit' !default;
           width: 50%;
           text-align: center;
           cursor: pointer;
+
           &:hover {
             color: #4284f5;
           }
         }
+
         &--confirm {
           border-left: 1px solid #e7e7e7;
         }

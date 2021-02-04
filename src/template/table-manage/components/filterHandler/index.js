@@ -8,7 +8,7 @@ import ColumnsControl from '../columnsControl'
 import './index.scss'
 const kitPrefix = 'hiui-componentkit'
 const FormItem = Form.Item
-const OptionsForButtonkit = () => {
+const OptionsForButtonkit = ({ reorderColumns, columns }) => {
   const [showformItem, setShowFormItem] = useState(false)
   const handleSubmit = () => {
     console.log('ss')
@@ -30,7 +30,7 @@ const OptionsForButtonkit = () => {
           <Icon name={'down'} className={classNames({ 'icon-down-rotate180': showformItem })} />
         </div>
         <FilterControl />
-        <ColumnsControl />
+        <ColumnsControl reorderColumns={reorderColumns} columns={columns} />
       </div>
 
       <div className={classNames(`${kitPrefix}-options__content`, { hidden: !showformItem })}>

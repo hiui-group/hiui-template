@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Icon, Popper, Switch } from '@hi-ui/hiui'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import _ from 'lodash'
 import './index.scss'
 
 // 重新记录数组顺序
@@ -24,7 +25,16 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 })
 
 const kitPrefix = 'hiui-componentkit'
-const ColumnsControl = ({ reorderColumns, columns: propsColumns = [] }) => {
+/**
+ * @param {Object} ColumnsControlPorps
+ */
+const ColumnsControl = ({
+  reorderColumns,
+  optionsWidth = 276,
+  columns: propsColumns = [],
+  title = '列显示',
+  iconName = 'columns'
+}) => {
   const PopperAttachEle = useRef()
   const [showPopper, setShowPopper] = useState(false)
   const [columns, setColumns] = useState(propsColumns)
@@ -43,7 +53,7 @@ const ColumnsControl = ({ reorderColumns, columns: propsColumns = [] }) => {
     showPopper && setColumns(cacheColumns.current)
   }, [showPopper])
   return (
-    <div className={`${kitPrefix}-columnes`}>
+    <div className={`${kitPrefix}-columnes`} key={`${kitPrefix}-columnes`}>
       <div
         className={`${kitPrefix}-columnes__attachele`}
         ref={PopperAttachEle}
@@ -51,14 +61,14 @@ const ColumnsControl = ({ reorderColumns, columns: propsColumns = [] }) => {
           setShowPopper(!showPopper)
         }}
       >
-        <Icon name="columns" />
-        <span className={`${kitPrefix}-columnes__attachele-text`}>列显示</span>
+        <Icon name={iconName} />
+        <span className={`${kitPrefix}-columnes__attachele-text`}>{title}</span>
       </div>
       <Popper
         className={`${kitPrefix}-columnes__popper`}
         // 弹出层的显示隐藏
         show={showPopper}
-        width={'276px'}
+        width={optionsWidth}
         topGap={5}
         // 依附的元素
         attachEle={PopperAttachEle.current}
@@ -74,8 +84,9 @@ const ColumnsControl = ({ reorderColumns, columns: propsColumns = [] }) => {
                 return (
                   <ul className="columnes__items" {...provided.droppableProps} ref={provided.innerRef}>
                     {columns.map((item, index) => {
+                      const { title, dataKey, visible } = item
                       return (
-                        <Draggable key={item.dataKey} draggableId={item.dataKey} index={index}>
+                        <Draggable key={dataKey} draggableId={dataKey} index={index}>
                           {(provided, snapshot) => (
                             <li
                               className="columnes__item"
@@ -85,8 +96,15 @@ const ColumnsControl = ({ reorderColumns, columns: propsColumns = [] }) => {
                               style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                             >
                               <div className="columnes__item-left">
-                                <Switch />
-                                <span className="columnes__item-text">{item.title}</span>
+                                <Switch
+                                  checked={visible}
+                                  onChange={bol => {
+                                    const _columns = _.cloneDeep(columns)
+                                    _columns[index].visible = bol
+                                    setColumns(_columns)
+                                  }}
+                                />
+                                <span className="columnes__item-text">{title}</span>
                               </div>
                               <span className="columnes__item-right">
                                 <Icon name="drag" />
@@ -102,7 +120,15 @@ const ColumnsControl = ({ reorderColumns, columns: propsColumns = [] }) => {
             </Droppable>
           </DragDropContext>
           <div className="columnes__footer">
-            <span className="columnes__footer--reset">重置</span>
+            <span
+              className="columnes__footer--reset"
+              onClick={() => {
+                setColumns(cacheColumns.current)
+                reorderColumns(cacheColumns)
+              }}
+            >
+              重置
+            </span>
             <span
               className="columnes__footer--confirm"
               onClick={() => {

@@ -8,7 +8,7 @@ const FilterControl = () => {
   const PopperAttachEle = useRef()
   const [showPopper, setShowPopper] = useState(false)
   return (
-    <div className={`${kitPrefix}-filter-ctrl`}>
+    <div className={`${kitPrefix}-filter-ctrl`} key={`${kitPrefix}-filter-ctrl`}>
       <div
         className={`${kitPrefix}-filter-ctrl-attachele`}
         ref={PopperAttachEle}

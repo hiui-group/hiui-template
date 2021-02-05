@@ -42,12 +42,11 @@ $kitPrefix: 'hiui-componentkit' !default;
       &__item {
         display: flex;
         justify-content: space-between;
-        height: 24px;
-        line-height: 24px;
+        height: 30px;
+        line-height: 30px;
         font-size: 14px;
         font-weight: 400;
         color: #383e47;
-        margin-bottom: 14px;
 
         &-text {
           margin-left: 10px;

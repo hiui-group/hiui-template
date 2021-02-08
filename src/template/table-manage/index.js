@@ -183,7 +183,6 @@ export default class Template extends Component {
   // modal确定
   confirmEvent = () => {
     this.modalForm.current.validate((values, error) => {
-      console.log(values, error)
       if (!error) {
         this.putTanleRow(values)
       }
@@ -198,7 +197,6 @@ export default class Template extends Component {
 
   // reorderColumns 排序后的回调方法
   reorderColumns = columnes => {
-    console.log('columnes', columnes)
     this.setState({
       columnes
     })

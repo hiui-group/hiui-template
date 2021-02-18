@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import List from './components/List'
 import { Pagination } from '@hi-ui/hiui'
 
-import ListHeader from './components/ListHeader/index.jsx'
+import ListHeader from './components/ListHeader'
 import './index.scss'
 
 const listData = [

@@ -1,5 +1,8 @@
+import { localStorage } from '../utils'
+
 const components = {}
-const files = require.context('../template', true, /.js$/)
+const pageComponentpaths = {}
+const files = require.context('../template', true, /.js$|.scss$/)
 
 files.keys().forEach(key => {
   const componentName = key.split('/')[1]
@@ -8,8 +11,21 @@ files.keys().forEach(key => {
   if (fileName === 'index.js') {
     // console.log(componentName)
     components[componentName] = files(key).default
+  } else {
+    const compPath = key.split('/').slice(2).join('/')
+    if (fileName === 'index.scss' || !compPath) {
+      return
+    }
+    if (!pageComponentpaths[componentName]) {
+      pageComponentpaths[componentName] = [compPath]
+    } else {
+      pageComponentpaths[componentName].push(compPath)
+    }
   }
 })
+
+// 存储页面组件路径列表
+localStorage.setItem('pageComponentpaths', pageComponentpaths)
 
 const config = [
   {

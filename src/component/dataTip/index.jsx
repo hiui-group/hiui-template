@@ -5,7 +5,6 @@ const DataTip = () => {
   const isShowed = localStorage.getItem('__showt') || false
   const [show, setShow] = useState(!isShowed)
 
-  console.log(show)
   return (
     show && (
       <Modal

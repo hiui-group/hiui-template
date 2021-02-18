@@ -1,9 +1,9 @@
 const STORAGE_KEY = 'xiaomi_hiui_template_'
 export const localStorage = {
-  setItem (name, data) {
+  setItem(name, data) {
     window.localStorage.setItem(`${STORAGE_KEY}${name}`, data ? JSON.stringify(data) : data)
   },
-  getItem (name) {
+  getItem(name) {
     const data = window.localStorage.getItem(`${STORAGE_KEY}${name}`)
     console.log('data', data)
     try {

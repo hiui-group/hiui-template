@@ -36,17 +36,20 @@ export default class Copy extends Component {
     }
 
     axios.get(`${TEMP_CODE_PATH}/${pathname}/index.js`).then(ret => {
-        this.setState({ jsCode: ret.data })
-      })
-    axios.get(`${TEMP_CODE_PATH}/${pathname}/index.scss`).then(ret => {
+      this.setState({ jsCode: ret.data })
+    })
+    axios
+      .get(`${TEMP_CODE_PATH}/${pathname}/index.scss`)
+      .then(ret => {
         this.setState({ cssCode: ret.data })
-      }).catch(() => {
+      })
+      .catch(() => {
         console.log(`no css code`)
       })
     this.getComponentCode(pathname)
   }
 
-  getComponentCode = async (pathname) => {
+  getComponentCode = async pathname => {
     const componentPaths = localStorage.getItem('pageComponentpaths')[pathname]
     console.log('componentPaths', componentPaths)
     if (!componentPaths || !componentPaths.length) {
@@ -86,12 +89,13 @@ export default class Copy extends Component {
 
   render() {
     const { showModal, jsCode, cssCode, selectedKey, componentsInfo } = this.state
-    const compMenuDataList = componentsInfo.map(item => {
-      return {
-        id: item.compPath,
-        content: item.compPath
-      }
-    }) || []
+    const compMenuDataList =
+      componentsInfo.map(item => {
+        return {
+          id: item.compPath,
+          content: item.compPath
+        }
+      }) || []
     const menuDataList = this.getTabs(cssCode).concat(compMenuDataList)
     console.log('compMenuDataList', compMenuDataList)
     console.log('menuDataList', menuDataList)
@@ -153,13 +157,15 @@ export default class Copy extends Component {
                 {cssCode}
               </SyntaxHighlighter>
             )}
-            {
-              componentsInfo.filter((item) => item.compPath === selectedKey).map((item) => {
-                return <SyntaxHighlighter language={item.type} style={docco}>
-                {item.code}
-              </SyntaxHighlighter>
-              })
-            }
+            {componentsInfo
+              .filter(item => item.compPath === selectedKey)
+              .map(item => {
+                return (
+                  <SyntaxHighlighter language={item.type} style={docco}>
+                    {item.code}
+                  </SyntaxHighlighter>
+                )
+              })}
           </div>
         </Modal>
       </React.Fragment>

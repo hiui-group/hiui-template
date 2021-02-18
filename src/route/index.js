@@ -1,15 +1,32 @@
+import { localStorage } from '../utils'
+
 const components = {}
+const pageComponentpaths = {}
 const files = require.context('../template', true, /.js$/)
 
 files.keys().forEach(key => {
+  console.log('keykeykey', key)
   const componentName = key.split('/')[1]
   const fileName = key.split('/')[2]
   // 引入对应模板的index.js页面文件，排除其他文件
   if (fileName === 'index.js') {
     // console.log(componentName)
     components[componentName] = files(key).default
+  } else {
+    const compPath = key.split('/').slice(2).join('/')
+    console.log('compPath', compPath)
+    if (compPath) {
+      if (!pageComponentpaths[componentName]) {
+        pageComponentpaths[componentName] = [compPath]
+      } else {
+        pageComponentpaths[componentName].push(compPath)
+      }
+    }
   }
 })
+
+// 存储页面组件路径列表
+localStorage.setItem('pageComponentpaths', pageComponentpaths)
 
 const config = [
   {

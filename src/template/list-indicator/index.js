@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card } from '@hi-ui/hiui'
 
-import ListHeader from './components/ListHeader/index.jsx'
+import ListHeader from './components/ListHeader'
 
 import './index.scss'
 

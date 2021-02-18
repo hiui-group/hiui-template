@@ -10,7 +10,8 @@ import { localStorage } from '../../utils'
 import './style/index.scss'
 
 // const CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template'
-const TEMP_CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/feature/refactor-for-v3_czd0218/src/template'
+const TEMP_CODE_PATH =
+  'https://raw.githubusercontent.com/hiui-group/hiui-template/feature/refactor-for-v3_czd0218/src/template'
 export default class Copy extends Component {
   constructor(props) {
     super(props)

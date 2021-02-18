@@ -64,4 +64,18 @@
   pre {
     padding: 0 16px !important;
   }
+
+  .hi-menu {
+    .hi-menu__title-content {
+      min-width: fit-content;
+    }
+  }
+
+  .hi-menu-items {
+    overflow-x: auto;
+  }
+
+  .hi-menu--horizontal .hi-menu-item {
+    margin-right: 36px;
+  }
 }

@@ -9,9 +9,10 @@ import { localStorage } from '../../utils'
 
 import './style/index.scss'
 
-// const CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template'
-const TEMP_CODE_PATH =
-  'https://raw.githubusercontent.com/hiui-group/hiui-template/feature/refactor-for-v3_czd0218/src/template'
+const CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template'
+// const TEMP_CODE_PATH =
+//   'https://raw.githubusercontent.com/hiui-group/hiui-template/feature/refactor-for-v3_czd0218/src/template'
+
 export default class Copy extends Component {
   constructor(props) {
     super(props)
@@ -36,11 +37,11 @@ export default class Copy extends Component {
       pathname = '/home-dashboard'
     }
 
-    axios.get(`${TEMP_CODE_PATH}/${pathname}/index.js`).then(ret => {
+    axios.get(`${CODE_PATH}/${pathname}/index.js`).then(ret => {
       this.setState({ jsCode: ret.data })
     })
     axios
-      .get(`${TEMP_CODE_PATH}/${pathname}/index.scss`)
+      .get(`${CODE_PATH}/${pathname}/index.scss`)
       .then(ret => {
         this.setState({ cssCode: ret.data })
       })
@@ -52,7 +53,6 @@ export default class Copy extends Component {
 
   getComponentCode = async pathname => {
     const componentPaths = localStorage.getItem('pageComponentpaths')[pathname]
-    console.log('componentPaths', componentPaths)
     if (!componentPaths || !componentPaths.length) {
       this.setState({
         componentsInfo: []
@@ -63,10 +63,10 @@ export default class Copy extends Component {
 
     for (let i = 0; i < componentPaths.length; i++) {
       const compPath = componentPaths[i]
-      const code = await axios.get(`${TEMP_CODE_PATH}/${pathname}/${compPath}`)
+      const { data } = await axios.get(`${CODE_PATH}/${pathname}/${compPath}`) || {}
       componentsInfo.push({
         compPath,
-        code,
+        code: data || '空',
         type: compPath.endsWith('.scss') ? 'scss' : 'jsx'
       })
     }
@@ -98,8 +98,6 @@ export default class Copy extends Component {
         }
       }) || []
     const menuDataList = this.getTabs(cssCode).concat(compMenuDataList)
-    console.log('compMenuDataList', compMenuDataList)
-    console.log('menuDataList', menuDataList)
 
     return (
       <React.Fragment>

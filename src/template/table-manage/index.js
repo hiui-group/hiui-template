@@ -17,7 +17,6 @@ import axios from 'axios'
 import './index.scss'
 import TableHandler from './components/tableHandler'
 import FilterHandler from './components/filterHandler'
-import FilterControl from './components/filterControl'
 import ColumnsControl from './components/columnsControl'
 import CustomControl from './components/customControl'
 const FormItem = Form.Item
@@ -74,9 +73,9 @@ export default class Template extends Component {
         }
       ],
       summation: [
-        { title: '求和', iconName: 'summation', id: 'summation' },
-        { title: '选项1', iconName: 'document-search', id: 'document-search' },
-        { title: '选项2', iconName: 'sort-descending', id: 'sort-descending' }
+        { title: '求和', icon: 'summation', id: 'summation' },
+        { title: '选项1', icon: 'document-search', id: 'document-search' },
+        { title: '选项2', icon: 'sort-descending', id: 'sort-descending' }
       ],
       tableColumnsSize: [
         { title: '紧凑型', id: 'small' },
@@ -259,11 +258,10 @@ export default class Template extends Component {
         <FilterHandler
           getTableData={this.getTableData}
           broComponent={[
-            <FilterControl />,
             <ColumnsControl columns={columns} reorderColumns={this.reorderColumns} />,
             <CustomControl
               title="统计"
-              iconName="pie-chart"
+              icon="pie-chart"
               data={summation}
               onChange={id => {
                 console.log('id', id)
@@ -272,7 +270,7 @@ export default class Template extends Component {
             <CustomControl
               title="行高"
               data={tableColumnsSize}
-              iconName="column-height"
+              icon="column-height"
               onChange={id => {
                 console.log('id', id)
               }}

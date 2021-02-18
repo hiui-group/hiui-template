@@ -3,10 +3,26 @@ import { Icon, Popper } from '@hi-ui/hiui'
 import './index.scss'
 
 const kitPrefix = 'hiui-componentkit'
+
 /**
- * @param {Object} CustomControlPorps
+ * @typedef {Object} DataItem 下拉数据
+ * @property {String} title 下拉选项标题
+ * @property {String | Number} id 下拉选项唯一 id
  */
-const CustomControl = ({ data: propsData = [], value, optionWidth = 150, title = '统计', iconName, onChange }) => {
+
+/**
+ * @typedef {Object} Custom ControlPorps ColumnsControl 组件接受参数
+ * @property {Array<DataItem>} data 点击确定后，排序的回调方法 (columns) => void
+ * @property {String} value 被选中项的值
+ * @property {Number} optionWidth 自定义下拉选项宽度
+ * @property {String} title 名称
+ * @property {String} icon 图标名称
+ * @property {Function} onChange 改变选项时触发函数
+ */
+/**
+ * @param {Object} CustomControlPorps props
+ */
+const CustomControl = ({ data: propsData = [], value, optionWidth = 150, title = '统计', icon, onChange }) => {
   const PopperAttachEle = useRef()
   const [showPopper, setShowPopper] = useState(false)
   const [data, setData] = useState(propsData)
@@ -26,7 +42,7 @@ const CustomControl = ({ data: propsData = [], value, optionWidth = 150, title =
           setShowPopper(!showPopper)
         }}
       >
-        {iconName && <Icon name={iconName} />}
+        {icon && <Icon name={icon} />}
         <span className={`${kitPrefix}-custom__attachele-text`}>{title}</span>
       </div>
       <Popper
@@ -45,7 +61,7 @@ const CustomControl = ({ data: propsData = [], value, optionWidth = 150, title =
         <div className={`${kitPrefix}-custom__popper-content`}>
           <ul className={`custom__items`}>
             {data.map(item => {
-              const { title, id, iconName } = item
+              const { title, id, icon } = item
               return (
                 <li
                   className={`custom__item`}
@@ -56,7 +72,7 @@ const CustomControl = ({ data: propsData = [], value, optionWidth = 150, title =
                   }}
                 >
                   <div className={`custom__item-left`}>
-                    {iconName && <Icon name={iconName} />}
+                    {icon && <Icon name={icon} />}
                     <span className="custom__item-title">{title}</span>
                   </div>
                   {id === currentId && <Icon name="check" style={{ color: '#4284f5' }} />}

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import './index.scss'
 const kitPrefix = 'hiui-componentkit'
 const FormItem = Form.Item
-const OptionsForButtonkit = ({ reorderColumns, columns, broComponent }) => {
+const OptionsForButtonkit = ({ broComponent }) => {
   const [showformItem, setShowFormItem] = useState(false)
   const handleSubmit = () => {
     console.log('ss')

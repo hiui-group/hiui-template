@@ -26,14 +26,22 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 const kitPrefix = 'hiui-componentkit'
 /**
- * @param {Object} ColumnsControlPorps
+ * @typedef {Object} ColumnsControlPorps ColumnsControl 组件接受参数
+ * @property {Function} reorderColumns 点击确定后，排序的回调方法 (columns) => void
+ * @property {Number} optionsWidth 自定义下拉选项宽度
+ * @property {Array<Object>} columns 表格列配置信息，对应hiui中的[table columns](https://infra.mioffice.cn/hiui/zh-CN/components/table)的配置
+ * @property {String} title 名称
+ * @property {String} icon 图标名称
+ */
+/**
+ * @param {Object} ColumnsControlPorps props
  */
 const ColumnsControl = ({
   reorderColumns,
   optionsWidth = 276,
   columns: propsColumns = [],
   title = '列显示',
-  iconName = 'columns'
+  icon = 'columns'
 }) => {
   const PopperAttachEle = useRef()
   const [showPopper, setShowPopper] = useState(false)
@@ -61,7 +69,7 @@ const ColumnsControl = ({
           setShowPopper(!showPopper)
         }}
       >
-        <Icon name={iconName} />
+        <Icon name={icon} />
         <span className={`${kitPrefix}-columnes__attachele-text`}>{title}</span>
       </div>
       <Popper

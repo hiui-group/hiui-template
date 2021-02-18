@@ -63,7 +63,7 @@ export default class Copy extends Component {
 
     for (let i = 0; i < componentPaths.length; i++) {
       const compPath = componentPaths[i]
-      const { data } = await axios.get(`${CODE_PATH}/${pathname}/${compPath}`) || {}
+      const { data } = (await axios.get(`${CODE_PATH}/${pathname}/${compPath}`)) || {}
       componentsInfo.push({
         compPath,
         code: data || '空',

@@ -17,40 +17,13 @@ import axios from 'axios'
 import './index.scss'
 import TableHandler from './components/tableHandler'
 import FilterHandler from './components/filterHandler'
+import FilterControl from './components/filterControl'
+import ColumnsControl from './components/columnsControl'
+import CustomControl from './components/customControl'
 const FormItem = Form.Item
 export default class Template extends Component {
   constructor(props) {
     super(props)
-    this.columns = [
-      {
-        title: '商品名',
-        dataKey: 'name'
-      },
-      {
-        title: 'sku',
-        dataKey: 'sku'
-      },
-      {
-        title: '库存量（个）',
-        dataKey: 'stock'
-      },
-      {
-        title: '单价（元）',
-        dataKey: 'price'
-      },
-      {
-        title: '上市时间',
-        dataKey: 'updateTime'
-      },
-      {
-        title: '操作',
-        dataKey: 'stock',
-        render: (text, row, index) => {
-          const scope = this
-          return <TableHandler text={text} row={row} index={index} scope={scope} />
-        }
-      }
-    ]
 
     this.modalForm = React.createRef()
     this.state = {
@@ -64,6 +37,52 @@ export default class Template extends Component {
       modalVisiable: false,
       moreSettingModel: false,
       colorList: [],
+      columns: [
+        {
+          title: '商品名',
+          dataKey: 'name',
+          visible: true
+        },
+        {
+          title: 'sku',
+          dataKey: 'sku',
+          visible: true
+        },
+        {
+          title: '库存量（个）',
+          dataKey: 'stock',
+          visible: true
+        },
+        {
+          title: '单价（元）',
+          dataKey: 'price',
+          visible: true
+        },
+        {
+          title: '上市时间',
+          dataKey: 'updateTime',
+          visible: true
+        },
+        {
+          title: '操作',
+          dataKey: 'id',
+          visible: true,
+          render: (text, row, index) => {
+            const scope = this
+            return <TableHandler text={text} row={row} index={index} scope={scope} />
+          }
+        }
+      ],
+      summation: [
+        { title: '求和', iconName: 'summation', id: 'summation' },
+        { title: '选项1', iconName: 'document-search', id: 'document-search' },
+        { title: '选项2', iconName: 'sort-descending', id: 'sort-descending' }
+      ],
+      tableColumnsSize: [
+        { title: '紧凑型', id: 'small' },
+        { title: '标准型', id: 'default' },
+        { title: '宽松型', id: 'large' }
+      ],
       availableOptions: [], // 显示筛选项
       rules: {
         projectName: [
@@ -164,7 +183,6 @@ export default class Template extends Component {
   // modal确定
   confirmEvent = () => {
     this.modalForm.current.validate((values, error) => {
-      console.log(values, error)
       if (!error) {
         this.putTanleRow(values)
       }
@@ -177,8 +195,27 @@ export default class Template extends Component {
     this.setState({ modalVisiable: false })
   }
 
+  // reorderColumns 排序后的回调方法
+  reorderColumns = columnes => {
+    this.setState({
+      columnes
+    })
+  }
+
   render() {
-    const { tableDatas, pageSize, total, currentPage, visibleLoading, rules, modalVisiable, modalTitle } = this.state
+    const {
+      tableDatas,
+      pageSize,
+      total,
+      currentPage,
+      visibleLoading,
+      rules,
+      modalVisiable,
+      modalTitle,
+      columns,
+      summation,
+      tableColumnsSize
+    } = this.state
     const Row = Grid.Row
     const Col = Grid.Col
     return (
@@ -219,14 +256,36 @@ export default class Template extends Component {
             />
           </Col>
         </Row>
-        <FilterHandler getTableData={this.getTableData} />
+        <FilterHandler
+          getTableData={this.getTableData}
+          broComponent={[
+            <FilterControl />,
+            <ColumnsControl columns={columns} reorderColumns={this.reorderColumns} />,
+            <CustomControl
+              title="统计"
+              iconName="pie-chart"
+              data={summation}
+              onChange={id => {
+                console.log('id', id)
+              }}
+            />,
+            <CustomControl
+              title="行高"
+              data={tableColumnsSize}
+              iconName="column-height"
+              onChange={id => {
+                console.log('id', id)
+              }}
+            />
+          ]}
+        />
         <Row>
           <Col span={24}>
             <div className="table-manage_pane-content">
               <div>
                 <Loading visible={visibleLoading}>
                   <Table
-                    columns={this.columns}
+                    columns={columns}
                     data={tableDatas}
                     pagination={{
                       pageSize: pageSize,

@@ -5,13 +5,13 @@ $kitPrefix: 'hiui-componentkit' !default;
     padding: 10px 24px;
     background-color: #fff;
 
-    &-other-slot {
+    &__other-slot {
       display: flex;
       align-items: center;
     }
   }
 
-  &-options-attachelement {
+  &-options__attachelement {
     display: inline-block;
     line-height: 16px;
     height: 16px;
@@ -38,7 +38,7 @@ $kitPrefix: 'hiui-componentkit' !default;
     }
   }
 
-  &-options-content {
+  &-options__content {
     box-sizing: border-box;
     background-color: #fbfbfb;
     padding: 12px 24px 20px 24px;

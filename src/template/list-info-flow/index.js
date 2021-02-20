@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Loading, Notification, Pagination } from '@hi-ui/hiui'
 import ListItem from './components/ListItem'
-import ListHeader from './components/ListHeader/index'
+import ListHeader from './components/ListHeader'
 
 import './index.scss'
 

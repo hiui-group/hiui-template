@@ -4,6 +4,7 @@ import List from './components/List'
 import { Loading, Notification, Pagination } from '@hi-ui/hiui'
 import ListHeader from './components/ListHeader'
 
+import ListHeader from './components/ListHeader'
 import './index.scss'
 
 export default class ListEmbeded extends Component {

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default class ListItem extends React.Component {
-  render () {
+  render() {
     const { highlightValue, item } = this.props
     const { title, content, extraInfo } = item
     let _title

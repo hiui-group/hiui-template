@@ -2,12 +2,10 @@ import React, { Component, useState } from 'react'
 import { Input, Icon, Form, Select, DatePicker, TimePicker, Button } from '@hi-ui/hiui'
 import classNames from 'classnames'
 
-import FilterControl from '../filterControl'
-
 import './index.scss'
 const kitPrefix = 'hiui-componentkit'
 const FormItem = Form.Item
-const OptionsForButtonkit = () => {
+const OptionsForButtonkit = ({ reorderColumns, columns, broComponent }) => {
   const [showformItem, setShowFormItem] = useState(false)
   const handleSubmit = () => {
     console.log('ss')
@@ -17,21 +15,23 @@ const OptionsForButtonkit = () => {
   }
   return (
     <div className={`${kitPrefix}-options`}>
-      <div className={`${kitPrefix}-options-other-slot`}>
+      <div className={`${kitPrefix}-options__other-slot`}>
         <div
-          className={`${kitPrefix}-options-attachelement`}
+          className={`${kitPrefix}-options__attachelement`}
           onClick={() => {
             setShowFormItem(!showformItem)
           }}
         >
           <Icon name="document-search" />
-          <span className={`${kitPrefix}-options-attachelement-text`}>查询</span>
+          <span className={`${kitPrefix}-options__attachelement-text`}>查询</span>
           <Icon name={'down'} className={classNames({ 'icon-down-rotate180': showformItem })} />
         </div>
-        <FilterControl />
+        {broComponent.map((Component, index) => {
+          return <span key={index}>{Component}</span>
+        })}
       </div>
 
-      <div className={classNames(`${kitPrefix}-options-content`, { hidden: !showformItem })}>
+      <div className={classNames(`${kitPrefix}-options__content`, { hidden: !showformItem })}>
         <Form labelWidth="70" labelPlacement="top" placement="horizontal">
           <FormItem label="商品ID" field="phone">
             <Input placeholder={'请输入'} />
@@ -64,7 +64,7 @@ const OptionsForButtonkit = () => {
             <TimePicker defaultValue={new Date()} onChange={(date, dateString) => console.log(date, dateString)} />
           </FormItem>
         </Form>
-        <div className={`${kitPrefix}-options-btns`}>
+        <div className={`${kitPrefix}-options__btns`}>
           <Button type="primary" onClick={handleSubmit}>
             提交
           </Button>
@@ -85,7 +85,7 @@ export default class FilterHandler extends Component {
   render() {
     return (
       <div className="table-manage-handler-filter">
-        <OptionsForButtonkit />
+        <OptionsForButtonkit {...this.props} key={'table-manage-handler-filter'} />
       </div>
     )
   }

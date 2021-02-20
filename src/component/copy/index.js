@@ -4,7 +4,14 @@ import SyntaxHighlighter from 'react-syntax-highlighter'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { docco } from 'react-syntax-highlighter/dist/styles/hljs'
 import { Modal, Menu, Button, Icon, Tooltip, Notification } from '@hi-ui/hiui'
+
+import { localStorage } from '../../utils'
+
 import './style/index.scss'
+
+const CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template'
+// const TEMP_CODE_PATH =
+//   'https://raw.githubusercontent.com/hiui-group/hiui-template/feature/refactor-for-v3_czd0218/src/template'
 
 export default class Copy extends Component {
   constructor(props) {
@@ -14,13 +21,15 @@ export default class Copy extends Component {
       showModal: false,
       selectedKey: '0',
       cssCode: '',
-      jsCode: ''
+      jsCode: '',
+      componentsInfo: []
     }
   }
 
   showModal = () => {
     this.setState({ showModal: true })
     let pathname = window.location.href.split('/')[3]
+
     if (pathname.includes('#')) {
       pathname = pathname.split('#')[0]
     }
@@ -28,19 +37,42 @@ export default class Copy extends Component {
       pathname = '/home-dashboard'
     }
 
+    axios.get(`${CODE_PATH}/${pathname}/index.js`).then(ret => {
+      this.setState({ jsCode: ret.data })
+    })
     axios
-      .get(`https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.js`)
-      .then(ret => {
-        this.setState({ jsCode: ret.data })
-      })
-    axios
-      .get(`https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template/${pathname}/index.scss`)
+      .get(`${CODE_PATH}/${pathname}/index.scss`)
       .then(ret => {
         this.setState({ cssCode: ret.data })
       })
       .catch(() => {
         console.log(`no css code`)
       })
+    this.getComponentCode(pathname)
+  }
+
+  getComponentCode = async pathname => {
+    const componentPaths = localStorage.getItem('pageComponentpaths')[pathname]
+    if (!componentPaths || !componentPaths.length) {
+      this.setState({
+        componentsInfo: []
+      })
+      return
+    }
+    const componentsInfo = []
+
+    for (let i = 0; i < componentPaths.length; i++) {
+      const compPath = componentPaths[i]
+      const { data } = (await axios.get(`${CODE_PATH}/${pathname}/${compPath}`)) || {}
+      componentsInfo.push({
+        compPath,
+        code: data || '空',
+        type: compPath.endsWith('.scss') ? 'scss' : 'jsx'
+      })
+    }
+    this.setState({
+      componentsInfo
+    })
   }
 
   getTabs(cssCode) {
@@ -57,7 +89,16 @@ export default class Copy extends Component {
   }
 
   render() {
-    const { showModal, jsCode, cssCode, selectedKey } = this.state
+    const { showModal, jsCode, cssCode, selectedKey, componentsInfo } = this.state
+    const compMenuDataList =
+      componentsInfo.map(item => {
+        return {
+          id: item.compPath,
+          content: item.compPath
+        }
+      }) || []
+    const menuDataList = this.getTabs(cssCode).concat(compMenuDataList)
+
     return (
       <React.Fragment>
         <div className="copy-container">
@@ -97,7 +138,7 @@ export default class Copy extends Component {
           ]}
         >
           <Menu
-            data={this.getTabs(cssCode)}
+            data={menuDataList}
             placement="horizontal"
             className="menus"
             activeId={selectedKey}
@@ -115,6 +156,15 @@ export default class Copy extends Component {
                 {cssCode}
               </SyntaxHighlighter>
             )}
+            {componentsInfo
+              .filter(item => item.compPath === selectedKey)
+              .map(item => {
+                return (
+                  <SyntaxHighlighter language={item.type} style={docco}>
+                    {item.code}
+                  </SyntaxHighlighter>
+                )
+              })}
           </div>
         </Modal>
       </React.Fragment>

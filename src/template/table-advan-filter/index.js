@@ -272,7 +272,12 @@ function BasicTableQueryCard({ queryData, columns, onValuesChange, onButtonsClic
           </Col>
           <Col span={6}>
             <FormItem label={'时间：'}>
-              <TimePicker bordered value={time} format="HH:mm:ss" onChange={(...args) => onValuesChange('time', args)} />
+              <TimePicker
+                bordered
+                value={time}
+                format="HH:mm:ss"
+                onChange={(...args) => onValuesChange('time', args)}
+              />
             </FormItem>
           </Col>
         </Row>
@@ -456,7 +461,7 @@ function AdvancedFilterPopper({
     onClose?.()
   }
   const tryDoFilter = () => {
-    console.log(values);
+    console.log(values)
     doFilter?.(values)
   }
 

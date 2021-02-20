@@ -82,6 +82,7 @@
       display: flex;
       margin-top: 8px;
       width: 50%;
+      font-size: 14px;
     }
 
     li div:first-child {
@@ -99,5 +100,17 @@
       width: 75%;
       line-height: 22px;
     }
+  }
+}
+
+.usual-dropdown-button {
+  margin-left: $spacer-2;
+
+  .hi-btn {
+    padding: 4px 6px 4px 8px;
+  }
+
+  .icon-down {
+    display: none;
   }
 }

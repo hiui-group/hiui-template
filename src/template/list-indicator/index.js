@@ -1,61 +1,66 @@
 import React, { Component } from 'react'
-import { Card } from '@hi-ui/hiui'
-
+import axios from 'axios'
+import { Card, Loading, Notification } from '@hi-ui/hiui'
 import ListHeader from './components/ListHeader'
 
 import './index.scss'
-
-const TABS_LIST = ['部门订单', '个人订单', '历史订单', '消息进度']
-const TABS_SUB_LIST = ['财务部订单', '人力部订单', '开发部订单', '信息部订单']
-const TAB_CARD_LIST = [
-  '笔记本出库数量',
-  '彩虹七号电池',
-  '四色圆珠笔',
-  '中性笔',
-  '文件保护套',
-  '手写标签',
-  '橡皮擦',
-  '印台',
-  '圆形笔筒',
-  '透明胶带',
-  '铅笔',
-  '订书钉',
-  '计算器',
-  '修正液'
-]
 
 export default class ListIndicator extends Component {
   state = {
     highlightValue: '',
     value: '',
-    taskList: Array(80).fill({
-      title: '商业智能报表的…',
-      content: '使用线上分析处理技术，快速设计各类报表，提高开发率, 提供…'
-    }),
-    pageNum: 1,
-    pageSize: 15
+    tabList: []
+  }
+
+  async componentDidMount() {
+    Loading.open(null, { key: 'lk' })
+    try {
+      await this.fetchIndicatorList()
+    } finally {
+      Loading.close('lk')
+    }
+  }
+
+  fetchIndicatorList = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/list/indicator')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ tabList: data.tabList })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
   }
 
   render() {
-    const { taskList, pageNum } = this.state
-    const tasks = taskList.slice((pageNum - 1) * 15, pageNum * 15)
-    console.log(tasks)
+    const { tabList } = this.state
+    const { tabs = [], subTabs = [] } = tabList
+
     return (
       <div className="page--list-indicator">
         <ListHeader style={{ marginBottom: 0 }} />
         <div className="indicator——type_container">
-          {TABS_LIST.map((tag, index) => (
+          {tabs.map((tag, index) => (
             <span key={index} className="indicator——type_item">
               {tag}
             </span>
           ))}
         </div>
         <div className="indicator__container">
-          {TABS_SUB_LIST.map((category, index) => (
+          {subTabs.map((category, index) => (
             <div className="indicator——item" key={index}>
-              <div className="indicator——item_header">{category}</div>
+              <div className="indicator——item_header">{category.title}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {TAB_CARD_LIST.map((item, index) => (
+                {category.cardTabs?.map((item, index) => (
                   <Card
                     key={index}
                     hoverable

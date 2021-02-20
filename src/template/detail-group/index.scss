@@ -79,6 +79,7 @@
       li {
         width: 33%;
         margin-top: $spacer-2;
+        font-size: 14px;
 
         div:first-child {
           width: 110px;
@@ -128,6 +129,7 @@
           width: 100%;
           flex-direction: column;
           flex: 1;
+          font-size: 14px;
 
           li:not(:first-child) {
             margin-top: $spacer-2;
@@ -153,7 +155,23 @@
 
       .detail-group__table-container {
         padding: $spacer-6;
+
+        .hi-tabs__header {
+          font-size: 16px;
+        }
       }
     }
+  }
+}
+
+.usual-dropdown-button {
+  margin-left: $spacer-2;
+
+  .hi-btn {
+    padding: 4px 6px 4px 8px;
+  }
+
+  .icon-down {
+    display: none;
   }
 }

@@ -1,123 +1,55 @@
 import React, { Component } from 'react'
-import { Grid, Button, Icon, Tag, Card } from '@hi-ui/hiui'
+import { Grid, Button, Icon, Tag, Card, Loading, Notification } from '@hi-ui/hiui'
 import './index.scss'
+import axios from 'axios'
 
 const { Row, Col } = Grid
-const asideInfo = [
-  {
-    title: '基本信息',
-    content: [
-      { label: '英文名', value: 'Jame' },
-      { label: '昵称', value: '天天' },
-      { label: '工卡号', value: 10098 },
-      { label: '所在部门', value: '信息部' }
-    ]
-  },
-  {
-    title: '联系方式',
-    content: [
-      { label: '联系方式', value: 18318793208 },
-      { label: '国家', value: '中国' },
-      { label: '省/市/区', value: '北京市海淀区' },
-      { label: '详细地址', value: '毛纺路58号院' }
-    ]
-  }
-]
-const myAsset = [
-  { title: '苹果iMac A1419 27寸一体机苹果iMac A1419 27寸一体机一体…', desc: '数量：1' },
-  { title: '小米插线板（5位国际组合插孔）', desc: '数量：1' },
-  { title: '小米移动电源3 20000mAh高配版 ', desc: '数量：1' },
-  { title: '小米USB充电器36W快充版（2口）', desc: '数量：1' }
-]
-const myApply = [
-  {
-    title: '小米8 屏幕指纹版 项目需求申请一个',
-    desc: '测试机使用',
-    statusDesc: '审批中',
-    status: '',
-    time: '2019-02-08'
-  },
-  {
-    title: '苹果iMac A1419 27寸一体机显示屏的维修申…',
-    desc: '设备驱动故障：1',
-    statusDesc: '已通过',
-    status: 'success',
-    time: '2019-02-01'
-  },
-  {
-    title: '小米8 屏幕指纹版 项目需求申请一个 ',
-    desc: '测试机使用',
-    statusDesc: '审批中',
-    status: '',
-    time: '2019-01-28'
-  },
-  {
-    title: '苹果iMac A1419 27寸一体机显示屏的维修申请',
-    desc: '设备驱动故障',
-    statusDesc: '未通过',
-    status: 'danger',
-    time: '2019-01-20'
-  }
-]
-const myCollect = [
-  {
-    title: '北京地区2018年米8销量排行榜',
-    time: '2019-03-05',
-    operation: '取消收藏'
-  },
-  {
-    title: '北京地区2018年米8销量排行榜',
-    time: '2019-03-05',
-    operation: '取消收藏'
-  },
-  {
-    title: '北京地区2018年小米8屏幕指纹版销量排行榜…',
-    time: '2019-03-05',
-    operation: '取消收藏'
-  },
-  {
-    title: '年会Banner 宣传',
-    time: '2019-03-05',
-    operation: '取消收藏',
-    image: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05'
-  }
-]
-const mySubscribe = [
-  {
-    title: '每月销量第一的手机',
-    operation: '取消订阅'
-  },
-  {
-    title: '内购 | 2018第二期我米第二期行政资产内购会就…',
-    operation: '取消订阅'
-  },
-  {
-    title: '小米融合云技术分享月',
-    operation: '取消订阅'
-  },
-  {
-    title: '信息部考勤数据排行榜',
-    operation: '取消订阅'
-  },
-  {
-    title: '每月销量第一的手机',
-    operation: '取消订阅'
-  },
-  {
-    title: '信息部考勤数据排行榜',
-    operation: '取消订阅'
-  }
-]
+
 class UserDashboard extends Component {
-  userInfo = {
-    avatar: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
-    username: '王成'
+  state = {
+    userInfo: {},
+    asideInfo: [],
+    myAsset: [],
+    myApply: [],
+    myCollect: [],
+    mySubscribe: []
+  }
+
+  fetchUserDashboard = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/user/dashboard')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ ...data })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
+  }
+
+  async componentDidMount() {
+    Loading.open(null, { key: 'lk' })
+    try {
+      await this.fetchUserDashboard()
+    } finally {
+      Loading.close('lk')
+    }
   }
 
   render() {
+    const { userInfo, asideInfo, myAsset, myApply, myCollect, mySubscribe } = this.state
+
     return (
       <div className="page--user-dashboard">
-        <UserdashBoardAside userInfo={this.userInfo} asideInfo={asideInfo} />
+        <UserdashBoardAside userInfo={userInfo} asideInfo={asideInfo} />
         <div style={{ flex: 1 }}>
           <Row gutter>
             <Col span={12}>

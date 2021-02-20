@@ -1,33 +1,48 @@
 import React, { Component } from 'react'
-import { Icon, Card, Pagination, Grid } from '@hi-ui/hiui'
-
-import ListHeader from './components/ListHeader'
+import axios from 'axios'
+import { Loading, Notification, Icon, Card, Pagination, Grid } from '@hi-ui/hiui'
+import ListHeader from './components/ListHeader/index.jsx'
 
 import './index.scss'
 
 const { Row, Col } = Grid
 
-const generateTaskData = (sample, num) => {
-  const dataList = []
-  for (let i = 0; i < num; i++) {
-    dataList.push(sample)
-  }
-  return dataList
-}
-
 export default class ListTask extends Component {
   state = {
     highlightValue: '',
     value: '',
-    taskList: generateTaskData(
-      {
-        title: '商业智能报表的…',
-        content: '使用线上分析处理技术，快速设计各类报表，提高开发率, 提供…'
-      },
-      36
-    ),
+    taskList: [],
     pageNum: 1,
     pageSize: 15
+  }
+
+  async componentDidMount() {
+    Loading.open(null, { key: 'lk' })
+    try {
+      await this.fetchInfoFlowList()
+    } finally {
+      Loading.close('lk')
+    }
+  }
+
+  fetchInfoFlowList = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/list/task')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ taskList: data.taskList })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
   }
 
   renderCardList = tasks => {
@@ -39,7 +54,7 @@ export default class ListTask extends Component {
       i++
     }
     content.push(
-      <Col span={6}>
+      <Col span={6} key={content.length}>
         <div className="tasks--card-item" key="btn">
           <Card
             hoverable

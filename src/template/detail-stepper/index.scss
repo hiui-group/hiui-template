@@ -85,11 +85,13 @@
     li {
       display: flex;
       margin-top: $spacer-2;
+      font-size: 14px;
     }
 
     &--base {
       li {
         width: 33%;
+        font-size: 14px;
       }
 
       li div:first-child {
@@ -157,5 +159,17 @@
         border-bottom: 1px solid rgba(get-color($palette-hiui, '50'), 0.1);
       }
     }
+  }
+}
+
+.usual-dropdown-button {
+  margin-left: $spacer-2;
+
+  .hi-btn {
+    padding: 4px 6px 4px 8px;
+  }
+
+  .icon-down {
+    display: none;
   }
 }

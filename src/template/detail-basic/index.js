@@ -98,13 +98,13 @@ export default class Template extends Component {
                   content: (
                     <span>
                       <Icon name="left" />
-                      <span>返回</span>
+                      <span style={{ color: '#333' }}>返回</span>
                     </span>
                   ),
                   path: '/'
                 },
                 {
-                  content: <span>详情</span>,
+                  content: <span style={{ color: '#999' }}>详情</span>,
                   path: '/detail-basic'
                 }
               ]}

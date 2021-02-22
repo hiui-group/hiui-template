@@ -93,7 +93,9 @@ class UserDashboard extends Component {
                       }}
                     >
                       <div>{apply.title}</div>
-                      <Tag type={apply.status || 'primary'} appearance='line' >{apply.statusDesc}</Tag>
+                      <Tag type={apply.status || 'primary'} appearance="line">
+                        {apply.statusDesc}
+                      </Tag>
                     </div>
                     <div
                       style={{
@@ -120,7 +122,7 @@ class UserDashboard extends Component {
             <Col span={12}>
               <Card title="我的收藏" bordered={false} hoverable>
                 {myCollect.map((collect, index) => (
-                  <div style={{display: 'flex', justifyContent: 'spaceBetween', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', justifyContent: 'spaceBetween', alignItems: 'center' }}>
                     <div key={index} style={{ marginBottom: 8, display: 'flex', flex: 1 }}>
                       {collect.image && (
                         <img

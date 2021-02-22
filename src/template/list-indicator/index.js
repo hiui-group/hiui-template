@@ -50,7 +50,7 @@ export default class ListIndicator extends Component {
         <ListHeader style={{ marginBottom: 0 }} />
         <div className="indicator——type_container">
           {tabs.map((tag, index) => (
-            <span key={index} className="indicator——type_item">
+            <span key={index} className={"indicator——type_item " + (index === 0 ? "active" : "")}>
               {tag}
             </span>
           ))}

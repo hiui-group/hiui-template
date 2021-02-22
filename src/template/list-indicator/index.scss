@@ -26,8 +26,15 @@
     margin-right: $spacer-6;
     background: $white;
 
+    &.active {
+      color: $white;
+      background-color: get-color($palette-hiui, '50');
+      border-color: get-color($palette-hiui, '50');
+    }
+    
     &:hover {
-      color: get-color($palette-hiui, '50');
+      color: $white;
+      background-color: get-color($palette-hiui, '50');
       border-color: get-color($palette-hiui, '50');
     }
   }

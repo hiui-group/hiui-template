@@ -188,11 +188,13 @@ export default class Template extends Component {
     columns: [
       {
         title: 'SKU',
-        dataKey: 'sku'
+        dataKey: 'sku',
+        align: 'right'
       },
       {
         title: '商品ID',
-        dataKey: 'id'
+        dataKey: 'id',
+        align: 'right'
       },
       {
         title: '商品名',
@@ -200,7 +202,8 @@ export default class Template extends Component {
       },
       {
         title: '电话',
-        dataKey: 'phone'
+        dataKey: 'phone',
+        align: 'right'
       },
       {
         title: '渠道',
@@ -213,6 +216,7 @@ export default class Template extends Component {
       {
         title: '分货量',
         dataKey: 'shareCount',
+        align: 'right',
         sorter(pre, next) {
           return pre - next
         }
@@ -220,6 +224,7 @@ export default class Template extends Component {
       {
         title: '激活量',
         dataKey: 'activeCount',
+        align: 'right',
         sorter(pre, next) {
           return pre - next
         }
@@ -341,11 +346,36 @@ export default class Template extends Component {
             extra={
               <span>
                 {/* 功能按钮需用户自己去定制，调用后端接口和后续前端操作 */}
-                <Button icon="search" type="line" onClick={() => queryButtonClickControllor('search')} />
-                <Button icon="plus" type="primary" onClick={() => queryButtonClickControllor('plus')} />
-                <Button icon="download" type="line" onClick={() => queryButtonClickControllor('download')} />
-                <Button icon="import" type="line" onClick={() => queryButtonClickControllor('import')} />
-                <Button icon="more" type="line" onClick={() => queryButtonClickControllor('more')} />
+                <Button
+                  icon="search"
+                  type="line"
+                  style={{ fontSize: 16 }}
+                  onClick={() => queryButtonClickControllor('search')}
+                />
+                <Button
+                  icon="plus"
+                  type="primary"
+                  style={{ fontSize: 16 }}
+                  onClick={() => queryButtonClickControllor('plus')}
+                />
+                <Button
+                  icon="download"
+                  type="line"
+                  style={{ fontSize: 16 }}
+                  onClick={() => queryButtonClickControllor('download')}
+                />
+                <Button
+                  icon="import"
+                  type="line"
+                  style={{ fontSize: 16 }}
+                  onClick={() => queryButtonClickControllor('import')}
+                />
+                <Button
+                  icon="more"
+                  type="line"
+                  style={{ fontSize: 16 }}
+                  onClick={() => queryButtonClickControllor('more')}
+                />
               </span>
             }
           >

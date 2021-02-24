@@ -1,11 +1,11 @@
 import React from 'react'
-import { Button, Modal, Dropdown, Icon } from '@hi-ui/hiui'
+import { Modal, Dropdown, Icon } from '@hi-ui/hiui'
 const TableHandler = ({ text, row, index, scope }) => {
   return (
     <React.Fragment>
-      <Button
-        icon="edit"
-        type="success"
+      <Icon
+        name="edit"
+        style={{ marginRight: 16 }}
         onClick={() => {
           console.log(text, row, index, scope)
           const { name, sku, stock, updateTime } = row
@@ -21,9 +21,9 @@ const TableHandler = ({ text, row, index, scope }) => {
           })
         }}
       />
-      <Button
-        icon="delete"
-        type="danger"
+      <Icon
+        name="delete"
+        style={{ marginRight: 16 }}
         onClick={() => {
           Modal.confirm({
             onConfirm: () => {
@@ -53,7 +53,6 @@ const TableHandler = ({ text, row, index, scope }) => {
             title: '操作2'
           }
         ]}
-        type="button"
         placement="bottom-end"
         title={<Icon name="ellipsis" />}
       />

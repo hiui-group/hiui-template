@@ -31,9 +31,9 @@ const TabPaneContent = props => {
 const TableHandler = ({ text, row, index, scope }) => {
   return (
     <React.Fragment>
-      <Button
-        icon="edit"
-        type="success"
+      <Icon
+        name="edit"
+        style={{ marginRight: 16 }}
         onClick={() => {
           console.log(text, row, index, scope)
           const { name, sku, stock, updateTime } = row
@@ -49,9 +49,9 @@ const TableHandler = ({ text, row, index, scope }) => {
           })
         }}
       />
-      <Button
-        icon="delete"
-        type="danger"
+      <Icon
+        name="delete"
+        style={{ marginRight: 16 }}
         onClick={() => {
           Modal.confirm({
             onConfirm: () => {
@@ -81,7 +81,6 @@ const TableHandler = ({ text, row, index, scope }) => {
             title: '操作2'
           }
         ]}
-        type="button"
         placement="bottom-end"
         title={<Icon name="ellipsis" />}
       />
@@ -120,15 +119,18 @@ export default class Template extends Component {
       },
       {
         title: 'sku',
-        dataKey: 'sku'
+        dataKey: 'sku',
+        align: 'right'
       },
       {
         title: '库存量（个）',
-        dataKey: 'stock'
+        dataKey: 'stock',
+        align: 'right'
       },
       {
         title: '单价（元）',
-        dataKey: 'price'
+        dataKey: 'price',
+        align: 'right'
       },
       {
         title: '上市时间',
@@ -310,6 +312,7 @@ export default class Template extends Component {
                               <Button
                                 type="default"
                                 icon="search"
+                                style={{ color: '#4284F5', fontSize: 16 }}
                                 onClick={() => {
                                   this.getTableData({ id: this.state.keyWord })
                                 }}

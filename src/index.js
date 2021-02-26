@@ -9,11 +9,11 @@ import DataTip from './component/dataTip'
 import './template/content.scss'
 import './index.scss'
 
-render(<App />, document.getElementById('app'))
-
 export const demoGlobalData = {
   userInfo: undefined
 }
+
+render(<App />, document.getElementById('app'))
 
 function App() {
   const [userInfo, setUserInfo] = useState({})

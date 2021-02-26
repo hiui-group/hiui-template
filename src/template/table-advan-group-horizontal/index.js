@@ -29,25 +29,29 @@ export default class Template extends Component {
       {
         title: 'sku',
         dataKey: 'sku',
-        align: 'right'
+        width: 160
       },
       {
         title: '库存量（个）',
         dataKey: 'stock',
+        width: 160,
         align: 'right'
       },
       {
         title: '单价（元）',
         dataKey: 'price',
+        width: 160,
         align: 'right'
       },
       {
         title: '上市时间',
-        dataKey: 'updateTime'
+        dataKey: 'updateTime',
+        width: 200
       },
       {
         title: '操作',
         dataKey: 'stock',
+        width: 200,
         render: (text, row, index) => {
           const scope = this
           return <TableHandler text={text} row={row} index={index} scope={scope} />

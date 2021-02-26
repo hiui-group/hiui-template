@@ -28,8 +28,7 @@ export default class Template extends Component {
       },
       {
         title: 'sku',
-        dataKey: 'sku',
-        align: 'right'
+        dataKey: 'sku'
       },
       {
         title: '库存量（个）',

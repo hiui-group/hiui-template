@@ -3,15 +3,13 @@ import axios from 'axios'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { docco } from 'react-syntax-highlighter/dist/styles/hljs'
-import { Modal, Menu, Button, Icon, Tooltip, Notification } from '@hi-ui/hiui'
-
+import { Drawer, Menu, Button, Icon, Tooltip, Notification } from '@hi-ui/hiui'
 import { localStorage } from '../../utils'
 
 import './style/index.scss'
 
-const CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template'
-// const TEMP_CODE_PATH =
-//   'https://raw.githubusercontent.com/hiui-group/hiui-template/feature/refactor-for-v3_czd0218/src/template'
+// const CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/master/src/template'
+const CODE_PATH = 'https://raw.githubusercontent.com/hiui-group/hiui-template/feature/refactor-for-v3/src/template'
 
 export default class Copy extends Component {
   constructor(props) {
@@ -90,15 +88,19 @@ export default class Copy extends Component {
 
   render() {
     const { showModal, jsCode, cssCode, selectedKey, componentsInfo } = this.state
+    const componentsItems = {
+      id: 'components',
+      content: 'components'
+    }
     const compMenuDataList =
       componentsInfo.map(item => {
         return {
           id: item.compPath,
-          content: item.compPath
+          content: item.compPath.replace('components/', '').replace('/index.', '.')
         }
       }) || []
-    const menuDataList = this.getTabs(cssCode).concat(compMenuDataList)
-
+    componentsItems.children = compMenuDataList
+    const menuDataList = this.getTabs(cssCode).concat(compMenuDataList.length > 0 ? componentsItems : [])
     return (
       <React.Fragment>
         <div className="copy-container">
@@ -106,8 +108,9 @@ export default class Copy extends Component {
             <Icon name="tool" />
           </div>
         </div>
-        <Modal
-          className="code-modal"
+        <Drawer
+          className="code-drawer"
+          width={900}
           title={
             <div>
               <span>复制代码&nbsp;&nbsp;</span>
@@ -118,7 +121,7 @@ export default class Copy extends Component {
           }
           size="large"
           visible={showModal}
-          onCancel={this.closeModal.bind(this)}
+          onClose={this.closeModal.bind(this)}
           footer={[
             <Button type="default" onClick={this.closeModal.bind(this)} key="close">
               关闭
@@ -139,7 +142,7 @@ export default class Copy extends Component {
         >
           <Menu
             data={menuDataList}
-            placement="horizontal"
+            placement="vertical"
             className="menus"
             activeId={selectedKey}
             onClick={(id, prevId) => this.setState({ selectedKey: id.toString() })}
@@ -166,7 +169,7 @@ export default class Copy extends Component {
                 )
               })}
           </div>
-        </Modal>
+        </Drawer>
       </React.Fragment>
     )
   }

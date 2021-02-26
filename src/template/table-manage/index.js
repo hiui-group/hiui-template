@@ -49,7 +49,20 @@ export default class Template extends Component {
           visible: true
         },
         {
-          title: '库存量（个）',
+          title: (
+            <CustomControl
+              title="统计"
+              icon="pie-chart"
+              data={[
+                { title: '求和', icon: 'summation', id: 'summation' },
+                { title: '选项1', icon: 'document-search', id: 'document-search' },
+                { title: '选项2', icon: 'sort-descending', id: 'sort-descending' }
+              ]}
+              onChange={id => {
+                console.log('id', id)
+              }}
+            />
+          ),
           align: 'right',
           dataKey: 'stock',
           visible: true

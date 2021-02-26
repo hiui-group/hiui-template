@@ -28,33 +28,21 @@
   }
 }
 
-.code-modal {
-  &.hi-modal {
-    z-index: 99999;
-  }
-
+.code-drawer {
   i {
     cursor: pointer;
   }
 
-  .hi-modal__dialog--large {
-    width: fit-content;
-    min-width: 800px;
-    max-width: 75%;
-  }
-
-  .hi-modal__content {
-    padding: 0;
-
-    .hi-menu {
-      padding: 0 12px;
-    }
-  }
-
   .code-container {
-    max-height: calc(80vh - 200px);
+    width: 100%;
+    height: calc(100vh - 114px);
     overflow: auto;
     background: #f8f8fe;
+  }
+
+  .hi-drawer__content {
+    display: flex;
+    padding: 0;
   }
 
   .hi-navmenu__list {
@@ -77,5 +65,9 @@
 
   .hi-menu--horizontal .hi-menu-item {
     margin-right: 36px;
+  }
+
+  .hi-menu--vertical .hi-menu--1 .hi-submenu__items > .hi-menu__title {
+    padding-left: 32px;
   }
 }

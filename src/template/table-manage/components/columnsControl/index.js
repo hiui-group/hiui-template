@@ -33,6 +33,7 @@ const kitPrefix = 'hiui-componentkit'
  * @property {String} title 名称
  * @property {String} icon 图标名称
  */
+
 /**
  * @param {Object} ColumnsControlPorps props
  */

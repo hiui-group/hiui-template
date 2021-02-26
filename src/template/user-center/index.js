@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import { Form, Input, Button, Tabs, Cascader, Select } from '@hi-ui/hiui'
+import { Form, Input, Button, Tabs, Cascader, Select, Loading, Notification } from '@hi-ui/hiui'
 import './index.scss'
+import axios from 'axios'
 
 const FormItem = Form.Item
 const menuList = [
@@ -22,86 +23,77 @@ const menuList = [
     title: '账户验证'
   }
 ]
-const groups = [
-  {
-    id: '信息技术部',
-    content: '信息技术部',
-    children: [
-      {
-        id: '平台组',
-        content: '平台组',
-        children: [
-          {
-            id: '前端组',
-            content: '前端组'
-          },
-          {
-            id: '测试组',
-            content: '测试组'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: '云平台',
-    content: '云平台',
-    children: [
-      {
-        id: '小爱',
-        content: '小爱'
-      },
-      {
-        id: 'AI',
-        content: 'AI'
-      }
-    ]
-  }
-]
-const provinces = [
-  {
-    id: '湖北',
-    content: '湖北',
-    children: [
-      {
-        id: '武汉',
-        content: '武汉'
-      },
-      {
-        id: '宜昌',
-        content: '宜昌'
-      }
-    ]
-  }
-]
-const countrys = [
-  { title: '中国', id: '3' },
-  { title: '美国', id: '2' },
-  { title: '日本', id: '4' },
-  { title: '韩国', id: '5' },
-  { title: '英国', id: '6' }
-]
+
 export default class UserCenter extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      activeTabIndex: 0,
-      photo: 'https://xiaomi.github.io/hiui/static/img/logo.png?241e0618fe55d933c280e38954edea05',
-      username: 'Mark',
-      nickname: '天天',
-      cardNum: 10098,
-      group: [],
-      tel: 18321768907,
-      country: '',
-      province: [],
-      address: ''
-    }
+  state = {
+    activeTabIndex: 0,
+    photo: '',
+    username: '',
+    nickname: '',
+    cardNum: 0,
+    group: [],
+    tel: '',
+    country: '',
+    address: '',
+    province: '',
+    groups: [],
+    provinces: [],
+    countrys: []
   }
 
   onValueChange = (field, value) => {
     this.setState({
       [field]: value
     })
+  }
+
+  fetchUserSelectList = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/user/select')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ ...data })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
+  }
+
+  fetchUserInfo = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/user/info')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ ...data })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
+  }
+
+  async componentDidMount() {
+    Loading.open(null, { key: 'lk' })
+    try {
+      await Promise.all([this.fetchUserSelectList(), this.fetchUserInfo()])
+    } finally {
+      Loading.close('lk')
+    }
   }
 
   submitData = () => {
@@ -111,7 +103,7 @@ export default class UserCenter extends Component {
   }
 
   render() {
-    const { activeTabIndex, ...restState } = this.state
+    const { activeTabIndex, groups, provinces, countrys, ...restState } = this.state
 
     return (
       <div className="page--user-center">
@@ -129,7 +121,14 @@ export default class UserCenter extends Component {
           {menuList.map(item => {
             return (
               <Tabs.Pane key={item.id} tabTitle={item.title} tabId={item.id}>
-                <BasicUserSettings formData={restState} submitData={this.submitData} onChange={this.onValueChange} />
+                <BasicUserSettings
+                  groups={groups}
+                  provinces={provinces}
+                  countrys={countrys}
+                  formData={restState}
+                  submitData={this.submitData}
+                  onChange={this.onValueChange}
+                />
               </Tabs.Pane>
             )
           })}
@@ -139,13 +138,12 @@ export default class UserCenter extends Component {
   }
 }
 
-function BasicUserSettings({ formData, submitData, onChange }) {
+function BasicUserSettings({ groups, provinces, countrys, formData, submitData, onChange }) {
   const { photo, username, nickname, cardNum, group, tel, country, province, address } = formData
-
-  console.log(username)
+  console.log(formData)
 
   return (
-    <Form labelWidth="144" initialValues={formData} style={{ width: 592, marginTop: 24 }}>
+    <Form labelWidth="80" initialValues={formData} model={formData} style={{ width: 592, marginTop: 24 }}>
       <FormItem label="头像">
         <img
           alt="头像"
@@ -167,6 +165,7 @@ function BasicUserSettings({ formData, submitData, onChange }) {
       </FormItem>
       <FormItem label="所在部门" field="group">
         <Cascader
+          style={{ width: '100%' }}
           value={group}
           onChange={value => {
             onChange('group', value)
@@ -190,6 +189,7 @@ function BasicUserSettings({ formData, submitData, onChange }) {
       </FormItem>
       <FormItem label="所在省市" field="province">
         <Cascader
+          style={{ width: '100%' }}
           value={province}
           onChange={value => {
             onChange('province', value)

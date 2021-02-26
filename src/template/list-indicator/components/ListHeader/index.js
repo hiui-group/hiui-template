@@ -37,6 +37,9 @@ export default class ListHeader extends React.Component {
             }
             placeholder="请输入搜索关键词"
           />
+          <Button type="primary" icon="plus" style={{ marginLeft: '16px' }}>
+            新增
+          </Button>
         </div>
       </div>
     )

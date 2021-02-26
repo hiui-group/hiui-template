@@ -8,7 +8,7 @@
     margin-top: -$spacer-6;
     margin-left: -$spacer-6;
     margin-right: -$spacer-6;
-    padding: $spacer-6;
+    padding: $spacer-3 $spacer-6;
     background-color: $white;
 
     .hi-breadcrumb {
@@ -80,6 +80,7 @@
       display: flex;
       margin-top: 8px;
       line-height: 22px;
+      font-size: 14px;
     }
 
     li div:first-child {
@@ -94,5 +95,17 @@
       word-break: break-word;
       white-space: pre-wrap;
     }
+  }
+}
+
+.usual-dropdown-button {
+  margin-left: $spacer-2;
+
+  .hi-btn {
+    padding: 4px 6px 4px 8px;
+  }
+
+  .icon-down {
+    display: none;
   }
 }

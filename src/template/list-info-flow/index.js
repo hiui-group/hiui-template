@@ -1,70 +1,44 @@
 import React, { Component } from 'react'
-import { Pagination } from '@hi-ui/hiui'
-
+import axios from 'axios'
+import { Loading, Notification, Pagination } from '@hi-ui/hiui'
 import ListItem from './components/ListItem'
 import ListHeader from './components/ListHeader'
 
 import './index.scss'
 
-const listData = [
-  {
-    title: '下单量-指标',
-    content:
-      '下单量是在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量…',
-    extraInfo: '最新查看：2018.02.21'
-  },
-  {
-    title: '如何使用下单指标生成报表-wiki',
-    content:
-      '根据算法生成，这样就是动态的策略下单实现交易接口，没有指定交易账号也没有登录过程是如何实现通达信股票分期进入市…',
-    extraInfo: '部门：信息部 发布者：周文'
-  },
-  {
-    title: '下单趋势分析-数据看板',
-    content: '下单趋势分析，2018-09～2019-02，部门：信息部',
-    extraInfo: '最新查看：2018.02.21'
-  },
-  {
-    title: '下单量-指标',
-    content:
-      '下单量是在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中…',
-    extraInfo: '最新查看：2018.02.21'
-  },
-  {
-    title: '如何使用下单指标生成报表-wiki',
-    content:
-      '量是在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量…',
-    extraInfo: '最新查看：2018.02.21'
-  },
-  {
-    title: '下单量-指标',
-    content:
-      '根据算法生成，这样就是动态的策略下单实现交易接口，没有指定交易账号也没有登录过程是如何实现通达信股票分期进入市…',
-    extraInfo: '最新查看：2018.02.21'
-  },
-  {
-    title: '下单量-指标',
-    content:
-      '量是在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量…',
-    extraInfo: '最新查看：2018.02.21'
-  },
-  {
-    title: '如何使用下单指标生成报表-wiki',
-    content:
-      '量是在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量…',
-    extraInfo: '最新查看：2018.02.21'
-  },
-  {
-    title: '下单趋势分析-数据看板',
-    content:
-      '量是在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量在交易环节中整体用户下单的数量…',
-    extraInfo: '最新查看：2018.02.21'
-  }
-]
-
 export default class ListInfoFlow extends Component {
   state = {
-    value: '下单'
+    value: '下单',
+    listData: []
+  }
+
+  async componentDidMount() {
+    Loading.open(null, { key: 'lk' })
+    try {
+      await this.fetchInfoFlowList()
+    } finally {
+      Loading.close('lk')
+    }
+  }
+
+  fetchInfoFlowList = async () => {
+    return axios
+      .get('https://yapi.baidu.com/mock/34633/hiui/list/info-flow')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ listData: data.listData })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
+      })
   }
 
   handleChange = value => {
@@ -74,7 +48,7 @@ export default class ListInfoFlow extends Component {
   }
 
   renderPage = () => {
-    const { pageNum, pageSize } = this.state
+    const { pageNum, pageSize, listData } = this.state
     return (
       <div
         style={{
@@ -97,7 +71,7 @@ export default class ListInfoFlow extends Component {
   }
 
   render() {
-    const { value } = this.state
+    const { value, listData } = this.state
     return (
       <div className="page--list-flow">
         <ListHeader value={value} onChange={this.handleChange} />

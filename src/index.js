@@ -1,31 +1,44 @@
-import React from 'react'
+import React, { useLayoutEffect, useState, useCallback } from 'react'
 import { render } from 'react-dom'
 import Axios from 'axios'
 import rootRoute from './route'
 import { Theme } from '@hi-ui/classic-theme'
+import { Button, Icon, Dropdown } from '@hi-ui/hiui'
 import Copy from './component/copy'
 import DataTip from './component/dataTip'
 import './template/content.scss'
 import './index.scss'
 
+render(<App />, document.getElementById('app'))
+
 export const demoGlobalData = {
   userInfo: undefined
 }
 
-// 在获取到用户信息之后才开始渲染
-Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
-  const { data: { code = 0, data: userInfo } = {} } = response
+function App() {
+  const [userInfo, setUserInfo] = useState({})
+  const [themeType, setThemeType] = useState('classic')
+  const getUserInfo = useCallback(() => {
+    Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
+      const { data: { code = 0, data: userInfo } = {} } = response
 
-  if (code !== 200) {
-    return
-  }
+      if (code !== 200) {
+        return
+      }
 
-  // WARNING: 此处应该做的操作是使用redux或者其他方式将用户信息存储在全局
-  // 此处为了演示，将会直接将用户数据直接导出
-  demoGlobalData.userInfo = userInfo
+      // WARNING: 此处应该做的操作是使用redux或者其他方式将用户信息存储在全局
+      // 此处为了演示，将会直接将用户数据直接导出
+      demoGlobalData.userInfo = userInfo
+      setUserInfo(userInfo)
+    })
+  }, [setUserInfo])
+
+  useLayoutEffect(() => {
+    getUserInfo()
+  }, [])
 
   const loginConfig = {
-    name: userInfo.name,
+    name: userInfo?.name ?? '',
     icon: 'user',
     children: [
       <div key="1" style={{ textAlign: 'center', margin: 4, width: '100px' }}>
@@ -43,12 +56,52 @@ Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
     name: 'HIUI Templates'
   }
 
-  render(
-    <React.Fragment>
-      <Theme logo={logoConfig} apperance={{ contentBackground: '#f6f6f6' }} login={loginConfig} routes={rootRoute} />
+  const toolbar = (
+    <div className="hiui-toolbar">
+      <div className="hiui-toolbar__item">
+        <Button type="line" href="#" target="_blank" appearance="link" icon="link">
+          帮助
+        </Button>
+      </div>
+      <div className="hiui-toolbar__item">
+        <Button className={`hiui-toolbar__item-message`} type="line" href="#" appearance="link" icon="mail">
+          消息
+        </Button>
+      </div>
+      <div className="hiui-toolbar__item">
+        <Icon style={{ marginRight: '4px' }} name="global" />
+        <Dropdown
+          data={[
+            {
+              title: 'genuine',
+              id: 'genuine'
+            },
+            {
+              title: 'classic',
+              id: 'classic'
+            }
+          ]}
+          title="主题"
+          width={100}
+          placement="bottom-end"
+          onClick={setThemeType}
+        />
+      </div>
+    </div>
+  )
+
+  return (
+    <>
+      <Theme
+        type={themeType}
+        logo={logoConfig}
+        toolbar={toolbar}
+        apperance={{ contentBackground: '#f6f6f6' }}
+        login={loginConfig}
+        routes={rootRoute}
+      />
       <Copy />
       <DataTip />
-    </React.Fragment>,
-    document.getElementById('app')
+    </>
   )
-})
+}

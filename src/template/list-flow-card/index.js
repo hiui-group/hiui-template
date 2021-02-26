@@ -124,12 +124,12 @@ export default class ListFlowCard extends Component {
         const lineInfo = flowInfos.filter(item => item.stepId === index)
         const line = (
           <Col key={index} span={6} gutter>
-            {lineInfo.map(({ id, title, detail }) => {
+            {lineInfo.map(({ id, title, detail }, index) => {
               return (
                 <div className="card-container">
                   <Card
                     title={title}
-                    key={id}
+                    key={index}
                     extra={
                       <span>
                         {/* 功能按钮需用户自己去定制，调用后端接口和后续前端操作 */}

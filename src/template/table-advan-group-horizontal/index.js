@@ -28,15 +28,18 @@ export default class Template extends Component {
       },
       {
         title: 'sku',
-        dataKey: 'sku'
+        dataKey: 'sku',
+        align: 'right'
       },
       {
         title: '库存量（个）',
-        dataKey: 'stock'
+        dataKey: 'stock',
+        align: 'right'
       },
       {
         title: '单价（元）',
-        dataKey: 'price'
+        dataKey: 'price',
+        align: 'right'
       },
       {
         title: '上市时间',

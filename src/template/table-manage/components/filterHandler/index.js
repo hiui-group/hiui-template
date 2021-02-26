@@ -66,7 +66,7 @@ const OptionsForButtonkit = ({ reorderColumns, columns, broComponent }) => {
         </Form>
         <div className={`${kitPrefix}-options__btns`}>
           <Button type="primary" onClick={handleSubmit}>
-            提交
+            查询
           </Button>
           <Button type="line" onClick={cancelSubmit}>
             重置

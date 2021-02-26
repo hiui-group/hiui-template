@@ -46,15 +46,18 @@ export default class Template extends Component {
         {
           title: 'sku',
           dataKey: 'sku',
+          align: 'right',
           visible: true
         },
         {
           title: '库存量（个）',
+          align: 'right',
           dataKey: 'stock',
           visible: true
         },
         {
           title: '单价（元）',
+          align: 'right',
           dataKey: 'price',
           visible: true
         },
@@ -225,10 +228,19 @@ export default class Template extends Component {
             <h2 className="table-manage_head-title">商品管理</h2>
           </Col>
           <Col span={8} style={{ textAlign: 'right' }}>
-            <Button type="primary" icon="plus" onClick={this.addNewProduct} />
+            <Button
+              type="line"
+              icon="search"
+              style={{ fontSize: 16 }}
+              onClick={() => {
+                Message.open({ type: 'success', title: '查询成功', duration: 2000 })
+              }}
+            />
+            <Button type="primary" icon="plus" style={{ fontSize: 16 }} onClick={this.addNewProduct} />
             <Button
               type="line"
               icon="download"
+              style={{ fontSize: 16 }}
               onClick={() => {
                 Message.open({ type: 'success', title: '导出成功', duration: 2000 })
               }}
@@ -236,6 +248,7 @@ export default class Template extends Component {
             <Button
               type="line"
               icon="document"
+              style={{ fontSize: 16 }}
               onClick={() => {
                 this.props.history.push('/detail-basic')
               }}
@@ -252,7 +265,7 @@ export default class Template extends Component {
               ]}
               type="button"
               placement="bottom-end"
-              title={<Icon name="ellipsis" />}
+              title={<Icon name="ellipsis" style={{ fontSize: 16 }} />}
             />
           </Col>
         </Row>

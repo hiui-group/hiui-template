@@ -93,7 +93,9 @@ class UserDashboard extends Component {
                       }}
                     >
                       <div>{apply.title}</div>
-                      <Tag type={apply.status || 'primary'}>{apply.statusDesc}</Tag>
+                      <Tag type={apply.status || 'primary'} appearance="line">
+                        {apply.statusDesc}
+                      </Tag>
                     </div>
                     <div
                       style={{
@@ -120,41 +122,43 @@ class UserDashboard extends Component {
             <Col span={12}>
               <Card title="我的收藏" bordered={false} hoverable>
                 {myCollect.map((collect, index) => (
-                  <div key={index} style={{ marginBottom: 8, display: 'flex' }}>
-                    {collect.image && (
-                      <img
-                        alt=""
-                        src={collect.image}
-                        style={{
-                          width: 80,
-                          height: 80,
-                          marginRight: 8
-                        }}
-                      />
-                    )}
-                    <div style={{ flex: 1 }}>
-                      <div
-                        style={{
-                          marginBottom: 2,
-                          display: 'flex',
-                          justifyContent: 'space-between '
-                        }}
-                      >
-                        <div>{collect.title}</div>
-                        <a href="/">{collect.operation}</a>
-                      </div>
-                      <div
-                        style={{
-                          fontSize: '12px',
-                          lineHeight: '20px',
-                          color: '#999',
-                          display: 'flex'
-                        }}
-                      >
-                        <div>{collect.desc}</div>
-                        <div>{collect.time}</div>
+                  <div style={{ display: 'flex', justifyContent: 'spaceBetween', alignItems: 'center' }}>
+                    <div key={index} style={{ marginBottom: 8, display: 'flex', flex: 1 }}>
+                      {collect.image && (
+                        <img
+                          alt=""
+                          src={collect.image}
+                          style={{
+                            width: 80,
+                            height: 80,
+                            marginRight: 8
+                          }}
+                        />
+                      )}
+                      <div style={{ flex: 1 }}>
+                        <div
+                          style={{
+                            marginBottom: 2,
+                            display: 'flex',
+                            justifyContent: 'space-between '
+                          }}
+                        >
+                          <div>{collect.title}</div>
+                        </div>
+                        <div
+                          style={{
+                            fontSize: '12px',
+                            lineHeight: '20px',
+                            color: '#999',
+                            display: 'flex'
+                          }}
+                        >
+                          <div>{collect.desc}</div>
+                          <div>{collect.time}</div>
+                        </div>
                       </div>
                     </div>
+                    <a href="/">{collect.operation}</a>
                   </div>
                 ))}
               </Card>

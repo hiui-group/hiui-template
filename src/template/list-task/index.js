@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Loading, Notification, Icon, Card, Pagination, Grid } from '@hi-ui/hiui'
-import ListHeader from './components/ListHeader/index.jsx'
+import ListHeader from './components/ListHeader/index.js'
 
 import './index.scss'
 

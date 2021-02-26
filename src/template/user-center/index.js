@@ -143,7 +143,7 @@ function BasicUserSettings({ groups, provinces, countrys, formData, submitData, 
   console.log(formData)
 
   return (
-    <Form labelWidth="144" initialValues={formData} model={formData} style={{ width: 592, marginTop: 24 }}>
+    <Form labelWidth="80" initialValues={formData} model={formData} style={{ width: 592, marginTop: 24 }}>
       <FormItem label="头像">
         <img
           alt="头像"
@@ -165,6 +165,7 @@ function BasicUserSettings({ groups, provinces, countrys, formData, submitData, 
       </FormItem>
       <FormItem label="所在部门" field="group">
         <Cascader
+          style={{ width: '100%' }}
           value={group}
           onChange={value => {
             onChange('group', value)
@@ -188,6 +189,7 @@ function BasicUserSettings({ groups, provinces, countrys, formData, submitData, 
       </FormItem>
       <FormItem label="所在省市" field="province">
         <Cascader
+          style={{ width: '100%' }}
           value={province}
           onChange={value => {
             onChange('province', value)

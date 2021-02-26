@@ -18,8 +18,7 @@ const kitPrefix = 'hiui-componentkit'
  * @property {String} title 名称
  * @property {String} icon 图标名称
  * @property {Function} onChange 改变选项时触发函数
- */
-/**
+ *
  * @param {Object} CustomControlPorps props
  */
 const CustomControl = ({ data: propsData = [], value, optionWidth = 150, title = '统计', icon, onChange }) => {

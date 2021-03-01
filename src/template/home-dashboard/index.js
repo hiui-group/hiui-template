@@ -823,8 +823,7 @@ export default class HomeDashboard extends Component {
       },
       {
         title: '门店',
-        dataKey: 'shop',
-        align: 'right'
+        dataKey: 'shop'
       },
       {
         title: '库存',

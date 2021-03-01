@@ -64,8 +64,7 @@ export default class Template extends Component {
     columns: [
       {
         title: 'SKU',
-        dataKey: 'sku',
-        align: 'right'
+        dataKey: 'sku'
       },
       {
         title: '商品ID',

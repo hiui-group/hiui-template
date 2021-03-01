@@ -70,8 +70,7 @@ export default class Template extends Component {
       },
       {
         title: '商品ID',
-        dataKey: 'id',
-        align: 'right'
+        dataKey: 'id'
       },
       {
         title: '商品名',

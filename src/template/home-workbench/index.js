@@ -90,50 +90,12 @@ export default class Workbench extends Component {
   }
 
   renderWaitToBeDone = () => {
-    const { waitToBeDoneTotal /*, waitToBeDoneInfos */ } = this.state
-    // const statusMap = {
-    //     1: {
-    //         tag:'未开始',
-    //         type: 'primary'
-    //     },
-    //     2: {
-    //         tag:'即将开始',
-    //         type: 'danger'
-    //     },
-    //     3: {
-    //         tag:'已完成',
-    //         type: 'success'
-    //     }
-    // }
-    // const listData = waitToBeDoneInfos.map(item => ({
-    //     title: item.issue,
-    //     extra:[item.time,item.place],
-    //     titleTag: statusMap[item.status].title,
-    //     titleTagType: statusMap[item.status].type,
-    //     id: item.id
-    // }))
+    const { waitToBeDoneTotal } = this.state
 
     return (
       <Col span={8} className="wait_to_be__container">
         <p className="wait_to_be__title">{`待办(${waitToBeDoneTotal})`}</p>
-        <div>
-          {/* 等待HIUI修正 */}
-          {/* <List 
-                        data={listData} 
-                        actionPosition="bottom"
-                        renderItem={dataItem =>{
-                            const { Item } = List
-                            return <Item {...dataItem} />
-                        }}
-                        action={dataItem => {
-                            return (
-                                <span>
-                                    处理
-                                </span>
-                            )
-                        }}
-                    /> */}
-        </div>
+        <div></div>
       </Col>
     )
   }

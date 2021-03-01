@@ -69,12 +69,12 @@ export default class Template extends Component {
         title: 'SKU',
         dataKey: 'sku',
         filterIds: ['greater', 'noIncludes', 'includes'],
-        align: 'right'
+        align: 'left'
       },
       {
         title: '商品ID',
         dataKey: 'id',
-        align: 'right'
+        align: 'left'
       },
       {
         title: '商品名',

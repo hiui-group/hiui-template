@@ -211,9 +211,12 @@ export default class Template extends Component {
   }
 
   // reorderColumns 排序后的回调方法
-  reorderColumns = columnes => {
+  reorderColumns = columns => {
+    columns = columns.filter(item => {
+      return item.visible
+    })
     this.setState({
-      columnes
+      columns
     })
   }
 
@@ -306,6 +309,7 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <div className="table-manage_pane-content">
+              {console.log(JSON.stringify(columns))}
               <div>
                 <Loading visible={visibleLoading}>
                   <Table

@@ -110,6 +110,7 @@ const ColumnsControl = ({
                                   onChange={bol => {
                                     const _columns = _.cloneDeep(columns)
                                     _columns[index].visible = bol
+                                    console.log('_columns', _columns)
                                     setColumns(_columns)
                                   }}
                                 />
@@ -142,6 +143,7 @@ const ColumnsControl = ({
               className="columnes__footer--confirm"
               onClick={() => {
                 reorderColumns(columns)
+                setShowPopper(false)
               }}
             >
               确定

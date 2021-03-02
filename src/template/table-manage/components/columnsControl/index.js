@@ -110,7 +110,6 @@ const ColumnsControl = ({
                                   onChange={bol => {
                                     const _columns = _.cloneDeep(columns)
                                     _columns[index].visible = bol
-                                    console.log('_columns', _columns)
                                     setColumns(_columns)
                                   }}
                                 />

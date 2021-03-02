@@ -309,7 +309,6 @@ export default class Template extends Component {
         <Row>
           <Col span={24}>
             <div className="table-manage_pane-content">
-              {console.log(JSON.stringify(columns))}
               <div>
                 <Loading visible={visibleLoading}>
                   <Table

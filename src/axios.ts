@@ -1,9 +1,8 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 const callBackInter = new Map()
 
 const axiosInstance = axios.create({
-  type: 'basics',
   url: ''
 })
 
@@ -39,8 +38,19 @@ axiosInstance.interceptors.response.use(
   }
 )
 
-const axiosIns = (options) => {
-  const { beforeResponse, errorResponse, beforeRequest, errorRequest, data, errorCallback } = options
+
+export interface HiRequestCallbackHooks {
+  beforeResponse?: (config: AxiosRequestConfig) => any
+  errorResponse?: <T = any>(response: AxiosResponse<T>) => void
+  beforeRequest?: (config: AxiosRequestConfig) => any
+  errorRequest?: (error: any) => any
+  errorCallback? : (error: any) => void
+}
+
+export type HiRequestConfig = HiRequestCallbackHooks & AxiosRequestConfig
+
+const axiosIns = (options: HiRequestConfig) => {
+  const { beforeResponse, errorResponse, beforeRequest, errorRequest, errorCallback } = options
   beforeRequest && callBackInter.set('beforeRequest', beforeRequest)
   errorResponse && callBackInter.set('errorResponse', errorResponse)
   beforeResponse && callBackInter.set('beforeResponse', beforeResponse)
@@ -49,5 +59,6 @@ const axiosIns = (options) => {
 
   return axiosInstance({ ...options })
 }
+
 export { axios }
 export default axiosIns

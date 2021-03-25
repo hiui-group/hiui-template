@@ -2,6 +2,8 @@
 
 # Output files
 es/
+dist/
+lib/
 
 # Editor generate files
 .idea/

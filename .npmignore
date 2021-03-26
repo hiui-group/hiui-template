@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+.vscode
+
+# production
+src/
+
+# standard
+.editorconfig
+.gitignore
+
+# dev
+webpack.config.js
+tsconfig.json
+package-lock.json
+.travis.yml

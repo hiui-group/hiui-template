@@ -1,3 +1,5 @@
+import { HiRequestOptions } from "./type"
+
 const defaultJsonpOptions = {
   timeout: 5000,
   jsonpCallback: 'callback'
@@ -6,7 +8,8 @@ const defaultJsonpOptions = {
 const generateCallbackFunction = () => {
   return `jsonp_${Date.now()}_${Math.ceil(Math.random() * 100000)}`
 }
-const clearFunction = (functionName) => {
+
+const clearFunction = (functionName: string) => {
   try {
     delete window[functionName]
   } catch (e) {
@@ -14,64 +17,76 @@ const clearFunction = (functionName) => {
   }
 }
 
-const removeScript = (scriptId) => {
+
+const insertScript = (script: HTMLScriptElement) => {
+  document.getElementsByTagName('head')[0].appendChild(script)
+}
+
+const removeScript = (scriptId: string) => {
   const script = document.getElementById(scriptId)
+
   if (script) {
     document.getElementsByTagName('head')[0].removeChild(script)
   }
 }
-const jsonp = (_url, options = defaultJsonpOptions) => {
-  const { timeout, jsonpCallback } = options
-  let url = _url
-  let timeoutId
+
+const jsonp = (options: HiRequestOptions = defaultJsonpOptions) => {
+  const { url: urlOption, timeout, jsonpCallback, jsonpCallbackFunction, charset } = options
+  let timeoutId: number
+
   return new Promise((resolve, reject) => {
-    const callbackFunction =
-      options && options.jsonpCallbackFunction ? options.jsonpCallbackFunction : generateCallbackFunction()
+    const url = urlOption + (urlOption.indexOf('?') === -1 ? '?' : '&')
+    const callbackFunction = jsonpCallbackFunction || generateCallbackFunction()
 
-    const scriptId = `${jsonpCallback}_${callbackFunction}`
-
-    window[callbackFunction] = (response) => {
+    // 注册 jsonp callback
+    window[callbackFunction] = (response: any) => {
       resolve({
         ok: true,
         // keep consistent with fetch API
         json: () => Promise.resolve(response)
       })
 
-      if (timeoutId) clearTimeout(timeoutId)
-
-      removeScript(scriptId)
+      clearTimeout(timeoutId)
 
       clearFunction(callbackFunction)
+      removeScript(scriptId)
     }
 
-    url += url.indexOf('?') === -1 ? '?' : '&'
-
+    // 创建 jsonp 发送脚本
     const jsonpScript = document.createElement('script')
-    jsonpScript.setAttribute('src', `${url}${jsonpCallback}=${callbackFunction}`)
-    if (options && options.charset) {
-      jsonpScript.setAttribute('charset', options.charset)
-    }
+    const scriptId = `${jsonpCallback}_${callbackFunction}`
     jsonpScript.id = scriptId
-    document.getElementsByTagName('head')[0].appendChild(jsonpScript)
+    jsonpScript.setAttribute('src', `${url}${jsonpCallback}=${callbackFunction}`)
+    if (charset) {
+      jsonpScript.setAttribute('charset', charset)
+    }
 
+    // 发送 jsonp
+    insertScript(jsonpScript)
+
+    // 超时取消
     timeoutId = setTimeout(() => {
-      reject(new Error(`JSONP request to ${_url} timed out`))
+      reject(new Error(`JSONP request to ${urlOption} timed out`))
 
       clearFunction(callbackFunction)
       removeScript(scriptId)
-      window[callbackFunction] = () => {
-        clearFunction(callbackFunction)
-      }
+
+      // 超时后响应处理：清理自己
+      window[callbackFunction] = () => clearFunction(callbackFunction)
+
     }, timeout)
 
     // Caught if got 404/500
     jsonpScript.onerror = () => {
-      reject(new Error(`JSONP request to ${_url} failed`))
+      reject(new Error(`JSONP request to ${urlOption} failed`))
+
+      clearTimeout(timeoutId)
 
       clearFunction(callbackFunction)
       removeScript(scriptId)
-      if (timeoutId) clearTimeout(timeoutId)
     }
   })
 }
+
+export type jsonpType = typeof jsonp
 export default jsonp

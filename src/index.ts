@@ -1,73 +1,45 @@
-import jsonp from "./jsonp";
-import download from "./download";
-import upload from "./upload";
-import axiosIns, { axios, HiRequestConfig } from "./axios";
-import type { CancelStatic, CancelTokenStatic, AxiosError } from "axios";
+import axiosInstance, { axios } from "./axios";
+import jsonp, { jsonpType } from "./jsonp";
+import download, { downloadType } from "./download";
+import upload, { uploadType } from "./upload";
+import type {
+  HiRequestOptions,
+  HiRequestMethod,
+  HiRequestStaticAxios,
+  HiRequestBaseStatic,
+} from "./type";
 
-export type HiRequestMethod =
-  | "get"
-  | "post"
-  | "delete"
-  | "put"
-  | "patch"
-  | "head"
-  | "options";
-
-export type HiRequestCancel = "CancelToken" | "Cancel" | "isCancel";
-
-export type HiRequestType = "basics" | "jsonp" | "download" | "upload";
-export type HiRequestOptions = HiRequestConfig & {
-  type: HiRequestType;
-};
-
-const defaultOptions = {
-  type: "basics",
-  responseType: "json",
-};
-
-/**
- * 请求方法
- * @param options
- * @param baseUrl
- */
+// Mixed Request
 const InternalRequest = (options: HiRequestOptions, host?: string) => {
   const { url: urlOption, type = "basics", responseType = "json" } = options;
   const url = host ? host + urlOption : urlOption;
 
-  const isJsonp = type === "jsonp";
-  const isDownload = type === "download";
-  const isUpload = type === "upload";
+  const _options = Object.assign({}, options, { url, responseType });
 
-  if (isJsonp || isDownload) {
-    return isJsonp ? jsonp(options, host) : download(options, host);
+  switch (type) {
+    case "jsonp":
+      return jsonp(_options);
+    case "download":
+      return download(_options);
+    case "upload":
+      return upload(_options);
+    default:
+      return axiosInstance(_options);
   }
-
-  return axiosIns(
-    isUpload
-      ? {
-          url,
-          method: "post",
-          responseType,
-          ...upload(options).options,
-        }
-      : {
-          url,
-          type: "basics",
-          responseType,
-          ...options,
-        }
-  );
 };
 
-export type Options = {
-  timeout?: number;
-  jsonpCallback?: () => void;
-};
+export interface HiRequestStatic extends HiRequestBaseStatic {
+  upload?: uploadType;
+  download?: downloadType;
+  jsonp?: jsonpType;
+}
 
-const HiRequest: HiRequestStatic = InternalRequest;
+// @ts-ignore
+const HiRequest: HiRequestStatic = (options: HiRequestOptions, host?: string) =>
+  InternalRequest(options, host);
 
-// 请求语法糖： reguest.get HiRequest.post ……
-const METHODS: HiRequestMethod[] = [
+// 请求语法糖： HiRequest.get HiRequest.post ……
+const AXIOS_METHODS: HiRequestMethod[] = [
   "get",
   "post",
   "delete",
@@ -77,48 +49,33 @@ const METHODS: HiRequestMethod[] = [
   "options",
 ];
 
-METHODS.forEach((method) => {
+AXIOS_METHODS.forEach((method) => {
+  // @ts-ignore
   HiRequest[method] = (url: string, options?: HiRequestOptions) =>
     HiRequest({ ...options, method, url });
 });
 
-// 取消请求
-const CANCEL: HiRequestCancel[] = ["CancelToken", "Cancel", "isCancel"];
+// 扩展的 axios 静态方法：cancels、all\spread
+const AXIOS_REST_STATIC: HiRequestStaticAxios[] = [
+  "CancelToken",
+  "Cancel",
+  "isCancel",
+  "all",
+  "spread",
+];
 
-CANCEL.forEach((type) => {
+AXIOS_REST_STATIC.forEach((type) => {
+  // @ts-ignore
   HiRequest[type] = axios[type];
 });
 
-// add jsonp
+// jsonp
 HiRequest.jsonp = jsonp;
 
 // download
 HiRequest.download = download;
 
 // upload
-HiRequest.upload = (options, host) => {
-  options.type = "upload";
-  return HiRequest(options, host);
-};
-
-// Expose all/spread
-HiRequest.all = (promises) => {
-  return Promise.all(promises);
-};
-
-HiRequest.spread = (callback) => {
-  return (arr) => {
-    return callback.apply(null, arr);
-  };
-};
-
-export interface HiRequestStatic extends AxiosInstance {
-  Cancel: CancelStatic;
-  CancelToken: CancelTokenStatic;
-  isCancel(value: any): boolean;
-  all<T>(values: (T | Promise<T>)[]): Promise<T[]>;
-  spread<T, R>(callback: (...args: T[]) => R): (array: T[]) => R;
-  isAxiosError(payload: any): payload is AxiosError;
-}
+HiRequest.upload = upload;
 
 export default HiRequest;

@@ -26,7 +26,7 @@ export default class Copy extends Component {
 
   showModal = () => {
     this.setState({ showModal: true })
-    let pathname = window.location.href.split('/')[3]
+    let pathname = window.location.href.split('/').pop()
 
     if (pathname.includes('#')) {
       pathname = pathname.split('#')[0]

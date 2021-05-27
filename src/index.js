@@ -19,7 +19,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({})
   const [themeType, setThemeType] = useState('classic')
   const getUserInfo = useCallback(() => {
-    Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
+    Axios.get('https://yapi.baidu.com/mock/64112/hiui/user/info').then(response => {
       const { data: { code = 0, data: userInfo } = {} } = response
 
       if (code !== 200) {
@@ -38,7 +38,7 @@ function App() {
   }, [])
 
   const loginConfig = {
-    name: userInfo?.name ?? '',
+    name: userInfo?.username ?? '',
     icon: 'user',
     children: [
       <div key="1" style={{ textAlign: 'center', margin: 4, width: '100px' }}>

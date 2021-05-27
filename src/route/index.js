@@ -1,5 +1,6 @@
 import { localStorage } from '../utils'
-
+// 为兼容文档
+const basePath = '/hiui/templates-preview'
 const components = {}
 const pageComponentpaths = {}
 const files = require.context('../template', true, /.js$|.scss$/)
@@ -31,9 +32,9 @@ const config = [
   {
     name: '首页',
     children: [
-      { name: '仪表盘', path: '/home-dashboard' },
-      { name: '工作台', path: '/home-workbench' },
-      { name: '门户', path: '/home-portal' }
+      { name: '仪表盘', path: `${basePath}/home-dashboard` },
+      { name: '工作台', path: `${basePath}/home-workbench` },
+      { name: '门户', path: `${basePath}/home-portal` }
     ]
   },
   {
@@ -41,27 +42,27 @@ const config = [
     children: [
       {
         name: '单列表单',
-        path: '/form-basic'
+        path: `${basePath}/form-basic`
       },
       {
         name: '双列表单',
-        path: '/form-double-column'
+        path: `${basePath}/form-double-column`
       },
       {
         name: '分步表单',
-        path: '/form-with-stepper'
+        path: `${basePath}/form-with-stepper`
       },
       {
         name: '分组表单 + 标签',
-        path: '/form-with-taps'
+        path: `${basePath}/form-with-taps`
       },
       {
         name: '分组表单',
-        path: '/form-with-group'
+        path: `${basePath}/form-with-group`
       },
       {
         name: '内嵌表格表单',
-        path: '/form-with-table'
+        path: `${basePath}/form-with-table`
       }
     ]
   },
@@ -70,51 +71,51 @@ const config = [
     children: [
       {
         name: '表格-分组(横向)',
-        path: '/table-group-horizontal'
+        path: `${basePath}/table-group-horizontal`
       },
       {
         name: '表格-分组(纵向)',
-        path: '/table-group-vertical'
+        path: `${basePath}/table-group-vertical`
       },
       {
         name: '表格-分组(纵向2)',
-        path: '/table-group-horizontal-group'
+        path: `${basePath}/table-group-horizontal-group`
       },
       {
         name: '表格-基础查询',
-        path: '/table-query-basic'
+        path: `${basePath}/table-query-basic`
       },
       {
         name: '表格-平铺查询（单选）',
-        path: '/table-tile-single'
+        path: `${basePath}/table-tile-single`
       },
       {
         name: '表格-高级管理',
-        path: '/table-manage'
+        path: `${basePath}/table-manage`
       },
       {
         name: '表格-平铺查询（多选）',
-        path: '/table-tile-multiple'
+        path: `${basePath}/table-tile-multiple`
       },
       {
         name: '表格-树查询（单选）',
-        path: '/table-tree-single-query'
+        path: `${basePath}/table-tree-single-query`
       },
       {
         name: '表格-树查询（多选）',
-        path: '/table-tree-multiple-query'
+        path: `${basePath}/table-tree-multiple-query`
       },
       {
         name: '表格-高级查询',
-        path: '/table-advan-group-horizontal'
+        path: `${basePath}/table-advan-group-horizontal`
       },
       {
         name: '表格-高级查询（多行选项）',
-        path: '/table-advan-group-more-options'
+        path: `${basePath}/table-advan-group-more-options`
       },
       {
         name: '表格-高级筛选',
-        path: '/table-advan-filter'
+        path: `${basePath}/table-advan-filter`
       }
     ]
   },
@@ -123,23 +124,23 @@ const config = [
     children: [
       {
         name: '流程卡片',
-        path: '/list-flow-card'
+        path: `${basePath}/list-flow-card`
       },
       {
         name: '嵌入式',
-        path: '/list-embeded'
+        path: `${basePath}/list-embeded`
       },
       {
         name: '信息流',
-        path: '/list-info-flow'
+        path: `${basePath}/list-info-flow`
       },
       {
         name: '卡片列表',
-        path: '/list-task'
+        path: `${basePath}/list-task`
       },
       {
         name: '小卡片',
-        path: '/list-indicator'
+        path: `${basePath}/list-indicator`
       }
     ]
   },
@@ -148,27 +149,27 @@ const config = [
     children: [
       {
         name: '单列',
-        path: '/detail-basic'
+        path: `${basePath}/detail-basic`
       },
       {
         name: '双列',
-        path: '/detail-double-column'
+        path: `${basePath}/detail-double-column`
       },
       {
         name: '分组',
-        path: '/detail-group'
+        path: `${basePath}/detail-group`
       },
       {
         name: '步骤',
-        path: '/detail-stepper'
+        path: `${basePath}/detail-stepper`
       },
       {
         name: '关联',
-        path: '/detail-relevance'
+        path: `${basePath}/detail-relevance`
       },
       {
         name: '卡片',
-        path: '/detail-card'
+        path: `${basePath}/detail-card`
       }
     ]
   },
@@ -177,11 +178,11 @@ const config = [
     children: [
       {
         name: '账号中心',
-        path: '/user-center'
+        path: `${basePath}/user-center`
       },
       {
         name: '活动信息-混合',
-        path: '/user-dashboard'
+        path: `${basePath}/user-dashboard`
       }
     ]
   },
@@ -190,55 +191,55 @@ const config = [
     children: [
       {
         name: '加载中',
-        path: '/normal-loading'
+        path: `${basePath}/normal-loading`
       },
       {
         name: '服务器出错',
-        path: '/result-server-error'
+        path: `${basePath}/result-server-error`
       },
       {
         name: '暂无数据',
-        path: '/result-no-data'
+        path: `${basePath}/result-no-data`
       },
       {
         name: '暂无权限',
-        path: '/result-no-auth'
+        path: `${basePath}/result-no-auth`
       },
       {
         name: '网络中断',
-        path: '/result-network-broken'
+        path: `${basePath}/result-network-broken`
       },
       {
         name: '成功',
-        path: '/result-success'
+        path: `${basePath}/result-success`
       },
       {
         name: '失败',
-        path: '/result-failed'
+        path: `${basePath}/result-failed`
       },
       {
         name: '服务器出错（米兔版）',
-        path: '/result-server-error-mirabbit'
+        path: `${basePath}/result-server-error-mirabbit`
       },
       {
         name: '暂无数据（米兔版）',
-        path: '/result-no-data-mirabbit'
+        path: `${basePath}/result-no-data-mirabbit`
       },
       {
         name: '暂无权限（米兔版）',
-        path: '/result-no-auth-mirabbit'
+        path: `${basePath}/result-no-auth-mirabbit`
       },
       {
         name: '网络中断（米兔版）',
-        path: '/result-network-broken-mirabbit'
+        path: `${basePath}/result-network-broken-mirabbit`
       },
       {
         name: '成功（米兔版）',
-        path: '/result-success-mirabbit'
+        path: `${basePath}/result-success-mirabbit`
       },
       {
         name: '失败（米兔版）',
-        path: '/result-failed-mirabbit'
+        path: `${basePath}/result-failed-mirabbit`
       }
     ]
   }
@@ -247,7 +248,7 @@ const config = [
 const transformConfig = config => {
   config.forEach(c => {
     if (c.path) {
-      c.component = components[c.path.split('/')[1]]
+      c.component = components[c.path.replace(`${basePath}`, '').split('/')[1]]
     }
     if (c.children) {
       transformConfig(c.children)

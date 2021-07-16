@@ -1,0 +1,85 @@
+@import '@hi-ui/core-css/index.scss';
+
+.page--query-basic {
+  &__query-card {
+    .hi-card__title {
+      height: 64px;
+    }
+  }
+}
+
+.advanced-filter {
+  &__trigger {
+    padding: 0;
+  }
+
+  &__popper {
+    width: 456px !important;
+    height: 231px;
+    background: #fff;
+    box-shadow: 0 2px 8px 0 rgba(56, 62, 71, 0.1);
+    border-radius: 2px;
+    border: 1px solid #e6e7e8;
+    display: flex;
+    flex-direction: column;
+
+    &-close {
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #383e47;
+      line-height: 20px;
+      width: 19px;
+      height: 19px;
+    }
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      padding: $spacer-3 $spacer-4;
+      flex-shrink: 0;
+
+      h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        color: #383e47;
+        line-height: 20px;
+
+        span {
+          font-size: 12px;
+          font-weight: 400;
+          color: #82868c;
+          line-height: 17px;
+        }
+      }
+    }
+
+    &-body {
+      flex: 1;
+      box-sizing: border-box;
+      padding: $spacer-3 $spacer-4;
+      overflow-y: scroll;
+    }
+
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: $spacer-2 $spacer-4;
+      border-top: 1px solid var(--color-gray-20);
+      flex-shrink: 0;
+    }
+  }
+
+  &__item {
+    margin-bottom: $spacer-3;
+
+    &-delete {
+      padding: 0 2px;
+    }
+
+    &-filtervalue {
+      width: 180px;
+    }
+  }
+}

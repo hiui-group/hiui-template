@@ -1,0 +1,49 @@
+@import '@hi-ui/core-css/index.scss';
+
+.page--tile-multiple {
+  &__filter-label {
+    color: var(--color-gray-70);
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    width: 92px;
+    position: relative;
+    margin: 12px 0;
+
+    &::after {
+      content: '';
+      color: #d8d8d8;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      margin: 0 $spacer-3;
+      width: 1px;
+      box-sizing: border-box;
+      height: 14px;
+      background-color: currentColor;
+    }
+  }
+
+  &__filter-submit {
+    margin-top: 28px;
+
+    .hi-btn + .hi-btn {
+      margin-left: $spacer-4;
+    }
+  }
+
+  &__filter-checkbox {
+    display: inline;
+  }
+
+  .hi-icon.icon-edit,
+  .hi-icon.icon-delete {
+    cursor: pointer;
+  }
+}
+
+.page--tile-multiple__filter-checkgroup {
+  .hi-checkbox.theme__hiui-blue {
+    margin: 16px 0;
+  }
+}

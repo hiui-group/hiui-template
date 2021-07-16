@@ -8,43 +8,61 @@
     "eject": "react-scripts eject",
     "build": "react-scripts build",
     "deploy": "gh-pages -d build --git \"$(which git)\"",
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "precommit": "lint-staged"
   },
   "author": "HIUI <mi-hiui@xiaomi.com>",
   "license": "MIT",
-  "homepage": "http://hiui-group.github.io/hiui-template/",
+  "homepage": "http://hiui-group.github.io/hiui/templates-preview/",
   "dependencies": {
-    "@hi-ui/classic-theme": "^2.0.0-rc.6",
-    "@hi-ui/component-kit": "^1.0.0-rc.1",
-    "@hi-ui/core-css": "^2.0.0",
-    "@hi-ui/hiui": "^2.0.4",
+    "@hi-ui/classic-theme": "^3.2.3",
+    "@hi-ui/component-kit": "^0.5.5",
+    "@hi-ui/core-css": "^2.0.1",
+    "@hi-ui/hiui": "^3.4.0",
     "axios": "^0.18.1",
     "classnames": "^2.2.5",
     "echarts": "^4.2.1",
     "echarts-for-react": "^2.0.15-beta.0",
+    "lodash": "^4.17.20",
     "node-sass": "^4.12.0",
     "postcss-loader": "^2.1.5",
     "react": "^16.8.6",
+    "react-beautiful-dnd": "^13.0.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.6",
     "react-syntax-highlighter": "^10.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "~10.1.0",
+    "eslint": "~7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-standard": "~16.0.1",
+    "eslint-plugin-import": "~2.22.1",
+    "eslint-plugin-node": "~11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "~4.2.1",
+    "eslint-plugin-react": "~7.21.5",
+    "eslint-plugin-react-hooks": "~4.2.0",
+    "eslint-plugin-standard": "~4.0.2",
     "gh-pages": "^2.0.1",
-    "react-scripts": "2.1.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
+    "prettier": "^2.2.1",
+    "react-scripts": "~4.0.0",
     "standard": "^12.0.1",
     "stylelint": "^9.10.1",
     "stylelint-config-recommended-scss": "^3.3.0",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-scss": "^3.8.0"
   },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "/es/",
-      "/lib/",
-      "yarn.lock"
-    ]
+  "lint-staged": {
+    "*.{js,jsx}": "eslint --fix",
+    "*.{css,scss}": "stylelint --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
   },
   "browserslist": [
     ">0.2%",

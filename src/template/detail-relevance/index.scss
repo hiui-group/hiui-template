@@ -1,17 +1,25 @@
 @import '@hi-ui/core-css/index.scss';
 
 .page--detail-relevance {
-  padding: 0 $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
   .detail-relevance__header {
+    margin-top: -$spacer-6;
+    margin-left: -$spacer-6;
+    margin-right: -$spacer-6;
+    padding: $spacer-3 $spacer-6;
+    background-color: $white;
+
+    .hi-breadcrumb {
+      margin-left: -4px;
+    }
+
     .row {
       &-01 {
         color: $gray-dark;
-        height: 32px;
         align-items: center;
-        margin-bottom: 14px;
+        line-height: 1;
       }
 
       .spacer {
@@ -20,22 +28,19 @@
 
       &-02 {
         color: #383e47;
-        margin-top: 0;
+        margin-top: $spacer-5;
         align-items: center;
-        height: 52px;
-        padding: 0;
-        margin-bottom: $spacer-3;
+        background-color: $white;
       }
 
-      &-02 h3 {
-        margin: 0 0 $spacer-1 0;
+      &-02 h2 {
+        margin: $spacer-1 0;
       }
 
       &-03 {
-        padding-top: $spacer-1;
-        font-size: $font-size-small;
+        padding-top: 4px;
+        font-size: 12px;
         color: #999;
-        margin-bottom: 18px;
       }
 
       &-03 .spacer {
@@ -43,7 +48,7 @@
         color: $gray-light;
       }
 
-      &-03 .spacer:last-child {
+      &-03 div:last-child .spacer {
         display: none;
       }
     }
@@ -52,6 +57,7 @@
   .detail-relevance__card {
     background: $white;
     padding: 0;
+    margin-top: $spacer-6;
 
     &:not(:nth-child(2)) {
       margin-top: $spacer-6;
@@ -68,30 +74,63 @@
       }
     }
 
-    .hi-navmenu__list {
-      padding: 0 $spacer-6 !important;
+    .hi-card {
+      width: 100%;
+      padding-top: $spacer-5;
+    }
+
+    .detail-group__table-container {
+      .hi-tabs__header {
+        font-size: 16px;
+      }
     }
 
     &--base {
       list-style: none;
-      padding: 0 $spacer-6 $spacer-6 $spacer-6;
+      padding-top: $spacer-6;
+      font-size: 16px;
+      width: 100%;
+      flex-direction: column;
+      flex: 1;
 
       li {
         display: flex;
         margin-top: 8px;
         line-height: 22px;
+        font-size: 14px;
       }
 
-      li div:first-child {
+      li:not(:first-child) {
+        margin-top: $spacer-2;
+      }
+
+      span {
+        word-break: break-word;
+        white-space: pre-wrap;
+      }
+
+      span:first-child {
+        margin-right: $spacer-4;
         width: 110px;
-        height: 100%;
-        flex-shrink: 0;
         color: #999;
+        flex-shrink: 0;
       }
 
-      li div:last-child {
+      span:last-child {
         width: 68%;
       }
     }
+  }
+}
+
+.usual-dropdown-button {
+  margin-left: $spacer-2;
+
+  .hi-btn {
+    padding: 4px 6px 4px 8px;
+  }
+
+  .icon-down {
+    display: none;
   }
 }

@@ -6,7 +6,7 @@ import './index.scss'
 const { Row, Col } = Grid
 
 class HomeSearch extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.data1 = [{ title: '常用' }, { title: '我的' }]
     this.state = {
@@ -15,7 +15,7 @@ class HomeSearch extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios
       .get('https://api.unsplash.com/photos/random', {
         params: {
@@ -25,7 +25,7 @@ class HomeSearch extends Component {
       })
       .then(ret => {
         if (ret.data && ret.status === 200) {
-          let img = ret.data.urls.regular
+          const img = ret.data.urls.regular
           this.setState({ background: img })
         } else {
           this.setState({
@@ -36,7 +36,7 @@ class HomeSearch extends Component {
       })
   }
 
-  renderRegularTab () {
+  renderRegularTab() {
     let tabList = [
       {
         title: '福利介绍',
@@ -69,7 +69,7 @@ class HomeSearch extends Component {
               borderLeft: `2px solid ${item.color}`
             }}
           >
-            <p className='short--cut__title'>{item.title}</p>
+            <p className="short--cut__title">{item.title}</p>
             <p>{item.desc}</p>
           </Card>
         </Col>
@@ -79,7 +79,7 @@ class HomeSearch extends Component {
     return tabList
   }
 
-  renderMineTab () {
+  renderMineTab() {
     let tabList = [
       {
         title: '职场晋升',
@@ -117,9 +117,9 @@ class HomeSearch extends Component {
       return (
         <Col key={i} span={8}>
           <Card hoverable>
-            <img src={item.img} alt={item.title} className='mine-info-icon' />
-            <div className='left-content'>
-              <p className='short--cut__title'>{item.title}</p>
+            <img src={item.img} alt={item.title} className="mine-info-icon" />
+            <div className="left-content">
+              <p className="short--cut__title">{item.title}</p>
               <p>{item.desc}</p>
             </div>
           </Card>
@@ -130,39 +130,36 @@ class HomeSearch extends Component {
     return tabList
   }
 
-  render () {
+  render() {
     return (
-      <div
-        className='page page--search'
-        style={{ backgroundImage: 'url(' + this.state.background + ')' }}
-      >
-        <div className='search-box'>
-          <Row justify='center'>
-            <h3 className='search-guide'>Sologn引导文案</h3>
+      <div className="page page--search" style={{ backgroundImage: 'url(' + this.state.background + ')' }}>
+        <div className="search-box">
+          <Row justify="center">
+            <h3 className="search-guide">Sologn引导文案</h3>
           </Row>
-          <Row className='search-input'>
+          <Row className="search-input">
             <Col>
               <Input
                 style={{ width: '475px' }}
                 append={
-                  <Button className='search-btn'>
-                    <Icon name='search' />
+                  <Button className="search-btn">
+                    <Icon name="search" />
                   </Button>
                 }
-                placeholder='关键词搜索'
+                placeholder="关键词搜索"
               />
             </Col>
           </Row>
-          <Row justify='center'>
+          <Row justify="center">
             <Col>
-              <span className='search-hot'>关键词</span>
-              <span className='search-hot'>关键词</span>
-              <span className='search-hot'>关键词</span>
-              <span className='search-hot'>关键词</span>
+              <span className="search-hot">关键词</span>
+              <span className="search-hot">关键词</span>
+              <span className="search-hot">关键词</span>
+              <span className="search-hot">关键词</span>
             </Col>
           </Row>
         </div>
-        <div className='tab-box'>
+        <div className="tab-box">
           <NavMenu
             selectedKey={this.state.currentTab}
             data={this.data1}
@@ -172,13 +169,13 @@ class HomeSearch extends Component {
               })
             }}
           />
-          <div className='tab-content'>
+          <div className="tab-content">
             {this.state.currentTab === 0 ? (
-              <Row gutter justify='space-between'>
+              <Row gutter justify="space-between">
                 {this.renderRegularTab()}
               </Row>
             ) : (
-              <Row gutter justify='space-between' className='mine-tab'>
+              <Row gutter justify="space-between" className="mine-tab">
                 {this.renderMineTab()}
               </Row>
             )}

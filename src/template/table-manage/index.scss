@@ -1,0 +1,43 @@
+.table-manage {
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+
+  &_header-handle {
+    background: #fff;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &_head-title {
+    font-size: 18px;
+    height: 24px;
+    line-height: 24px;
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    color: #383e47;
+  }
+
+  &_pane-content {
+    background-color: #fff;
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+
+  &-morehandle {
+    margin-left: 8px;
+
+    .icon-down {
+      display: none;
+    }
+
+    .hi-btn {
+      padding: 4px 6px 4px 8px;
+    }
+  }
+
+  .hi-icon.icon-edit,
+  .hi-icon.icon-delete {
+    cursor: pointer;
+  }
+}

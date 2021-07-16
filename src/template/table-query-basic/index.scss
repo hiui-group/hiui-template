@@ -1,0 +1,13 @@
+.page--query-basic {
+  &__query-card {
+    .hi-card__title {
+      height: 64px;
+    }
+  }
+
+  .hi-icon.icon-edit,
+  .hi-icon.icon-delete,
+  .hi-icon.icon-more {
+    cursor: pointer;
+  }
+}

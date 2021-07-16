@@ -5,7 +5,6 @@
   height: 100%;
   background-color: #f6f6f6;
   display: flex;
-  padding: $spacer-6;
   box-sizing: border-box;
 
   .aside__avator {
@@ -17,6 +16,7 @@
     position: absolute;
     top: $spacer-5;
     right: $spacer-5;
+    cursor: pointer;
   }
 
   .tag {
@@ -27,70 +27,55 @@
     padding: 0 $spacer-1;
   }
 
-  .card {
-    background: #fff;
-    height: 352px;
-    width: 100%;
+  .hi-grid__col--gutter {
+    .hi-card {
+      height: 100%;
+    }
+  }
+}
 
-    &__header {
-      line-height: 48px;
+.user-dashboard__aside {
+  flex: 0 0 216px;
+  margin-right: $spacer-6;
+  height: 100%;
+  background-color: $white;
+
+  .aside__avator {
+    height: 216px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .aside__section {
+    margin-top: $spacer-3;
+    padding-left: $spacer-6;
+
+    .title {
       height: 48px;
-      border-bottom: 1px solid #e6e7e8;
-      padding: 0 $spacer-6;
+      line-height: 48px;
       font-size: $font-size-large;
     }
 
-    &__content {
-      padding: $spacer-6;
+    .content-item {
       display: flex;
+      margin-bottom: 8px;
+      line-height: 22px;
+    }
+
+    & > .content-item:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .content-item--left {
+      color: #999;
+      flex: 0 0 56px;
+      margin-right: 16px;
+    }
+
+    .content-item--right {
       flex: 1;
-      flex-direction: column;
-    }
-  }
-
-  .user-dashboard__aside {
-    flex: 0 0 216px;
-    margin-right: $spacer-6;
-    height: 100%;
-    background-color: $white;
-
-    .aside__avator {
-      height: 216px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .aside__section {
-      margin-top: $spacer-3;
-      padding-left: $spacer-6;
-
-      .title {
-        height: 48px;
-        line-height: 48px;
-        font-size: $font-size-large;
-      }
-
-      .content-item {
-        display: flex;
-        margin-bottom: 8px;
-        line-height: 22px;
-      }
-
-      & > .content-item:last-of-type {
-        margin-bottom: 0;
-      }
-
-      .content-item--left {
-        color: #999;
-        flex: 0 0 56px;
-        margin-right: 16px;
-      }
-
-      .content-item--right {
-        flex: 1;
-      }
     }
   }
 }

@@ -3,27 +3,6 @@
 .page--list-task {
   box-sizing: border-box;
 
-  .page--list-header {
-    height: 56px;
-    display: flex;
-    justify-content: space-between;
-    font-size: $font-size-x-large;
-    align-items: center;
-    font-weight: $font-weight-semibold;
-    padding: $spacer-6;
-    box-sizing: border-box;
-    margin-bottom: $spacer-4;
-
-    .search-btn {
-      padding: 0 5px;
-    }
-
-    .icon-search {
-      color: get-color($palette-hiui, '50');
-      font-size: $font-size-h3;
-    }
-  }
-
   .hi-card {
     width: 276px;
     height: 144px;
@@ -38,21 +17,25 @@
   .tasks--card-item {
     margin-bottom: $spacer-6;
     margin-right: $spacer-6;
+
+    .icon-plus {
+      font-size: 32px;
+      color: $gray-dark;
+    }
   }
 
   .tasks--card-container {
     display: flex;
     flex-wrap: wrap;
     flex: 1 0 25%;
+
+    .hi-grid__col-6:nth-of-type(4n) .tasks--card-item {
+      margin-right: 0;
+    }
   }
 
   .tasks__container {
-    padding: 0 24px 24px 24px;
-  }
-
-  .icon-plus {
-    font-size: 32px;
-    color: $gray-dark;
+    margin-bottom: $spacer-6;
   }
 
   .hi-pagination__item {

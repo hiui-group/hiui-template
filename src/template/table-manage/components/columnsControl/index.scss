@@ -1,0 +1,82 @@
+$kitPrefix: 'hiui-componentkit' !default;
+
+.#{hiui-componentkit}-columnes {
+  margin-right: 10px;
+
+  &__attachele {
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    color: #383e47;
+    cursor: pointer;
+
+    &:hover {
+      color: #4284f5;
+    }
+
+    &-text {
+      display: inline-block;
+      margin: 0 4px;
+    }
+  }
+}
+
+.#{hiui-componentkit}-columnes__popper {
+  &-content {
+    width: 276px;
+    height: 442px;
+    background: #fff;
+    box-shadow: 0 2px 8px 0 rgba(56, 62, 71, 0.1);
+    border-radius: 2px;
+    border: 1px solid #e7e7e7;
+    box-sizing: border-box;
+
+    .columnes {
+      &__items {
+        height: 396px;
+        overflow: scroll;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #383e47;
+
+        &-text {
+          margin-left: 10px;
+        }
+
+        &-right {
+          cursor: move;
+        }
+      }
+
+      &__footer {
+        display: flex;
+        height: 46px;
+        border-top: 1px solid #e7e7e7;
+        line-height: 46px;
+
+        span {
+          width: 50%;
+          text-align: center;
+          cursor: pointer;
+
+          &:hover {
+            color: #4284f5;
+          }
+        }
+
+        &--confirm {
+          border-left: 1px solid #e7e7e7;
+        }
+      }
+    }
+  }
+}

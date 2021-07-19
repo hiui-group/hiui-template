@@ -19,7 +19,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({})
   const [themeType, setThemeType] = useState('classic')
   const getUserInfo = useCallback(() => {
-    Axios.get('http://mock.be.mi.com/mock/2532/user/info').then(response => {
+    Axios.get('https://mock.be.mi.com/mock/2532/user/info').then(response => {
       const { data: { code = 0, data: userInfo } = {} } = response
 
       if (code !== 200) {

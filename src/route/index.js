@@ -31,9 +31,9 @@ const config = [
   {
     name: '首页',
     children: [
-      { name: '仪表盘', path: '/home-dashboard' },
-      { name: '工作台', path: '/home-workbench' },
-      { name: '门户', path: '/home-portal' }
+      { name: '仪表盘', path: '/hiui/templates-preview/home-dashboard' },
+      { name: '工作台', path: '/hiui/templates-preview/home-workbench' },
+      { name: '门户', path: '/hiui/templates-preview/home-portal' }
     ]
   },
   {
@@ -41,27 +41,27 @@ const config = [
     children: [
       {
         name: '单列表单',
-        path: '/form-basic'
+        path: '/hiui/templates-preview/form-basic'
       },
       {
         name: '双列表单',
-        path: '/form-double-column'
+        path: '/hiui/templates-preview/form-double-column'
       },
       {
         name: '分步表单',
-        path: '/form-with-stepper'
+        path: '/hiui/templates-preview/form-with-stepper'
       },
       {
         name: '分组表单 + 标签',
-        path: '/form-with-taps'
+        path: '/hiui/templates-preview/form-with-taps'
       },
       {
         name: '分组表单',
-        path: '/form-with-group'
+        path: '/hiui/templates-preview/form-with-group'
       },
       {
         name: '内嵌表格表单',
-        path: '/form-with-table'
+        path: '/hiui/templates-preview/form-with-table'
       }
     ]
   },
@@ -70,51 +70,51 @@ const config = [
     children: [
       {
         name: '表格-分组(横向)',
-        path: '/table-group-horizontal'
+        path: '/hiui/templates-preview/table-group-horizontal'
       },
       {
         name: '表格-分组(纵向)',
-        path: '/table-group-vertical'
+        path: '/hiui/templates-preview/table-group-vertical'
       },
       {
         name: '表格-分组(纵向2)',
-        path: '/table-group-horizontal-group'
+        path: '/hiui/templates-preview/table-group-horizontal-group'
       },
       {
         name: '表格-基础查询',
-        path: '/table-query-basic'
+        path: '/hiui/templates-preview/table-query-basic'
       },
       {
         name: '表格-平铺查询（单选）',
-        path: '/table-tile-single'
+        path: '/hiui/templates-preview/table-tile-single'
       },
       {
         name: '表格-高级管理',
-        path: '/table-manage'
+        path: '/hiui/templates-preview/table-manage'
       },
       {
         name: '表格-平铺查询（多选）',
-        path: '/table-tile-multiple'
+        path: '/hiui/templates-preview/table-tile-multiple'
       },
       {
         name: '表格-树查询（单选）',
-        path: '/table-tree-single-query'
+        path: '/hiui/templates-preview/table-tree-single-query'
       },
       {
         name: '表格-树查询（多选）',
-        path: '/table-tree-multiple-query'
+        path: '/hiui/templates-preview/table-tree-multiple-query'
       },
       {
         name: '表格-高级查询',
-        path: '/table-advan-group-horizontal'
+        path: '/hiui/templates-preview/table-advan-group-horizontal'
       },
       {
         name: '表格-高级查询（多行选项）',
-        path: '/table-advan-group-more-options'
+        path: '/hiui/templates-preview/table-advan-group-more-options'
       },
       {
         name: '表格-高级筛选',
-        path: '/table-advan-filter'
+        path: '/hiui/templates-preview/table-advan-filter'
       }
     ]
   },
@@ -123,23 +123,23 @@ const config = [
     children: [
       {
         name: '流程卡片',
-        path: '/list-flow-card'
+        path: '/hiui/templates-preview/list-flow-card'
       },
       {
         name: '嵌入式',
-        path: '/list-embeded'
+        path: '/hiui/templates-preview/list-embeded'
       },
       {
         name: '信息流',
-        path: '/list-info-flow'
+        path: '/hiui/templates-preview/list-info-flow'
       },
       {
         name: '卡片列表',
-        path: '/list-task'
+        path: '/hiui/templates-preview/list-task'
       },
       {
         name: '小卡片',
-        path: '/list-indicator'
+        path: '/hiui/templates-preview/list-indicator'
       }
     ]
   },
@@ -148,27 +148,27 @@ const config = [
     children: [
       {
         name: '单列',
-        path: '/detail-basic'
+        path: '/hiui/templates-preview/detail-basic'
       },
       {
         name: '双列',
-        path: '/detail-double-column'
+        path: '/hiui/templates-preview/detail-double-column'
       },
       {
         name: '分组',
-        path: '/detail-group'
+        path: '/hiui/templates-preview/detail-group'
       },
       {
         name: '步骤',
-        path: '/detail-stepper'
+        path: '/hiui/templates-preview/detail-stepper'
       },
       {
         name: '关联',
-        path: '/detail-relevance'
+        path: '/hiui/templates-preview/detail-relevance'
       },
       {
         name: '卡片',
-        path: '/detail-card'
+        path: '/hiui/templates-preview/detail-card'
       }
     ]
   },
@@ -177,11 +177,11 @@ const config = [
     children: [
       {
         name: '账号中心',
-        path: '/user-center'
+        path: '/hiui/templates-preview/user-center'
       },
       {
         name: '活动信息-混合',
-        path: '/user-dashboard'
+        path: '/hiui/templates-preview/user-dashboard'
       }
     ]
   },
@@ -190,55 +190,55 @@ const config = [
     children: [
       {
         name: '加载中',
-        path: '/normal-loading'
+        path: '/hiui/templates-preview/normal-loading'
       },
       {
         name: '服务器出错',
-        path: '/result-server-error'
+        path: '/hiui/templates-preview/result-server-error'
       },
       {
         name: '暂无数据',
-        path: '/result-no-data'
+        path: '/hiui/templates-preview/result-no-data'
       },
       {
         name: '暂无权限',
-        path: '/result-no-auth'
+        path: '/hiui/templates-preview/result-no-auth'
       },
       {
         name: '网络中断',
-        path: '/result-network-broken'
+        path: '/hiui/templates-preview/result-network-broken'
       },
       {
         name: '成功',
-        path: '/result-success'
+        path: '/hiui/templates-preview/result-success'
       },
       {
         name: '失败',
-        path: '/result-failed'
+        path: '/hiui/templates-preview/result-failed'
       },
       {
         name: '服务器出错（米兔版）',
-        path: '/result-server-error-mirabbit'
+        path: '/hiui/templates-preview/result-server-error-mirabbit'
       },
       {
         name: '暂无数据（米兔版）',
-        path: '/result-no-data-mirabbit'
+        path: '/hiui/templates-preview/result-no-data-mirabbit'
       },
       {
         name: '暂无权限（米兔版）',
-        path: '/result-no-auth-mirabbit'
+        path: '/hiui/templates-preview/result-no-auth-mirabbit'
       },
       {
         name: '网络中断（米兔版）',
-        path: '/result-network-broken-mirabbit'
+        path: '/hiui/templates-preview/result-network-broken-mirabbit'
       },
       {
         name: '成功（米兔版）',
-        path: '/result-success-mirabbit'
+        path: '/hiui/templates-preview/result-success-mirabbit'
       },
       {
         name: '失败（米兔版）',
-        path: '/result-failed-mirabbit'
+        path: '/hiui/templates-preview/result-failed-mirabbit'
       }
     ]
   }

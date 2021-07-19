@@ -49,7 +49,7 @@ export default class UserCenter extends Component {
 
   fetchUserSelectList = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/user/select')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/user/select')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {
@@ -69,7 +69,7 @@ export default class UserCenter extends Component {
 
   fetchUserInfo = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/user/info')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/user/info')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {

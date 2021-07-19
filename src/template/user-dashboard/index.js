@@ -17,7 +17,7 @@ class UserDashboard extends Component {
 
   fetchUserDashboard = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/user/dashboard')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/user/dashboard')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {

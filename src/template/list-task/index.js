@@ -27,7 +27,7 @@ export default class ListTask extends Component {
 
   fetchInfoFlowList = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/list/task')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/list/task')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {

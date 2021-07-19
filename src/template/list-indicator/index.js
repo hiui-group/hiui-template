@@ -23,7 +23,7 @@ export default class ListIndicator extends Component {
 
   fetchIndicatorList = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/list/indicator')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/list/indicator')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {

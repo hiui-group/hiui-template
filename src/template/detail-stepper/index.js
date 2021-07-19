@@ -37,7 +37,7 @@ export default class Template extends Component {
 
   fetchBaseInfo = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/details')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/details')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {

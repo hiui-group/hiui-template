@@ -14,7 +14,7 @@ export default class ListFlowCard extends Component {
 
   fetchList = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/list/flowcard')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/list/flowcard')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {

@@ -27,7 +27,7 @@ export default class ListEmbeded extends Component {
 
   fetchEmbededList = async () => {
     return axios
-      .get('https://yapi.baidu.com/mock/34633/hiui/list/embeded')
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/list/embeded')
       .then(res => {
         const resData = res?.data
         if (resData && resData.code === 200) {

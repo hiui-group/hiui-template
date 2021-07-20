@@ -23,7 +23,7 @@ export default class HomePortal extends Component {
   async componentDidMount() {
     const {
       data: { data: { backgroundUrl, hotWords = [], commonNavInfos = [], mineNavInfos = [] } = {} } = {}
-    } = await Axios.get('http://yapi.smart-xwork.cn/mock/64112/hiui/portal/info')
+    } = await Axios.get('https://yapi.smart-xwork.cn/mock/64112/hiui/portal/info')
     this.setState({ backgroundUrl, hotWords, commonNavInfos, mineNavInfos })
   }
 

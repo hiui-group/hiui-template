@@ -51,14 +51,14 @@ export default class Workbench extends Component {
       data: {
         data: { carouselUrls = [], waitToBeDoneTotal = 0, quickLinkInfos = [] }
       }
-    } = await Axios.get('http://yapi.smart-xwork.cn/mock/64112/hiui/workbench/info')
+    } = await Axios.get('https://yapi.smart-xwork.cn/mock/64112/hiui/workbench/info')
     this.setState({ carouselUrls, waitToBeDoneTotal, quickLinkInfos })
     this.updateWaitToBeDoneInfos(this.state.waitToBeDoneNowPage)
   }
 
   updateWaitToBeDoneInfos = async nowPage => {
     // 此处是为了演示效果，直接将size定死，定为4
-    const urlPath = `http://yapi.smart-xwork.cn/mock/64112/hiui/workbench/waitToBeDoneInfos?nowPage=${nowPage}&size=4`
+    const urlPath = `https://yapi.smart-xwork.cn/mock/64112/hiui/workbench/waitToBeDoneInfos?nowPage=${nowPage}&size=4`
     const {
       data: { data: waitToBeDoneInfos = [] }
     } = await Axios.get(urlPath)

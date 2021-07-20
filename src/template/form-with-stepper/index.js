@@ -1,51 +1,43 @@
 import React, { Component } from 'react'
-import {
-  Form,
-  Input,
-  Button,
-  DatePicker,
-  Counter,
-  TimePicker,
-  Select,
-  Radio,
-  Upload,
-  Stepper,
-  Grid
-} from '@hi-ui/hiui'
+import '@hi-ui/hiui/es/table/style/index.css'
+import { Form, Input, Select, Button, Upload, Message, Stepper } from '@hi-ui/hiui'
 import './index.scss'
+
 const FormItem = Form.Item
 
 export default class Template extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
+    this.form = React.createRef()
     this.state = {
-      forms: this.initForms(),
-      current: 0,
+      currentSteper: 0,
+      forms: {
+        name: '',
+        orderNumber: '',
+        date: { start: new Date(), end: new Date() },
+        select: [],
+        num: 0,
+        radio: '选项一',
+        longText: ''
+      },
       rules: {
-        text: [
+        name: [
           {
             required: true,
-            message: <span style={{ color: '#ccc' }}>请输入姓名</span>,
-            trigger: 'onBlur,onChange'
-          }
-        ],
-        date: [
-          {
-            required: true,
-            message: <span style={{ color: '#ccc' }}>请选择时间</span>,
+            message: '请输入姓名',
             trigger: 'onBlur,onChange'
           }
         ]
       }
     }
     this.singleList = [
-      { title: '较长的一段描述文本', id: '2' },
-      { title: '手机', id: '3' },
-      { title: '笔记本', id: '4', disabled: true },
-      { title: '生活周边', id: '5' },
+      { title: '信息部', id: '2' },
+      { title: '手机部', id: '3' },
+      { title: '中国区', id: '4', disabled: true },
+      { title: '国籍部', id: '5' },
       { title: '生态链', id: '6' }
     ]
-    this.list = [
+    this.stepperData = [
       {
         title: '账号信息'
       },
@@ -58,135 +50,111 @@ export default class Template extends Component {
     ]
   }
 
-  initForms () {
-    return Object.assign(
-      {},
-      {
-        text: '',
-        Date: { start: new Date(), end: new Date() },
-        num: 0,
-        time: new Date(),
-        select: '4',
-        radio: '重庆',
-        longText: ''
-      }
+  inputPrepend = () => {
+    return (
+      <Select
+        type="single"
+        clearable={false}
+        style={{ width: 80 }}
+        data={[
+          { title: '+86', id: '86' },
+          { title: '+1', id: '1' },
+          { title: '+33', id: '33' },
+          { title: '+91', id: '91' }
+        ]}
+        defaultValue="86"
+      />
     )
   }
 
-  handleChange () {}
-
-  handleSubmit () {}
-
-  reset () {}
-
-  render () {
-    const Row = Grid.Row
-    const Col = Grid.Col
-    const { forms } = this.state
-
+  inputAppend = () => {
     return (
-      <div className='page--form-with-stepper'>
-        <Form ref={this.form} model={forms} rules={this.state.rules} labelWidth='120'>
-          <h2 className='hi-form__title'>
-            表单
-            <div className='stepper-container'>
-              <Stepper data={this.list} current={0} />
-            </div>
-          </h2>
+      <Button
+        type="default"
+        icon="search"
+        onClick={() => {
+          Message.open({ type: 'success', title: '查询成功', duration: 2000 })
+        }}
+      />
+    )
+  }
 
-          <Row>
-            <Col span={24}>
-              <fieldset>
-                <legend>基础信息</legend>
+  next() {
+    this.form.current.validate((valid, error) => {
+      console.log(valid, error)
+      if (!error) {
+        console.log(valid)
+        const {
+          stepperData,
+          state: { currentSteper }
+        } = this
+        this.setState({
+          currentSteper: (currentSteper + 1) % stepperData.length
+        })
+      } else {
+        console.log('error', error)
+        Message.open({ type: 'error', title: '数据校验异常', duration: 2000 })
+      }
+    })
+  }
 
-                <FormItem label='姓名' field='text'>
-                  <Input
-                    value={forms.text}
-                    placeholder={'请输入'}
-                    onChange={this.handleChange.bind(this, 'column1')}
-                    style={{ width: '250px' }}
-                  />
-                </FormItem>
-                <FormItem label='时间' field='date'>
-                  <DatePicker
-                    type='daterange'
-                    value={forms.date}
-                    onChange={d => {
-                      console.log(d)
-                    }}
-                  />
-                </FormItem>
-                <FormItem label='数量' field='num'>
-                  <Counter
-                    defaultValue={forms.num}
-                    step={1}
-                    min={0}
-                    max={8}
-                    onChange={(e, val) => console.log('变化后的值：', val)}
-                  />
-                </FormItem>
-              </fieldset>
-              <fieldset>
-                <legend>附加信息</legend>
+  cancelSubmit() {
+    this.form.current.resetValidates()
+  }
 
-                <FormItem label='时间' field='time'>
-                  <TimePicker
-                    value={forms.time}
-                    onChange={d => {
-                      console.log(d)
-                    }}
-                  />
-                </FormItem>
-                <FormItem label='种类' field='select'>
-                  <Select
-                    data={this.singleList}
-                    placeholder='请选择种类'
-                    style={{ width: '200px' }}
-                    value={forms.select}
-                    onChange={item => {
-                      console.log('单选结果', item)
-                    }}
-                  />
-                </FormItem>
-                <FormItem label='单选' field='radio'>
-                  <Radio.Group
-                    data={['北京', '上海', '重庆']}
-                    value={forms.radio}
-                    onChange={this.handleChange.bind(this, 'region', '')}
-                  />
-                </FormItem>
+  render() {
+    const { forms, rules, currentSteper } = this.state
+    return (
+      <div className="page-form-with-stepper">
+        <div className="page-form-with-stepper-content">
+          <h2 className="page-form-with-stepper-title">分步表单</h2>
+          <div className="page-form-stepper">
+            <Stepper data={this.stepperData} current={currentSteper} />
+          </div>
+          <Form ref={this.form} rules={rules} labelWidth="70" initialValues={forms} labelPlacement="right">
+            <FormItem label="姓名" field="name">
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
+            </FormItem>
+            <FormItem label="昵称" field="nickname">
+              <Input placeholder={'请输入'} style={{ width: '320px' }} />
+            </FormItem>
+            <FormItem label="部门" field="select">
+              <Select
+                data={this.singleList}
+                placeholder="请选择种类"
+                style={{ width: '320px' }}
+                onChange={item => {
+                  console.log('单选结果', item)
+                }}
+              />
+            </FormItem>
+            <FormItem label="照片" field="photo">
+              <Upload
+                type="photo"
+                uploadAction="http://127.0.0.1:8000"
+                param={{ id: 'uid', channel: 'youpin' }}
+                name={'files[]'}
+              />
+            </FormItem>
 
-                <FormItem label='照片' field='radio'>
-                  <Upload
-                    type='photo'
-                    uploadAction='http://127.0.0.1:8000'
-                    params={{ id: 'uid', channel: 'youpin' }}
-                    name={'files[]'}
-                  />
-                </FormItem>
+            <FormItem label="备注" field="longText">
+              <Input
+                placeholder={'多行文本'}
+                style={{ width: '320px', height: '160px', resize: 'none' }}
+                type="textarea"
+              />
+            </FormItem>
+          </Form>
+        </div>
 
-                <FormItem label='文本框' field='longText'>
-                  <Input
-                    value={forms.longText}
-                    placeholder={'多行文本'}
-                    onChange={this.handleChange.bind(this, 'column1')}
-                    style={{ width: '320px', height: '100px' }}
-                    type='textarea'
-                  />
-                </FormItem>
-              </fieldset>
-
-              <FormItem>
-                <Button type='primary' onClick={this.handleSubmit.bind(this)}>
-                  下一步
-                </Button>
-                <Button type='line' onClick={this.reset.bind(this)} style={{ marginLeft: '16px' }}>
-                  重置
-                </Button>
-              </FormItem>
-            </Col>
-          </Row>
-        </Form>
+        <div className="page--form-double-column--footer">
+          <Button type="primary" onClick={this.cancelSubmit.bind(this)}>
+            取消
+          </Button>
+          <Button type="line" onClick={this.next.bind(this)}>
+            下一步
+          </Button>
+        </div>
       </div>
     )
   }

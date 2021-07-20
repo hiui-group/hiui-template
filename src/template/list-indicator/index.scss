@@ -4,12 +4,14 @@
   box-sizing: border-box;
 
   .indicator__container {
-    padding: $spacer-4 $spacer-6;
+    padding: $spacer-6 0;
   }
 
   .indicator——type_container {
     display: flex;
-    padding-bottom: 16px;
+    border-top: 1px solid $gray-light;
+    padding: $spacer-5 $spacer-6;
+    background: $white;
   }
 
   .indicator——type_item {
@@ -21,19 +23,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 40px;
+    margin-right: $spacer-6;
     background: $white;
 
-    &:hover {
-      color: get-color($palette-hiui, '50');
+    &.active {
+      color: $white;
+      background-color: get-color($palette-hiui, '50');
       border-color: get-color($palette-hiui, '50');
     }
+
+    &:hover {
+      color: $white;
+      background-color: get-color($palette-hiui, '50');
+      border-color: get-color($palette-hiui, '50');
+    }
+  }
+
+  .indicator——item {
+    padding: $spacer-5 0 0 $spacer-6;
+    margin-bottom: $spacer-6;
+    background: $white;
   }
 
   .indicator——item_header {
     padding-left: 11px;
     font-size: $font-size-large;
-    margin: $spacer-3 0;
+    // margin: $spacer-3 0;
+    margin-bottom: $spacer-4;
     position: relative;
 
     &::before {
@@ -44,26 +60,6 @@
       left: 0;
       top: 4.5px;
       background: get-color($palette-hiui, '50');
-    }
-  }
-
-  .page--list-header {
-    height: 56px;
-    display: flex;
-    justify-content: space-between;
-    font-size: $font-size-x-large;
-    align-items: center;
-    font-weight: $font-weight-semibold;
-    padding: $spacer-6;
-    box-sizing: border-box;
-
-    .search-btn {
-      padding: 0 5px;
-    }
-
-    .icon-search {
-      color: get-color($palette-hiui, '50');
-      font-size: $font-size-h3;
     }
   }
 }

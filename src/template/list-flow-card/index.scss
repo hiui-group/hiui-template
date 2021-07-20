@@ -1,0 +1,80 @@
+@import '@hi-ui/core-css/index.scss';
+
+$borderRadius: 4px;
+
+.page--list-flow-card {
+  .top-part-container {
+    background: $white;
+    border-radius: $borderRadius;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0px 24px;
+
+    .icon-search {
+      color: get-color($palette-hiui, '50');
+    }
+  }
+
+  .top-part-function-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .add-new-button {
+    margin-left: 16px;
+  }
+
+  .top-part-title {
+    font-size: 18px;
+    color: #383e47;
+    font-weight: bold;
+  }
+
+  .stepper-container {
+    margin: 24px 80px 16px;
+
+    // 覆盖stepper默认样式
+    .hi-stepper__icon {
+      background-color: rgb(246, 246, 246);
+    }
+  }
+
+  .card-container {
+    margin: 8px 0px;
+
+    .hi-card {
+      border: none;
+      border-radius: $borderRadius;
+      height: 144px;
+      box-sizing: border-box;
+    }
+
+    .card-detail {
+      font-size: $font-size-normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    &:hover {
+      .card-function-button {
+        opacity: 1;
+      }
+    }
+  }
+
+  .card-function-button {
+    cursor: pointer;
+    opacity: 0;
+
+    &:hover {
+      color: get-color($palette-hiui, '50');
+    }
+  }
+}

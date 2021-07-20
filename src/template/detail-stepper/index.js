@@ -1,18 +1,30 @@
 import React, { Component } from 'react'
 import '@hi-ui/hiui/es/table/style/index.css'
-import { Input, DatePicker, Select, Button, Stepper, Form, Icon, Grid, Loading } from '@hi-ui/hiui'
+import {
+  Breadcrumb,
+  Input,
+  DatePicker,
+  Select,
+  Button,
+  Stepper,
+  Form,
+  Icon,
+  Grid,
+  Loading,
+  Card,
+  Dropdown,
+  Notification
+} from '@hi-ui/hiui'
 import './index.scss'
 import axios from 'axios'
 
+const { Row, Col } = Grid
 const FormItem = Form.Item
 
 export default class Template extends Component {
   state = {
-    title: '小米8屏幕指纹版',
-    desc: Array(3).fill({
-      key: '状态',
-      value: '已借出'
-    }),
+    title: '',
+    desc: [],
     baseInfo: {},
     stepper: {
       data: Array(5).fill({
@@ -23,21 +35,48 @@ export default class Template extends Component {
     }
   }
 
-  fetchBaseInfo = () => {
+  fetchBaseInfo = async () => {
     return axios
-      .get('http://yapi.demo.qunar.com/mock/26534/hiui/user/detail')
-      .then(({ data: { data: baseInfo } }) => {
-        this.setState({ baseInfo })
+      .get('https://yapi.smart-xwork.cn/mock/34633/hiui/details')
+      .then(res => {
+        const resData = res?.data
+        if (resData && resData.code === 200) {
+          const data = resData.data
+          this.setState({ baseInfo: data.baseInfo, title: data.title, desc: data.desc })
+        } else {
+          throw new Error('未知错误')
+        }
+      })
+      .catch(error => {
+        Notification.open({
+          type: 'error',
+          title: error.message
+        })
       })
   }
 
-  handleBackClick = () => {}
-  handleDeleteClick = () => {}
-  handleEditClick = () => {}
-  handleMoreClick = () => {}
-  handleSaveClick = () => {}
+  handleBackClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleBackClick'
+    })
+  }
 
-  async componentDidMount () {
+  handleSaveClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleSaveClick'
+    })
+  }
+
+  handleEditClick = () => {
+    Notification.open({
+      type: 'success',
+      title: 'handleEditClick'
+    })
+  }
+
+  async componentDidMount() {
     Loading.open(null, { key: 'lk' })
     try {
       await this.fetchBaseInfo()
@@ -46,83 +85,111 @@ export default class Template extends Component {
     }
   }
 
-  render () {
-    const Row = Grid.Row
-    const Col = Grid.Col
+  render() {
     const { title, baseInfo, stepper } = this.state
     const formTitle = stepper.data[stepper.current].title
+
     return (
-      <div className='page--detail-stepper'>
-        <Col className='detail-stepper'>
-          <Col className='detail-stepper__header'>
-            <Row className='row row-01' align='center'>
-              <span onClick={this.handleBackClick}>
-                <Icon name='left' />
-                <span>返回</span>
-              </span>
-              <span className='spacer'>|</span>
-              <span>详情</span>
+      <div className="page--detail-stepper">
+        <Col className="detail-stepper">
+          <Col className="detail-stepper__header">
+            <Row className="row row-01" align="center">
+              <Breadcrumb
+                separator="|"
+                onClick={this.handleBackClick}
+                data={[
+                  {
+                    content: (
+                      <span>
+                        <Icon name="left" />
+                        <span style={{ color: '#333' }}>返回</span>
+                      </span>
+                    ),
+                    path: '/'
+                  },
+                  {
+                    content: <span style={{ color: '#999' }}>详情</span>,
+                    path: '/detail-basic'
+                  }
+                ]}
+              />
             </Row>
-            <Row className='row row-02' justify='space-between'>
+            <Row className="row row-02" justify="space-between">
               <Col>
-                <h3>{title}</h3>
+                <h2>{title}</h2>
               </Col>
               <Col>
-                <Button icon='edit' type='primary' onClick={this.handleEditClick}>
+                <Button icon="edit" type="primary" onClick={this.handleEditClick}>
                   编辑
                 </Button>
-                <Button icon='collection' type='line' onClick={this.handleDeleteClick}>
+                <Button icon="collection" type="line" onClick={this.handleSaveClick}>
                   收藏
                 </Button>
-                <Button icon='more' type='line' onClick={this.handleMoreClick} />
+                <Dropdown
+                  className="usual-dropdown-button"
+                  data={[
+                    {
+                      title: '操作1'
+                    },
+                    {
+                      title: '操作2'
+                    }
+                  ]}
+                  trigger="click"
+                  type="button"
+                  placement="bottom-end"
+                  title={<Icon name="more" />}
+                />
               </Col>
             </Row>
           </Col>
-          <Col className='detail-stepper__card detail-stepper__card--base page page--gutter'>
-            <Row className='title'>基础信息</Row>
-            <ul>
-              {Object.values(baseInfo).map(({ key, value }, idx) => (
-                <li key={idx}>
-                  <div>{key}</div>
-                  <div>{value}</div>
-                </li>
-              ))}
-            </ul>
+          <Col className="detail-stepper__card detail-stepper__card--base">
+            <Row className="detail-basic__row">
+              <Card title="基础信息" bordered={false} hoverable>
+                <ul>
+                  {Object.values(baseInfo).map(({ key, value }, idx) => (
+                    <li key={idx}>
+                      <div>{key}</div>
+                      <div>{value}</div>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </Row>
           </Col>
-          <Col className='detail-stepper__card detail-stepper__card--stepper page page--gutter'>
-            <Row className='title'>项目流程</Row>
-            <Row className='stepper'>
+          <Col className="detail-stepper__card detail-stepper__card--stepper">
+            <Card title="项目流程" bordered={false} hoverable>
               <Stepper {...{ ...stepper, itemLayout: 'vertical' }} />
-            </Row>
-            <Row className='form-title'>
-              {formTitle}
-              <Button onClick={this.handleSaveClick} type='line'>
-                保存
-              </Button>
-            </Row>
-            <Form labelPlacement='left' labelWidth='96'>
-              <Row>
-                <Col span={12}>
-                  <FormItem label='项目名称'>
-                    <Input style={{ width: '320px' }} />
-                  </FormItem>
-                  <FormItem label='项目类型'>
-                    <Select style={{ width: '320px' }} />
-                  </FormItem>
-                  <FormItem label='项目周期'>
-                    <DatePicker type='daterange' style={{ width: '320px' }} />
-                  </FormItem>
-                </Col>
-                <Col span={12}>
-                  <FormItem label='项目执行人'>
-                    <Input style={{ width: '320px' }} />
-                  </FormItem>
-                  <FormItem label='备注'>
-                    <Input type='textarea' style={{ width: '320px', resize: 'none' }} />
-                  </FormItem>
-                </Col>
-              </Row>
-            </Form>
+              <div className="form-title">
+                <span>{formTitle}</span>
+                <Button onClick={this.handleSaveClick} type="line">
+                  保存
+                </Button>
+              </div>
+              <Form labelPlacement="left" labelWidth="96">
+                <Row>
+                  <Col span={12}>
+                    <FormItem label="项目名称">
+                      <Input style={{ width: '320px' }} />
+                    </FormItem>
+                    <FormItem label="项目类型">
+                      <Select style={{ width: '320px' }} />
+                    </FormItem>
+                    <FormItem label="项目周期">
+                      <DatePicker type="daterange" width={320} />
+                    </FormItem>
+                  </Col>
+                  <Col span={12}>
+                    <FormItem label="项目执行人">
+                      <Input style={{ width: '320px' }} />
+                    </FormItem>
+                    <FormItem label="备注">
+                      <Input type="textarea" style={{ width: '320px', resize: 'none' }} />
+                    </FormItem>
+                  </Col>
+                </Row>
+              </Form>
+            </Card>
           </Col>
         </Col>
       </div>

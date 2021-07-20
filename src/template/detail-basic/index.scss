@@ -1,16 +1,25 @@
 @import '@hi-ui/core-css/index.scss';
 
 .page--detail-basic {
-  padding: 0 $spacer-6;
   min-height: calc(100vh - 64px);
   box-sizing: border-box;
 
   .detail-basic__header {
+    margin-top: -$spacer-6;
+    margin-left: -$spacer-6;
+    margin-right: -$spacer-6;
+    padding: $spacer-3 $spacer-6;
+    background-color: $white;
+
+    .hi-breadcrumb {
+      margin-left: -4px;
+    }
+
     .row {
       &-01 {
         color: $gray-dark;
-        height: 32px;
         align-items: center;
+        line-height: 1;
       }
 
       .spacer {
@@ -19,9 +28,9 @@
 
       &-02 {
         color: #383e47;
-        padding: 0 0 18px;
-        margin-top: 0;
+        margin-top: $spacer-5;
         align-items: center;
+        background-color: $white;
       }
 
       &-02 h2 {
@@ -39,24 +48,26 @@
         color: $gray-light;
       }
 
-      &-03 .spacer:last-child {
+      &-03 div:last-child .spacer {
         display: none;
       }
     }
   }
 
   .detail-basic__body {
-    background: $white;
-    padding: $spacer-3 $spacer-6;
+    margin-top: $spacer-6;
 
-    .title {
-      font-size: $font-size-large;
-      height: 48px;
-      line-height: 48px;
+    .hi-card {
+      width: 100%;
     }
 
-    .title:not(:first-child) {
-      margin-top: 12px;
+    .detail-basic__row {
+      background: $white;
+      font-size: $font-size-large;
+
+      &:not(:first-child) {
+        margin-top: $spacer-6;
+      }
     }
 
     ul {
@@ -69,6 +80,7 @@
       display: flex;
       margin-top: 8px;
       line-height: 22px;
+      font-size: 14px;
     }
 
     li div:first-child {
@@ -80,6 +92,20 @@
 
     li div:last-child {
       width: 68%;
+      word-break: break-word;
+      white-space: pre-wrap;
     }
+  }
+}
+
+.usual-dropdown-button {
+  margin-left: $spacer-2;
+
+  .hi-btn {
+    padding: 4px 6px 4px 8px;
+  }
+
+  .icon-down {
+    display: none;
   }
 }

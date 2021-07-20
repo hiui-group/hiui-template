@@ -2,7 +2,7 @@
   position: fixed;
   right: 0;
   bottom: 120px;
-  z-index: 999;
+  z-index: 99999;
 
   .copy {
     display: flex;
@@ -28,29 +28,21 @@
   }
 }
 
-.code-modal {
+.code-drawer {
   i {
     cursor: pointer;
   }
 
-  .hi-modal__dialog--large {
-    width: fit-content;
-    min-width: 800px;
-    max-width: 75%;
-  }
-
-  .hi-modal__content {
-    padding: 0;
-
-    .hi-menu {
-      padding: 0 12px;
-    }
-  }
-
   .code-container {
-    max-height: calc(80vh - 200px);
+    width: 100%;
+    height: calc(100vh - 114px);
     overflow: auto;
     background: #f8f8fe;
+  }
+
+  .hi-drawer__content {
+    display: flex;
+    padding: 0;
   }
 
   .hi-navmenu__list {
@@ -59,5 +51,23 @@
 
   pre {
     padding: 0 16px !important;
+  }
+
+  .hi-menu {
+    .hi-menu__title-content {
+      min-width: fit-content;
+    }
+  }
+
+  .hi-menu-items {
+    overflow-x: auto;
+  }
+
+  .hi-menu--horizontal .hi-menu-item {
+    margin-right: 36px;
+  }
+
+  .hi-menu--vertical .hi-menu--1 .hi-submenu__items > .hi-menu__title {
+    padding-left: 32px;
   }
 }

@@ -3,30 +3,8 @@
 .page--list-flow {
   box-sizing: border-box;
 
-  .page--list-header {
-    height: 56px;
-    display: flex;
-    justify-content: space-between;
-    font-size: $font-size-x-large;
-    align-items: center;
-    font-weight: $font-weight-semibold;
-    padding: $spacer-6;
-    box-sizing: border-box;
-    margin-bottom: $spacer-4;
-
-    .search-btn {
-      padding: 0 5px;
-    }
-
-    .icon-search {
-      color: get-color($palette-hiui, '50');
-      font-size: $font-size-h3;
-    }
-  }
-
   .page--list-container {
-    padding: $spacer-6;
+    padding: $spacer-5 $spacer-6;
     background: $white;
-    margin: 0 $spacer-6;
   }
 }

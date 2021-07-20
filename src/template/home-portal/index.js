@@ -1,181 +1,129 @@
 import React, { Component } from 'react'
-import { Grid, Input, Button, Icon, Card, Modal } from '@hi-ui/hiui'
-import { Link } from 'react-router-dom'
+import Axios from 'axios'
+import { Grid, Input, Button, Icon, Menu, Card } from '@hi-ui/hiui'
 import './index.scss'
 
 const { Row, Col } = Grid
 
-class HomePortal extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      showTodoModal: false
-    }
+export default class HomePortal extends Component {
+  navMenuId = {
+    commonUse: 1,
+    mine: 2
   }
 
-  renderShortcut () {
-    let shortcutList = [
-      {
-        title: '福利介绍',
-        desc: '福利介绍',
-        color: '#529DFD'
-      },
-      {
-        title: '职场介绍',
-        desc: '职场介绍',
-        color: '#FF7C4E'
-      },
-      {
-        title: 'HR系统',
-        desc: 'HR系统',
-        color: '#31CCAC'
-      },
-      {
-        title: '会议室预定',
-        desc: '会议室预定',
-        color: '#00E0FF'
-      },
-      {
-        title: '培训平台',
-        desc: '培训平台',
-        color: '#D26AEB'
-      },
-      {
-        title: '海外派驻',
-        desc: '海外派驻',
-        color: '#FFE200'
-      }
-    ]
-
-    // shortcutList
-    shortcutList = shortcutList.map((item, i) => {
-      return (
-        <Col key={i} span={8} className='portal__shortcut-item'>
-          <Card
-            hoverable
-            style={{
-              borderLeft: `2px solid ${item.color}`
-            }}
-          >
-            <h4>{item.title}</h4>
-            <p>{item.desc}</p>
-          </Card>
-        </Col>
-      )
-    })
-
-    return shortcutList
+  state = {
+    backgroundUrl: '',
+    hotWords: [],
+    searchKeyWord: '',
+    nowActiveNavId: this.navMenuId.commonUse,
+    commonNavInfos: [],
+    mineNavInfos: []
   }
 
-  renderTodo () {
-    let businessList = [
-      {
-        title: '项目评审',
-        desc: '项目评审'
-      },
-      {
-        title: '项目评审',
-        desc: '项目评审'
-      },
-      {
-        title: '项目评审',
-        desc: '项目评审'
-      },
-      {
-        title: '项目评审',
-        desc: '项目评审'
-      },
-      {
-        title: '项目评审',
-        desc: '项目评审'
-      }
-    ]
-    businessList = businessList.map((item, index) => {
-      return (
-        <Row className='portal__todo-item portal-todo-item' key={index}>
-          <Col>
-            <h4 className='portal-todo-item__title'>{item.title}</h4>
-            <div className='portal-todo-item__desc'>{item.desc}</div>
-          </Col>
-
-          <Col style={{ textAlign: 'right' }}>
-            <span
-              className='portal-todo-item__action'
-              onClick={() => {
-                this.setState({ showTodoModal: true })
-              }}
-            >办理</span>
-            <div className='portal-todo-item__date'>{new Date().toLocaleDateString()}</div>
-          </Col>
-        </Row>
-      )
-    })
-    return businessList
+  async componentDidMount() {
+    const {
+      data: { data: { backgroundUrl, hotWords = [], commonNavInfos = [], mineNavInfos = [] } = {} } = {}
+    } = await Axios.get('https://yapi.smart-xwork.cn/mock/64112/hiui/portal/info')
+    this.setState({ backgroundUrl, hotWords, commonNavInfos, mineNavInfos })
   }
 
-  render () {
+  /**
+   * 搜索关键词接口，用户可以自行改造，此处示例为自动使用Bing搜索
+   * @param {string} keyWord 关键词
+   */
+  searchKeyWordAction = keyWord => {
+    window.open(`https://cn.bing.com/search?q=${encodeURI(keyWord)}`)
+  }
+
+  renderSearchPart = () => {
+    const { hotWords, searchKeyWord } = this.state
+
     return (
-      <div className='page page--portal portal'>
-        <div className='portal__container'>
-          <Row justify='space-between'>
-            <Col span={8}>
-              <Input
-                style={{ width: '304px' }}
-                append={
-                  <Button icon='search' />
-                }
-                placeholder='关键词搜索'
-              />
-            </Col>
-          </Row>
+      <div className="search-container">
+        <Row justify="center">
+          <h3 className="search-guide">小米全渠道百亿级数据统计指标和事实</h3>
+        </Row>
+        <Row justify="center">
+          <Input
+            value={searchKeyWord}
+            onChange={e => this.setState({ searchKeyWord: e.target.value })}
+            className="search-input"
+            append={
+              <Button className="search-button" onClick={() => this.searchKeyWordAction(searchKeyWord)}>
+                <Icon name="search" />
+              </Button>
+            }
+            placeholder="关键词搜索"
+          />
+        </Row>
+        <Row justify="center">
+          <span>热搜词 ：&nbsp;</span>
+          {hotWords.map((word, index) => (
+            <span key={index} className="search-hot-word" onClick={() => this.searchKeyWordAction(word)}>
+              {word}
+            </span>
+          ))}
+        </Row>
+      </div>
+    )
+  }
 
-          <Row>
-            <Col span={24}>
-              <div className='portal__header'>
-                <h3>快捷访问</h3>
-              </div>
+  renderNav = () => {
+    const { nowActiveNavId, commonNavInfos, mineNavInfos } = this.state
+    const navData = nowActiveNavId === this.navMenuId.commonUse ? commonNavInfos : mineNavInfos
 
-              <Row gutter className='portal__shortcut-list'>
-                {this.renderShortcut()}
-              </Row>
-            </Col>
-          </Row>
+    const navMenuData = [
+      {
+        content: '常用',
+        id: this.navMenuId.commonUse,
+        icon: 'fire'
+      },
+      {
+        content: '我的',
+        id: this.navMenuId.mine,
+        icon: 'user'
+      }
+    ]
 
-          <Row>
-            <Col span={24}>
-              <div className='portal__header'>
-                <h3>待办事务</h3>
-              </div>
-
-              <Card>
-                <div className='portal__todo-list'>
-                  {this.renderTodo()}
+    return (
+      <div className="nav-container">
+        <Menu
+          placement="horizontal"
+          data={navMenuData}
+          activeId={nowActiveNavId}
+          onClick={id => this.setState({ nowActiveNavId: id })}
+        />
+        <div>
+          <Row gutter justify="space-between" className="nav-link__list">
+            {navData.map(({ id, link, title, detail, icon }) => (
+              <Col key={id} span={8} className="nav-link__item">
+                <div onClick={() => window.open(link)}>
+                  <Card hoverable>
+                    <div className="nav-link__content">
+                      <img className="nav-link__icon" src={icon} alt="" />
+                      <div>
+                        <p className="nav-link__item__title">{title}</p>
+                        <p className="nav-link__item__detail">{detail}</p>
+                      </div>
+                    </div>
+                  </Card>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <Link to='/list-task'>查看全部 <Icon name='right' /></Link>
-                </div>
-              </Card>
-
-            </Col>
+              </Col>
+            ))}
           </Row>
-
-          <Modal
-            size='small'
-            title='待办事务标题'
-            visible={this.state.showTodoModal}
-            onConfirm={() => {
-              this.setState({ showTodoModal: false })
-            }}
-            onCancel={() => {
-              this.setState({ showTodoModal: false })
-            }}
-          >
-            <p>待办事务具体内容</p>
-          </Modal>
         </div>
       </div>
     )
   }
-}
 
-export default HomePortal
+  render() {
+    const { backgroundUrl } = this.state
+    return (
+      <div className="page page--portal">
+        <div className="back-image" style={{ backgroundImage: `url(${backgroundUrl})` }} />
+        {this.renderSearchPart()}
+        {this.renderNav()}
+      </div>
+    )
+  }
+}

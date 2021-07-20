@@ -1,235 +1,184 @@
+/**
+ *
+ * @author xuhuihuang@xiaomi.com
+ */
 import React, { Component } from 'react'
-import {
-  Icon,
-  Grid,
-  Dropdown,
-  Button,
-  Stepper,
-  DatePicker,
-  Modal,
-  Form,
-  Radio,
-  Input,
-  Timeline
-} from '@hi-ui/hiui'
+import Axios from 'axios'
+import { Grid, Input, Button, Carousel, Card, List } from '@hi-ui/hiui'
+import { demoGlobalData } from '../../index'
 import './index.scss'
 
 const { Row, Col } = Grid
-const FormItem = Form.Item
 
-class HomeWorkbench extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      showAuditModal: false,
-      approvalStep: 2
-    }
-
-    this.nowDate = new Date().toLocaleDateString()
-
-    this.projectList = [
-      { title: '开店申请' },
-      { title: '请假申请' },
-      { title: '转正申请' },
-      { title: '资产申请' }
-    ]
-
-    this.scheduleStepList = [
+export default class Workbench extends Component {
+  state = {
+    searchKeyValue: '',
+    carouselUrls: [],
+    waitToBeDoneTotal: 0,
+    waitToBeDoneInfos: [],
+    waitToBeDoneNowPage: 1,
+    quickLinkInfos: [],
+    data: [
       {
-        groupTitle: '上午',
-        children: [
-          {
-            title: '管理层例会',
-            content: '毕加索会议室 B2层 可提前预定',
-            timestamp: '9:00'
-          },
-          {
-            dot: 'circle',
-            title: '社招面试-设计师',
-            content: '总参',
-            timestamp: '10:30'
-          }
-        ]
+        title: '设备采购申请',
+        titleTag: '已通过',
+        titleTagType: 'success',
+        extra: ['申请编号：YH7290121']
       },
       {
-        groupTitle: '下午',
-        children: [
-          {
-            dot: 'circle',
-            title: '管理层例会',
-            content: '毕加索会议室 B2层 可提前预定',
-            timestamp: '12:00'
-          },
-          {
-            dot: 'circle',
-            title: '社招面试-设计师',
-            content: '总参',
-            timestamp: '11:00'
-          }
-        ]
+        title: '2019年第一季度考核统计表',
+        titleTag: '已驳回',
+        titleTagType: 'danger',
+        extra: ['申请编号：YH7290121']
+      },
+      {
+        title: '设备采购申请',
+        titleTag: '已通过',
+        titleTagType: 'success',
+        extra: ['申请编号：YH7290121']
+      },
+      {
+        title: '2019年第一季度考核统计表',
+        titleTag: '已驳回',
+        titleTagType: 'danger',
+        extra: ['申请编号：YH7290121']
       }
     ]
+  }
 
-    this.approvalStepList = [
-      {
-        title: '创建工单',
-        content: this.nowDate
-      },
-      {
-        title: '工单审核',
-        content: this.nowDate
-      },
-      {
-        title: '提交材料',
-        content: this.nowDate
-      },
-      {
-        title: '完成申请',
-        content: this.nowDate
-      },
-      {
-        title: '成为店主',
-        content: this.nowDate
+  async componentDidMount() {
+    const {
+      data: {
+        data: { carouselUrls = [], waitToBeDoneTotal = 0, quickLinkInfos = [] }
       }
-    ]
-
-    this.handleSwitchStep = this.handleSwitchStep.bind(this)
+    } = await Axios.get('https://yapi.smart-xwork.cn/mock/64112/hiui/workbench/info')
+    this.setState({ carouselUrls, waitToBeDoneTotal, quickLinkInfos })
+    this.updateWaitToBeDoneInfos(this.state.waitToBeDoneNowPage)
   }
 
-  handleSwitchStep (isNext) {
-    if (isNext) {
-      this.setState(prevState => {
-        return { approvalStep: prevState.approvalStep + 1 }
-      })
-    } else {
-      this.setState(prevState => {
-        return { approvalStep: prevState.approvalStep - 1 }
-      })
-    }
+  updateWaitToBeDoneInfos = async nowPage => {
+    // 此处是为了演示效果，直接将size定死，定为4
+    const urlPath = `https://yapi.smart-xwork.cn/mock/64112/hiui/workbench/waitToBeDoneInfos?nowPage=${nowPage}&size=4`
+    const {
+      data: { data: waitToBeDoneInfos = [] }
+    } = await Axios.get(urlPath)
+    console.log('waitToBeDoneInfos', waitToBeDoneInfos)
+    this.setState({ waitToBeDoneInfos })
   }
 
-  renderTodo () {
-    let todoList = []
-    for (let i = 0; i < 6; i++) {
-      todoList.push(
-        <div className='todo__item' key={i}>
-          <Row justify='space-between'>
-            <Col>设备采购审批申请</Col>
-            <Col>
-              <span
-                className='approval-btn'
-                onClick={() => {
-                  this.setState({ showAuditModal: true })
-                }}
-              >
-                审批
-              </span>
-            </Col>
-          </Row>
-        </div>
-      )
-    }
-    return <div className='todo'>{todoList}</div>
+  // 搜索按钮被点击事件，在此函数中执行对应操作
+  searchButtonClick = () => {
+    console.log('Search keywords')
+    console.log(this.state.searchKeyValue)
   }
 
-  render () {
+  renderTopPart = () => {
+    const { searchKeyValue } = this.state
+    const userInfo = demoGlobalData.userInfo || {}
     return (
-      <div className='page page--workbench'>
-        <div className='workbench--container'>
-          <Row>
-            <Col span={24}>
-              <div className='user'>
-                <span className='user__icon'>Ad</span>
-                <span className='user__greet'>Admin，上午好！ 美好的一天开始了</span>
-              </div>
-            </Col>
-          </Row>
-          <Row gutter>
-            <Col span={8}>
-              <div className='card'>
-                <div className='card__header'>
-                  <span className='card__title'>待办</span>
-                </div>
-                <div className='card__body'>
-                  {this.renderTodo()}
-                  <div className='card__footer'>
-                    <Button>
-                      <Icon name='left' />
-                    </Button>
-                    <Button>
-                      <Icon name='right' />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col span={16}>
-              <div className='card'>
-                <div className='card__header'>
-                  <span className='card__title'>日程</span>
-                  <span>
-                    <Icon name='plus' /> 新建日程
-                  </span>
-                </div>
-                <div className='card__body'>
-                  <Row gutter>
-                    <Col span={12}>
-                      <DatePicker
-                        value={new Date()}
-                        onChange={d => {
-                          console.log('value 为 Date 实例', DatePicker.format(d, 'YYYY-MM-DD E'))
-                        }}
-                      />
-                    </Col>
-                    <Col span={12}>
-                      <Timeline data={this.scheduleStepList} />
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <div className='card'>
-                <div className='card__header'>
-                  <span>项目／审批流程</span>
-                  <Dropdown
-                    data={this.projectList}
-                    title={this.projectList[0].title}
-                    onClick={val => console.log(val)}
-                  />
-                </div>
-                <div className='card__body'>
-                  <Stepper itemLayout='vertical' data={this.approvalStepList} current={this.state.approvalStep} />
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Modal
-            size='normal'
-            title='设备采购申请'
-            visible={this.state.showAuditModal}
-            onConfirm={() => {
-              this.setState({ showAuditModal: false })
+      <Row justify="space-between" gutter>
+        <Col className="top_part_col">
+          <img className="user_icon" src={userInfo.photo} alt="" />
+          <span>{`${userInfo.username}，欢迎，美好的一天又开始了`}</span>
+        </Col>
+        <Col className="top_part_col">
+          <Input
+            style={{ width: '304px' }}
+            append={<Button icon="search" onClick={this.searchButtonClick} />}
+            value={searchKeyValue}
+            placeholder="关键词搜索"
+            onChange={e => {
+              this.setState({ searchKeyValue: e.target.value })
             }}
-            onCancel={() => {
-              this.setState({ showAuditModal: false })
-            }}
-          >
-            <Form labelPlacement='left'>
-              <FormItem label='原因' labelWidth='60'>
-                <Radio.Group data={['通过', '驳回']} />
-              </FormItem>
-              <FormItem label='备注' labelWidth='60'>
-                <Input type='textarea' />
-              </FormItem>
-            </Form>
-          </Modal>
+          />
+        </Col>
+      </Row>
+    )
+  }
+
+  renderCarouselPart = () => {
+    const { carouselUrls } = this.state
+
+    return (
+      <Col span={16}>
+        <div style={{ minWidth: '744px', marginRight: '20px' }}>
+          <Carousel duration={2000} showPages={true}>
+            {carouselUrls.map((url, index) => {
+              return (
+                <div className="carousel_image_container" key={index}>
+                  <img className="carousel_image" src={url} key={index} alt="" />
+                </div>
+              )
+            })}
+          </Carousel>
         </div>
+      </Col>
+    )
+  }
+
+  renderWaitToBeDone = () => {
+    const { waitToBeDoneTotal } = this.state
+
+    return (
+      <Col span={8} className="wait_to_be__container">
+        <p className="wait_to_be__title">{`消息(${waitToBeDoneTotal})`}</p>
+        <div style={{ padding: '0 12px' }}>
+          <List
+            data={this.state.data}
+            key="12"
+            split={false}
+            renderItem={dataItem => {
+              const { Item } = List
+              return <Item {...dataItem} />
+            }}
+          />
+        </div>
+      </Col>
+    )
+  }
+
+  renderQuickLinks = () => {
+    const { quickLinkInfos } = this.state
+    return (
+      <>
+        <Row>
+          <Col span={24} className="quick-link__title">
+            快捷访问
+          </Col>
+        </Row>
+        <Row gutter className="quick-link__list">
+          {quickLinkInfos.map(({ id, title, detail, color, link }) => {
+            return (
+              <Col key={id} span={6} className="quick-link__item">
+                <div onClick={() => window.open(link)}>
+                  <Card
+                    hoverable
+                    style={{
+                      borderLeft: `2px solid ${color}`
+                    }}
+                  >
+                    <p className="quick-link__item__title">{title}</p>
+                    <p className="quick-link__item__detail">{detail}</p>
+                  </Card>
+                </div>
+              </Col>
+            )
+          })}
+        </Row>
+      </>
+    )
+  }
+
+  render() {
+    return (
+      <div className="page page--workbench">
+        {this.renderTopPart()}
+        <Row justify="space-between">
+          {this.renderCarouselPart()}
+          {this.renderWaitToBeDone()}
+        </Row>
+        {this.renderQuickLinks()}
       </div>
     )
   }
 }
-
-export default HomeWorkbench

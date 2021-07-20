@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react'
 import Axios from 'axios'
-import { Grid, Input, Button, Carousel, Card } from '@hi-ui/hiui'
+import { Grid, Input, Button, Carousel, Card, List } from '@hi-ui/hiui'
 import { demoGlobalData } from '../../index'
 import './index.scss'
 
@@ -17,7 +17,33 @@ export default class Workbench extends Component {
     waitToBeDoneTotal: 0,
     waitToBeDoneInfos: [],
     waitToBeDoneNowPage: 1,
-    quickLinkInfos: []
+    quickLinkInfos: [],
+    data: [
+      {
+        title: '设备采购申请',
+        titleTag: '已通过',
+        titleTagType: 'success',
+        extra: ['申请编号：YH7290121']
+      },
+      {
+        title: '2019年第一季度考核统计表',
+        titleTag: '已驳回',
+        titleTagType: 'danger',
+        extra: ['申请编号：YH7290121']
+      },
+      {
+        title: '设备采购申请',
+        titleTag: '已通过',
+        titleTagType: 'success',
+        extra: ['申请编号：YH7290121']
+      },
+      {
+        title: '2019年第一季度考核统计表',
+        titleTag: '已驳回',
+        titleTagType: 'danger',
+        extra: ['申请编号：YH7290121']
+      }
+    ]
   }
 
   async componentDidMount() {
@@ -25,17 +51,18 @@ export default class Workbench extends Component {
       data: {
         data: { carouselUrls = [], waitToBeDoneTotal = 0, quickLinkInfos = [] }
       }
-    } = await Axios.get('http://mock.be.mi.com/mock/2532/home/workbench/info')
+    } = await Axios.get('http://yapi.smart-xwork.cn/mock/64112/hiui/workbench/info')
     this.setState({ carouselUrls, waitToBeDoneTotal, quickLinkInfos })
     this.updateWaitToBeDoneInfos(this.state.waitToBeDoneNowPage)
   }
 
   updateWaitToBeDoneInfos = async nowPage => {
     // 此处是为了演示效果，直接将size定死，定为4
-    const urlPath = `http://mock.be.mi.com/mock/2532/home/workbench/waitToBeDoneInfos?nowPage=${nowPage}&size=4`
+    const urlPath = `http://yapi.smart-xwork.cn/mock/64112/hiui/workbench/waitToBeDoneInfos?nowPage=${nowPage}&size=4`
     const {
       data: { data: waitToBeDoneInfos = [] }
     } = await Axios.get(urlPath)
+    console.log('waitToBeDoneInfos', waitToBeDoneInfos)
     this.setState({ waitToBeDoneInfos })
   }
 
@@ -51,8 +78,8 @@ export default class Workbench extends Component {
     return (
       <Row justify="space-between" gutter>
         <Col className="top_part_col">
-          <img className="user_icon" src={userInfo.iconUrl} alt="" />
-          <span>{`${userInfo.name}，欢迎，美好的一天又开始了`}</span>
+          <img className="user_icon" src={userInfo.photo} alt="" />
+          <span>{`${userInfo.username}，欢迎，美好的一天又开始了`}</span>
         </Col>
         <Col className="top_part_col">
           <Input
@@ -74,7 +101,7 @@ export default class Workbench extends Component {
 
     return (
       <Col span={16}>
-        <div style={{ width: '744px' }}>
+        <div style={{ minWidth: '744px', marginRight: '20px' }}>
           <Carousel duration={2000} showPages={true}>
             {carouselUrls.map((url, index) => {
               return (
@@ -94,8 +121,18 @@ export default class Workbench extends Component {
 
     return (
       <Col span={8} className="wait_to_be__container">
-        <p className="wait_to_be__title">{`待办(${waitToBeDoneTotal})`}</p>
-        <div></div>
+        <p className="wait_to_be__title">{`消息(${waitToBeDoneTotal})`}</p>
+        <div style={{ padding: '0 12px' }}>
+          <List
+            data={this.state.data}
+            key="12"
+            split={false}
+            renderItem={dataItem => {
+              const { Item } = List
+              return <Item {...dataItem} />
+            }}
+          />
+        </div>
       </Col>
     )
   }

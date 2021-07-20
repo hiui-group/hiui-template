@@ -38,7 +38,7 @@ function App() {
   }, [])
 
   const loginConfig = {
-    name: userInfo?.name ?? '',
+    name: userInfo?.username ?? '',
     icon: 'user',
     children: [
       <div key="1" style={{ textAlign: 'center', margin: 4, width: '100px' }}>

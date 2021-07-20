@@ -72,7 +72,7 @@ export default class HomeDashboard extends Component {
     // 获取面板分类信息
     const {
       data: { data = [] }
-    } = await Axios.get('http://mock.be.mi.com/mock/2532/home/dashboard/tabs')
+    } = await Axios.get('http://yapi.smart-xwork.cn/mock/64112/hiui/dashboard/tabs')
     this.setState({ tabInfos: data })
     // 做容错处理，以防止后端传回数据为空
     this.setState({ nowActiveTabId: (data[0] || {}).id })
@@ -89,7 +89,7 @@ export default class HomeDashboard extends Component {
     this.setState({ isLoadingData: true })
     const { logisticsStart, logisticsEnd, orderChartSelectLogisticCompanyId, orderChartSelectTimeRangeId } = this.state
     const fetchPageMatchIdInfo = async () => {
-      const path = `http://mock.be.mi.com/mock/2532/home/dashboard/info?id=${id}`
+      const path = `http://yapi.smart-xwork.cn/mock/64112/hiui/dashboard/info?id=${id}`
       // 根据id获取页面信息
       const {
         data: {
@@ -117,7 +117,7 @@ export default class HomeDashboard extends Component {
   // 更新物流运单信息
   async updateLogisticsInfo(id, start, end) {
     this.setState({ isLoadingLogistics: true })
-    const path = `http://mock.be.mi.com/mock/2532/home/dashboard/logistics?id=${id}&start=${start}&end=${end}`
+    const path = `http://yapi.smart-xwork.cn/mock/64112/hiui/dashboard/logistics?id=${id}&start=${start}&end=${end}`
     // 根据id获取页面信息
     const {
       data: {
@@ -130,7 +130,7 @@ export default class HomeDashboard extends Component {
   // 更新询价下单量
   async updateEnquiryOrderInfo(id, logisticsId, timeId) {
     this.setState({ isLoadingEnquiryOrder: true })
-    const path = `http://mock.be.mi.com/mock/2532/home/dashboard/order?id=${id}&logisticsId=${logisticsId}&timeId=${timeId}`
+    const path = `http://yapi.smart-xwork.cn/mock/64112/hiui/dashboard/order?id=${id}&logisticsId=${logisticsId}&timeId=${timeId}`
     // 根据id获取页面信息
     const {
       data: {

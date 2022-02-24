@@ -1,11 +1,11 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
+  root: true,
   env: {
     browser: true,
-    es2021: true,
-    node: true
+    es2021: true
   },
-  parser: 'babel-eslint',
-  extends: ['plugin:react/recommended', 'standard', 'prettier'],
+  extends: ['plugin:react/recommended', 'standard', 'prettier', 'prettier/@typescript-eslint'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -13,21 +13,32 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   rules: {
     'prettier/prettier': [
-      'warn',
+      'error',
       {
         singleQuote: true,
         semi: false,
-        printWidth: 120,
-        trailingComma: 'none',
-        arrowParens: 'avoid'
+        printWidth: 100,
+        trailingComma: 'none'
       }
     ],
+    'no-use-before-define': 0,
+    '@typescript-eslint/no-use-before-define': ['error', { typedefs: false, functions: false }],
     'react/prop-types': 0,
     'react/no-children-prop': 0,
-    'react/display-name': 0,
-    'react/jsx-key': 0
-  }
+    'react-hooks/rules-of-hooks': 2, // check Hook rules
+    'react-hooks/exhaustive-deps': 1, // check effect deps
+    'no-case-declarations': 0
+  },
+  globals: {
+    __DEV__: 'readonly'
+  },
+  ignorePatterns: ['!.*.js', 'src/hi-app-env.d.ts']
 }

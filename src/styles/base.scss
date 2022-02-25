@@ -1,0 +1,20 @@
+// 文本行省略号策略
+@mixin ellipsis($multi-line: false) {
+  @if $multi-line {
+    display: -webkit-box !important; /* stylelint-disable-line */
+    -webkit-box-orient: vertical; /* stylelint-disable-line */
+    -moz-box-orient: vertical; /* stylelint-disable-line */
+    -webkit-line-clamp: $multi-line;
+    -moz-line-clamp: $multi-line;
+    word-break: break-word;
+    white-space: nowrap;
+  }
+
+  @else {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

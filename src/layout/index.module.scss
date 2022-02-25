@@ -1,0 +1,39 @@
+@import '../styles';
+
+.root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumb-wrapper {
+  background-color: #fff;
+  padding: 0 20px;
+  height: 36px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ebedf0;
+  display: flex;
+  align-items: center;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  height: calc(100vh - 56px);
+  border-right: 1px solid #ebedf0;
+  background-color: #fff;
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.content {
+  flex: auto;
+  overflow-y: auto;
+}

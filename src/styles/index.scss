@@ -1,0 +1,24 @@
+@import './base.scss';
+
+body {
+  // 飞书应用最小宽度
+  min-width: 900px;
+}
+
+.ell-1 {
+  @include ellipsis();
+}
+
+.ell-2 {
+  @include ellipsis(2);
+}
+
+.ell-3 {
+  @include ellipsis(3);
+}
+
+$color-bg-gray: #f5f7fa !default;
+
+$color-text: #1f2733 !default;
+$color-text-gray: #929aa6 !default;
+$color-text-active: #237ffa !default;

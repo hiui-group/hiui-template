@@ -3,5 +3,17 @@
   top: 0;
   z-index: 99;
   height: 56px;
-  background-color: #e2f3fe;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-shadow: inset 0 -1px 0 0 #dfe2e8;
+
+  &__logo-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2733;
+    line-height: 32px;
+    text-shadow: 0 -1px 0 #dfe2e8;
+  }
 }

@@ -1,0 +1,27 @@
+.form-basic{
+    margin: 20px 20px 80px 20px;
+}
+.form-basic-card {
+    margin-bottom: 20px;
+    width: 100%;
+}
+.footer__fixed{
+    height: 64px;
+    width: calc(100% - 233px);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff;
+}
+
+.footer-button__wrap{
+    display: inline-block;
+}
+
+.form-basic-identification .hi-v4-upload--avatar .hi-v4-upload__item{
+    width: 150px;
+    height: 88px;
+}

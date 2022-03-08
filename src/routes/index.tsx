@@ -9,6 +9,7 @@ export const RootRoute: React.FC = () => {
       <Route path="/*" element={<MainLayout />}>
         <Route path="home" element={<Pages.Home />} />
         <Route path="about" element={<Pages.About />} />
+        <Route path="form-basic" element={<Pages.FormBasic />} />
       </Route>
       <Route path="/*" element={<Navigate to="/home" replace={true} />} />
     </Routes>

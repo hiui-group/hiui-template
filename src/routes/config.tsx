@@ -8,33 +8,44 @@ export const routeConfig: any[] = [
     children: [
       {
         name: '工作台',
-        path: 'workbench',
-        component: <Pages.Home />
+        path: 'dashboard-workbench',
+        component: <Pages.DashboardWorkbench />
       },
       {
         name: '数据分析',
-        path: 'dashboard'
+        path: 'dashboard-data-analysis',
+        component: <Pages.DashboardDataAnalysis />
       }
     ]
   },
   {
-    name: '列表',
+    name: '表格',
     icon: <FilterFilled />,
     children: [
       {
         name: '查询表格',
+        path: 'table-search',
+        component: <Pages.TableSearch />
       },
       {
         name: '统计表格',
+        path: 'table-stat',
+        component: <Pages.TableStat />
       },
       {
         name: '左树右表',
+        path: 'table-layout',
+        component: <Pages.TableLayout />
       },
       {
         name: '详情表格',
+        path: 'table-detail',
+        component: <Pages.TableDetail />
       },
       {
         name: '卡片表格',
+        path: 'table-card',
+        component: <Pages.TableCard />
       }
     ]
   },
@@ -44,12 +55,18 @@ export const routeConfig: any[] = [
     children: [
       {
         name: '基础表单',
+        path: 'form-basic',
+        component: <Pages.FormBasic />
       },
       {
         name: '分组表单',
+        path: 'form-group',
+        component: <Pages.FormGroup />
       },
       {
         name: '分布表单',
+        path: 'form-steps',
+        component: <Pages.FormSteps />
       }
     ]
   },
@@ -59,9 +76,13 @@ export const routeConfig: any[] = [
     children: [
       {
         name: '基础详情',
+        path: 'detail-basic',
+        component: <Pages.DetailBasic />
       },
       {
         name: '高级详情',
+        path: 'detail-advance',
+        component: <Pages.DetailAdvance />
       }
     ]
   },
@@ -71,9 +92,14 @@ export const routeConfig: any[] = [
     children: [
       {
         name: '审批',
+
+        path: 'flow-approval',
+        component: <Pages.FlowApproval />
       },
       {
         name: '流程',
+        path: 'flow-steps',
+        component: <Pages.FlowSteps />
       }
     ]
   },
@@ -83,9 +109,13 @@ export const routeConfig: any[] = [
     children: [
       {
         name: '成功',
+        path: 'result-success',
+        component: <Pages.ResultSuccess />
       },
       {
         name: '失败',
+        path: 'result-failure',
+        component: <Pages.ResultFailure />
       }
     ]
   },
@@ -95,15 +125,23 @@ export const routeConfig: any[] = [
     children: [
       {
         name: '无网络',
+        path: 'exception-network',
+        component: <Pages.ExceptionNetwork />
       },
       {
         name: '无权限',
+        path: 'exception-permission',
+        component: <Pages.ExceptionPermission />
       },
       {
         name: '404',
+        path: 'exception-notfound',
+        component: <Pages.ExceptionNotfound />
       },
       {
         name: '500',
+        path: 'exception-server-error',
+        component: <Pages.ExceptionServerError />
       }
     ]
   },
@@ -113,15 +151,23 @@ export const routeConfig: any[] = [
     children: [
       {
         name: '个人中心',
+        path: 'account-profile',
+        component: <Pages.AccountProfile />
       },
       {
         name: '设置',
+        path: 'account-settings',
+        component: <Pages.AccountSettings />
       },
       {
         name: '消息中心',
+        path: 'account-messages',
+        component: <Pages.AccountMessages />
       },
       {
         name: '待办',
+        path: 'account-todo-list',
+        component: <Pages.AccountTodoList />
       }
     ]
   },

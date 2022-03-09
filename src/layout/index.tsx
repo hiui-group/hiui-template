@@ -1,61 +1,28 @@
-import { useCallback, useMemo } from 'react'
-import { Menu, Breadcrumb, BreadcrumbItemProps, MenuItemProps } from '@hi-ui/hiui'
+import { useMemo } from 'react'
+import { Menu } from '@hi-ui/hiui'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Header } from './header'
+import { routeConfig } from '../routes/config'
+import { cloneTree, visitTree } from '@hi-ui/utils'
 
 import styles from './index.module.scss'
-
-const routeConfig: any = [
-  {
-    name: '首页',
-    path: '/home'
-  },
-  {
-    name: '关于',
-    path: '/about'
-  },
-]
-
-interface NavigableBreadcrumbItem extends BreadcrumbItemProps {
-  path?: string
-}
 
 export const MainLayout: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const handleBreadcrumbClick = useCallback(
-    (_, item: NavigableBreadcrumbItem) => {
-      if (item.path) {
-        navigate(item.path)
-      }
-    },
-    [navigate]
-  )
-
-  const breadcrumbItems: any = useMemo(() => {
-    return [
-      { title: '首页', path: '/home' } as NavigableBreadcrumbItem,
-      { title: 'appName' }
-    ]
-  }, [])
-
   // 传递给 Menu 组件的菜单数据
   const menuData = useMemo(() => {
-    const traverse = (route: typeof routeConfig): MenuItemProps[] => {
-      return route.map((v: any) => {
-        const data: MenuItemProps = {
-          id: v.path,
-          title: v.name
-        }
-        if (v.children && v.children.length) {
-          data.children = traverse(v.children)
-        }
-        return data
-      })
-    }
+    const clonedRouteConfig = cloneTree(routeConfig)
 
-    return traverse(routeConfig)
+    visitTree(clonedRouteConfig, (node) => {
+      node.id =  node.path ? ('/' + node.path) : node.name
+      node.title = node.name
+
+      delete node.component
+    })
+
+    return clonedRouteConfig
   }, [])
 
   const handleMenuClick = (menuId: React.ReactText) => {
@@ -72,16 +39,12 @@ export const MainLayout: React.FC = () => {
             className={styles.menu}
             placement="vertical"
             showCollapse={true}
-            defaultActiveId={location.pathname}
-            activeId={location.pathname}
             data={menuData}
+            activeId={location.pathname}
             onClick={handleMenuClick}
           />
         </div>
         <div className={styles.content}>
-          {/* <div className={styles.breadcrumbWrapper}>
-            <Breadcrumb data={breadcrumbItems} separator="/" onClick={handleBreadcrumbClick} />
-          </div> */}
           <Outlet />
         </div>
       </div>

@@ -1,10 +1,8 @@
-import { Button } from '@hi-ui/hiui';
-import { useNavigate } from 'react-router-dom';
+import { Button } from "@hi-ui/hiui";
 import { PlusOutlined } from "@hi-ui/icons";
 import { ContentHeader } from "../../components/content-header";
 
-export const Home = () => {
-  const navigate = useNavigate()
+export const TableCard = () => {
   return <div>
     <ContentHeader
       breadcrumbs={[
@@ -12,10 +10,10 @@ export const Home = () => {
           title: '首页',
           path: 'home',
         }, {
-          title: 'Home'
+          title: '卡片表格'
         }
       ]}
-      title="Home"
+      title="卡片表格"
       toolbar={
         <div>
           <Button>次要操作</Button>
@@ -24,6 +22,5 @@ export const Home = () => {
         </div>
       }
     />
-    <Button onClick={() => navigate('/about')}>按钮</Button>
   </div>
 }

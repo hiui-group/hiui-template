@@ -195,7 +195,17 @@ export const FormBasic: React.FC = () => {
                 >
                   <Input placeholder="请输入" />
                 </FormItem>
-                <FormItem required={true} label="身份证照片" field="IDPhoto">
+                <FormItem required={true} label="身份证照片" field="IDPhoto" rules={[
+                    {
+                      trigger: 'onChange',
+                      required: true,
+                      validator:(rule, val, cb)=>{
+                        if(!val.backPhoto) cb('请上传身份证反面')
+                        if(!val.frontPhoto) cb('请上传身份证正面')
+                        cb('')
+                      }
+                    },
+                  ]}>
                   <IdentificationUpload />
                 </FormItem>
               </Col>
@@ -682,6 +692,7 @@ export const FormBasic: React.FC = () => {
             </Row>
           </Card>
         </Form>
+       
       </div>
       <div className="footer--fixed">
         <div className="footer__body">

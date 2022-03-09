@@ -15,43 +15,50 @@ export const IdentificationUpload: React.FC<IProps> = ({ onChange, value }) => {
     <Row className="form-basic-identification">
       <Upload
         type="avatar"
-        uploadAction="http://www.mocky.io/v2/5dc3b4413000007600347501"
-        onChange={(file, fileList, response) => {
-          console.log("upload callback", file, fileList, response);
+        onRemove={(file, fileList, index) => {
+          console.log("remove callback", file, fileList, index);
           onChange &&
             onChange({
               ...value,
-              frontPhoto: fileList,
+              frontPhoto: [],
             });
-        }}
-        onRemove={(file, fileList, index) => {
-          console.log("remove callback", file, fileList, index);
           return new Promise((resolve, reject) => resolve(true));
         }}
         data={{ id: "uid", channel: "youpin" }}
         name={"files[]"}
         fileList={value?.frontPhoto}
+        customUpload={(files)=>{
+          console.log(files)
+          onChange &&
+            onChange({
+              ...value,
+              frontPhoto: files,
+            });
+        }}
       />
 
       <Upload
         type="avatar"
-        uploadAction="http://www.mocky.io/v2/5dc3b4413000007600347501"
-        onChange={(file, fileList, response) => {
-          console.log("upload callback", file, fileList, response);
+        onRemove={(file, fileList, index) => {
+          console.log("remove callback", file, fileList, index);
           onChange &&
             onChange({
               ...value,
-              backPhoto: fileList,
+              backPhoto: [],
             });
-        }}
-        onRemove={(file, fileList, index) => {
-          console.log("remove callback", file, fileList, index);
           return new Promise((resolve, reject) => resolve(true));
         }}
         data={{ id: "uid", channel: "youpin" }}
         name={"files[]"}
         fileList={value?.backPhoto}
-        
+        customUpload={(files)=>{
+          console.log(files)
+          onChange &&
+            onChange({
+              ...value,
+              backPhoto: files,
+            });
+        }}
       />
     </Row>
   );

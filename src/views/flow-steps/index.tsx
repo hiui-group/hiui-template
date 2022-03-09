@@ -1,6 +1,26 @@
+import { Button } from "@hi-ui/hiui";
+import { PlusOutlined } from "@hi-ui/icons";
+import { ContentHeader } from "../../components/content-header";
 
 export const FlowSteps = () => {
   return <div>
-    <h1>流程页</h1>
+    <ContentHeader
+      breadcrumbs={[
+        {
+          title: '首页',
+          path: 'home',
+        }, {
+          title: '流程页'
+        }
+      ]}
+      title="流程页"
+      toolbar={
+        <div>
+          <Button>次要操作</Button>
+          <Button>次操作</Button>
+          <Button icon={<PlusOutlined/>} type="primary">主操作</Button>
+        </div>
+      }
+    />
   </div>
 }

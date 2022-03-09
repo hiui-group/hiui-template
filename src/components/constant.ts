@@ -1,1 +1,1 @@
-export const KIT_PREFIX = 'sc-ui'
+export const KIT_PREFIX = 'hi-pro'

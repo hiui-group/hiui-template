@@ -25,12 +25,8 @@
   height: calc(100vh - 56px);
   border-right: 1px solid #ebedf0;
   background-color: #fff;
-
-  .menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+  position: sticky;
+  top: 56px;
 }
 
 .content {

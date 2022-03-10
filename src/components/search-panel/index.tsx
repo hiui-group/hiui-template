@@ -6,9 +6,8 @@ import { KIT_PREFIX } from '../constant'
 import localeMap from '../locale'
 import './index.scss'
 
-interface IProps {
+interface SearchPanelProps {
   search: {
-    formComponent: Object
     searchClick: () => void
     resetClick: () => void
   }
@@ -18,7 +17,11 @@ interface IProps {
 // 搜索容器最小高度
 const searchFormMinHeight = 52
 
-export const SearchPanel: React.FC<IProps> = ({ search, hideExpanded = false }: IProps) => {
+export const SearchPanel: React.FC<SearchPanelProps> = ({
+  search,
+  hideExpanded = false,
+  children
+}) => {
   const prefixCls = `${KIT_PREFIX}-search-panel`
   const formComponentRef = useRef<any>()
 
@@ -48,7 +51,7 @@ export const SearchPanel: React.FC<IProps> = ({ search, hideExpanded = false }: 
         <React.Fragment>
           <div className={`${prefixCls}__form-wrap ${locale}`} style={{ height: formWrapHeight }}>
             <div className={`${prefixCls}__form-component`} ref={formComponentRef}>
-              {search.formComponent}
+              {children}
             </div>
           </div>
 

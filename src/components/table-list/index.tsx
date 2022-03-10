@@ -1,7 +1,7 @@
 import { KIT_PREFIX } from '../constant'
 import { Table } from '@hi-ui/table'
 import React from 'react'
-import { IProps } from './index.type'
+import { TableListProps } from './index.type'
 import './index.scss'
 
 /**
@@ -15,7 +15,7 @@ import './index.scss'
  * @returns
  */
 
-export const TableList: React.FC<IProps> = ({
+export const TableList: React.FC<TableListProps> = ({
   loading,
   columns,
   list,

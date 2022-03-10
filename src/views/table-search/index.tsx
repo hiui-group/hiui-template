@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react'
 import {
   TableList,
   SearchPanel,
-  ToolBar,
+  Toolbar,
   Divider,
   useListFetch,
-  checkListFetch,
+  checkSelectFetch,
 } from '../../components'
 
 import Button from '@hi-ui/button'
@@ -48,32 +48,6 @@ export const TableSearch = () => {
 
   // 获取通用列表数据并返回各种状态
   const { loading, list, total, execute } = useListFetch(getList, { ...filters, ...pagination })
-
-  // toolBar渲染节点
-  const renderToolBarOpts = () => {
-    return (
-      <>
-        <Button
-          type="default"
-          onClick={() => {
-            Message.open({ title: '点击看板' })
-          }}
-        >
-          查看看板
-        </Button>
-        <Button
-          type="primary"
-          onClick={() => {
-            Message.open({
-              title: '点击新建',
-            })
-          }}
-        >
-          新建
-        </Button>
-      </>
-    )
-  }
 
   // 表头配置
   const columns = [
@@ -138,41 +112,30 @@ export const TableSearch = () => {
 
   return (
     <div className="table-search-container">
-      <ToolBar title="查询表格" renderOpts={renderToolBarOpts} refresh={execute} />
+      <Toolbar title="查询表格" refresh={execute}>
+        <Button
+          type="default"
+          onClick={() => {
+            Message.open({ title: '点击看板' })
+          }}
+        >
+          查看看板
+        </Button>
+        <Button
+          type="primary"
+          onClick={() => {
+            Message.open({
+              title: '点击新建',
+            })
+          }}
+        >
+          新建
+        </Button>
+      </Toolbar>
       <div className="container">
         <Card bordered={false} style={{ width: '100%' }}>
           <SearchPanel
             search={{
-              formComponent: (
-                <Form
-                  showColon={false}
-                  placement="horizontal"
-                  labelPlacement="right"
-                  innerRef={searchFormRef}
-                  initialValues={defaultFilters}
-                >
-                  <FormItem label="名称" field="name">
-                    <Input placeholder="请输入名称" clearable />
-                  </FormItem>
-                  <FormItem label="品类" field="type">
-                    <CheckSelect
-                      placeholder="请选择"
-                      searchable
-                      clearable
-                      dataSource={(keyword) => checkListFetch(getTypeOptions, keyword)}
-                    />
-                  </FormItem>
-                  <FormItem label="规格" field="size">
-                    <Input placeholder="请输入部门" clearable />
-                  </FormItem>
-                  <FormItem label="状态" field="status">
-                    <Input placeholder="请输入用户名" clearable />
-                  </FormItem>
-                  <FormItem label="创建时间" field="createTime">
-                    <DatePicker type="daterange" format="YYYY-MM-DD" />
-                  </FormItem>
-                </Form>
-              ),
               searchClick: () => {
                 searchFormRef.current
                   .validate()
@@ -192,7 +155,36 @@ export const TableSearch = () => {
                 })
               },
             }}
-          />
+          >
+            <Form
+              showColon={false}
+              placement="horizontal"
+              labelPlacement="right"
+              innerRef={searchFormRef}
+              initialValues={defaultFilters}
+            >
+              <FormItem label="名称" field="name">
+                <Input placeholder="请输入名称" clearable />
+              </FormItem>
+              <FormItem label="品类" field="type">
+                <CheckSelect
+                  placeholder="请选择"
+                  searchable
+                  clearable
+                  dataSource={(keyword) => checkSelectFetch(getTypeOptions, keyword)}
+                />
+              </FormItem>
+              <FormItem label="规格" field="size">
+                <Input placeholder="请输入部门" clearable />
+              </FormItem>
+              <FormItem label="状态" field="status">
+                <Input placeholder="请输入用户名" clearable />
+              </FormItem>
+              <FormItem label="创建时间" field="createTime">
+                <DatePicker type="daterange" format="YYYY-MM-DD" />
+              </FormItem>
+            </Form>
+          </SearchPanel>
           <Divider />
           <TableList
             loading={loading}

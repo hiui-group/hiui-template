@@ -47,23 +47,8 @@ export function useListFetch(
     (getDidCancel = () => false) => {
       setLoading(true)
       return asyncFunction(params)
-        .then((res: any) => {
+        .then(({ data: { list, total } = { list: [], total: 10 } }) => {
           if (!getDidCancel()) {
-            /**
-             * 兼容四种数据返回格式
-             * 格式一: {data: []}
-             * 格式二: {data: { list: [], total: 10}}
-             * 格式三: {body: []}
-             * 格式三: {body: { list: [], total: 10}}
-             */
-            const data = Object.prototype.hasOwnProperty.call(res, 'data')
-              ? res.data
-              : Object.prototype.hasOwnProperty.call(res, 'body')
-              ? res.body
-              : {}
-            const { list = [], total = 0 } = Object.prototype.hasOwnProperty.call(data, 'list')
-              ? data
-              : { list: data }
             setList(buildDataList(list || []))
             setTotal(total || 0)
             setError(null)

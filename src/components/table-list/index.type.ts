@@ -3,7 +3,7 @@ import { TableColumnItem } from '@hi-ui/table'
 /**
  * 封装表格组件配置接口
  */
-export interface IProps {
+export interface TableListProps {
   /**
    * 加载状态控制
    */

@@ -1,5 +1,5 @@
 .form-basic {
-  margin: 20px 20px 80px 20px;
+  margin: 20px;
 }
 .form-basic__card {
   margin-bottom: 20px;
@@ -7,6 +7,7 @@
 }
 
 .suffix-code {
+  color: #929AA6;
   cursor: pointer;
 }
 
@@ -22,8 +23,14 @@
   background-color: #ffffff;
 }
 
-.footer-button__body {
+.footer__body {
   display: inline-block;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
 }
 
 .form-basic-avatar,

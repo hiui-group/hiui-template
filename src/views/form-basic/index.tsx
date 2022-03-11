@@ -15,12 +15,19 @@ import {
   DatePicker,
   Button,
   message,
+  Modal,
 } from '@hi-ui/hiui'
 import './index.scss'
 import { IdentificationUpload } from './identification-upload'
+import { ContentFooter } from '../../components/content-footer'
+import { stashBasicForm,submitBasicForm } from './api'
 
 export const FormBasic: React.FC = () => {
   const formRef = React.useRef<FormHelpers>(null)
+  const [loading,setLoading] = useState<{stashLoading:boolean,saveLoading:boolean}>({
+    stashLoading: false,
+    saveLoading: false
+  })
   const [formData, setFormData] = useState<any>({
     miNumber: undefined,
     userName: undefined,
@@ -55,17 +62,40 @@ export const FormBasic: React.FC = () => {
    * 取消
    */
   const handleCancel = () => {
-    alert('取消')
+    Modal.confirm({
+      type: 'warning',
+      title: '提示',
+      content: '有数据未保存，确认取消？',
+      cancelText: null,
+      confirmText: '确定',
+    })
   }
 
   /**
    * 暂存
    */
   const handleStash = () => {
+    
     formRef.current
       ?.validate()
       .then((formData) => {
-        console.log(formData)
+
+        setLoading({
+          ...loading,
+          stashLoading: true
+        })
+
+        stashBasicForm(formData).then(res=>{
+          if(res.code === 200){
+            message.open({type: 'success',title:res.message})
+          }else{
+            message.open({type: 'error',title:res.message})
+          }
+          setLoading({
+            ...loading,
+            stashLoading: false
+          })
+        })
       })
       .catch((error) => {
         console.log(error)
@@ -79,12 +109,23 @@ export const FormBasic: React.FC = () => {
     formRef.current
       ?.validate()
       .then((formData) => {
-        message.open({
-          title: (
-            <div style={{ width: 400, wordBreak: 'break-all' }}>{JSON.stringify(formData)}</div>
-          ),
+
+        setLoading({
+          ...loading,
+          saveLoading: true
         })
-        console.log(formData)
+
+        submitBasicForm(formData).then(res=>{
+          if(res.code === 200){
+            message.open({type: 'success',title:res.message})
+          }else{
+            message.open({type: 'error',title:res.message})
+          }
+          setLoading({
+            ...loading,
+            saveLoading: false
+          })
+        })
       })
       .catch((error) => {
         console.log(error)
@@ -92,7 +133,7 @@ export const FormBasic: React.FC = () => {
   }
 
   const getCode = () => {
-    alert('获取验证码')
+    message.open({ type: 'success', title: '验证发发送成功' })
   }
 
   return (
@@ -195,17 +236,22 @@ export const FormBasic: React.FC = () => {
                 >
                   <Input placeholder="请输入" />
                 </FormItem>
-                <FormItem required={true} label="身份证照片" field="IDPhoto" rules={[
+                <FormItem
+                  required={true}
+                  label="身份证照片"
+                  field="IDPhoto"
+                  rules={[
                     {
                       trigger: 'onChange',
                       required: true,
-                      validator:(rule, val, cb)=>{
-                        if(!val.backPhoto) cb('请上传身份证反面')
-                        if(!val.frontPhoto) cb('请上传身份证正面')
+                      validator: (rule, val, cb) => {
+                        if (!val.backPhoto) cb('请上传身份证反面')
+                        if (!val.frontPhoto) cb('请上传身份证正面')
                         cb('')
-                      }
+                      },
                     },
-                  ]}>
+                  ]}
+                >
                   <IdentificationUpload />
                 </FormItem>
               </Col>
@@ -692,21 +738,21 @@ export const FormBasic: React.FC = () => {
             </Row>
           </Card>
         </Form>
-       
       </div>
-      <div className="footer--fixed">
+      <ContentFooter>
         <div className="footer__body">
           <Button type="default" onClick={handleCancel}>
             取消
           </Button>
-          <Button type="default" onClick={handleStash}>
+          <Button type="default" onClick={handleStash} loading={loading.stashLoading}>
             暂存
           </Button>
-          <Button type="primary" onClick={handleSubmit}>
+          <Button type="primary" onClick={handleSubmit} loading={loading.saveLoading}>
             提交
           </Button>
         </div>
-      </div>
+      </ContentFooter>
+      <Modal></Modal>
     </div>
   )
 }

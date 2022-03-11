@@ -98,7 +98,7 @@ export const FormBasic: React.FC = () => {
         })
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
       })
   }
 
@@ -128,7 +128,7 @@ export const FormBasic: React.FC = () => {
         })
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
       })
   }
 
@@ -166,7 +166,6 @@ export const FormBasic: React.FC = () => {
           labelWidth="100"
           labelPlacement="top"
           onValuesChange={(changedValues, allValues) => {
-            console.log('changedValues,allValues', changedValues, allValues)
             setFormData(allValues)
           }}
         >
@@ -298,9 +297,6 @@ export const FormBasic: React.FC = () => {
                         title: '未选',
                       },
                     ]}
-                    onChange={(value) => {
-                      console.log('onChange', value)
-                    }}
                   />
                 </FormItem>
                 <FormItem
@@ -355,9 +351,6 @@ export const FormBasic: React.FC = () => {
                         title: '无效',
                       },
                     ]}
-                    onChange={(value) => {
-                      console.log('onChange', value)
-                    }}
                   />
                 </FormItem>
               </Col>
@@ -378,11 +371,7 @@ export const FormBasic: React.FC = () => {
                       type="avatar"
                       photoSize="default"
                       uploadAction="http://www.mocky.io/v2/5dc3b4413000007600347501"
-                      onChange={(file, fileList, response) => {
-                        console.log('upload callback', file, fileList, response)
-                      }}
                       onRemove={(file, fileList, index) => {
-                        console.log('remove callback', file, fileList, index)
                         return new Promise((resolve, reject) => resolve(true))
                       }}
                       data={{ id: 'uid', channel: 'youpin' }}
@@ -428,9 +417,6 @@ export const FormBasic: React.FC = () => {
                         title: '高级',
                       },
                     ]}
-                    onChange={(value) => {
-                      console.log('onChange', value)
-                    }}
                   />
                 </FormItem>
                 <FormItem
@@ -467,9 +453,6 @@ export const FormBasic: React.FC = () => {
                       { title: '考拉型', id: '2' },
                       { title: '猫头鹰型', id: '3' },
                     ]}
-                    onChange={(ids: any) => {
-                      console.log('select ids', ids)
-                    }}
                   />
                 </FormItem>
               </Col>
@@ -503,9 +486,6 @@ export const FormBasic: React.FC = () => {
                         title: '请假',
                       },
                     ]}
-                    onChange={(value) => {
-                      console.log('onChange', value)
-                    }}
                   />
                 </FormItem>
                 <FormItem

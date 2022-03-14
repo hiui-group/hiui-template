@@ -1,0 +1,114 @@
+@import '../variables.scss';
+
+$prefixCls: #{$kit-prefix}-search-panel !default;
+
+.#{$prefixCls} {
+  display: flex;
+  justify-content: space-between;
+
+  &__form-wrap {
+    flex: 1;
+    overflow: hidden;
+    transition: 0.45s ease height;
+    justify-content: space-between;
+
+    &__form-component {
+      width: 100%;
+    }
+
+    .hi-v4-form-label {
+      margin-bottom: 20px;
+      margin-top: 0px;
+      width: 33.3333%;
+      margin-right: 0;
+      transition: 0.35s ease width;
+      .hi-v4-form-label__text {
+        width: 116px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 1px;
+        padding-right: 4px;
+      }
+      .hi-v4-form-label__control {
+        flex: 1;
+        .hi-v4-form-message {
+          min-height: 20px;
+          padding: 0;
+        }
+      }
+    }
+    &.zh-CN {
+      .hi-v4-form-label {
+        .hi-v4-form-label__text {
+          padding-left: 20px;
+          padding-right: 12px;
+        }
+      }
+    }
+  }
+
+  &__opts-wrap {
+    text-align: right;
+    padding-left: 30px;
+    box-sizing: border-box;
+    display: flex;
+
+    .hi-v4-button--appearance-link.hi-v4-button--size-md {
+      height: calc(1.375rem + 10px);
+      padding: 4px 5px;
+    }
+
+    .btn-expand {
+      width: 78px;
+      text-align: right;
+    }
+  }
+}
+
+@media screen and (max-width: 1580px) {
+  .#{$prefixCls} {
+    &__form-wrap {
+      .hi-v4-form-label {
+        width: 50% !important;
+        &:nth-child(2n + 1) {
+          .hi-v4-form-label__text {
+            width: 115px !important;
+            padding-left: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1920px) and (min-width: 1581px) {
+  .#{$prefixCls} {
+    &__form-wrap {
+      .hi-v4-form-label {
+        &:nth-child(3n + 1) {
+          .hi-v4-form-label__text {
+            width: 115px !important;
+            padding-left: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1921px) {
+  .#{$prefixCls} {
+    &__form-wrap {
+      .hi-v4-form-label {
+        width: 25% !important;
+        &:nth-child(4n + 1) {
+          .hi-v4-form-label__text {
+            width: 115px !important;
+            padding-left: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}

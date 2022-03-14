@@ -1,0 +1,6 @@
+@import '../variables.scss';
+
+$prefixCls: #{$kit-prefix}-divider !default;
+
+.#{$prefixCls} {
+}

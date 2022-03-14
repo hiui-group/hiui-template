@@ -1,0 +1,28 @@
+@import '../variables.scss';
+
+$prefixCls: #{$kit-prefix}-toolbar !default;
+
+.#{$prefixCls} {
+  background: #fff;
+  height: 48px;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 8px 20px;
+
+  &__title {
+    font-size: 18px;
+    line-height: 32px;
+    color: #1f2733;
+    font-weight: 500;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .btn-goback {
+    margin-right: 5px;
+  }
+
+  .btn-refresh {
+    margin: 0 4px;
+  }
+}

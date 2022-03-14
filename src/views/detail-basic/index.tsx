@@ -1,14 +1,26 @@
+import * as React from 'react'
 import { Avatar, Button, Card, Grid, Table, Tag, Timeline } from '@hi-ui/hiui'
 import { BuildingFilled, PlusOutlined } from '@hi-ui/icons'
 import { ContentHeader } from '../../components/content-header'
 import { Divider } from '../../components/divider'
 import { Spacer } from '../../components/spacer'
+import { fetchBasicDetailData } from './api'
 
 const { Row, Col } = Grid
 
 const prefix = 'hi-pro-detail-basic'
 
+const contentPlaceholder = '-'
+
 export const DetailBasic = () => {
+  const [data, setData] = React.useState<Record<string, any> | null>(null)
+
+  React.useEffect(() => {
+    fetchBasicDetailData().then((result) => {
+      setData(result)
+    })
+  }, [])
+
   return (
     <div className={prefix}>
       <ContentHeader
@@ -48,7 +60,8 @@ export const DetailBasic = () => {
                         lineHeight: '20px',
                       }}
                     >
-                      {'单号：P20212334124'}
+                      单号：
+                      {data ? data.orderId : contentPlaceholder}
                     </span>
                     <div
                       style={{
@@ -58,7 +71,7 @@ export const DetailBasic = () => {
                         lineHeight: '32px',
                       }}
                     >
-                      {'黄河 国内出差2021-11-25至20'}
+                      {data ? data.orderTitle : contentPlaceholder}
                     </div>
                   </Spacer>
                 </Spacer>

@@ -17,7 +17,7 @@ export const DetailBasic = () => {
 
   React.useEffect(() => {
     fetchBasicDetailData().then((result) => {
-      setData(result)
+      setData(result.data)
     })
   }, [])
 

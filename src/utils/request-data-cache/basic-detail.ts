@@ -1,7 +1,10 @@
-import {ResponseBody} from "./request";
+import {ResponseBody} from "../request";
 
-export const RequestDataCache: Record<string, ResponseBody> = {
-  'basic-detail-data': {
+const PageRoutePrefix = 'basic-detail'
+
+
+export const BasicDetail: Record<string, ResponseBody> = {
+  [`${PageRoutePrefix}/data`]: {
     code: 200,
     data: {
       orderId: 'P20212334124',

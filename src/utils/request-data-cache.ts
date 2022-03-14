@@ -1,4 +1,3 @@
-import {fetchBasicDetailData} from "../views/detail-basic/api";
 import {ResponseBody} from "./request";
 
 export const RequestDataCache: Record<string, ResponseBody> = {

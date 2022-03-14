@@ -36,5 +36,7 @@
 .content {
   flex: auto;
   overflow-y: auto;
+  position: relative;
+  height: calc(100vh - 56px);
   background-color: rgba(243, 244, 247, 1);
 }

@@ -1,13 +1,47 @@
-import { HiBaseHTMLProps } from '@hi-ui/core'
+import React from 'react'
+import { KIT_PREFIX } from '../constant'
 
 import './index.scss'
 
-const prefix = 'hi-v4-divider'
-
-export const Divider: React.FC<DividerProps> = ({ as: As = 'div', ...rest }) => {
-  return <As className={prefix} {...rest} />
+export interface DividerProps {
+  /** 上边距 */
+  marginTop?: number
+  /** 下边距 */
+  marginBottom?: number
+  /** 左边距 */
+  marginLeft?: number
+  /** 右边距 */
+  marginRight?: number
+  /** 分界线高度 */
+  height?: number
+  /** 分界线颜色 */
+  color?: string
 }
 
-export interface DividerProps extends HiBaseHTMLProps<'div'> {
-  as?: React.ElementType
+/**
+ * 分界线
+ */
+export const Divider: React.FC<DividerProps> = ({
+  marginTop = 0,
+  marginBottom = 20,
+  height = 1,
+  color = '#f2f4f7',
+  marginLeft = 0,
+  marginRight = 0,
+}) => {
+  const prefixCls = `${KIT_PREFIX}-divider`
+
+  return (
+    <div
+      className={`${prefixCls}`}
+      style={{
+        marginTop: marginTop,
+        marginBottom,
+        height,
+        backgroundColor: color,
+        marginLeft,
+        marginRight,
+      }}
+    ></div>
+  )
 }

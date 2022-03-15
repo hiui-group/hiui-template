@@ -2,7 +2,6 @@ import {ResponseBody} from "../request";
 
 const PageRoutePrefix = 'basic-detail'
 
-
 export const BasicDetail: Record<string, ResponseBody> = {
   [`${PageRoutePrefix}/data`]: {
     code: 200,

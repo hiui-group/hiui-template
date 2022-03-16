@@ -13,7 +13,8 @@ export const request = async <T = any>(url: keyof typeof RequestDataCache, confi
 
   await delay(timeout)
 
-  return RequestDataCache[url]
+  const mockData = RequestDataCache[url]
+  return typeof mockData === 'function' ? mockData(config) : mockData
 }
 
 export interface RequestConfig{
@@ -22,6 +23,10 @@ export interface RequestConfig{
    * @default 3000
    */
   timeout?: number
+  /**
+   * 需要传递的数据
+   */
+  data?: any
 }
 
 

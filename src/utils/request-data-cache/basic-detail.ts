@@ -1,8 +1,9 @@
 import {ResponseBody} from "../request";
+import {RequestDataCacheType} from "./index";
 
 const PageRoutePrefix = 'basic-detail'
 
-export const BasicDetail: Record<string, ResponseBody> = {
+export const BasicDetail: RequestDataCacheType = {
   [`${PageRoutePrefix}/data`]: {
     code: 200,
     data: {

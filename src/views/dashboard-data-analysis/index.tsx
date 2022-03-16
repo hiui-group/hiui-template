@@ -18,7 +18,10 @@ import {useCallback, useEffect, useMemo, useState} from "react";
 import {fetchThisMonth} from "./api";
 import Card from "@hi-ui/card";
 import {ViewTrend} from "./view-trend";
-
+import {UserDistribution} from "./user-distribution";
+import {ContentDistribution} from "./content-distribution";
+import {ProductProblemAnalysis} from "./product-problem-analysis";
+import {CountryViewHotMap} from "./country-view-hot-map";
 
 export const DashboardDataAnalysis = () => {
 
@@ -150,12 +153,30 @@ export const DashboardDataAnalysis = () => {
         }
       />
       <div style={{display: 'flex', justifyContent: 'center', padding: '20px'}}>
-        <div style={{flex: 1, maxWidth: '1704px'}}>
+        <div style={{flex: 1, maxWidth: '1704px', minWidth:'1px'}}>
           {thisMonthCards}
-          <div style={{display: 'flex', marginTop: '16px'}}>
-            <Card bordered={false} hoverable style={{flex: 2, position: 'relative', overflow: "hidden"}}
+          <div style={{display: 'flex', marginTop: '16px', gap: '16px', flexWrap:'wrap'}}>
+            <Card bordered={false} hoverable style={{flex: 3.5, position: 'relative', overflow: "hidden", minWidth: '640px' }}
                   extra={renderCardExtra()} title={'系统访问量走势'}>
-              <ViewTrend style={{flex: 2, height: '324px'}}/>
+              <ViewTrend style={{height: '324px'}}/>
+            </Card>
+            <Card bordered={false} hoverable style={{flex: 1, position: 'relative', overflow: "hidden", minWidth: '450px'}}
+                  extra={renderCardExtra()} title={'角色分布'}>
+              <UserDistribution style={{height: '324px'}}/>
+            </Card>
+          </div>
+          <div style={{display: 'flex', marginTop: '16px', gap: '16px', flexWrap:'wrap'}}>
+            <Card bordered={false} hoverable style={{flex: 1, position: 'relative', overflow: "hidden", minWidth: '380px' }}
+                  extra={renderCardExtra()} title={'内容访问分布'}>
+              <ContentDistribution style={{height: '324px'}}/>
+            </Card>
+            <Card bordered={false} hoverable style={{flex: 1, position: 'relative', overflow: "hidden", minWidth: '380px' }}
+                  extra={renderCardExtra()} title={'产品问题分析'}>
+              <ProductProblemAnalysis style={{height: '324px'}}/>
+            </Card>
+            <Card bordered={false} hoverable style={{flex: 1, position: 'relative', overflow: "hidden", minWidth: '380px' }}
+                  extra={renderCardExtra()} title={'全国访问热力分析'}>
+              <CountryViewHotMap style={{height: '324px'}}/>
             </Card>
           </div>
         </div>

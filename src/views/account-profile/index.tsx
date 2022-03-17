@@ -5,7 +5,6 @@ import './index.scss';
 import AccountSetting from "./setting";
 import AccountSecurity from "./security";
 import AccountSysset from "./sysset";
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
 import { parseParams } from "../../utils/url";

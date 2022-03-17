@@ -44,11 +44,11 @@
     font-weight: 600;
     color: #1F2733;
     box-shadow: inset 0px -1px 0px 0px #EBEDF0;
+    margin-bottom: var(--hi-v4-spacing-10, 20px);
   }
 }
 
 .account-setting {
-  margin-top: var(--hi-v4-spacing-10, 20px);
   min-width: 520px;
   max-width: 720px;
   .account-settings-avatar {
@@ -57,6 +57,43 @@
       width: 116px;
       height: 116px;
       line-height: 114px;
+    }
+  }
+}
+
+.account-security {
+  &-item {
+    margin: 16px 12px 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_icon {
+      font-size: 20px !important;
+      padding: 10px;
+      color: #237FFA;
+      background-color: #E2F3FE;
+      border-radius: 4px;
+    }
+    &_cont {
+      flex: 1;
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    &_title {
+      display: flex;
+      justify-content: space-between;
+      height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2733;
+    }
+    &_desc {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      color: #5F6A7A;
+      line-height: 20px;
     }
   }
 }

@@ -25,3 +25,8 @@ export const fetchCountryViewHotMap = async (provinces: string[]) => {
     data: provinces
   })
 }
+
+export const fetchContentIndex = async () => {
+  return await request(`dashboard-data-analysis/content-index`)
+}
+

@@ -22,6 +22,7 @@ import {UserDistribution} from "./user-distribution";
 import {ContentDistribution} from "./content-distribution";
 import {ProductProblemAnalysis} from "./product-problem-analysis";
 import {CountryViewHotMap} from "./country-view-hot-map";
+import {ContentIndex} from "./content-index";
 
 export const DashboardDataAnalysis = () => {
 
@@ -177,6 +178,16 @@ export const DashboardDataAnalysis = () => {
             <Card bordered={false} hoverable style={{flex: 1, position: 'relative', overflow: "hidden", minWidth: '380px' }}
                   extra={renderCardExtra()} title={'全国访问热力分析'}>
               <CountryViewHotMap style={{height: '324px'}}/>
+            </Card>
+          </div>
+          <div style={{display: 'flex', marginTop: '16px', gap: '16px', flexWrap:'wrap'}}>
+            <Card bordered={false} hoverable style={{flex: 1, position: 'relative', overflow: "hidden", minWidth: '580px' }}
+                  extra={renderCardExtra()} title={'内容指数'}>
+              <ContentIndex />
+            </Card>
+            <Card bordered={false} hoverable style={{flex: 1, position: 'relative', overflow: "hidden", minWidth: '580px' }}
+                  extra={renderCardExtra()} title={'课程数据'}>
+              <ContentIndex />
             </Card>
           </div>
         </div>

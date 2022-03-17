@@ -1,4 +1,3 @@
-import {ResponseBody} from "../request";
 import {RequestDataCacheType} from "./index";
 
 const PageRoutePrefix = 'dashboard-data-analysis'
@@ -118,7 +117,7 @@ export const DashboardDataAnalysis: RequestDataCacheType = {
     data: generateProductProblemAnalysisData(['手机', '家用电器', '厨房家电', '智慧家庭', '机器人'])
   },
   [`${PageRoutePrefix}/country-view-hot-map`]: (config) => {
-    const { data: provinces} = config!
+    const {data: provinces} = config!
 
     const data = (provinces as any[]).map(item => ({
       title: item,
@@ -128,6 +127,21 @@ export const DashboardDataAnalysis: RequestDataCacheType = {
     return {
       code: 200,
       data
+    }
+  },
+  [`${PageRoutePrefix}/content-index`]: () => {
+    const titles = ['关于空气炸锅无法联网的情况说明', '米家免洗扫拖机器人主机', '米家免洗扫拖机器人基站', '小米笔记本电脑升级 Windows 11', '关于空气炸锅无法联网的情况说明', '米家免洗扫拖机器人主机', '米家免洗扫拖机器人基站', '小米笔记本电脑升级 Windows 11', '关于空气炸锅无法联网的情况说明', '米家免洗扫拖机器人主机']
+
+    return {
+      code: 200,
+      data: titles.map((item,index) => ({
+        id: index,
+        title: item,
+        view: 683,
+        person: 577,
+        viewPercentage: 32.48,
+        sort: index
+      }))
     }
   }
 }

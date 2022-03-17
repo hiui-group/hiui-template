@@ -1,8 +1,42 @@
 import { Button } from "@hi-ui/hiui";
-import { PlusOutlined } from "@hi-ui/icons";
+import { BusinessCardTransverseOutlined, LockOutlined, PlusOutlined, SettingOutlined } from "@hi-ui/icons";
 import { ContentHeader } from "../../components/content-header";
+import './index.scss';
+import AccountSetting from "./setting";
+import AccountSecurity from "./security";
+import { useState } from "react";
+
+interface AccountTabItem {
+  title: string,
+  key: string,
+  icon: any,
+  component: any
+}
+
+const AccountTabList: AccountTabItem[] = [
+  {
+    title: "个人信息",
+    key: "setting",
+    icon: BusinessCardTransverseOutlined,
+    component: AccountSetting
+  },
+  {
+    title: "账号安全",
+    key: "security",
+    icon: LockOutlined,
+    component: AccountSecurity
+  },
+  {
+    title: "系统设置",
+    key: "sysset",
+    icon: SettingOutlined,
+    component: AccountSecurity
+  }
+]
+
 
 export const AccountProfile = () => {
+  const [ tabState, setTabState ] = useState(AccountTabList[0].key)
   return <div>
     <ContentHeader
       breadcrumbs={[
@@ -10,10 +44,10 @@ export const AccountProfile = () => {
           title: '首页',
           path: 'home',
         }, {
-          title: '个人中心'
+          title: '设置'
         }
       ]}
-      title="个人中心"
+      title="设置"
       toolbar={
         <div>
           <Button>次要操作</Button>
@@ -22,5 +56,22 @@ export const AccountProfile = () => {
         </div>
       }
     />
+    <div className="account-profile-container">
+      <div className="account-profile-navbox">
+        {
+          AccountTabList.map((item: AccountTabItem) => {
+            let IconComp: any = item.icon
+            return <div key={item.key} className={"account-profile-navitem " + (tabState === item.key ? "active" : "")} onClick={ () => setTabState(item.key) }><IconComp className="nav-icon" />{item.title}</div>
+          })
+        }
+      </div>
+      {
+        AccountTabList.map((item: AccountTabItem) => {
+          if (item.key !== tabState) return null
+          let Comp: any = item.component
+          return <Comp key={ item.key } />
+        })
+      }
+    </div>
   </div>
 }

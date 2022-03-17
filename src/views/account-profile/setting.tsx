@@ -2,9 +2,9 @@ import { Col, Form, FormItem, FormSubmit, Input, Row, Select, Upload } from "@hi
 
 export default () => {
   return (
-    <div className="account-settings-contentbox">
-      <div className="account-settings-contentbox-title">个人信息</div>
-      <div className="account-settings-contentbox-formcontainer">
+    <div className="account-profile-contentbox">
+      <div className="account-profile-contentbox-title">个人信息</div>
+      <div className="account-setting">
         <Form
           initialValues={{
             userName: '张三',

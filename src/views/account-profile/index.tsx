@@ -6,12 +6,15 @@ import AccountSetting from "./setting";
 import AccountSecurity from "./security";
 import AccountSysset from "./sysset";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useLocation } from "react-router";
+import { parseParams } from "../../utils/url";
 
 interface AccountTabItem {
   title: string,
   key: string,
   icon: any,
-  component: any
+  component: React.FC
 }
 
 const AccountTabList: AccountTabItem[] = [
@@ -36,8 +39,19 @@ const AccountTabList: AccountTabItem[] = [
 ]
 
 
-export const AccountProfile = () => {
-  const [ tabState, setTabState ] = useState(AccountTabList[0].key)
+export const AccountProfile: React.FC = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const onClickTab = (tabKey: string) => {
+    if (tabKey === AccountTabList[0].key) {
+      navigate('/account-profile');
+    } else {
+      navigate('/account-profile?tab=' + tabKey)
+    }
+  }
+
+  const params = parseParams(location.search)
+  const tabState = params['tab'] ? params['tab'] : AccountTabList[0].key;
   return <div>
     <ContentHeader
       breadcrumbs={[
@@ -62,14 +76,14 @@ export const AccountProfile = () => {
         {
           AccountTabList.map((item: AccountTabItem) => {
             let IconComp: any = item.icon
-            return <div key={item.key} className={"account-profile-navitem " + (tabState === item.key ? "active" : "")} onClick={ () => setTabState(item.key) }><IconComp className="nav-icon" />{item.title}</div>
+            return <div key={item.key} className={"account-profile-navitem " + (tabState === item.key ? "active" : "")} onClick={ () => onClickTab(item.key) }><IconComp className="nav-icon" />{item.title}</div>
           })
         }
       </div>
       {
         AccountTabList.map((item: AccountTabItem) => {
           if (item.key !== tabState) return null
-          let Comp: any = item.component
+          let Comp = item.component
           return <Comp key={ item.key } />
         })
       }

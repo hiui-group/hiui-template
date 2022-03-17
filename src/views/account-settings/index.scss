@@ -1,0 +1,61 @@
+.account-settings-container {
+  display: flex;
+  padding: 20px;
+  min-height: calc(100vh - 56px - 90px);
+  box-sizing: border-box;
+}
+
+.account-settings-navbox {
+  width: 234px;
+  padding: 8px;
+  background-color: #ffffff;
+  margin-right: 20px;
+  border-radius: 6px;
+  flex-direction: column;
+}
+
+.account-settings-navitem {
+  display: flex;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+  font-size: 14px;
+  padding: 0 12px;
+  margin-bottom: 8px;
+}
+.account-settings-navitem.active,.account-settings-navitem:hover {
+  background: #E2F3FE;
+  color: #237FFA;
+}
+.account-settings-navitem .nav-icon {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.account-settings-contentbox {
+  flex: 1;
+  padding: 0 20px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  &-title {
+    line-height: 56px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1F2733;
+    box-shadow: inset 0px -1px 0px 0px #EBEDF0;
+  }
+  &-formcontainer {
+    margin-top: var(--hi-v4-spacing-10, 20px);
+    min-width: 520px;
+    max-width: 720px;
+  }
+}
+.account-settings-avatar {
+  .hi-v4-upload__item {
+    margin: 0;
+    width: 116px;
+    height: 116px;
+    line-height: 114px;
+  }
+}

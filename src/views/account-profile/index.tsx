@@ -4,6 +4,7 @@ import { ContentHeader } from "../../components/content-header";
 import './index.scss';
 import AccountSetting from "./setting";
 import AccountSecurity from "./security";
+import AccountSysset from "./sysset";
 import { useState } from "react";
 
 interface AccountTabItem {
@@ -30,7 +31,7 @@ const AccountTabList: AccountTabItem[] = [
     title: "系统设置",
     key: "sysset",
     icon: SettingOutlined,
-    component: AccountSecurity
+    component: AccountSysset
   }
 ]
 

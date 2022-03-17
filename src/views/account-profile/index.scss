@@ -97,3 +97,38 @@
     }
   }
 }
+
+.account-sysset {
+  &-item {
+    margin: 16px 12px 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_icon {
+      font-size: 20px !important;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    &_cont {
+      flex: 1;
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    &_title {
+      display: flex;
+      justify-content: space-between;
+      height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2733;
+    }
+    &_desc {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      color: #5F6A7A;
+      line-height: 20px;
+    }
+  }
+}

@@ -1,71 +1,71 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+// @ts-nocheck
+
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import * as Echarts from 'echarts'
 import { Loading } from '@hi-ui/loading'
-import {fetchContentDistribution} from "./api";
-import {EChartsOptionsGenerator} from "./common";
+import { fetchContentDistribution } from './api'
+import { EChartsOptionsGenerator } from './common'
 
-const generateChartOption =(data: any[]) => (
-  {
-    grid: {
-      left: '48px',
-      right: '24px',
-      top: '20px',
-      bottom: '48px'
+const generateChartOption = (data: any[]) => ({
+  grid: {
+    left: '48px',
+    right: '24px',
+    top: '20px',
+    bottom: '48px',
+  },
+  tooltip: {
+    show: true,
+  },
+  color: ['#237FFA'],
+  xAxis: [
+    {
+      type: 'category',
+      data: data.map((item) => item.title),
+      axisTick: {
+        show: false,
+      },
+      offset: 12,
+      axisLine: {
+        lineStyle: {
+          color: '#EBEDF0',
+        },
+      },
+      axisLabel: {
+        color: '#1F2733',
+      },
     },
-    tooltip:{
-        show: true
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      axisLine: {
+        lineStyle: {
+          color: '#1F2733',
+        },
+      },
+      offset: 12,
+      splitLine: {
+        lineStyle: {
+          color: '#EBEDF0',
+        },
+      },
     },
-    color: ['#237FFA'],
-    xAxis: [
-      {
-        type: 'category',
-        data: data.map(item => item.title),
-        axisTick: {
-          show: false
-        },
-        offset: 12,
-        axisLine: {
-          lineStyle: {
-            color: '#EBEDF0'
-          }
-        },
-        axisLabel: {
-          color: '#1F2733'
-        }
-      }
-    ],
-    yAxis: [
-      {
-        type: 'value',
-        axisLine: {
-          lineStyle: {
-            color: '#1F2733'
-          }
-        },
-        offset: 12,
-        splitLine: {
-          lineStyle: {
-            color: '#EBEDF0'
-          }
-        }
-      }
-    ],
-    series: [
-      {
-        type: 'bar',
-        // symbol: 'none',
-        emphasis: {
-          focus: 'series'
-        },
-        data: data.map(item => item.num),
-        barWidth: 36,
-        itemStyle:{
-          borderRadius: 4
-        }
-      }
-    ]
-  }
-)
+  ],
+  series: [
+    {
+      type: 'bar',
+      // symbol: 'none',
+      emphasis: {
+        focus: 'series',
+      },
+      data: data.map((item) => item.num),
+      barWidth: 36,
+      itemStyle: {
+        borderRadius: 4,
+      },
+    },
+  ],
+})
 export const ContentDistribution = (props: { style?: React.CSSProperties }) => {
   const [container, setContainer] = useState<HTMLDivElement | null>(null)
   const chartRef = useRef<Echarts.EChartsType | undefined>()
@@ -75,7 +75,7 @@ export const ContentDistribution = (props: { style?: React.CSSProperties }) => {
 
   useEffect(() => {
     setIsFetching(true)
-    fetchContentDistribution().then(result => {
+    fetchContentDistribution().then((result) => {
       setData(result.data)
       setIsFetching(false)
     })
@@ -107,8 +107,8 @@ export const ContentDistribution = (props: { style?: React.CSSProperties }) => {
   return (
     <React.Fragment>
       <Loading visible={isFetching}>
-        <div style={{...props.style, position: 'relative'}}>
-          <div ref={e => setContainer(e)} style={{width: '100%', height: '100%'}}/>
+        <div style={{ ...props.style, position: 'relative' }}>
+          <div ref={(e) => setContainer(e)} style={{ width: '100%', height: '100%' }} />
         </div>
       </Loading>
     </React.Fragment>

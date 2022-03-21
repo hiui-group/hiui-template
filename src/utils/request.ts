@@ -1,4 +1,4 @@
-import {RequestDataCache} from "./request-data-cache";
+import { RequestDataCache } from './request-data-cache'
 
 const delay = (timeout: number) => new Promise((resolve) => window.setTimeout(resolve, timeout))
 
@@ -8,22 +8,24 @@ const delay = (timeout: number) => new Promise((resolve) => window.setTimeout(re
  * @param config mock 配置项
  * @returns {Promise<ResponseBody>}
  */
-export const request = async <T = any>(url: keyof typeof RequestDataCache, config?: RequestConfig):Promise<ResponseBody<T>> => {
-  const { timeout = 3000 } = (config || {})
+export const request = async <T = any>(
+  url: keyof typeof RequestDataCache,
+  config?: RequestConfig
+): Promise<ResponseBody<T>> => {
+  const { timeout = 2400 } = config || {}
 
   await delay(timeout)
 
   return RequestDataCache[url]
 }
 
-export interface RequestConfig{
+export interface RequestConfig {
   /**
    * 在本地模拟时有效，timeout 之后才会返回值
    * @default 3000
    */
   timeout?: number
 }
-
 
 export interface ResponseBody<T = any> {
   code: number

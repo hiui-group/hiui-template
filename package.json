@@ -10,8 +10,8 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@commitlint/cli": "~11.0.0",
-    "@hi-ui/hiui": "^4.0.0-beta.25",
-    "@hi-ui/icons": "^4.0.0-beta.4",
+    "@hi-ui/hiui": "^4.0.0-beta.36",
+    "@hi-ui/icons": "^4.0.0-beta.6",
     "@hi-ui/utils": "^4.0.0-beta.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",

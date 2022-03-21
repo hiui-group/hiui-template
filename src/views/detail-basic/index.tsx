@@ -14,11 +14,17 @@ const contentPlaceholder = '-'
 
 export const DetailBasic = () => {
   const [data, setData] = React.useState<Record<string, any> | null>(null)
+  const [loading, setLoading] = React.useState(false)
 
   React.useEffect(() => {
-    fetchBasicDetailData().then((result) => {
-      setData(result.data)
-    })
+    setLoading(true)
+    fetchBasicDetailData()
+      .then((result) => {
+        setData(result.data!)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
   return (
@@ -48,7 +54,7 @@ export const DetailBasic = () => {
       <div style={{ padding: '20px 20px 83px' }}>
         <Row>
           <Col span={24}>
-            <Card bordered={false}>
+            <Card loading={loading} bordered={false}>
               <Spacer>
                 <Spacer>
                   <Avatar icon={<BuildingFilled />}></Avatar>
@@ -82,7 +88,7 @@ export const DetailBasic = () => {
 
         <Row>
           <Col span={24}>
-            <Card bordered={false} title="差旅信息">
+            <Card loading={loading} bordered={false} title="差旅信息">
               description
             </Card>
           </Col>
@@ -90,7 +96,7 @@ export const DetailBasic = () => {
 
         <Row>
           <Col span={24}>
-            <Card bordered={false} title="行程明细">
+            <Card loading={loading} bordered={false} title="行程明细">
               <Table
                 columns={[
                   {
@@ -285,7 +291,7 @@ export const DetailBasic = () => {
 
         <Row>
           <Col span={24}>
-            <Card bordered={false} title="审批进度">
+            <Card loading={loading} bordered={false} title="审批进度">
               <Timeline
                 type="right"
                 data={[

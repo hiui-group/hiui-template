@@ -16,7 +16,8 @@ export const request = async <T = any>(
 
   await delay(timeout)
 
-  return RequestDataCache[url]
+  const mockData = RequestDataCache[url]
+  return typeof mockData === 'function' ? mockData(config) : mockData
 }
 
 export interface RequestConfig {
@@ -25,6 +26,10 @@ export interface RequestConfig {
    * @default 3000
    */
   timeout?: number
+  /**
+   * 需要传递的数据
+   */
+  data?: any
 }
 
 export interface ResponseBody<T = any> {

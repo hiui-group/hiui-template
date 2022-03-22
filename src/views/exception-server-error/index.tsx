@@ -1,5 +1,6 @@
 import { Button } from "@hi-ui/hiui";
 import { PlusOutlined } from "@hi-ui/icons";
+import Result, { IconServerError } from "@hi-ui/result";
 import { ContentHeader } from "../../components/content-header";
 
 export const ExceptionServerError = () => {
@@ -22,5 +23,27 @@ export const ExceptionServerError = () => {
         </div>
       }
     />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 'calc(100vh - 56px - 130px)',
+        margin: '20px',
+        background: '#fff',
+      }}
+    >
+      <Result
+        image={<IconServerError />}
+        imageSize="lg"
+        title="500"
+        content="抱歉，服务器开小差了！"
+        children={
+          <Button type="primary">
+            立即申请
+          </Button>
+        }
+      />
+    </div>
   </div>
 }

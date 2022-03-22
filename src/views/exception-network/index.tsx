@@ -1,5 +1,6 @@
 import { Button } from "@hi-ui/hiui";
 import { PlusOutlined } from "@hi-ui/icons";
+import Result, { IconNetError } from "@hi-ui/result";
 import { ContentHeader } from "../../components/content-header";
 
 export const ExceptionNetwork = () => {
@@ -22,5 +23,27 @@ export const ExceptionNetwork = () => {
         </div>
       }
     />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 'calc(100vh - 56px - 130px)',
+        margin: '20px',
+        background: '#fff',
+      }}
+    >
+      <Result
+        image={<IconNetError />}
+        imageSize="lg"
+        title="网络中断"
+        content="抱歉，网络连接中断，请稍后再试！"
+        children={
+          <Button type="primary">
+            刷新页面
+          </Button>
+        }
+      />
+    </div>
   </div>
 }

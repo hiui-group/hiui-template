@@ -1,0 +1,63 @@
+.hi-pro-copy {
+  &-tool {
+    position: fixed;
+    right: 0;
+    bottom: 120px;
+    z-index: 99999;
+  }
+
+  &-tool__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0 12px 0 8px;
+    border-radius: 50px 0 0 50px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    background: #2684fc;
+    color: #fff;
+    cursor: pointer;
+    transform: translate3d(8px, 0, 0);
+    transition: 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+      background: lighten($color: #2684fc, $amount: 6);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  &-drawer {
+    pre {
+      padding: 0 16px !important;
+    }
+  }
+
+  &-drawer__body {
+    display: flex;
+    gap: 16px;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  $height:   57px + 20px + 24px + 52px;
+
+  &-drawer__sider {
+    width: 216px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - $height);
+    overflow: auto;
+  }
+
+  &-drawer__main {
+    width: 100%;
+    height: calc(100vh - $height);
+    overflow: auto;
+    background: #f8f8fe;
+  }
+}

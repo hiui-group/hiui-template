@@ -94,7 +94,7 @@ export const DashboardWorkbench = () => {
             {/* 个人信息 */}
             <Row>
               <Col span={24}>
-                <Card loading={loading} bordered={false}>
+                <Card loading={loading} bordered={false} hoverable>
                   <Spacer justify="space-between" inline={false}>
                     <Spacer>
                       <Avatar
@@ -166,6 +166,7 @@ export const DashboardWorkbench = () => {
             <Row>
               <Col span={24}>
                 <Card
+                  hoverable
                   loading={loading}
                   bordered={false}
                   title="学习"
@@ -180,56 +181,58 @@ export const DashboardWorkbench = () => {
                     </>
                   }
                 >
-                  {data
-                    ? calcGridRows(data.study.courses).map((row: any, index: number) => {
-                        // const span = 24 / row.length
-                        return (
-                          <Row key={index} gutter>
-                            {row.map((item: any) => {
-                              return (
-                                <Col span={12}>
-                                  <Card
-                                    bordered={false}
-                                    style={{ backgroundColor: '#F5F7FA' }}
-                                    title={item.title}
-                                  >
-                                    <Spacer justify="space-between" inline={false}>
-                                      <Spacer>
-                                        <span>{item.organization}</span>
-                                        <span>
-                                          距离结束
-                                          <span
-                                            style={{
-                                              color: item.remainingDays < 3 ? 'red' : undefined,
-                                              margin: '0 4px',
-                                            }}
-                                          >
-                                            {item.remainingDays}
+                  <div style={{ minHeight: 200 }}>
+                    {data
+                      ? calcGridRows(data.study.courses).map((row: any, index: number) => {
+                          // const span = 24 / row.length
+                          return (
+                            <Row key={index} gutter>
+                              {row.map((item: any) => {
+                                return (
+                                  <Col span={12}>
+                                    <Card
+                                      bordered={false}
+                                      style={{ backgroundColor: '#F5F7FA' }}
+                                      title={item.title}
+                                    >
+                                      <Spacer justify="space-between" inline={false}>
+                                        <Spacer>
+                                          <span>{item.organization}</span>
+                                          <span>
+                                            距离结束
+                                            <span
+                                              style={{
+                                                color: item.remainingDays < 3 ? 'red' : undefined,
+                                                margin: '0 4px',
+                                              }}
+                                            >
+                                              {item.remainingDays}
+                                            </span>
+                                            天
                                           </span>
-                                          天
-                                        </span>
+                                        </Spacer>
+                                        <Spacer direction="row-reverse">
+                                          {item.learners.map((item: any) => {
+                                            return (
+                                              <Avatar
+                                                style={{ marginLeft: -20 }}
+                                                src={item.avatar}
+                                                size="xs"
+                                                key={item.avatar}
+                                              />
+                                            )
+                                          })}
+                                        </Spacer>
                                       </Spacer>
-                                      <Spacer direction="row-reverse">
-                                        {item.learners.map((item: any) => {
-                                          return (
-                                            <Avatar
-                                              style={{ marginLeft: -20 }}
-                                              src={item.avatar}
-                                              size="xs"
-                                              key={item.avatar}
-                                            />
-                                          )
-                                        })}
-                                      </Spacer>
-                                    </Spacer>
-                                  </Card>
-                                </Col>
-                              )
-                            })}
-                          </Row>
-                        )
-                      })
-                    : null}
+                                    </Card>
+                                  </Col>
+                                )
+                              })}
+                            </Row>
+                          )
+                        })
+                      : null}
+                  </div>
                 </Card>
               </Col>
             </Row>
@@ -238,6 +241,7 @@ export const DashboardWorkbench = () => {
             <Row>
               <Col span={24}>
                 <Card
+                  hoverable
                   loading={loading}
                   bordered={false}
                   title="考试"
@@ -252,41 +256,43 @@ export const DashboardWorkbench = () => {
                     </>
                   }
                 >
-                  {data
-                    ? calcGridRows(data.exam.exams).map((row: any, index: number) => {
-                        return (
-                          <Row key={index} gutter>
-                            {row.map((item: any) => {
-                              return (
-                                <Col span={12}>
-                                  <Card
-                                    bordered={false}
-                                    style={{ backgroundColor: '#F5F7FA' }}
-                                    title={item.title}
-                                  >
-                                    <Spacer justify="space-between" inline={false}>
-                                      <Spacer>
-                                        <span>{item.organization}</span>
-                                        <span>
-                                          {item.durationMinutes}
-                                          分钟
-                                        </span>
+                  <div style={{ minHeight: 100 }}>
+                    {data
+                      ? calcGridRows(data.exam.exams).map((row: any, index: number) => {
+                          return (
+                            <Row key={index} gutter>
+                              {row.map((item: any) => {
+                                return (
+                                  <Col span={12}>
+                                    <Card
+                                      bordered={false}
+                                      style={{ backgroundColor: '#F5F7FA' }}
+                                      title={item.title}
+                                    >
+                                      <Spacer justify="space-between" inline={false}>
+                                        <Spacer>
+                                          <span>{item.organization}</span>
+                                          <span>
+                                            {item.durationMinutes}
+                                            分钟
+                                          </span>
+                                        </Spacer>
+                                        <Button
+                                          size="lg"
+                                          shape="round"
+                                          type="secondary"
+                                          icon={<EditOutlined />}
+                                        ></Button>
                                       </Spacer>
-                                      <Button
-                                        size="lg"
-                                        shape="round"
-                                        type="secondary"
-                                        icon={<EditOutlined />}
-                                      ></Button>
-                                    </Spacer>
-                                  </Card>
-                                </Col>
-                              )
-                            })}
-                          </Row>
-                        )
-                      })
-                    : null}
+                                    </Card>
+                                  </Col>
+                                )
+                              })}
+                            </Row>
+                          )
+                        })
+                      : null}
+                  </div>
                 </Card>
               </Col>
             </Row>
@@ -295,6 +301,7 @@ export const DashboardWorkbench = () => {
             <Row gutter>
               <Col span={12}>
                 <Card
+                  hoverable
                   bordered={false}
                   scrollHeight={440}
                   title="认证"
@@ -302,7 +309,7 @@ export const DashboardWorkbench = () => {
                 >
                   <List
                     bordered={false}
-                    style={{ paddingLeft: 0, paddingRight: 0 }}
+                    style={{ minHeight: 440, paddingLeft: 0, paddingRight: 0 }}
                     render={(itemProps: any) => {
                       return (
                         <List.Item
@@ -344,6 +351,7 @@ export const DashboardWorkbench = () => {
               </Col>
               <Col span={12}>
                 <Card
+                  hoverable
                   bordered={false}
                   scrollHeight={440}
                   title="动态"
@@ -352,6 +360,7 @@ export const DashboardWorkbench = () => {
                 >
                   <Timeline
                     type="right"
+                    style={{ minHeight: 440 }}
                     data={
                       data
                         ? data.activities.list.map((item: any) => {
@@ -411,6 +420,7 @@ export const DashboardWorkbench = () => {
                     return (
                       <Col span={6}>
                         <Card
+                          hoverable
                           title={itemProps.title}
                           subtitle={itemProps.organization}
                           bordered={false}
@@ -457,13 +467,18 @@ export const DashboardWorkbench = () => {
               <Col span={12}>
                 <Card
                   title="问答"
+                  hoverable
                   scrollHeight={440}
                   bordered={false}
                   extra={<Button icon={<RightOutlined />} appearance="link"></Button>}
                 >
                   <List
                     bordered={false}
-                    style={{ paddingLeft: 0, paddingRight: 0 }}
+                    style={{
+                      minHeight: 440,
+                      paddingLeft: 0,
+                      paddingRight: 0,
+                    }}
                     render={(itemProps: any) => {
                       return (
                         <List.Item
@@ -517,12 +532,17 @@ export const DashboardWorkbench = () => {
                 <Card
                   title="词条"
                   scrollHeight={440}
+                  hoverable
                   bordered={false}
                   extra={<Button icon={<RightOutlined />} appearance="link"></Button>}
                 >
                   <List
                     bordered={false}
-                    style={{ paddingLeft: 0, paddingRight: 0 }}
+                    style={{
+                      minHeight: 440,
+                      paddingLeft: 0,
+                      paddingRight: 0,
+                    }}
                     render={(itemProps: any) => {
                       return (
                         <List.Item
@@ -592,7 +612,7 @@ export const DashboardWorkbench = () => {
 
                     return (
                       <Col span={6}>
-                        <Card bordered={false}>
+                        <Card bordered={false} hoverable>
                           <Spacer direction="column" align="center" inline={false}>
                             <Avatar src={item.avatar} />
                             <strong>{item.name}</strong>
@@ -635,12 +655,13 @@ export const DashboardWorkbench = () => {
             <Row>
               <Col span={24}>
                 <Card
+                  hoverable
                   title="关注"
                   loading={loading}
                   extra={<Button icon={<SettingOutlined />} appearance="link"></Button>}
                   bordered={false}
                 >
-                  <div style={{ marginTop: -12 }}>
+                  <div style={{ marginTop: -12, minHeight: 12 }}>
                     {data
                       ? data.userInfo.myCollection.map((item: any) => {
                           return (
@@ -658,7 +679,7 @@ export const DashboardWorkbench = () => {
             {/* 快捷入口 */}
             <Row>
               <Col span={24}>
-                <Card bordered={false}>
+                <Card bordered={false} hoverable>
                   <div style={{ marginTop: -12 }}>
                     {[
                       {
@@ -740,6 +761,7 @@ export const DashboardWorkbench = () => {
               <Col span={24}>
                 <Card
                   title="通告"
+                  hoverable
                   extra={
                     <>
                       {data && data.notice.noticeCountToRead > 0 ? (
@@ -780,6 +802,7 @@ export const DashboardWorkbench = () => {
               <Col span={24}>
                 <Card
                   title="文档"
+                  hoverable
                   extra={<Button icon={<RightOutlined />} appearance="link"></Button>}
                   bordered={false}
                 >

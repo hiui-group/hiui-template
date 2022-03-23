@@ -1,12 +1,10 @@
-// @ts-nocheck
-
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import * as Echarts from 'echarts'
 import { Loading } from '@hi-ui/loading'
 import { fetchContentDistribution } from './api'
 import { EChartsOptionsGenerator } from './common'
 
-const generateChartOption = (data: any[]) => ({
+const generateChartOption = (data: any[]): any => ({
   grid: {
     left: '48px',
     right: '24px',

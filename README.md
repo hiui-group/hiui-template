@@ -27,6 +27,8 @@ npm start
 
 ## Requirements
 
+- 强制使用 typescript
+- 如果使用图片等资源，需要托管到 CDN
 - 页面内不写 scss 样式，保持使用 HiUI 组件风格不变，或书写内联样式
 - 通用业务组件可以使用自定义组件，可以内置 scss 样式
 - className 必须以 `hi-pro-` 前缀打头，拒绝编写全局污染的样式

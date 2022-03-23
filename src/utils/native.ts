@@ -15,3 +15,19 @@ export const jsonParse = (str: string, defaultVal = {}) => {
   }
   return str || defaultVal
 }
+
+const STORAGE_KEY = 'xiaomi__hiui_template-pro__'
+
+export const localStorage = {
+  setItem(name: string, data: any) {
+    window.localStorage.setItem(`${STORAGE_KEY}${name}`, data ? JSON.stringify(data) : data)
+  },
+  getItem(name: string) {
+    const data = window.localStorage.getItem(`${STORAGE_KEY}${name}`)
+    try {
+      return data ? JSON.parse(data) : data
+    } catch (err) {
+      return null
+    }
+  },
+}

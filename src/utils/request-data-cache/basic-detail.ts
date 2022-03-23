@@ -1,5 +1,4 @@
-import {ResponseBody} from "../request";
-import {RequestDataCacheType} from "./index";
+import { RequestDataCacheType } from './index'
 
 const PageRoutePrefix = 'basic-detail'
 
@@ -196,6 +195,6 @@ export const BasicDetail: RequestDataCacheType = {
           ],
         },
       ],
-    }
-  }
+    },
+  },
 }

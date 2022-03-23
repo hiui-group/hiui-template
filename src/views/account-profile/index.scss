@@ -1,11 +1,11 @@
-.account-profile-container {
+.hi-pro-account-profile-container {
   display: flex;
   padding: 20px;
   min-height: calc(100vh - 56px - 90px);
   box-sizing: border-box;
 }
 
-.account-profile-navbox {
+.hi-pro-account-profile-navbox {
   width: 234px;
   padding: 8px;
   background-color: #ffffff;
@@ -14,7 +14,7 @@
   flex-direction: column;
 }
 
-.account-profile-navitem {
+.hi-pro-account-profile-navitem {
   display: flex;
   height: 40px;
   border-radius: 4px;
@@ -24,16 +24,16 @@
   padding: 0 12px;
   margin-bottom: 8px;
 }
-.account-profile-navitem.active,.account-profile-navitem:hover {
+.hi-pro-account-profile-navitem.active,.hi-pro-account-profile-navitem:hover {
   background: #E2F3FE;
   color: #237FFA;
 }
-.account-profile-navitem .nav-icon {
+.hi-pro-account-profile-navitem .nav-icon {
   font-size: 16px;
   margin-right: 8px;
 }
 
-.account-profile-contentbox {
+.hi-pro-account-profile-contentbox {
   flex: 1;
   padding: 0 20px;
   background-color: #ffffff;
@@ -48,10 +48,10 @@
   }
 }
 
-.account-setting {
+.hi-pro-account-setting {
   min-width: 520px;
   max-width: 720px;
-  .account-settings-avatar {
+  .hi-pro-account-settings-avatar {
     .hi-v4-upload__item {
       margin: 0;
       width: 116px;
@@ -61,7 +61,7 @@
   }
 }
 
-.account-security {
+.hi-pro-account-security {
   &-item {
     margin: 16px 12px 20px 0;
     display: flex;
@@ -99,7 +99,7 @@
   }
 }
 
-.account-sysset {
+.hi-pro-account-sysset {
   &-item {
     margin: 16px 12px 20px 0;
     display: flex;

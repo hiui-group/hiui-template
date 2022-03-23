@@ -2,9 +2,9 @@ import { Col, Form, FormItem, FormSubmit, Input, Row, Select, Upload } from "@hi
 
 export default () => {
   return (
-    <div className="account-profile-contentbox">
-      <div className="account-profile-contentbox-title">个人信息</div>
-      <div className="account-setting">
+    <div className="hi-pro-account-profile-contentbox">
+      <div className="hi-pro-account-profile-contentbox-title">个人信息</div>
+      <div className="hi-pro-account-setting">
         <Form
           initialValues={{
             userName: '张三',
@@ -34,7 +34,7 @@ export default () => {
                 label="头像"
                 field="avatar"
               >
-                <div className="account-settings-avatar">
+                <div className="hi-pro-account-settings-avatar">
                   <Upload
                     type="avatar"
                     photoSize="default"

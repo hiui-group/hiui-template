@@ -70,12 +70,12 @@ export const AccountProfile: React.FC = () => {
         </div>
       }
     />
-    <div className="account-profile-container">
-      <div className="account-profile-navbox">
+    <div className="hi-pro-account-profile-container">
+      <div className="hi-pro-account-profile-navbox">
         {
           AccountTabList.map((item: AccountTabItem) => {
             let IconComp: any = item.icon
-            return <div key={item.key} className={"account-profile-navitem " + (tabState === item.key ? "active" : "")} onClick={ () => onClickTab(item.key) }><IconComp className="nav-icon" />{item.title}</div>
+            return <div key={item.key} className={"hi-pro-account-profile-navitem " + (tabState === item.key ? "active" : "")} onClick={ () => onClickTab(item.key) }><IconComp className="nav-icon" />{item.title}</div>
           })
         }
       </div>

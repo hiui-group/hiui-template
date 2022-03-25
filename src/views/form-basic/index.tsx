@@ -20,13 +20,13 @@ import {
 import './index.scss'
 import { IdentificationUpload } from './identification-upload'
 import { ContentFooter } from '../../components/content-footer'
-import { stashBasicForm,submitBasicForm } from './api'
+import { stashBasicForm, submitBasicForm } from './api'
 
 export const FormBasic: React.FC = () => {
   const formRef = React.useRef<FormHelpers>(null)
-  const [loading,setLoading] = useState<{stashLoading:boolean,saveLoading:boolean}>({
+  const [loading, setLoading] = useState<{ stashLoading: boolean; saveLoading: boolean }>({
     stashLoading: false,
-    saveLoading: false
+    saveLoading: false,
   })
   const [formData, setFormData] = useState<any>({
     miNumber: undefined,
@@ -75,25 +75,23 @@ export const FormBasic: React.FC = () => {
    * 暂存
    */
   const handleStash = () => {
-    
     formRef.current
       ?.validate()
       .then((formData) => {
-
         setLoading({
           ...loading,
-          stashLoading: true
+          stashLoading: true,
         })
 
-        stashBasicForm(formData).then(res=>{
-          if(res.code === 200){
-            message.open({type: 'success',title:res.message})
-          }else{
-            message.open({type: 'error',title:res.message})
+        stashBasicForm(formData).then((res) => {
+          if (res.code === 200) {
+            message.open({ type: 'success', title: res.message })
+          } else {
+            message.open({ type: 'error', title: res.message })
           }
           setLoading({
             ...loading,
-            stashLoading: false
+            stashLoading: false,
           })
         })
       })
@@ -109,21 +107,20 @@ export const FormBasic: React.FC = () => {
     formRef.current
       ?.validate()
       .then((formData) => {
-
         setLoading({
           ...loading,
-          saveLoading: true
+          saveLoading: true,
         })
 
-        submitBasicForm(formData).then(res=>{
-          if(res.code === 200){
-            message.open({type: 'success',title:res.message})
-          }else{
-            message.open({type: 'error',title:res.message})
+        submitBasicForm(formData).then((res) => {
+          if (res.code === 200) {
+            message.open({ type: 'success', title: res.message })
+          } else {
+            message.open({ type: 'error', title: res.message })
           }
           setLoading({
             ...loading,
-            saveLoading: false
+            saveLoading: false,
           })
         })
       })
@@ -169,7 +166,7 @@ export const FormBasic: React.FC = () => {
             setFormData(allValues)
           }}
         >
-          <Card className="form-basic__card" title="基础信息">
+          <Card bordered={false} className="form-basic__card" title="基础信息">
             <Row gutter={56}>
               <Col span={8}>
                 <FormItem
@@ -179,6 +176,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入米聊号',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -193,6 +191,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入用户名',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -207,6 +206,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入手机号',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -228,6 +228,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入身份证号码',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -241,6 +242,7 @@ export const FormBasic: React.FC = () => {
                   field="IDPhoto"
                   rules={[
                     {
+                      message: '请输入身份证照片',
                       trigger: 'onChange',
                       required: true,
                       validator: (rule, val, cb) => {
@@ -262,6 +264,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入姓名',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -275,6 +278,7 @@ export const FormBasic: React.FC = () => {
                   field="sex"
                   rules={[
                     {
+                      message: '请输入性别',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -306,6 +310,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入验证码',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -320,6 +325,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入邮箱',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -333,6 +339,7 @@ export const FormBasic: React.FC = () => {
                   field="accountStatus"
                   rules={[
                     {
+                      message: '请输入账号状态',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -361,6 +368,7 @@ export const FormBasic: React.FC = () => {
                   field="avatar"
                   rules={[
                     {
+                      message: '请输入头像',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -382,7 +390,7 @@ export const FormBasic: React.FC = () => {
               </Col>
             </Row>
           </Card>
-          <Card className="form-basic__card" title="岗位信息">
+          <Card bordered={false} className="form-basic__card" title="岗位信息">
             <Row gutter={56}>
               <Col span={8}>
                 <FormItem
@@ -391,6 +399,7 @@ export const FormBasic: React.FC = () => {
                   field="engineerGrade"
                   rules={[
                     {
+                      message: '请输入工程师等级',
                       trigger: '',
                       required: true,
                     },
@@ -426,6 +435,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入所属机构',
                       trigger: 'onBlur,onChange',
                       required: true,
                     },
@@ -440,6 +450,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入员工类型',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -464,6 +475,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入工作状态',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -495,6 +507,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入组织',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -509,6 +522,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入衣服尺码',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -526,6 +540,7 @@ export const FormBasic: React.FC = () => {
                   style={{ marginTop: 92 }}
                   rules={[
                     {
+                      message: '请输入工程师类型',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -539,6 +554,7 @@ export const FormBasic: React.FC = () => {
                   field="startingDate"
                   rules={[
                     {
+                      message: '请输入上岗时间',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -549,7 +565,7 @@ export const FormBasic: React.FC = () => {
               </Col>
             </Row>
           </Card>
-          <Card className="form-basic__card" title="结算信息">
+          <Card bordered={false} className="form-basic__card" title="结算信息">
             <Row gutter={56}>
               <Col span={8}>
                 <FormItem
@@ -559,6 +575,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入银行卡号',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -573,6 +590,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入开户人',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -594,6 +612,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入银行卡类型',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -614,6 +633,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入结算分账比例',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -630,6 +650,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入开户行',
                       trigger: 'onBlur',
                       required: true,
                     },
@@ -640,7 +661,7 @@ export const FormBasic: React.FC = () => {
               </Col>
             </Row>
           </Card>
-          <Card className="form-basic__card" title="人员权限">
+          <Card bordered={false} className="form-basic__card" title="人员权限">
             <Row gutter={56}>
               <Col span={8}>
                 <FormItem
@@ -650,6 +671,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入人员权限',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -672,6 +694,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入机构权限',
                       trigger: 'onChange',
                       required: true,
                     },
@@ -694,6 +717,7 @@ export const FormBasic: React.FC = () => {
                   valueType="string"
                   rules={[
                     {
+                      message: '请输入是否自动派单',
                       trigger: 'onChange',
                       required: true,
                     },

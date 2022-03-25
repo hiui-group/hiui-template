@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@commitlint/cli": "~11.0.0",
-    "@hi-ui/hiui": "^4.0.0-beta.37",
+    "@hi-ui/hiui": "^4.0.0-beta.38",
     "@hi-ui/hooks": "^4.0.0-beta.10",
     "@hi-ui/icons": "^4.0.0-beta.7",
     "@hi-ui/loading": "^4.0.0-beta.7",

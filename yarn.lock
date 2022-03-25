@@ -1721,10 +1721,10 @@
     "@hi-ui/use-check" "^4.0.0-beta.3"
     "@hi-ui/use-uncontrolled-state" "^4.0.0-beta.3"
 
-"@hi-ui/form@^4.0.0-beta.17":
-  version "4.0.0-beta.17"
-  resolved "https://registry.yarnpkg.com/@hi-ui/form/-/form-4.0.0-beta.17.tgz#ee79c9fa8e07d9804fe30752d5f0c185185839d5"
-  integrity sha512-s+0CWxNQ1/kHwj+JDf0pHOE2xS/X1FDpxs+SgEky1JKrRz0WDHwKHTw5RjLNIWADLyl3ITR9NjE3/b3G0Ola/A==
+"@hi-ui/form@^4.0.0-beta.18":
+  version "4.0.0-beta.18"
+  resolved "https://registry.yarnpkg.com/@hi-ui/form/-/form-4.0.0-beta.18.tgz#f08c4e29dc3ae58875754cd4202f71acbfce398c"
+  integrity sha512-Dm1wMGlogvaPixild+gQAeAhHZId+47HbmBNuqJIc4n2Jq43RvOsLGR3MMbuKOVU0plI7FRRQDGMdj7aWp/C8g==
   dependencies:
     "@hi-ui/array-utils" "^4.0.0-beta.6"
     "@hi-ui/button" "^4.0.0-beta.8"
@@ -1785,10 +1785,10 @@
     "@hi-ui/core-css" "^4.0.0-beta.3"
     "@hi-ui/env" "^4.0.0-beta.0"
 
-"@hi-ui/hiui@^4.0.0-beta.37":
-  version "4.0.0-beta.37"
-  resolved "https://registry.yarnpkg.com/@hi-ui/hiui/-/hiui-4.0.0-beta.37.tgz#1a3dbf0111dfabb1048c106f9d02093b3b8e1c57"
-  integrity sha512-jmq6tNKHNNKJEyqSv3FPM56E5D9u95M22iMAnLERWcDkWNDEsJfcIfuXRQlqLge6uuibRk9tIoeVCGq5/n0Aqw==
+"@hi-ui/hiui@^4.0.0-beta.38":
+  version "4.0.0-beta.38"
+  resolved "https://registry.yarnpkg.com/@hi-ui/hiui/-/hiui-4.0.0-beta.38.tgz#9787c2841716d813857ed8e632bf5da1934de877"
+  integrity sha512-alGUm/B/6gFGKWUzJFTJNwewMavY/OHxQ6J5SCEMW346SGK8JiHoaxvOlZFSGeaiUCqzLq0MrSQ9J4iDuLMbRw==
   dependencies:
     "@hi-ui/alert" "^4.0.0-beta.8"
     "@hi-ui/avatar" "^4.0.0-beta.9"
@@ -1809,7 +1809,7 @@
     "@hi-ui/dropdown" "^4.0.0-beta.11"
     "@hi-ui/empty-state" "^4.0.0-beta.11"
     "@hi-ui/filter" "^4.0.0-beta.5"
-    "@hi-ui/form" "^4.0.0-beta.17"
+    "@hi-ui/form" "^4.0.0-beta.18"
     "@hi-ui/grid" "^4.0.0-beta.9"
     "@hi-ui/input" "^4.0.0-beta.9"
     "@hi-ui/list" "^4.0.0-beta.20"

@@ -215,9 +215,9 @@ export const FormBasic: React.FC = () => {
                   <Input
                     placeholder="请输入手机号"
                     append={
-                      <div className="suffix-code" onClick={getCode}>
+                      <Button type="primary" onClick={getCode}>
                         获取验证码
-                      </div>
+                      </Button>
                     }
                   />
                 </FormItem>

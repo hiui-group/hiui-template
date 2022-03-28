@@ -3,6 +3,7 @@ import { BasicDetail } from './basic-detail'
 import { DashboardWorkbench } from './dashboard-workbench'
 import { DashboardDataAnalysis } from './dashboard-data-analysis'
 import { FlowStep } from './flow-steps'
+import { TableLayout } from './table-layout'
 
 export type RequestDataCacheType = Record<
   string,
@@ -14,5 +15,6 @@ export const RequestDataCache: RequestDataCacheType = Object.assign(
   BasicDetail,
   DashboardWorkbench,
   DashboardDataAnalysis,
-  FlowStep
+  FlowStep,
+  TableLayout
 )

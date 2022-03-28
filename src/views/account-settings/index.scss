@@ -1,0 +1,136 @@
+.hi-pro-account-profile-container {
+  display: flex;
+  padding: 20px;
+  min-height: calc(100vh - 56px - 90px);
+  box-sizing: border-box;
+}
+
+.hi-pro-account-profile-navbox {
+  width: 234px;
+  padding: 8px;
+  background-color: #ffffff;
+  margin-right: 20px;
+  border-radius: 6px;
+  flex-direction: column;
+}
+
+.hi-pro-account-profile-navitem {
+  display: flex;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+  font-size: 14px;
+  padding: 0 12px;
+  margin-bottom: 8px;
+}
+.hi-pro-account-profile-navitem.active,.hi-pro-account-profile-navitem:hover {
+  background: #E2F3FE;
+  color: #237FFA;
+}
+.hi-pro-account-profile-navitem .nav-icon {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.hi-pro-account-profile-contentbox {
+  flex: 1;
+  padding: 0 20px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  &-title {
+    line-height: 56px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1F2733;
+    box-shadow: inset 0px -1px 0px 0px #EBEDF0;
+    margin-bottom: var(--hi-v4-spacing-10, 20px);
+  }
+}
+
+.hi-pro-account-setting {
+  min-width: 520px;
+  max-width: 720px;
+  .hi-pro-account-settings-avatar {
+    .hi-v4-upload__item {
+      margin: 0;
+      width: 116px;
+      height: 116px;
+      line-height: 114px;
+    }
+  }
+}
+
+.hi-pro-account-security {
+  &-item {
+    margin: 16px 12px 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_icon {
+      font-size: 20px !important;
+      padding: 10px;
+      color: #237FFA;
+      background-color: #E2F3FE;
+      border-radius: 4px;
+    }
+    &_cont {
+      flex: 1;
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    &_title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2733;
+    }
+    &_desc {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      color: #5F6A7A;
+      line-height: 20px;
+    }
+  }
+}
+
+.hi-pro-account-sysset {
+  &-item {
+    margin: 16px 12px 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_icon {
+      font-size: 20px !important;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    &_cont {
+      flex: 1;
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    &_title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2733;
+    }
+    &_desc {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      color: #5F6A7A;
+      line-height: 20px;
+    }
+  }
+}

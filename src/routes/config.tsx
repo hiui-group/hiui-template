@@ -90,12 +90,12 @@ export const routeConfig: any[] = [
     name: '流程',
     icon: <HomeFilled />,
     children: [
-      {
-        name: '审批',
+      // {
+      //   name: '审批',
 
-        path: 'flow-approval',
-        component: <Pages.FlowApproval />,
-      },
+      //   path: 'flow-approval',
+      //   component: <Pages.FlowApproval />,
+      // },
       {
         name: '流程',
         path: 'flow-steps',
@@ -155,20 +155,20 @@ export const routeConfig: any[] = [
         component: <Pages.AccountProfile />,
       },
       {
-        name: '设置',
+        name: '个人设置',
         path: 'account-settings',
         component: <Pages.AccountSettings />,
       },
-      {
-        name: '消息中心',
-        path: 'account-messages',
-        component: <Pages.AccountMessages />,
-      },
-      {
-        name: '待办',
-        path: 'account-todo-list',
-        component: <Pages.AccountTodoList />,
-      },
+      // {
+      //   name: '消息中心',
+      //   path: 'account-messages',
+      //   component: <Pages.AccountMessages />,
+      // },
+      // {
+      //   name: '待办',
+      //   path: 'account-todo-list',
+      //   component: <Pages.AccountTodoList />,
+      // },
     ],
   },
   {

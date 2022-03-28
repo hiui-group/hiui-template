@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Avatar, Button, Card, Grid, Table, Tag, Timeline } from '@hi-ui/hiui'
-import { BuildingFilled, PlusOutlined } from '@hi-ui/icons'
+import { Avatar, Button, Card, Grid, Table, Tag, Timeline, List } from '@hi-ui/hiui'
+import { BuildingFilled, PlusOutlined, WordColorful } from '@hi-ui/icons'
 import { ContentHeader } from '../../components/content-header'
-import { Divider } from '../../components/divider'
 import { Spacer } from '../../components/spacer'
 import { fetchBasicDetailData } from './api'
+import Descriptions from '@hi-ui/descriptions'
 
 const { Row, Col } = Grid
 
@@ -54,10 +54,10 @@ export const DetailBasic = () => {
       <div style={{ padding: '20px 20px 83px' }}>
         <Row>
           <Col span={24}>
-            <Card loading={loading} bordered={false}>
+            <Card loading={loading} bordered={false} hoverable>
               <Spacer>
                 <Spacer>
-                  <Avatar icon={<BuildingFilled />}></Avatar>
+                  <Avatar shape="square" icon={<BuildingFilled />}></Avatar>
                   <Spacer direction="column" align="flex-start" gap={0}>
                     <span
                       style={{
@@ -88,302 +88,120 @@ export const DetailBasic = () => {
 
         <Row>
           <Col span={24}>
-            <Card loading={loading} bordered={false} title="差旅信息">
-              description
+            <Card loading={loading} bordered={false} title="差旅信息" hoverable>
+              <Descriptions>
+                {data
+                  ? data.travelInfo.map((item: any, index: number) => {
+                      return (
+                        <Descriptions.Item key={index} label={item.label} span={item.span}>
+                          {item.url ? (
+                            <Button
+                              icon={<WordColorful />}
+                              appearance="link"
+                              type="primary"
+                              href={item.url}
+                            >
+                              {item.content}
+                            </Button>
+                          ) : (
+                            item.content
+                          )}
+                        </Descriptions.Item>
+                      )
+                    })
+                  : null}
+              </Descriptions>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Card loading={loading} bordered={false} title="行程明细" hoverable>
+              {data
+                ? data.tripDetail.map((item: any, index: number, items: any) => {
+                    const isLast = items.length - 1 === index
+                    return (
+                      <Table
+                        key={index}
+                        columns={item.columns}
+                        data={item.data}
+                        style={{ marginBottom: isLast ? 0 : 16 }}
+                      />
+                    )
+                  })
+                : null}
             </Card>
           </Col>
         </Row>
 
         <Row>
           <Col span={24}>
-            <Card loading={loading} bordered={false} title="行程明细">
-              <Table
-                columns={[
-                  {
-                    title: '费用类型',
-                    dataKey: 'costType',
-                  },
-                  {
-                    title: '出行日期',
-                    dataKey: 'date',
-                    width: 240,
-                  },
-                  {
-                    title: '航程类型',
-                    dataKey: 'voyageType',
-                  },
-                  {
-                    title: '出发地',
-                    dataKey: 'departure',
-                  },
-                  {
-                    title: '到达地',
-                    dataKey: 'destination',
-                  },
-                  {
-                    title: '舱等',
-                    dataKey: 'class',
-                  },
-                  {
-                    title: '操作',
-                    dataKey: 'operator',
-                    width: 160,
-                  },
-                ]}
-                data={[
-                  {
-                    costType: '国内机票',
-                    date: '2021-01-01 至 2021-01-03',
-                    voyageType: '往返',
-                    departure: '武汉',
-                    destination: '北京',
-                    class: '经济舱',
-                    operator: '审批通过后可预订',
-                    key: 1,
-                  },
-                ]}
-              ></Table>
-              <Divider />
-              <Table
-                columns={[
-                  {
-                    title: '费用类型',
-                    dataKey: 'costType',
-                  },
-                  {
-                    title: '入住日期',
-                    dataKey: 'date',
-                    width: 240,
-                  },
-                  {
-                    title: '天数',
-                    dataKey: 'days',
-                  },
-                  {
-                    title: '城市',
-                    dataKey: 'city',
-                  },
-                  {
-                    title: '每日标准',
-                    dataKey: 'dailyStandard',
-                  },
-                  {
-                    title: '币种',
-                    dataKey: 'currency',
-                  },
-                  {
-                    title: '操作',
-                    dataKey: 'operator',
-                    width: 160,
-                  },
-                ]}
-                data={[
-                  {
-                    costType: '国内机票',
-                    date: '2021-01-01 至 2021-01-03',
-                    days: '3',
-                    city: '上海',
-                    dailyStandard: '400',
-                    currency: '人民币',
-                    operator: '审批通过后可预订',
-                    key: 1,
-                  },
-                ]}
-              ></Table>
-              <Divider />
-              <Table
-                columns={[
-                  {
-                    title: '费用类型',
-                    dataKey: 'costType',
-                  },
-                  {
-                    title: '出行日期',
-                    dataKey: 'date',
-                    width: 240,
-                  },
-                  {
-                    title: '航程类型',
-                    dataKey: 'voyageType',
-                  },
-                  {
-                    title: '出发地',
-                    dataKey: 'departure',
-                  },
-                  {
-                    title: '到达地',
-                    dataKey: 'destination',
-                  },
-                  {
-                    title: '舱等',
-                    dataKey: 'class',
-                  },
-                  {
-                    title: '操作',
-                    dataKey: 'operator',
-                    width: 160,
-                  },
-                ]}
-                data={[
-                  {
-                    costType: '国内机票',
-                    date: '2021-01-01 至 2021-01-03',
-                    voyageType: '往返',
-                    departure: '武汉',
-                    destination: '北京',
-                    class: '经济舱',
-                    operator: '审批通过后可预订',
-                    key: 1,
-                  },
-                ]}
-              ></Table>
-              <Divider />
-              <Table
-                columns={[
-                  {
-                    title: '费用类型',
-                    dataKey: 'costType',
-                  },
-                  {
-                    title: '入住日期',
-                    dataKey: 'date',
-                    width: 240,
-                  },
-                  {
-                    title: '天数',
-                    dataKey: 'days',
-                  },
-                  {
-                    title: '城市',
-                    dataKey: 'city',
-                  },
-                  {
-                    title: '每日标准',
-                    dataKey: 'dailyStandard',
-                  },
-                  {
-                    title: '币种',
-                    dataKey: 'currency',
-                  },
-                  {
-                    title: '操作',
-                    dataKey: 'operator',
-                    width: 160,
-                  },
-                ]}
-                data={[
-                  {
-                    costType: '国内机票',
-                    date: '2021-01-01 至 2021-01-03',
-                    days: '3',
-                    city: '上海',
-                    dailyStandard: '400',
-                    currency: '人民币',
-                    operator: '审批通过后可预订',
-                    key: 1,
-                  },
-                ]}
-              ></Table>
-              <Divider />
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={24}>
-            <Card loading={loading} bordered={false} title="审批进度">
+            <Card hoverable loading={loading} bordered={false} title="审批进度">
               <Timeline
                 type="right"
-                data={[
-                  {
-                    title: '业务领导审批',
-                    content: (
-                      <Timeline
-                        type="right"
-                        data={[
-                          {
-                            title: (
-                              <Spacer>
-                                <Avatar initials="ZS"></Avatar>
-                                <Spacer direction="column" align="flex-start" gap={2}>
-                                  <span
-                                    style={{
-                                      fontSize: 14,
-                                      color: '#1F2733',
-                                      fontWeight: 600,
-                                      lineHeight: '20px',
-                                    }}
-                                  >
-                                    {'张三'}
-                                  </span>
-                                  <Spacer>
-                                    <Tag type="success">同意</Tag>
-                                    <span
-                                      style={{
-                                        fontSize: 14,
-                                        color: '#5F6A7A',
-                                        lineHeight: '20px',
-                                      }}
-                                    >
-                                      这里是审批意见这里是审批意见这里是审批意见这里是审批意见这里是审批意见这里是审批意见这里是审批意见这里是审批意见这里是审批
-                                    </span>
+                data={
+                  data
+                    ? data.approvals.map((item: any) => {
+                        return {
+                          id: item.id,
+                          title: item.title,
+                          content: item.children ? (
+                            <Spacer
+                              inline={false}
+                              gap={24}
+                              direction="column"
+                              align="flex-start"
+                              style={{ marginTop: 16 }}
+                            >
+                              {item.children.map((item: any, index: number) => {
+                                return (
+                                  <Spacer key={index} inline={false} align="flex-start">
+                                    <Avatar src={item.user.avatar}></Avatar>
+                                    <Spacer direction="column" align="flex-start" gap={6}>
+                                      <span
+                                        style={{
+                                          fontSize: 14,
+                                          color: '#1F2733',
+                                          fontWeight: 600,
+                                          lineHeight: '20px',
+                                        }}
+                                      >
+                                        {item.user.name}
+                                      </span>
+                                      <span>
+                                        <Tag type={item.statusNumber === 0 ? 'warning' : 'success'}>
+                                          {item.status}
+                                        </Tag>
+                                        <span
+                                          style={{
+                                            fontSize: 14,
+                                            color: '#5F6A7A',
+                                            lineHeight: '20px',
+                                          }}
+                                        >
+                                          {item.content}
+                                        </span>
+                                      </span>
+
+                                      <span
+                                        style={{
+                                          fontSize: 12,
+                                          color: '#929AA6',
+                                          lineHeight: '20px',
+                                        }}
+                                      >
+                                        {item.time}
+                                      </span>
+                                    </Spacer>
                                   </Spacer>
-                                </Spacer>
-                              </Spacer>
-                            ),
-                          },
-                          {
-                            title: (
-                              <Spacer>
-                                <Avatar initials="ZS"></Avatar>
-                                <Spacer direction="column" align="flex-start" gap={2}>
-                                  <span
-                                    style={{
-                                      fontSize: 14,
-                                      color: '#1F2733',
-                                      fontWeight: 600,
-                                      lineHeight: '20px',
-                                    }}
-                                  >
-                                    {'李四'}
-                                  </span>
-                                  <Spacer>
-                                    <Tag type="warning">待审批</Tag>
-                                  </Spacer>
-                                </Spacer>
-                              </Spacer>
-                            ),
-                          },
-                          {
-                            title: (
-                              <Spacer>
-                                <Avatar initials="LS"></Avatar>
-                                <Spacer direction="column" align="flex-start" gap={2}>
-                                  <span
-                                    style={{
-                                      fontSize: 14,
-                                      color: '#1F2733',
-                                      fontWeight: 600,
-                                      lineHeight: '20px',
-                                    }}
-                                  >
-                                    {'王五'}
-                                  </span>
-                                  <Spacer>
-                                    <Tag type="warning">待审批</Tag>
-                                  </Spacer>
-                                </Spacer>
-                              </Spacer>
-                            ),
-                          },
-                        ]}
-                      />
-                    ),
-                  },
-                  {
-                    title: '起草节点',
-                  },
-                ]}
+                                )
+                              })}
+                            </Spacer>
+                          ) : undefined,
+                        }
+                      })
+                    : []
+                }
               />
             </Card>
           </Col>

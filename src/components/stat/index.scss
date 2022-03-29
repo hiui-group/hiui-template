@@ -1,0 +1,34 @@
+
+.hi-pro-stat {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 284px;
+  height: 88px;
+  background-color: #fff;
+  border-radius: 6px;
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-size: 20px;
+  }
+
+  &__value {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2733;
+    line-height: 34px;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #5f6a7a;
+    line-height: 20px;
+  }
+}

@@ -20,7 +20,7 @@ const searchFormMinHeight = 52
 export const SearchPanel: React.FC<SearchPanelProps> = ({
   search,
   hideExpanded = false,
-  children
+  children,
 }) => {
   const prefixCls = `${KIT_PREFIX}-search-panel`
   const formComponentRef = useRef<any>()
@@ -59,9 +59,9 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             {!hideExpanded &&
               (expanded ? (
                 <Button
-                  className='btn-expand'
-                  type='default'
-                  appearance='link'
+                  className="btn-expand"
+                  type="default"
+                  appearance="link"
                   onClick={() => {
                     setExpanded(false)
                     setFormWrapHeight(`${searchFormMinHeight}px`)
@@ -72,9 +72,9 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                 </Button>
               ) : (
                 <Button
-                  className='btn-expand'
-                  type='default'
-                  appearance='link'
+                  className="btn-expand"
+                  type="default"
+                  appearance="link"
                   onClick={() => {
                     setExpanded(true)
                     setFormWrapHeight(`${formComponentRef.current.firstChild.clientHeight}px`)
@@ -85,10 +85,10 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                 </Button>
               ))}
 
-            <Button type='default' onClick={search.resetClick}>
+            <Button type="default" onClick={search.resetClick}>
               {firstToUpper(currentLocaleMap.reset)}
             </Button>
-            <Button type='primary' onClick={search.searchClick}>
+            <Button type="secondary" onClick={search.searchClick}>
               {firstToUpper(currentLocaleMap.search)}
             </Button>
           </div>

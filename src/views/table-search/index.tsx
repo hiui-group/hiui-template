@@ -1,5 +1,17 @@
 import React, { useRef, useState } from 'react'
 import {
+  Button,
+  Card,
+  Switch,
+  DatePicker,
+  Form,
+  Input,
+  CheckSelect,
+  Message,
+  Loading,
+  Modal,
+} from '@hi-ui/hiui'
+import {
   TableList,
   SearchPanel,
   Toolbar,
@@ -7,19 +19,10 @@ import {
   useListFetch,
   checkSelectFetch,
 } from '../../components'
-
-import Button from '@hi-ui/button'
-import Card from '@hi-ui/card'
-import Switch from '@hi-ui/switch'
-import DatePicker from '@hi-ui/date-picker'
-import Form from '@hi-ui/form'
-import Input from '@hi-ui/input'
-import CheckSelect from '@hi-ui/check-select'
-import Message from '@hi-ui/message'
-import Modal from '@hi-ui/modal'
-import Loading from '@hi-ui/loading'
-import './index.scss'
 import { getList, updateStatus, getTypeOptions } from './api'
+
+import './index.scss'
+
 const FormItem = Form.Item
 
 export const TableSearch = () => {

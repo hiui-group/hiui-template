@@ -2173,6 +2173,17 @@
     "@hi-ui/use-toggle" "^4.0.0-beta.3"
     "@hi-ui/use-uncontrolled-state" "^4.0.0-beta.3"
 
+"@hi-ui/space@^4.0.0-alpha.3":
+  version "4.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@hi-ui/space/-/space-4.0.0-alpha.3.tgz#99580385a4e63c33fa29732f4cb022024c01e16d"
+  integrity sha512-w7Ysif/c8IG/+V7d2xLiQEqTHMlXk7XJ9O7wUNVAbrTwMbay4dX+EFpbgOmHhcmlbowYi9uSoT5zqmho9iGXrw==
+  dependencies:
+    "@hi-ui/classname" "^4.0.0-beta.0"
+    "@hi-ui/core" "^4.0.0-beta.5"
+    "@hi-ui/core-css" "^4.0.0-beta.3"
+    "@hi-ui/env" "^4.0.0-beta.0"
+    "@hi-ui/type-assertion" "^4.0.0-beta.3"
+
 "@hi-ui/spinner@^4.0.0-beta.5":
   version "4.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@hi-ui/spinner/-/spinner-4.0.0-beta.5.tgz#cc41e0b12125a78bfc2146fdbbb115faa92029a7"

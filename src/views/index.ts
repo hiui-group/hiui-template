@@ -24,12 +24,4 @@ export * from './table-detail'
 export * from './table-layout'
 export * from './table-search'
 export * from './table-stat'
-
-
-
-
-
-
-
-
-
+export * from './search'

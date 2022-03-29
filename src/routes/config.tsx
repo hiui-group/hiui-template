@@ -177,6 +177,12 @@ export const routeConfig: any[] = [
     component: <Pages.Home />,
   },
   {
+    name: '搜索',
+    // hideInMenu: true,
+    path: 'search',
+    component: <Pages.Search />,
+  },
+  {
     name: '关于',
     path: 'about',
     component: <Pages.About />,

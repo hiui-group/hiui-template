@@ -5,6 +5,7 @@ import { DashboardDataAnalysis } from './dashboard-data-analysis'
 import { FlowStep } from './flow-steps'
 import { TableLayout } from './table-layout'
 import { TableStat } from './table-stat'
+import { Search } from './search'
 
 export type RequestDataCacheType = Record<
   string,
@@ -19,4 +20,5 @@ export const RequestDataCache: RequestDataCacheType = Object.assign(
   FlowStep,
   TableLayout,
   TableStat,
+  Search
 )

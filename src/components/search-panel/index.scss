@@ -11,6 +11,8 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
     overflow: hidden;
     transition: 0.45s ease height;
     justify-content: space-between;
+    padding: 2px;
+    box-sizing: border-box;
 
     &__form-component {
       width: 100%;
@@ -18,10 +20,11 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
 
     .hi-v4-form-label {
       margin-bottom: 20px;
-      margin-top: 0px;
+      margin-top: 0;
       width: 33.3333%;
       margin-right: 0;
       transition: 0.35s ease width;
+
       .hi-v4-form-label__text {
         width: 116px;
         white-space: nowrap;
@@ -30,14 +33,17 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
         padding-left: 1px;
         padding-right: 4px;
       }
+
       .hi-v4-form-label__control {
         flex: 1;
+
         .hi-v4-form-message {
           min-height: 20px;
           padding: 0;
         }
       }
     }
+
     &.zh-CN {
       .hi-v4-form-label {
         .hi-v4-form-label__text {
@@ -71,6 +77,7 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
     &__form-wrap {
       .hi-v4-form-label {
         width: 50% !important;
+
         &:nth-child(2n + 1) {
           .hi-v4-form-label__text {
             width: 115px !important;
@@ -102,6 +109,7 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
     &__form-wrap {
       .hi-v4-form-label {
         width: 25% !important;
+
         &:nth-child(4n + 1) {
           .hi-v4-form-label__text {
             width: 115px !important;

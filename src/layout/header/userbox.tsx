@@ -1,41 +1,41 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Message, Popover } from '@hi-ui/hiui'
+import { Message, Popover, Avatar } from '@hi-ui/hiui'
 import { RightOutlined, CheckOutlined, PowerOffOutlined } from '@hi-ui/icons'
 import './userbox.scss'
 
-type SelectItem = { id: string, name: string }
+type SelectItem = { id: string; name: string }
 
-const RoleGroup:SelectItem[] = [
+const RoleGroup: SelectItem[] = [
   {
     id: 'student',
-    name: '学员'
+    name: '学员',
   },
   {
     id: 'admin',
-    name: '管理员'
-  }
+    name: '管理员',
+  },
 ]
 
-const AgentGroup:SelectItem[] = [
+const AgentGroup: SelectItem[] = [
   {
     id: 'A10001',
-    name: "产品中心"
+    name: '产品中心',
   },
   {
     id: 'B10001',
-    name: "研发中心"
-  }
+    name: '研发中心',
+  },
 ]
 
 export const UserBox: React.FC = () => {
   const userInfo = {
-    name: "郭同学",
-    avatar: "https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg",
-    title: "客服经理"
+    name: '郭同学',
+    avatar: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
+    title: '客服经理',
   }
   const popContainerRef = useRef<HTMLDivElement>(null)
-  const [ currentRole, setCurrentRole ] = useState<SelectItem>(RoleGroup[0])
-  const [ currentAgent, setCurrentAgent ] = useState<SelectItem>(AgentGroup[0])
+  const [currentRole, setCurrentRole] = useState<SelectItem>(RoleGroup[0])
+  const [currentAgent, setCurrentAgent] = useState<SelectItem>(AgentGroup[0])
 
   const logout = () => {
     Message.open({
@@ -53,19 +53,21 @@ export const UserBox: React.FC = () => {
         content={
           <div className="popcontent">
             <div className="infocard">
-              <img src={ userInfo.avatar } />
-              <div className="username">{ userInfo.name }</div>
-              <div className="usertitle">{ userInfo.title }</div>
+              {/* <img src={userInfo.avatar} /> */}
+              <Avatar size="lg" src={userInfo.avatar}></Avatar>
+
+              <div className="username">{userInfo.name}</div>
+              <div className="usertitle">{userInfo.title}</div>
             </div>
             <div className="selectinfo">
               <SelectGroup
-                label='角色'
+                label="角色"
                 items={RoleGroup}
                 value={currentRole}
                 onSelectItem={setCurrentRole}
               />
               <SelectGroup
-                label='部门'
+                label="部门"
                 items={AgentGroup}
                 value={currentAgent}
                 onSelectItem={setCurrentAgent}
@@ -80,13 +82,7 @@ export const UserBox: React.FC = () => {
         trigger="click"
       >
         <div className="headcontent">
-          <div className="line1">
-            <img src={ userInfo.avatar } />
-            <span>{ userInfo.name }</span>
-          </div>
-          <div className="line2" title={currentAgent.name}>
-            部门: {currentAgent.name}
-          </div>
+          <Avatar size="sm" src={userInfo.avatar}></Avatar>
         </div>
       </Popover>
       <div className="popcontent-warp" ref={popContainerRef}></div>
@@ -95,20 +91,20 @@ export const UserBox: React.FC = () => {
 }
 
 interface SelectGroupProps {
-  label: string,
-  items: SelectItem[],
-  value: SelectItem,
-  onSelectItem: (item: SelectItem) => any,
+  label: string
+  items: SelectItem[]
+  value: SelectItem
+  onSelectItem: (item: SelectItem) => any
 }
 
 const SelectGroup: React.FC<SelectGroupProps> = (props: SelectGroupProps) => {
   const currentShowRef = useRef<boolean>(false)
-  const [ show, setShow ] = useState(false)
+  const [show, setShow] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const changeShow = () => {
     setShow(!currentShowRef.current)
-    currentShowRef.current = !currentShowRef.current;
+    currentShowRef.current = !currentShowRef.current
   }
 
   useEffect(() => {
@@ -120,10 +116,10 @@ const SelectGroup: React.FC<SelectGroupProps> = (props: SelectGroupProps) => {
 
   const handleWindowClick = (event: any) => {
     if (!currentShowRef.current) return
-    const { current } = containerRef;
+    const { current } = containerRef
     if (event.target === window || (current && !current.contains(event.target))) {
       setShow(false)
-      currentShowRef.current = false;
+      currentShowRef.current = false
     }
   }
 
@@ -139,10 +135,7 @@ const SelectGroup: React.FC<SelectGroupProps> = (props: SelectGroupProps) => {
 
   return (
     <div className="selectgroup" ref={containerRef}>
-      <div
-        className={'selectgroup-button ' + (show ? 'active' : '')}
-        onClick={changeShow}
-      >
+      <div className={'selectgroup-button ' + (show ? 'active' : '')} onClick={changeShow}>
         <span className="selectgroup-button_label">{props.label}</span>
         <span className="selectgroup-button_val">{getSelectLabel()}</span>
         <RightOutlined className="selectgroup-button_icon" />
@@ -153,7 +146,9 @@ const SelectGroup: React.FC<SelectGroupProps> = (props: SelectGroupProps) => {
             return (
               <div
                 key={item.id}
-                className={'selectgroup-select-item ' + (props.value.id === item.id ? 'active' : '')}
+                className={
+                  'selectgroup-select-item ' + (props.value.id === item.id ? 'active' : '')
+                }
                 onClick={() => {
                   props.onSelectItem(item)
                 }}

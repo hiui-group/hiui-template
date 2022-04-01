@@ -23,7 +23,7 @@ export const Header = () => {
       <Spacer gap={4}>
         <div style={{ display: 'flex' }}>
           <SearchBox />
-          <div className="hi-pro-header__nav-icon" onClick={() => navigate('/account-profile')}>
+          <div className="hi-pro-header__nav-icon" onClick={() => navigate('/account-settings')}>
             <SettingOutlined style={{ fontSize: 20, color: '5F6A7A' }} />
           </div>
           {/* <div className="hi-pro-header__nav-icon" onClick={() => {}} >

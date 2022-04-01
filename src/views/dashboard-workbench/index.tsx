@@ -140,7 +140,7 @@ export const DashboardWorkbench = () => {
             </Row>
 
             {/* banner */}
-            <Row>
+            {/* <Row>
               <Col span={24}>
                 {data ? (
                   <Carousel style={{ height: 180 }}>
@@ -160,7 +160,7 @@ export const DashboardWorkbench = () => {
                   </Carousel>
                 ) : null}
               </Col>
-            </Row>
+            </Row> */}
 
             {/* 学习模块 */}
             <Row>

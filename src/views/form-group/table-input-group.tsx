@@ -40,7 +40,6 @@ export const TableInputGroup: React.FC<TableInputGroupProps> = ({
   const tableDataMemo = React.useMemo(() => {
     return Object.values(value)
   }, [value])
-  console.log(tableDataMemo)
 
   const tableColumnsMemo = React.useMemo(() => {
     return [

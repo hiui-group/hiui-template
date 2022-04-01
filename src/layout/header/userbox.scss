@@ -1,7 +1,7 @@
 .hi-pro-header__userbox {
-  margin: 0 4px 0 24px;
-  width: 120px;
-  height: 56px;
+  // margin: 0 4px 0 24px;
+  // width: 120px;
+  // height: 56px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -51,6 +51,7 @@
     position: absolute;
     right: 0;
     top: 56px;
+
     .hi-v4-popover {
       padding: 0;
     }
@@ -67,11 +68,11 @@
       align-items: center;
       cursor: pointer;
 
-      img {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-      }
+      // img {
+      //   width: 48px;
+      //   height: 48px;
+      //   border-radius: 50%;
+      // }
 
       .username {
         margin-top: 10px;

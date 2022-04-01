@@ -95,7 +95,6 @@ export const Search = () => {
 
   const [searchResultLoading, setSearchResultLoading] = React.useState(false)
   const [searchResultData, setSearchResultData] = React.useState<Record<string, any> | null>(null)
-  console.log('searchResultData', searchResultData, keywordUrlParam)
 
   const [recommendedLoading, setRecommendedLoading] = React.useState(false)
   const [recommendedData, setRecommendedData] = React.useState<Record<string, any> | null>(null)
@@ -259,8 +258,6 @@ export const Search = () => {
                     render={(itemProps: any) => {
                       // @ts-ignore
                       const tagItem = SEARCH_TAG_MAP[itemProps.type]
-                      console.log(tagItem)
-
                       // @ts-ignore
                       const Icon = Icons[tagItem.icon]
                       return (

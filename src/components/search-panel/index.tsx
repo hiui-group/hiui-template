@@ -28,7 +28,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   // 展开/收起状态 expanded=true为展开,false为收起
   const [expanded, setExpanded] = useState(false)
   // 搜索容器高度
-  const [formWrapHeight, setFormWrapHeight] = useState('0px')
+  const [formWrapHeight, setFormWrapHeight] = useState('52px')
 
   const { locale } = useLocaleContext()
 

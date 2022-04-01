@@ -1,8 +1,9 @@
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { SearchOutlined } from '@hi-ui/icons'
 import Highlighter from '@hi-ui/highlighter'
-import { Input, Message } from '@hi-ui/hiui'
+import { Input } from '@hi-ui/hiui'
 import './searchbox.scss'
+import { useNavigate } from 'react-router'
 
 const SuggestList = [
   '小米12 什么时候发售',
@@ -16,9 +17,10 @@ export const SearchBox: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const activeRef = useRef<boolean>(false)
-  const [ searchActive, setSearchActive ] = useState<boolean>(false)
-  const [ searchQuery, setSearchQuery ] = useState<string>("")
-  const [ searchSuggestions, setSearchSuggestions ] = useState<string[]>([])
+  const [searchActive, setSearchActive] = useState<boolean>(false)
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [searchSuggestions, setSearchSuggestions] = useState<string[]>([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.addEventListener('mousedown', handleWindowClick)
@@ -29,7 +31,7 @@ export const SearchBox: React.FC = () => {
 
   const handleWindowClick = (event: any) => {
     if (!activeRef.current) return
-    const { current } = containerRef;
+    const { current } = containerRef
     if (event.target === window || (current && !current.contains(event.target))) {
       setSearchActive(false)
       activeRef.current = false
@@ -68,16 +70,18 @@ export const SearchBox: React.FC = () => {
   }
 
   const handleSearch = (query?: string) => {
-    let currentQuery = query ? query.trim() : searchQuery.trim();
+    let currentQuery = query ? query.trim() : searchQuery.trim()
     if (currentQuery) {
-      Message.open({
-        title: '搜索：' + currentQuery,
-        type: 'success',
-      })
-      setSearchQuery("")
+      // Message.open({
+      //   title: '搜索：' + currentQuery,
+      //   type: 'success',
+      // })
+      setSearchQuery('')
       setSearchSuggestions([])
       setSearchActive(false)
       activeRef.current = false
+
+      navigate(`/search?keyword=${encodeURIComponent(currentQuery)}`)
     }
   }
 
@@ -95,13 +99,15 @@ export const SearchBox: React.FC = () => {
               handleSearch(content)
             }, 100)
           }}
-        >{content}</Highlighter>
+        >
+          {content}
+        </Highlighter>
       )
     }
     return nodeList
   }
 
-  return  (
+  return (
     <div
       className={'hi-pro-header__searchbox ' + (searchActive ? 'active' : '')}
       ref={containerRef}
@@ -109,7 +115,14 @@ export const SearchBox: React.FC = () => {
       <div className="headicon" onClick={handleSearchBtnClick}>
         <SearchOutlined style={{ fontSize: 20, color: '5F6A7A', zIndex: 2 }} />
       </div>
-      <Input ref={inputRef} value={searchQuery} className="input" onChange={handleQueryChange} onKeyDown={handleKeyDown} />
+      <Input
+        ref={inputRef}
+        value={searchQuery}
+        className="input"
+        onChange={handleQueryChange}
+        onKeyDown={handleKeyDown}
+        placeholder="搜索"
+      />
       <div className={'searchresult ' + (searchSuggestions.length > 0 ? 'active' : '')}>
         {renderSuggestion()}
       </div>

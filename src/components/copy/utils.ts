@@ -143,8 +143,6 @@ const fetchCodeFromGithub = async (subpath: string) => {
     acc.push(ext)
     return acc
   }, filenames)
-  console.log('filenames', filenames, subpath)
-
   for (const filename of filenames) {
     try {
       const path = subpath + filename

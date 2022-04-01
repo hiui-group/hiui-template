@@ -135,7 +135,7 @@ export const TableLayout = () => {
           className={`${prefix}__department-card`}
           bordered={false}
           style={{
-            marginRight: '20px',
+            marginRight: '16px',
             height: '100%',
             width: '240px',
             display: 'flex',

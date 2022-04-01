@@ -224,7 +224,7 @@ export const Search = () => {
         ]}
       />
 
-      <div style={{ padding: '20px 20px 0' }}>
+      <div style={{ padding: '20px 20px 20px' }}>
         <Row gutter>
           <Col span={18}>
             <Card bordered={false} hoverable loading={searchResultLoading}>

@@ -139,7 +139,7 @@ export const FormBasic: React.FC = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '基础表单',

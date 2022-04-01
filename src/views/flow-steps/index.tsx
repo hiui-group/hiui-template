@@ -30,7 +30,7 @@ export const FlowSteps = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '流程页',

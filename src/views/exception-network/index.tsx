@@ -10,7 +10,7 @@ export const ExceptionNetwork = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '无网络',

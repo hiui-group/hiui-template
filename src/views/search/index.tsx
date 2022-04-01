@@ -154,7 +154,7 @@ export const Search = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '搜索',

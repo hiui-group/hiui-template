@@ -433,7 +433,7 @@ export const FormSteps = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '分步表单',

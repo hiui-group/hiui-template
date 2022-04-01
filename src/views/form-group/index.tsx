@@ -146,7 +146,7 @@ export const FormGroup: React.FC = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '分组表单',

@@ -33,7 +33,7 @@ export const DetailBasic = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '基础详情页',

@@ -142,23 +142,23 @@ export const DashboardWorkbench = () => {
             {/* banner */}
             <Row>
               <Col span={24}>
-                <Carousel style={{ height: 180 }}>
-                  {data
-                    ? data.banners.map((item: any) => {
-                        return (
-                          <img
-                            key={item.imgUrl}
-                            src={item.imgUrl}
-                            alt={item.title}
-                            style={{ width: '100%' }}
-                            onClick={(item: any) => {
-                              window.location.href = item.jumpUrl
-                            }}
-                          />
-                        )
-                      })
-                    : null}
-                </Carousel>
+                {data ? (
+                  <Carousel style={{ height: 180 }}>
+                    {data.banners.map((item: any) => {
+                      return (
+                        <img
+                          key={item.imgUrl}
+                          src={item.imgUrl}
+                          alt={item.title}
+                          style={{ width: '100%' }}
+                          onClick={(item: any) => {
+                            window.location.href = item.jumpUrl
+                          }}
+                        />
+                      )
+                    })}
+                  </Carousel>
+                ) : null}
               </Col>
             </Row>
 

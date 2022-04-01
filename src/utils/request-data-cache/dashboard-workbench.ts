@@ -22,13 +22,13 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
       banners: [
         {
           imgUrl:
-            'https://images.unsplash.com/photo-1595923941716-39a9c58a9661?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+            'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/images/banner-1.png',
           jumpUrl: 'https://github.com/XiaoMi/hiui/tree/next/4.0',
           title: 'HiUI 4.0',
         },
         {
           imgUrl:
-            'https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80',
+            'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/images/banner-2.png',
           jumpUrl: 'https://github.com/hiui-group/hiui-template/tree/master-pro',
           title: 'HiUI Template Pro',
         },

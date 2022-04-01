@@ -61,7 +61,7 @@ export const AccountSettings: React.FC = () => {
         breadcrumbs={[
           {
             title: '首页',
-            path: 'home',
+            path: 'about',
           },
           {
             title: '设置',

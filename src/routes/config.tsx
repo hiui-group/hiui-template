@@ -37,16 +37,16 @@ export const routeConfig: any[] = [
         path: 'table-layout',
         component: <Pages.TableLayout />,
       },
-      {
-        name: '详情表格',
-        path: 'table-detail',
-        component: <Pages.TableDetail />,
-      },
-      {
-        name: '卡片表格',
-        path: 'table-card',
-        component: <Pages.TableCard />,
-      },
+      // {
+      //   name: '详情表格',
+      //   path: 'table-detail',
+      //   component: <Pages.TableDetail />,
+      // },
+      // {
+      //   name: '卡片表格',
+      //   path: 'table-card',
+      //   component: <Pages.TableCard />,
+      // },
     ],
   },
   {
@@ -79,11 +79,11 @@ export const routeConfig: any[] = [
         path: 'detail-basic',
         component: <Pages.DetailBasic />,
       },
-      {
-        name: '高级详情',
-        path: 'detail-advance',
-        component: <Pages.DetailAdvance />,
-      },
+      // {
+      //   name: '高级详情',
+      //   path: 'detail-advance',
+      //   component: <Pages.DetailAdvance />,
+      // },
     ],
   },
   {
@@ -149,11 +149,11 @@ export const routeConfig: any[] = [
     name: '个人',
     icon: <HomeFilled />,
     children: [
-      {
-        name: '个人中心',
-        path: 'account-profile',
-        component: <Pages.AccountProfile />,
-      },
+      // {
+      //   name: '个人中心',
+      //   path: 'account-profile',
+      //   component: <Pages.AccountProfile />,
+      // },
       {
         name: '个人设置',
         path: 'account-settings',
@@ -171,11 +171,11 @@ export const routeConfig: any[] = [
       // },
     ],
   },
-  {
-    name: '首页',
-    path: 'home',
-    component: <Pages.Home />,
-  },
+  // {
+  //   name: '首页',
+  //   path: 'home',
+  //   component: <Pages.Home />,
+  // },
   {
     name: '搜索',
     // hideInMenu: true,

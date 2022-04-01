@@ -16,4 +16,17 @@
     line-height: 32px;
     text-shadow: 0 -1px 0 #dfe2e8;
   }
+  &__nav-icon {
+    margin: 0 4px;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background: #f2f4f7;
+    }
+  }
 }

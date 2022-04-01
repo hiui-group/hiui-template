@@ -1,0 +1,205 @@
+.hi-pro-header__userbox {
+  margin: 0 4px 0 24px;
+  width: 120px;
+  height: 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  * {
+    user-select: none;
+  }
+
+  .headcontent {
+    width: 100%;
+    cursor: pointer;
+
+    .line1 {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+
+      span {
+        margin-left: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1f2733;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .line2 {
+      font-size: 12px;
+      font-weight: 400;
+      color: #929aa6;
+      line-height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .popcontent-warp {
+    position: absolute;
+    right: 0;
+    top: 56px;
+    .hi-v4-popover {
+      padding: 0;
+    }
+  }
+
+  .popcontent {
+    width: 256px;
+    padding: 12px;
+
+    .infocard {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+
+      img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+      }
+
+      .username {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1f2733;
+        line-height: 32px;
+        text-shadow: 0 4px 16px rgba(31, 39, 51, 0.1);
+      }
+
+      .usertitle {
+        margin-top: 2px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #929aa6;
+        line-height: 20px;
+        text-shadow: 0 4px 16px rgba(31, 39, 51, 0.1);
+      }
+    }
+
+    .selectinfo {
+      border-top: 1px solid #ebedf0;
+      border-bottom: 1px solid #ebedf0;
+
+      .selectgroup {
+        position: relative;
+
+        &-select-warp {
+          position: absolute;
+          padding-right: 20px;
+          left: 3px;
+          top: 50%;
+          transform: translate(-100%, -50%) scale(0);
+          // transition-duration: 0.3s;
+        }
+
+        .selectgroup-select-warp.active {
+          transform: translate(-100%, -50%) scale(1);
+        }
+
+        &-button {
+          display: flex;
+          margin: 4px;
+          padding: 0 8px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 400;
+          text-shadow: 0 4px 16px rgba(31, 39, 51, 0.1);
+          height: 32px;
+          align-items: center;
+
+          &:hover,
+          &.active {
+            background: #f2f4f7;
+            border-radius: 4px;
+          }
+
+          &_label {
+            color: #1f2733;
+          }
+
+          &_val {
+            flex: 1;
+            color: #929aa6;
+            text-align: right;
+            margin-right: 4px;
+          }
+
+          &_icon {
+            font-size: 16px;
+            color: #929aa6;
+          }
+        }
+
+        &-select {
+          width: 240px;
+          padding: 6px 12px;
+          background: #fff;
+          box-shadow: 0 4px 16px 0 rgb(31, 39, 51, 0.1);
+          border-radius: 4px;
+
+          &-item {
+            height: 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 4px 0;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &:hover {
+              background: #f2f4f7;
+            }
+
+            &.active {
+              background: #e2f3fe;
+              color: #237ffa;
+
+              .selectgroup-select-item_icon {
+                display: block;
+              }
+            }
+
+            &_icon {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .footer {
+      margin-top: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #ff5959;
+      text-shadow: 0 4px 16px rgba(31, 39, 51, 0.1);
+      cursor: pointer;
+
+      &:hover {
+        background: #f2f4f7;
+        border-radius: 4px;
+      }
+    }
+  }
+}

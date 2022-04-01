@@ -1,4 +1,13 @@
-import { FilterFilled, HomeFilled } from '@hi-ui/icons'
+import {
+  CheckCircleFilled,
+  DetailsFilled,
+  EditFilled,
+  HomeFilled,
+  RelationFilled,
+  TableOutlined,
+  UserFilled,
+  WarningFilled,
+} from '@hi-ui/icons'
 import * as Pages from '../views'
 
 export const routeConfig: any[] = [
@@ -20,7 +29,7 @@ export const routeConfig: any[] = [
   },
   {
     name: '表格',
-    icon: <FilterFilled />,
+    icon: <TableOutlined />,
     children: [
       {
         name: '查询表格',
@@ -51,7 +60,7 @@ export const routeConfig: any[] = [
   },
   {
     name: '表单',
-    icon: <HomeFilled />,
+    icon: <EditFilled />,
     children: [
       {
         name: '基础表单',
@@ -72,7 +81,7 @@ export const routeConfig: any[] = [
   },
   {
     name: '详情',
-    icon: <HomeFilled />,
+    icon: <DetailsFilled />,
     children: [
       {
         name: '基础详情',
@@ -88,7 +97,7 @@ export const routeConfig: any[] = [
   },
   {
     name: '流程',
-    icon: <HomeFilled />,
+    icon: <RelationFilled />,
     children: [
       // {
       //   name: '审批',
@@ -105,7 +114,7 @@ export const routeConfig: any[] = [
   },
   {
     name: '结果',
-    icon: <HomeFilled />,
+    icon: <CheckCircleFilled />,
     children: [
       {
         name: '成功',
@@ -121,7 +130,7 @@ export const routeConfig: any[] = [
   },
   {
     name: '异常',
-    icon: <HomeFilled />,
+    icon: <WarningFilled />,
     children: [
       {
         name: '无网络',
@@ -147,7 +156,7 @@ export const routeConfig: any[] = [
   },
   {
     name: '个人',
-    icon: <HomeFilled />,
+    icon: <UserFilled />,
     children: [
       // {
       //   name: '个人中心',

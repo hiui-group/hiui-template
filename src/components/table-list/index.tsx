@@ -1,5 +1,5 @@
 import { KIT_PREFIX } from '../constant'
-import { Table } from '@hi-ui/table'
+import { Table } from '@hi-ui/hiui'
 import React from 'react'
 import { TableListProps } from './index.type'
 import './index.scss'
@@ -50,7 +50,7 @@ export const TableList: React.FC<TableListProps> = ({
           pageSizeOptions: [10, 20, 50, 100],
           onPageSizeChange: (val, current) => {
             pageOnChange({ pageSize: val, pageNum: current })
-          }
+          },
         }}
       />
     </div>

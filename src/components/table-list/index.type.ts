@@ -1,4 +1,4 @@
-import { TableColumnItem } from '@hi-ui/table'
+import { TableColumnItem } from '@hi-ui/hiui'
 
 /**
  * 封装表格组件配置接口

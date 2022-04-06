@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import * as Echarts from 'echarts'
-import { Loading } from '@hi-ui/loading'
+import { Loading } from '@hi-ui/hiui'
 import { fetchCountryViewHotMap } from './api'
 import { message } from '@hi-ui/hiui'
 

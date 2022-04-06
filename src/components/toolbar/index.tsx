@@ -1,7 +1,6 @@
 import React from 'react'
 import { KIT_PREFIX } from '../constant'
-import Grid from '@hi-ui/grid'
-import Button from '@hi-ui/button'
+import { Grid, Button } from '@hi-ui/hiui'
 import { ArrowLeftOutlined, ResetOutlined } from '@hi-ui/icons'
 import './index.scss'
 
@@ -29,7 +28,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   refresh,
   children,
   showGoBack = false,
-  showRefresh = true
+  showRefresh = true,
 }) => {
   const prefixCls = `${KIT_PREFIX}-toolbar`
 
@@ -43,13 +42,13 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 
   return (
     <div className={`${prefixCls}`}>
-      <Row justify='space-between'>
+      <Row justify="space-between">
         <Col span={6}>
           {showGoBack && (
             <Button
-              className='btn-goback'
-              type='default'
-              appearance='link'
+              className="btn-goback"
+              type="default"
+              appearance="link"
               icon={<ArrowLeftOutlined />}
               onClick={() => {
                 goBack ? goBack() : defaultGoBack()
@@ -58,11 +57,11 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           )}
           <span className={`${prefixCls}__title`}>{title || getDefaultTitle()}</span>
         </Col>
-        <Col span={12} justify='flex-end'>
+        <Col span={12} justify="flex-end">
           {showRefresh && (
             <Button
-              className='btn-refresh'
-              type='default'
+              className="btn-refresh"
+              type="default"
               icon={<ResetOutlined />}
               onClick={() => {
                 refresh && refresh()

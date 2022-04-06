@@ -1,20 +1,16 @@
 import { Avatar, Button, Pagination, Table, Tree, TreeNodeData } from '@hi-ui/hiui'
 import { PlusOutlined, SearchOutlined } from '@hi-ui/icons'
-import { Input } from '@hi-ui/input'
 import { ContentHeader } from '../../components/content-header'
-import Card from '@hi-ui/card'
-import Select from '@hi-ui/select'
+import { Select, Card, Input, Loading } from '@hi-ui/hiui'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { fetchDepartment, fetchTableContent } from './api'
-import { Loading } from '@hi-ui/loading'
 import './index.scss'
 import { Result } from '@hi-ui/result'
-import { Divider } from '../../components'
-import { SelectDataItem } from '@hi-ui/select/lib/types/types'
+import { Divider } from '../../components/divider'
 
 const prefix = 'hi-pro-table-layout'
 
-const JobSelectData: SelectDataItem[] = [
+const JobSelectData: any[] = [
   {
     title: '宇宙警备队队长',
     id: '1',
@@ -25,7 +21,7 @@ const JobSelectData: SelectDataItem[] = [
   },
 ]
 
-const LevelSelectData: SelectDataItem[] = [
+const LevelSelectData: any[] = [
   {
     title: '高级',
     id: '1',

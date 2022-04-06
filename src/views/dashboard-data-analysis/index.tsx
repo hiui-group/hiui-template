@@ -16,7 +16,7 @@ import {
 import { ContentHeader } from '../../components/content-header'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { fetchThisMonth } from './api'
-import Card from '@hi-ui/card'
+import { Card } from '@hi-ui/hiui'
 import { ViewTrend } from './view-trend'
 import { UserDistribution } from './user-distribution'
 import { ContentDistribution } from './content-distribution'

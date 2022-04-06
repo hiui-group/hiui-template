@@ -2,9 +2,9 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import * as Echarts from 'echarts'
-import { Loading } from '@hi-ui/loading'
 import { fetchProductProblemAnalysis } from './api'
 import { EChartsOptionsGenerator } from './common'
+import { Loading } from '@hi-ui/hiui'
 
 const generateChartOption = (data: any[]) => ({
   grid: {

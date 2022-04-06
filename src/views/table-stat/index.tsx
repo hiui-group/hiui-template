@@ -13,11 +13,15 @@ import {
   Tooltip,
 } from '@hi-ui/hiui'
 import * as Icons from '@hi-ui/icons'
-import { TableList, SearchPanel, Divider, useListFetch, checkSelectFetch } from '../../components'
+import { TableList } from '../../components/table-list'
+import { SearchPanel } from '../../components/search-panel'
+import { Divider } from '../../components/divider'
+import { useListFetch } from '../../hooks/use-list-fetch'
+import { checkSelectFetch } from '../../utils/check-select-fetch'
 import { getList, updateStatus, getTypeOptions, fetchTableStatOverviewData } from './api'
 
 import { ContentHeader } from '../../components/content-header'
-import { InfoCircleOutlined, PlusOutlined, ResetOutlined } from '@hi-ui/icons'
+import { InfoCircleOutlined, ResetOutlined } from '@hi-ui/icons'
 import { Stat } from '../../components/stat'
 import { Spacer } from '../../components/spacer'
 

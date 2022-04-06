@@ -21,7 +21,7 @@ import {
   SearchOutlined,
   StarOutlined,
 } from '@hi-ui/icons'
-import { Divider } from '../../components'
+import { Divider } from '../../components/divider'
 import { ContentHeader } from '../../components/content-header'
 import Spacer from '@hi-ui/space'
 import { useSearchParams } from 'react-router-dom'

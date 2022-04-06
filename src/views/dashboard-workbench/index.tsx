@@ -14,7 +14,7 @@ import {
 } from '@hi-ui/icons'
 import { Spacer } from '../../components/spacer'
 import * as Icons from '@hi-ui/icons'
-import { Divider } from '../../components'
+import { Divider } from '../../components/divider'
 import { fetchDashboardWorkbenchData } from './api'
 
 export type IconKeyNames = keyof typeof Icons
@@ -661,17 +661,17 @@ export const DashboardWorkbench = () => {
                   extra={<Button icon={<SettingOutlined />} appearance="link"></Button>}
                   bordered={false}
                 >
-                  <div style={{ marginTop: -12, minHeight: 12 }}>
+                  <Spacer style={{ flexWrap: 'wrap' }} gap={8}>
                     {data
                       ? data.userInfo.myCollection.map((item: any) => {
                           return (
-                            <Tag key={item.id} style={{ marginTop: 12 }} size="lg">
+                            <Tag key={item.id} size="lg">
                               {item.title}
                             </Tag>
                           )
                         })
                       : null}
-                  </div>
+                  </Spacer>
                 </Card>
               </Col>
             </Row>

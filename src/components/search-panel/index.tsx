@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocaleContext } from '@hi-ui/locale-context'
 import { DownOutlined, UpOutlined } from '@hi-ui/icons'
-import Button from '@hi-ui/button'
+import { Button } from '@hi-ui/hiui'
 import { KIT_PREFIX } from '../constant'
-import localeMap from '../locale'
 import './index.scss'
 
 interface SearchPanelProps {
@@ -31,13 +30,6 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const [formWrapHeight, setFormWrapHeight] = useState('52px')
 
   const { locale } = useLocaleContext()
-
-  // @ts-ignore
-  const currentLocaleMap = localeMap[locale]
-
-  const firstToUpper = (str: string) => {
-    return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
-  }
 
   useEffect(() => {
     setFormWrapHeight(
@@ -67,7 +59,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                     setFormWrapHeight(`${searchFormMinHeight}px`)
                   }}
                 >
-                  {firstToUpper(currentLocaleMap.collapse)}
+                  收起
                   <UpOutlined />
                 </Button>
               ) : (
@@ -80,16 +72,16 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                     setFormWrapHeight(`${formComponentRef.current.firstChild.clientHeight}px`)
                   }}
                 >
-                  {firstToUpper(currentLocaleMap.expand)}
+                  展开
                   <DownOutlined />
                 </Button>
               ))}
 
             <Button type="default" onClick={search.resetClick}>
-              {firstToUpper(currentLocaleMap.reset)}
+              重置
             </Button>
             <Button type="secondary" onClick={search.searchClick}>
-              {firstToUpper(currentLocaleMap.search)}
+              查询
             </Button>
           </div>
         </React.Fragment>

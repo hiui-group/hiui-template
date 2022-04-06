@@ -1,10 +1,11 @@
 // @ts-nocheck
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import * as Echarts from 'echarts'
-import { RadioGroup } from '@hi-ui/radio'
-import { Loading } from '@hi-ui/loading'
+import { Radio, Loading } from '@hi-ui/hiui'
 import { fetchViewTrend } from './api'
 import { EChartsOptionsGenerator } from './common'
+
+const RadioGroup = Radio.Group
 
 enum ViewRange {
   day = 'day',

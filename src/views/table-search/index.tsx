@@ -11,14 +11,12 @@ import {
   Loading,
   Modal,
 } from '@hi-ui/hiui'
-import {
-  TableList,
-  SearchPanel,
-  Toolbar,
-  Divider,
-  useListFetch,
-  checkSelectFetch,
-} from '../../components'
+import { TableList } from '../../components/table-list'
+import { Toolbar } from '../../components/toolbar'
+import { SearchPanel } from '../../components/search-panel'
+import { Divider } from '../../components/divider'
+import { useListFetch } from '../../hooks/use-list-fetch'
+import { checkSelectFetch } from '../../utils/check-select-fetch'
 import { getList, updateStatus, getTypeOptions } from './api'
 
 import './index.scss'

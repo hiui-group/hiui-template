@@ -1,0 +1,58 @@
+.hi-pro-dashboard-workbench {
+  // 魔改样式
+  &-study-card {
+    &.hi-v4-card {
+      background-color: #f5f7fa;
+      cursor: pointer;
+
+      .hi-v4-card__header {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &-exam-card {
+    &.hi-v4-card {
+      background-color: #f5f7fa;
+      cursor: pointer;
+
+      .hi-v4-card__header {
+        padding-bottom: 0;
+      }
+
+      .hi-v4-card__body {
+        padding-bottom: 14px;
+      }
+    }
+  }
+
+  &-timeline-card {
+    &.hi-v4-card {
+      .hi-v4-card__header {
+        padding-bottom: 6px;
+      }
+
+      .hi-v4-card__body {
+        padding-bottom: 12px;
+      }
+    }
+  }
+
+  &-certification-list {
+    &.hi-v4-list {
+      .hi-v4-list-item__avatar {
+        width: 52px;
+        height: 68px;
+      }
+    }
+  }
+
+  &-doc-list {
+    &.hi-v4-list {
+      .hi-v4-list-item__avatar {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+}

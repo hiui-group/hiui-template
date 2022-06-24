@@ -1,5 +1,16 @@
 import * as React from 'react'
-import { Alert, Avatar, Button, Card, Carousel, Grid, List, Tag, Timeline } from '@hi-ui/hiui'
+import {
+  Alert,
+  Avatar,
+  Button,
+  Card,
+  Carousel,
+  Grid,
+  List,
+  Loading,
+  Tag,
+  Timeline,
+} from '@hi-ui/hiui'
 import {
   BuildingFilled,
   CheckOutlined,
@@ -16,6 +27,7 @@ import { Spacer } from '../../components/spacer'
 import * as Icons from '@hi-ui/icons'
 import { Divider } from '../../components/divider'
 import { fetchDashboardWorkbenchData } from './api'
+import './index.scss'
 
 export type IconKeyNames = keyof typeof Icons
 
@@ -24,6 +36,51 @@ const { Row, Col } = Grid
 const prefix = 'hi-pro-dashboard-workbench'
 
 const contentPlaceholder = '-'
+
+const LINKS = [
+  {
+    id: 1,
+    title: '认证中心',
+    type: 'secondary' as const,
+    href: 'https://github.com/XiaoMi/hiui',
+    icon: 'ExpressionFilled' as IconKeyNames,
+  },
+  {
+    id: 2,
+    title: '预警中心',
+    type: 'danger' as const,
+    href: 'https://github.com/XiaoMi/hiui',
+    icon: 'BellFilled' as IconKeyNames,
+  },
+  {
+    id: 3,
+    title: '我的日程',
+    type: 'success' as const,
+    href: 'https://github.com/XiaoMi/hiui',
+    icon: 'EndDateFilled' as IconKeyNames,
+  },
+  {
+    id: 4,
+    title: '课程中心',
+    type: 'secondary' as const,
+    href: 'https://github.com/XiaoMi/hiui',
+    icon: 'AssetMonitorFilled' as IconKeyNames,
+  },
+  {
+    id: 5,
+    title: '客服中心',
+    type: 'secondary' as const,
+    // href: 'https://github.com/XiaoMi/hiui',
+    icon: 'CloudFilled' as IconKeyNames,
+  },
+  {
+    id: 6,
+    title: '管理常用',
+    type: 'default' as const,
+    href: 'https://github.com/XiaoMi/hiui',
+    icon: 'SettingFilled' as IconKeyNames,
+  },
+]
 
 // 荣誉排名展示样式配置
 const HONOR_RANK_MAP = {
@@ -73,16 +130,16 @@ const calcGridRows = (data: any, column = 2) => {
 
 export const DashboardWorkbench = () => {
   const [data, setData] = React.useState<Record<string, any> | null>(null)
-  const [loading, setLoading] = React.useState(false)
+  const loadingIdRef = React.useRef<any>(null)
 
   React.useEffect(() => {
-    setLoading(true)
+    loadingIdRef.current = Loading.open(undefined)
     fetchDashboardWorkbenchData()
       .then((result) => {
         setData(result.data!)
       })
       .finally(() => {
-        setLoading(false)
+        Loading.close(loadingIdRef.current)
       })
   }, [])
 
@@ -94,7 +151,7 @@ export const DashboardWorkbench = () => {
             {/* 个人信息 */}
             <Row>
               <Col span={24}>
-                <Card loading={loading} bordered={false} hoverable>
+                <Card bordered={false} hoverable>
                   <Spacer justify="space-between" inline={false}>
                     <Spacer>
                       <Avatar
@@ -140,17 +197,17 @@ export const DashboardWorkbench = () => {
             </Row>
 
             {/* banner */}
-            {/* <Row>
+            <Row>
               <Col span={24}>
                 {data ? (
-                  <Carousel style={{ height: 180 }}>
+                  <Carousel style={{ minHeight: 160 }}>
                     {data.banners.map((item: any) => {
                       return (
                         <img
                           key={item.imgUrl}
                           src={item.imgUrl}
                           alt={item.title}
-                          style={{ width: '100%' }}
+                          style={{ width: '100%', cursor: 'pointer' }}
                           onClick={(item: any) => {
                             window.location.href = item.jumpUrl
                           }}
@@ -160,14 +217,13 @@ export const DashboardWorkbench = () => {
                   </Carousel>
                 ) : null}
               </Col>
-            </Row> */}
+            </Row>
 
             {/* 学习模块 */}
             <Row>
               <Col span={24}>
                 <Card
                   hoverable
-                  loading={loading}
                   bordered={false}
                   title="学习"
                   extra={
@@ -191,8 +247,8 @@ export const DashboardWorkbench = () => {
                                 return (
                                   <Col span={12}>
                                     <Card
+                                      className={`${prefix}-study-card`}
                                       bordered={false}
-                                      style={{ backgroundColor: '#F5F7FA' }}
                                       title={item.title}
                                     >
                                       <Spacer justify="space-between" inline={false}>
@@ -215,7 +271,10 @@ export const DashboardWorkbench = () => {
                                           {item.learners.map((item: any) => {
                                             return (
                                               <Avatar
-                                                style={{ marginLeft: -20 }}
+                                                style={{
+                                                  marginLeft: -20,
+                                                  border: '1px solid #fff',
+                                                }}
                                                 src={item.avatar}
                                                 size="xs"
                                                 key={item.avatar}
@@ -242,7 +301,6 @@ export const DashboardWorkbench = () => {
               <Col span={24}>
                 <Card
                   hoverable
-                  loading={loading}
                   bordered={false}
                   title="考试"
                   extra={
@@ -265,8 +323,8 @@ export const DashboardWorkbench = () => {
                                 return (
                                   <Col span={12}>
                                     <Card
+                                      className={`${prefix}-exam-card`}
                                       bordered={false}
-                                      style={{ backgroundColor: '#F5F7FA' }}
                                       title={item.title}
                                     >
                                       <Spacer justify="space-between" inline={false}>
@@ -308,6 +366,7 @@ export const DashboardWorkbench = () => {
                   extra={<Button icon={<RightOutlined />} appearance="link"></Button>}
                 >
                   <List
+                    className={`${prefix}-certification-list`}
                     bordered={false}
                     style={{ minHeight: 440, paddingLeft: 0, paddingRight: 0 }}
                     render={(itemProps: any) => {
@@ -316,7 +375,7 @@ export const DashboardWorkbench = () => {
                           {...itemProps}
                           title={
                             <Spacer gap={10}>
-                              <span>{itemProps.title}</span>
+                              <span style={{ fontSize: 14 }}>{itemProps.title}</span>
                               {/* @ts-ignore */}
                               <Tag type={CERTIFICATION_RANK_MAP[itemProps.rank].color}>
                                 {itemProps.type}
@@ -355,7 +414,6 @@ export const DashboardWorkbench = () => {
                   bordered={false}
                   scrollHeight={440}
                   title="动态"
-                  loading={loading}
                   extra={<Button icon={<RightOutlined />} appearance="link"></Button>}
                 >
                   <Timeline
@@ -378,6 +436,7 @@ export const DashboardWorkbench = () => {
                               ),
                               title: (
                                 <Card
+                                  className={`${prefix}-timeline-card`}
                                   style={{ backgroundColor: '#F5F7FA' }}
                                   bordered={false}
                                   size="sm"
@@ -424,6 +483,7 @@ export const DashboardWorkbench = () => {
                           title={itemProps.title}
                           subtitle={itemProps.organization}
                           bordered={false}
+                          style={{ cursor: 'pointer' }}
                           cover={
                             <img
                               style={{ width: '100%' }}
@@ -432,7 +492,14 @@ export const DashboardWorkbench = () => {
                             />
                           }
                         >
-                          <Spacer gap={20}>
+                          <Spacer
+                            gap={20}
+                            style={{
+                              flexWrap: 'wrap',
+                              columnGap: 20,
+                              rowGap: 12,
+                            }}
+                          >
                             <Spacer gap={4}>
                               <EyeOutlined />
                               <span>{itemProps.viewCount}</span>
@@ -485,9 +552,13 @@ export const DashboardWorkbench = () => {
                           {...itemProps}
                           description={
                             <Spacer direction="column" inline={false} gap={10} align="start">
-                              <Spacer>
+                              <Spacer
+                                style={{
+                                  color: '#929AA6',
+                                }}
+                              >
                                 <Spacer>
-                                  <Avatar size="xs" src={itemProps.avatarUrl}></Avatar>
+                                  <Avatar size={16} src={itemProps.avatarUrl}></Avatar>
                                   <span>{itemProps.author}</span>
                                 </Spacer>
 
@@ -505,7 +576,12 @@ export const DashboardWorkbench = () => {
                             </Spacer>
                           }
                           extra={
-                            <Spacer gap={20}>
+                            <Spacer
+                              gap={20}
+                              style={{
+                                color: '#929AA6',
+                              }}
+                            >
                               <Spacer gap={4}>
                                 <EyeOutlined />
                                 <span>{itemProps.viewCount}</span>
@@ -549,9 +625,13 @@ export const DashboardWorkbench = () => {
                           {...itemProps}
                           description={
                             <Spacer direction="column" inline={false} gap={10} align="start">
-                              <Spacer>
+                              <Spacer
+                                style={{
+                                  color: '#929AA6',
+                                }}
+                              >
                                 <Spacer>
-                                  <Avatar size="xs" src={itemProps.avatarUrl}></Avatar>
+                                  <Avatar size={16} src={itemProps.avatarUrl}></Avatar>
                                   <span>{itemProps.author}</span>
                                 </Spacer>
 
@@ -569,7 +649,12 @@ export const DashboardWorkbench = () => {
                             </Spacer>
                           }
                           extra={
-                            <Spacer gap={20}>
+                            <Spacer
+                              gap={20}
+                              style={{
+                                color: '#929AA6',
+                              }}
+                            >
                               <Spacer gap={4}>
                                 <EyeOutlined />
                                 <span>{itemProps.viewCount}</span>
@@ -618,26 +703,48 @@ export const DashboardWorkbench = () => {
                             <strong>{item.name}</strong>
                             <span style={{ fontSize: 12 }}>{item.description}</span>
                             <Alert
-                              style={{ textAlign: 'center' }}
+                              style={{
+                                textAlign: 'center',
+                                padding: '6px 22px',
+                                backgroundColor: honorItem.color,
+                              }}
                               showIcon={false}
                               closeable={false}
                               title={
-                                <Spacer>
+                                <Spacer
+                                  style={{
+                                    fontSize: 12,
+                                    fontWeight: 400,
+                                    color: '#1F2733',
+                                    lineHeight: '20px',
+                                    maxWidth: '100%',
+                                  }}
+                                >
                                   <img
                                     style={{ width: 16, height: 16 }}
                                     src={honorItem.badge}
                                     alt={honorItem.rank}
                                   />
-                                  <span>{item.honor}</span>
+                                  <span
+                                    style={{
+                                      maxWidth: '100%',
+                                      display: 'inline-block',
+                                      whiteSpace: 'nowrap',
+                                      overflow: 'hidden',
+                                      textOverflow: 'ellipsis',
+                                    }}
+                                  >
+                                    {item.honor}
+                                  </span>
                                 </Spacer>
                               }
                             />
                             {item.followed ? (
-                              <Button type="default" icon={<CheckOutlined />}>
+                              <Button shape="round" type="default" icon={<CheckOutlined />}>
                                 已关注
                               </Button>
                             ) : (
-                              <Button type="primary" icon={<PlusOutlined />}>
+                              <Button shape="round" type="primary" icon={<PlusOutlined />}>
                                 关注
                               </Button>
                             )}
@@ -657,7 +764,6 @@ export const DashboardWorkbench = () => {
                 <Card
                   hoverable
                   title="关注"
-                  loading={loading}
                   extra={<Button icon={<SettingOutlined />} appearance="link"></Button>}
                   bordered={false}
                 >
@@ -665,7 +771,7 @@ export const DashboardWorkbench = () => {
                     {data
                       ? data.userInfo.myCollection.map((item: any) => {
                           return (
-                            <Tag key={item.id} size="lg">
+                            <Tag key={item.id} size="lg" style={{ cursor: 'pointer' }}>
                               {item.title}
                             </Tag>
                           )
@@ -680,73 +786,32 @@ export const DashboardWorkbench = () => {
             <Row>
               <Col span={24}>
                 <Card bordered={false} hoverable>
-                  <div style={{ marginTop: -12 }}>
-                    {[
-                      {
-                        id: 1,
-                        title: '认证中心',
-                        type: 'secondary' as const,
-                        href: 'https://github.com/XiaoMi/hiui',
-                        icon: 'ExpressionFilled' as IconKeyNames,
-                      },
-                      {
-                        id: 2,
-                        title: '预警中心',
-                        type: 'danger' as const,
-                        href: 'https://github.com/XiaoMi/hiui',
-                        icon: 'BellFilled' as IconKeyNames,
-                      },
-                      {
-                        id: 3,
-                        title: '我的日程',
-                        type: 'success' as const,
-                        href: 'https://github.com/XiaoMi/hiui',
-                        icon: 'EndDateFilled' as IconKeyNames,
-                      },
-                      {
-                        id: 4,
-                        title: '课程中心',
-                        type: 'secondary' as const,
-                        href: 'https://github.com/XiaoMi/hiui',
-                        icon: 'AssetMonitorFilled' as IconKeyNames,
-                      },
-                      {
-                        id: 5,
-                        title: '客服中心',
-                        type: 'secondary' as const,
-                        // href: 'https://github.com/XiaoMi/hiui',
-                        icon: 'CloudFilled' as IconKeyNames,
-                      },
-                      {
-                        id: 6,
-                        title: '管理常用',
-                        type: 'default' as const,
-                        href: 'https://github.com/XiaoMi/hiui',
-                        icon: 'SettingFilled' as IconKeyNames,
-                      },
-                    ].map((item: any) => {
+                  <div
+                    style={{
+                      display: 'grid',
+                      justifyContent: 'space-evenly',
+                      gridTemplateColumns: 'repeat(auto-fill, 90px)',
+                      gridGap: '12px',
+                      paddingTop: 12,
+                    }}
+                  >
+                    {LINKS.map((item: any) => {
                       // @ts-ignore
                       const Icon = Icons[item.icon]
 
                       return (
-                        <Spacer key={item.id} style={{ marginTop: 12 }}>
+                        <Spacer key={item.id}>
                           <Spacer
                             key={item.id}
-                            style={{
-                              width: 116,
-                              paddingTop: 8,
-                              height: 84,
-                            }}
+                            style={{ minWidth: '90px', height: 84 }}
                             direction="column"
                             gap={6}
+                            onClick={() => {
+                              window.open(item.href)
+                            }}
                           >
-                            <Button
-                              type={item.type}
-                              size="lg"
-                              href={item.href}
-                              icon={<Icon />}
-                            ></Button>
-                            <span>{item.title}</span>
+                            <Button type={item.type} size="lg" icon={<Icon />}></Button>
+                            <span style={{ cursor: 'pointer' }}>{item.title}</span>
                           </Spacer>
                         </Spacer>
                       )
@@ -807,6 +872,7 @@ export const DashboardWorkbench = () => {
                   bordered={false}
                 >
                   <List
+                    className={`${prefix}-doc-list`}
                     bordered={false}
                     render={(itemProps: any) => {
                       return (

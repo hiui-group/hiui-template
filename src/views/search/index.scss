@@ -1,0 +1,10 @@
+.hi-pro-search {
+  // 魔改样式
+  &-result-list {
+    &.hi-v4-list {
+      .hi-v4-list-item__title {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

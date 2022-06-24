@@ -2,7 +2,7 @@ import React from 'react'
 import { SettingOutlined } from '@hi-ui/icons'
 import { Image } from '../../components/image'
 import { Spacer } from '../../components/spacer'
-import logoImg from '../../assets/logo.png'
+import logoImg from '../../assets/logo.svg'
 
 import './index.scss'
 import { SearchBox } from './searchbox'
@@ -17,7 +17,7 @@ export const Header = () => {
   return (
     <Spacer as="header" className={`${prefix}`} inline={false} justify="space-between">
       <Spacer>
-        <Image src={logoImg} />
+        <Image src={logoImg} shape="square" />
         <span className={`${prefix}__logo-title`}>HiUI Pro</span>
       </Spacer>
       <Spacer gap={4}>

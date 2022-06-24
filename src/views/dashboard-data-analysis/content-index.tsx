@@ -20,7 +20,7 @@ export const ContentIndex = () => {
       return (
         <div
           style={{
-            background: '#BDE2EF',
+            background: 'rgb(229, 242, 253)',
             color: '#237FFA',
             borderRadius: '4px',
             width: '16px',

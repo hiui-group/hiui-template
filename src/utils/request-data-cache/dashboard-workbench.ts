@@ -84,7 +84,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
             collectionCount: 213,
             author: '张楚岚',
             avatar: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
-            publishTime: '三小时前',
+            publishTime: '3h',
           },
           {
             coverUrl:
@@ -96,7 +96,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
             collectionCount: 213,
             author: '张楚岚',
             avatar: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
-            publishTime: '三小时前',
+            publishTime: '3h',
           },
           {
             coverUrl:
@@ -108,7 +108,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
             collectionCount: 213,
             author: '张楚岚',
             avatar: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
-            publishTime: '三小时前',
+            publishTime: '3h',
           },
           {
             coverUrl:
@@ -120,7 +120,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
             collectionCount: 213,
             author: '张楚岚',
             avatar: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
-            publishTime: '三小时前',
+            publishTime: '3h',
           },
         ],
       },

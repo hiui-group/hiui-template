@@ -28,6 +28,8 @@ import { useSearchParams } from 'react-router-dom'
 import { fetchSearchRecommendedList, fetchSearchResultByKeyword } from './api'
 import * as Icons from '@hi-ui/icons'
 
+import './index.scss'
+
 const { Row, Col } = Grid
 
 const RECOMMENDED_DATA_COLOR_MAP: any = {
@@ -87,6 +89,51 @@ const SEARCH_TAG_MAP = {
     title: '词条',
   },
 }
+
+const SEARCH_TAB_LIST = [
+  {
+    tabId: '1',
+    tabTitle: (
+      <span>
+        <AppStoreOutlined /> 全部
+      </span>
+    ),
+  },
+  {
+    tabId: '2',
+    tabTitle: (
+      <span>
+        <GlobalOutlined /> 知识
+      </span>
+    ),
+  },
+  {
+    tabId: '3',
+    tabTitle: (
+      <span>
+        <AssetMonitorOutlined /> 课程
+      </span>
+    ),
+  },
+  {
+    tabId: '4',
+    tabTitle: (
+      <span>
+        <PinOutlined /> 考试
+      </span>
+    ),
+  },
+  {
+    tabId: '5',
+    tabTitle: (
+      <span>
+        <BookmarkOutlined /> 认证
+      </span>
+    ),
+  },
+]
+
+const prefix = 'hi-pro-search'
 
 export const Search = () => {
   const [keyword, setKeyword] = React.useState('')
@@ -161,9 +208,10 @@ export const Search = () => {
         ]}
       >
         <HiSearch
-          style={{ maxWidth: 884 }}
+          style={{ width: '75%' }}
           size="lg"
           placeholder="搜索"
+          appearance="filled"
           value={keyword}
           onChange={(keyword) => {
             setKeyword(keyword)
@@ -179,48 +227,7 @@ export const Search = () => {
         style={{ backgroundColor: '#fff' }}
         activeId={tabId}
         onChange={setTabId}
-        data={[
-          {
-            tabId: '1',
-            tabTitle: (
-              <span>
-                <AppStoreOutlined /> 全部
-              </span>
-            ),
-          },
-          {
-            tabId: '2',
-            tabTitle: (
-              <span>
-                <GlobalOutlined /> 知识
-              </span>
-            ),
-          },
-          {
-            tabId: '3',
-            tabTitle: (
-              <span>
-                <AssetMonitorOutlined /> 课程
-              </span>
-            ),
-          },
-          {
-            tabId: '4',
-            tabTitle: (
-              <span>
-                <PinOutlined /> 考试
-              </span>
-            ),
-          },
-          {
-            tabId: '5',
-            tabTitle: (
-              <span>
-                <BookmarkOutlined /> 认证
-              </span>
-            ),
-          },
-        ]}
+        data={SEARCH_TAB_LIST}
       />
 
       <div style={{ padding: '20px 20px 20px' }}>
@@ -255,6 +262,7 @@ export const Search = () => {
                   <Divider marginTop={18} marginBottom={2} />
                   <List
                     bordered={false}
+                    className={`${prefix}-result-list`}
                     render={(itemProps: any) => {
                       // @ts-ignore
                       const tagItem = SEARCH_TAG_MAP[itemProps.type]
@@ -272,7 +280,7 @@ export const Search = () => {
                             ) : undefined
                           }
                           title={
-                            <Spacer size={4}>
+                            <Spacer size={4} style={{ cursor: 'pointer' }}>
                               {/* @ts-ignore */}
                               <Tag background={tagItem.bgColor}>
                                 <Icon style={{ color: tagItem.iconColor, marginRight: 4 }} />
@@ -282,21 +290,23 @@ export const Search = () => {
                             </Spacer>
                           }
                           description={
-                            <Spacer direction="column" inline={false} size={10} align="flex-start">
+                            <Spacer direction="column" inline={false} size={8} align="flex-start">
                               <Spacer>
                                 <Spacer>
-                                  <Avatar size="xs" src={itemProps.avatarUrl}></Avatar>
-                                  <span>{itemProps.author}</span>
+                                  <Avatar size={20} src={itemProps.avatarUrl}></Avatar>
+                                  <span style={{ color: '#237FFA', cursor: 'pointer' }}>
+                                    {itemProps.author}
+                                  </span>
                                 </Spacer>
 
-                                <span>{itemProps.publishTime}</span>
+                                <span style={{ color: '#929AA6' }}>{itemProps.publishTime}</span>
                               </Spacer>
 
-                              <div>{itemProps.answer}</div>
+                              <div>{itemProps.content}</div>
                             </Spacer>
                           }
                           extra={
-                            <Spacer size={20}>
+                            <Spacer size={20} style={{ color: '#929AA6' }}>
                               <Spacer size={4}>
                                 <EyeOutlined />
                                 <span>{itemProps.viewCount}</span>

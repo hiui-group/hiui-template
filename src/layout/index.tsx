@@ -16,7 +16,9 @@ export const MainLayout: React.FC = () => {
     const clonedRouteConfig = cloneTree(routeConfig)
 
     visitTree(clonedRouteConfig, (node) => {
-      node.id =  node.path ? ('/' + node.path) : node.name
+      if (!node.id) {
+        node.id = node.path ? '/' + node.path : node.name
+      }
       node.title = node.name
 
       delete node.component
@@ -26,7 +28,7 @@ export const MainLayout: React.FC = () => {
   }, [])
 
   const handleMenuClick = (menuId: React.ReactText) => {
-    console.log('menuId',menuId);
+    console.log('menuId', menuId)
     navigate(menuId as string)
   }
 
@@ -41,6 +43,7 @@ export const MainLayout: React.FC = () => {
             showCollapse={true}
             data={menuData}
             activeId={location.pathname}
+            defaultExpandedIds={routeConfig.map(({ id }) => id)}
             onClick={handleMenuClick}
           />
         </div>

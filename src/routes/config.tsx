@@ -12,6 +12,7 @@ import * as Pages from '../views'
 
 export const routeConfig: any[] = [
   {
+    id: 'dashboard',
     name: '仪表盘',
     icon: <HomeFilled />,
     children: [
@@ -28,6 +29,7 @@ export const routeConfig: any[] = [
     ],
   },
   {
+    id: 'table',
     name: '表格',
     icon: <TableOutlined />,
     children: [
@@ -59,6 +61,7 @@ export const routeConfig: any[] = [
     ],
   },
   {
+    id: 'form',
     name: '表单',
     icon: <EditFilled />,
     children: [
@@ -80,6 +83,7 @@ export const routeConfig: any[] = [
     ],
   },
   {
+    id: 'detail',
     name: '详情',
     icon: <DetailsFilled />,
     children: [
@@ -96,6 +100,7 @@ export const routeConfig: any[] = [
     ],
   },
   {
+    id: 'steps',
     name: '流程',
     icon: <RelationFilled />,
     children: [
@@ -113,6 +118,7 @@ export const routeConfig: any[] = [
     ],
   },
   {
+    id: 'result',
     name: '结果',
     icon: <CheckCircleFilled />,
     children: [
@@ -129,6 +135,7 @@ export const routeConfig: any[] = [
     ],
   },
   {
+    id: 'error',
     name: '异常',
     icon: <WarningFilled />,
     children: [
@@ -155,6 +162,7 @@ export const routeConfig: any[] = [
     ],
   },
   {
+    id: 'account',
     name: '个人',
     icon: <UserFilled />,
     children: [
@@ -191,9 +199,9 @@ export const routeConfig: any[] = [
     path: 'search',
     component: <Pages.Search />,
   },
-  {
-    name: '关于',
-    path: 'about',
-    component: <Pages.About />,
-  },
+  // {
+  //   name: '关于',
+  //   path: 'about',
+  //   component: <Pages.About />,
+  // },
 ]

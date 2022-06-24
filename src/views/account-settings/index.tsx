@@ -47,9 +47,9 @@ export const AccountSettings: React.FC = () => {
   const navigate = useNavigate()
   const onClickTab = (tabKey: string) => {
     if (tabKey === AccountTabList[0].key) {
-      navigate('/account-profile')
+      navigate('/account-settings')
     } else {
-      navigate('/account-profile?tab=' + tabKey)
+      navigate('/account-settings?tab=' + tabKey)
     }
   }
 

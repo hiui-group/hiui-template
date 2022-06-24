@@ -20,7 +20,7 @@ const routesConfigs: RouteObject[] = [
     children: clonedRouteConfig.concat([
       {
         path: '*',
-        element: <Navigate to="/search" replace={true} />,
+        element: <Navigate to="/dashboard-workbench" replace={true} />,
       },
     ]),
   },

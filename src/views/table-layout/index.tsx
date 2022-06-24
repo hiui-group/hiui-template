@@ -1,4 +1,4 @@
-import { Avatar, Button, Pagination, Table, Tree, TreeNodeData } from '@hi-ui/hiui'
+import { Avatar, Button, Pagination, Table, Tree, TreeDataItem } from '@hi-ui/hiui'
 import { PlusOutlined, SearchOutlined } from '@hi-ui/icons'
 import { ContentHeader } from '../../components/content-header'
 import { Select, Card, Input, Loading } from '@hi-ui/hiui'
@@ -82,8 +82,8 @@ export const TableLayout = () => {
     }
   }, [fetchingPersonToggle])
 
-  const displayDepartments = useMemo<TreeNodeData[]>(() => {
-    const transformer = (item: any): TreeNodeData => ({
+  const displayDepartments = useMemo<TreeDataItem[]>(() => {
+    const transformer = (item: any): TreeDataItem => ({
       title: item.title,
       id: item.id,
       children: (item.children || []).map(transformer),

@@ -37,7 +37,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
         courseCountToLearn: 3,
         courses: [
           {
-            title: '手机-初级课程',
+            title: 'HiUI4.0 设计概述',
             organization: '售后培训组',
             remainingDays: 1,
             learners: [
@@ -49,7 +49,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
             learnersCount: 99,
           },
           {
-            title: '手机-初级课程',
+            title: 'HiUI 设计价值观',
             organization: '售后培训组',
             remainingDays: 1,
             learners: [
@@ -61,7 +61,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
             learnersCount: 99,
           },
           {
-            title: '手机-初级课程',
+            title: 'HiUI 组件设计指南及设计运用规范',
             organization: '售后培训组',
             remainingDays: 1,
             learners: [
@@ -77,7 +77,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           {
             coverUrl:
               'https://cnbj1.fds.api.xiaomi.com/hiui-template/resources/workbench-cover-01.png',
-            title: '手机-初级课程',
+            title: 'HiUI 设计理念',
             organization: '售后培训组',
             viewCount: 4147,
             commentCount: 12,
@@ -89,7 +89,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           {
             coverUrl:
               'https://cnbj1.fds.api.xiaomi.com/hiui-template/resources/workbench-cover-02.png',
-            title: '手机-初级课程',
+            title: 'HiUI 设计理念',
             organization: '售后培训组',
             viewCount: 4147,
             commentCount: 12,
@@ -101,7 +101,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           {
             coverUrl:
               'https://cnbj1.fds.api.xiaomi.com/hiui-template/resources/workbench-cover-03.png',
-            title: '手机-初级课程',
+            title: 'HiUI 设计理念',
             organization: '售后培训组',
             viewCount: 4147,
             commentCount: 12,
@@ -113,7 +113,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           {
             coverUrl:
               'https://cnbj1.fds.api.xiaomi.com/hiui-template/resources/workbench-cover-04.png',
-            title: '手机-初级课程',
+            title: 'HiUI 设计理念',
             organization: '售后培训组',
             viewCount: 4147,
             commentCount: 12,
@@ -128,12 +128,12 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
         courseCountToExam: 2,
         exams: [
           {
-            title: '手机-初级课程',
+            title: 'HiUI 设计理念',
             organization: '售后培训组',
             durationMinutes: 60,
           },
           {
-            title: '手机-初级课程',
+            title: 'HiUI 设计理念',
             organization: '售后培训组',
             durationMinutes: 60,
           },
@@ -143,8 +143,8 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
         list: [
           {
             id: 1,
-            title: '寄修-技术-智能控制',
-            description: '服务能力：送修-技术-暖奶器',
+            title: 'HiUI 优秀代码贡献者',
+            description: '服务能力：运维-技术-鼓励师',
             cost: '50 元',
             type: '初级',
             rank: 3,
@@ -155,8 +155,8 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 2,
-            title: '寄修-技术-智能控制',
-            description: '服务能力：送修-技术-暖奶器',
+            title: 'HiUI 最佳问题反馈者',
+            description: '服务能力：运维-技术-鼓励师',
             cost: '50 元',
             type: '高级',
             rank: 1,
@@ -168,8 +168,8 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 3,
-            title: '寄修-技术-智能控制',
-            description: '服务能力：送修-技术-暖奶器',
+            title: 'HiUI 最佳设计事件',
+            description: '服务能力：运维-技术-鼓励师',
             cost: '50 元',
             type: '中级',
             rank: 2,
@@ -180,8 +180,8 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 4,
-            title: '寄修-技术-智能控制',
-            description: '服务能力：送修-技术-暖奶器',
+            title: 'HiUI-技术-智能反馈',
+            description: '服务能力：运维-技术-鼓励师',
             cost: '50 元',
             type: '初级',
             rank: 3,
@@ -193,7 +193,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           {
             id: 5,
             title: '寄修-技术-智能控制',
-            description: '服务能力：送修-技术-暖奶器',
+            description: '服务能力：运维-技术-鼓励师',
             cost: '50 元',
             type: '初级',
             rank: 3,
@@ -205,7 +205,7 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           {
             id: 6,
             title: '寄修-技术-智能控制',
-            description: '服务能力：送修-技术-暖奶器',
+            description: '服务能力：运维-技术-鼓励师',
             cost: '50 元',
             type: '初级',
             rank: 3,
@@ -290,11 +290,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
         list: [
           {
             id: 1,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: 'HiUI 创造轻松愉悦的办公体验',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -303,11 +303,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 2,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '更专注于聚焦产品功能的探索，打造更专业的产品',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/02.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -316,11 +316,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 3,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '帮助设计师明确设计目的，指导设计决策',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/03.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -329,11 +329,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 4,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '确保输出适用于不同终端平台的风格统一、高品质优雅的设计',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/04.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -342,11 +342,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 5,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: 'HiUI 创造轻松愉悦的办公体验',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/05.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -355,11 +355,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 6,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '更专注于聚焦产品功能的探索，打造更专业的产品',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -372,11 +372,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
         list: [
           {
             id: 1,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: 'HiUI 创造轻松愉悦的办公体验',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -385,11 +385,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 2,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '更专注于聚焦产品功能的探索，打造更专业的产品',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -398,11 +398,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 3,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '帮助设计师明确设计目的，指导设计决策',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -411,11 +411,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 4,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '确保输出适用于不同终端平台的风格统一、高品质优雅的设计',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -424,11 +424,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 5,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: 'HiUI 创造轻松愉悦的办公体验',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -437,11 +437,11 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
           },
           {
             id: 6,
-            title: 'Redmi KKK 自动重启的情况说明。',
+            title: '更专注于聚焦产品功能的探索，打造更专业的产品',
             author: '涂其航 ',
             avatarUrl: 'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/01.jpeg',
             answer:
-              '您好，Redmi KKK 自动重启已在 V12.5.19.0.RKHCNXM版本上优化，请更新至最新MIUI版本即可解决 KKK',
+              'HiUI 目前聚焦在企业级中后台研发场景，以「高效、友好、开放」为设计价值观，致力于打造轻松愉悦的办公体验。',
             type: '日程',
             publishTime: '2021/02/07 16:50:25',
             viewCount: 4147,
@@ -491,33 +491,33 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
         list: [
           {
             id: 1,
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description:
+              'HiUI 设计规范和技术上支持灵活的样式定制，以满足业务和品牌上多样化的视觉需求',
             type: '日程',
             publishTime: '一小时前',
           },
           {
             id: 2,
-            description:
-              '型号区分及功能检测指引-米家迷你保温杯产品型号区分及功能检测指引-米家迷你保温杯产品',
+            description: '资源丰富：提供多种类型的原型组件库、模版库，满足业务场景所需',
             type: '技术公告',
             publishTime: '三小时前',
           },
           {
             id: 3,
-            description: '米家互联网洗烘一体机Pro 10kg 自动投放组件/抽屉弹不开维修方法',
+            description: '体验一致：确保输出适用于不同终端平台的风格统一、高品质优雅的设计',
             type: '系统公告',
             publishTime: '六小时前',
           },
           {
             id: 4,
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description: '资源丰富：提供多种类型的原型组件库、模版库，满足业务场景所需',
             type: '日程',
             publishTime: '一天前',
           },
           {
             id: 5,
             description:
-              '型号区分及功能检测指引-米家迷你保温杯产品型号区分及功能检测指引-米家迷你保温杯产品',
+              'HiUI 设计规范和技术上支持灵活的样式定制，以满足业务和品牌上多样化的视觉需求',
             type: '日程',
             publishTime: '三天前',
           },
@@ -529,42 +529,42 @@ export const DashboardWorkbench: Record<string, ResponseBody> = {
             id: 1,
             avatar:
               'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/workbench-docs-01.png',
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description: '界面设计中重要视觉元素，应汲取大自然的美学特性。',
             publishTime: '2021/02/07 16:50:25',
           },
           {
             id: 2,
             avatar:
               'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/workbench-docs-02.png',
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description: '界面设计中重要视觉元素，应汲取大自然的美学特性。',
             publishTime: '2021/02/07 16:50:25',
           },
           {
             id: 3,
             avatar:
               'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/workbench-docs-01.png',
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description: '界面设计中重要视觉元素，应汲取大自然的美学特性。',
             publishTime: '2021/02/07 16:50:25',
           },
           {
             id: 4,
             avatar:
               'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/workbench-docs-02.png',
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description: '界面设计中重要视觉元素，应汲取大自然的美学特性。',
             publishTime: '2021/02/07 16:50:25',
           },
           {
             id: 5,
             avatar:
               'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/workbench-docs-01.png',
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description: '界面设计中重要视觉元素，应汲取大自然的美学特性。',
             publishTime: '2021/02/07 16:50:25',
           },
           {
             id: 6,
             avatar:
               'https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/workbench-docs-02.png',
-            description: '型号区分及功能检测指引-米家迷你保温杯产品-V01',
+            description: '界面设计中重要视觉元素，应汲取大自然的美学特性。',
             publishTime: '2021/02/07 16:50:25',
           },
         ],

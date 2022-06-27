@@ -31,7 +31,7 @@ export default () => {
           <MailFilled className="hi-pro-account-security-item_icon" />
           <div className="hi-pro-account-security-item_cont">
             <div className="hi-pro-account-security-item_title">绑定邮箱<Button type="primary" appearance="link">编辑</Button></div>
-            <div className="hi-pro-account-security-item_desc">已绑定邮箱：HIUI@xiaomi.com</div>
+            <div className="hi-pro-account-security-item_desc">已绑定邮箱：HiUI@xiaomi.com</div>
           </div>
         </div>
         <div className="hi-pro-account-security-item">

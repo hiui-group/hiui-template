@@ -16,10 +16,9 @@ const branch = 'master-pro'
 
 const SUBPATH_GITHUB_URL = (subpath: string) => {
   const url =
-    path.join(
-      'https://api.github.com/repos/hiui-group/hiui-template/contents/src/views/',
-      subpath
-    ) + `?ref=${branch}`
+    'https://api.github.com' +
+    path.join('/repos/hiui-group/hiui-template/contents/src/views/', subpath) +
+    `?ref=${branch}`
 
   console.log('SUBPATH_GITHUB_URL', url)
 
@@ -27,10 +26,9 @@ const SUBPATH_GITHUB_URL = (subpath: string) => {
 }
 
 const PATH_GITHUB_URL = (pathname: string) => {
-  const url = path.join(
-    `https://raw.githubusercontent.com/hiui-group/hiui-template/${branch}/`,
-    pathname
-  )
+  const url =
+    'https://raw.githubusercontent.com' +
+    path.join(`/hiui-group/hiui-template/${branch}/`, pathname)
 
   console.log('PATH_GITHUB_URL', url)
 
@@ -132,7 +130,7 @@ const downloadCodeFromGithub = async (pathname: string) => {
   const url = PATH_GITHUB_URL(pathname)
   // console.log('downloadCodeFromGithub URL: ', pathname)
 
-  const ret = await axios.get(url, { baseURL: '' })
+  const ret = await axios.get(url)
   return ret.data
 }
 

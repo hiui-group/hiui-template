@@ -21,6 +21,8 @@ const SUBPATH_GITHUB_URL = (subpath: string) => {
       subpath
     ) + `?ref=${branch}`
 
+  console.log('SUBPATH_GITHUB_URL', url)
+
   return url
 }
 
@@ -29,6 +31,9 @@ const PATH_GITHUB_URL = (pathname: string) => {
     `https://raw.githubusercontent.com/hiui-group/hiui-template/${branch}/`,
     pathname
   )
+
+  console.log('PATH_GITHUB_URL', url)
+
   return url
 }
 
@@ -127,7 +132,7 @@ const downloadCodeFromGithub = async (pathname: string) => {
   const url = PATH_GITHUB_URL(pathname)
   // console.log('downloadCodeFromGithub URL: ', pathname)
 
-  const ret = await axios.get(url)
+  const ret = await axios.get(url, { baseURL: '' })
   return ret.data
 }
 

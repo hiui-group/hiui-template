@@ -27,6 +27,24 @@
   background-color: #fff;
   position: sticky;
   top: 56px;
+
+  /* stylelint-disable */
+  :global {
+    .hi-v4-menu__wrapper {
+      &::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
+    }
+  }
 }
 
 .content {

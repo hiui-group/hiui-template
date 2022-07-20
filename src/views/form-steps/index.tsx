@@ -11,11 +11,11 @@ import {
   Textarea,
   Collapse,
   FormHelpers,
+  Result,
+  Form,
 } from '@hi-ui/hiui'
 import { PlusOutlined } from '@hi-ui/icons'
 import { ContentHeader } from '../../components/content-header'
-import Form from '@hi-ui/form'
-import Result from '@hi-ui/result'
 
 const { Row, Col } = Grid
 const FormItem = Form.Item

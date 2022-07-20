@@ -1,6 +1,6 @@
 import { Button } from '@hi-ui/hiui'
 import { PlusOutlined } from '@hi-ui/icons'
-import Result, { IconNoPermission } from '@hi-ui/result'
+import Result, { RESULT_IMAGE_FORBIDDEN } from '@hi-ui/result'
 import { ContentHeader } from '../../components/content-header'
 
 export const ExceptionPermission = () => {
@@ -38,7 +38,7 @@ export const ExceptionPermission = () => {
         }}
       >
         <Result
-          image={<IconNoPermission />}
+          image={RESULT_IMAGE_FORBIDDEN}
           imageSize="lg"
           title="暂无权限"
           content="抱歉，您没有当前模块的访问权限"

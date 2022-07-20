@@ -57,14 +57,15 @@ export const TableStat = () => {
   // 表头配置
   const columns = [
     { title: '商品名', dataKey: 'name', width: 150 },
-    { title: '品类', dataKey: 'type' },
-    { title: '规格', dataKey: 'size' },
-    { title: '价格', dataKey: 'price' },
-    { title: '地址', dataKey: 'address' },
-    { title: '库存', dataKey: 'stock' },
+    { title: '品类', dataKey: 'type', width: 200 },
+    { title: '规格', dataKey: 'size', width: 200 },
+    { title: '价格', dataKey: 'price', width: 200 },
+    { title: '地址', dataKey: 'address', width: 200 },
+    { title: '库存', dataKey: 'stock', width: 200 },
     {
       title: '状态',
       dataKey: 'status',
+      width: 200,
       render(text: any, record: any) {
         return (
           <Switch
@@ -91,16 +92,17 @@ export const TableStat = () => {
         )
       },
     },
-    { title: '创建时间', dataKey: 'createTime' },
+    { title: '创建时间', dataKey: 'createTime', width: 200 },
     {
       title: '操作',
-      dataKey: '',
+      dataKey: 'operator',
+      width: 80,
       render() {
         return (
           <>
             <Button
-              type="danger"
-              size="sm"
+              appearance="link"
+              type="primary"
               onClick={() => {
                 Message.open({
                   title: '删除中...',
@@ -118,6 +120,8 @@ export const TableStat = () => {
   const [overviewData, setOverviewData] = React.useState<Record<string, any> | null>(null)
   const [overviewLoading, setOverviewLoading] = React.useState(false)
 
+  const loadingIdRef = React.useRef<any>(null)
+
   React.useEffect(() => {
     setOverviewLoading(true)
     fetchTableStatOverviewData()
@@ -129,6 +133,16 @@ export const TableStat = () => {
       })
   }, [])
 
+  React.useEffect(() => {
+    if (loading || overviewLoading) {
+      if (!loadingIdRef.current) {
+        loadingIdRef.current = Loading.open(undefined)
+      }
+    } else {
+      Loading.close(loadingIdRef.current)
+    }
+  }, [loading, overviewLoading])
+
   return (
     <div>
       <ContentHeader
@@ -138,10 +152,10 @@ export const TableStat = () => {
             path: 'about',
           },
           {
-            title: '基础表单',
+            title: '统计表单',
           },
         ]}
-        title="基础表单"
+        title="统计表单"
         toolbar={
           <div>
             <Button
@@ -205,13 +219,14 @@ export const TableStat = () => {
               showColon={false}
               placement="horizontal"
               labelPlacement="right"
+              style={{ columnGap: 0 }}
               innerRef={searchFormRef}
               initialValues={defaultFilters}
             >
-              <FormItem field="name" style={{ marginRight: 12, minWidth: 200, maxWidth: 380 }}>
+              <FormItem field="name" style={{ paddingRight: 16 }}>
                 <Input placeholder="名称" clearable />
               </FormItem>
-              <FormItem field="type" style={{ marginRight: 12, minWidth: 200, maxWidth: 380 }}>
+              <FormItem field="type" style={{ paddingRight: 16 }}>
                 <CheckSelect
                   placeholder="品类"
                   searchable
@@ -219,23 +234,20 @@ export const TableStat = () => {
                   dataSource={(keyword) => checkSelectFetch(getTypeOptions, keyword)}
                 />
               </FormItem>
-              <FormItem field="size" style={{ marginRight: 12, minWidth: 200, maxWidth: 380 }}>
+              <FormItem field="size" style={{ paddingRight: 16 }}>
                 <Input placeholder="部门" clearable />
               </FormItem>
-              <FormItem field="status" style={{ marginRight: 12, minWidth: 200, maxWidth: 380 }}>
+              <FormItem field="status" style={{ paddingRight: 16 }}>
                 <Input placeholder="用户名" clearable />
               </FormItem>
-              <FormItem
-                field="createTime"
-                style={{ marginRight: 12, minWidth: 200, maxWidth: 380 }}
-              >
+              <FormItem field="createTime" style={{ paddingRight: 16 }}>
                 <DatePicker placeholder="创建时间" type="daterange" format="YYYY-MM-DD" />
               </FormItem>
             </Form>
           </SearchPanel>
           <Divider />
           <TableList
-            loading={loading}
+            fixedToColumn={{ right: 'operator' }}
             columns={columns}
             list={list}
             pagination={{ ...pagination }}

@@ -1,6 +1,6 @@
 import { Button } from '@hi-ui/hiui'
 import { PlusOutlined } from '@hi-ui/icons'
-import Result, { IconServerError } from '@hi-ui/result'
+import Result, { RESULT_IMAGE_SERVER_ERROR } from '@hi-ui/result'
 import { ContentHeader } from '../../components/content-header'
 
 export const ExceptionServerError = () => {
@@ -38,7 +38,7 @@ export const ExceptionServerError = () => {
         }}
       >
         <Result
-          image={<IconServerError />}
+          image={RESULT_IMAGE_SERVER_ERROR}
           imageSize="lg"
           title="500"
           content="抱歉，服务器开小差了！"

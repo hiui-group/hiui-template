@@ -7,7 +7,7 @@ export interface TableListProps {
   /**
    * 加载状态控制
    */
-  loading: boolean
+  loading?: boolean
   /**
    * 表头列配置项
    */

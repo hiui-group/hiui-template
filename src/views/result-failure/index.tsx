@@ -1,6 +1,5 @@
-import { Button } from '@hi-ui/hiui'
+import { Button, Result } from '@hi-ui/hiui'
 import { PlusOutlined } from '@hi-ui/icons'
-import Result from '@hi-ui/result'
 import { ContentHeader } from '../../components/content-header'
 
 export const ResultFailure = () => {

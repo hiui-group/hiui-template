@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useLocaleContext } from '@hi-ui/locale-context'
 import { DownOutlined, UpOutlined } from '@hi-ui/icons'
 import { Button } from '@hi-ui/hiui'
 import { KIT_PREFIX } from '../constant'
@@ -29,8 +28,6 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   // 搜索容器高度
   const [formWrapHeight, setFormWrapHeight] = useState('52px')
 
-  const { locale } = useLocaleContext()
-
   useEffect(() => {
     setFormWrapHeight(
       `${hideExpanded ? formComponentRef.current.firstChild.clientHeight : searchFormMinHeight}px`
@@ -41,7 +38,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     <div className={`${prefixCls}`}>
       {search && (
         <React.Fragment>
-          <div className={`${prefixCls}__form-wrap ${locale}`} style={{ height: formWrapHeight }}>
+          <div className={`${prefixCls}__form-wrap`} style={{ height: formWrapHeight }}>
             <div className={`${prefixCls}__form-component`} ref={formComponentRef}>
               {children}
             </div>
@@ -51,7 +48,6 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             {!hideExpanded &&
               (expanded ? (
                 <Button
-                  className="btn-expand"
                   type="default"
                   appearance="link"
                   onClick={() => {
@@ -64,7 +60,6 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                 </Button>
               ) : (
                 <Button
-                  className="btn-expand"
                   type="default"
                   appearance="link"
                   onClick={() => {

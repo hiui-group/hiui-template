@@ -50,7 +50,7 @@ export const CountryViewHotMap = (props: { style?: React.CSSProperties }) => {
   useEffect(() => {
     const init = async () => {
       setIsFetching(true)
-      const geo = await fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+      const geo = await fetch('https://cdn.cnbj1.fds.api.mi-img.com/hiui-template/resources/data/100000_full.json')
         .then((e) => {
           if (e.status === 200) {
             return e.text()

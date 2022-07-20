@@ -1,5 +1,5 @@
-import Spacer from '@hi-ui/space'
-import { Button } from '@hi-ui/hiui'
+import { Button, Space as Spacer } from '@hi-ui/hiui'
+
 export const About = () => {
   return (
     <div

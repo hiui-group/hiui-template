@@ -3,7 +3,7 @@ import { PlusOutlined } from '@hi-ui/icons'
 import Result, { RESULT_IMAGE_NET_ERROR } from '@hi-ui/result'
 import { ContentHeader } from '../../components/content-header'
 
-export const ExceptionNetwork = () => {
+export const ExceptionClientError = () => {
   return (
     <div>
       <ContentHeader
@@ -40,8 +40,8 @@ export const ExceptionNetwork = () => {
         <Result
           image={RESULT_IMAGE_NET_ERROR}
           imageSize="lg"
-          title="网络中断"
-          content="抱歉，网络连接中断，请稍后再试！"
+          title="客户端异常"
+          content="抱歉，请刷新重试！"
           children={<Button type="primary">刷新页面</Button>}
         />
       </div>

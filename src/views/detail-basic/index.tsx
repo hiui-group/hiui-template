@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { Avatar, Button, Card, Grid, Table, Tag, Timeline, List } from '@hi-ui/hiui'
+import { Avatar, Button, Card, Grid, Table, Tag, Timeline, Descriptions, List } from '@hi-ui/hiui'
 import { BuildingFilled, PlusOutlined, WordColorful } from '@hi-ui/icons'
 import { ContentHeader } from '../../components/content-header'
 import { Spacer } from '../../components/spacer'
 import { fetchBasicDetailData } from './api'
-import Descriptions from '@hi-ui/descriptions'
 
 const { Row, Col } = Grid
 

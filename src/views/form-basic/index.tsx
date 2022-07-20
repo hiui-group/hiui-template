@@ -377,7 +377,6 @@ export const FormBasic: React.FC = () => {
                   <div className="form-basic-avatar">
                     <Upload
                       type="avatar"
-                      photoSize="default"
                       uploadAction="http://www.mocky.io/v2/5dc3b4413000007600347501"
                       onRemove={(file, fileList, index) => {
                         return new Promise((resolve, reject) => resolve(true))

@@ -140,6 +140,11 @@ export const routeConfig: any[] = [
     icon: <WarningFilled />,
     children: [
       {
+        name: '客户端错误',
+        path: 'exception-client-error',
+        component: <Pages.ExceptionClientError />,
+      },
+      {
         name: '无网络',
         path: 'exception-network',
         component: <Pages.ExceptionNetwork />,

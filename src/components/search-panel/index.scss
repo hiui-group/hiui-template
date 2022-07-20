@@ -11,7 +11,6 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
     overflow: hidden;
     transition: 0.45s ease height;
     justify-content: space-between;
-    padding: 2px;
     box-sizing: border-box;
 
     &__form-component {
@@ -26,12 +25,12 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
       transition: 0.35s ease width;
 
       .hi-v4-form-label__text {
-        width: 116px;
+        width: 90px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         padding-left: 1px;
-        padding-right: 4px;
+        // padding-right: 4px;
       }
 
       .hi-v4-form-label__control {
@@ -43,32 +42,25 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
         }
       }
     }
-
-    &.zh-CN {
-      .hi-v4-form-label {
-        .hi-v4-form-label__text {
-          padding-left: 20px;
-          padding-right: 12px;
-        }
-      }
-    }
   }
 
   &__opts-wrap {
     text-align: right;
-    padding-left: 30px;
+    padding-left: 24px;
     box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
+    align-items: center;
+    height: fit-content;
 
-    .hi-v4-button--appearance-link.hi-v4-button--size-md {
-      height: calc(1.375rem + 10px);
-      padding: 4px 5px;
-    }
+    // .hi-v4-button--appearance-link.hi-v4-button--size-md {
+    //   height: calc(1.375rem + 10px);
+    //   padding: 4px 5px;
+    // }
 
-    .btn-expand {
-      width: 78px;
-      text-align: right;
-    }
+    // .btn-expand {
+    //   width: 78px;
+    //   text-align: right;
+    // }
   }
 }
 
@@ -76,11 +68,11 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
   .#{$prefixCls} {
     &__form-wrap {
       .hi-v4-form-label {
-        width: 50% !important;
+        // width: 50% !important;
 
         &:nth-child(2n + 1) {
           .hi-v4-form-label__text {
-            width: 115px !important;
+            width: 90px !important;
             padding-left: 0 !important;
           }
         }
@@ -95,7 +87,7 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
       .hi-v4-form-label {
         &:nth-child(3n + 1) {
           .hi-v4-form-label__text {
-            width: 115px !important;
+            width: 90px !important;
             padding-left: 0 !important;
           }
         }
@@ -112,7 +104,7 @@ $prefixCls: #{$kit-prefix}-search-panel !default;
 
         &:nth-child(4n + 1) {
           .hi-v4-form-label__text {
-            width: 115px !important;
+            width: 90px !important;
             padding-left: 0 !important;
           }
         }

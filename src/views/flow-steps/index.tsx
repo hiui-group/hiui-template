@@ -122,7 +122,7 @@ export const FlowSteps = () => {
                           {data.product.productName}
                         </div>
                         <Descriptions column={2}>
-                          <Descriptions.Item label="串号管理:" span={2}>
+                          <Descriptions.Item label="串号管理:" colSpan={2}>
                             {data.product.enabledNumberManagement === 1 ? '是' : '否'}
                           </Descriptions.Item>
                           <Descriptions.Item style={{ paddingBottom: 0 }} label="IMEI:">

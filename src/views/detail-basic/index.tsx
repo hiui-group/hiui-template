@@ -92,7 +92,7 @@ export const DetailBasic = () => {
                 {data
                   ? data.travelInfo.map((item: any, index: number) => {
                       return (
-                        <Descriptions.Item key={index} label={item.label} span={item.span}>
+                        <Descriptions.Item key={index} label={item.label} colSpan={item.span}>
                           {item.url ? (
                             <Button
                               icon={<WordColorful />}

@@ -1,6 +1,6 @@
-import { Col, Form, FormItem, FormSubmit, Input, Row, Select, Upload } from "@hi-ui/hiui";
+import { Col, Form, FormItem, FormSubmit, Input, Row, Select, Upload } from '@hi-ui/hiui'
 
-export default () => {
+export default function AccountProfile() {
   return (
     <div className="hi-pro-account-profile-contentbox">
       <div className="hi-pro-account-profile-contentbox-title">个人信息</div>
@@ -30,14 +30,10 @@ export default () => {
               </FormItem>
             </Col>
             <Col span={12}>
-              <FormItem
-                label="头像"
-                field="avatar"
-              >
+              <FormItem label="头像" field="avatar">
                 <div className="hi-pro-account-settings-avatar">
                   <Upload
                     type="avatar"
-                    photoSize="default"
                     uploadAction="http://www.mocky.io/v2/5dc3b4413000007600347501"
                     onRemove={(file, fileList, index) => {
                       return new Promise((resolve, reject) => resolve(true))
@@ -102,7 +98,7 @@ export default () => {
               }}
             >
               保存
-                </FormSubmit>
+            </FormSubmit>
           </FormItem>
         </Form>
       </div>

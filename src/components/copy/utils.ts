@@ -16,19 +16,22 @@ const branch = 'master-pro'
 
 const SUBPATH_GITHUB_URL = (subpath: string) => {
   const url =
-    path.join(
-      'https://api.github.com/repos/hiui-group/hiui-template/contents/src/views/',
-      subpath
-    ) + `?ref=${branch}`
+    'https://api.github.com' +
+    path.join('/repos/hiui-group/hiui-template/contents/src/views/', subpath) +
+    `?ref=${branch}`
+
+  console.log('SUBPATH_GITHUB_URL', url)
 
   return url
 }
 
 const PATH_GITHUB_URL = (pathname: string) => {
-  const url = path.join(
-    `https://raw.githubusercontent.com/hiui-group/hiui-template/${branch}/`,
-    pathname
-  )
+  const url =
+    'https://raw.githubusercontent.com' +
+    path.join(`/hiui-group/hiui-template/${branch}/`, pathname)
+
+  console.log('PATH_GITHUB_URL', url)
+
   return url
 }
 

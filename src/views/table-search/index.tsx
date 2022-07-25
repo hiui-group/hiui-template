@@ -20,6 +20,7 @@ import { checkSelectFetch } from '../../utils/check-select-fetch'
 import { getList, updateStatus, getTypeOptions } from './api'
 
 import './index.scss'
+import { ContentHeader } from '../../components/content-header'
 
 const FormItem = Form.Item
 
@@ -53,14 +54,15 @@ export const TableSearch = () => {
   // 表头配置
   const columns = [
     { title: '商品名', dataKey: 'name', width: 150 },
-    { title: '品类', dataKey: 'type' },
-    { title: '规格', dataKey: 'size' },
-    { title: '价格', dataKey: 'price' },
-    { title: '地址', dataKey: 'address' },
-    { title: '库存', dataKey: 'stock' },
+    { title: '品类', dataKey: 'type', width: 100 },
+    { title: '规格', dataKey: 'size', width: 200 },
+    { title: '价格', dataKey: 'price', width: 150 },
+    { title: '地址', dataKey: 'address', width: 150 },
+    { title: '库存', dataKey: 'stock', width: 100 },
     {
       title: '状态',
       dataKey: 'status',
+      width: 100,
       render(text: any, record: any) {
         return (
           <Switch
@@ -87,16 +89,17 @@ export const TableSearch = () => {
         )
       },
     },
-    { title: '创建时间', dataKey: 'createTime' },
+    { title: '创建时间', dataKey: 'createTime', width: 200 },
     {
       title: '操作',
-      dataKey: '',
+      dataKey: 'operator',
+      width: 80,
       render() {
         return (
           <>
             <Button
-              type="danger"
-              size="sm"
+              appearance="link"
+              type="primary"
               onClick={() => {
                 Message.open({
                   title: '删除中...',
@@ -113,26 +116,40 @@ export const TableSearch = () => {
 
   return (
     <div className="table-search-container">
-      <Toolbar title="查询表格" refresh={execute}>
-        <Button
-          type="default"
-          onClick={() => {
-            Message.open({ title: '点击看板' })
-          }}
-        >
-          查看看板
-        </Button>
-        <Button
-          type="primary"
-          onClick={() => {
-            Message.open({
-              title: '点击新建',
-            })
-          }}
-        >
-          新建
-        </Button>
-      </Toolbar>
+      <ContentHeader
+        breadcrumbs={[
+          {
+            title: '首页',
+            path: 'about',
+          },
+          {
+            title: '查询表单',
+          },
+        ]}
+        title="查询表单"
+        toolbar={
+          <div>
+            <Button
+              type="default"
+              onClick={() => {
+                Message.open({ title: '点击看板' })
+              }}
+            >
+              查看看板
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => {
+                Message.open({
+                  title: '点击新建',
+                })
+              }}
+            >
+              新建
+            </Button>
+          </div>
+        }
+      />
       <div className="container">
         <Card bordered={false} style={{ width: '100%' }}>
           <SearchPanel
@@ -161,10 +178,11 @@ export const TableSearch = () => {
               showColon={false}
               placement="horizontal"
               labelPlacement="right"
+              style={{ columnGap: 0 }}
               innerRef={searchFormRef}
               initialValues={defaultFilters}
             >
-              <FormItem label="名称" field="name">
+              <FormItem label="商品名称" field="name">
                 <Input placeholder="请输入名称" clearable />
               </FormItem>
               <FormItem label="品类" field="type">
@@ -178,7 +196,7 @@ export const TableSearch = () => {
               <FormItem label="规格" field="size">
                 <Input placeholder="请输入部门" clearable />
               </FormItem>
-              <FormItem label="状态" field="status">
+              <FormItem label="商品状态" field="status">
                 <Input placeholder="请输入用户名" clearable />
               </FormItem>
               <FormItem label="创建时间" field="createTime">
@@ -188,9 +206,11 @@ export const TableSearch = () => {
           </SearchPanel>
           <Divider />
           <TableList
+            setting
             loading={loading}
             columns={columns}
             list={list}
+            fixedToColumn={{ right: 'operator' }}
             pagination={{ ...pagination }}
             total={total}
             pageOnChange={(changes: any) => {

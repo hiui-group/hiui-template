@@ -107,7 +107,7 @@ export const FlowSteps = () => {
                       {data.workOrder.protectedMode}
                     </Descriptions.Item>
                   </Descriptions>
-                  <Card bordered={false} style={{ backgroundColor: '#F5F7FA' }}>
+                  <Card bordered={false} style={{ backgroundColor: '#F5F7FA', marginBottom: 12 }}>
                     <Spacer align="flex-start">
                       <Avatar src={data.product.previewUrl}></Avatar>
                       <div>
@@ -122,11 +122,13 @@ export const FlowSteps = () => {
                           {data.product.productName}
                         </div>
                         <Descriptions column={2}>
-                          <Descriptions.Item label="串号管理:" span={2}>
+                          <Descriptions.Item label="串号管理:" colSpan={2}>
                             {data.product.enabledNumberManagement === 1 ? '是' : '否'}
                           </Descriptions.Item>
-                          <Descriptions.Item label="IMEI:">{data.product.IMEI}</Descriptions.Item>
-                          <Descriptions.Item label="SN:">{data.product.SN}</Descriptions.Item>
+                          <Descriptions.Item style={{ paddingBottom: 0 }} label="IMEI:">
+                            {data.product.IMEI}
+                          </Descriptions.Item>
+                          {/* <Descriptions.Item label="SN:">{data.product.SN}</Descriptions.Item> */}
                         </Descriptions>
                       </div>
                     </Spacer>

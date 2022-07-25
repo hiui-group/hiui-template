@@ -1,6 +1,6 @@
 import { Button } from '@hi-ui/hiui'
 import { PlusOutlined } from '@hi-ui/icons'
-import Result, { IconNotFound } from '@hi-ui/result'
+import Result, { RESULT_IMAGE_NOT_FOUND } from '@hi-ui/result'
 import { ContentHeader } from '../../components/content-header'
 
 export const ExceptionNotfound = () => {
@@ -38,10 +38,10 @@ export const ExceptionNotfound = () => {
         }}
       >
         <Result
-          image={<IconNotFound />}
+          image={RESULT_IMAGE_NOT_FOUND}
           imageSize="lg"
           title="404"
-          content="抱歉，服务器开小差了！"
+          content="抱歉，未找到相关资源！"
           children={<Button type="primary">立即申请</Button>}
         />
       </div>

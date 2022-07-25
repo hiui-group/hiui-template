@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { Avatar, Button, Card, Grid, Table, Tag, Timeline, List } from '@hi-ui/hiui'
+import { Avatar, Button, Card, Grid, Table, Tag, Timeline, Descriptions, List } from '@hi-ui/hiui'
 import { BuildingFilled, PlusOutlined, WordColorful } from '@hi-ui/icons'
 import { ContentHeader } from '../../components/content-header'
 import { Spacer } from '../../components/spacer'
 import { fetchBasicDetailData } from './api'
-import Descriptions from '@hi-ui/descriptions'
 
 const { Row, Col } = Grid
 
@@ -93,7 +92,7 @@ export const DetailBasic = () => {
                 {data
                   ? data.travelInfo.map((item: any, index: number) => {
                       return (
-                        <Descriptions.Item key={index} label={item.label} span={item.span}>
+                        <Descriptions.Item key={index} label={item.label} colSpan={item.span}>
                           {item.url ? (
                             <Button
                               icon={<WordColorful />}

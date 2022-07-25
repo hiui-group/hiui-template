@@ -3,7 +3,10 @@
 body {
   // 飞书应用最小宽度
   // min-width: 900px;
-  min-width: 1260px;
+  min-width: 1240px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .ell-1 {

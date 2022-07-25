@@ -1,12 +1,23 @@
-import { Avatar, Button, Pagination, Table, Tree, TreeDataItem } from '@hi-ui/hiui'
+import {
+  Avatar,
+  Button,
+  Message,
+  Pagination,
+  Table,
+  Tree,
+  TreeDataItem,
+  Select,
+  Card,
+  Input,
+  Loading,
+  Result,
+} from '@hi-ui/hiui'
 import { PlusOutlined, SearchOutlined } from '@hi-ui/icons'
 import { ContentHeader } from '../../components/content-header'
-import { Select, Card, Input, Loading } from '@hi-ui/hiui'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { fetchDepartment, fetchTableContent } from './api'
-import './index.scss'
-import { Result } from '@hi-ui/result'
 import { Divider } from '../../components/divider'
+import './index.scss'
 
 const prefix = 'hi-pro-table-layout'
 
@@ -141,13 +152,15 @@ export const TableLayout = () => {
           <Loading visible={isFetchingDepartments}>
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <Input prefix={<SearchOutlined />} clearable placeholder={'搜索'} />
-              <div style={{ marginTop: '8px', flex: '1' }}>
+              <div style={{ marginTop: '8px', overflowY: 'auto' }}>
                 {!isFetchingDepartments && displayDepartments.length === 0 ? (
                   <Result title={'暂无数据'} style={{ height: '100%', justifyContent: 'center' }} />
                 ) : (
                   <Tree
+                    key={displayDepartments.length}
                     data={displayDepartments}
                     selectedId={selectDepartmentCode}
+                    defaultExpandAll
                     onSelect={(e) => {
                       setSelectDepartmentCode(e as string)
                       reset()
@@ -170,21 +183,21 @@ export const TableLayout = () => {
                 <Input
                   placeholder={'姓名/工号/手机号'}
                   suffix={<SearchOutlined />}
-                  style={{ flex: 1, marginRight: '12px', maxWidth: '246px' }}
+                  style={{ flex: 1, marginRight: '12px' }}
                   value={searchPersonKeyword}
                   onChange={(e) => setSearchPersonKeyword(e.target.value)}
                   clearable
                 />
                 <Select
                   placeholder={'职位'}
-                  style={{ flex: 1, marginRight: '12px', maxWidth: '246px' }}
+                  style={{ flex: 1, marginRight: '12px' }}
                   data={JobSelectData}
                   value={selectJobCode}
                   onChange={(e) => setSelectJobCode(e as string)}
                 />
                 <Select
                   placeholder={'级别'}
-                  style={{ flex: 1, marginRight: '12px', maxWidth: '246px' }}
+                  style={{ flex: 1, marginRight: '12px' }}
                   data={LevelSelectData}
                   value={selectLevelCode}
                   onChange={(e) => setSelectLevelCode(e as string)}
@@ -274,10 +287,29 @@ export const TableLayout = () => {
                     {
                       title: '邮箱',
                       dataKey: 'email',
+                      width: 240,
                     },
                     {
                       title: '操作',
-                      dataKey: 'custom-action',
+                      dataKey: 'operator',
+                      width: 80,
+                      render() {
+                        return (
+                          <>
+                            <Button
+                              appearance="link"
+                              type="primary"
+                              onClick={() => {
+                                Message.open({
+                                  title: '删除中...',
+                                })
+                              }}
+                            >
+                              删除
+                            </Button>
+                          </>
+                        )
+                      },
                     },
                   ]}
                 />

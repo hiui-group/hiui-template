@@ -8,12 +8,12 @@ export default function AccountProfile() {
         <Form
           initialValues={{
             userName: '张三',
-            userNo: '480093',
-            userMiliao: '39945521',
-            userTel: '18611112222',
-            userDepartment: '1',
-            userRole: '1',
-            roleLevel: '2',
+            userNo: '000000',
+            userMiliao: '00000000',
+            userTel: '00000000000',
+            userDepartment: "1",
+            userRole: "1",
+            roleLevel: "2"
           }}
           labelPlacement="top"
         >

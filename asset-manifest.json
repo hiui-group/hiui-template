@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/hiui-template/static/css/main.99eeee42.css",
-    "main.js": "/hiui-template/static/js/main.efd73520.js",
+    "main.css": "/hiui-template/static/css/main.ef74811a.css",
+    "main.js": "/hiui-template/static/js/main.25f593ac.js",
     "static/js/27.b0d85900.chunk.js": "/hiui-template/static/js/27.b0d85900.chunk.js",
     "static/media/logo.svg": "/hiui-template/static/media/logo.f8272fd0a368ed4330577a3f0b11750a.svg",
     "index.html": "/hiui-template/index.html"
   },
   "entrypoints": [
-    "static/css/main.99eeee42.css",
-    "static/js/main.efd73520.js"
+    "static/css/main.ef74811a.css",
+    "static/js/main.25f593ac.js"
   ]
 }

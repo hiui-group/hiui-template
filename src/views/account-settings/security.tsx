@@ -33,7 +33,7 @@ export default () => {
                 编辑
               </Button>
             </div>
-            <div className="hi-pro-account-security-item_desc">已绑定手机：158****7894</div>
+            <div className="hi-pro-account-security-item_desc">已绑定手机：188****9999</div>
           </div>
         </div>
         <div className="hi-pro-account-security-item">

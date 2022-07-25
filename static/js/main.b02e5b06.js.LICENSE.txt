@@ -1,0 +1,824 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+
+JSZip v3.7.1 - A JavaScript class for generating and reading zip files
+<http://stuartk.com/jszip>
+
+(c) 2009-2016 Stuart Knightley <stuart [at] stuartk.com>
+Dual licenced under the MIT license or GPLv3. See https://raw.github.com/Stuk/jszip/master/LICENSE.markdown.
+
+JSZip uses the library pako released under the MIT license :
+https://github.com/nodeca/pako/blob/master/LICENSE
+*/
+
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
+ * Cropper.js v1.5.12
+ * https://fengyuanchen.github.io/cropperjs
+ *
+ * Copyright 2015-present Chen Fengyuan
+ * Released under the MIT license
+ *
+ * Date: 2021-06-12T08:00:17.411Z
+ */
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+/**
+ * React Router v6.2.2
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+
+/** @LICENSE
+ * @hi-ui/avatar
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/avatar#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/badge
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/badge#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/breadcrumb
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/breadcrumb#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/button
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/button#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/card
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/card#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/carousel
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/carousel#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/cascader
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/cascader#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/check-cascader
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/check-cascader#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/check-select
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/check-select#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/check-tree-select
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/check-tree-select#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/checkbox
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/checkbox#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/collapse
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/collapse#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/core
+ * https://github.com/XiaoMi/hiui/tree/master/packages/utils/core#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/descriptions
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/descriptions#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/dom-utils
+ * https://github.com/XiaoMi/hiui/tree/master/packages/utils/dom-utils#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/dropdown
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/dropdown#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/env
+ * https://github.com/XiaoMi/hiui#readme
+ *
+ * Copyright (c) Flcwl <flcwl@vip.qq.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/file-select
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/file-select#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/filter
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/filter#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/form
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/form#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/grid
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/grid#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/highlighter
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/highlighter#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/hiui
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/hiui#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/icons
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/icons#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/input
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/input#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/list
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/list#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/loading
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/loading#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/menu
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/menu#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/message
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/message#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/modal
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/modal#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/notification
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/notification#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/number-input
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/number-input#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/object-utils
+ * https://github.com/XiaoMi/hiui/tree/master/packages/utils/object-utils#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/pagination
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/pagination#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/picker
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/picker#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/pop-confirm
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/pop-confirm#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/popover
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/popover#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/popper
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/popper#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/preview
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/preview#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/progress
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/progress#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/provider
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/provider#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/radio
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/radio#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/rating
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/rating#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/request
+ * https://github.com/XiaoMi/hiui/tree/master/packages/utils/request#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/result
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/result#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/search
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/search#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/select
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/select#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/spinner
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/spinner#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/stepper
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/stepper#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/svg-icon
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/svg-icon#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/switch
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/switch#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/table
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/table#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/tabs
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/tabs#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/tag
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/tag#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/tag-input
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/tag-input#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/time-picker
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/time-picker#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/timeline
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/timeline#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/toast
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/toast#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/tooltip
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/tooltip#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/transfer
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/transfer#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/tree
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/tree#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/tree-select
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/tree-select#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/type-assertion
+ * https://github.com/XiaoMi/hiui/tree/master/packages/utils/type-assertion#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/upload
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/upload#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/use-async-data
+ * https://github.com/XiaoMi/hiui/tree/master/packages/hooks/use-async-data#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/use-check
+ * https://github.com/XiaoMi/hiui/tree/master/packages/hooks/use-check#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/use-data-source
+ * https://github.com/XiaoMi/hiui/tree/master/packages/hooks/use-data-source#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/use-outside-click
+ * https://github.com/XiaoMi/hiui/tree/master/packages/hooks/use-outside-click#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/use-toggle
+ * https://github.com/XiaoMi/hiui/tree/master/packages/hooks/use-toggle#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/use-uncontrolled-state
+ * https://github.com/XiaoMi/hiui/tree/master/packages/hooks/use-uncontrolled-state#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/virtual-list
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/virtual-list#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @LICENSE
+ * @hi-ui/zen-mode
+ * https://github.com/XiaoMi/hiui/tree/master/packages/ui/zen-mode#readme
+ *
+ * Copyright (c) HIUI <mi-hiui@xiaomi.com>.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v0.20.2
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v17.0.2
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+//! moment.js

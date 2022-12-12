@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver'
 import Zip from 'jszip'
 
 const SPLIT_REGEXP = /\n|\n\s/
-const IMPORT_REGEXP = /^\s*import\s/
+const IMPORT_REGEXP = /^\s*@?import\s/
 const IMPORT_FROM_PATH_REGEXP = /import\s.+\sfrom\s["'](.*)["']/
 const IMPORT_PATH_REGEXP = /import\s["'](.*)["']/
 const EXT_REGEXP = /\w+\.\w+$/

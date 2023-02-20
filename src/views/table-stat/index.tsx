@@ -152,10 +152,10 @@ export const TableStat = () => {
             path: 'about',
           },
           {
-            title: '统计表单',
+            title: '统计表格',
           },
         ]}
-        title="统计表单"
+        title="统计表格"
         toolbar={
           <div>
             <Button

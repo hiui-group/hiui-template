@@ -123,10 +123,10 @@ export const TableSearch = () => {
             path: 'about',
           },
           {
-            title: '查询表单',
+            title: '查询表格',
           },
         ]}
-        title="查询表单"
+        title="查询表格"
         toolbar={
           <div>
             <Button

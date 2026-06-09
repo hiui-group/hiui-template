@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "hiui-design": {
+      "source": "git@git.n.xiaomi.com:guorui20/hiui-design-open-source.git",
+      "sourceType": "git",
+      "skillPath": "SKILL.md",
+      "computedHash": "5ca39090a7b3bc85803ea5faabaee62a89b3e715b461ff3ca4e0f98b951ebdaf"
+    }
+  }
+}

@@ -21,6 +21,7 @@ import {
 import { TypicalPageHostBridge } from './components/layout/typical-page-host'
 import { PromptCopyFloatingButton } from './components/prompt-copy-floating-button'
 import { type SupportedLocale, useTranslation } from '../translation'
+import logo from './assets/logo2x.png'
 
 type AppRouteLike = {
   title?: string
@@ -325,19 +326,14 @@ const styles = {
     alignItems: 'center',
     gap: 8,
   } as const,
-  logo: {
-    width: 28,
-    height: 28,
-    borderRadius: 6,
-    backgroundColor: 'rgb(124 135 166 / 12%)',
-  } as const,
   logoImg: {
-    width: 28,
-    height: 28,
+    width: 24,
+    height: 24,
   } as const,
   siderHeaderTitle: {
     fontWeight: 500,
     color: '#1a1d26',
+    lineHeight: '24px',
   } as const,
   siderFooter: {
     flex: '0 0 auto',
@@ -606,13 +602,11 @@ export function TypicalPageAppFrame({
           <div style={styles.siderHeader}>
             <div style={styles.siderHeaderTop}>
               <div style={styles.siderHeaderLogo}>
-                <div style={styles.logo}>
-                  <img
-                    src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><rect width='80' height='80' rx='18' fill='%230066FF'/><text x='40' y='51' text-anchor='middle' font-size='28' font-family='Arial' font-weight='700' fill='white'>H</text></svg>"
-                    alt="logo"
-                    style={styles.logoImg}
-                  />
-                </div>
+                <img
+                  src={logo}
+                  alt="logo"
+                  style={styles.logoImg}
+                />
                 {collapsed ? null : <div style={styles.siderHeaderTitle}>HiUI Pro</div>}
               </div>
               {collapsed ? null : appSwitcher}

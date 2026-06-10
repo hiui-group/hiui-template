@@ -1,13 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { CSSProperties } from 'react'
-import { Button, Message, Popover } from '@hi-ui/hiui'
-import { CopyOutlined } from '@hi-ui/icons'
+import { Button, Message, Popover, Tooltip } from '@hi-ui/hiui'
+import { CopyOutlined, GuidelinesOutlined } from '@hi-ui/icons'
+
+const floatingButtonGap = 12
+const copyPopoverZIndex = 1200
 
 const floatingWrapperStyle: CSSProperties = {
   position: 'fixed',
   right: 32,
   bottom: 64,
   zIndex: 1100,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  gap: floatingButtonGap,
 }
 
 const contentStyle: CSSProperties = {
@@ -42,6 +49,8 @@ const floatingButtonStyle: CSSProperties = {
   boxShadow: '0 8px 24px rgba(26, 29, 38, 0.16)',
 }
 
+const skillDocUrl = 'https://xiaomi.github.io/hiui/docs/hiui-design-skill/'
+
 async function copyText(text: string) {
   if (navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(text)
@@ -65,11 +74,11 @@ async function copyText(text: string) {
 }
 
 export function PromptCopyFloatingButton({ prompt }: { prompt: string }) {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    setVisible(false)
-  }, [prompt])
+  const [popoverState, setPopoverState] = useState({
+    prompt,
+    visible: false,
+  })
+  const visible = popoverState.visible && popoverState.prompt === prompt
 
   const handleCopy = async () => {
     try {
@@ -80,8 +89,24 @@ export function PromptCopyFloatingButton({ prompt }: { prompt: string }) {
     }
   }
 
+  const handleOpenSkillDoc = () => {
+    window.open(skillDocUrl, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <div style={floatingWrapperStyle}>
+      <Tooltip title="获取 hiui-design skill" placement="top-end">
+        <Button
+          type="default"
+          appearance="line"
+          size="lg"
+          shape="round"
+          icon={<GuidelinesOutlined />}
+          style={floatingButtonStyle}
+          aria-label="获取 hiui-design skill"
+          onClick={handleOpenSkillDoc}
+        />
+      </Tooltip>
       <Popover
         title="当前页面提示词"
         content={
@@ -98,10 +123,11 @@ export function PromptCopyFloatingButton({ prompt }: { prompt: string }) {
         trigger="click"
         placement="top-end"
         gutterGap={12}
+        zIndex={copyPopoverZIndex}
         showTitleDivider
         closeOnOutsideClick
-        onOpen={() => setVisible(true)}
-        onClose={() => setVisible(false)}
+        onOpen={() => setPopoverState({ prompt, visible: true })}
+        onClose={() => setPopoverState((prev) => ({ ...prev, visible: false }))}
       >
         <Button
           type="default"
